@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DDB86909-CFD5-48CE-9CEA-512D819EAE5B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Activos.Entidad</RootNamespace>
+    <AssemblyName>Activos.Entidad</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Activos\AccesorioEntidad.cs" />
+    <Compile Include="Activos\ActivoEntidad.cs" />
+    <Compile Include="Activos\AsignacionEntidad.cs" />
+    <Compile Include="Activos\CompraEntidad.cs" />
+    <Compile Include="Activos\CondicionEntidad.cs" />
+    <Compile Include="Activos\FamiliaEntidad.cs" />
+    <Compile Include="Activos\LevantamientoActivoEntidad.cs" />
+    <Compile Include="Activos\MarcaEntidad.cs" />
+    <Compile Include="Activos\SubFamiliaEntidad.cs" />
+    <Compile Include="Activos\TemporalAccesorioEntidad.cs" />
+    <Compile Include="Activos\TemporalActivoEntidad.cs" />
+    <Compile Include="Activos\TemporalAsignacionEntidad.cs" />
+    <Compile Include="Activos\TemporalCompraEntidad.cs" />
+    <Compile Include="Activos\TemporalTransferenciaActivoEntidad.cs" />
+    <Compile Include="Activos\TipoAccesorioEntidad.cs" />
+    <Compile Include="Activos\TipoActivoEntidad.cs" />
+    <Compile Include="Activos\TipoDocumentoEntidad.cs" />
+    <Compile Include="Activos\TipoServicioEntidad.cs" />
+    <Compile Include="Base.cs" />
+    <Compile Include="Catalogo\BancoEntidad.cs" />
+    <Compile Include="Catalogo\CiudadEntidad.cs" />
+    <Compile Include="Catalogo\DepartamentoEntidad.cs" />
+    <Compile Include="Catalogo\DependenciaEntidad.cs" />
+    <Compile Include="Catalogo\DireccionEntidad.cs" />
+    <Compile Include="Catalogo\EdificioEntidad.cs" />
+    <Compile Include="Catalogo\EmpleadoEntidad.cs" />
+    <Compile Include="Catalogo\EstadoEntidad.cs" />
+    <Compile Include="Catalogo\JefeEntidad.cs" />
+    <Compile Include="Catalogo\ProveedorEntidad.cs" />
+    <Compile Include="Catalogo\PuestoEntidad.cs" />
+    <Compile Include="General\ResultadoEntidad.cs" />
+    <Compile Include="Mantenimiento\MantenimientoActivoEntidad.cs" />
+    <Compile Include="Mantenimiento\MantenimientoEmpleadoEntidad.cs" />
+    <Compile Include="Mantenimiento\MantenimientoEntidad.cs" />
+    <Compile Include="Mantenimiento\TemporalMantenimientoActivoEntidad.cs" />
+    <Compile Include="Mantenimiento\TemporalMantenimientoEmpleadoEntidad.cs" />
+    <Compile Include="Mantenimiento\TipoAsistenciaEntidad.cs" />
+    <Compile Include="Mantenimiento\TipoMantenimientoEntidad.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seguridad\AplicacionEntidad.cs" />
+    <Compile Include="Seguridad\EstatusEntidad.cs" />
+    <Compile Include="Seguridad\PaginaEntidad.cs" />
+    <Compile Include="Seguridad\RolEntidad.cs" />
+    <Compile Include="Seguridad\RolPaginaEntidad.cs" />
+    <Compile Include="Seguridad\SeccionEntidad.cs" />
+    <Compile Include="Seguridad\UsuarioEntidad.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,44 @@
+﻿/*
+* Fecha de creación:	23-Marzo-2012
+* Autor:				Carlos Valladolid
+*
+* Descripción:			Hoja de estilos para las pantallas privadas de la aplicación
+*/
+
+html, body, form
+{
+	background: url(/Imagen/Fondo/FondoPantalla.jpg);
+	border: 0px;
+	color: #333333;
+	font-family: Century Gothic, Calibri, Verdana;
+	font-size: 12px;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+}
+
+#DivCuerpo
+{
+	height: 91%;
+	width: 100%;
+}
+
+#DivEncabezado
+{
+	height: 5%;
+	width: 100%;
+}
+
+#DivPie
+{
+	border: 0px;
+	height: 4%;
+	width: 100%;
+}
+
+#DivPrincipal
+{
+	height: 100%;
+	width: 100%;
+}

@@ -1,0 +1,41 @@
+﻿/*
+* Fecha de creación:	04-Abril-2012
+* Autor:				Carlos Valladolid
+*
+* Descripción:			Hoja de estilos para los textos de las páginas privadas de la aplicación Web
+*/
+
+.TextoError
+{
+	font-size: 12px;
+	color: #ff0000;
+	vertical-align: top;
+}
+
+.TitleTextoError
+{
+	font-size: 14px;
+	font-weight: bold;
+	color: #ff0000;
+	vertical-align: top;
+}
+
+.TextoInformacion
+{
+	font-size: 12px;
+	color: #0000ff;
+	vertical-align: top;
+}
+
+.MontoTotal
+{
+	font-size: 16px;
+	font-weight: bold;
+	vertical-align: top;
+}
+
+.NotaCampo
+{
+	color: #7a7a7a;
+	font-size: 12px;
+}

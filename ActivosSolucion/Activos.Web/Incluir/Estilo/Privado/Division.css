@@ -1,0 +1,165 @@
+﻿/*
+* Fecha de creación:	23-Marzo-2012
+* Autor:				Carlos Valladolid
+*
+* Descripción:			Hoja de estilos para las etiquetas divs de las pantallas privadas de la aplicación
+*/
+
+.DivCargando
+{
+	background: url(/Imagen/Fondo/FondoPopup.png) repeat;
+    left: 0px;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index:1003;
+}
+
+.DivCargando .DivCargandoImagen
+{
+	height: 150px;
+	left: 50%;
+	margin-left: -75px;
+	margin-top: -75px;
+	position: relative;
+	top: 50%;
+	width: 150px;
+}
+
+
+#DivCuerpo .DivContenido
+{
+	background-color: #ffffff;
+	float: left;
+	height: 100%;
+	overflow: hidden;
+	width: 95%;
+}
+
+#DivCuerpo .DivContenido .DivContenidoTitulo
+{
+	background-color: #268AF9;
+	height: 25px;
+}
+
+#DivCuerpo .DivContenido .DivTituloPagina
+{
+	border: 0px;
+	font-weight: bold;
+	height: 25px;
+	padding: 0px 0px 0px 5px;
+}
+
+#DivCuerpo .DivContenido .DivSubtituloPagina
+{
+	background-color: #dddddd;
+	border: 0px;
+	font-weight: bold;
+	/*height: 25px;*/
+	padding: 3px 3px 3px 3px;
+}
+
+#DivCuerpo .DivContenido .DivInformacionContenido
+{
+	height: 100%;
+	overflow: auto;
+}
+
+#DivCuerpo .DivContenido .DivInformacionContenido .DivBusquedaAvanzada
+{
+	background: url(/Imagen/Fondo/FondoBusquedaAvanzada.jpg) right no-repeat;
+	min-height: 150px;
+}
+
+#DivCuerpo .DivContenido .DivInformacionContenido .DivContenidoOpcionesMenu
+{
+	border: 1px solid #cccccc;
+	height: 200px;
+	margin: 10px 10px 10px 10px;
+	width: 400px;
+	float: left;
+	display: none;
+}
+
+#DivCuerpo .DivContenido .DivInformacionContenido .DivEditarRegistro
+{
+	background: url(/Imagen/Fondo/FondoEditarRegistro.jpg) right no-repeat;
+}
+
+#DivCuerpo .DivContenido .DivInformacionContenido .DivNuevoRegistro
+{
+	background: url(/Imagen/Fondo/FondoNuevoRegistro.jpg) right no-repeat;
+}
+
+#DivCuerpo .DivContenido .DivContenidoTitulo .DivTitulo
+{
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 3px 0px 0px 5px;
+}
+
+#DivCuerpo .DivMenuContenido
+{
+	float: left;
+	height: 100%;
+	width: 5%;
+}
+
+#DivEncabezado .DivTitulo
+{
+	color: #ffffff;
+	float: left;
+	font-size: 18px;
+	font-weight: bold;
+	padding: 3px 0px 0px 10px;
+}
+
+#DivEncabezado .DivCuentaUsuario
+{
+	color: #ffffff;
+	float: right;
+	padding: 7px 10px 0px 0px;
+	text-align: right;
+	width: 350px;
+}
+
+#DivEncabezado .DivCuentaUsuario a
+{
+	color: #ffffff;
+	text-decoration: none;
+}
+
+#DivPie .DivTexto
+{
+	color: #ffffff;
+	font-size: 11px;
+	padding: 3px 10px 0px 0px;
+	text-align: right;
+}
+
+#DivPie .DivTexto a
+{
+	color: #ffffff;
+	font-size: 11px;
+	text-decoration: none;
+}
+
+.OpcionesMenuDesplazableTercia
+{
+	float: left;
+	width: 33%;
+	display: none;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+.OpcionesMenuDesplazableMedia
+{
+	float: left;
+	width: 50%;
+	display: none;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}

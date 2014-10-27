@@ -1,0 +1,211 @@
+﻿/*
+* Fecha de creación:	23-Marzo-2012
+* Autor:				Carlos Valladolid
+*
+* Descripción:			Hoja de estilos para las tablas de las pantallas privadas de la aplicación
+*/
+
+#DivCuerpo .DivContenido .DivBusquedaAvanzada .TablaFormulario
+{
+	border-spacing: 5px;
+	padding: 5px;
+	vertical-align: top;
+}
+
+#DivCuerpo .DivContenido .DivBusquedaAvanzada .TablaFormulario .Error
+{
+	width: 20px;
+}
+
+#DivCuerpo .DivContenido .DivBusquedaAvanzada .TablaFormulario .Espacio
+{
+	width: 25px;
+}
+
+#DivCuerpo .DivContenido .DivBusquedaAvanzada .TablaFormulario .Field
+{
+	vertical-align: top;
+	width: 220px;
+}
+
+#DivCuerpo .DivContenido .DivBusquedaAvanzada .TablaFormulario .Name
+{
+	vertical-align: top;
+	width: 150px;
+}
+
+#DivCuerpo .DivContenido .DivNuevoRegistro .TablaFormulario
+{
+	border-spacing: 5px;
+	padding: 5px;
+	vertical-align: top;
+}
+
+#DivCuerpo .DivContenido .DivNuevoRegistro .TablaFormulario .Error
+{
+	width: 250px;
+}
+
+#DivCuerpo .DivContenido .DivNuevoRegistro .TablaFormulario .Espacio
+{
+	width: 20px;
+}
+
+#DivCuerpo .DivContenido .DivNuevoRegistro .TablaFormulario .EspacioColumna
+{
+	width: 50px;
+}
+
+#DivCuerpo .DivContenido .DivNuevoRegistro .TablaFormulario .Field
+{
+	vertical-align: top;
+	width: 220px;
+}
+
+#DivCuerpo .DivContenido .DivNuevoRegistro .TablaFormulario .Name
+{
+	vertical-align: top;
+	width: 150px;
+}
+
+#DivCuerpo .DivContenido .DivNuevoRegistro .TablaFormulario .Requerido
+{
+	font-size: 12px;
+	color: #ff0000;
+	vertical-align: top;
+	width: 20px;
+}
+
+#DivCuerpo .DivContenido .DivInformacionContenido .DivContenidoOpcionesMenu .TablaOpciones
+{
+	width: 100%;
+}
+
+#DivCuerpo .DivContenido .DivInformacionContenido .DivContenidoOpcionesMenu .TablaOpciones a
+{
+	color: #333333;
+	text-decoration: none;
+}
+
+#DivCuerpo .DivContenido .DivInformacionContenido .DivContenidoOpcionesMenu .TablaOpciones a:hover
+{
+	text-decoration: underline;
+}
+
+#DivCuerpo .DivContenido .DivInformacionContenido .DivContenidoOpcionesMenu .TablaOpciones .Titulo
+{
+	color: #666666;
+	font-size: 18px;
+	font-weight: bold;
+	vertical-align: middle;
+}
+
+#DivCuerpo .DivContenido .DivInformacionContenido .DivTituloPagina .TablaTituloPagina
+{
+	border: 0px;
+	border-spacing: 0px;
+	padding: 0px;
+	width: 100%;
+}
+
+#DivCuerpo .DivContenido .DivInformacionContenido .DivTituloPagina .TablaTituloPagina .Buscar
+{
+	text-align: right;
+	width: 47%;
+}
+
+
+#DivCuerpo .DivContenido .DivInformacionContenido .DivTituloPagina .TablaTituloPagina .Icono
+{
+	text-align: left;
+	width: 3%;
+}
+
+#DivCuerpo .DivContenido .DivInformacionContenido .DivTituloPagina .TablaTituloPagina .Titulo
+{
+	font-weight: normal;
+	width: 50%;
+}
+
+#DivCuerpo .DivContenido .DivInformacionContenido .DivTituloPagina .TablaTituloPagina a
+{
+	color: #333333;
+	text-decoration: none;
+}
+
+#DivCuerpo .DivContenido .DivInformacionContenido .DivTabla
+{
+	padding-bottom: 50px;
+}
+
+#DivCuerpo .DivMenuContenido .TablaMenuContenido
+{
+	width: 100%;
+}
+
+#DivCuerpo .DivMenuContenido .IconoMenu
+{
+	height: 55px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#DivCuerpo .DivContenido .DivCampo .DivCampoIzquierda
+{
+	width:45%; 
+	float:left;
+}
+
+#DivCuerpo .DivContenido .DivCampo .TablaFormulario
+{
+	border-spacing: 5px;
+	padding: 5px;
+	vertical-align: top;
+}
+
+#DivCuerpo .DivContenido .DivCampo .TablaFormulario .Campo
+{
+	vertical-align: top;
+	width: 320px;
+}
+
+#DivCuerpo .DivContenido .DivCampo .TablaFormulario .CampoConsultaActivo
+{
+	vertical-align: top;
+	width: 180px;
+}
+
+#DivCuerpo .DivContenido .DivCampo .TablaFormulario .Error
+{
+	width: 250px;
+}
+
+#DivCuerpo .DivContenido .DivCampo .TablaFormulario .Espacio
+{
+	width: 20px;
+}
+
+#DivCuerpo .DivContenido .DivCampo .TablaFormulario .EspacioColumna
+{
+	width: 50px;
+}
+
+#DivCuerpo .DivContenido .DivCampo .TablaFormulario .Nombre
+{
+	vertical-align: top;
+	width: 150px;
+}
+
+#DivCuerpo .DivContenido .DivCampo .TablaFormulario .NombreConsultaActivo
+{
+	vertical-align: top;
+	width: 100px;
+}
+
+#DivCuerpo .DivContenido .DivCampo .TablaFormulario .Requerido
+{
+	font-size: 12px;
+	color: #ff0000;
+	vertical-align: top;
+	width: 20px;
+}

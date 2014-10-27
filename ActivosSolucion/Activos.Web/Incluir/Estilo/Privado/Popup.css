@@ -1,0 +1,232 @@
+﻿/*
+* Fecha de creación:	17-Abril-2012
+* Autor:					Antonio silva
+*
+* Descripción:			Hoja de estilos para los popups de la página
+*/
+
+.PopupGrandeDiv
+{
+	 background: #ffffff;
+	 border: 1px solid #000000;
+	 color: #333;
+    left: 50%;
+    margin-left: -400px;
+	 margin-top: -250px;
+    height: 500px;
+    padding: 0px;
+    position: fixed;
+    top: 50%;
+    width: 800px;
+    z-index: 1002;
+}
+
+.PopupGrandeCuerpoDiv
+{
+	background-color: #ffffff;
+	border: 0px;
+	border-spacing: 5px;
+	height: 425px;
+	overflow: auto;
+	padding: 5px;
+}
+
+.PopupGrandePieDiv
+{
+	background-color: #dddddd;
+	border: 0px;
+	border-spacing: 5px;
+	height: 55px;
+	padding: 5px;
+}
+
+.PopupGrandeEncabezadoDiv
+{
+	background-color: #a6baea;
+	border: 0px;
+	border-spacing: 5px;
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: bold;
+	height: 20px;
+	padding: 5px;
+}
+
+.Superposicion
+{
+	-moz-opacity: 0.75;
+	background: #000000 url(/Imagen/Fondo/FondoPopup.png) repeat;
+    filter: alpha(opacity=75);
+    left: 0px;
+    height: 100%;
+    opacity:.75;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 1001;
+}
+
+
+
+.PopupGrandeDiv .PopupGrandeCuerpoDiv .TablaControlWeb
+{
+	border-spacing: 5px;
+	padding: 5px;
+	vertical-align: top;
+}
+
+.PopupGrandeDiv .PopupGrandeCuerpoDiv .TablaControlWeb .Error
+{
+	width: 20px;
+}
+
+.PopupGrandeDiv .PopupGrandeCuerpoDiv .TablaControlWeb .Espacio
+{
+	width: 25px;
+}
+
+.PopupGrandeDiv .PopupGrandeCuerpoDiv .TablaControlWeb .Campo
+{
+	vertical-align: top;
+	width: 220px;
+}
+
+.PopupGrandeDiv .PopupGrandeCuerpoDiv .TablaControlWeb .Nombre
+{
+	vertical-align: top;
+	width: 150px;
+}
+
+
+
+.PopupMedianoDiv
+{
+	 background: #ffffff;
+	 /*border: 1px solid #000000;*/
+	 color: #333;
+	 float: left;
+    height: 270px;
+    padding: 0px;
+    top: 50%;
+    width: 500px;
+}
+
+.PopupMedianoCuerpoDiv
+{
+	background-color: #dddddd;
+	border: 0px;
+	/*border-spacing: 5px;*/
+	height: 250px;
+	overflow: auto;
+	padding: 5px;
+}
+
+.PopupMedianoEncabezadoDiv
+{
+	background-color: #a6baea;
+	border: 0px;
+	/*border-spacing: 5px;*/
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: bold;
+	height: 20px;
+	padding: 5px;
+}
+
+
+.PopupMedianoDiv .PopupMedianoCuerpoDiv .TablaControlWeb
+{
+	border-spacing: 5px;
+	padding: 5px;
+	vertical-align: top;
+}
+
+.PopupMedianoDiv .PopupMedianoCuerpoDiv .TablaControlWeb .Error
+{
+	width: 20px;
+}
+
+.PopupMedianoDiv .PopupMedianoCuerpoDiv .TablaControlWeb .Espacio
+{
+	width: 25px;
+}
+
+.PopupMedianoDiv .PopupMedianoCuerpoDiv .TablaControlWeb .Campo
+{
+	vertical-align: top;
+	width: 220px;
+}
+
+.PopupMedianoDiv .PopupMedianoCuerpoDiv .TablaControlWeb .Nombre
+{
+	vertical-align: top;
+	width: 150px;
+}
+
+
+
+/*-----------------------------------------------------*/
+
+.PopupAltoDiv
+{
+	 background: #ffffff;
+	 /*border: 1px solid #000000;*/
+	 color: #333;
+	 float: left;
+    height: 420px;
+    padding: 0px;
+    top: 50%;
+    width: 500px;
+}
+
+.PopupAltoCuerpoDiv
+{
+	background-color: #dddddd;
+	border: 0px;
+	/*border-spacing: 5px;*/
+	height: 400px;
+	overflow: auto;
+	padding: 5px;
+}
+
+.PopupAltoEncabezadoDiv
+{
+	background-color: #a6baea;
+	border: 0px;
+	/*border-spacing: 5px;*/
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: bold;
+	height: 20px;
+	padding: 5px;
+}
+
+
+.PopupAltoDiv .PopupAltoCuerpoDiv .TablaControlWeb
+{
+	border-spacing: 5px;
+	padding: 5px;
+	vertical-align: top;
+}
+
+.PopupAltoDiv .PopupAltoCuerpoDiv .TablaControlWeb .Error
+{
+	width: 20px;
+}
+
+.PopupAltoDiv .PopupAltoCuerpoDiv .TablaControlWeb .Espacio
+{
+	width: 25px;
+}
+
+.PopupAltoDiv .PopupAltoCuerpoDiv .TablaControlWeb .Campo
+{
+	vertical-align: top;
+	width: 220px;
+}
+
+.PopupAltoDiv .PopupAltoCuerpoDiv .TablaControlWeb .Nombre
+{
+	vertical-align: top;
+	width: 150px;
+}

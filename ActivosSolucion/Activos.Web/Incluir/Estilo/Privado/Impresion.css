@@ -1,0 +1,656 @@
+﻿/*
+* Fecha de creación:	24-Julio-2012
+* Autor:				Francisco Cordero
+*
+* Descripción:			Hoja de estilos para las pantallas de impresion
+*/
+
+html, body, form
+{
+	background: #ffffff;
+	border: 0px;
+	color: #333333;
+	font-family: Century Gothic, Calibri, Verdana;
+	font-size: 12px;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+}
+
+#DivCuerpo
+{
+	height: 91%;
+	width: 100%;
+}
+
+#DivEncabezado
+{
+	height: 5%;
+	width: 100%;
+	
+}
+
+#DivPie
+{
+	border: 0px;
+	height: 4%;
+	width: 100%;
+}
+
+#DivPrincipal
+{
+	height: 100%;
+	width: 100%;
+}
+
+
+#DivCuerpo .DivContenido
+{
+	background-color: #ffffff;
+	float: left;
+	height: 100%;
+	width: 95%;
+}
+
+#DivCuerpo .DivContenido .DivCampo 
+{
+	width:45%; 
+	
+}
+
+.TablaEncabezado
+{
+	border-spacing: 10px;
+	width:100%;
+	height:5%;
+	
+	
+}
+
+.TablaEncabezado .Centrar
+{
+	text-align:center;
+}
+
+.TablaEncabezado .Izquierda
+{
+	text-align:left;
+	width:25%;
+}
+
+.TablaEncabezado .TextoCentral
+{
+	text-align:center;
+	font-family:Lucida Console;
+	font-weight:normal;
+	font-size:25px;
+    color:Black;
+	
+}
+.TablaEncabezado .TextoInferior
+{
+	text-align:center;
+	font-family:Lucida Console;
+	font-weight:bold;
+	font-size:23px;
+    color:Black;
+	
+}
+
+.TablaEncabezado .FechaFactura
+{
+	text-align:center;
+	font-family:Lucida Console;
+	font-size:medium;
+    color:Black;
+	
+}
+.DivTablaFecha
+{
+    float:right; 
+    padding-bottom:10px;
+    
+    }
+ .TablaFechaFactura
+{
+	border: 1px solid;
+	border-color:Black;
+	border-collapse:collapse;
+	text-align:center;
+	
+}
+.TablaInformacion
+{
+    border-collapse:collapse;
+    border:1px solid black;
+	text-align:left;
+	padding-bottom:5px;
+	
+}
+ .LineasNaranjas
+{
+      float:left;
+      padding-top:5px;
+      border-bottom-color:Orange;
+      border-bottom-style:solid;
+      border-bottom-width:1px;
+      height:15px;
+      border-top-color:Orange;
+      border-top-style:solid;
+      border-top-width:5px;
+      width:100%;
+     
+    }
+    
+    .TablaCheckBox
+    {
+        border-spacing:10px;
+        width:100%;
+    }
+    .TdTablaCheckBox
+    {
+        width:25%;
+    }
+    
+    .DivEmpleado
+    { 
+         width:100%;
+    }
+    
+    .Empleado
+    {
+        width:20%;
+        text-align:left;
+    }
+    
+    
+    
+    .LineaOtros
+    {
+        border-bottom-style:solid;
+        border-bottom-color:Black;
+        border-bottom-width:thin;
+        width:25%;
+            
+    }
+    .CampoEmpleado
+    {
+        border-bottom-style:solid;
+        border-bottom-color:Black;
+        border-bottom-width:thin;
+        width:404px;
+            
+    }
+    
+    .Nombre
+    {
+    border:1px solid;
+    border-color:Black;
+    
+    
+    
+    }
+    .Campo
+    {
+    border:1px solid;
+    border-color:Black;
+    border-bottom:1px solid black;
+   
+   
+     }
+
+	/*Inicia estilos para la impresion del resguardo de vehiculos*/
+	
+	.DivVehiculoSeccion
+      {
+      	border:1px solid;
+      	-moz-border-radius: 8px 8px 8px 8px;
+      	-webkit-border-radius: 8px 8px 8px 8px;
+      	border-radius: 8px 8px 8px 8px;
+      }
+      
+      .TablaVehiculo
+      {
+      	font-size: 10px;
+      	width: 100%;
+      }
+      
+      .TablaVehiculo .Espacio
+      {
+      	width: 20px;
+      }
+      
+      .TablaVehiculo .Subrrayado
+      {
+      	border-bottom: 1px solid;
+      }
+      
+      .TablaVehiculo .Chica
+      {
+      	width: 40px;
+      	font-weight:bold;
+      }
+      
+      .TablaVehiculo .Mediana
+      {
+      	width: 100px;
+      	font-weight:bold;
+      }
+      
+      .TablaVehiculo .Grande
+      {
+      	width: 160px;
+      	font-weight:bold;
+      }
+      
+      .TablaVehiculo .CampoMediano
+      {
+      	width: 120px;
+      }
+      
+      .TablaVehiculo .CampoMedianoSubrrayado
+      {
+      	width: 120px;
+      	border-bottom: 1px solid;
+      }
+      
+      .TablaCaracteristicas
+      {
+      	font-size: 12px;
+      	width: 100%;
+      	font-weight:bold;
+      }
+      
+      .TablaCaracteristicas .CampoCarac
+      {
+      	width: 25%;
+      }
+      
+      .DivSaltoLinea
+      {
+      	height: 5px;
+      }
+      
+      .DivVehiculoAccesorios
+      {
+      	font-size: 10px;
+      	width: 100%;
+      }
+      
+      .DivVehiculoAccesorios .NombreVehiculoAccChico
+      {
+      	width: 90px;
+      	font-weight:bold;
+      }
+      
+      .DivVehiculoAccesorios .NombreVehiculoAccMediano
+      {
+      	width: 100px;
+      	font-weight:bold;
+      }
+      
+      .DivVehiculoAccesorios .NombreVehiculoAccGrande
+      {
+      	width: 170px;
+      	font-weight:bold;
+      }
+      
+      .DivVehiculoAccesorios .NombreVehiculoAccGrandeCentrado
+      {
+      	width: 170px;
+      	font-weight:bold;
+      	text-align:center;
+      }
+      
+      .DivVehiculoAccesorios .VehiculoEspacio
+      {
+      	width: 20px;
+      }
+      
+      .DivVehiculoAccesorios .AccesorioSubrrayado
+      {
+      	border-bottom:1px solid;
+      }
+      
+      .DivVehiculoAccesorios .CampoAccSubrrayado
+      {
+      	border-bottom:1px solid; 
+      	width:150px;
+      }
+      
+      .DivVehiculoAccesorios .AccesorioCampo
+      {
+      	width:150px;
+      }
+      
+      .TablaVehiculoObservaciones
+      {
+      	font-size: 10px;
+      	width: 100%;
+      }
+      
+      .TablaVehiculoObservaciones .NombreVehiculoObserv
+      {
+      	width: 100px;
+      	font-style:italic;
+      	font-weight:bold;
+      }
+      
+      .TablaVehiculoObservaciones .CampoVehiculoObservSubrrayado
+      {
+      	border-bottom:1px solid;
+      	font-weight:bold;
+      }
+      
+      .TablaVehiculoDescripcion
+      {
+      	font-size: 10px;
+      	width: 100%;
+      }
+      
+      .TablaVehiculoDescripcion .NombreVehiculoDesc
+      {
+      	width: 200px;
+      	font-style:italic;
+      	font-weight:bold;
+      }
+      
+      .TablaVehiculoDescripcion .CampoVehiculoDescSubrrayado
+      {
+      	border-bottom:1px solid;
+      	font-weight:bold;
+      }
+      
+      .DivVehiculoCompromiso
+      {
+      	text-align:center; 
+      	font-size:9px;
+      	font-style: italic;
+      }
+      
+      .TablaVehiculoFirmas
+      {
+      	text-align:center; 
+      	margin:auto; 
+      	font-size:10px;
+      	width:100%;
+      }
+      
+      .TablaVehiculoFirmas .CampoVehiculoFirmas
+      {
+      	width:300px;
+      }
+      
+      .TablaVehiculoFirmas .EspacioVehiculoFirmas
+      {
+      	width:20px;
+      }
+      
+      .TablaVehiculoFirmas .CampoVehiculoFirmasSubrrayado
+      {
+      	border-bottom:1px solid;
+      	width:300px;
+      }
+      
+      .DivVehiculoTitulo
+      {
+      	text-align:center; 
+      	height:40px; 
+      	width:85%; 
+      	float:left;
+      	font-style:italic;
+      	font-weight:bold;
+      }
+      
+      .DivVehiculoFecha
+      {
+      	width:15%; 
+      	height:40px; 
+      	float:left;
+      }
+      
+      .DivVehiculoFechaConBorde
+      {
+      	height:100%; 
+      	border:1px solid; 
+      	font-size:10px;
+      	-moz-border-radius: 8px 8px 8px 8px;
+      	-webkit-border-radius: 8px 8px 8px 8px;
+      }
+      
+      .TablaVehiculoFecha
+      {
+      	width:100%;	
+      	font-weight:bold;
+      }
+      
+      .TablaVehiculoFecha .CampoVehiculoFecha
+      {
+      	width:50%;
+      }
+      
+      .TablaVehiculoFecha .CampoVehiculoFechaSubrrayado
+      {
+      	width:50%;
+      	border-bottom:1px solid;
+      }
+	
+	/*Termina estilos para la impresion del resguardo de vehiculos*/
+	
+	
+	
+	/*Inicia estilos para la impresion del resguardo de vehiculos al reverso*/
+	
+	.DivVehiculoReverso
+	{
+		text-align:center; 
+		vertical-align:middle; 
+		margin:auto; 
+		height:100%;
+	}
+	
+	
+	.TablaVehiculoReverso
+	{
+		margin:auto; 
+		text-align:left; 
+		font-size:12px;
+		font-weight:bold;
+	}
+	
+	.TablaVehiculoReverso .FilaTitulo
+	{
+		text-align:center;
+		font-size:14px;
+	}
+	
+	.TablaVehiculoReverso .FilaCentrada
+	{
+		text-align:center;
+	}
+	
+	.TablaVehiculoReverso .FilaChica
+	{
+		height:30px;
+	}
+	
+	.TablaVehiculoReverso .CampoChico
+	{
+		width:50px;
+	}
+	
+	.TablaVehiculoReverso .CampoChicoBorde
+	{
+		width:50px;
+		border:1px solid;
+	}
+	
+	.TablaVehiculoReverso .CampoGrande
+	{
+		width:600px;
+	}
+	
+	/*Inicia estilos para la impresion del resguardo de vehiculos al reverso*/
+	
+	.DivImpresionFecha
+	{
+		float:right;
+		width:150px;
+	}
+	
+	.TablaImpresionFecha
+	{
+		width:100%;
+		border-collapse:collapse;
+	}
+	
+	.TablaImpresionFecha .NombreFecha
+	{
+		width:50px;
+		font-weight:bold;
+		border:1px solid;
+	}
+	
+	.TablaImpresionFecha .CampoFecha
+	{
+		border:1px solid;
+	}
+	
+	.TablaImpresionEmpleado
+	{
+		width:100%;
+		font-size:12px;
+		text-align:left;
+	}
+	
+
+	
+	.TablaImpresionEmpleado .NombreImpresionEmpleado
+	{
+		width:150px;
+		font-weight:bold;
+	}
+	
+	.TablaImpresionEmpleado .NombrePequeñoImpresionEmpleado
+	{
+		width:50px;
+		font-weight:bold;
+	}
+	
+	.TablaImpresionEmpleado .CampoImpresionEmpleado
+	{
+		border-bottom:1px solid;
+	}
+	
+	.DivSubtituloImpresion
+	{
+		text-align:center;
+		font-size:14px;
+		font-weight:bold;	
+	}
+	
+	.TablaImpresionCompromiso
+	{
+		width:100%;
+		text-align:right;
+		font-size:12px;
+	}
+	
+	.TablaImpresionCompromiso .FilaTotal
+	{
+		font-weight:bold;
+	}
+	
+	.TablaImpresionCompromiso .FilaTotal .CampoTotal
+	{
+		width:40px; 
+		border-bottom: 1px solid;
+	}
+	
+	.TablaImpresionCompromiso .FilaCompromiso
+	{
+		font-size:9px;
+	}
+	
+	.DivImpresionFirmas
+	{
+		text-align:center; 
+		margin:auto;
+	}
+	
+	.TablaImpresionFirmas
+	{
+		margin:auto;
+	}
+	
+	.TablaImpresionFirmas .ImpresionFirmasCampo
+	{
+		width:300px;
+	}
+	
+	.TablaImpresionFirmas .ImpresionFirmasCampoSubrrayado
+	{
+		width:300px;
+		border-bottom:1px solid;
+	}
+	
+	.TablaImpresionFirmas .ImpresionFirmasEspacio
+	{
+		width:20px;
+	}
+	
+	/*Inicia estilos para el grid de las impresiones*/
+	
+	.TablaInformacionImpresion
+	{
+		background-color: #ffffff;
+		border-spacing: 0px;
+		font-size: 11px;
+		margin: auto;
+		padding: 0px;
+		width: 100%;
+	}
+	
+	.TablaInformacionImpresion a
+	{
+		color: #0000ff;
+		text-decoration: none;
+	}
+	
+	.TablaInformacionImpresion td
+	{
+		border: 1px solid;
+		padding: 5px;
+	}
+	
+	.TablaInformacionImpresion th
+	{
+		border: 1px solid;
+		padding: 5px;
+	}
+	
+	.TablaInformacionImpresion tr.EncabezadoImpresion
+	{
+		background-color:Orange;
+		border-spacing: 5px;
+		font-weight: bold;
+		padding: 5px;
+		text-align: center;
+		border-color:#000000;
+	}
+	
+	.TablaInformacionImpresion tr.PaginacionImpresion
+	{
+		background-color: #e0e0e0;
+		border: 0px;
+		font-weight: normal;
+		padding: 0px;
+		text-align: right;
+	}
+	
+	.TablaInformacionImpresion tr.PaginacionImpresion span
+	{
+		background-color: #C5D2F1;
+		font-weight: bold;
+	}

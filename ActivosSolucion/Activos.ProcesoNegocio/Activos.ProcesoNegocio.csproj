@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6FD07B3B-F19F-4D30-96E7-D4CD70889BFD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Activos.ProcesoNegocio</RootNamespace>
+    <AssemblyName>Activos.ProcesoNegocio</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Activos\AccesorioProceso.cs" />
+    <Compile Include="Activos\ActivoProceso.cs" />
+    <Compile Include="Activos\AsignacionProceso.cs" />
+    <Compile Include="Activos\CompraProceso.cs" />
+    <Compile Include="Activos\CondicionProceso.cs" />
+    <Compile Include="Activos\FamiliaProceso.cs" />
+    <Compile Include="Activos\LevantamientoActivoProceso.cs" />
+    <Compile Include="Activos\MarcaProceso.cs" />
+    <Compile Include="Activos\MovimientoProceso.cs" />
+    <Compile Include="Activos\SubFamiliaProceso.cs" />
+    <Compile Include="Activos\TemporalAccesorioProceso.cs" />
+    <Compile Include="Activos\TemporalActivoProceso.cs" />
+    <Compile Include="Activos\TemporalAsignacionDetalleProceso.cs" />
+    <Compile Include="Activos\TemporalAsignacionProceso.cs" />
+    <Compile Include="Activos\TemporalCompraProceso.cs" />
+    <Compile Include="Activos\TemporalTransferenciaActivoProceso.cs" />
+    <Compile Include="Activos\TipoAccesorioProceso.cs" />
+    <Compile Include="Activos\TipoActivoProceso.cs" />
+    <Compile Include="Activos\TipoDocumentoProceso.cs" />
+    <Compile Include="Activos\TipoServicioProceso.cs" />
+    <Compile Include="Base.cs" />
+    <Compile Include="Catalogo\BancoProceso.cs" />
+    <Compile Include="Catalogo\CiudadProceso.cs" />
+    <Compile Include="Catalogo\DepartamentoProceso.cs" />
+    <Compile Include="Catalogo\DependenciaProceso.cs" />
+    <Compile Include="Catalogo\DireccionProceso.cs" />
+    <Compile Include="Catalogo\EdificioProceso.cs" />
+    <Compile Include="Catalogo\EmpleadoProceso.cs" />
+    <Compile Include="Catalogo\EstadoProceso.cs" />
+    <Compile Include="Catalogo\JefeProceso.cs" />
+    <Compile Include="Catalogo\ProveedorProceso.cs" />
+    <Compile Include="Catalogo\PuestoProceso.cs" />
+    <Compile Include="Mantenimiento\MantenimientoActivoProceso.cs" />
+    <Compile Include="Mantenimiento\MantenimientoEmpleadoProceso.cs" />
+    <Compile Include="Mantenimiento\MantenimientoProceso.cs" />
+    <Compile Include="Mantenimiento\TemporalMantenimientoActivoProceso.cs" />
+    <Compile Include="Mantenimiento\TemporalMantenimientoEmpleadoProceso.cs" />
+    <Compile Include="Mantenimiento\TipoAsistenciaProceso.cs" />
+    <Compile Include="Mantenimiento\TipoMantenimientoProceso.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seguridad\EstatusProceso.cs" />
+    <Compile Include="Seguridad\RolProceso.cs" />
+    <Compile Include="Seguridad\UsuarioProceso.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Activos.AccesoDatos\Activos.AccesoDatos.csproj">
+      <Project>{2CF94406-81EF-4BDE-B1DF-95B40DEB457F}</Project>
+      <Name>Activos.AccesoDatos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Activos.Comun\Activos.Comun.csproj">
+      <Project>{1F5CD741-D433-44D0-BFFE-B2560BE8CE2E}</Project>
+      <Name>Activos.Comun</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Activos.Entidad\Activos.Entidad.csproj">
+      <Project>{DDB86909-CFD5-48CE-9CEA-512D819EAE5B}</Project>
+      <Name>Activos.Entidad</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="General\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

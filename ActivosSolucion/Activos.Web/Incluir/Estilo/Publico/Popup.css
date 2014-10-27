@@ -1,0 +1,68 @@
+﻿/*
+* Fecha de creación:	07-Mayo-2012
+* Autor:				Carlos Valladolid
+*
+* Descripción:			Hoja de estilos para los popups de la sección pública de la aplicación
+*/
+
+.PopupChicoDiv
+{
+	background: #ffffff;
+	border: 1px solid #000000;
+	color: #333;
+    left: 50%;
+    margin-left: -200px;
+	margin-top: -115px;
+    height: 225px;
+    padding: 0px;
+    position: fixed;
+    top: 50%;
+    width: 400px;
+    z-index: 1002;
+}
+
+.PopupChicoDiv .ContenidoDiv
+{
+	background-color: #ffffff;
+	border: 0px;
+	border-spacing: 5px;
+	height: 150px;
+	overflow: auto;
+	padding: 5px;
+}
+
+.PopupChicoDiv .EncabezadoDiv
+{
+	background-color: #a6baea;
+	border: 0px;
+	border-spacing: 5px;
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: bold;
+	height: 20px;
+	padding: 5px;
+}
+
+.PopupChicoDiv .PieDiv
+{
+	background-color: #dddddd;
+	border: 0px;
+	border-spacing: 5px;
+	height: 35px;
+	padding: 5px;
+}
+
+.SuperposicionDiv
+{
+	-moz-opacity: 0.75;
+	background: #000000 url(/Imagen/Fondo/FondoPopup.png) repeat;
+    filter: alpha(opacity=75);
+    left: 0px;
+    height: 100%;
+    opacity:.75;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 1001;
+}
+
