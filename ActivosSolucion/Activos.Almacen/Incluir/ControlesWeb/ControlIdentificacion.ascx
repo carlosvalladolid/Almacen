@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ControlIdentificacion.ascx.cs" Inherits="Activos.Web.Incluir.ControlesWeb.ControlIdentificacion" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ControlIdentificacion.ascx.cs" Inherits="Activos.Almacen.Incluir.ControlesWeb.ControlIdentificacion" %>
 
 <%@ Register TagPrefix="wuc" TagName="Recuperar" Src="~/Incluir/ControlesWeb/ControlRecuperarContrasenia.ascx" %>
 
@@ -6,17 +6,17 @@
     <ContentTemplate>
         <wuc:Recuperar ID="RecuperarContrasenia" runat="server" />
 
-        <div id="DivControlIdentificacion">
-            <table class="TablaIdentificacion">
+        <div id="LoginControlDiv">
+            <table class="LoginTable">
                 <tr>
                     <td><img alt="Identificación de usuario" src="/Imagen/Icono/IconoIdentificacionUsuario.jpg" /></td>
-                    <td class="Separador"></td>
-                    <td><span class="TituloAzulTituloIdentificacion">Identificación</span> <span class="TituloGrisTituloIdentificacion">de usuario</span></td>
+                    <td class="Separator"></td>
+                    <td><span class="BlueLoginTitle">Identificación</span> <span class="GrayLoginTitle">de usuario</span></td>
                 </tr>
             </table>
 
             <br />
-            <div class="DivInformacionCuenta">
+            <div class="CenterDiv">
                 Cuenta de correo
                 <br />
                 <asp:TextBox ID="CuentaUsuario" MaxLength="65" runat="server" Width="200px" Text=""></asp:TextBox>
@@ -28,7 +28,7 @@
                 <asp:CheckBox ID="RecordarContrasenia" runat="server" /> Recordar contraseña
 
                 <br /><br />
-                <div class="DivBotonAceptar">
+                <div class="RightTextDiv">
                     <asp:Button ID="BotonAceptar" runat="server" Text="Aceptar" onclick="BotonAceptar_Click" />
 
                     <br /><br />

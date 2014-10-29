@@ -7,11 +7,11 @@
 
 html, body, form
 {
-	background: url(/Imagen/Fondo/FondoPantalla.jpg);
+	background: #fff url(/Imagen/Fondo/CenterHeaderBackground.jpg) repeat-x;
 	border: 0px;
 	color: #333333;
-	font-family: Century Gothic, Calibri, Verdana;
-	font-size: 12px;
+	font-family: Calibri, Verdana, Arial;
+	font-size: 14px;
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
@@ -20,37 +20,30 @@ html, body, form
 
 #DivCuerpo
 {
-	background-color: #ffffff;
-	height: 400px;
-	width: 100%;
+	height: 80%;
+	margin: auto;
+	width: 980px;
 }
 
 #DivEncabezado
 {
-	background-color: #268af9;
-	height: 25px;
+	border: 0x;
+	height: 17%;
 	width: 100%;
 }
 
 #DivPie
 {
-	border: 0px;
-	color: #999999;
-	height: 25px;
-	text-align: right;
+	background-color: #333;
+	border: 0x;
+	height: 3%;
 	width: 100%;
 }
 
 #DivPrincipal
 {
-	height: 426px;
-	left: 50%;
-	margin: auto;
-	margin-left: -425px;
-	margin-top: -213px;
-	top: 50%;
-	position: absolute;
-	width: 850px;
+	height: 100%;
+	width: 100%;
 }
 
 

@@ -5,92 +5,123 @@
 * Descripción:			Hoja de estilos para las etiquetas divs de las pantallas públicas de la aplicación
 */
 
-#DivCuerpo .DivContenido
+#CenterHeaderDiv
 {
+	height: 120px;
+	margin: auto;
+	width: 980px;
+}
+
+#ContentDiv
+{
+	background-color: #fff;
 	width: 100%;
 }
 
-#DivCuerpo .DivContenido .DivContenidoAyuda
+#ContentLoginLeftDiv
 {
-	background: url(/Imagen/Icono/AyudaIcono.jpg) no-repeat bottom right;
-	height: 350px;
-	padding: 25px;
-	text-align: justify;
+	float: left;
+	padding: 0px 25px 25px 25px;
+	width: 480px;
+}
+
+#ContentLoginLeftDiv .SoftwarePackageIcon
+{
+	margin: auto;
+	width: 176px;
+}
+
+#ContentSeparatorDiv
+{
+	float: left;
+	padding-top: 100px;
 	vertical-align: middle;
+	width: 3px;	
 }
 
-#DivCuerpo .DivContenido .DivContenidoAyuda a
+#LoginControlDiv
 {
-	color: #0000ff;
-	text-decoration: none;
+	margin: auto;
+	padding-top: 100px;
+	width: 300px;
 }
 
-#DivCuerpo .DivContenido .DivContenidoAyuda .DivTitulo
+#LoginControlDiv .CenterDiv
 {
-	color: #666666;
-	font-size: 18px;
-	font-weight: bold;
+	margin: auto;
+	width: 210px;
 }
 
-#DivCuerpo .DivContenido .DivContenidoComentarios
+#LoginControlDiv .RightTextDiv
 {
-	background: url(/Imagen/Icono/ComentariosIcono.jpg) no-repeat top right;
-	height: 350px;
+	text-align: right;
+}
+
+#LoginDiv
+{
+	float: left;
 	padding: 25px;
-	text-align: justify;
-	vertical-align: middle;
+	width: 350px;
 }
 
-#DivCuerpo .DivContenido .DivContenidoComentarios a
+.ModalSmallDiv
 {
-	color: #0000ff;
-	text-decoration: none;
+	background: #ffffff;
+	border: 1px solid #000000;
+	color: #333;
+    left: 50%;
+    margin-left: -200px;
+	margin-top: -115px;
+    height: 225px;
+    padding: 0px;
+    position: fixed;
+    top: 50%;
+    width: 400px;
+    z-index: 1002;
 }
 
-#DivCuerpo .DivContenido .DivContenidoComentarios .DivTitulo
+.ModalSmallDiv .ContentDiv
 {
-	color: #666666;
-	font-size: 18px;
+	background-color: #ffffff;
+	border: 0px;
+	border-spacing: 5px;
+	height: 150px;
+	overflow: auto;
+	padding: 5px;
+}
+
+.ModalSmallDiv .FooterDiv
+{
+	background-color: #dddddd;
+	border: 0px;
+	border-spacing: 5px;
+	height: 35px;
+	padding: 5px;
+}
+
+.ModalSmallDiv .HeaderDiv
+{
+	background-color: #a6baea;
+	border: 0px;
+	border-spacing: 5px;
+	color: #ffffff;
+	font-size: 14px;
 	font-weight: bold;
+	height: 20px;
+	padding: 5px;
 }
 
-#DivCuerpo .DivContenido .DivContenidoControlIdentificacion
+.Overlay
 {
-	float: left;
-	padding: 15px;
-	width: 310px;
-}
-
-#DivCuerpo .DivContenido .DivContenidoIzquierdoIdentificacion
-{
-	float: left;
-	padding: 15px;
-	padding-top: 25px;
-	width: 470px;
-}
-
-#DivCuerpo .DivContenido .DivContenidoIzquierdoIdentificacion a
-{
-	color: #0000ff;
-	text-decoration: none;
-}
-
-#DivCuerpo .DivContenido .DivContenidoIzquierdoIdentificacion .DivLogotipoInstituto
-{
-	text-align: center;
-}
-
-#DivCuerpo .DivContenido .DivContenidoIzquierdoIdentificacion .DivTitulo
-{
-	color: #666666;
-	font-size: 18px;
-	font-weight: bold;
-}
-
-#DivCuerpo .DivContenido .DivContenidoSeparadorIdentificacion
-{
-	float: left;
-	padding-top: 50px;
-	width: 6px;
+	-moz-opacity: 0.75;
+	background: #000000 url(/Imagen/Fondo/FondoPopup.png) repeat;
+    filter: alpha(opacity=75);
+    left: 0px;
+    height: 100%;
+    opacity:.75;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 1001;
 }
 

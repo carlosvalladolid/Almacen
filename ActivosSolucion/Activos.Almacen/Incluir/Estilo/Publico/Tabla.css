@@ -5,22 +5,91 @@
 * Descripción:			Hoja de estilos para las tablas de la sección pública de la aplicación
 */
 
-#DivCuerpo .DivContenido .DivContenidoComentarios .Tabla
+#DivPie .Table
 {
-	border-spacing: 10px;
+	color: #fff;
+	font-size: 11px;
+	margin: auto;
+	width: 950px;
 }
 
-#DivCuerpo .DivContenido .DivContenidoComentarios .Tabla .Name
+#DivPie .Table a
 {
+	color: #fff;
+	text-decoration: none;
+}
+
+#DivPie .Table .Copy
+{
+	width: 50%;
+}
+
+#DivPie .Table .Space
+{
+	width: 12%;
+}
+
+#DivPie .Table .Version
+{
+	text-align: right;
+	width: 38%;
+}
+
+#LoginControlDiv .LoginTable
+{
+	
+}
+
+#LoginControlDiv .LoginTable .Separator
+{
+	width: 10px;
+}
+
+.ModaSmallDiv .ContentDiv .ContentTable
+{
+	border-spacing: 5px;
+	padding: 5px;
 	vertical-align: top;
 }
 
-#DivCuerpo .DivContenido .DivContenidoComentarios .Tabla .Space
+.ModaSmallDiv .ContentDiv .ContentTable .Error
+{
+	width: 220px;
+}
+
+.ModaSmallDiv .ContentDiv .ContentTable .Field
+{
+	vertical-align: top;
+	width: 150px;
+}
+
+.ModaSmallDiv .ContentDiv .ContentTable .Name
+{
+	vertical-align: top;
+	width: 220px;
+}
+
+.ModaSmallDiv .ContentDiv .ContentTable .Sapce
 {
 	width: 20px;
 }
 
-.TablaContenido
+.ModaSmallDiv .HeaderDiv .HeaderTable
 {
-	
+	font-size: 16px;
+	font-weight: bold;
+	height: 20px;
+	padding: 5px;
+}
+
+.ModaSmallDiv .HeaderDiv .HeaderTable .Title
+{
+	font-weight: bold;
+	width: 90%;
+}
+
+.ModaSmallDiv .HeaderDiv .HeaderTable .Close
+{
+	text-align: right;
+	width: 10%;
 }

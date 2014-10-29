@@ -16,7 +16,7 @@ using Activos.Entidad.General;
 using Activos.Entidad.Seguridad;
 using Activos.ProcesoNegocio.Seguridad;
 
-namespace Activos.Web.Incluir.ControlesWeb
+namespace Activos.Almacen.Incluir.ControlesWeb
 {
     public partial class ControlIdentificacion : System.Web.UI.UserControl
     {

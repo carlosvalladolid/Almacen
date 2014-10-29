@@ -1,0 +1,13 @@
+E:\Trabajo\Proyectos\Externos\Gobierno\Defensoría\Almacen\ActivosSolucion\Activos.Almacen\bin\Activos.Almacen.dll
+E:\Trabajo\Proyectos\Externos\Gobierno\Defensoría\Almacen\ActivosSolucion\Activos.Almacen\bin\Activos.Almacen.pdb
+E:\Trabajo\Proyectos\Externos\Gobierno\Defensoría\Almacen\ActivosSolucion\Activos.Almacen\obj\Debug\ResolveAssemblyReference.cache
+E:\Trabajo\Proyectos\Externos\Gobierno\Defensoría\Almacen\ActivosSolucion\Activos.Almacen\obj\Debug\Activos.Almacen.dll
+E:\Trabajo\Proyectos\Externos\Gobierno\Defensoría\Almacen\ActivosSolucion\Activos.Almacen\obj\Debug\Activos.Almacen.pdb
+E:\Trabajo\Proyectos\Externos\Gobierno\Defensoría\Almacen\ActivosSolucion\Activos.Almacen\bin\Activos.Comun.dll
+E:\Trabajo\Proyectos\Externos\Gobierno\Defensoría\Almacen\ActivosSolucion\Activos.Almacen\bin\Activos.Entidad.dll
+E:\Trabajo\Proyectos\Externos\Gobierno\Defensoría\Almacen\ActivosSolucion\Activos.Almacen\bin\Activos.ProcesoNegocio.dll
+E:\Trabajo\Proyectos\Externos\Gobierno\Defensoría\Almacen\ActivosSolucion\Activos.Almacen\bin\Activos.AccesoDatos.dll
+E:\Trabajo\Proyectos\Externos\Gobierno\Defensoría\Almacen\ActivosSolucion\Activos.Almacen\bin\Activos.ProcesoNegocio.pdb
+E:\Trabajo\Proyectos\Externos\Gobierno\Defensoría\Almacen\ActivosSolucion\Activos.Almacen\bin\Activos.Entidad.pdb
+E:\Trabajo\Proyectos\Externos\Gobierno\Defensoría\Almacen\ActivosSolucion\Activos.Almacen\bin\Activos.AccesoDatos.pdb
+E:\Trabajo\Proyectos\Externos\Gobierno\Defensoría\Almacen\ActivosSolucion\Activos.Almacen\bin\Activos.Comun.pdb

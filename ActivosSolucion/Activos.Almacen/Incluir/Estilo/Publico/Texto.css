@@ -5,9 +5,25 @@
 * Descripción:			Hoja de estilos para los textos de las páginas públicas de la aplicación Web
 */
 
+#LoginControlDiv .BlueLoginTitle
+{
+	color: #4F95FF;
+	font-size: 18px;
+	font-weight: bold;
+	vertical-align: middle;
+}
+
 .TextoError
 {
 	font-size: 12px;
 	color: #ff0000;
 	vertical-align: top;
+}
+
+#LoginControlDiv .GrayLoginTitle
+{
+	color: #414141;
+	font-size: 18px;
+	font-weight: bold;
+	vertical-align: middle;
 }

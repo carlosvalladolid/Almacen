@@ -56,6 +56,83 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Incluir\ControlesWeb\ControlBuscarAccesorioHijo.ascx.cs">
+      <DependentUpon>ControlBuscarAccesorioHijo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Incluir\ControlesWeb\ControlBuscarAccesorioHijo.ascx.designer.cs">
+      <DependentUpon>ControlBuscarAccesorioHijo.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Incluir\ControlesWeb\ControlBuscarAccesorioPadre.ascx.cs">
+      <DependentUpon>ControlBuscarAccesorioPadre.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Incluir\ControlesWeb\ControlBuscarAccesorioPadre.ascx.designer.cs">
+      <DependentUpon>ControlBuscarAccesorioPadre.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Incluir\ControlesWeb\ControlBuscarAccesorios.ascx.cs">
+      <DependentUpon>ControlBuscarAccesorios.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Incluir\ControlesWeb\ControlBuscarAccesorios.ascx.designer.cs">
+      <DependentUpon>ControlBuscarAccesorios.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Incluir\ControlesWeb\ControlBuscarActivo.ascx.cs">
+      <DependentUpon>ControlBuscarActivo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Incluir\ControlesWeb\ControlBuscarActivo.ascx.designer.cs">
+      <DependentUpon>ControlBuscarActivo.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Incluir\ControlesWeb\ControlBuscarEmpleado.ascx.cs">
+      <DependentUpon>ControlBuscarEmpleado.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Incluir\ControlesWeb\ControlBuscarEmpleado.ascx.designer.cs">
+      <DependentUpon>ControlBuscarEmpleado.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Incluir\ControlesWeb\ControlBuscarJefe.ascx.cs">
+      <DependentUpon>ControlBuscarJefe.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Incluir\ControlesWeb\ControlBuscarJefe.ascx.designer.cs">
+      <DependentUpon>ControlBuscarJefe.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Incluir\ControlesWeb\ControlBuscarMantenimiento.ascx.cs">
+      <DependentUpon>ControlBuscarMantenimiento.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Incluir\ControlesWeb\ControlBuscarMantenimiento.ascx.designer.cs">
+      <DependentUpon>ControlBuscarMantenimiento.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Incluir\ControlesWeb\ControlIdentificacion.ascx.cs">
+      <DependentUpon>ControlIdentificacion.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Incluir\ControlesWeb\ControlIdentificacion.ascx.designer.cs">
+      <DependentUpon>ControlIdentificacion.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Incluir\ControlesWeb\ControlImprimirTransferenciaActivo.ascx.cs">
+      <DependentUpon>ControlImprimirTransferenciaActivo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Incluir\ControlesWeb\ControlImprimirTransferenciaActivo.ascx.designer.cs">
+      <DependentUpon>ControlImprimirTransferenciaActivo.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Incluir\ControlesWeb\ControlMenu.ascx.cs">
+      <DependentUpon>ControlMenu.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Incluir\ControlesWeb\ControlMenu.ascx.designer.cs">
+      <DependentUpon>ControlMenu.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Incluir\ControlesWeb\ControlRecuperarContrasenia.ascx.cs">
+      <DependentUpon>ControlRecuperarContrasenia.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Incluir\ControlesWeb\ControlRecuperarContrasenia.ascx.designer.cs">
+      <DependentUpon>ControlRecuperarContrasenia.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Incluir\Plantilla\PlantillaPrivada.Master.cs">
       <DependentUpon>PlantillaPrivada.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -174,6 +251,17 @@
     <Content Include="Imagen\Logotipo\EncabezadoIDP3nl.png" />
     <Content Include="Imagen\Logotipo\LogoIDP.gif" />
     <Content Include="Imagen\Logotipo\LogotipoInstituto.png" />
+    <Content Include="Incluir\ControlesWeb\ControlBuscarAccesorioHijo.ascx" />
+    <Content Include="Incluir\ControlesWeb\ControlBuscarAccesorioPadre.ascx" />
+    <Content Include="Incluir\ControlesWeb\ControlBuscarAccesorios.ascx" />
+    <Content Include="Incluir\ControlesWeb\ControlBuscarActivo.ascx" />
+    <Content Include="Incluir\ControlesWeb\ControlBuscarEmpleado.ascx" />
+    <Content Include="Incluir\ControlesWeb\ControlBuscarJefe.ascx" />
+    <Content Include="Incluir\ControlesWeb\ControlBuscarMantenimiento.ascx" />
+    <Content Include="Incluir\ControlesWeb\ControlIdentificacion.ascx" />
+    <Content Include="Incluir\ControlesWeb\ControlImprimirTransferenciaActivo.ascx" />
+    <Content Include="Incluir\ControlesWeb\ControlMenu.ascx" />
+    <Content Include="Incluir\ControlesWeb\ControlRecuperarContrasenia.ascx" />
     <Content Include="Incluir\Estilo\Privado\Control.css" />
     <Content Include="Incluir\Estilo\Privado\demos.css" />
     <Content Include="Incluir\Estilo\Privado\Division.css" />
@@ -195,10 +283,28 @@
     <Content Include="Inicio.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Aplicacion\" />
+    <ProjectReference Include="..\Activos.Comun\Activos.Comun.csproj">
+      <Project>{1F5CD741-D433-44D0-BFFE-B2560BE8CE2E}</Project>
+      <Name>Activos.Comun</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Activos.Entidad\Activos.Entidad.csproj">
+      <Project>{DDB86909-CFD5-48CE-9CEA-512D819EAE5B}</Project>
+      <Name>Activos.Entidad</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Activos.ProcesoNegocio\Activos.ProcesoNegocio.csproj">
+      <Project>{6FD07B3B-F19F-4D30-96E7-D4CD70889BFD}</Project>
+      <Name>Activos.ProcesoNegocio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Aplicacion\Almacen\" />
+    <Folder Include="Aplicacion\Catalogo\" />
+    <Folder Include="Aplicacion\Configuracion\" />
+    <Folder Include="Aplicacion\Error\" />
+    <Folder Include="Aplicacion\Reporte\" />
+    <Folder Include="Aplicacion\Ventana\" />
     <Folder Include="App_Data\" />
     <Folder Include="Imagen\Otro\" />
-    <Folder Include="Incluir\ControlesWeb\" />
     <Folder Include="Incluir\Javascript\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
