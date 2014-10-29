@@ -1,0 +1,166 @@
+﻿/*
+* Fecha de creación:	26-Marzo-2012
+* Autor:				Carlos Valladolid
+*
+* Descripción:			Hoja de estilos para los controles de los formularios de las pantallas privadas de la aplicación
+*/
+
+.BusquedaRapida
+{
+	width: 200px;
+}
+
+.CajaTextoGrande
+{
+	color: #000000;
+	font-size: 14px;
+	font-family: Calibri, Verdana, Arial;
+	width: 300px;
+}
+
+.CajaTextoMediana
+{
+	color: #000000;
+	font-size: 14px;
+	font-family: Calibri, Verdana, Arial;
+	width: 200px;
+}
+
+.CajaTextoDeshabilitadaMediana
+{
+	color: #000000;
+	background-color: #ededed;
+	font-size: 14px;
+	font-family: Calibri, Verdana, Arial;
+	width: 200px;
+}
+
+.CajaTextoDeshabilitadaGrande
+{
+	color: #000000;
+	background-color: #ededed;
+	font-size: 14px;
+	font-family: Calibri, Verdana, Arial;
+	width: 300px;
+}
+
+.CajaTextoPequenia
+{
+	color: #000000;
+	font-size: 14px;
+	font-family: Calibri, Verdana, Arial;
+	width: 100px;
+}
+
+.ComboPequeño
+{
+	width: 105px;
+}
+
+.ComboMediano
+{
+	width: 205px;
+}
+
+.ComboGrande
+{
+	width: 305px;
+}
+
+.ComboXL
+{
+	width: 405px;
+}
+
+.Invisible
+{
+	display: none;
+}
+
+.TablaInformacion
+{
+	background-color: #ffffff;
+	border-spacing: 0px;
+	font-size: 11px;
+	margin: auto;
+	padding: 0px;
+	width: 100%;
+}
+
+.TablaInformacion a
+{
+	color: #0000ff;
+	text-decoration: none;
+}
+
+.TablaInformacion td
+{
+	border-bottom: 1px solid #cccccc;
+	padding: 5px;
+}
+
+.TablaInformacion th
+{
+	border: 1px solid #ffffff;
+	padding: 5px;
+}
+
+.TablaInformacion tr.Encabezado
+{
+	background-color: #ececff;
+	border-spacing: 5px;
+	font-weight: bold;
+	padding: 5px;
+	text-align: center;
+}
+
+.TablaInformacion tr.Paginacion
+{
+	background-color: #e0e0e0;
+	border: 0px;
+	font-weight: normal;
+	padding: 0px;
+	text-align: right;
+}
+
+.TablaInformacion tr.Paginacion span
+{
+	background-color: #C5D2F1;
+	font-weight: bold;
+}
+
+.TablaInformacion tr:hover
+{
+	background-color: #f0f0f0;	
+}
+
+.TablaVacia
+{
+	border-bottom: 1px solid #cccccc;
+	font-size: 11px;
+	width: 100%;
+}
+
+.TablaVacia td
+{
+	padding: 5px;
+}
+
+.TablaVacia th
+{
+	border: 1px solid #ffffff;
+	padding: 5px;
+}
+
+.TablaVacia tr.Encabezado
+{
+	background-color: #ececff;
+	border-spacing: 5px;
+	font-weight: bold;
+	padding: 5px;
+	text-align: center;
+}
+
+
+
+

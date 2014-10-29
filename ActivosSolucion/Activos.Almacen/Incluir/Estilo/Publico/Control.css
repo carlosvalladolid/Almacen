@@ -1,0 +1,47 @@
+﻿/*
+* Fecha de creación:	23-Marzo-2012
+* Autor:				Carlos Valladolid
+*
+* Descripción:			Hoja de estilos para las controles Web y HTML
+*/
+
+.CajaTextoMediana
+{
+	color: #000000;
+	font-size: 14px;
+	font-family: Calibri, Verdana, Arial;
+	width: 200px;
+}
+
+.CuentaEjemplo
+{
+	color: #999999;
+	font-style: italic;
+}
+
+#DivControlIdentificacion
+{
+	margin: auto;
+	width: 300px;
+}
+
+#DivControlIdentificacion .TablaIdentificacion
+{
+	
+}
+
+#DivControlIdentificacion .TablaIdentificacion .TituloAzulTituloIdentificacion
+{
+	color: #4F95FF;
+	font-size: 18px;
+	font-weight: bold;
+	vertical-align: middle;
+}
+
+#DivControlIdentificacion .TablaIdentificacion .TituloGrisTituloIdentificacion
+{
+	color: #414141;
+	font-size: 18px;
+	font-weight: bold;
+	vertical-align: middle;
+}

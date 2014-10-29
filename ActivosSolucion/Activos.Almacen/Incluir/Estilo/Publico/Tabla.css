@@ -1,0 +1,26 @@
+﻿/*
+* Fecha de creación:	07-Mayo-2012
+* Autor:				Carlos Valladolid
+*
+* Descripción:			Hoja de estilos para las tablas de la sección pública de la aplicación
+*/
+
+#DivCuerpo .DivContenido .DivContenidoComentarios .Tabla
+{
+	border-spacing: 10px;
+}
+
+#DivCuerpo .DivContenido .DivContenidoComentarios .Tabla .Name
+{
+	vertical-align: top;
+}
+
+#DivCuerpo .DivContenido .DivContenidoComentarios .Tabla .Space
+{
+	width: 20px;
+}
+
+.TablaContenido
+{
+	
+}

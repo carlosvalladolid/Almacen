@@ -1,0 +1,96 @@
+﻿/*
+* Fecha de creación:	23-Marzo-2012
+* Autor:				Carlos Valladolid
+*
+* Descripción:			Hoja de estilos para las etiquetas divs de las pantallas públicas de la aplicación
+*/
+
+#DivCuerpo .DivContenido
+{
+	width: 100%;
+}
+
+#DivCuerpo .DivContenido .DivContenidoAyuda
+{
+	background: url(/Imagen/Icono/AyudaIcono.jpg) no-repeat bottom right;
+	height: 350px;
+	padding: 25px;
+	text-align: justify;
+	vertical-align: middle;
+}
+
+#DivCuerpo .DivContenido .DivContenidoAyuda a
+{
+	color: #0000ff;
+	text-decoration: none;
+}
+
+#DivCuerpo .DivContenido .DivContenidoAyuda .DivTitulo
+{
+	color: #666666;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#DivCuerpo .DivContenido .DivContenidoComentarios
+{
+	background: url(/Imagen/Icono/ComentariosIcono.jpg) no-repeat top right;
+	height: 350px;
+	padding: 25px;
+	text-align: justify;
+	vertical-align: middle;
+}
+
+#DivCuerpo .DivContenido .DivContenidoComentarios a
+{
+	color: #0000ff;
+	text-decoration: none;
+}
+
+#DivCuerpo .DivContenido .DivContenidoComentarios .DivTitulo
+{
+	color: #666666;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#DivCuerpo .DivContenido .DivContenidoControlIdentificacion
+{
+	float: left;
+	padding: 15px;
+	width: 310px;
+}
+
+#DivCuerpo .DivContenido .DivContenidoIzquierdoIdentificacion
+{
+	float: left;
+	padding: 15px;
+	padding-top: 25px;
+	width: 470px;
+}
+
+#DivCuerpo .DivContenido .DivContenidoIzquierdoIdentificacion a
+{
+	color: #0000ff;
+	text-decoration: none;
+}
+
+#DivCuerpo .DivContenido .DivContenidoIzquierdoIdentificacion .DivLogotipoInstituto
+{
+	text-align: center;
+}
+
+#DivCuerpo .DivContenido .DivContenidoIzquierdoIdentificacion .DivTitulo
+{
+	color: #666666;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#DivCuerpo .DivContenido .DivContenidoSeparadorIdentificacion
+{
+	float: left;
+	padding-top: 50px;
+	width: 6px;
+}
+
