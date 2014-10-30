@@ -56,6 +56,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aplicacion\Catalogo\Producto.aspx.cs">
+      <DependentUpon>Producto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicacion\Catalogo\Producto.aspx.designer.cs">
+      <DependentUpon>Producto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicacion\Salir.aspx.cs">
+      <DependentUpon>Salir.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicacion\Salir.aspx.designer.cs">
+      <DependentUpon>Salir.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Incluir\ControlesWeb\ControlBuscarAccesorioHijo.ascx.cs">
       <DependentUpon>ControlBuscarAccesorioHijo.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -126,6 +140,13 @@
     <Compile Include="Incluir\ControlesWeb\ControlMenu.ascx.designer.cs">
       <DependentUpon>ControlMenu.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Incluir\ControlesWeb\ControlMenuIzquierdo.ascx.cs">
+      <DependentUpon>ControlMenuIzquierdo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Incluir\ControlesWeb\ControlMenuIzquierdo.ascx.designer.cs">
+      <DependentUpon>ControlMenuIzquierdo.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Incluir\ControlesWeb\ControlRecuperarContrasenia.ascx.cs">
       <DependentUpon>ControlRecuperarContrasenia.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -160,6 +181,8 @@
     <Content Include="Incluir\Plantilla\PlantillaPublica.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Aplicacion\Catalogo\Producto.aspx" />
+    <Content Include="Aplicacion\Salir.aspx" />
     <Content Include="Imagen\Boton\BotonAceptar.png" />
     <Content Include="Imagen\Boton\BotonActualizar.png" />
     <Content Include="Imagen\Boton\BotonAgregar.png" />
@@ -261,6 +284,7 @@
     <Content Include="Incluir\ControlesWeb\ControlIdentificacion.ascx" />
     <Content Include="Incluir\ControlesWeb\ControlImprimirTransferenciaActivo.ascx" />
     <Content Include="Incluir\ControlesWeb\ControlMenu.ascx" />
+    <Content Include="Incluir\ControlesWeb\ControlMenuIzquierdo.ascx" />
     <Content Include="Incluir\ControlesWeb\ControlRecuperarContrasenia.ascx" />
     <Content Include="Incluir\Estilo\Privado\Control.css" />
     <Content Include="Incluir\Estilo\Privado\demos.css" />
@@ -298,7 +322,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Aplicacion\Almacen\" />
-    <Folder Include="Aplicacion\Catalogo\" />
     <Folder Include="Aplicacion\Configuracion\" />
     <Folder Include="Aplicacion\Error\" />
     <Folder Include="Aplicacion\Reporte\" />

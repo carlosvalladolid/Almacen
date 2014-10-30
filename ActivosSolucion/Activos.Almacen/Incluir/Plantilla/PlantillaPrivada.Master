@@ -1,20 +1,76 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="PlantillaPrivada.master.cs" Inherits="Activos.Almacen.Incluir.Plantilla.PlantillaPrivada" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="PlantillaPrivada.master.cs" Inherits="Almacen.Web.Incluir.Plantilla.PlantillaPrivada" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
-<head runat="server">
-    <title>Untitled Page</title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        
-        </asp:ContentPlaceHolder>
-    </div>
-    </form>
-</body>
+    <head runat="server">
+    <title>Aplicación de Almacén</title>
+        <link href="/Incluir/Estilo/Privado/Alerta.css" rel="Stylesheet" type="text/css" />
+        <link href="/Incluir/Estilo/Privado/Control.css" rel="Stylesheet" type="text/css" />
+        <link href="/Incluir/Estilo/Privado/Division.css" rel="Stylesheet" type="text/css" />
+        <link href="/Incluir/Estilo/Privado/Principal.css" rel="Stylesheet" type="text/css" />
+        <link href="/Incluir/Estilo/Privado/Tabla.css" rel="Stylesheet" type="text/css" />
+        <link href="/Incluir/Estilo/Privado/Texto.css" rel="Stylesheet" type="text/css" />
+
+        <script src="/Incluir/Javascript/jquery-1.6.4.min.js" type="text/javascript"></script>
+        <script src="/Incluir/Javascript/jquery.blockUI.js" type="text/javascript"></script>
+        <script src="/Incluir/Javascript/Formulario.js" type="text/javascript"></script>
+
+        <asp:ContentPlaceHolder ID="ContenedorEncabezado" runat="server"></asp:ContentPlaceHolder>
+    </head>
+
+    <body>
+        <form id="form1" runat="server">
+            <asp:ScriptManager ID="MainScriptManager" runat="server" EnablePageMethods="True"></asp:ScriptManager>
+
+            <div id="DivPrincipal">
+                <div id="DivEncabezado">
+                    <asp:UpdatePanel ID="HeaderUpdate" runat="server">
+                        <ContentTemplate>
+                            <table class="HeaderTable">
+                                <tr>
+                                    <td class="Logo"><img alt="Instituto de Defensoría Pública de Nuevo León" height="79px" width="81px" src="/Imagen/Logotipo/LogotipoInstituto.png" /></td>
+                                    <td class="Menu">
+                                        <div id="ApplicationMenuDiv">
+                                            <a class="Link" href="/Application/Index.aspx">Almacén</a>
+                                        </div>
+                                        <asp:Panel ID="MenuPanel" runat="server">
+                                                <asp:Panel CssClass="OptionMenu" ID="NewPanel" runat="server">
+                                                    <asp:LinkButton CssClass="MenuLink" ID="NewRecordLink" OnClick="NewRecordLink_Click" runat="server" Text="Nuevo">
+                                                    </asp:LinkButton>&nbsp;&nbsp;&nbsp;     
+                                                </asp:Panel>
+                                                <asp:Panel CssClass="OptionMenu" ID="AdvancedPanel" runat="server">
+                                                    <asp:LinkButton CssClass="MenuLink" ID="AdvancedSearchLink" OnClick="AdvancedSearchLink_Click" runat="server" Text="Búsqueda avanzada">
+                                                    </asp:LinkButton>&nbsp;&nbsp;&nbsp;
+                                                </asp:Panel>
+                                                <asp:Panel CssClass="OptionMenu" ID="DeletePanel" runat="server">
+                                                    <asp:LinkButton CssClass="MenuLink" ID="DeleteRecordLink" OnClick="DeleteRecordLink_Click" runat="server" Text="Eliminar">
+                                                    </asp:LinkButton>&nbsp;&nbsp;&nbsp;
+                                                </asp:Panel>  
+                                         </asp:Panel>
+                                        &nbsp;&nbsp;&nbsp;
+                                    </td>
+                                    <td class="Session">
+                                        <asp:Label CssClass="UserName" ID="UserNameLabel" runat="server" Text="[usuario]"></asp:Label><br />
+                                        <asp:HyperLink CssClass="Logout" id="LogoutLink" NavigateUrl="/Application/Logout.aspx" runat="server" Target="_self">Cerrar sesión</asp:HyperLink>
+                                    </td>
+                                    <td class="Logout"><img alt="Cerrar sesión" border="0" src="/Imagen/Icono/IconoSalir.jpg" />&nbsp;</td>
+                                </tr>
+                            </table>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+            
+                <div id="DivCuerpo">
+                    <asp:ContentPlaceHolder ID="ContenedorCuerpo" runat="server">
+                        
+                    </asp:ContentPlaceHolder>
+                </div>
+
+                <div id="DivPie">
+                    versión 1.0.0
+                </div>
+            </div>
+        </form>
+    </body>
 </html>

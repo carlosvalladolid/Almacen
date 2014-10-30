@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Incluir/Plantilla/PlantillaPublica.Master" AutoEventWireup="true" CodeBehind="Inicio.aspx.cs" Inherits="Activos.Almacen.Inicio" Title="" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Incluir/Plantilla/PlantillaPublica.Master" AutoEventWireup="true" CodeBehind="Inicio.aspx.cs" Inherits="Almacen.Web.Inicio" Title="" %>
 
 <%@ Register TagPrefix="wuc" TagName="Identificacion" Src="~/Incluir/ControlesWeb/ControlIdentificacion.ascx" %>
 

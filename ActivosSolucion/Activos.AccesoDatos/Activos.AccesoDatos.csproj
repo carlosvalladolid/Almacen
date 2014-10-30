@@ -73,6 +73,7 @@
     <Compile Include="Activos\TipoActivoAcceso.cs" />
     <Compile Include="Activos\TipoDocumentoAcceso.cs" />
     <Compile Include="Activos\TipoServicioAcceso.cs" />
+    <Compile Include="Almacen\AlmacenAcceso.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="Catalogo\BancoAcceso.cs" />
     <Compile Include="Catalogo\CiudadAcceso.cs" />

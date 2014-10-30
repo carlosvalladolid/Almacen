@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
     <head runat="server">
-        <title>Aplicación de activos</title>
+        <title>Aplicación de Almacén</title>
     </head>
 
     <body>

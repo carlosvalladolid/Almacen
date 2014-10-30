@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Activos.Almacen.Incluir.Plantilla {
+namespace Almacen.Web.Incluir.Plantilla {
     
     
     public partial class PlantillaPublica {

@@ -71,6 +71,7 @@
     <Compile Include="Activos\TipoActivoEntidad.cs" />
     <Compile Include="Activos\TipoDocumentoEntidad.cs" />
     <Compile Include="Activos\TipoServicioEntidad.cs" />
+    <Compile Include="Almacen\AlmacenEntidad.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="Catalogo\BancoEntidad.cs" />
     <Compile Include="Catalogo\CiudadEntidad.cs" />

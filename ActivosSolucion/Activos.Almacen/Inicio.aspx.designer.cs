@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Activos.Almacen {
+namespace Almacen.Web {
     
     
     public partial class Inicio {
@@ -20,6 +20,6 @@ namespace Activos.Almacen {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Activos.Almacen.Incluir.ControlesWeb.ControlIdentificacion ControlIdentificacion;
+        protected global::Almacen.Web.Incluir.ControlesWeb.ControlIdentificacion ControlIdentificacion;
     }
 }

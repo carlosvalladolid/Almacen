@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ControlIdentificacion.ascx.cs" Inherits="Activos.Almacen.Incluir.ControlesWeb.ControlIdentificacion" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ControlIdentificacion.ascx.cs" Inherits="Almacen.Web.Incluir.ControlesWeb.ControlIdentificacion" %>
 
 <%@ Register TagPrefix="wuc" TagName="Recuperar" Src="~/Incluir/ControlesWeb/ControlRecuperarContrasenia.ascx" %>
 

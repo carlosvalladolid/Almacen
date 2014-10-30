@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Activos.Almacen.Incluir.ControlesWeb {
+namespace Almacen.Web.Incluir.ControlesWeb {
     
     
     public partial class ControlIdentificacion {

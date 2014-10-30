@@ -1,10 +1,10 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="PlantillaPublica.master.cs" Inherits="Activos.Almacen.Incluir.Plantilla.PlantillaPublica" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="PlantillaPublica.master.cs" Inherits="Almacen.Web.Incluir.Plantilla.PlantillaPublica" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
     <head id="Head1" runat="server">
-        <title>Almacén - Panel de Control</title>
+        <title>Aplicación de Almacén</title>
         <link href="/Incluir/Estilo/Publico/Alerta.css" rel="Stylesheet" type="text/css" />
         <link href="/Incluir/Estilo/Publico/Control.css" rel="Stylesheet" type="text/css" />
         <link href="/Incluir/Estilo/Publico/Division.css" rel="Stylesheet" type="text/css" />

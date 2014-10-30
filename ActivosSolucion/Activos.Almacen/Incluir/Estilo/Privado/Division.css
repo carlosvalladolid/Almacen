@@ -5,9 +5,110 @@
 * Descripción:			Hoja de estilos para las etiquetas divs de las pantallas privadas de la aplicación
 */
 
-.DivCargando
+#ApplicationMenuDiv
 {
-	background: url(/Imagen/Fondo/FondoPopup.png) repeat;
+	border: 0px;
+	font-size: 16px;
+	height: 38px;
+	padding: 5px 0px 0px 0px;
+	vertical-align: top;
+}
+
+#DivCuerpo .LeftBodyDiv
+{
+	background: url(/Image/Background/AppColumnBottomBackground.png) bottom repeat-x;
+	border: 1px solid #cccccc;
+	float: left;
+	height: 88%;
+	vertical-align: top;
+	width: 20%;
+}
+
+#DivCuerpo .RightBodyDiv
+{
+	border: 1px solid #cccccc;
+	float: right;
+	height: 88%;
+	overflow: auto;
+	scrollbar-arrow-color: #dddddd;
+	scrollbar-3dlight-color: #eeeeee;
+	scrollbar-darkshadow-color: #4F4F82;
+	scrollbar-face-color: #f4f4f0;
+	scrollbar-highlight-color: #FFFFFF;
+	scrollbar-shadow-color: #d0d0d0;
+	scrollbar-track-color: #eeeeee;
+	width: 79%;
+}
+
+#DivCuerpo .RightBodyDiv .CheckboxTable
+{
+	border: 1px solid #cccccc;
+	height: 100px;
+	width: 350px;
+	margin-left: 165px;
+	overflow: auto;
+	scrollbar-arrow-color: #dddddd;
+	scrollbar-3dlight-color: #eeeeee;
+	scrollbar-darkshadow-color: #4F4F82;
+	scrollbar-face-color: #f4f4f0;
+	scrollbar-highlight-color: #FFFFFF;
+	scrollbar-shadow-color: #d0d0d0;
+	scrollbar-track-color: #eeeeee;
+	
+}
+
+#DivCuerpo .RightBodyDiv .CheckboxTable1
+{
+	border: 1px solid #cccccc;
+	width: 550px;
+	margin-left: 165px;
+}
+
+
+#DivCuerpo .RightBodyDiv .FilterDiv
+{
+    color:#9AC0CD;
+    font-size:12px;
+    padding:5px;
+}
+
+#DivCuerpo .RightBodyDiv .NewRowDiv
+{
+	background: url(/Image/Background/NewRowBackground.jpg) top right no-repeat;
+}
+
+#DivCuerpo .RightBodyDiv .NewRowDiv .UploadImageDiv
+{
+	padding: 5px;
+}
+
+#DivCuerpo .RightBodyDiv .PageTitleDiv
+{
+	font-weight: bold;
+	height: 30px;
+	padding: 5px;
+}
+
+#DivCuerpo .RightBodyDiv .SearchDiv
+{
+	background: url(/Image/Background/AdvancedSearchBackgorund.jpg) right no-repeat;
+	min-height: 150px;
+	/*display: none;*/
+}
+
+#ButtonDiv
+{
+	padding-top: 20px;
+}
+
+#GridwiewDiv
+{
+	padding-bottom: 45px;
+}
+
+.LoadingDiv
+{
+	background: url(/Image/Background/OverlayBackground.png) repeat;
     left: 0px;
     height: 100%;
     position: fixed;
@@ -16,7 +117,7 @@
     z-index:1003;
 }
 
-.DivCargando .DivCargandoImagen
+.LoadingDiv .LoadingImageDiv
 {
 	height: 150px;
 	left: 50%;
@@ -27,139 +128,179 @@
 	width: 150px;
 }
 
+.ModalMediumDiv
+{
+	background: #ffffff;
+	border: 2px solid #eeeeee;
+	border-style: solid;
+	color: #333;
+    left: 50%;
+    margin-left: -250px;
+	margin-top: -165px;
+    height: 335px;
+    padding: 0px;
+    position: fixed;
+    top: 50%;
+    width: 550px;
+    z-index: 1002;
+}
 
-#DivCuerpo .DivContenido
+.ModalMediumDiv .ContentDiv
 {
 	background-color: #ffffff;
-	float: left;
-	height: 100%;
-	overflow: hidden;
-	width: 95%;
-}
-
-#DivCuerpo .DivContenido .DivContenidoTitulo
-{
-	background-color: #268AF9;
-	height: 25px;
-}
-
-#DivCuerpo .DivContenido .DivTituloPagina
-{
 	border: 0px;
-	font-weight: bold;
-	height: 25px;
-	padding: 0px 0px 0px 5px;
+	border-spacing: 5px;
+	height: 250px;
+	overflow: auto;
+	padding: 5px;
 }
 
-#DivCuerpo .DivContenido .DivSubtituloPagina
+.ModalMediumDiv .FooterDiv
 {
 	background-color: #dddddd;
 	border: 0px;
+	border-spacing: 5px;
+	height: 35px;
+	padding: 5px;
+}
+
+.ModalMediumDiv .HeaderDiv
+{
+	background-color: #a6baea;
+	border: 0px;
+	border-spacing: 5px;
+	color: #ffffff;
+	font-size: 16px;
 	font-weight: bold;
-	/*height: 25px;*/
-	padding: 3px 3px 3px 3px;
+	height: 20px;
+	padding: 5px;
 }
 
-#DivCuerpo .DivContenido .DivInformacionContenido
+.ModalLargeDiv
 {
-	height: 100%;
+	border: 1px solid #000000;
+	color: #333;
+    left: 50%;
+    margin-left: -400px;
+	margin-top: -250px;
+    height: 500px;
+    padding: 0px;
+    position: fixed;
+    top: 50%;
+    width: 800px;
+    z-index: 1002;
+}
+
+.ModalLargeDiv .ContentDiv
+{
+	background-color: #ffffff;
+	border: 0px;
+	border-spacing: 5px;
+	height: 425px;
 	overflow: auto;
+	padding: 5px;
 }
 
-#DivCuerpo .DivContenido .DivInformacionContenido .DivBusquedaAvanzada
+.ModalLargeDiv .FooterDiv
 {
-	background: url(/Imagen/Fondo/FondoBusquedaAvanzada.jpg) right no-repeat;
-	min-height: 150px;
+	background-color: #dddddd;
+	border: 0px;
+	border-spacing: 5px;
+	height: 35px;
+	padding: 5px;
 }
 
-#DivCuerpo .DivContenido .DivInformacionContenido .DivContenidoOpcionesMenu
+.ModalLargeDiv .HeaderDiv
 {
-	border: 1px solid #cccccc;
-	height: 200px;
-	margin: 10px 10px 10px 10px;
-	width: 400px;
-	float: left;
-	display: none;
-}
-
-#DivCuerpo .DivContenido .DivInformacionContenido .DivEditarRegistro
-{
-	background: url(/Imagen/Fondo/FondoEditarRegistro.jpg) right no-repeat;
-}
-
-#DivCuerpo .DivContenido .DivInformacionContenido .DivNuevoRegistro
-{
-	background: url(/Imagen/Fondo/FondoNuevoRegistro.jpg) right no-repeat;
-}
-
-#DivCuerpo .DivContenido .DivContenidoTitulo .DivTitulo
-{
+	background-color: #a6baea;
+	border: 0px;
+	border-spacing: 5px;
 	color: #ffffff;
 	font-size: 14px;
 	font-weight: bold;
-	padding: 3px 0px 0px 5px;
+	height: 20px;
+	padding: 5px;
 }
 
-#DivCuerpo .DivMenuContenido
+.ModalLargeVideoDiv 
 {
-	float: left;
-	height: 100%;
-	width: 5%;
+	border: 0px;
+    top: 100px;
+    left: 350px;
+    position: fixed; 
+    z-index: 1002;
 }
 
-#DivEncabezado .DivTitulo
+.VideoDiv
 {
+	
+}
+
+.CloseVideo
+{
+	float: right;	
+}
+
+.ModalLargeDiv .ContentVideoDiv
+{
+	background-color: #ffffff;
+	border: 0px;
+	border-spacing: 5px;
+	height: 425px;
+	overflow: auto;
+	padding: 5px;
+	text-align: center;
+}
+
+.ModalLargeDiv .HeaderVideoDiv
+{
+	background-color: #a6baea;
+	border: 0px;
+	border-spacing: 5px;
 	color: #ffffff;
-	float: left;
 	font-size: 18px;
 	font-weight: bold;
-	padding: 3px 0px 0px 10px;
+	height: 20px;
+	padding: 5px;
 }
 
-#DivEncabezado .DivCuentaUsuario
+.Overlay
 {
-	color: #ffffff;
-	float: right;
-	padding: 7px 10px 0px 0px;
-	text-align: right;
-	width: 350px;
+	-moz-opacity: 0.75;
+	background: #000000 url(/Image/Background/OverlayBackground.png) repeat;
+    filter: alpha(opacity=75);
+    left: 0px;
+    height: 100%;
+    opacity:.75;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 1001;
 }
 
-#DivEncabezado .DivCuentaUsuario a
+.Separator
 {
-	color: #ffffff;
-	text-decoration: none;
+	clear: both;
 }
 
-#DivPie .DivTexto
+.TitlePage
 {
-	color: #ffffff;
-	font-size: 11px;
-	padding: 3px 10px 0px 0px;
-	text-align: right;
+	font-size: 14px;
+	font-weight: bold;
+	height: 35px;
+	padding-left: 5px;
+	padding-top: 5px;
 }
 
-#DivPie .DivTexto a
+.TitlePage a
 {
-	color: #ffffff;
-	font-size: 11px;
-	text-decoration: none;
+	color: #0000ff;
+	font-size: 12px;
+	font-weight: normal;
+	text-decoration: underline;	
 }
 
-.OpcionesMenuDesplazableTercia
+#UploadPhotoDiv
 {
-	float: left;
-	width: 33%;
 	display: none;
-	padding-top: 2px;
-	padding-bottom: 2px;
-}
-
-.OpcionesMenuDesplazableMedia
-{
-	float: left;
-	width: 50%;
-	display: none;
-	padding-top: 2px;
-	padding-bottom: 2px;
 }

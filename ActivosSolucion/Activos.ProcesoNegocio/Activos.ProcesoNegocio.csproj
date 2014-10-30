@@ -75,6 +75,7 @@
     <Compile Include="Activos\TipoActivoProceso.cs" />
     <Compile Include="Activos\TipoDocumentoProceso.cs" />
     <Compile Include="Activos\TipoServicioProceso.cs" />
+    <Compile Include="Almacen\AlmacenProceso.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="Catalogo\BancoProceso.cs" />
     <Compile Include="Catalogo\CiudadProceso.cs" />
