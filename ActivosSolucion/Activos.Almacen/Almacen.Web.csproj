@@ -56,6 +56,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aplicacion\Catalogo\Marca.aspx.cs">
+      <DependentUpon>Marca.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicacion\Catalogo\Marca.aspx.designer.cs">
+      <DependentUpon>Marca.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Aplicacion\Catalogo\Producto.aspx.cs">
       <DependentUpon>Producto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -181,6 +188,7 @@
     <Content Include="Incluir\Plantilla\PlantillaPublica.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Aplicacion\Catalogo\Marca.aspx" />
     <Content Include="Aplicacion\Catalogo\Producto.aspx" />
     <Content Include="Aplicacion\Salir.aspx" />
     <Content Include="Imagen\Boton\BotonAceptar.png" />
