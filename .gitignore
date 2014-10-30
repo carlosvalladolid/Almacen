@@ -1,2 +1,11 @@
+# Archivos temporales de Visio
 Documentación/02 - Elaboración/~$$Diagrama entidad relación del proyecto de Almacén.~vsd
 Documentación/02 - Elaboración/~$$Diagrama entidad relación del proyecto de Almacén.~vsd
+
+# Archivos de la solución
+ActivosSolucion/ActivosSolucion.sln
+ActivosSolucion/ActivosSolucion.suo
+
+# Carpetas bin y debug
+bin/
+debug/
