@@ -31,3 +31,14 @@ E:\Trabajo\Proyectos\Externos\Gobierno\Defensoría\Almacen\ActivosSolucion\Activ
 E:\Trabajo\Proyectos\Externos\Gobierno\Defensoría\Almacen\ActivosSolucion\Activos.ProcesoNegocio\obj\Debug\ResolveAssemblyReference.cache
 E:\Trabajo\Proyectos\Externos\Gobierno\Defensoría\Almacen\ActivosSolucion\Activos.ProcesoNegocio\obj\Debug\Activos.ProcesoNegocio.dll
 E:\Trabajo\Proyectos\Externos\Gobierno\Defensoría\Almacen\ActivosSolucion\Activos.ProcesoNegocio\obj\Debug\Activos.ProcesoNegocio.pdb
+C:\Sistemas\Almacen\ActivosSolucion\Activos.ProcesoNegocio\bin\Debug\Activos.ProcesoNegocio.dll
+C:\Sistemas\Almacen\ActivosSolucion\Activos.ProcesoNegocio\bin\Debug\Activos.ProcesoNegocio.pdb
+C:\Sistemas\Almacen\ActivosSolucion\Activos.ProcesoNegocio\bin\Debug\Activos.AccesoDatos.dll
+C:\Sistemas\Almacen\ActivosSolucion\Activos.ProcesoNegocio\bin\Debug\Activos.Comun.dll
+C:\Sistemas\Almacen\ActivosSolucion\Activos.ProcesoNegocio\bin\Debug\Activos.Entidad.dll
+C:\Sistemas\Almacen\ActivosSolucion\Activos.ProcesoNegocio\bin\Debug\Activos.AccesoDatos.pdb
+C:\Sistemas\Almacen\ActivosSolucion\Activos.ProcesoNegocio\bin\Debug\Activos.Entidad.pdb
+C:\Sistemas\Almacen\ActivosSolucion\Activos.ProcesoNegocio\bin\Debug\Activos.Comun.pdb
+C:\Sistemas\Almacen\ActivosSolucion\Activos.ProcesoNegocio\obj\Debug\ResolveAssemblyReference.cache
+C:\Sistemas\Almacen\ActivosSolucion\Activos.ProcesoNegocio\obj\Debug\Activos.ProcesoNegocio.dll
+C:\Sistemas\Almacen\ActivosSolucion\Activos.ProcesoNegocio\obj\Debug\Activos.ProcesoNegocio.pdb

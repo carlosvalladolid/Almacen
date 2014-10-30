@@ -11,6 +11,8 @@ namespace Activos.Comun.Constante
         public const string DefensoriaDB_Activos = "DefensoriaDB.Activos";
         public const string DefensoriaDB_Catalogo = "DefensoriaDB.Catalogo";
         public const string DefensoriaDB_Seguridad = "DefensoriaDB.Seguridad";
+        public const string DefensoriaDB_Almacen = "DefensoriaDB.Almacen";
+
 
         // Formatos para fechas
         public const string EspañolFormatoFecha = "dd/mm/aaaa";
@@ -357,6 +359,15 @@ namespace Activos.Comun.Constante
             PuestoTieneRegistrosRelacionados = 3,
             PuestoConNombreDuplicado = 4
         }
+
+
+        public enum Producto
+        {
+            ProductoGuardadoCorrectamente = 1,
+            EliminadoExitosamente = 2,
+            ProductoTieneRegistroDuplicado = 3
+        }
+
 
         public enum RecuperarContrasenia
         {
