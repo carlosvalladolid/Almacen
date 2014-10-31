@@ -27,8 +27,9 @@ namespace Activos.ProcesoNegocio.Almacen
           CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
 
-          if (AlmacenObjetoEntidad.ProductoId == "")
+          if (AlmacenObjetoEntidad.ProductoId =="0")
           {
+           
               AlmacenObjetoEntidad.ProductoId = Guid.NewGuid().ToString();
 
               Resultado = AlmacenAccesoObjeto.InsertarProducto(AlmacenObjetoEntidad, CadenaConexion);

@@ -90,10 +90,10 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 BusquedaAvanzada();
             }
 
-            //protected void TablaProductoRowCommand(object sender, GridViewCommandEventArgs e)
-            //{
-            //    TablaProductoEventoComando(e);
-            //}
+            protected void TablaProducto_RowCommand(object sender, GridViewCommandEventArgs e)
+            {
+                TablaProductoEventoComando(e);
+            }
 
 
 
@@ -136,7 +136,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
             MarcaIdNuevo.SelectedIndex = 0;
             MaximoNuevo.Text = "";
             MinimoNuevo.Text = "";
-            UnidaddeMedidaIdNuevo.Text = "";
+            UnidaddeMedidaIdNuevo.SelectedIndex = 0;
             EstatusProductoNuevo.Checked = true;
             MaximoPermitivoNuevo.Text = "";
             ProductoIdHidden.Value = "";
@@ -332,26 +332,26 @@ namespace Almacen.Web.Aplicacion.Catalogo
         protected void TablaProductoEventoComando(GridViewCommandEventArgs e)
         {
             AlmacenEntidad AlmacenEntidadObjeto = new AlmacenEntidad();
-            string intFila = "";
+            Int16 intFila = 0;
             int intTamañoPagina = 0;
             string ProductoId = "";
             string strCommand = string.Empty;
 
-            intFila = (e.CommandArgument.ToString());
+            intFila = Int16.Parse(e.CommandArgument.ToString());
             strCommand = e.CommandName.ToString();
             intTamañoPagina = TablaProducto.PageSize;
 
-            //if (intFila >= intTamañoPagina)
-            //    intFila = (intFila - (intTamañoPagina * TablaProducto.PageIndex));
+            if (intFila >= intTamañoPagina)
+                intFila = (Int16)(intFila - (intTamañoPagina * TablaProducto.PageIndex));
 
 
             switch (strCommand)
             {
                 case "Select":
-                    //ProductoId = string.Format(TablaProducto.DataKeys[intFila]["ProductoId"].ToString());
+                    ProductoId = string.Format(TablaProducto.DataKeys[intFila]["ProductoId"].ToString());
                     AlmacenEntidadObjeto.ProductoId = ProductoId;
                     ProductoIdHidden.Value = ProductoId.ToString();
-                    //SeleccionarSubFamiliaParaEditar(SubFamiliaEntidadObjeto);
+                    SeleccionarProductoParaEditar(AlmacenEntidadObjeto);
                     break;
 
                 default:
@@ -360,13 +360,39 @@ namespace Almacen.Web.Aplicacion.Catalogo
             }
         }
 
+        protected void SeleccionarProductoParaEditar(AlmacenEntidad AlmacenObjetoEntidad)
+        {
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            AlmacenProceso AlmacenProcesoNegocio = new AlmacenProceso();
+
+            Resultado = AlmacenProcesoNegocio.SeleccionarProducto(AlmacenObjetoEntidad);
+
+            if (Resultado.ErrorId == 0)
+            {
+                ClaveNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Clave"].ToString();
+                FamiliaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["FamiliaId"].ToString();
+                SeleccionarSubfamilia();
+                SubFamiliaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["SubFamiliaId"].ToString();
+                MarcaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["MarcaId"].ToString();
+                DescripcionNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Descripcion"].ToString();
+                MinimoNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Minimo"].ToString();
+                MaximoNuevo.Text =Resultado.ResultadoDatos.Tables[0].Rows[0]["Maximo"].ToString();
+                MaximoPermitivoNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["MaximoPermitido"].ToString();
+                UnidaddeMedidaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["UnidadMedidaId"].ToString();
+                //EstatusProductoNuevo.Checked = Resultado.ResultadoDatos.Tables[0].Rows[0]["EstatusId"].ToString();
+                
+                //if (Resultado.ResultadoDatos.Tables[0].Rows[0]["EstatusId"].ToString()==true)
+                //CambiarEditarRegistro();
+            }
+            else
+            {
+                EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+            }
+        }
 
 
 
-        //{
-        //    TablaProducto.DataSource = null;
-        //    TablaProducto.DataBind();
-        //}    
+
         #endregion
     }
 }

@@ -139,20 +139,20 @@
 
 			<div>
                     <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
-                        CssClass="TablaInformacion" DataKeyNames="ProductoId" ID="TablaProducto" OnPageIndexChanging="TablaProducto_PageIndexChanging" runat="server" PageSize="10">
+                        CssClass="TablaInformacion" DataKeyNames="ProductoId" ID="TablaProducto" OnPageIndexChanging="TablaProducto_PageIndexChanging"  OnRowCommand="TablaProducto_RowCommand" runat="server" PageSize="10">
                         <EmptyDataTemplate>
                             <table class="TablaVacia">
                                 <tr class="Encabezado">
                                     <th style="width: 30px;">Clave</th>
-                                    <th>Nombre</th>
-                                    <th style="width: 200px;">Familia</th>
+                                    <th>Nombre</th>                                    
                                     <th style="width: 100px;">SubFamilia</th>   
                                 </tr>
                                 <tr>
                                     <td colspan="3" style="text-align: center;">No se encontró información con los parámetros seleccionados</td>
                                 </tr>
                             </table>
-                        </EmptyDataTemplate>
+                      </EmptyDataTemplate>
+                      
                         <HeaderStyle CssClass="Encabezado" />
                         <PagerStyle CssClass="Paginacion" HorizontalAlign="Right" />
                         <Columns>
@@ -162,16 +162,20 @@
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center" Width="30px" />
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Nombre">
+                            
+                             <asp:BoundField DataField="Clave" HeaderText="Clave" ItemStyle-HorizontalAlign="Left">
+                                <HeaderStyle HorizontalAlign="Center" Width="200px" />
+                            </asp:BoundField>
+                            
+                            <asp:TemplateField HeaderText="NombreProducto">
                                 <ItemTemplate>
-                                    <asp:LinkButton CommandArgument="<%#Container.DataItemIndex%>" CommandName="Select" ID="LigaNombre" runat="server" Text='<%#Eval("Nombre")%>'></asp:LinkButton>
+                                    <asp:LinkButton CommandArgument="<%#Container.DataItemIndex%>" CommandName="Select" ID="LigaNombre" runat="server" Text='<%#Eval("NombreProducto")%>'></asp:LinkButton>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:TemplateField>
-                             <asp:BoundField DataField="Familia" HeaderText="Dependencia" ItemStyle-HorizontalAlign="Left">
-                                <HeaderStyle HorizontalAlign="Center" Width="200px" />
-                            </asp:BoundField>
-                            <asp:BoundField DataField="SubFamilia" HeaderText="Estatus" ItemStyle-HorizontalAlign="Left">
+                            
+                          
+                            <asp:BoundField DataField="SubFamilia" HeaderText="SubFamilia" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" Width="100px" />
                             </asp:BoundField>
                         </Columns>

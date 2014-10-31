@@ -33,7 +33,7 @@ namespace Activos.AccesoDatos.Almacen
                 Comando.Parameters.Add(Parametro);
 
                 Parametro = new SqlParameter("SubFamiliaId", SqlDbType.SmallInt);
-                Parametro.Value = AlmacenEntidadObjeto.ProductoId;
+                Parametro.Value = AlmacenEntidadObjeto.SubFamiliaId;
                 Comando.Parameters.Add(Parametro);
 
 
@@ -170,6 +170,10 @@ namespace Activos.AccesoDatos.Almacen
             {
                 Comando = new SqlCommand("SeleccionarProductoProcedimiento", Conexion);
                 Comando.CommandType = CommandType.StoredProcedure;
+
+                Parametro = new SqlParameter("ProductoId", SqlDbType.VarChar);
+                Parametro.Value = AlmacenEntidadObjeto.ProductoId;
+                Comando.Parameters.Add(Parametro);
 
                 Parametro = new SqlParameter("Clave", SqlDbType.VarChar);
                 Parametro.Value = AlmacenEntidadObjeto.Clave;
