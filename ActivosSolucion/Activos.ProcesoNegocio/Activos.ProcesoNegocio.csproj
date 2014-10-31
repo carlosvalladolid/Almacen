@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6FD07B3B-F19F-4D30-96E7-D4CD70889BFD}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -76,6 +76,9 @@
     <Compile Include="Activos\TipoDocumentoProceso.cs" />
     <Compile Include="Activos\TipoServicioProceso.cs" />
     <Compile Include="Almacen\AlmacenProceso.cs" />
+    <Compile Include="Almacen\FamiliaProceso.cs" />
+    <Compile Include="Almacen\MarcaProceso.cs" />
+    <Compile Include="Almacen\SubFamiliaProceso.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="Catalogo\BancoProceso.cs" />
     <Compile Include="Catalogo\CiudadProceso.cs" />

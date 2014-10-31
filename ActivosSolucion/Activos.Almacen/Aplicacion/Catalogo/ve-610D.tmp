@@ -15,8 +15,6 @@
     <div class="RightBodyDiv">
         <asp:UpdatePanel ID="PageUpdate" runat="server">
             <ContentTemplate>
-            <br/>
-            <br/>
                 <div class="PageTitleDiv">
                     <table class="PageTitleTable">
                         <tr>
@@ -24,7 +22,7 @@
                                 Catálogo de productos
                             </td>
                             <td class="Search"><asp:TextBox CssClass="SearchBox" ID="SearchText" MaxLength="50" runat="server"></asp:TextBox>&nbsp;</td>
-                            <td class="Icon"><asp:ImageButton ID="BotonBusquedaRapida" ImageUrl="~/Image/Icon/SearchIcon.gif"  runat="server" ToolTip="Buscar" /></td> 
+                            <td class="Icon"><asp:ImageButton ID="BotonBusquedaRapida" ImageUrl="~/Image/Icon/SearchIcon.gif" OnClick="BotonBusquedaRapida_Click" runat="server" ToolTip="Buscar" /></td> 
                         </tr>
                     </table>
                 </div>
@@ -47,8 +45,8 @@
 							  <tr>
                             <td colspan="3">
                                 <br />
-                                <asp:ImageButton AlternateText="Buscar" ID="BotonBusqueda" ImageUrl="~/Imagen/Boton/BotonBuscar.png"  OnClick="BotonBusqueda_Click"  runat="server" />&nbsp;&nbsp;
-                                <asp:ImageButton AlternateText="Limpiar" ID="BotonLimpiarBusqueda" ImageUrl="~/Imagen/Boton/BotonLimpiar.png" runat="server" />
+                                <asp:ImageButton AlternateText="Buscar" ID="BotonBuscar" ImageUrl="~/Imagen/Boton/BotonBuscar.png" runat="server" />&nbsp;&nbsp;
+                                <asp:ImageButton AlternateText="Limpiar" ID="BotonLimpiar" ImageUrl="~/Imagen/Boton/BotonLimpiar.png" runat="server" />
                             </td>
                         </tr>
 							
@@ -135,11 +133,11 @@
 
 
 
-           <asp:Label CssClass="TextoError" ID="EtiquetaMensaje" runat="server" Text=""></asp:Label>
+
 
 			<div>
                     <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
-                        CssClass="TablaInformacion" DataKeyNames="ProductoId" ID="TablaProducto" OnPageIndexChanging="TablaProducto_PageIndexChanging" runat="server" PageSize="10">
+                        CssClass="TablaInformacion" DataKeyNames="ProductoId" ID="TablaProducto" runat="server" PageSize="10">
                         <EmptyDataTemplate>
                             <table class="TablaVacia">
                                 <tr class="Encabezado">
@@ -180,16 +178,21 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
                 <asp:UpdateProgress AssociatedUpdatePanelID="PageUpdate" ID="AssociatedUpdate" runat="server">
                     <ProgressTemplate>
                         <div class="LoadingDiv"><div class="LoadingImageDiv"><img alt="Cargando..." src="../../Image/Icon/LoadingIcon.gif" /></div></div>
                     </ProgressTemplate>
                 </asp:UpdateProgress>   
-                
-                
-                     <asp:HiddenField ID="ProductoIdHidden" runat="server" Value="0" />
-                
-                
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>

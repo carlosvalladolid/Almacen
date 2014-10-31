@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{DDB86909-CFD5-48CE-9CEA-512D819EAE5B}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -72,6 +72,9 @@
     <Compile Include="Activos\TipoDocumentoEntidad.cs" />
     <Compile Include="Activos\TipoServicioEntidad.cs" />
     <Compile Include="Almacen\AlmacenEntidad.cs" />
+    <Compile Include="Almacen\FamiliaEntidad.cs" />
+    <Compile Include="Almacen\MarcaEntidad.cs" />
+    <Compile Include="Almacen\SubFamiliaEntidad.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="Catalogo\BancoEntidad.cs" />
     <Compile Include="Catalogo\CiudadEntidad.cs" />
