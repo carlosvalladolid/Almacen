@@ -75,6 +75,7 @@
     <Compile Include="Almacen\FamiliaEntidad.cs" />
     <Compile Include="Almacen\MarcaEntidad.cs" />
     <Compile Include="Almacen\SubFamiliaEntidad.cs" />
+    <Compile Include="Almacen\UnidadMedidaEntidad.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="Catalogo\BancoEntidad.cs" />
     <Compile Include="Catalogo\CiudadEntidad.cs" />

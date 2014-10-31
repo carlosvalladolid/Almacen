@@ -79,6 +79,7 @@
     <Compile Include="Almacen\FamiliaProceso.cs" />
     <Compile Include="Almacen\MarcaProceso.cs" />
     <Compile Include="Almacen\SubFamiliaProceso.cs" />
+    <Compile Include="Almacen\UnidadMedidaProceso.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="Catalogo\BancoProceso.cs" />
     <Compile Include="Catalogo\CiudadProceso.cs" />

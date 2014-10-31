@@ -125,7 +125,7 @@
                         <tr>
                             <td colspan="3">
                                 <br />
-                                <asp:ImageButton AlternateText="Guardar" ID="BotonGuardar" ImageUrl="~/Imagen/Boton/BotonGuardar.png" runat="server" ValidationGroup="Save" />&nbsp;&nbsp;
+                                <asp:ImageButton AlternateText="Guardar" ID="BotonGuardar" ImageUrl="~/Imagen/Boton/BotonGuardar.png" OnClick="BotonGuardar_Click" runat="server" ValidationGroup="Save" />&nbsp;&nbsp;
                                 <asp:ImageButton AlternateText="Limpiar" ID="LimpiarBoton" ImageUrl="~/Imagen/Boton/BotonLimpiar.png" runat="server" ValidationGroup="Save" />&nbsp;&nbsp;
                                 <asp:ImageButton AlternateText="Cancelar" ID="BotonCancelar" ImageUrl="~/Imagen/Boton/BotonCancelar.png" runat="server" />
                             </td>

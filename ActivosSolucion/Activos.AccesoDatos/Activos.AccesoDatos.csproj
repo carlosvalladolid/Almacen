@@ -77,6 +77,7 @@
     <Compile Include="Almacen\FamiliaAcceso.cs" />
     <Compile Include="Almacen\MarcaAcceso.cs" />
     <Compile Include="Almacen\SubFamiliaAcceso.cs" />
+    <Compile Include="Almacen\UnidadMedidaAcceso.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="Catalogo\BancoAcceso.cs" />
     <Compile Include="Catalogo\CiudadAcceso.cs" />

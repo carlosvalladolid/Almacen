@@ -109,7 +109,6 @@ namespace Almacen.Web.Aplicacion.Catalogo
                     SeleccionarFamilia();
                     SeleccionarSubfamilia();
                     SeleccionarMarca();
-                    SeleccionarUnidadMedida();
                     BusquedaAvanzada();
                 }
                 
@@ -167,7 +166,6 @@ namespace Almacen.Web.Aplicacion.Catalogo
             AlmacenObjetoEntidad.Minimo = Int16.Parse(MinimoNuevo.Text.Trim());
             AlmacenObjetoEntidad.Maximo = Int16.Parse(MaximoNuevo.Text.Trim());
             AlmacenObjetoEntidad.MaximoPermitido = Int16.Parse(MaximoPermitivoNuevo.Text.Trim());
-            AlmacenObjetoEntidad.UnidadMedidaId = (UnidaddeMedidaIdNuevo.SelectedValue);
             AlmacenObjetoEntidad.EstatusId = EstatusProductoNuevo.Checked;
 
             GuardarProducto(AlmacenObjetoEntidad);
@@ -300,33 +298,6 @@ namespace Almacen.Web.Aplicacion.Catalogo
             }
 
             SubFamiliaIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
-        }
-
-        protected void SeleccionarUnidadMedida()
-        {
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-            UnidadMedidaEntidad UnidadMedidaEntidadObjeto = new UnidadMedidaEntidad();
-            UnidadMedidaProceso UnidadMedidaProcesoObjeto = new UnidadMedidaProceso();
-
-            //MarcaEntidadObjeto.EstatusId = (Int16)ConstantePrograma.EstatusMarca.Activo;
-
-            Resultado = UnidadMedidaProcesoObjeto.SeleccionarUnidadMedida(UnidadMedidaEntidadObjeto);
-
-
-            UnidaddeMedidaIdNuevo.DataValueField = "UnidadMedidaId";
-            UnidaddeMedidaIdNuevo.DataTextField = "Nombre";
-
-            if (Resultado.ErrorId == 0)
-            {
-                UnidaddeMedidaIdNuevo.DataSource = Resultado.ResultadoDatos;
-                UnidaddeMedidaIdNuevo.DataBind();
-            }
-            else
-            {
-                EtiquetaMensaje.Text = TextoError.ErrorGenerico;
-            }
-
-            UnidaddeMedidaIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
         }
 
         protected void TablaProductoEventoComando(GridViewCommandEventArgs e)

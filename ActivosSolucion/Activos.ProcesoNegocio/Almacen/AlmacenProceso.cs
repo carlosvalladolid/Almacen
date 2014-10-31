@@ -29,7 +29,7 @@ namespace Activos.ProcesoNegocio.Almacen
 
           if (AlmacenObjetoEntidad.ProductoId == "")
           {
-              //AlmacenObjetoEntidad.ProductoId = Guid.NewGuid().ToString();
+              AlmacenObjetoEntidad.ProductoId = Guid.NewGuid().ToString();
 
               Resultado = AlmacenAccesoObjeto.InsertarProducto(AlmacenObjetoEntidad, CadenaConexion);
           }
