@@ -47,7 +47,7 @@
 							  <tr>
                             <td colspan="3">
                                 <br />
-                                <asp:ImageButton AlternateText="Buscar" ID="BotonBusqueda" ImageUrl="~/Imagen/Boton/BotonBuscar.png"  runat="server" />&nbsp;&nbsp;
+                                <asp:ImageButton AlternateText="Buscar" ID="BotonBusqueda" ImageUrl="~/Imagen/Boton/BotonBuscar.png"  OnClick="BotonBusqueda_Click"  runat="server" />&nbsp;&nbsp;
                                 <asp:ImageButton AlternateText="Limpiar" ID="BotonLimpiarBusqueda" ImageUrl="~/Imagen/Boton/BotonLimpiar.png" runat="server" />
                             </td>
                         </tr>
@@ -139,7 +139,7 @@
 
 			<div>
                     <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
-                        CssClass="TablaInformacion" DataKeyNames="ProductoId" ID="TablaProducto" runat="server" PageSize="10">
+                        CssClass="TablaInformacion" DataKeyNames="ProductoId" ID="TablaProducto" OnPageIndexChanging="TablaProducto_PageIndexChanging" runat="server" PageSize="10">
                         <EmptyDataTemplate>
                             <table class="TablaVacia">
                                 <tr class="Encabezado">

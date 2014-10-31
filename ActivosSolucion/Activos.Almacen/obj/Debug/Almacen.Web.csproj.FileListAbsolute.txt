@@ -24,3 +24,4 @@ C:\Sistemas\Almacen\ActivosSolucion\Activos.Almacen\bin\Activos.Comun.pdb
 C:\Sistemas\Almacen\ActivosSolucion\Activos.Almacen\obj\Debug\ResolveAssemblyReference.cache
 C:\Sistemas\Almacen\ActivosSolucion\Activos.Almacen\obj\Debug\Activos.Almacen.dll
 C:\Sistemas\Almacen\ActivosSolucion\Activos.Almacen\obj\Debug\Activos.Almacen.pdb
+C:\Sistemas\Almacen\ActivosSolucion\Activos.Almacen\bin\Activos.Almacen.dll.config

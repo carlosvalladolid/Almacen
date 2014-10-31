@@ -18,29 +18,43 @@ namespace Activos.ProcesoNegocio.Almacen
 {
   public class AlmacenProceso:Base
     {
-      //public ResultadoEntidad GuardarProducto(AlmacenEntidad AlmacenObjetoEntidad)
-      //{
-      //    string CadenaConexion = string.Empty;
-      //    ResultadoEntidad Resultado = new ResultadoEntidad();
-      //    ResultadoEntidad ResultadoValidacion = new ResultadoEntidad();
-      //    AlmacenAcceso AlmacenAccesoObjeto = new AlmacenAcceso();
+      public ResultadoEntidad GuardarProducto(AlmacenEntidad AlmacenObjetoEntidad)
+      {
+          string CadenaConexion = string.Empty;
+          ResultadoEntidad Resultado = new ResultadoEntidad();
+          ResultadoEntidad ResultadoValidacion = new ResultadoEntidad();
+          AlmacenAcceso AlmacenAccesoObjeto = new AlmacenAcceso();
 
-      //    CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+          CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
 
-      //    if (AlmacenObjetoEntidad.ProductoId == "")
-      //        {
-      //            Resultado = AlmacenAccesoObjeto.InsertarProducto(AlmacenObjetoEntidad, CadenaConexion);
-      //        }
-      //        else
-      //        {
-      //            Resultado = AlmacenAccesoObjeto.ActualizarProducto(AlmacenObjetoEntidad, CadenaConexion);
-      //        }
-         
+          if (AlmacenObjetoEntidad.ProductoId == "")
+          {
+              //AlmacenObjetoEntidad.ProductoId = Guid.NewGuid().ToString();
 
-      //    return Resultado;
-      //}
+              Resultado = AlmacenAccesoObjeto.InsertarProducto(AlmacenObjetoEntidad, CadenaConexion);
+          }
+          else
+          {
+              Resultado = AlmacenAccesoObjeto.ActualizarProducto(AlmacenObjetoEntidad, CadenaConexion);
+          }
 
+
+          return Resultado;
+      }
+
+      public ResultadoEntidad SeleccionarProducto(AlmacenEntidad AlmacenObjetoEntidad)
+      {
+          string CadenaConexion = string.Empty;
+          ResultadoEntidad Resultado = new ResultadoEntidad();
+          AlmacenAcceso AlmacenAccesoObjeto = new AlmacenAcceso();
+
+          CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+          Resultado = AlmacenAccesoObjeto.SeleccionarProducto(AlmacenObjetoEntidad, CadenaConexion);
+
+          return Resultado;
+      }
 
 
     }

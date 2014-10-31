@@ -22,6 +22,11 @@ namespace Activos.Entidad.Almacen
         private Int16 _MaximoPermitido;
 
 
+        //*********************************
+
+        private string _BusquedaRapida;             // Texto de búsqueda en el catálogo de edificios
+         private string _BuscarNombre;               // Campo para buscar subfamilias por nombre exacto
+
         public AlmacenEntidad()
         {
             //_ProductoId = Guid.NewGuid().ToString();
@@ -36,6 +41,11 @@ namespace Activos.Entidad.Almacen
             _Minimo = 0;
             _Maximo = 0;
             _MaximoPermitido = 0;
+
+            //**************************
+
+            _BusquedaRapida = string.Empty;        
+            _BuscarNombre = string.Empty;
 
         }
 
@@ -113,6 +123,22 @@ namespace Activos.Entidad.Almacen
             get { return _MaximoPermitido; }
             set { _MaximoPermitido = value; }
         }
+        
+
+        public string BusquedaRapida
+        {
+            get { return _BusquedaRapida; }
+            set { _BusquedaRapida = value; }
+        }
+
+        
+        public string BuscarNombre
+        {
+            get { return _BuscarNombre; }
+            set { _BuscarNombre = value; }
+        }
+
+
 
     }
 }
