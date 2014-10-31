@@ -52,7 +52,13 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 GuardarProducto();
 
             }
-        
+
+            protected void ddlFamilia_SelectedIndexChanged(object sender, EventArgs e)
+            {
+                SeleccionarSubfamilia();
+            }
+
+
             protected void BotonLimpiar_Click(object sender, ImageClickEventArgs e)
             {
 
@@ -100,6 +106,9 @@ namespace Almacen.Web.Aplicacion.Catalogo
             {
                 if (!Page.IsPostBack)
                 {
+                    SeleccionarFamilia();
+                    SeleccionarSubfamilia();
+                    SeleccionarMarca();
                     BusquedaAvanzada();
                 }
                 
@@ -122,6 +131,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
             ClaveNuevo.Text = "";
             DescripcionNuevo.Text = "";
             FamiliaIdNuevo.SelectedIndex = 0;
+            SeleccionarSubfamilia();
             MarcaIdNuevo.SelectedIndex = 0;
             MaximoNuevo.Text = "";
             MinimoNuevo.Text = "";
@@ -203,6 +213,92 @@ namespace Almacen.Web.Aplicacion.Catalogo
 
         }
 
+        protected void SeleccionarFamilia()
+        {
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            FamiliaEntidad FamiliaEntidadObjeto = new FamiliaEntidad();
+            FamiliaProceso FamiliaProcesoObjeto = new FamiliaProceso();
+
+            //FamiliaEntidadObjeto.EstatusId = (Int16)ConstantePrograma.EstatusFamilia.Activo;
+
+            Resultado = FamiliaProcesoObjeto.SeleccionarFamilia(FamiliaEntidadObjeto);
+
+            FamiliaIdNuevo.DataValueField = "FamiliaId";
+            FamiliaIdNuevo.DataTextField = "Nombre";
+
+            if (Resultado.ErrorId == 0)
+            {
+                FamiliaIdNuevo.DataSource = Resultado.ResultadoDatos;
+                FamiliaIdNuevo.DataBind();
+            }
+            else
+            {
+                EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+            }
+
+            FamiliaIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
+        }
+
+
+        protected void SeleccionarMarca()
+        {
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            MarcaEntidad MarcaEntidadObjeto = new MarcaEntidad();
+            MarcaProceso MarcaProcesoObjeto = new MarcaProceso();
+
+            //MarcaEntidadObjeto.EstatusId = (Int16)ConstantePrograma.EstatusMarca.Activo;
+
+            Resultado = MarcaProcesoObjeto.SeleccionarMarca(MarcaEntidadObjeto);
+
+            MarcaIdNuevo.DataValueField = "MarcaId";
+            MarcaIdNuevo.DataTextField = "Nombre";
+
+            if (Resultado.ErrorId == 0)
+            {
+                MarcaIdNuevo.DataSource = Resultado.ResultadoDatos;
+                MarcaIdNuevo.DataBind();
+            }
+            else
+            {
+                EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+            }
+
+            MarcaIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
+        }
+
+        protected void SeleccionarSubfamilia()
+        {
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            SubFamiliaEntidad SubFamiliaEntidadObjeto = new SubFamiliaEntidad();
+            SubFamiliaProceso SubFamiliaProcesoObjeto = new SubFamiliaProceso();
+
+            //SubFamiliaEntidadObjeto.EstatusId = (Int16)ConstantePrograma.EstatusSubFamilia.Activo;
+            SubFamiliaEntidadObjeto.FamiliaId = Int16.Parse(FamiliaIdNuevo.SelectedValue);
+
+            if (SubFamiliaEntidadObjeto.FamiliaId == 0)
+            {
+                SubFamiliaIdNuevo.Items.Clear();
+            }
+            else
+            {
+                Resultado = SubFamiliaProcesoObjeto.SeleccionarSubFamilia(SubFamiliaEntidadObjeto);
+
+                SubFamiliaIdNuevo.DataValueField = "SubFamiliaId";
+                SubFamiliaIdNuevo.DataTextField = "Nombre";
+
+                if (Resultado.ErrorId == 0)
+                {
+                    SubFamiliaIdNuevo.DataSource = Resultado.ResultadoDatos;
+                    SubFamiliaIdNuevo.DataBind();
+                }
+                else
+                {
+                    EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+                }
+            }
+
+            SubFamiliaIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
+        }
 
         protected void TablaProductoEventoComando(GridViewCommandEventArgs e)
         {
@@ -234,56 +330,6 @@ namespace Almacen.Web.Aplicacion.Catalogo
                     break;
             }
         }
-
-
-            //protected void SeleccionarFamiliaNuevo()
-            //{
-            //    ResultadoEntidad Resultado = new ResultadoEntidad();
-            //    FamiliaEntidad FamiliaEntidadObjeto = new FamiliaEntidad();
-            //    FamiliaProceso FamiliaProcesoObjeto = new FamiliaProceso();
-
-            //    //FamiliaEntidadObjeto.SeccionId = (int)ConstantePrograma.Seccion.Familia;
-
-            //    Resultado = FamiliaProcesoObjeto.SeleccionarFamilia(FamiliaEntidadObjeto);
-
-            //    FamiliaNuevo.DataValueField = "FamiliaId";
-            //    FamiliaNuevo.DataTextField = "Nombre";
-
-            //    if (Resultado.ErrorId == 0)
-            //    {
-            //        FamiliaNuevo.DataSource = Resultado.ResultadoDatos;
-            //        FamiliaNuevo.DataBind();
-            //    }
-            //    else
-            //    {
-            //        EtiquetaMensaje.Text = TextoError.ErrorGenerico;
-            //    }
-
-            //    FamiliaNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
-            //}
-
-            //protected void SeleccionarSubFamilia(SubFamiliaEntidad SubFamiliaObjetoEntidad)
-            //{
-            //    ResultadoEntidad Resultado = new ResultadoEntidad();
-            //    SubFamiliaProceso SubFamiliaProcesoNegocio = new SubFamiliaProceso();
-
-            //    Resultado = SubFamiliaProcesoNegocio.SeleccionarSubFamilia(SubFamiliaObjetoEntidad);
-
-            //    if (Resultado.ErrorId == 0)
-            //    {
-            //        if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
-            //            TablaSubFamilia.CssClass = ConstantePrograma.ClaseTablaVacia;
-            //        else
-            //            TablaSubFamilia.CssClass = ConstantePrograma.ClaseTabla;
-
-            //        TablaSubFamilia.DataSource = Resultado.ResultadoDatos;
-            //        TablaSubFamilia.DataBind();
-            //    }
-            //    else
-            //    {
-            //        EtiquetaMensaje.Text = TextoError.ErrorGenerico;
-            //    }
-            //}
 
 
 
