@@ -36,15 +36,15 @@
                                         </div>
                                         <asp:Panel ID="MenuPanel" runat="server">
                                                 <asp:Panel CssClass="OptionMenu" ID="NewPanel" runat="server">
-                                                    <asp:LinkButton CssClass="MenuLink" ID="NewRecordLink" OnClick="NewRecordLink_Click" runat="server" Text="Nuevo">
+                                                    <asp:LinkButton CssClass="MenuLink" ID="NuevoRegistroLink" OnClick="NuevoRegistroLink_Click" runat="server" Text="Nuevo">
                                                     </asp:LinkButton>&nbsp;&nbsp;&nbsp;     
                                                 </asp:Panel>
                                                 <asp:Panel CssClass="OptionMenu" ID="AdvancedPanel" runat="server">
-                                                    <asp:LinkButton CssClass="MenuLink" ID="AdvancedSearchLink" OnClick="AdvancedSearchLink_Click" runat="server" Text="Búsqueda avanzada">
+                                                    <asp:LinkButton CssClass="MenuLink" ID="BusquedaAvanzadaLink" OnClick="BusquedaAvanzadaLink_Click" runat="server" Text="Búsqueda avanzada">
                                                     </asp:LinkButton>&nbsp;&nbsp;&nbsp;
                                                 </asp:Panel>
                                                 <asp:Panel CssClass="OptionMenu" ID="DeletePanel" runat="server">
-                                                    <asp:LinkButton CssClass="MenuLink" ID="DeleteRecordLink" OnClick="DeleteRecordLink_Click" runat="server" Text="Eliminar">
+                                                    <asp:LinkButton CssClass="MenuLink" ID="EliminarRegistroLink" OnClick="EliminarRegistroLink_Click" runat="server" Text="Eliminar">
                                                     </asp:LinkButton>&nbsp;&nbsp;&nbsp;
                                                 </asp:Panel>  
                                          </asp:Panel>

@@ -27,34 +27,56 @@
                     </table>
                 </div>
 
-                <asp:Panel CssClass="SearchDiv" ID="SearchPanel" Visible="false" runat="server">
-                    
-                </asp:Panel>
-
-                <asp:Panel CssClass="NewRowDiv" ID="RowPanel" Visible="false" runat="server">
-                    <table class="FormTable">
+                <asp:Panel CssClass="SearchDiv" ID="PanelBusquedaAvanzada" Visible="false" runat="server">
+                    <table class="TablaFormulario">
                         <tr>
-                            <td class="Name">Idioma</td>
-                            <td class="Required">*</td>
-                            <td class="Field">
-                                
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Name">Nombre</td>
-                            <td class="Required">*</td>
-                            <td class="Field"></td>
-                        </tr>
-                        <tr>
-                            <td class="Name">Descripción</td>
-                            <td class="Required"></td>
-                            <td class="Field"></td>
-                        </tr>
+                            <td class="Nombre">Nombre</td>
+                            <td class="Espacio">&nbsp;</td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="NombreBusqueda" MaxLength="100" runat="server" Text=""></asp:TextBox></td>
+                        </tr>                                                                                              
                         <tr>
                             <td colspan="3">
                                 <br />
-                                <asp:ImageButton AlternateText="Guardar" ID="SaveButton" ImageUrl="~/Image/Button/SaveButton.png" runat="server" ValidationGroup="Save" />&nbsp;&nbsp;
-                                <asp:ImageButton AlternateText="Cancelar" ID="CancelButton" ImageUrl="~/Image/Button/CancelButton.png" runat="server" />
+                                <asp:ImageButton AlternateText="Buscar" ID="BotonBusqueda" ImageUrl="/Imagen/Boton/BotonBuscar.png" OnClick="BotonBusqueda_Click" runat="server" />&nbsp;&nbsp;
+                                <asp:ImageButton AlternateText="Cancelar" ID="BotonCancelarBusqueda" ImageUrl="/Imagen/Boton/BotonCancelar.png" OnClick="BotonCancelarBusqueda_Click" runat="server" />
+                            </td>
+                        </tr>
+                    </table>
+                </asp:Panel>
+
+                <asp:Panel CssClass="NewRowDiv" ID="PanelNuevoRegistro" Visible="false" runat="server">
+                    <table class="TablaFormulario">
+                        <tr>
+                            <td class="Nombre">Dependencia</td>
+                            <td class="Requerido">*</td>
+                            <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="DependenciaNuevo" MaxLength="30" runat="server" ></asp:DropDownList></td>
+                            <td class="EspacioColumna"></td>
+                        </tr>  
+                        <tr>
+                            <td class="Nombre">Nombre</td>
+                            <td class="Requerido">*</td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="NombreNuevo" MaxLength="100" runat="server" Text=""></asp:TextBox></td>
+                            <td class="EspacioColumna"></td>
+                        </tr>
+                         <tr>
+                               <td class="Nombre">Estatus</td>
+                                <td class="Requerido">*</td>
+                                <td class="Campo"><asp:DropDownList CssClass="ComboMediano" ID="EstatusNuevo" MaxLength="30" runat="server" ></asp:DropDownList></td>
+                           </tr>
+                                                  
+                        <tr>
+                            <td colspan="3">
+                                <asp:CompareValidator CssClass="TextoError" ControlToValidate="DependenciaNuevo" Display="Dynamic" ErrorMessage="" ID="DependenciaRequerido" Operator="GreaterThan" ValidationGroup="Guardar" ValueToCompare="0" runat="server"></asp:CompareValidator>
+                                <asp:CompareValidator CssClass="TextoError" ControlToValidate="EstatusNuevo" Display="Dynamic" ErrorMessage="" ID="EstatusRequerido" Operator="GreaterThan" ValidationGroup="Guardar" ValueToCompare="0" runat="server"></asp:CompareValidator>
+                                <asp:RequiredFieldValidator CssClass="TextoError" ControlToValidate="NombreNuevo" Display="Dynamic" ErrorMessage="" ID="NombreRequerido" SetFocusOnError="true" ValidationGroup="Guardar" runat="server"></asp:RequiredFieldValidator>
+                               <br />
+                                <asp:ImageButton AlternateText="Guardar" ID="BotonGuardar" ImageUrl="/Imagen/Boton/BotonGuardar.png" OnClick="BotonGuardar_Click" runat="server" ValidationGroup="Guardar" />&nbsp;&nbsp;
+                                <asp:ImageButton AlternateText="Cancelar" ID="BotonCancelarNuevo" ImageUrl="/Imagen/Boton/BotonCancelar.png" OnClick="BotonCancelarNuevo_Click" runat="server" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                Los campos marcados con <span class="TextoError">*</span> son obligatorios
                             </td>
                         </tr>
                     </table>
@@ -68,7 +90,7 @@
                                 <tr class="Encabezado">
                                     <th style="width: 30px;"></th>
                                     <th>Nombre</th>
-                                    <th style="width: 200px;">Dependencia</th>
+                                    <th style="width: 250px;">Dependencia</th>
                                     <th style="width: 100px;">Estatus</th>   
                                 </tr>
                                 <tr>
@@ -92,7 +114,7 @@
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:TemplateField>
                              <asp:BoundField DataField="DependenciaNombre" HeaderText="Dependencia" ItemStyle-HorizontalAlign="Left">
-                                <HeaderStyle HorizontalAlign="Center" Width="200px" />
+                                <HeaderStyle HorizontalAlign="Center" Width="250px" />
                             </asp:BoundField>
                             <asp:BoundField DataField="EstatusNombre" HeaderText="Estatus" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" Width="100px" />
@@ -101,7 +123,7 @@
                     </asp:GridView>
                 </div>
 
-                
+                <asp:HiddenField ID="MarcaIdHidden" runat="server" Value="0" />
 
 
                 <asp:UpdateProgress AssociatedUpdatePanelID="PageUpdate" ID="AssociatedUpdate" runat="server">

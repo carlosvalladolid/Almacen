@@ -50,40 +50,121 @@ namespace Almacen.Web.Aplicacion.Catalogo {
         protected global::System.Web.UI.WebControls.ImageButton BotonBusquedaRapida;
         
         /// <summary>
-        /// SearchPanel control.
+        /// PanelBusquedaAvanzada control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel SearchPanel;
+        protected global::System.Web.UI.WebControls.Panel PanelBusquedaAvanzada;
         
         /// <summary>
-        /// RowPanel control.
+        /// NombreBusqueda control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel RowPanel;
+        protected global::System.Web.UI.WebControls.TextBox NombreBusqueda;
         
         /// <summary>
-        /// SaveButton control.
+        /// BotonBusqueda control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton SaveButton;
+        protected global::System.Web.UI.WebControls.ImageButton BotonBusqueda;
         
         /// <summary>
-        /// CancelButton control.
+        /// BotonCancelarBusqueda control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton CancelButton;
+        protected global::System.Web.UI.WebControls.ImageButton BotonCancelarBusqueda;
+        
+        /// <summary>
+        /// PanelNuevoRegistro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PanelNuevoRegistro;
+        
+        /// <summary>
+        /// DependenciaNuevo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DependenciaNuevo;
+        
+        /// <summary>
+        /// NombreNuevo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox NombreNuevo;
+        
+        /// <summary>
+        /// EstatusNuevo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList EstatusNuevo;
+        
+        /// <summary>
+        /// DependenciaRequerido control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator DependenciaRequerido;
+        
+        /// <summary>
+        /// EstatusRequerido control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator EstatusRequerido;
+        
+        /// <summary>
+        /// NombreRequerido control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator NombreRequerido;
+        
+        /// <summary>
+        /// BotonGuardar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton BotonGuardar;
+        
+        /// <summary>
+        /// BotonCancelarNuevo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton BotonCancelarNuevo;
         
         /// <summary>
         /// TablaMarca control.
@@ -93,6 +174,15 @@ namespace Almacen.Web.Aplicacion.Catalogo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView TablaMarca;
+        
+        /// <summary>
+        /// MarcaIdHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField MarcaIdHidden;
         
         /// <summary>
         /// AssociatedUpdate control.

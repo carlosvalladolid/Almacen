@@ -68,13 +68,13 @@ namespace Almacen.Web.Incluir.Plantilla {
         protected global::System.Web.UI.WebControls.Panel NewPanel;
         
         /// <summary>
-        /// NewRecordLink control.
+        /// NuevoRegistroLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton NewRecordLink;
+        protected global::System.Web.UI.WebControls.LinkButton NuevoRegistroLink;
         
         /// <summary>
         /// AdvancedPanel control.
@@ -86,13 +86,13 @@ namespace Almacen.Web.Incluir.Plantilla {
         protected global::System.Web.UI.WebControls.Panel AdvancedPanel;
         
         /// <summary>
-        /// AdvancedSearchLink control.
+        /// BusquedaAvanzadaLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton AdvancedSearchLink;
+        protected global::System.Web.UI.WebControls.LinkButton BusquedaAvanzadaLink;
         
         /// <summary>
         /// DeletePanel control.
@@ -104,13 +104,13 @@ namespace Almacen.Web.Incluir.Plantilla {
         protected global::System.Web.UI.WebControls.Panel DeletePanel;
         
         /// <summary>
-        /// DeleteRecordLink control.
+        /// EliminarRegistroLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton DeleteRecordLink;
+        protected global::System.Web.UI.WebControls.LinkButton EliminarRegistroLink;
         
         /// <summary>
         /// UserNameLabel control.

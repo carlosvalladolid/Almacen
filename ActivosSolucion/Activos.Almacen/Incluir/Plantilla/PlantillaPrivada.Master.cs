@@ -15,45 +15,49 @@ namespace Almacen.Web.Incluir.Plantilla
 {
     public partial class PlantillaPrivada : System.Web.UI.MasterPage
     {
-        public LinkButton AdvancedSearchFromMasterPageLink
+        public LinkButton BusquedaAvanzadaMaster
         {
-            get { return AdvancedSearchLink; }
+            get { return BusquedaAvanzadaLink; }
         }
 
-        public LinkButton DeleteFromMasterPageLink
+        public LinkButton EliminarRegistroMaster
         {
-            get { return DeleteRecordLink; }
+            get { return EliminarRegistroLink; }
         }
 
-        public LinkButton NewFromMasterPageLink
+        public LinkButton NuevoRegistroMaster
         {
-            get { return NewRecordLink; }
+            get { return NuevoRegistroLink; }
         }
 
         #region "Eventos"
-            protected void AdvancedSearchLink_Click(Object sender, System.EventArgs e)
+            protected void BusquedaAvanzadaLink_Click(Object sender, System.EventArgs e)
             {
 
             }
 
-            protected void DeleteRecordLink_Click(object sender, EventArgs e)
+            protected void EliminarRegistroLink_Click(object sender, EventArgs e)
             {
 
             }
 
-            protected void NewRecordLink_Click(Object sender, System.EventArgs e)
+            protected void NuevoRegistroLink_Click(Object sender, System.EventArgs e)
             {
 
             }
 
             protected void Page_Load(object sender, EventArgs e)
             {
-
+                Inicio();
             }
         #endregion
 
         #region "Métodos"
-
+            private void Inicio()
+            {
+                
+                
+            }
         #endregion
     }
 }

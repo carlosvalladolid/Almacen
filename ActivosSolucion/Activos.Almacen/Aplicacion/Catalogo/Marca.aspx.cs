@@ -25,9 +25,10 @@ namespace Almacen.Web.Aplicacion.Catalogo
     public partial class Marca : System.Web.UI.Page
     {
         #region "Eventos"
-            protected void AdvancedSearchLink_Click(Object sender, System.EventArgs e)
+            protected void BotonBusqueda_Click(object sender, EventArgs e)
             {
-
+                //TextoBusquedaRapida.Text = "";
+                //BusquedaAvanzada();
             }
 
             protected void BotonBusquedaRapida_Click(object sender, ImageClickEventArgs e)
@@ -35,14 +36,34 @@ namespace Almacen.Web.Aplicacion.Catalogo
 
             }
 
-            protected void DeleteRecordLink_Click(Object sender, System.EventArgs e)
+            protected void BotonCancelarBusqueda_Click(object sender, EventArgs e)
+            {
+                CambiarBusquedaAvanzada();
+            }
+
+            protected void BotonCancelarNuevo_Click(object sender, EventArgs e)
+            {
+                CambiarNuevoRegistro();
+            }
+
+            protected void BotonGuardar_Click(object sender, EventArgs e)
+            {
+                //GuardarMarca();
+            }
+
+            protected void BusquedaAvanzadaLink_Click(Object sender, System.EventArgs e)
+            {
+                CambiarBusquedaAvanzada();
+            }
+
+            protected void EliminarRegistroLink_Click(Object sender, System.EventArgs e)
             {
 
             }
 
-            protected void NewRecordLink_Click(Object sender, System.EventArgs e)
+            protected void NuevoRegistro_Click(Object sender, System.EventArgs e)
             {
-
+                CambiarNuevoRegistro();
             }
 
             protected void Page_Load(object sender, EventArgs e)
@@ -52,12 +73,38 @@ namespace Almacen.Web.Aplicacion.Catalogo
         #endregion
 
         #region "Métodos"
+            protected void CambiarBusquedaAvanzada()
+            {
+                PanelBusquedaAvanzada.Visible = !PanelBusquedaAvanzada.Visible;
+                PanelNuevoRegistro.Visible = false;
+            }
+
+            protected void CambiarNuevoRegistro()
+            {
+                PanelBusquedaAvanzada.Visible = false;
+                PanelNuevoRegistro.Visible = !PanelNuevoRegistro.Visible;
+                LimpiarNuevoRegistro();
+            }
+
             private void Inicio()
             {
+                Master.NuevoRegistroMaster.Click += new EventHandler(NuevoRegistro_Click);
+                Master.BusquedaAvanzadaMaster.Click += new EventHandler(BusquedaAvanzadaLink_Click);
+                Master.EliminarRegistroMaster.Click += new EventHandler(EliminarRegistroLink_Click);
+
                 if (Page.IsPostBack)
                     return;
 
                 SeleccionarMarca();
+            }
+
+            protected void LimpiarNuevoRegistro()
+            {
+                DependenciaNuevo.SelectedValue = "0";
+                EstatusNuevo.SelectedValue = "0";
+                NombreNuevo.Text = "";
+                //EtiquetaMensaje.Text = "";
+                MarcaIdHidden.Value = "0";
             }
 
             private void SeleccionarMarca()
