@@ -11,7 +11,6 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 
-
 using Activos.Comun.Constante;
 using Activos.Entidad.General;
 using Activos.Entidad.Seguridad;
@@ -20,8 +19,6 @@ using Activos.Entidad.Almacen;
 using Activos.ProcesoNegocio.Seguridad;
 using Activos.ProcesoNegocio.Catalogo;
 using Activos.ProcesoNegocio.Almacen;
-
-
 
 
 namespace Almacen.Web.Aplicacion.Catalogo
@@ -115,7 +112,6 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 
             }
 
-
         protected void BusquedaAvanzada()
         {
             AlmacenEntidad AlmacenEntidadObjeto = new AlmacenEntidad();
@@ -168,8 +164,15 @@ namespace Almacen.Web.Aplicacion.Catalogo
             AlmacenObjetoEntidad.Maximo = Int16.Parse(MaximoNuevo.Text.Trim());
             AlmacenObjetoEntidad.MaximoPermitido = Int16.Parse(MaximoPermitivoNuevo.Text.Trim());
             AlmacenObjetoEntidad.UnidadMedidaId = (UnidaddeMedidaIdNuevo.SelectedValue);
-            AlmacenObjetoEntidad.EstatusId = EstatusProductoNuevo.Checked;
 
+            if (EstatusProductoNuevo.Checked == true)
+            {
+                AlmacenObjetoEntidad.EstatusId = true;
+            }
+            else
+            {
+                AlmacenObjetoEntidad.EstatusId = false;
+            }
             GuardarProducto(AlmacenObjetoEntidad);
         }
 
@@ -240,7 +243,6 @@ namespace Almacen.Web.Aplicacion.Catalogo
 
             FamiliaIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
         }
-
 
         protected void SeleccionarMarca()
         {
@@ -365,7 +367,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
             ResultadoEntidad Resultado = new ResultadoEntidad();
             AlmacenProceso AlmacenProcesoNegocio = new AlmacenProceso();
 
-            Resultado = AlmacenProcesoNegocio.SeleccionarProducto(AlmacenObjetoEntidad);
+            Resultado = AlmacenProcesoNegocio.SeleccionarProductoparaEditar(AlmacenObjetoEntidad);
 
             if (Resultado.ErrorId == 0)
             {
@@ -379,11 +381,14 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 MaximoNuevo.Text =Resultado.ResultadoDatos.Tables[0].Rows[0]["Maximo"].ToString();
                 MaximoPermitivoNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["MaximoPermitido"].ToString();
                 UnidaddeMedidaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["UnidadMedidaId"].ToString();
-                //EstatusProductoNuevo.Checked = Resultado.ResultadoDatos.Tables[0].Rows[0]["EstatusId"].ToString();
-                
-                //if (Resultado.ResultadoDatos.Tables[0].Rows[0]["EstatusId"].ToString()==true)
-                //CambiarEditarRegistro();
-            }
+              
+              //  if (Boolean.Parse(Resultado.ResultadoDatos.Tables[0].Rows[0]["EstatusId"].ToString()) == true)
+                //{
+                 //   EstatusProductoNuevo.Checked = true;
+                   
+               }
+            
+               
             else
             {
                 EtiquetaMensaje.Text = TextoError.ErrorGenerico;

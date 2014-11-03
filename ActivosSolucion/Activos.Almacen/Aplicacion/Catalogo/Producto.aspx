@@ -161,19 +161,18 @@
                                     <asp:CheckBox ID="SeleccionarBorrar" runat="server" />
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center" Width="30px" />
-                            </asp:TemplateField>
-                            
-                             <asp:BoundField DataField="Clave" HeaderText="Clave" ItemStyle-HorizontalAlign="Left">
-                                <HeaderStyle HorizontalAlign="Center" Width="200px" />
-                            </asp:BoundField>
-                            
-                            <asp:TemplateField HeaderText="NombreProducto">
+                            </asp:TemplateField>                            
+                                                    
+                              <asp:TemplateField HeaderText="Clave">
                                 <ItemTemplate>
-                                    <asp:LinkButton CommandArgument="<%#Container.DataItemIndex%>" CommandName="Select" ID="LigaNombre" runat="server" Text='<%#Eval("NombreProducto")%>'></asp:LinkButton>
+                                    <asp:LinkButton CommandArgument="<%#Container.DataItemIndex%>" CommandName="Select" ID="LigaNombre" runat="server" Text='<%#Eval("Clave")%>'></asp:LinkButton>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Left" />
-                            </asp:TemplateField>
+                            </asp:TemplateField>                            
                             
+                            <asp:BoundField DataField="NombreProducto" HeaderText="Producto" ItemStyle-HorizontalAlign="Left">
+                                <HeaderStyle HorizontalAlign="Center" Width="200px" />
+                            </asp:BoundField>                      
                           
                             <asp:BoundField DataField="SubFamilia" HeaderText="SubFamilia" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" Width="100px" />
@@ -192,6 +191,8 @@
                 
                 
                      <asp:HiddenField ID="ProductoIdHidden" runat="server" Value="0" />
+                     <asp:HiddenField ID="ClaveIdHidden" runat="server" Value="0" />
+                
                 
                 
             </ContentTemplate>

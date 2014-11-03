@@ -45,7 +45,7 @@ namespace Activos.AccesoDatos.Almacen
                 Parametro.Value = AlmacenEntidadObjeto.UnidadMedidaId;
                 Comando.Parameters.Add(Parametro);
 
-                Parametro = new SqlParameter("EstatusId", SqlDbType.Bit);
+                Parametro = new SqlParameter("EstatusId", SqlDbType.Int);
                 Parametro.Value = AlmacenEntidadObjeto.EstatusId;
                 Comando.Parameters.Add(Parametro);
 
@@ -104,7 +104,7 @@ namespace Activos.AccesoDatos.Almacen
                 Comando.Parameters.Add(Parametro);
 
                 Parametro = new SqlParameter("SubFamiliaId", SqlDbType.SmallInt);
-                Parametro.Value = AlmacenEntidadObjeto.ProductoId;
+                Parametro.Value = AlmacenEntidadObjeto.SubFamiliaId;
                 Comando.Parameters.Add(Parametro);
 
 
@@ -116,7 +116,7 @@ namespace Activos.AccesoDatos.Almacen
                 Parametro.Value = AlmacenEntidadObjeto.UnidadMedidaId;
                 Comando.Parameters.Add(Parametro);
 
-                Parametro = new SqlParameter("EstatusId", SqlDbType.Bit);
+                Parametro = new SqlParameter("EstatusId", SqlDbType.Int);
                 Parametro.Value = AlmacenEntidadObjeto.EstatusId;
                 Comando.Parameters.Add(Parametro);
 
@@ -171,9 +171,9 @@ namespace Activos.AccesoDatos.Almacen
                 Comando = new SqlCommand("SeleccionarProductoProcedimiento", Conexion);
                 Comando.CommandType = CommandType.StoredProcedure;
 
-                Parametro = new SqlParameter("ProductoId", SqlDbType.VarChar);
-                Parametro.Value = AlmacenEntidadObjeto.ProductoId;
-                Comando.Parameters.Add(Parametro);
+                //Parametro = new SqlParameter("ProductoId", SqlDbType.VarChar);
+                //Parametro.Value = AlmacenEntidadObjeto.ProductoId;
+                //Comando.Parameters.Add(Parametro);
 
                 Parametro = new SqlParameter("Clave", SqlDbType.VarChar);
                 Parametro.Value = AlmacenEntidadObjeto.Clave;
@@ -211,6 +211,43 @@ namespace Activos.AccesoDatos.Almacen
             }
         }
 
+        public ResultadoEntidad SeleccionarProductoparaEditar(AlmacenEntidad AlmacenEntidadObjeto, string CadenaConexion)
+        {
+            DataSet ResultadoDatos = new DataSet();
+            SqlConnection Conexion = new SqlConnection(CadenaConexion);
+            SqlCommand Comando;
+            SqlParameter Parametro;
+            SqlDataAdapter Adaptador;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+
+            try
+            {
+                Comando = new SqlCommand("SeleccionarProductoparaEditarProcedimiento", Conexion);
+                Comando.CommandType = CommandType.StoredProcedure;
+
+                Parametro = new SqlParameter("ProductoId", SqlDbType.VarChar);
+                Parametro.Value = AlmacenEntidadObjeto.ProductoId;
+                Comando.Parameters.Add(Parametro);
+           
+                Adaptador = new SqlDataAdapter(Comando);
+                ResultadoDatos = new DataSet();
+
+                Conexion.Open();
+                Adaptador.Fill(ResultadoDatos);
+                Conexion.Close();
+
+                Resultado.ResultadoDatos = ResultadoDatos;
+
+                return Resultado;
+            }
+            catch (SqlException Excepcion)
+            {
+                Resultado.ErrorId = Excepcion.Number;
+                Resultado.DescripcionError = Excepcion.Message;
+
+                return Resultado;
+            }
+        }
 
     }
 }

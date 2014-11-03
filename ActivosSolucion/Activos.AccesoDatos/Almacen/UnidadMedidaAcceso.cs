@@ -20,7 +20,7 @@ namespace Activos.AccesoDatos.Almacen
             DataSet ResultadoDatos = new DataSet();
             SqlConnection Conexion = new SqlConnection(CadenaConexion);
             SqlCommand Comando;
-            SqlParameter Parametro;
+            //SqlParameter Parametro;
             SqlDataAdapter Adaptador;
             ResultadoEntidad Resultado = new ResultadoEntidad();
 
