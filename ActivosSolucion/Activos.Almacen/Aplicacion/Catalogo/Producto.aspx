@@ -4,6 +4,7 @@
 <%@ Register TagPrefix="wuc" TagName="ControlMenuIzquierdo" Src="~/Incluir/ControlesWeb/ControlMenuIzquierdo.ascx" %>
 
 <asp:Content ID="ContenidoEncabezado" ContentPlaceHolderID="ContenedorEncabezado" runat="server">
+    <script language="javascript" src="/Incluir/Javascript/ValidarFormulario.js" type="text/javascript"></script>
 
 </asp:Content>
 
@@ -144,8 +145,8 @@
                             <table class="TablaVacia">
                                 <tr class="Encabezado">
                                     <th style="width: 30px;">Clave</th>
-                                    <th>Nombre</th>                                    
-                                    <th style="width: 100px;">SubFamilia</th>   
+                                    <th style="width: 100px;">Nombre</th>                                    
+                                    <th style="width: 60px;">SubFamilia</th>   
                                 </tr>
                                 <tr>
                                     <td colspan="3" style="text-align: center;">No se encontró información con los parámetros seleccionados</td>
@@ -160,22 +161,22 @@
                                 <ItemTemplate>
                                     <asp:CheckBox ID="SeleccionarBorrar" runat="server" />
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" Width="30px" />
+                                <ItemStyle HorizontalAlign="Center" Width="10px" />
                             </asp:TemplateField>                            
                                                     
                               <asp:TemplateField HeaderText="Clave">
                                 <ItemTemplate>
                                     <asp:LinkButton CommandArgument="<%#Container.DataItemIndex%>" CommandName="Select" ID="LigaNombre" runat="server" Text='<%#Eval("Clave")%>'></asp:LinkButton>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Left" />
+                                <ItemStyle HorizontalAlign="Center" Width="30px" />
                             </asp:TemplateField>                            
                             
                             <asp:BoundField DataField="NombreProducto" HeaderText="Producto" ItemStyle-HorizontalAlign="Left">
-                                <HeaderStyle HorizontalAlign="Center" Width="200px" />
+                                <HeaderStyle HorizontalAlign="Center" Width="100px" />
                             </asp:BoundField>                      
                           
                             <asp:BoundField DataField="SubFamilia" HeaderText="SubFamilia" ItemStyle-HorizontalAlign="Left">
-                                <HeaderStyle HorizontalAlign="Center" Width="100px" />
+                                <HeaderStyle HorizontalAlign="Center" Width="60px" />
                             </asp:BoundField>
                         </Columns>
                     </asp:GridView>

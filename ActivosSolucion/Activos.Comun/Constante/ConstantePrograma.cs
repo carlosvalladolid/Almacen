@@ -365,7 +365,8 @@ namespace Activos.Comun.Constante
         {
             ProductoGuardadoCorrectamente = 1,
             EliminadoExitosamente = 2,
-            ProductoTieneRegistroDuplicado = 3
+            ProductoTieneRegistroDuplicado = 3,
+            PuestoTieneRegistrosRelacionados =4
         }
 
 

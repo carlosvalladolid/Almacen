@@ -25,6 +25,7 @@ namespace Activos.Entidad.Almacen
         //*********************************
 
         private string _BusquedaRapida;             // Texto de búsqueda en el catálogo de edificios
+        private string _CadenaProductoId;              // Cadena con Ids de marcas seleccionados
          private string _BuscarNombre;               // Campo para buscar subfamilias por nombre exacto
 
         public AlmacenEntidad()
@@ -44,7 +45,8 @@ namespace Activos.Entidad.Almacen
 
             //**************************
 
-            _BusquedaRapida = string.Empty;        
+            _BusquedaRapida = string.Empty;
+            _CadenaProductoId = string.Empty;
             _BuscarNombre = string.Empty;
 
         }
@@ -131,7 +133,13 @@ namespace Activos.Entidad.Almacen
             set { _BusquedaRapida = value; }
         }
 
+        public string CadenaProductoId
+        {
+            get { return _CadenaProductoId; }
+            set { _CadenaProductoId = value; }
+        }
         
+
         public string BuscarNombre
         {
             get { return _BuscarNombre; }

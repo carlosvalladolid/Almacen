@@ -254,5 +254,13 @@ namespace Activos.Comun.Constante
         //Mensajes de error de fecha
         public const string FechaDesdeInvalido = "· El campo <b>Fecha desde</b> no tiene un formato valido";
         public const string FechaHastaInvalido = "· El campo <b>Fecha hasta</b> no tiene un formato valido";
+
+
+        // Mensajes de error para el catálogo de Producto
+        public const string ProductoNombre = "· El campo <b>Nombre(s)</b> es obligatorio";
+        public const string ProductoEstatus = "· El campo <b>Estatus</b> es obligatorio";
+        public const string ProductoConNombreDuplicado = "· Ya existe un prodcuto con ese nombre";
+        public const string ProductoTieneRegistrosRelacionados = "· No se pueden eliminar los Productos seleccionadas debido que uno o varias de ellas tiene registros relacionados con la tabla <b>Almacen</b>";
+
     }
 }

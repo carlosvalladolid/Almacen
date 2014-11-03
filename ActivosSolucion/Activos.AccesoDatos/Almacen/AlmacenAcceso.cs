@@ -14,6 +14,39 @@ namespace Activos.AccesoDatos.Almacen
 {
   public  class AlmacenAcceso:Base
     {
+      
+      public ResultadoEntidad EliminarProducto(string CadenaProductoId, string CadenaConexion)
+      {
+          SqlConnection Conexion = new SqlConnection(CadenaConexion);
+          SqlCommand Comando;
+          SqlParameter Parametro;
+          ResultadoEntidad Resultado = new ResultadoEntidad();
+
+          try
+          {
+              Comando = new SqlCommand("EliminarProductoProcedimiento", Conexion);
+              Comando.CommandType = CommandType.StoredProcedure;
+
+              Parametro = new SqlParameter("CadenaProductoId", SqlDbType.VarChar);
+              Parametro.Value = CadenaProductoId;
+              Comando.Parameters.Add(Parametro);
+
+              Conexion.Open();
+              Comando.ExecuteNonQuery();
+              Conexion.Close();
+
+              Resultado.ErrorId = (int)ConstantePrograma.Producto.EliminadoExitosamente;
+
+              return Resultado;
+          }
+          catch (SqlException sqlEx)
+          {
+              Resultado.ErrorId = sqlEx.Number;
+              Resultado.DescripcionError = sqlEx.Message;
+
+              return Resultado;
+          }
+      }
 
         public ResultadoEntidad InsertarProducto(AlmacenEntidad AlmacenEntidadObjeto, string CadenaConexion)
         {
@@ -170,10 +203,6 @@ namespace Activos.AccesoDatos.Almacen
             {
                 Comando = new SqlCommand("SeleccionarProductoProcedimiento", Conexion);
                 Comando.CommandType = CommandType.StoredProcedure;
-
-                //Parametro = new SqlParameter("ProductoId", SqlDbType.VarChar);
-                //Parametro.Value = AlmacenEntidadObjeto.ProductoId;
-                //Comando.Parameters.Add(Parametro);
 
                 Parametro = new SqlParameter("Clave", SqlDbType.VarChar);
                 Parametro.Value = AlmacenEntidadObjeto.Clave;
