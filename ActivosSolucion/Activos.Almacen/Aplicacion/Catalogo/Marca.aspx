@@ -22,7 +22,7 @@
                                 Catálogo de marcas
                             </td>
                             <td class="Search"><asp:TextBox CssClass="SearchBox" ID="SearchText" MaxLength="50" runat="server"></asp:TextBox>&nbsp;</td>
-                            <td class="Icon"><asp:ImageButton ID="BotonBusquedaRapida" ImageUrl="~/Image/Icon/SearchIcon.gif" OnClick="BotonBusquedaRapida_Click" runat="server" ToolTip="Buscar" /></td> 
+                            <td class="Icon"><asp:ImageButton ID="BotonBusquedaRapida" ImageUrl="~/Imagen/Icono/ImagenBuscar.gif" OnClick="BotonBusquedaRapida_Click" runat="server" ToolTip="Buscar" /></td> 
                         </tr>
                     </table>
                 </div>

@@ -77,6 +77,12 @@
 	display: none;
 }
 
+.OptionMenu
+{
+    width:200px;
+    display:inline;
+}
+
 .TablaInformacion
 {
 	background-color: #ffffff;

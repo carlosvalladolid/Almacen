@@ -11,6 +11,15 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 
+using Activos.Comun.Constante;
+using Activos.Entidad.Almacen;
+using Activos.Entidad.Catalogo;
+using Activos.Entidad.General;
+using Activos.Entidad.Seguridad;
+using Activos.ProcesoNegocio.Almacen;
+using Activos.ProcesoNegocio.Catalogo;
+using Activos.ProcesoNegocio.Seguridad;
+
 namespace Almacen.Web.Aplicacion.Catalogo
 {
     public partial class Marca : System.Web.UI.Page
@@ -53,8 +62,33 @@ namespace Almacen.Web.Aplicacion.Catalogo
 
             private void SeleccionarMarca()
             {
-                TablaMarca.DataSource = null;
-                TablaMarca.DataBind();
+                MarcaEntidad MarcaEntidad = new MarcaEntidad();
+
+                SeleccionarMarca(MarcaEntidad);
+            }
+
+            protected void SeleccionarMarca(MarcaEntidad MarcaObjetoEntidad)
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                MarcaProceso MarcaProcesoNegocio = new MarcaProceso();
+
+                Resultado = MarcaProcesoNegocio.SeleccionarMarca(MarcaObjetoEntidad);
+
+                if (Resultado.ErrorId == 0)
+                {
+                    if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
+                        TablaMarca.CssClass = ConstantePrograma.ClaseTablaVacia;
+                    else
+                        TablaMarca.CssClass = ConstantePrograma.ClaseTabla;
+
+                    TablaMarca.DataSource = Resultado.ResultadoDatos;
+                    TablaMarca.DataBind();
+                }
+                else
+                {
+                    // ToDo: Manejar mensajes de error
+                    //EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+                }
             }
         #endregion
     }

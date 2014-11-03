@@ -3,15 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-//using Activos.AccesoDatos.Catalogo;
 using Activos.AccesoDatos.Almacen;
-using Activos.ProcesoNegocio.Almacen;
-using Activos.Comun.Constante;
 using Activos.Comun.Cadenas;
-using Activos.Entidad.General;
-//using Activos.Entidad.Catalogo;
+using Activos.Comun.Constante;
 using Activos.Entidad.Almacen;
-
+using Activos.Entidad.General;
 
 namespace Activos.ProcesoNegocio.Almacen
 {

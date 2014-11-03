@@ -29,7 +29,7 @@
                         <ContentTemplate>
                             <table class="HeaderTable">
                                 <tr>
-                                    <td class="Logo"><img alt="Instituto de Defensoría Pública de Nuevo León" height="79px" width="81px" src="/Imagen/Logotipo/LogotipoInstituto.png" /></td>
+                                    <td class="Logo"><img alt="Instituto de Defensoría Pública de Nuevo León" height="67px" width="69px" src="/Imagen/Logotipo/LogotipoInstituto.png" /></td>
                                     <td class="Menu">
                                         <div id="ApplicationMenuDiv">
                                             <a class="Link" href="/Application/Index.aspx">Almacén</a>
@@ -52,7 +52,7 @@
                                     </td>
                                     <td class="Session">
                                         <asp:Label CssClass="UserName" ID="UserNameLabel" runat="server" Text="[usuario]"></asp:Label><br />
-                                        <asp:HyperLink CssClass="Logout" id="LogoutLink" NavigateUrl="/Application/Logout.aspx" runat="server" Target="_self">Cerrar sesión</asp:HyperLink>
+                                        <asp:HyperLink CssClass="Logout" id="LogoutLink" NavigateUrl="/Aplicacion/Salir.aspx" runat="server" Target="_self">Cerrar sesión</asp:HyperLink>
                                     </td>
                                     <td class="Logout"><img alt="Cerrar sesión" border="0" src="/Imagen/Icono/IconoSalir.jpg" />&nbsp;</td>
                                 </tr>

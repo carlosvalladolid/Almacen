@@ -133,6 +133,7 @@
 
 #DivEncabezado .HeaderTable .Logo
 {
+	padding-left: 10px;
 	width: 21%;
 }
 

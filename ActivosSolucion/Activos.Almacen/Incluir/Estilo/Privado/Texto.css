@@ -5,6 +5,45 @@
 * Descripción:			Hoja de estilos para los textos de las páginas privadas de la aplicación Web
 */
 
+#ApplicationMenuDiv .Link
+{
+	color: #666666;
+	text-decoration: none;
+}
+
+#DivEncabezado .HeaderTable .Logout
+{
+	color: #666666;
+	font-size: 12px;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+#DivEncabezado .HeaderTable .MenuLink
+{
+	color: #0000ff;
+	text-decoration: none;	
+}
+
+#DivEncabezado .HeaderTable .UserName
+{
+	font-size: 14px;
+	font-weight: bold;	
+}
+
+.MontoTotal
+{
+	font-size: 16px;
+	font-weight: bold;
+	vertical-align: top;
+}
+
+.NotaCampo
+{
+	color: #7a7a7a;
+	font-size: 12px;
+}
+
 .TextoError
 {
 	font-size: 12px;
@@ -25,17 +64,4 @@
 	font-size: 12px;
 	color: #0000ff;
 	vertical-align: top;
-}
-
-.MontoTotal
-{
-	font-size: 16px;
-	font-weight: bold;
-	vertical-align: top;
-}
-
-.NotaCampo
-{
-	color: #7a7a7a;
-	font-size: 12px;
 }
