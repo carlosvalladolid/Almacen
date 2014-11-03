@@ -53,71 +53,6 @@
 	width: 65%;
 }
 
-.FormTable
-{
-	border-spacing: 5px;
-	padding: 5px;
-	vertical-align: top;
-}
-
-.FormTable .Catalog
-{
-	vertical-align: bottom;
-	width: 150px;
-}
-
-.FormTable .Field
-{
-	vertical-align: top;
-	width: 250px;
-}
-
-.FormTable .FieldPhoto
-{
-	vertical-align: middle;
-	width: 250px;
-}
-
-.FormTable .LanguageTitle
-{
-	font-size: 14px;
-	font-family: Calibri, Verdana, Arial;
-	font-weight: bold;
-	width: 50%;
-}
-
-.FormTable .Name
-{
-	vertical-align: top;
-	width: 120px;
-}
-
-.FormTable .Options
-{
-	vertical-align: bottom;
-	width: 300px;
-}
-
-.FormTable .Required
-{
-	color: #ff0000;
-	font-size: 14px;
-	vertical-align: top;
-	width: 20px;
-}
-
-.FormTable .Sapce
-{
-	width: 20px;
-}
-
-.GridViewTotal
-{
-	font-weight: bold;
-	text-align: right;
-	width: 100%;
-}
-
 #DivEncabezado .HeaderTable
 {
 	width: 100%;
@@ -148,6 +83,13 @@
 {
 	text-align: right;
 	width: 18%;
+}
+
+.GridViewTotal
+{
+	font-weight: bold;
+	text-align: right;
+	width: 100%;
 }
 
 .LeftMenuTable
@@ -190,6 +132,77 @@
 .LeftMenuTable .Space
 {
 	width: 3px;
+}
+
+.TablaFormulario
+{
+	border-spacing: 5px;
+	padding: 5px;
+	vertical-align: top;
+}
+
+.TablaFormulario .Error
+{
+	width: 20px;
+}
+
+.TablaFormulario .Espacio
+{
+	width: 25px;
+}
+
+.TablaFormulario .Field
+{
+	vertical-align: top;
+	width: 220px;
+}
+
+.TablaFormulario .Name
+{
+	vertical-align: top;
+	width: 150px;
+}
+
+.TablaFormulario
+{
+	border-spacing: 5px;
+	padding: 5px;
+	vertical-align: top;
+}
+
+.TablaFormulario .Error
+{
+	width: 250px;
+}
+
+.TablaFormulario .Espacio
+{
+	width: 20px;
+}
+
+.TablaFormulario .EspacioColumna
+{
+	width: 50px;
+}
+
+.TablaFormulario .Field
+{
+	vertical-align: top;
+	width: 220px;
+}
+
+.TablaFormulario .Name
+{
+	vertical-align: top;
+	width: 150px;
+}
+
+.TablaFormulario .Requerido
+{
+	font-size: 12px;
+	color: #ff0000;
+	vertical-align: top;
+	width: 20px;
 }
 
 .Table

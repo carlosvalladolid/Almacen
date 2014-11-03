@@ -5,23 +5,30 @@
 * Descripción:			Métodos para la validación de los formularios
 */
 
-function ValidarCasillas() {
-    var intCount;
-    var bolValidateCheckbox = false;
-    var ctrForm;
-
-    for (intCount = 0; intCount < document.forms[0].elements.length; intCount++) {
-        ctrForm = document.forms[0].elements[intCount];
-
-        if (ctrForm.type == 'checkbox')
-            if (ctrForm.checked)
-            bolValidateCheckbox = true;
-    }
-
-    if (!bolValidateCheckbox)
-        alert("Debe seleccionar al menos un registro");
-
-    return bolValidateCheckbox;
+function ConfirmarBorrado() {
+    if (confirm("¿Desea eliminar los registros seleccionados?"))
+        return true;
+    else
+        return false;
 }
 
+function ValidarCasillas() {
+    var Contador;
+    var ValidateCheckbox = false;
+    var Form;
 
+    for (Contador = 0; Contador < document.forms[0].elements.length; Contador++) {
+        Form = document.forms[0].elements[Contador];
+
+        if (Form.type == 'checkbox')
+            if (Form.checked)
+                ValidateCheckbox = true;
+    }
+
+    if (ValidateCheckbox)
+        ValidateCheckbox = ConfirmarBorrado();
+    else
+        alert("Debe seleccionar al menos un registro");
+
+    return ValidateCheckbox;
+}

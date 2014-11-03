@@ -4,7 +4,7 @@
 <%@ Register TagPrefix="wuc" TagName="ControlMenuIzquierdo" Src="~/Incluir/ControlesWeb/ControlMenuIzquierdo.ascx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContenedorEncabezado" runat="server">
-
+    <script language="javascript" src="/Incluir/Javascript/ValidarFormulario.js" type="text/javascript"></script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContenedorCuerpo" runat="server">
@@ -21,7 +21,7 @@
                             <td class="Title">
                                 Catálogo de marcas
                             </td>
-                            <td class="Search"><asp:TextBox CssClass="SearchBox" ID="SearchText" MaxLength="50" runat="server"></asp:TextBox>&nbsp;</td>
+                            <td class="Search"><asp:TextBox CssClass="SearchBox" ID="TextoBusquedaRapida" MaxLength="50" runat="server"></asp:TextBox>&nbsp;</td>
                             <td class="Icon"><asp:ImageButton ID="BotonBusquedaRapida" ImageUrl="~/Imagen/Icono/ImagenBuscar.gif" OnClick="BotonBusquedaRapida_Click" runat="server" ToolTip="Buscar" /></td> 
                         </tr>
                     </table>
@@ -84,7 +84,8 @@
 
                 <div>
                     <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
-                        CssClass="TablaInformacion" DataKeyNames="MarcaId" ID="TablaMarca" runat="server" PageSize="10">
+                        CssClass="TablaInformacion" DataKeyNames="MarcaId" ID="TablaMarca" OnPageIndexChanging="TablaMarca_PageIndexChanging"
+                        OnRowCommand="TablaMarca_RowCommand" PageSize="10" runat="server">
                         <EmptyDataTemplate>
                             <table class="TablaVacia">
                                 <tr class="Encabezado">

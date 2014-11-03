@@ -13,7 +13,126 @@ using Activos.Comun.Constante;
 namespace Activos.AccesoDatos.Almacen
 {
    public class MarcaAcceso:Base
-    {
+   {
+       public ResultadoEntidad ActualizarMarca(MarcaEntidad MarcaEntidadObjeto, string CadenaConexion)
+       {
+           SqlConnection Conexion = new SqlConnection(CadenaConexion);
+           SqlCommand Comando;
+           SqlParameter Parametro;
+           ResultadoEntidad Resultado = new ResultadoEntidad();
+
+           try
+           {
+               Comando = new SqlCommand("ActualizarMarcaProcedimiento", Conexion);
+               Comando.CommandType = CommandType.StoredProcedure;
+
+               Parametro = new SqlParameter("MarcaId", SqlDbType.SmallInt);
+               Parametro.Value = MarcaEntidadObjeto.MarcaId;
+               Comando.Parameters.Add(Parametro);
+
+               Parametro = new SqlParameter("DependenciaId", SqlDbType.SmallInt);
+               Parametro.Value = MarcaEntidadObjeto.DependenciaId;
+               Comando.Parameters.Add(Parametro);
+
+               Parametro = new SqlParameter("Nombre", SqlDbType.VarChar);
+               Parametro.Value = MarcaEntidadObjeto.Nombre;
+               Comando.Parameters.Add(Parametro);
+
+               Parametro = new SqlParameter("EstatusId", SqlDbType.SmallInt);
+               Parametro.Value = MarcaEntidadObjeto.EstatusId;
+               Comando.Parameters.Add(Parametro);
+               Conexion.Open();
+               Comando.ExecuteNonQuery();
+               Conexion.Close();
+
+               Resultado.ErrorId = (int)ConstantePrograma.Marca.MarcaGuardadoCorrectamente;
+
+               return Resultado;
+           }
+           catch (SqlException sqlEx)
+           {
+               Resultado.ErrorId = sqlEx.Number;
+               Resultado.DescripcionError = sqlEx.Message;
+
+               return Resultado;
+           }
+       }
+
+       public ResultadoEntidad EliminarMarca(string CadenaMarcaId, string CadenaConexion)
+       {
+           SqlConnection Conexion = new SqlConnection(CadenaConexion);
+           SqlCommand Comando;
+           SqlParameter Parametro;
+           ResultadoEntidad Resultado = new ResultadoEntidad();
+
+           try
+           {
+               Comando = new SqlCommand("EliminarMarcaProcedimiento", Conexion);
+               Comando.CommandType = CommandType.StoredProcedure;
+
+               Parametro = new SqlParameter("CadenaMarcaId", SqlDbType.VarChar);
+               Parametro.Value = CadenaMarcaId;
+               Comando.Parameters.Add(Parametro);
+
+               Conexion.Open();
+               Comando.ExecuteNonQuery();
+               Conexion.Close();
+
+               Resultado.ErrorId = (int)ConstantePrograma.Marca.EliminacionExitosa;
+
+               return Resultado;
+           }
+           catch (SqlException sqlEx)
+           {
+               Resultado.ErrorId = sqlEx.Number;
+               Resultado.DescripcionError = sqlEx.Message;
+
+               return Resultado;
+           }
+       }
+
+       public ResultadoEntidad InsertarMarca(MarcaEntidad MarcaEntidadObjeto, string CadenaConexion)
+       {
+           SqlConnection Conexion = new SqlConnection(CadenaConexion);
+           SqlCommand Comando;
+           SqlParameter Parametro;
+           ResultadoEntidad Resultado = new ResultadoEntidad();
+
+           try
+           {
+               Comando = new SqlCommand("InsertarMarcaProcedimiento", Conexion);
+               Comando.CommandType = CommandType.StoredProcedure;
+
+               Parametro = new SqlParameter("DependenciaId", SqlDbType.SmallInt);
+               Parametro.Value = MarcaEntidadObjeto.DependenciaId;
+               Comando.Parameters.Add(Parametro);
+
+               Parametro = new SqlParameter("Nombre", SqlDbType.VarChar);
+               Parametro.Value = MarcaEntidadObjeto.Nombre;
+               Comando.Parameters.Add(Parametro);
+
+
+               Parametro = new SqlParameter("EstatusId", SqlDbType.SmallInt);
+               Parametro.Value = MarcaEntidadObjeto.EstatusId;
+               Comando.Parameters.Add(Parametro);
+
+               Conexion.Open();
+               Comando.ExecuteNonQuery();
+               Conexion.Close();
+
+               Resultado.ErrorId = (int)ConstantePrograma.Marca.MarcaGuardadoCorrectamente;
+
+               return Resultado;
+           }
+           catch (SqlException sqlEx)
+           {
+               Resultado.ErrorId = sqlEx.Number;
+               Resultado.DescripcionError = sqlEx.Message;
+
+               return Resultado;
+           }
+       }
+
        public ResultadoEntidad SeleccionarMarca(MarcaEntidad MarcaEntidadObjeto, string CadenaConexion)
        {
            DataSet ResultadoDatos = new DataSet();
@@ -71,6 +190,5 @@ namespace Activos.AccesoDatos.Almacen
                return Resultado;
            }
        }
-
     }
 }

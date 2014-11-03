@@ -55,8 +55,20 @@ namespace Almacen.Web.Incluir.Plantilla
         #region "Métodos"
             private void Inicio()
             {
-                
-                
+                //UserEntity UserEntity = new UserEntity();
+
+                try
+                {
+                    //UserEntity = (UserEntity)Session["UserEntity"];
+
+                    //UserNameLabel.Text = UserEntity.Name + " " + UserEntity.LastName;
+
+                    EliminarRegistroLink.Attributes.Add("onclick", "return ValidarCasillas()");
+                }
+                catch
+                {
+                    Response.Redirect("/Include/WebUserControl/LoginControl.ascx");
+                }
             }
         #endregion
     }
