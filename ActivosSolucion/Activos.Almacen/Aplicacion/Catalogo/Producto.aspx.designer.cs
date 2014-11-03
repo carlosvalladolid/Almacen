@@ -50,13 +50,13 @@ namespace Almacen.Web.Aplicacion.Catalogo {
         protected global::System.Web.UI.WebControls.ImageButton BotonBusquedaRapida;
         
         /// <summary>
-        /// SearchPanel control.
+        /// PanelBusquedaAvanzada control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel SearchPanel;
+        protected global::System.Web.UI.WebControls.Panel PanelBusquedaAvanzada;
         
         /// <summary>
         /// ClaveBusqueda control.
@@ -95,13 +95,13 @@ namespace Almacen.Web.Aplicacion.Catalogo {
         protected global::System.Web.UI.WebControls.ImageButton BotonLimpiarBusqueda;
         
         /// <summary>
-        /// RowPanel control.
+        /// PanelNuevoRegistro control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel RowPanel;
+        protected global::System.Web.UI.WebControls.Panel PanelNuevoRegistro;
         
         /// <summary>
         /// ClaveNuevo control.

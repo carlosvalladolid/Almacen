@@ -31,7 +31,7 @@
 
 
 			
-                <asp:Panel CssClass="SearchDiv" ID="SearchPanel" Visible="true" runat="server">
+                <asp:Panel CssClass="SearchDiv" ID="PanelBusquedaAvanzada" Visible="false" runat="server">
 						 <table class="FormTable">
 							<tr>
 								<td class="Name">Clave</td>
@@ -48,7 +48,7 @@
                             <td colspan="3">
                                 <br />
                                 <asp:ImageButton AlternateText="Buscar" ID="BotonBusqueda" ImageUrl="~/Imagen/Boton/BotonBuscar.png"  OnClick="BotonBusqueda_Click"  runat="server" />&nbsp;&nbsp;
-                                <asp:ImageButton AlternateText="Limpiar" ID="BotonLimpiarBusqueda" ImageUrl="~/Imagen/Boton/BotonLimpiar.png" runat="server" />
+                                <asp:ImageButton AlternateText="Limpiar" ID="BotonLimpiarBusqueda" ImageUrl="~/Imagen/Boton/BotonLimpiar.png" OnClick="BotonLimpiarBusqueda_Click" runat="server" />
                             </td>
                         </tr>
 							
@@ -57,7 +57,7 @@
                 </asp:Panel>
 
 
-		  <asp:Panel CssClass="NewRowDiv" ID="RowPanel" Visible="true" runat="server">
+		  <asp:Panel CssClass="NewRowDiv" ID="PanelNuevoRegistro" Visible="false" runat="server">
                     <table class="FormTable">
 						<tr>
                             <td class="Name">Clave</td>
@@ -126,7 +126,7 @@
                             <td colspan="3">
                                 <br />
                                 <asp:ImageButton AlternateText="Guardar" ID="BotonGuardar" ImageUrl="~/Imagen/Boton/BotonGuardar.png" OnClick="BotonGuardar_Click" runat="server" ValidationGroup="Save" />&nbsp;&nbsp;
-                                <asp:ImageButton AlternateText="Limpiar" ID="LimpiarBoton" ImageUrl="~/Imagen/Boton/BotonLimpiar.png" runat="server" ValidationGroup="Save" />&nbsp;&nbsp;
+                                <asp:ImageButton AlternateText="Limpiar" ID="LimpiarBoton" ImageUrl="~/Imagen/Boton/BotonLimpiar.png"  OnClick="BotonLimpiar_Click" runat="server" ValidationGroup="Save" />&nbsp;&nbsp;
                                 <asp:ImageButton AlternateText="Cancelar" ID="BotonCancelar" ImageUrl="~/Imagen/Boton/BotonCancelar.png" runat="server" />
                             </td>
                         </tr>

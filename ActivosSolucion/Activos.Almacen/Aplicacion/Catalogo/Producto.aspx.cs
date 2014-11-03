@@ -39,6 +39,25 @@ namespace Almacen.Web.Aplicacion.Catalogo
 
             }
 
+
+
+            protected void BusquedaAvanzadaLink_Click(Object sender, System.EventArgs e)
+            {
+                CambiarBusquedaAvanzada();
+            }
+
+            protected void EliminarRegistroLink_Click(Object sender, System.EventArgs e)
+            {
+               // EliminarProducto();
+            }
+
+            protected void NuevoRegistro_Click(Object sender, System.EventArgs e)
+            {
+                CambiarNuevoRegistro();
+            }
+
+
+
             protected void BotonBusquedaRapida_Click(object sender, ImageClickEventArgs e)
             {
 
@@ -55,11 +74,18 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 SeleccionarSubfamilia();
             }
 
+            protected void BotonLimpiarBusqueda_Click(object sender, ImageClickEventArgs e)
+            {
+                LimpiarBusquedaRegistro();
+
+            }
 
             protected void BotonLimpiar_Click(object sender, ImageClickEventArgs e)
             {
+                LimpiarNuevoRegistro();
 
             }
+
             protected void BotonCancelar_Click(object sender, ImageClickEventArgs e)
             {
 
@@ -78,8 +104,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
             protected void Page_Load(object sender, EventArgs e)
             {
                 Inicio();
-            }
-        
+            }        
 
             protected void TablaProducto_PageIndexChanging(object sender, GridViewPageEventArgs e)
             {
@@ -101,6 +126,13 @@ namespace Almacen.Web.Aplicacion.Catalogo
         
         private void Inicio()
             {
+
+
+                Master.NuevoRegistroMaster.Click += new EventHandler(NuevoRegistro_Click);
+                Master.BusquedaAvanzadaMaster.Click += new EventHandler(BusquedaAvanzadaLink_Click);
+                Master.EliminarRegistroMaster.Click += new EventHandler(EliminarRegistroLink_Click);
+
+
                 if (!Page.IsPostBack)
                 {
                     SeleccionarFamilia();
@@ -121,6 +153,27 @@ namespace Almacen.Web.Aplicacion.Catalogo
             //AlmacenEntidadObjeto.BusquedaRapida = TextoBusquedaRapida.Text.Trim();
 
             SeleccionarProducto(AlmacenEntidadObjeto);
+        }
+
+
+
+        private void CambiarBusquedaAvanzada()
+        {
+            PanelBusquedaAvanzada.Visible = !PanelBusquedaAvanzada.Visible;
+            PanelNuevoRegistro.Visible = false;
+        }
+
+        protected void CambiarEditarRegistro()
+        {
+            PanelBusquedaAvanzada.Visible = false;
+            PanelNuevoRegistro.Visible = true;
+        }
+
+        private void CambiarNuevoRegistro()
+        {
+            PanelBusquedaAvanzada.Visible = false;
+            PanelNuevoRegistro.Visible = !PanelNuevoRegistro.Visible;
+            LimpiarNuevoRegistro();
         }
 
         protected void LimpiarNuevoRegistro()
@@ -185,8 +238,10 @@ namespace Almacen.Web.Aplicacion.Catalogo
 
             if (Resultado.ErrorId == (int)ConstantePrograma.Producto.ProductoGuardadoCorrectamente)
             {
-               LimpiarNuevoRegistro();
-               BusquedaAvanzada();
+                LimpiarNuevoRegistro();
+                PanelNuevoRegistro.Visible = false;
+                PanelBusquedaAvanzada.Visible = false;
+                BusquedaAvanzada();
             }
             else
             {
