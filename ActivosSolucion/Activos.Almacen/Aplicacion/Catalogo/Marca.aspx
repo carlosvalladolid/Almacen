@@ -3,11 +3,11 @@
 <%@ MasterType VirtualPath="~/Incluir/Plantilla/PlantillaPrivada.Master" %>
 <%@ Register TagPrefix="wuc" TagName="ControlMenuIzquierdo" Src="~/Incluir/ControlesWeb/ControlMenuIzquierdo.ascx" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContenedorEncabezado" runat="server">
+<asp:Content ID="ContenidoEncabezado" ContentPlaceHolderID="ContenedorEncabezado" runat="server">
     <script language="javascript" src="/Incluir/Javascript/ValidarFormulario.js" type="text/javascript"></script>
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="ContenedorCuerpo" runat="server">
+<asp:Content ID="ContenidoCuerpo" ContentPlaceHolderID="ContenedorCuerpo" runat="server">
     <div class="LeftBodyDiv">
         <wuc:ControlMenuIzquierdo ID="ControlMenuIzquierdo" runat="server" />
     </div>

@@ -70,6 +70,13 @@
     <Compile Include="Aplicacion\Catalogo\Producto.aspx.designer.cs">
       <DependentUpon>Producto.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Aplicacion\Inicio.aspx.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicacion\Inicio.aspx.designer.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Aplicacion\Salir.aspx.cs">
       <DependentUpon>Salir.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -332,6 +339,7 @@
     <Content Include="DB.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Aplicacion\Inicio.aspx" />
     <Content Include="App.config" />
     <Content Include="Incluir\Javascript\ValidarFormulario.js" />
   </ItemGroup>
