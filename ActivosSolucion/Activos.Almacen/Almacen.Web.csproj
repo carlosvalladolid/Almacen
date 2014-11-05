@@ -56,6 +56,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aplicacion\Catalogo\Familia.aspx.cs">
+      <DependentUpon>Familia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicacion\Catalogo\Familia.aspx.designer.cs">
+      <DependentUpon>Familia.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Aplicacion\Catalogo\Marca.aspx.cs">
       <DependentUpon>Marca.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -69,6 +76,13 @@
     </Compile>
     <Compile Include="Aplicacion\Catalogo\Producto.aspx.designer.cs">
       <DependentUpon>Producto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicacion\Catalogo\SubFamilia.aspx.cs">
+      <DependentUpon>SubFamilia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicacion\Catalogo\SubFamilia.aspx.designer.cs">
+      <DependentUpon>SubFamilia.aspx</DependentUpon>
     </Compile>
     <Compile Include="Aplicacion\Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
@@ -339,6 +353,8 @@
     <Content Include="DB.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Aplicacion\Catalogo\Familia.aspx" />
+    <Content Include="Aplicacion\Catalogo\SubFamilia.aspx" />
     <Content Include="Aplicacion\Inicio.aspx" />
     <Content Include="App.config" />
     <Content Include="Incluir\Javascript\ValidarFormulario.js" />
