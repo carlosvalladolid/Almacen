@@ -80,6 +80,7 @@
     <Compile Include="Almacen\MarcaProceso.cs" />
     <Compile Include="Almacen\PreOrdenProceso.cs" />
     <Compile Include="Almacen\SubFamiliaProceso.cs" />
+    <Compile Include="Almacen\TemporalPreOrdenProceso.cs" />
     <Compile Include="Almacen\UnidadMedidaProceso.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="Catalogo\BancoProceso.cs" />

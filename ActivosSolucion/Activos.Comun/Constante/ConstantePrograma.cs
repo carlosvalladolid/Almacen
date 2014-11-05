@@ -370,6 +370,16 @@ namespace Activos.Comun.Constante
         }
 
 
+        public enum PreOrden
+        {
+            PreOrdenGuardadoCorrectamente = 1,
+            EliminadoExitosamente = 2,
+            PreOrdenTieneRegistroDuplicado = 3,
+           // PreOrdenTieneRegistrosRelacionados = 4
+        }
+
+
+
         public enum RecuperarContrasenia
         {
             ValorPorDefecto = 0,

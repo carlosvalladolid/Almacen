@@ -262,10 +262,6 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-        public new Almacen.Web.Incluir.Plantilla.PlantillaPrivada Master {
-            get {
-                return ((Almacen.Web.Incluir.Plantilla.PlantillaPrivada)(base.Master));
-            }
-        }
+      
     }
 }

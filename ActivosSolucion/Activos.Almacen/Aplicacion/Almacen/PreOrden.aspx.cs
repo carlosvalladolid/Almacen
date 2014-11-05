@@ -129,19 +129,19 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         private void CambiarBusquedaAvanzada()
         {
-            PanelBusquedaAvanzada.Visible = !PanelBusquedaAvanzada.Visible;
+            //PanelBusquedaAvanzada.Visible = !PanelBusquedaAvanzada.Visible;
             PanelNuevoRegistro.Visible = false;
         }
 
         protected void CambiarEditarRegistro()
         {
-            PanelBusquedaAvanzada.Visible = false;
+            //PanelBusquedaAvanzada.Visible = false;
             PanelNuevoRegistro.Visible = true;
         }
 
         private void CambiarNuevoRegistro()
         {
-            PanelBusquedaAvanzada.Visible = false;
+            //PanelBusquedaAvanzada.Visible = false;
             PanelNuevoRegistro.Visible = !PanelNuevoRegistro.Visible;
             LimpiarNuevoRegistro();
         }
