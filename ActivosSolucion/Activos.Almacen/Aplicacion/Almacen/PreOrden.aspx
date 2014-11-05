@@ -140,6 +140,7 @@
                         
                         <tr>
                             <td colspan="3">
+                                <asp:Label CssClass="TextoError" ID="AgregarEtiquetaMensaje" runat="server" Text=""></asp:Label>
                                 <br />
                                 <asp:ImageButton AlternateText="Guardar" ID="BotonGuardar" ImageUrl="~/Imagen/Boton/BotonAgregar.png"  runat="server" ValidationGroup="Save" />&nbsp;&nbsp;
                               </td>
@@ -210,6 +211,22 @@
                     </asp:GridView>
                 </div>
 
+				 <div>
+                        <table width="100%">
+                           <tr>
+                              <td style="width:70%;">
+                                <asp:ImageButton AlternateText="Guardar" ID="BotonGuardarPreOrden"  ImageUrl="/Imagen/Boton/BotonGuardar.png"  runat="server" />&nbsp;&nbsp;
+                                <asp:ImageButton AlternateText="Limpiar" ID="BotonLimpiarRegistro"  ImageUrl="/Imagen/Boton/BotonLimpiar.png" runat="server" />&nbsp;&nbsp;
+                                <asp:ImageButton AlternateText="Cancelar" ID="BotonCancelarPreOrden" ImageUrl="/Imagen/Boton/BotonCancelar.png" runat="server" />
+                                <asp:ImageButton AlternateText="Imprimir" ID="BotonImprimir"  ImageUrl="/Imagen/Boton/BotonImprimir.png"  runat="server" />&nbsp;&nbsp;
+                               
+                              </td>                            
+                           </tr>
+                        </table> 
+                     </div>
+                     <br /><br /><br /> 
+
+				
 
 
                 <asp:UpdateProgress AssociatedUpdatePanelID="PageUpdate" ID="AssociatedUpdate" runat="server">
@@ -219,7 +236,10 @@
                 </asp:UpdateProgress>   
                 
                 
-                  
+                     <asp:HiddenField ID="ProductoIdHidden" runat="server" Value="0" />
+                     <asp:HiddenField ID="ClaveIdHidden" runat="server" Value="0" />
+                     <asp:HiddenField ID="SolicitanteIdHidden" runat="server" Value="0" />
+                
                 
                 
             </ContentTemplate>
