@@ -51,7 +51,8 @@
                                 <asp:ImageButton AlternateText="Buscar" ID="BotonBusqueda" ImageUrl="~/Imagen/Boton/BotonBuscar.png"  OnClick="BotonBusqueda_Click"  runat="server" />&nbsp;&nbsp;
                                 <asp:ImageButton AlternateText="Limpiar" ID="BotonLimpiarBusqueda" ImageUrl="~/Imagen/Boton/BotonLimpiar.png" OnClick="BotonLimpiarBusqueda_Click" runat="server" />
                             </td>
-                        </tr>							
+                        </tr>
+							
 							                        
                         </table>
                 </asp:Panel>

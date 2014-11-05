@@ -21,7 +21,6 @@ using Activos.ProcesoNegocio.Seguridad;
 using Activos.ProcesoNegocio.Catalogo;
 using Activos.ProcesoNegocio.Almacen;
 
-
 namespace Almacen.Web.Aplicacion.Catalogo
 {
     public partial class Producto : System.Web.UI.Page
@@ -113,392 +112,387 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 TablaProductoEventoComando(e);
             }
 
-
-
         #endregion
 
         #region "Métodos"         
         
-        private void Inicio()
-            {
-
-
-                Master.NuevoRegistroMaster.Click += new EventHandler(NuevoRegistro_Click);
-                Master.BusquedaAvanzadaMaster.Click += new EventHandler(BusquedaAvanzadaLink_Click);
-                Master.EliminarRegistroMaster.Click += new EventHandler(EliminarRegistroLink_Click);
-
-
-                if (!Page.IsPostBack)
+            private void Inicio()
                 {
-                    SeleccionarFamilia();
-                    SeleccionarSubfamilia();
-                    SeleccionarMarca();
-                    SeleccionarUnidadMedida();
+
+
+                    Master.NuevoRegistroMaster.Click += new EventHandler(NuevoRegistro_Click);
+                    Master.BusquedaAvanzadaMaster.Click += new EventHandler(BusquedaAvanzadaLink_Click);
+                    Master.EliminarRegistroMaster.Click += new EventHandler(EliminarRegistroLink_Click);
+
+
+                    if (!Page.IsPostBack)
+                    {
+                        SeleccionarFamilia();
+                        SeleccionarSubfamilia();
+                        SeleccionarMarca();
+                        SeleccionarUnidadMedida();
+                        BusquedaAvanzada();
+                    }
+                    
+                }
+
+            protected void BusquedaAvanzada()
+            {
+                AlmacenEntidad AlmacenEntidadObjeto = new AlmacenEntidad();
+
+                AlmacenEntidadObjeto.Clave = ClaveBusqueda.Text.Trim();
+                AlmacenEntidadObjeto.Descripcion = DescripcionBusqueda.Text.Trim();
+                //AlmacenEntidadObjeto.BusquedaRapida = TextoBusquedaRapida.Text.Trim();
+
+                SeleccionarProducto(AlmacenEntidadObjeto);
+            }
+
+            private void CambiarBusquedaAvanzada()
+            {
+                PanelBusquedaAvanzada.Visible = !PanelBusquedaAvanzada.Visible;
+                PanelNuevoRegistro.Visible = false;
+            }
+
+            protected void CambiarEditarRegistro()
+            {
+                PanelBusquedaAvanzada.Visible = false;
+                PanelNuevoRegistro.Visible = true;
+            }
+
+            private void CambiarNuevoRegistro()
+            {
+                PanelBusquedaAvanzada.Visible = false;
+                PanelNuevoRegistro.Visible = !PanelNuevoRegistro.Visible;
+                LimpiarNuevoRegistro();
+            }
+
+            private void EliminarProducto()
+            {
+                ResultadoEntidad ResultadoEntidadObjeto = new ResultadoEntidad();
+                AlmacenEntidad AlmacenEntidadObjeto = new AlmacenEntidad();
+
+                AlmacenEntidadObjeto.CadenaProductoId = ObtenerCadenaProductoId();
+
+                EliminarProducto(AlmacenEntidadObjeto);
+            }
+
+            private void EliminarProducto(AlmacenEntidad AlmacenEntidadObjeto)
+            {
+                ResultadoEntidad ResultadoEntidadObjeto = new ResultadoEntidad();
+                AlmacenProceso AlmacenProcesoObjeto = new AlmacenProceso();
+
+                ResultadoEntidadObjeto = AlmacenProcesoObjeto.EliminarProducto(AlmacenEntidadObjeto);
+
+                if (ResultadoEntidadObjeto.ErrorId == (int)ConstantePrograma.Producto.EliminadoExitosamente)
+                {
+                    // ToDo: Manejar mensajes de error
+                    //EtiquetaMensaje.Text = "";
+
                     BusquedaAvanzada();
                 }
-                
-            }
-
-        protected void BusquedaAvanzada()
-        {
-            AlmacenEntidad AlmacenEntidadObjeto = new AlmacenEntidad();
-
-            AlmacenEntidadObjeto.Clave = ClaveBusqueda.Text.Trim();
-            AlmacenEntidadObjeto.Descripcion = DescripcionBusqueda.Text.Trim();
-            //AlmacenEntidadObjeto.BusquedaRapida = TextoBusquedaRapida.Text.Trim();
-
-            SeleccionarProducto(AlmacenEntidadObjeto);
-        }
-
-        private void CambiarBusquedaAvanzada()
-        {
-            PanelBusquedaAvanzada.Visible = !PanelBusquedaAvanzada.Visible;
-            PanelNuevoRegistro.Visible = false;
-        }
-
-        protected void CambiarEditarRegistro()
-        {
-            PanelBusquedaAvanzada.Visible = false;
-            PanelNuevoRegistro.Visible = true;
-        }
-
-        private void CambiarNuevoRegistro()
-        {
-            PanelBusquedaAvanzada.Visible = false;
-            PanelNuevoRegistro.Visible = !PanelNuevoRegistro.Visible;
-            LimpiarNuevoRegistro();
-        }
-
-        private void EliminarProducto()
-        {
-            ResultadoEntidad ResultadoEntidadObjeto = new ResultadoEntidad();
-            AlmacenEntidad AlmacenEntidadObjeto = new AlmacenEntidad();
-
-            AlmacenEntidadObjeto.CadenaProductoId = ObtenerCadenaProductoId();
-
-            EliminarProducto(AlmacenEntidadObjeto);
-        }
-
-        private void EliminarProducto(AlmacenEntidad AlmacenEntidadObjeto)
-        {
-            ResultadoEntidad ResultadoEntidadObjeto = new ResultadoEntidad();
-            AlmacenProceso AlmacenProcesoObjeto = new AlmacenProceso();
-
-            ResultadoEntidadObjeto = AlmacenProcesoObjeto.EliminarProducto(AlmacenEntidadObjeto);
-
-            if (ResultadoEntidadObjeto.ErrorId == (int)ConstantePrograma.Producto.EliminadoExitosamente)
-            {
-                // ToDo: Manejar mensajes de error
-                //EtiquetaMensaje.Text = "";
-
-                BusquedaAvanzada();
-            }
-            else
-            {
-                // ToDo: Manejar mensajes de error
-                //EtiquetaMensaje.Text = ResultadoEntidadObjeto.DescripcionError;
-            }
-        }
-
-        private string ObtenerCadenaProductoId()
-        {
-            StringBuilder CadenaProductoId = new StringBuilder();
-            CheckBox CasillaEliminar;
-
-            CadenaProductoId.Append(",");
-
-            foreach (GridViewRow Registro in TablaProducto.Rows)
-            {
-                CasillaEliminar = (CheckBox)Registro.FindControl("SeleccionarBorrar");
-
-                if (CasillaEliminar.Checked)
+                else
                 {
-                    CadenaProductoId.Append(TablaProducto.DataKeys[Registro.RowIndex]["ProductoId"].ToString());
-                    CadenaProductoId.Append(",");
+                    // ToDo: Manejar mensajes de error
+                    //EtiquetaMensaje.Text = ResultadoEntidadObjeto.DescripcionError;
                 }
             }
 
-            return CadenaProductoId.ToString();
-        }
-
-        protected void LimpiarNuevoRegistro()
-        {
-            ClaveNuevo.Text = "";
-            DescripcionNuevo.Text = "";
-            FamiliaIdNuevo.SelectedIndex = 0;
-            SeleccionarSubfamilia();
-            MarcaIdNuevo.SelectedIndex = 0;
-            MaximoNuevo.Text = "";
-            MinimoNuevo.Text = "";
-            UnidaddeMedidaIdNuevo.SelectedIndex = 0;
-            EstatusProductoNuevo.Checked = true;
-            MaximoPermitivoNuevo.Text = "";
-            ProductoIdHidden.Value = "";
-            EtiquetaMensaje.Text = "";
-        
-        }
-
-        protected void LimpiarBusquedaRegistro()
-        { 
-            ClaveBusqueda.Text = "";
-            DescripcionBusqueda.Text = "";
-            EtiquetaMensaje.Text = "";        
-        }        
-
-        protected void GuardarProducto()
-        {
-            AlmacenEntidad AlmacenObjetoEntidad = new AlmacenEntidad();
-            UsuarioEntidad UsuarioSessionEntidad = new UsuarioEntidad();
-
-            UsuarioSessionEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
-
-            AlmacenObjetoEntidad.ProductoId = ProductoIdHidden.Value;
-            AlmacenObjetoEntidad.Clave = ClaveNuevo.Text.Trim();
-            AlmacenObjetoEntidad.FamiliaId = Int16.Parse(FamiliaIdNuevo.SelectedValue);
-            AlmacenObjetoEntidad.SubFamiliaId = Int16.Parse(SubFamiliaIdNuevo.SelectedValue);
-            AlmacenObjetoEntidad.MarcaId = Int16.Parse(MarcaIdNuevo.SelectedValue);
-            AlmacenObjetoEntidad.Descripcion = DescripcionNuevo.Text.Trim();
-            AlmacenObjetoEntidad.Minimo = Int16.Parse(MinimoNuevo.Text.Trim());
-            AlmacenObjetoEntidad.Maximo = Int16.Parse(MaximoNuevo.Text.Trim());
-            AlmacenObjetoEntidad.MaximoPermitido = Int16.Parse(MaximoPermitivoNuevo.Text.Trim());
-            AlmacenObjetoEntidad.UnidadMedidaId = (UnidaddeMedidaIdNuevo.SelectedValue);
-
-            if (EstatusProductoNuevo.Checked == true)
+            private string ObtenerCadenaProductoId()
             {
-                AlmacenObjetoEntidad.EstatusId = true;
+                StringBuilder CadenaProductoId = new StringBuilder();
+                CheckBox CasillaEliminar;
+
+                CadenaProductoId.Append(",");
+
+                foreach (GridViewRow Registro in TablaProducto.Rows)
+                {
+                    CasillaEliminar = (CheckBox)Registro.FindControl("SeleccionarBorrar");
+
+                    if (CasillaEliminar.Checked)
+                    {
+                        CadenaProductoId.Append(TablaProducto.DataKeys[Registro.RowIndex]["ProductoId"].ToString());
+                        CadenaProductoId.Append(",");
+                    }
+                }
+
+                return CadenaProductoId.ToString();
             }
-            else
+
+            protected void LimpiarNuevoRegistro()
             {
-                AlmacenObjetoEntidad.EstatusId = false;
+                ClaveNuevo.Text = "";
+                DescripcionNuevo.Text = "";
+                FamiliaIdNuevo.SelectedIndex = 0;
+                SeleccionarSubfamilia();
+                MarcaIdNuevo.SelectedIndex = 0;
+                MaximoNuevo.Text = "";
+                MinimoNuevo.Text = "";
+                UnidaddeMedidaIdNuevo.SelectedIndex = 0;
+                EstatusProductoNuevo.Checked = true;
+                MaximoPermitivoNuevo.Text = "";
+                ProductoIdHidden.Value = "";
+                EtiquetaMensaje.Text = "";
+            
             }
-            GuardarProducto(AlmacenObjetoEntidad);
-        }
 
-        protected void GuardarProducto(AlmacenEntidad AlmacenObjetoEntidad)
-        {
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-            AlmacenProceso AlmacenProcesoNegocio = new AlmacenProceso();
+            protected void LimpiarBusquedaRegistro()
+            { 
+                ClaveBusqueda.Text = "";
+                DescripcionBusqueda.Text = "";
+                EtiquetaMensaje.Text = "";        
+            }        
 
-            Resultado = AlmacenProcesoNegocio.GuardarProducto(AlmacenObjetoEntidad);
-
-            if (Resultado.ErrorId == (int)ConstantePrograma.Producto.ProductoGuardadoCorrectamente)
+            protected void GuardarProducto()
             {
-                LimpiarNuevoRegistro();
-                PanelNuevoRegistro.Visible = false;
-                PanelBusquedaAvanzada.Visible = false;
-                BusquedaAvanzada();
-            }
-            else
-            {
-                EtiquetaMensaje.Text = Resultado.DescripcionError;
-            }
-        }
+                AlmacenEntidad AlmacenObjetoEntidad = new AlmacenEntidad();
+                UsuarioEntidad UsuarioSessionEntidad = new UsuarioEntidad();
 
-        private void SeleccionarProducto(AlmacenEntidad AlmacenObjetoEntidad)
-        {
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-            AlmacenProceso AlmacenProcesoNegocio = new AlmacenProceso();
+                UsuarioSessionEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
 
-            Resultado = AlmacenProcesoNegocio.SeleccionarProducto(AlmacenObjetoEntidad);
+                AlmacenObjetoEntidad.ProductoId = ProductoIdHidden.Value;
+                AlmacenObjetoEntidad.Clave = ClaveNuevo.Text.Trim();
+                AlmacenObjetoEntidad.FamiliaId = Int16.Parse(FamiliaIdNuevo.SelectedValue);
+                AlmacenObjetoEntidad.SubFamiliaId = Int16.Parse(SubFamiliaIdNuevo.SelectedValue);
+                AlmacenObjetoEntidad.MarcaId = Int16.Parse(MarcaIdNuevo.SelectedValue);
+                AlmacenObjetoEntidad.Descripcion = DescripcionNuevo.Text.Trim();
+                AlmacenObjetoEntidad.Minimo = Int16.Parse(MinimoNuevo.Text.Trim());
+                AlmacenObjetoEntidad.Maximo = Int16.Parse(MaximoNuevo.Text.Trim());
+                AlmacenObjetoEntidad.MaximoPermitido = Int16.Parse(MaximoPermitivoNuevo.Text.Trim());
+                AlmacenObjetoEntidad.UnidadMedidaId = (UnidaddeMedidaIdNuevo.SelectedValue);
 
-            if (Resultado.ErrorId == 0)
-            {
-                if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
-                    TablaProducto.CssClass = ConstantePrograma.ClaseTablaVacia;
+                if (EstatusProductoNuevo.Checked == true)
+                {
+                    AlmacenObjetoEntidad.EstatusId = true;
+                }
                 else
-                    TablaProducto.CssClass = ConstantePrograma.ClaseTabla;
-
-                TablaProducto.DataSource = Resultado.ResultadoDatos;
-                TablaProducto.DataBind();
-            }
-            else
-            {
-                EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+                {
+                    AlmacenObjetoEntidad.EstatusId = false;
+                }
+                GuardarProducto(AlmacenObjetoEntidad);
             }
 
-        }
-
-        protected void SeleccionarFamilia()
-        {
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-            FamiliaEntidad FamiliaEntidadObjeto = new FamiliaEntidad();
-            FamiliaProceso FamiliaProcesoObjeto = new FamiliaProceso();
-
-            //FamiliaEntidadObjeto.EstatusId = (Int16)ConstantePrograma.EstatusFamilia.Activo;
-
-            Resultado = FamiliaProcesoObjeto.SeleccionarFamilia(FamiliaEntidadObjeto);
-
-            FamiliaIdNuevo.DataValueField = "FamiliaId";
-            FamiliaIdNuevo.DataTextField = "Nombre";
-
-            if (Resultado.ErrorId == 0)
+            protected void GuardarProducto(AlmacenEntidad AlmacenObjetoEntidad)
             {
-                FamiliaIdNuevo.DataSource = Resultado.ResultadoDatos;
-                FamiliaIdNuevo.DataBind();
-            }
-            else
-            {
-                EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                AlmacenProceso AlmacenProcesoNegocio = new AlmacenProceso();
+
+                Resultado = AlmacenProcesoNegocio.GuardarProducto(AlmacenObjetoEntidad);
+
+                if (Resultado.ErrorId == (int)ConstantePrograma.Producto.ProductoGuardadoCorrectamente)
+                {
+                    LimpiarNuevoRegistro();
+                    PanelNuevoRegistro.Visible = false;
+                    PanelBusquedaAvanzada.Visible = false;
+                    BusquedaAvanzada();
+                }
+                else
+                {
+                    EtiquetaMensaje.Text = Resultado.DescripcionError;
+                }
             }
 
-            FamiliaIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
-        }
-
-        protected void SeleccionarMarca()
-        {
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-            MarcaEntidad MarcaEntidadObjeto = new MarcaEntidad();
-            MarcaProceso MarcaProcesoObjeto = new MarcaProceso();
-
-            //MarcaEntidadObjeto.EstatusId = (Int16)ConstantePrograma.EstatusMarca.Activo;
-
-            Resultado = MarcaProcesoObjeto.SeleccionarMarca(MarcaEntidadObjeto);
-
-            MarcaIdNuevo.DataValueField = "MarcaId";
-            MarcaIdNuevo.DataTextField = "Nombre";
-
-            if (Resultado.ErrorId == 0)
+            private void SeleccionarProducto(AlmacenEntidad AlmacenObjetoEntidad)
             {
-                MarcaIdNuevo.DataSource = Resultado.ResultadoDatos;
-                MarcaIdNuevo.DataBind();
-            }
-            else
-            {
-                EtiquetaMensaje.Text = TextoError.ErrorGenerico;
-            }
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                AlmacenProceso AlmacenProcesoNegocio = new AlmacenProceso();
 
-            MarcaIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
-        }
-
-        protected void SeleccionarSubfamilia()
-        {
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-            SubFamiliaEntidad SubFamiliaEntidadObjeto = new SubFamiliaEntidad();
-            SubFamiliaProceso SubFamiliaProcesoObjeto = new SubFamiliaProceso();
-
-            //SubFamiliaEntidadObjeto.EstatusId = (Int16)ConstantePrograma.EstatusSubFamilia.Activo;
-            SubFamiliaEntidadObjeto.FamiliaId = Int16.Parse(FamiliaIdNuevo.SelectedValue);
-
-            if (SubFamiliaEntidadObjeto.FamiliaId == 0)
-            {
-                SubFamiliaIdNuevo.Items.Clear();
-            }
-            else
-            {
-                Resultado = SubFamiliaProcesoObjeto.SeleccionarSubFamilia(SubFamiliaEntidadObjeto);
-
-                SubFamiliaIdNuevo.DataValueField = "SubFamiliaId";
-                SubFamiliaIdNuevo.DataTextField = "Nombre";
+                Resultado = AlmacenProcesoNegocio.SeleccionarProducto(AlmacenObjetoEntidad);
 
                 if (Resultado.ErrorId == 0)
                 {
-                    SubFamiliaIdNuevo.DataSource = Resultado.ResultadoDatos;
-                    SubFamiliaIdNuevo.DataBind();
+                    if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
+                        TablaProducto.CssClass = ConstantePrograma.ClaseTablaVacia;
+                    else
+                        TablaProducto.CssClass = ConstantePrograma.ClaseTabla;
+
+                    TablaProducto.DataSource = Resultado.ResultadoDatos;
+                    TablaProducto.DataBind();
                 }
                 else
                 {
                     EtiquetaMensaje.Text = TextoError.ErrorGenerico;
                 }
+
             }
 
-            SubFamiliaIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
-        }
-
-        protected void SeleccionarUnidadMedida()
-        {
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-            UnidadMedidaEntidad UnidadMedidaEntidadObjeto = new UnidadMedidaEntidad();
-            UnidadMedidaProceso UnidadMedidaProcesoObjeto = new UnidadMedidaProceso();
-
-            //MarcaEntidadObjeto.EstatusId = (Int16)ConstantePrograma.EstatusMarca.Activo;
-
-            Resultado = UnidadMedidaProcesoObjeto.SeleccionarUnidadMedida(UnidadMedidaEntidadObjeto);
-
-
-            UnidaddeMedidaIdNuevo.DataValueField = "UnidadMedidaId";
-            UnidaddeMedidaIdNuevo.DataTextField = "Nombre";
-
-            if (Resultado.ErrorId == 0)
+            protected void SeleccionarFamilia()
             {
-                UnidaddeMedidaIdNuevo.DataSource = Resultado.ResultadoDatos;
-                UnidaddeMedidaIdNuevo.DataBind();
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                FamiliaEntidad FamiliaEntidadObjeto = new FamiliaEntidad();
+                FamiliaProceso FamiliaProcesoObjeto = new FamiliaProceso();
+
+                //FamiliaEntidadObjeto.EstatusId = (Int16)ConstantePrograma.EstatusFamilia.Activo;
+
+                Resultado = FamiliaProcesoObjeto.SeleccionarFamilia(FamiliaEntidadObjeto);
+
+                FamiliaIdNuevo.DataValueField = "FamiliaId";
+                FamiliaIdNuevo.DataTextField = "Nombre";
+
+                if (Resultado.ErrorId == 0)
+                {
+                    FamiliaIdNuevo.DataSource = Resultado.ResultadoDatos;
+                    FamiliaIdNuevo.DataBind();
+                }
+                else
+                {
+                    EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+                }
+
+                FamiliaIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
             }
-            else
+
+            protected void SeleccionarMarca()
             {
-                EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                MarcaEntidad MarcaEntidadObjeto = new MarcaEntidad();
+                MarcaProceso MarcaProcesoObjeto = new MarcaProceso();
+
+                //MarcaEntidadObjeto.EstatusId = (Int16)ConstantePrograma.EstatusMarca.Activo;
+
+                Resultado = MarcaProcesoObjeto.SeleccionarMarca(MarcaEntidadObjeto);
+
+                MarcaIdNuevo.DataValueField = "MarcaId";
+                MarcaIdNuevo.DataTextField = "Nombre";
+
+                if (Resultado.ErrorId == 0)
+                {
+                    MarcaIdNuevo.DataSource = Resultado.ResultadoDatos;
+                    MarcaIdNuevo.DataBind();
+                }
+                else
+                {
+                    EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+                }
+
+                MarcaIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
             }
 
-            UnidaddeMedidaIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
-        }
-
-        protected void TablaProductoEventoComando(GridViewCommandEventArgs e)
-        {
-            AlmacenEntidad AlmacenEntidadObjeto = new AlmacenEntidad();
-            Int16 intFila = 0;
-            int intTamañoPagina = 0;
-            string ProductoId = "";
-            string strCommand = string.Empty;
-
-            intFila = Int16.Parse(e.CommandArgument.ToString());
-            strCommand = e.CommandName.ToString();
-            intTamañoPagina = TablaProducto.PageSize;
-
-            if (intFila >= intTamañoPagina)
-                intFila = (Int16)(intFila - (intTamañoPagina * TablaProducto.PageIndex));
-
-
-            switch (strCommand)
+            protected void SeleccionarSubfamilia()
             {
-                case "Select":
-                    ProductoId = string.Format(TablaProducto.DataKeys[intFila]["ProductoId"].ToString());
-                    AlmacenEntidadObjeto.ProductoId = ProductoId;
-                    ProductoIdHidden.Value = ProductoId.ToString();
-                    SeleccionarProductoParaEditar(AlmacenEntidadObjeto);
-                    break;
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                SubFamiliaEntidad SubFamiliaEntidadObjeto = new SubFamiliaEntidad();
+                SubFamiliaProceso SubFamiliaProcesoObjeto = new SubFamiliaProceso();
 
-                default:
-                    // Do nothing
-                    break;
+                //SubFamiliaEntidadObjeto.EstatusId = (Int16)ConstantePrograma.EstatusSubFamilia.Activo;
+                SubFamiliaEntidadObjeto.FamiliaId = Int16.Parse(FamiliaIdNuevo.SelectedValue);
+
+                if (SubFamiliaEntidadObjeto.FamiliaId == 0)
+                {
+                    SubFamiliaIdNuevo.Items.Clear();
+                }
+                else
+                {
+                    Resultado = SubFamiliaProcesoObjeto.SeleccionarSubFamilia(SubFamiliaEntidadObjeto);
+
+                    SubFamiliaIdNuevo.DataValueField = "SubFamiliaId";
+                    SubFamiliaIdNuevo.DataTextField = "Nombre";
+
+                    if (Resultado.ErrorId == 0)
+                    {
+                        SubFamiliaIdNuevo.DataSource = Resultado.ResultadoDatos;
+                        SubFamiliaIdNuevo.DataBind();
+                    }
+                    else
+                    {
+                        EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+                    }
+                }
+
+                SubFamiliaIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
             }
-        }
 
-        protected void SeleccionarProductoParaEditar(AlmacenEntidad AlmacenObjetoEntidad)
-        {
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-            AlmacenProceso AlmacenProcesoNegocio = new AlmacenProceso();
-
-            Resultado = AlmacenProcesoNegocio.SeleccionarProductoparaEditar(AlmacenObjetoEntidad);
-
-            if (Resultado.ErrorId == 0)
+            protected void SeleccionarUnidadMedida()
             {
-                ClaveNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Clave"].ToString();
-                FamiliaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["FamiliaId"].ToString();
-                SeleccionarSubfamilia();
-                SubFamiliaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["SubFamiliaId"].ToString();
-                MarcaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["MarcaId"].ToString();
-                DescripcionNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Descripcion"].ToString();
-                MinimoNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Minimo"].ToString();
-                MaximoNuevo.Text =Resultado.ResultadoDatos.Tables[0].Rows[0]["Maximo"].ToString();
-                MaximoPermitivoNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["MaximoPermitido"].ToString();
-                UnidaddeMedidaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["UnidadMedidaId"].ToString();
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                UnidadMedidaEntidad UnidadMedidaEntidadObjeto = new UnidadMedidaEntidad();
+                UnidadMedidaProceso UnidadMedidaProcesoObjeto = new UnidadMedidaProceso();
 
-                CambiarEditarRegistro();
+                //MarcaEntidadObjeto.EstatusId = (Int16)ConstantePrograma.EstatusMarca.Activo;
 
-              //  if (Boolean.Parse(Resultado.ResultadoDatos.Tables[0].Rows[0]["EstatusId"].ToString()) == true)
-                //{
-                 //   EstatusProductoNuevo.Checked = true;
+                Resultado = UnidadMedidaProcesoObjeto.SeleccionarUnidadMedida(UnidadMedidaEntidadObjeto);
+
+
+                UnidaddeMedidaIdNuevo.DataValueField = "UnidadMedidaId";
+                UnidaddeMedidaIdNuevo.DataTextField = "Nombre";
+
+                if (Resultado.ErrorId == 0)
+                {
+                    UnidaddeMedidaIdNuevo.DataSource = Resultado.ResultadoDatos;
+                    UnidaddeMedidaIdNuevo.DataBind();
+                }
+                else
+                {
+                    EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+                }
+
+                UnidaddeMedidaIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
+            }
+
+            protected void TablaProductoEventoComando(GridViewCommandEventArgs e)
+            {
+                AlmacenEntidad AlmacenEntidadObjeto = new AlmacenEntidad();
+                Int16 intFila = 0;
+                int intTamañoPagina = 0;
+                string ProductoId = "";
+                string strCommand = string.Empty;
+
+                intFila = Int16.Parse(e.CommandArgument.ToString());
+                strCommand = e.CommandName.ToString();
+                intTamañoPagina = TablaProducto.PageSize;
+
+                if (intFila >= intTamañoPagina)
+                    intFila = (Int16)(intFila - (intTamañoPagina * TablaProducto.PageIndex));
+
+
+                switch (strCommand)
+                {
+                    case "Select":
+                        ProductoId = string.Format(TablaProducto.DataKeys[intFila]["ProductoId"].ToString());
+                        AlmacenEntidadObjeto.ProductoId = ProductoId;
+                        ProductoIdHidden.Value = ProductoId.ToString();
+                        SeleccionarProductoParaEditar(AlmacenEntidadObjeto);
+                        break;
+
+                    default:
+                        // Do nothing
+                        break;
+                }
+            }
+
+            protected void SeleccionarProductoParaEditar(AlmacenEntidad AlmacenObjetoEntidad)
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                AlmacenProceso AlmacenProcesoNegocio = new AlmacenProceso();
+
+                Resultado = AlmacenProcesoNegocio.SeleccionarProductoparaEditar(AlmacenObjetoEntidad);
+
+                if (Resultado.ErrorId == 0)
+                {
+                    ClaveNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Clave"].ToString();
+                    FamiliaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["FamiliaId"].ToString();
+                    SeleccionarSubfamilia();
+                    SubFamiliaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["SubFamiliaId"].ToString();
+                    MarcaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["MarcaId"].ToString();
+                    DescripcionNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Descripcion"].ToString();
+                    MinimoNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Minimo"].ToString();
+                    MaximoNuevo.Text =Resultado.ResultadoDatos.Tables[0].Rows[0]["Maximo"].ToString();
+                    MaximoPermitivoNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["MaximoPermitido"].ToString();
+                    UnidaddeMedidaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["UnidadMedidaId"].ToString();
+
+                    CambiarEditarRegistro();
+
+                  //  if (Boolean.Parse(Resultado.ResultadoDatos.Tables[0].Rows[0]["EstatusId"].ToString()) == true)
+                    //{
+                     //   EstatusProductoNuevo.Checked = true;
+                       
+                   }
+                
                    
-               }
-            
-               
-            else
-            {
-                EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+                else
+                {
+                    EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+                }
             }
-        }
-
-
-
 
         #endregion
     }
