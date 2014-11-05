@@ -32,34 +32,6 @@
                 </div>
 
 
-			
-                <asp:Panel CssClass="SearchDiv" ID="PanelBusquedaAvanzada" Visible="true" runat="server">
-						 <table class="FormTable">
-						 
-						 
-							<tr>
-								<td class="Name">Clave</td>
-								<td class="Espacio"></td>
-								<td class="Field"><asp:TextBox CssClass="CajaTextoMediana" ID="ClaveBusqueda"  runat="server" ></asp:TextBox></td>
-							</tr>
-							
-							<tr>
-								<td class="Name">Descripción</td>
-								<td class="Espacio"></td>
-								<td class="Field"><asp:TextBox CssClass="CajaTextoMediana" ID="DescripcionBusqueda"  runat="server" ></asp:TextBox></td>
-							</tr>
-							  <tr>
-                            <td colspan="3">
-                                <br />
-                                <asp:ImageButton AlternateText="Buscar" ID="BotonBusqueda" ImageUrl="~/Imagen/Boton/BotonBuscar.png"   runat="server" />&nbsp;&nbsp;
-                                <asp:ImageButton AlternateText="Limpiar" ID="BotonLimpiarBusqueda" ImageUrl="~/Imagen/Boton/BotonLimpiar.png"  runat="server" />
-                            </td>
-                        </tr>							
-							                        
-                        </table>
-                </asp:Panel>
-
-
 		  <asp:Panel CssClass="NewRowDiv" ID="PanelNuevoRegistro" Visible="true" runat="server">
                     <table class="FormTable">
                     
@@ -142,7 +114,7 @@
                             <td colspan="3">
                                 <asp:Label CssClass="TextoError" ID="AgregarEtiquetaMensaje" runat="server" Text=""></asp:Label>
                                 <br />
-                                <asp:ImageButton AlternateText="Guardar" ID="BotonGuardar" ImageUrl="~/Imagen/Boton/BotonAgregar.png"  runat="server" ValidationGroup="Save" />&nbsp;&nbsp;
+                                <asp:ImageButton AlternateText="Guardar" ID="BotonAgregar" ImageUrl="~/Imagen/Boton/BotonAgregar.png" OnClick="BotonAgregar_Click" runat="server" ValidationGroup="Save" />&nbsp;&nbsp;
                               </td>
                         </tr>
                     </table>

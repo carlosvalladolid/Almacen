@@ -12,8 +12,6 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 
-
-
 using Activos.Comun.Constante;
 using Activos.Entidad.General;
 using Activos.Entidad.Seguridad;
@@ -36,6 +34,12 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         }
 
+        protected void BotonAgregar_Click(object sender, ImageClickEventArgs e)
+        {
+            AgregarProducto();
+
+        }
+        
         protected void BusquedaAvanzadaLink_Click(Object sender, System.EventArgs e)
         {
             CambiarBusquedaAvanzada();
@@ -65,6 +69,20 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
 
         #region "Métodos"
+
+        protected void AgregarProducto()
+        {
+           // AlmacenEntidad AlmacenObjetoEntidad = new AlmacenEntidad();
+           // UsuarioEntidad UsuarioSessionEntidad = new UsuarioEntidad();
+
+           // UsuarioSessionEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
+
+          
+           //AgregarProducto(AlmacenObjetoEntidad);
+        }
+
+
+
 
         private void Inicio()
         {
