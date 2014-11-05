@@ -56,6 +56,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aplicacion\Almacen\PreOrden.aspx.cs">
+      <DependentUpon>PreOrden.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicacion\Almacen\PreOrden.aspx.designer.cs">
+      <DependentUpon>PreOrden.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Aplicacion\Catalogo\Familia.aspx.cs">
       <DependentUpon>Familia.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -353,6 +360,7 @@
     <Content Include="DB.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Aplicacion\Almacen\PreOrden.aspx" />
     <Content Include="Aplicacion\Catalogo\Familia.aspx" />
     <Content Include="Aplicacion\Catalogo\SubFamilia.aspx" />
     <Content Include="Aplicacion\Inicio.aspx" />
@@ -360,7 +368,6 @@
     <Content Include="Incluir\Javascript\ValidarFormulario.js" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Aplicacion\Almacen\" />
     <Folder Include="Aplicacion\Configuracion\" />
     <Folder Include="Aplicacion\Error\" />
     <Folder Include="Aplicacion\Reporte\Ventana\" />
