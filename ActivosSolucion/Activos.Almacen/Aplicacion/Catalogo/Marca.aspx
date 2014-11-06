@@ -82,7 +82,7 @@
                     </table>
                 </asp:Panel>
 
-                <div>
+                <div class="DivTabla">
                     <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
                         CssClass="TablaInformacion" DataKeyNames="MarcaId" ID="TablaMarca" OnPageIndexChanging="TablaMarca_PageIndexChanging"
                         OnRowCommand="TablaMarca_RowCommand" PageSize="10" runat="server">
@@ -125,7 +125,6 @@
                 </div>
 
                 <asp:HiddenField ID="MarcaIdHidden" runat="server" Value="0" />
-
 
                 <asp:UpdateProgress AssociatedUpdatePanelID="PageUpdate" ID="AssociatedUpdate" runat="server">
                     <ProgressTemplate>
