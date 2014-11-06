@@ -1,8 +1,22 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Incluir/Plantilla/PlantillaPrivada.Master" AutoEventWireup="true" CodeBehind="PreOrden.aspx.cs" Inherits="Activos.Almacen.Aplicacion.Almacen.PreOrden" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Incluir/Plantilla/PlantillaPrivada.Master" AutoEventWireup="true" CodeBehind="PreOrden.aspx.cs" Inherits="Almacen.Web.Aplicacion.Almacen.PreOrden" %>
 <%@ MasterType VirtualPath="~/Incluir/Plantilla/PlantillaPrivada.Master" %>
 <%@ Register TagPrefix="wuc" TagName="ControlMenuIzquierdo" Src="~/Incluir/ControlesWeb/ControlMenuIzquierdo.ascx" %>
 
 <asp:Content ID="ContenidoEncabezado" ContentPlaceHolderID="ContenedorEncabezado" runat="server">
+
+   <script src="/Incluir/Javascript/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
+   <script src="/Incluir/Javascript/jquery.ui.datepicker-es.js" type="text/javascript"></script>
+   <script src="/Incluir/Javascript/Calendar.js" type="text/javascript"></script>
+   
+  <script language="javascript" type="text/javascript">
+
+      function pageLoad(sender, args) {
+         SetNewCalendar("#<%= FechaPreOrdenNuevo.ClientID %>");
+      }
+      
+   </script>
+
+
     <script language="javascript" src="/Incluir/Javascript/ValidarFormulario.js" type="text/javascript"></script>
 
 </asp:Content>
@@ -43,11 +57,11 @@
 						<tr>
                             <td class="Name">Pre Orden</td>
                             <td class="Required">*</td>
-                            <td class="Field"><asp:TextBox CssClass="CajaTextoMediana" ID="PreOrdenNuevo"  runat="server" ></asp:TextBox></td>
+                            <td class="Field"><asp:TextBox CssClass="CajaTextoMediana" ID="PreOrdenNuevo" Visible ="false"   runat="server" ></asp:TextBox></td>
                         </tr>
                     
 						 <tr>
-                            <td class="Name">Fecha de Pre Orden</td>
+                            <td class="Name">Fecha de PreOrden</td>
                             <td class="Required">*</td>
                             <td class="Field"><asp:TextBox CssClass="CajaTextoMediana" ID="FechaPreOrdenNuevo"  runat="server" ></asp:TextBox></td>
                         </tr>
@@ -55,7 +69,7 @@
                          <tr>
                             <td class="Name">Solicitante</td>
                             <td class="Required">*</td>
-                            <td class="Field"><asp:DropDownList CssClass="ComboGrande" ID="SolicitanteIdNuevo"  runat="server"></asp:DropDownList>                              
+                            <td class="Field"><asp:DropDownList CssClass="ComboGrande" ID="SolicitanteIdNuevo" OnSelectedIndexChanged="ddlSolicitante_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>                              
                             </td>
                         </tr>
                         
@@ -76,20 +90,27 @@
                         
                          <tr>
                             <td class="Name">Clave</td>
-                            <td class="Required">*</td>
-                            <td class="Field"><asp:TextBox CssClass="CajaTextoMediana" ID="ClaveNuevo"  runat="server" ></asp:TextBox></td>
+                            <td class="Required">*</td>                           
+                           
+                           
+                            <td class="Field">
+                             <asp:Panel ID="PanelBuscarClave" runat="server" DefaultButton="LinkBuscarClave">
+                             <asp:TextBox ID="ClaveNuevo" CssClass="CajaTextoMediana" MaxLength="15" runat="server"></asp:TextBox>
+                             <asp:LinkButton ID="LinkBuscarClave" OnClick="LinkBuscarClave_Click" ValidationGroup="BuscarClave" runat="server" Text="" Width="0px"></asp:LinkButton>
+                             </asp:Panel>
+                            </td>
                         </tr>
 						
                         <tr>
                             <td class="Name">Familia</td>
                             <td class="Required">*</td>
-                            <td class="Field"><asp:DropDownList CssClass="ComboGrande" ID="FamiliaIdNuevo"  runat="server"></asp:DropDownList>                              
+                            <td class="Field"><asp:DropDownList CssClass="ComboGrande" ID="FamiliaIdNuevo" Enabled ="false"   runat="server"></asp:DropDownList>                              
                             </td>
                         </tr>
                         <tr>
                             <td class="Name">SubFamilia</td>
                             <td class="Required">*</td>
-                            <td class="Field"><asp:DropDownList CssClass="ComboGrande" ID="SubFamiliaIdNuevo" runat="server"></asp:DropDownList></td>
+                            <td class="Field"><asp:DropDownList CssClass="ComboGrande" ID="SubFamiliaIdNuevo"  Enabled ="false"  runat="server"></asp:DropDownList></td>
                         </tr>
                         
                         <tr>
@@ -101,7 +122,7 @@
                          <tr>
                             <td class="Name">Descripción</td>
                             <td class="Required">*</td>
-                            <td class="Field"><asp:TextBox CssClass="CajaTextoGrande" ID="DescripcionNuevo"  runat="server" ></asp:TextBox></td>
+                            <td class="Field"><asp:TextBox CssClass="CajaTextoGrande" ID="DescripcionNuevo" Enabled ="false"   runat="server" ></asp:TextBox></td>
                         </tr>
                     
 						 <tr>
@@ -112,6 +133,8 @@
                         
                         <tr>
                             <td colspan="3">
+                            
+                            
                                 <asp:Label CssClass="TextoError" ID="AgregarEtiquetaMensaje" runat="server" Text=""></asp:Label>
                                 <br />
                                 <asp:ImageButton AlternateText="Guardar" ID="BotonAgregar" ImageUrl="~/Imagen/Boton/BotonAgregar.png" OnClick="BotonAgregar_Click" runat="server" ValidationGroup="Save" />&nbsp;&nbsp;
@@ -187,6 +210,9 @@
                         <table width="100%">
                            <tr>
                               <td style="width:70%;">
+                               <asp:CustomValidator CssClass="TextoError" ControlToValidate="FechaPreOrdenNuevo" EnableClientScript="false" ErrorMessage="" ID="FechaPreOrden" OnServerValidate="FechaPreOrden_Validate"  runat="server" SetFocusOnError="true" ValidationGroup="Guardar" ValidateEmptyText="True"></asp:CustomValidator>
+                                 
+                              <br />
                                 <asp:ImageButton AlternateText="Guardar" ID="BotonGuardarPreOrden"  ImageUrl="/Imagen/Boton/BotonGuardar.png"  runat="server" />&nbsp;&nbsp;
                                 <asp:ImageButton AlternateText="Limpiar" ID="BotonLimpiarRegistro"  ImageUrl="/Imagen/Boton/BotonLimpiar.png" runat="server" />&nbsp;&nbsp;
                                 <asp:ImageButton AlternateText="Cancelar" ID="BotonCancelarPreOrden" ImageUrl="/Imagen/Boton/BotonCancelar.png" runat="server" />
@@ -208,10 +234,11 @@
                 </asp:UpdateProgress>   
                 
                 
-                     <asp:HiddenField ID="ProductoIdHidden" runat="server" Value="0" />
-                     <asp:HiddenField ID="ClaveIdHidden" runat="server" Value="0" />
+                     <asp:HiddenField ID="ProductoIdHidden" runat="server" Value="" />
+                     <asp:HiddenField ID="ClaveIdHidden" runat="server" Value="" />
                      <asp:HiddenField ID="SolicitanteIdHidden" runat="server" Value="0" />
-                
+                     <asp:HiddenField ID="TemporalPreOrdenId" runat="server" Value="" />
+                     <asp:HiddenField ID="TemporalProducto" runat="server" Value="" />
                 
                 
             </ContentTemplate>

@@ -380,6 +380,14 @@ namespace Activos.Comun.Constante
 
 
 
+        public enum TemporalPreOrden
+        {
+            TemporalPreOrdenGuardadoCorrectamente = 1,
+            TemporalPreOrdenEliminadoCorrectamente = 2,
+            ClaveDuplicado = 3          
+        }
+
+
         public enum RecuperarContrasenia
         {
             ValorPorDefecto = 0,

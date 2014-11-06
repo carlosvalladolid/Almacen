@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Activos.Almacen.Aplicacion.Almacen {
+namespace Almacen.Web.Aplicacion.Almacen {
     
     
     public partial class PreOrden {
@@ -95,6 +95,15 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.DropDownList JefeInmediatoIdNuevo;
         
         /// <summary>
+        /// PanelBuscarClave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PanelBuscarClave;
+        
+        /// <summary>
         /// ClaveNuevo control.
         /// </summary>
         /// <remarks>
@@ -102,6 +111,15 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ClaveNuevo;
+        
+        /// <summary>
+        /// LinkBuscarClave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkBuscarClave;
         
         /// <summary>
         /// FamiliaIdNuevo control.
@@ -185,6 +203,15 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.GridView TablaPreOrden;
         
         /// <summary>
+        /// FechaPreOrden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator FechaPreOrden;
+        
+        /// <summary>
         /// BotonGuardarPreOrden control.
         /// </summary>
         /// <remarks>
@@ -255,6 +282,24 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField SolicitanteIdHidden;
+        
+        /// <summary>
+        /// TemporalPreOrdenId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField TemporalPreOrdenId;
+        
+        /// <summary>
+        /// TemporalProducto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField TemporalProducto;
         
         /// <summary>
         /// Master property.
