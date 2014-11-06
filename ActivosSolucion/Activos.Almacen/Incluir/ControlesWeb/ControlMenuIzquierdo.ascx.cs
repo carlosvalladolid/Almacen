@@ -15,9 +15,18 @@ namespace Almacen.Web.Incluir.ControlesWeb
 {
     public partial class ControlMenuIzquierdo : System.Web.UI.UserControl
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
+        #region "Eventos"
+            protected void Page_Load(object sender, EventArgs e)
+            {
+                PageLoad();
+            }
+        #endregion
 
-        }
+        #region "Métodos"
+            private void PageLoad()
+            {
+
+            }
+        #endregion
     }
 }
