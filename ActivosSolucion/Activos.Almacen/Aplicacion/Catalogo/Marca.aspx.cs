@@ -208,7 +208,6 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 DependenciaNuevo.SelectedValue = "0";
                 EstatusNuevo.SelectedValue = "0";
                 NombreNuevo.Text = "";
-                //EtiquetaMensaje.Text = "";
                 MarcaIdHidden.Value = "0";
             }
 
