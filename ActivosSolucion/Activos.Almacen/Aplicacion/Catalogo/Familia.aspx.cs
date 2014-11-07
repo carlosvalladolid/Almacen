@@ -78,7 +78,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
 
             protected void TablaFamilia_RowCommand(object sender, GridViewCommandEventArgs e)
             {
-
+                TablaFamiliaRowCommand(e);
             }
         #endregion
 
@@ -108,7 +108,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 PanelNuevoRegistro.Visible = false;
             }
 
-            protected void CambiarEditarRegistro()
+            private void CambiarEditarRegistro()
             {
                 PanelBusquedaAvanzada.Visible = false;
                 PanelNuevoRegistro.Visible = true;
@@ -123,12 +123,14 @@ namespace Almacen.Web.Aplicacion.Catalogo
 
             private void Inicio()
             {
-                //Master.NuevoRegistroMaster.Click += new EventHandler(NuevoRegistro_Click);
-                //Master.BusquedaAvanzadaMaster.Click += new EventHandler(BusquedaAvanzadaLink_Click);
-                //Master.EliminarRegistroMaster.Click += new EventHandler(EliminarRegistroLink_Click);
+                Master.NuevoRegistroMaster.Click += new EventHandler(NuevoRegistro_Click);
+                Master.BusquedaAvanzadaMaster.Click += new EventHandler(BusquedaAvanzadaLink_Click);
+                Master.EliminarRegistroMaster.Click += new EventHandler(EliminarRegistroLink_Click);
 
                 if (!Page.IsPostBack)
                 {
+                    SeleccionarEstatusNuevo();
+                    SeleccionarDependencia();
                     SeleccionarFamilia();
                 }
             }
@@ -138,14 +140,91 @@ namespace Almacen.Web.Aplicacion.Catalogo
 
             }
 
-            protected void SeleccionarFamilia()
+            protected void SeleccionarDependencia()
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                DependenciaEntidad DependenciaEntidadObjeto = new DependenciaEntidad();
+                DependenciaProceso DependenciaProcesoObjeto = new DependenciaProceso();
+
+                Resultado = DependenciaProcesoObjeto.SeleccionarDependencia(DependenciaEntidadObjeto);
+
+                DependenciaNuevo.DataValueField = "DependenciaId";
+                DependenciaNuevo.DataTextField = "Nombre";
+
+                if (Resultado.ErrorId == 0)
+                {
+                    DependenciaNuevo.DataSource = Resultado.ResultadoDatos;
+                    DependenciaNuevo.DataBind();
+                }
+                else
+                {
+                    // ToDo: Manejar mensajes de error
+                    //EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+                }
+
+                DependenciaNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
+            }
+
+            protected void SeleccionarDependenciaNuevo()
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                DependenciaEntidad DependenciaEntidadObjeto = new DependenciaEntidad();
+                DependenciaProceso DependenciaProcesoObjeto = new DependenciaProceso();
+
+                Resultado = DependenciaProcesoObjeto.SeleccionarDependencia(DependenciaEntidadObjeto);
+
+                DependenciaNuevo.DataValueField = "DependenciaId";
+                DependenciaNuevo.DataTextField = "Nombre";
+
+                if (Resultado.ErrorId == 0)
+                {
+                    DependenciaNuevo.DataSource = Resultado.ResultadoDatos;
+                    DependenciaNuevo.DataBind();
+                }
+                else
+                {
+                    // ToDo: Manejar mensajes de error
+                    //EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+                }
+
+                DependenciaNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
+            }
+
+            protected void SeleccionarEstatusNuevo()
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                EstatusEntidad EstatusEntidadObjeto = new EstatusEntidad();
+                EstatusProceso EstatusProcesoObjeto = new EstatusProceso();
+
+                EstatusEntidadObjeto.SeccionId = (int)ConstantePrograma.Seccion.Familia;
+
+                Resultado = EstatusProcesoObjeto.SeleccionarEstatus(EstatusEntidadObjeto);
+
+                EstatusNuevo.DataValueField = "EstatusId";
+                EstatusNuevo.DataTextField = "Nombre";
+
+                if (Resultado.ErrorId == 0)
+                {
+                    EstatusNuevo.DataSource = Resultado.ResultadoDatos;
+                    EstatusNuevo.DataBind();
+                }
+                else
+                {
+                    // ToDo: Manejar mensajes de error
+                    //EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+                }
+
+                EstatusNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
+            }
+
+            private void SeleccionarFamilia()
             {
                 FamiliaEntidad FamiliaEntidad = new FamiliaEntidad();
 
                 SeleccionarFamilia(FamiliaEntidad);
             }
 
-            protected void SeleccionarFamilia(FamiliaEntidad FamiliaObjetoEntidad)
+            private void SeleccionarFamilia(FamiliaEntidad FamiliaObjetoEntidad)
             {
                 ResultadoEntidad Resultado = new ResultadoEntidad();
                 FamiliaProceso FamiliaProcesoNegocio = new FamiliaProceso();
@@ -166,6 +245,58 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 {
                     // ToDo: Manejar mensajes de error
                     //EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+                }
+            }
+
+            protected void SeleccionarFamiliaParaEditar(FamiliaEntidad FamiliaObjetoEntidad)
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                FamiliaProceso FamiliaProcesoNegocio = new FamiliaProceso();
+
+                Resultado = FamiliaProcesoNegocio.SeleccionarFamilia(FamiliaObjetoEntidad);
+
+                if (Resultado.ErrorId == 0)
+                {
+                    DependenciaNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["DependenciaId"].ToString();
+                    EstatusNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["EstatusId"].ToString();
+                    NombreNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Nombre"].ToString();
+                    CambiarEditarRegistro();
+                }
+                else
+                {
+                    // ToDo: Manejar mensajes de error
+                    //EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+                }
+            }
+
+            private void TablaFamiliaRowCommand(GridViewCommandEventArgs e)
+            {
+                FamiliaEntidad FamiliaEntidadObjeto = new FamiliaEntidad();
+                Int16 intFila = 0;
+                int intTamañoPagina = 0;
+                Int16 FamiliaId = 0;
+                string strCommand = string.Empty;
+
+                intFila = Int16.Parse(e.CommandArgument.ToString());
+                strCommand = e.CommandName.ToString();
+                intTamañoPagina = TablaFamilia.PageSize;
+
+                if (intFila >= intTamañoPagina)
+                    intFila = (Int16)(intFila - (intTamañoPagina * TablaFamilia.PageIndex));
+
+
+                switch (strCommand)
+                {
+                    case "Select":
+                        FamiliaId = Int16.Parse(TablaFamilia.DataKeys[intFila]["FamiliaId"].ToString());
+                        FamiliaEntidadObjeto.FamiliaId = FamiliaId;
+                        FamiliaIdHidden.Value = FamiliaId.ToString();
+                        SeleccionarFamiliaParaEditar(FamiliaEntidadObjeto);
+                        break;
+
+                    default:
+                        // Do nothing
+                        break;
                 }
             }
         #endregion

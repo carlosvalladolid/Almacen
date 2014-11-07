@@ -91,7 +91,7 @@
                                 <tr class="Encabezado">
                                      <th style="width: 30px;"></th>
                                     <th>Nombre</th>
-                                    <th style="width: 200px;">Dependencia</th>
+                                    <th style="width: 250px;">Dependencia</th>
                                     <th style="width: 100px;">Estatus</th>                                           
                                  </tr>
                                 <tr>
@@ -117,7 +117,7 @@
                             </asp:TemplateField>
                                                             
                             <asp:BoundField DataField="NombreDependencia" HeaderText="Dependencia" ItemStyle-HorizontalAlign="Left">
-                                <HeaderStyle HorizontalAlign="Center" Width="200px" />
+                                <HeaderStyle HorizontalAlign="Center" Width="250px" />
                             </asp:BoundField>
                             
                             <asp:BoundField DataField="NombreEstatus" HeaderText="Estatus" ItemStyle-HorizontalAlign="Left">
@@ -126,6 +126,8 @@
                         </Columns>
                     </asp:GridView>
                 </div>
+
+                <asp:HiddenField ID="FamiliaIdHidden" runat="server" Value="0" />
 
                 <asp:UpdateProgress AssociatedUpdatePanelID="PageUpdate" ID="AssociatedUpdate" runat="server">
                     <ProgressTemplate>
