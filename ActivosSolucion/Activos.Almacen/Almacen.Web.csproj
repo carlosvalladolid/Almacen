@@ -56,12 +56,40 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aplicacion\Almacen\Orden.aspx.cs">
+      <DependentUpon>Orden.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicacion\Almacen\Orden.aspx.designer.cs">
+      <DependentUpon>Orden.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicacion\Almacen\OrdenSalida.aspx.cs">
+      <DependentUpon>OrdenSalida.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicacion\Almacen\OrdenSalida.aspx.designer.cs">
+      <DependentUpon>OrdenSalida.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Aplicacion\Almacen\PreOrden.aspx.cs">
       <DependentUpon>PreOrden.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Aplicacion\Almacen\PreOrden.aspx.designer.cs">
       <DependentUpon>PreOrden.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicacion\Almacen\Recepción.aspx.cs">
+      <DependentUpon>Recepción.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicacion\Almacen\Recepción.aspx.designer.cs">
+      <DependentUpon>Recepción.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicacion\Almacen\Requisicion.aspx.cs">
+      <DependentUpon>Requisicion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicacion\Almacen\Requisicion.aspx.designer.cs">
+      <DependentUpon>Requisicion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Aplicacion\Catalogo\Familia.aspx.cs">
       <DependentUpon>Familia.aspx</DependentUpon>
@@ -83,6 +111,13 @@
     </Compile>
     <Compile Include="Aplicacion\Catalogo\Producto.aspx.designer.cs">
       <DependentUpon>Producto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicacion\Catalogo\Proveedor.aspx.cs">
+      <DependentUpon>Proveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicacion\Catalogo\Proveedor.aspx.designer.cs">
+      <DependentUpon>Proveedor.aspx</DependentUpon>
     </Compile>
     <Compile Include="Aplicacion\Catalogo\SubFamilia.aspx.cs">
       <DependentUpon>SubFamilia.aspx</DependentUpon>
@@ -360,8 +395,13 @@
     <Content Include="DB.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Aplicacion\Almacen\Orden.aspx" />
+    <Content Include="Aplicacion\Almacen\OrdenSalida.aspx" />
     <Content Include="Aplicacion\Almacen\PreOrden.aspx" />
+    <Content Include="Aplicacion\Almacen\Recepción.aspx" />
+    <Content Include="Aplicacion\Almacen\Requisicion.aspx" />
     <Content Include="Aplicacion\Catalogo\Familia.aspx" />
+    <Content Include="Aplicacion\Catalogo\Proveedor.aspx" />
     <Content Include="Aplicacion\Catalogo\SubFamilia.aspx" />
     <Content Include="Aplicacion\Inicio.aspx" />
     <Content Include="App.config" />
