@@ -12,5 +12,44 @@ namespace Activos.Almacen.Aplicacion {
     
     
     public partial class Inicio {
+        
+        /// <summary>
+        /// ControlMenuIzquierdo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Almacen.Web.Incluir.ControlesWeb.ControlMenuIzquierdo ControlMenuIzquierdo;
+        
+        /// <summary>
+        /// PageUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel PageUpdate;
+        
+        /// <summary>
+        /// AssociatedUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdateProgress AssociatedUpdate;
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new Almacen.Web.Incluir.Plantilla.PlantillaPrivada Master {
+            get {
+                return ((Almacen.Web.Incluir.Plantilla.PlantillaPrivada)(base.Master));
+            }
+        }
     }
 }

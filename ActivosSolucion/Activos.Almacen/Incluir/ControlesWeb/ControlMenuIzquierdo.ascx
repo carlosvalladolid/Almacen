@@ -13,7 +13,7 @@
     </tr>
     <tr>
         <td class="Space"></td>
-        <td><img alt="Inicio" border="0" src="/Imagen/Icono/IconoCatalogo.png" title="Productos" /></td>
+        <td><img alt="Inicio" border="0" src="/Imagen/Icono/IconoCatalogo.png" title="Catálogos" /></td>
         <td class="Section">Catálogos</td>
     </tr>
     <tr>
@@ -35,6 +35,21 @@
         <td class="Space"></td>
         <td></td>
         <td><a href="/Aplicacion/Catalogo/SubFamilia.aspx">Catálogo de subfamilias</a></td>
+    </tr>
+    <tr>
+        <td class="Space"></td>
+        <td><img alt="Inicio" border="0" src="/Imagen/Icono/IconoAlmacen.png" title="Almacén" /></td>
+        <td class="Section">Almacén</td>
+    </tr>
+    <tr>
+        <td class="Space"></td>
+        <td></td>
+        <td><a href="/Aplicacion/Almacen/PreOrden.aspx">Pre Orden de compra</a></td>
+    </tr>
+    <tr>
+        <td class="Space"></td>
+        <td></td>
+        <td><a href="/Aplicacion/Almacen/Orden.aspx">Orden de compra</a></td>
     </tr>
     <tr>
         <td class="Space"></td>

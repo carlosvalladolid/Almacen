@@ -11,7 +11,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 
-namespace Activos.Almacen.Aplicacion.Almacen
+namespace Almacen.Web.Aplicacion.Almacen
 {
     public partial class Orden : System.Web.UI.Page
     {
