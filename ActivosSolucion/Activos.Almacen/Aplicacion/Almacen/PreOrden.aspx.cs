@@ -45,6 +45,16 @@ namespace Almacen.Web.Aplicacion.Almacen
             CambiarBusquedaAvanzada();
         }
 
+
+        protected void BotonGuardar_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                //GuardarPreOrden();
+            }
+        }
+
+
         protected void LinkBuscarClave_Click(object sender, EventArgs e)
         {
             SeleccionarClave();
@@ -70,7 +80,6 @@ namespace Almacen.Web.Aplicacion.Almacen
             Inicio();
         }
 
-
         protected void FechaPreOrden_Validate(object source, ServerValidateEventArgs args)
         {
             string strEndDate = string.Empty;
@@ -92,7 +101,6 @@ namespace Almacen.Web.Aplicacion.Almacen
             }
         }
 
-
         #endregion
 
 
@@ -100,16 +108,17 @@ namespace Almacen.Web.Aplicacion.Almacen
 
         protected void AgregarProducto()
         {
-            TemporalPreOrdenEntidad TemporalPreOrdenObjetoEntidad = new TemporalPreOrdenEntidad();    
-          
-          if (TemporalPreOrdenId.Value != "0")
+            TemporalPreOrdenEntidad TemporalPreOrdenObjetoEntidad = new TemporalPreOrdenEntidad();
+
+            if (TemporalPreOrdenIdHidden.Value != "0")
             {
-                TemporalPreOrdenObjetoEntidad.PreOrdenId =  TemporalPreOrdenId.Value;
+                TemporalPreOrdenObjetoEntidad.PreOrdenId = TemporalPreOrdenIdHidden.Value;
                 TemporalPreOrdenObjetoEntidad.EmpleadoId = Int16.Parse(SolicitanteIdNuevo.SelectedValue);
                 TemporalPreOrdenObjetoEntidad.JefeId = Int16.Parse(JefeInmediatoIdNuevo.SelectedValue);
                 TemporalPreOrdenObjetoEntidad.Clave = ClaveNuevo.Text.Trim();
+     
                //PENDIENTE DE CHECAR SI VA LLEVAR EL CAMPO DE ESTATUS POQUE EN EL DIAGRAMA NO APARECE 06/11/2014
-                TemporalPreOrdenObjetoEntidad.EstatusId = 0;
+                TemporalPreOrdenObjetoEntidad.EstatusId = 1;
                 TemporalPreOrdenObjetoEntidad.ProductoId = ProductoIdHidden.Value;
                 TemporalPreOrdenObjetoEntidad.Cantidad = Int16.Parse(CantidadNuevo.Text.Trim());        
 
@@ -126,16 +135,18 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             if (Resultado.ErrorId == (int)ConstantePrograma.TemporalPreOrden.TemporalPreOrdenGuardadoCorrectamente)
              {
-                //LimpiarNuevo();
+                 TemporalPreOrdenIdHidden.Value = TemporalPreOrdenObjetoEntidad.PreOrdenId;
+               // LimpiarNuevo();
+                LimpiarProducto();
                 //CambiarBotonesNuevo();
-                //SeleccionarTemporalProducto();
+                //Se llena el grid
+                SeleccionarTemporalPreOrden();
             }
             else
             {
                 EtiquetaMensaje.Text = Resultado.DescripcionError;
             }
-        }
-        
+        }        
   
         private void Inicio()
         {
@@ -200,9 +211,86 @@ namespace Almacen.Web.Aplicacion.Almacen
             LimpiarNuevoRegistro();
         }
 
+        //protected void GuardarPreOrden()
+        //{
+        //    PreOrdenEntidad PreOrdenObjetoEntidad = new PreOrdenEntidad();
+        //    UsuarioEntidad UsuarioSessionEntidad = new UsuarioEntidad();
+
+        //    if (TemporalPreOrdenIdHidden.Value != "0")
+        //    {
+        //        if (TablaPreOrden.Rows.Count > 0)
+        //        {
+        //          // UsuarioSessionEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
+
+        //            PreOrdenObjetoEntidad.PreOrdenId = TemporalPreOrdenIdHidden.Value;
+        //            PreOrdenObjetoEntidad.EmpleadoId = Int16.Parse(SolicitanteIdNuevo.SelectedValue);
+        //            PreOrdenObjetoEntidad.JefeId = Int16.Parse(JefeInmediatoIdNuevo.SelectedValue);
+        //            PreOrdenObjetoEntidad.Clave = ClaveNuevo.Text.Trim();
+        //            PreOrdenObjetoEntidad.EstatusId = 1;
+        //            PreOrdenObjetoEntidad.ProductoId = ProductoIdHidden.Value;
+        //            PreOrdenObjetoEntidad.Cantidad = Int16.Parse(CantidadNuevo.Text.Trim());
+
+        //            GuardarPreOrden(PreOrdenObjetoEntidad);                   
+        //        }
+
+        //    }
+        //    else
+        //    {
+        //        EtiquetaMensaje.Text = "Favor de agregar los Productos";
+        //    }
+        //}
+
+        //protected void GuardarPreOrden(PreOrdenEntidad PreOrdenObjetoEntidad)
+        //{
+        //    ResultadoEntidad Resultado = new ResultadoEntidad();
+        //    PreOrdenProceso PreOrdenProcesoNegocio = new PreOrdenProceso();
+
+        //    Resultado = PreOrdenProcesoNegocio.GuardarPreOrden(PreOrdenObjetoEntidad);
+
+        //    if (Resultado.ErrorId == (int)ConstantePrograma.PreOrden.PreOrdenGuardadoCorrectamente)
+        //    {
+        //        LimpiarNuevoRegistro();
+        //        LimpiarProducto();
+
+        //    }
+        //    else
+        //    {
+        //        EtiquetaMensaje.Text = Resultado.DescripcionError;
+        //    }
+        //}
+
         private void EliminarPreOrden()
         { 
         
+        }
+
+        protected void SeleccionarTemporalPreOrden()
+        {
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            TemporalPreOrdenEntidad TemporalPreOrdenObjetoEntidad = new TemporalPreOrdenEntidad();
+            TemporalPreOrdenProceso TemporalPreOrdenProcesoNegocio = new TemporalPreOrdenProceso();
+
+            TemporalPreOrdenObjetoEntidad.PreOrdenId = TemporalPreOrdenIdHidden.Value;
+
+            Resultado = TemporalPreOrdenProcesoNegocio.SeleccionarPreOrdenDetalleTemp(TemporalPreOrdenObjetoEntidad);
+
+            if (Resultado.ErrorId == 0)
+            {
+                if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
+                    TablaPreOrden.CssClass = ConstantePrograma.ClaseTablaVacia;
+                else
+                    TablaPreOrden.CssClass = ConstantePrograma.ClaseTabla;
+
+
+
+                TablaPreOrden.DataSource = Resultado.ResultadoDatos;
+                TablaPreOrden.DataBind();
+                            
+            }
+            else
+            {
+                EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+            }
         }
 
         protected void LimpiarNuevoRegistro()
@@ -314,7 +402,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             SolicitanteIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
         }
-
+        
         protected void SeleccionarFamilia()
         {
             ResultadoEntidad Resultado = new ResultadoEntidad();
@@ -340,40 +428,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             FamiliaIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
         }
-
-        //public void SeleccionarJefe(Int16 EmpleadoIdJefe)
-        //{
-        //    ResultadoEntidad Resultado = new ResultadoEntidad();
-        //    EmpleadoEntidad EmpleadoEntidadObjeto = new EmpleadoEntidad();
-        //    EmpleadoProceso EmpleadoProcesoNegocio = new EmpleadoProceso();
-
-        //    if (EmpleadoIdJefe != 0)
-        //    {
-        //        EmpleadoEntidadObjeto.EmpleadoId = EmpleadoIdJefe;
-
-        //        Resultado = EmpleadoProcesoNegocio.SeleccionarEmpleado(EmpleadoEntidadObjeto);
-
-        //        if (Resultado.ErrorId == 0)
-        //        {
-        //            JefeInmediatoIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["EmpleadoIdJefe"].ToString();
-        //            JefeInmediatoIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["EmpleadoId"].ToString();
-                   
-        //        }
-        //        else
-        //        {
-        //            EtiquetaMensaje.Text = TextoError.ErrorGenerico;
-        //        }
-        //    }
-        //    else
-        //    {
-        //      //  NombreJefe.Text = "";
-        //       // JefeIdHidden.Value = "0";
-        //       // ActualizarTablaEmpleado.Update();
-        //    }
-
-        //}
-
-
+    
         public void SeleccionarJefe(Int16 EmpleadoIdJefe)
         {
             ResultadoEntidad Resultado = new ResultadoEntidad();
