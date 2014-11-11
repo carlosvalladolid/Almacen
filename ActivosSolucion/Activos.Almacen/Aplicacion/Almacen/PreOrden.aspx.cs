@@ -302,8 +302,8 @@ namespace Almacen.Web.Aplicacion.Almacen
             EtiquetaMensaje.Text = "";
             TablaPreOrden.DataSource = null;
             TablaPreOrden.DataBind();
-            TemporalPreOrdenIdHidden.Value = "0";
-            ProductoIdHidden.Value = "0";
+            TemporalPreOrdenIdHidden.Value = "";
+            ProductoIdHidden.Value = "";
 
         }
 
