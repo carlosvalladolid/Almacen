@@ -288,6 +288,16 @@
 	clear: both;
 }
 
+.SubTituloDiv
+{
+	background-color: #f0f0f0;
+	font-size: 14px;
+	height: 20px;
+	margin: 2px 5px 5px 5px;
+	padding: 2px;
+	width: 100%;
+}
+
 .TitlePage
 {
 	font-size: 14px;

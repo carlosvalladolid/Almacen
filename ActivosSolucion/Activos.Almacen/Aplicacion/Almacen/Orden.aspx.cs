@@ -15,9 +15,34 @@ namespace Almacen.Web.Aplicacion.Almacen
 {
     public partial class Orden : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
+        #region "Eventos"
+            protected void Page_Load(object sender, EventArgs e)
+            {
+                Inicio();
+            }
+        #endregion
 
-        }
+        #region "Métodos"
+            private void Inicio()
+            {
+                if (Page.IsPostBack)
+                    return;
+
+                SeleccionarPreOrden();
+                SeleccionarOrden();
+            }
+
+            private void SeleccionarOrden()
+            {
+                TablaOrden.DataSource = null;
+                TablaOrden.DataBind();
+            }
+
+            private void SeleccionarPreOrden()
+            {
+                TablaPreOrden.DataSource = null;
+                TablaPreOrden.DataBind();
+            }
+        #endregion
     }
 }

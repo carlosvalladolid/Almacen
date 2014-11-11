@@ -41,13 +41,85 @@ namespace Almacen.Web.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.TextBox PreOrdenBusqueda;
         
         /// <summary>
-        /// TablaFamilia control.
+        /// TablaPreOrden control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView TablaFamilia;
+        protected global::System.Web.UI.WebControls.GridView TablaPreOrden;
+        
+        /// <summary>
+        /// TablaOrden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView TablaOrden;
+        
+        /// <summary>
+        /// FechaOrdenBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox FechaOrdenBox;
+        
+        /// <summary>
+        /// ProveedorCombo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ProveedorCombo;
+        
+        /// <summary>
+        /// TelefonoBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TelefonoBox;
+        
+        /// <summary>
+        /// ContactoBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ContactoBox;
+        
+        /// <summary>
+        /// CorreoBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CorreoBox;
+        
+        /// <summary>
+        /// BotonBusqueda control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton BotonBusqueda;
+        
+        /// <summary>
+        /// BotonCancelarBusqueda control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton BotonCancelarBusqueda;
         
         /// <summary>
         /// AssociatedUpdate control.
@@ -64,9 +136,9 @@ namespace Almacen.Web.Aplicacion.Almacen {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-        public new Incluir.Plantilla.PlantillaPrivada Master {
+        public new Almacen.Web.Incluir.Plantilla.PlantillaPrivada Master {
             get {
-                return ((Incluir.Plantilla.PlantillaPrivada)(base.Master));
+                return ((Almacen.Web.Incluir.Plantilla.PlantillaPrivada)(base.Master));
             }
         }
     }
