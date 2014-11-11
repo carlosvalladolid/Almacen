@@ -160,6 +160,17 @@
                         <td class="Espacio"></td>
                         <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="CorreoBox" MaxLength="50" runat="server" Text=""></asp:TextBox></td>
                     </tr>
+                    <tr><td colspan="3">&nbsp;</td></tr>
+                    <tr>
+                        <td class="Nombre">Solicitante</td>
+                        <td class="Espacio"></td>
+                        <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="SolicitanteCombo" MaxLength="30" runat="server" ></asp:DropDownList></td>
+                    </tr>
+                    <tr>
+                        <td class="Nombre">Jefe inmediato</td>
+                        <td class="Espacio"></td>
+                        <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="JefeCombo" MaxLength="30" runat="server" ></asp:DropDownList></td>
+                    </tr>
                     <tr>
                         <td colspan="3">
                             <br />

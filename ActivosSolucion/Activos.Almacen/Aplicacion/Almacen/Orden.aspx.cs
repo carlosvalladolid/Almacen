@@ -30,6 +30,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 SeleccionarPreOrden();
                 SeleccionarOrden();
+                SeleccionarProveedor();
             }
 
             private void SeleccionarOrden()

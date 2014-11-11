@@ -104,6 +104,24 @@ namespace Almacen.Web.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.TextBox CorreoBox;
         
         /// <summary>
+        /// SolicitanteCombo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList SolicitanteCombo;
+        
+        /// <summary>
+        /// JefeCombo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList JefeCombo;
+        
+        /// <summary>
         /// BotonBusqueda control.
         /// </summary>
         /// <remarks>
