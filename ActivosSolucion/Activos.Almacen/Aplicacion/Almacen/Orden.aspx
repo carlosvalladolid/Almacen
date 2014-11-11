@@ -164,7 +164,7 @@
                     <tr>
                         <td class="Nombre">Solicitante</td>
                         <td class="Espacio"></td>
-                        <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="SolicitanteCombo" MaxLength="30" runat="server" ></asp:DropDownList></td>
+                        <td class="Campo"><asp:DropDownList AutoPostBack="true" CssClass="ComboGrande" ID="EmpleadoCombo" MaxLength="30" runat="server" onselectedindexchanged="EmpleadoCombo_SelectedIndexChanged" ></asp:DropDownList></td>
                     </tr>
                     <tr>
                         <td class="Nombre">Jefe inmediato</td>
