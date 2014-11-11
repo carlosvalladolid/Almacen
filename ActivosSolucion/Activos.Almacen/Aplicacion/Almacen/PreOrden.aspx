@@ -116,7 +116,7 @@
                         <tr>
                             <td class="Name">Marca</td>
                             <td class="Required"></td>
-                            <td class="Field"><asp:DropDownList CssClass="ComboGrande" ID="MarcaIdNuevo"  runat="server"></asp:DropDownList></td>
+                            <td class="Field"><asp:DropDownList CssClass="ComboGrande" ID="MarcaIdNuevo" Enabled ="false" runat="server"></asp:DropDownList></td>
                         </tr>
                         
                          <tr>
@@ -128,7 +128,8 @@
 						 <tr>
                             <td class="Name">Cantidad</td>
                             <td class="Required">*</td>
-                            <td class="Field"><asp:TextBox CssClass="CajaTextoChica" ID="CantidadNuevo"  runat="server" ></asp:TextBox></td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="CantidadNuevo" MaxLength="10" runat="server" Text=""></asp:TextBox></td>
+                           
                         </tr>
                         
                         <tr>
@@ -148,11 +149,12 @@
            <asp:Label CssClass="TextoError" ID="EtiquetaMensaje" runat="server" Text=""></asp:Label>
 
 			<div>
-                    <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
-                        CssClass="TablaInformacion" DataKeyNames="PreOrdenId, ProductoId" ID="TablaPreOrden" runat="server" PageSize="10">
+                    <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0" 
+                        CssClass="TablaInformacion" DataKeyNames="PreOrdenId, ProductoId" ID="TablaPreOrden" OnRowCommand="TablaPreOrden_RowCommand" runat="server" PageSize="10">
                         <EmptyDataTemplate>
                             <table class="TablaVacia">
                                 <tr class="Encabezado">
+                                    <th style="width: 10px;"></th>
                                     <th style="width: 30px;">Clave</th>
                                     <th style="width: 100px;">Nombre</th>  
                                     <th style="width: 80px;">Familia</th>                                    
@@ -161,7 +163,7 @@
                                     <th style="width: 20px;">Cantidad</th>  
                                 </tr>
                                 <tr>
-                                    <td colspan="6" style="text-align: center;">No se encontró información con los parámetros seleccionados</td>
+                                    <td colspan="7" style="text-align: center;">No se encontró información con los parámetros seleccionados</td>
                                 </tr>
                             </table>
                       </EmptyDataTemplate>
@@ -175,17 +177,17 @@
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center" Width="10px" />
                             </asp:TemplateField>                            
-                                                    
-                           <%--   <asp:TemplateField HeaderText="Clave">
+                         
+                         <asp:TemplateField HeaderText="Clave">
                                 <ItemTemplate>
                                     <asp:LinkButton CommandArgument="<%#Container.DataItemIndex%>" CommandName="Select" ID="LigaNombre" runat="server" Text='<%#Eval("Clave")%>'></asp:LinkButton>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center" Width="30px" />
-                            </asp:TemplateField>  --%>
+                            </asp:TemplateField> 
                              
-                             <asp:BoundField DataField="Clave" HeaderText="Clave" ItemStyle-HorizontalAlign="Left">
+                           <%--  <asp:BoundField DataField="Clave" HeaderText="Clave" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" Width="30px" />
-                            </asp:BoundField>   
+                            </asp:BoundField>   --%>
                                                       
                             
                             <asp:BoundField DataField="Descripcion" HeaderText="Producto" ItemStyle-HorizontalAlign="Left">
@@ -218,7 +220,7 @@
                                <asp:CustomValidator CssClass="TextoError" ControlToValidate="FechaPreOrdenNuevo" EnableClientScript="false" ErrorMessage="" ID="FechaPreOrden" OnServerValidate="FechaPreOrden_Validate"  runat="server" SetFocusOnError="true" ValidationGroup="Guardar" ValidateEmptyText="True"></asp:CustomValidator>
                                  
                               <br />
-                                <asp:ImageButton AlternateText="Guardar" ID="BotonGuardarPreOrden"  ImageUrl="/Imagen/Boton/BotonGuardar.png"  runat="server" />&nbsp;&nbsp;
+                              <asp:ImageButton AlternateText="Guardar" ID="BotonGuardarPreOrden"  ImageUrl="/Imagen/Boton/BotonGuardar.png" OnClick="BotonGuardar_Click" runat="server" />&nbsp;&nbsp;
                                 <asp:ImageButton AlternateText="Limpiar" ID="BotonLimpiarRegistro"  ImageUrl="/Imagen/Boton/BotonLimpiar.png" runat="server" />&nbsp;&nbsp;
                                 <asp:ImageButton AlternateText="Cancelar" ID="BotonCancelarPreOrden" ImageUrl="/Imagen/Boton/BotonCancelar.png" runat="server" />
                                 <asp:ImageButton AlternateText="Imprimir" ID="BotonImprimir"  ImageUrl="/Imagen/Boton/BotonImprimir.png"  runat="server" />&nbsp;&nbsp;

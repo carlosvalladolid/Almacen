@@ -102,7 +102,38 @@ namespace Activos.AccesoDatos.Almacen
            }
        }
 
-       
+       public ResultadoEntidad EliminarPreOrdenDetalleTemp(SqlConnection Conexion, SqlTransaction Transaccion, TemporalPreOrdenEntidad TemporalPreOrdenEntidadObjeto)
+       {
+           SqlCommand Comando;
+           SqlParameter Parametro;
+           ResultadoEntidad Resultado = new ResultadoEntidad();
+
+           try
+           {
+               Comando = new SqlCommand("EliminarPreOrdenDetalleTempProcedimiento", Conexion);
+               Comando.CommandType = CommandType.StoredProcedure;
+
+               Comando.Transaction = Transaccion;             
+
+               Parametro = new SqlParameter("ProductoId", SqlDbType.VarChar);
+               Parametro.Value = TemporalPreOrdenEntidadObjeto.ProductoId;
+               Comando.Parameters.Add(Parametro);
+
+               Comando.ExecuteNonQuery();
+
+               Resultado.ErrorId = (int)ConstantePrograma.TemporalPreOrden.TemporalPreOrdenEliminadoCorrectamente;
+
+               return Resultado;
+           }
+           catch (SqlException sqlEx)
+           {
+               Resultado.ErrorId = sqlEx.Number;
+               Resultado.DescripcionError = sqlEx.Message;
+
+               return Resultado;
+           }
+       }
+              
        public ResultadoEntidad InsertarTemporalPreOrdenDetalleTemp(SqlConnection Conexion, SqlTransaction Transaccion, TemporalPreOrdenEntidad TemporalPreOrdenEntidadObjeto)
        {
            SqlCommand Comando;

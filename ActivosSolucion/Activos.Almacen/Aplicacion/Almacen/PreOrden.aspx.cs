@@ -21,8 +21,6 @@ using Activos.ProcesoNegocio.Seguridad;
 using Activos.ProcesoNegocio.Catalogo;
 using Activos.ProcesoNegocio.Almacen;
 
-
-
 namespace Almacen.Web.Aplicacion.Almacen
 {
     public partial class PreOrden : System.Web.UI.Page
@@ -45,15 +43,13 @@ namespace Almacen.Web.Aplicacion.Almacen
             CambiarBusquedaAvanzada();
         }
 
-
         protected void BotonGuardar_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
             {
-                //GuardarPreOrden();
+                GuardarPreOrden();
             }
         }
-
 
         protected void LinkBuscarClave_Click(object sender, EventArgs e)
         {
@@ -99,6 +95,11 @@ namespace Almacen.Web.Aplicacion.Almacen
             {
                 args.IsValid = false;
             }
+        }
+       
+        protected void TablaPreOrden_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            TablaPreOrdenEventoComando(e);
         }
 
         #endregion
@@ -211,53 +212,45 @@ namespace Almacen.Web.Aplicacion.Almacen
             LimpiarNuevoRegistro();
         }
 
-        //protected void GuardarPreOrden()
-        //{
-        //    PreOrdenEntidad PreOrdenObjetoEntidad = new PreOrdenEntidad();
-        //    UsuarioEntidad UsuarioSessionEntidad = new UsuarioEntidad();
+        protected void GuardarPreOrden()
+        {
+            PreOrdenEntidad PreOrdenObjetoEntidad = new PreOrdenEntidad();
+            UsuarioEntidad UsuarioSessionEntidad = new UsuarioEntidad();
 
-        //    if (TemporalPreOrdenIdHidden.Value != "0")
-        //    {
-        //        if (TablaPreOrden.Rows.Count > 0)
-        //        {
-        //          // UsuarioSessionEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
+            if (TemporalPreOrdenIdHidden.Value != "0")
+            {
+                if (TablaPreOrden.Rows.Count > 0)
+                {
+                   PreOrdenObjetoEntidad.PreOrdenId = TemporalPreOrdenIdHidden.Value;                 
 
-        //            PreOrdenObjetoEntidad.PreOrdenId = TemporalPreOrdenIdHidden.Value;
-        //            PreOrdenObjetoEntidad.EmpleadoId = Int16.Parse(SolicitanteIdNuevo.SelectedValue);
-        //            PreOrdenObjetoEntidad.JefeId = Int16.Parse(JefeInmediatoIdNuevo.SelectedValue);
-        //            PreOrdenObjetoEntidad.Clave = ClaveNuevo.Text.Trim();
-        //            PreOrdenObjetoEntidad.EstatusId = 1;
-        //            PreOrdenObjetoEntidad.ProductoId = ProductoIdHidden.Value;
-        //            PreOrdenObjetoEntidad.Cantidad = Int16.Parse(CantidadNuevo.Text.Trim());
+                    GuardarPreOrden(PreOrdenObjetoEntidad);
+                }
 
-        //            GuardarPreOrden(PreOrdenObjetoEntidad);                   
-        //        }
+            }
+            else
+            {
+                EtiquetaMensaje.Text = "Favor de agregar los Productos";
+            }
+        }
 
-        //    }
-        //    else
-        //    {
-        //        EtiquetaMensaje.Text = "Favor de agregar los Productos";
-        //    }
-        //}
+        protected void GuardarPreOrden(PreOrdenEntidad PreOrdenObjetoEntidad)
+        {
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            PreOrdenProceso PreOrdenProcesoNegocio = new PreOrdenProceso();
 
-        //protected void GuardarPreOrden(PreOrdenEntidad PreOrdenObjetoEntidad)
-        //{
-        //    ResultadoEntidad Resultado = new ResultadoEntidad();
-        //    PreOrdenProceso PreOrdenProcesoNegocio = new PreOrdenProceso();
+            Resultado = PreOrdenProcesoNegocio.GuardarPreOrdenCompra(PreOrdenObjetoEntidad);
 
-        //    Resultado = PreOrdenProcesoNegocio.GuardarPreOrden(PreOrdenObjetoEntidad);
+            if (Resultado.ErrorId == (int)ConstantePrograma.PreOrden.PreOrdenGuardadoCorrectamente)
+            {
+                LimpiarNuevoRegistro();
+                LimpiarProducto();
 
-        //    if (Resultado.ErrorId == (int)ConstantePrograma.PreOrden.PreOrdenGuardadoCorrectamente)
-        //    {
-        //        LimpiarNuevoRegistro();
-        //        LimpiarProducto();
-
-        //    }
-        //    else
-        //    {
-        //        EtiquetaMensaje.Text = Resultado.DescripcionError;
-        //    }
-        //}
+            }
+            else
+            {
+                EtiquetaMensaje.Text = Resultado.DescripcionError;
+            }
+        }
 
         private void EliminarPreOrden()
         { 
@@ -305,8 +298,13 @@ namespace Almacen.Web.Aplicacion.Almacen
            // MarcaIdNuevo.SelectedIndex = 0;
            // DescripcionNuevo.Text = "";
            //  CantidadNuevo.Text = "";
-            EtiquetaMensaje.Text = "";        
         
+            EtiquetaMensaje.Text = "";
+            TablaPreOrden.DataSource = null;
+            TablaPreOrden.DataBind();
+            TemporalPreOrdenIdHidden.Value = "0";
+            ProductoIdHidden.Value = "0";
+
         }
 
         protected void LimpiarProducto()
@@ -528,6 +526,75 @@ namespace Almacen.Web.Aplicacion.Almacen
             SubFamiliaIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
         }
 
+        protected void TablaPreOrdenEventoComando(GridViewCommandEventArgs e)
+        {
+            Int16 intFila = 0;
+            int intTamañoPagina = 0;
+            string ProductoId = string.Empty;
+            //string PreOrdenId = string.Empty;
+            string strCommand = string.Empty;
+
+            intFila = Int16.Parse(e.CommandArgument.ToString());
+            strCommand = e.CommandName.ToString();
+            intTamañoPagina = TablaPreOrden.PageSize;
+
+            if (intFila >= intTamañoPagina)
+                intFila = (Int16)(intFila - (intTamañoPagina * TablaPreOrden.PageIndex));
+
+            switch (strCommand)
+            {
+                case "Select":
+                    ProductoId = string.Format(TablaPreOrden.DataKeys[intFila]["ProductoId"].ToString());
+
+                    if (ProductoIdHidden.Value == "0")
+                    {
+                       // SeleccionarPreOrdenParaEditar(ProductoId);
+                        //CambiarBotonesActualizar();
+                    }
+                    else
+                    {
+                        EtiquetaMensaje.Text = "Favor de finalizar.";
+                    }
+                    break;
+
+                case "EliminarProducto":
+                    ProductoId = string.Format(TablaPreOrden.DataKeys[intFila]["ProductoId"].ToString());
+                    EliminarProducto(ProductoId);
+                    break;
+
+                default:
+                    // Do nothing
+                    break;
+            }
+        }
+
+        protected void EliminarProducto(string ProductoId)
+        {
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            TemporalPreOrdenEntidad TemporalPreOrdenObjetoEntidad = new TemporalPreOrdenEntidad();
+            TemporalPreOrdenProceso TemporalPreOrdenProcesoNegocio = new TemporalPreOrdenProceso();
+
+            if (TemporalPreOrdenIdHidden.Value != ProductoId.ToString())
+            {
+                TemporalPreOrdenObjetoEntidad.TemporalPreOrdenId = ProductoId;
+
+             Resultado = TemporalPreOrdenProcesoNegocio.CancelarNuevoPreOrden(TemporalPreOrdenObjetoEntidad);
+
+              if (Resultado.ErrorId == (int)ConstantePrograma.TemporalPreOrden.TemporalPreOrdenEliminadoCorrectamente)
+                {
+                        LimpiarProducto();
+                        EtiquetaMensaje.Text = "";                   
+                        SeleccionarTemporalPreOrden();                        
+                   
+                }
+                else
+                {
+                    EtiquetaMensaje.Text = Resultado.DescripcionError;
+                }
+        }
+
+        }
+        
         #endregion
     }
 }

@@ -33,15 +33,6 @@ namespace Activos.AccesoDatos.Almacen
                 Parametro.Value = PreOrdenEntidadObjeto.PreOrdenId;
                 Comando.Parameters.Add(Parametro);
 
-                Parametro = new SqlParameter("ProductoId", SqlDbType.VarChar);
-                Parametro.Value = PreOrdenEntidadObjeto.ProductoId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("Cantidad", SqlDbType.Int);
-                Parametro.Value = PreOrdenEntidadObjeto.Cantidad;
-                Comando.Parameters.Add(Parametro);
-
-
                 Comando.ExecuteNonQuery();
                 Resultado.ErrorId = (int)ConstantePrograma.PreOrden.PreOrdenGuardadoCorrectamente;
 
@@ -64,7 +55,7 @@ namespace Activos.AccesoDatos.Almacen
 
             try
             {
-                Comando = new SqlCommand("InsertarPreOrdenEncabezadoTempProcedimiento", Conexion);
+                Comando = new SqlCommand("InsertarPreOrdenEncabezadoProcedimiento", Conexion);
                 Comando.CommandType = CommandType.StoredProcedure;
 
                 Comando.Transaction = Transaccion;
@@ -72,23 +63,6 @@ namespace Activos.AccesoDatos.Almacen
                 Parametro = new SqlParameter("PreOrdenId", SqlDbType.VarChar);
                 Parametro.Value = PreOrdenEntidadObjeto.PreOrdenId;
                 Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("EmpleadoId", SqlDbType.Int);
-                Parametro.Value = PreOrdenEntidadObjeto.EmpleadoId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("JefeId", SqlDbType.Int);
-                Parametro.Value = PreOrdenEntidadObjeto.JefeId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("EstatusId", SqlDbType.SmallInt);
-                Parametro.Value = PreOrdenEntidadObjeto.EstatusId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("Clave", SqlDbType.VarChar);
-                Parametro.Value = PreOrdenEntidadObjeto.Clave;
-                Comando.Parameters.Add(Parametro);
-
 
                 Comando.ExecuteNonQuery();
 

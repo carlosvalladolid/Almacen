@@ -15,173 +15,177 @@ using Activos.Entidad.Almacen;
 
 namespace Activos.ProcesoNegocio.Almacen
 {
-   public class TemporalPreOrdenProceso:Base
+    public class TemporalPreOrdenProceso : Base
     {
-       public ResultadoEntidad AgregarTemporalPreOrden(TemporalPreOrdenEntidad TemporalPreOrdenObjetoEntidad)
-       {
-           TemporalPreOrdenAcceso TemporalPreOrdenAccesoObjeto = new TemporalPreOrdenAcceso();
-           string CadenaConexion = string.Empty;       
-           ResultadoEntidad Resultado = new ResultadoEntidad();
-           ResultadoEntidad ResultadoPreOrdenDuplicado = new ResultadoEntidad();
-           SqlTransaction Transaccion;
-           SqlConnection Conexion;
+        public ResultadoEntidad AgregarTemporalPreOrden(TemporalPreOrdenEntidad TemporalPreOrdenObjetoEntidad)
+        {
+            TemporalPreOrdenAcceso TemporalPreOrdenAccesoObjeto = new TemporalPreOrdenAcceso();
+            string CadenaConexion = string.Empty;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            ResultadoEntidad ResultadoPreOrdenDuplicado = new ResultadoEntidad();
+            SqlTransaction Transaccion;
+            SqlConnection Conexion;
 
-           CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
-          
-           Conexion = new SqlConnection(CadenaConexion);
-           Conexion.Open();
+            CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
-           Transaccion = Conexion.BeginTransaction();
-           try
-           {
-               if (TemporalPreOrdenObjetoEntidad.PreOrdenId == "")
-               {
-                   TemporalPreOrdenObjetoEntidad.PreOrdenId = Guid.NewGuid().ToString();
+            Conexion = new SqlConnection(CadenaConexion);
+            Conexion.Open();
 
-                   Resultado = TemporalPreOrdenAccesoObjeto.InsertarTemporalPreOrdenEncabezadoTemp(Conexion, Transaccion, TemporalPreOrdenObjetoEntidad);
-               }
-               else
-               {
-                   //Editar encabezado
-                   Resultado = TemporalPreOrdenAccesoObjeto.ActualizarPreOrdenEncabezadoTemp(Conexion, Transaccion, TemporalPreOrdenObjetoEntidad);
-               }
+            Transaccion = Conexion.BeginTransaction();
+            try
+            {
+                if (TemporalPreOrdenObjetoEntidad.PreOrdenId == "")
+                {
+                    TemporalPreOrdenObjetoEntidad.PreOrdenId = Guid.NewGuid().ToString();
 
-               if (Resultado.ErrorId == (int)ConstantePrograma.TemporalPreOrden.TemporalPreOrdenGuardadoCorrectamente)
-               {
-                   Resultado = TemporalPreOrdenAccesoObjeto.SeleccionarPreOrdenDetalleTemp(Conexion, Transaccion, TemporalPreOrdenObjetoEntidad);
+                    Resultado = TemporalPreOrdenAccesoObjeto.InsertarTemporalPreOrdenEncabezadoTemp(Conexion, Transaccion, TemporalPreOrdenObjetoEntidad);
+                }
+                else
+                {
+                    //Editar encabezado
+                    Resultado = TemporalPreOrdenAccesoObjeto.ActualizarPreOrdenEncabezadoTemp(Conexion, Transaccion, TemporalPreOrdenObjetoEntidad);
+                }
 
-                   if (Resultado.ResultadoDatos.Tables[0].Rows.Count > 0)
-                   {
-                       //Se edita el poducto
-                       Resultado = TemporalPreOrdenAccesoObjeto.ActualizarPreOrdenDetalleTemp(Conexion, Transaccion, TemporalPreOrdenObjetoEntidad);
-                   }
-                   else
-                   {
-                       //Se inserta el poducto
-                       Resultado = TemporalPreOrdenAccesoObjeto.InsertarTemporalPreOrdenDetalleTemp(Conexion, Transaccion, TemporalPreOrdenObjetoEntidad);
-                   }
+                if (Resultado.ErrorId == (int)ConstantePrograma.TemporalPreOrden.TemporalPreOrdenGuardadoCorrectamente)
+                {
+                    Resultado = TemporalPreOrdenAccesoObjeto.SeleccionarPreOrdenDetalleTemp(Conexion, Transaccion, TemporalPreOrdenObjetoEntidad);
 
-                   if (Resultado.ErrorId == (int)ConstantePrograma.TemporalPreOrden.TemporalPreOrdenGuardadoCorrectamente)
-                   {
-                       Transaccion.Commit();
-                   }
-                   else
-                   {
-                       Transaccion.Rollback();
-                   }
+                    if (Resultado.ResultadoDatos.Tables[0].Rows.Count > 0)
+                    {
+                        //Se edita el poducto
+                        Resultado = TemporalPreOrdenAccesoObjeto.ActualizarPreOrdenDetalleTemp(Conexion, Transaccion, TemporalPreOrdenObjetoEntidad);
+                    }
+                    else
+                    {
+                        //Se inserta el poducto
+                        Resultado = TemporalPreOrdenAccesoObjeto.InsertarTemporalPreOrdenDetalleTemp(Conexion, Transaccion, TemporalPreOrdenObjetoEntidad);
+                    }
 
-               }
-               else
-               {
-                   Transaccion.Rollback();
-               }
+                    if (Resultado.ErrorId == (int)ConstantePrograma.TemporalPreOrden.TemporalPreOrdenGuardadoCorrectamente)
+                    {
+                        Transaccion.Commit();
+                    }
+                    else
+                    {
+                        Transaccion.Rollback();
+                    }
 
-               Conexion.Close();
+                }
+                else
+                {
+                    Transaccion.Rollback();
+                }
 
-               return Resultado;
-           }
-           catch (Exception EX )
-           {
-               Transaccion.Rollback();
+                Conexion.Close();
 
-               if(Conexion.State == ConnectionState.Open)
-               { 
-                   Conexion.Close(); 
-               }
-               Resultado.DescripcionError = EX.Message;
-               return Resultado;
-           
-           }
-       }
+                return Resultado;
+            }
+            catch (Exception EX)
+            {
+                Transaccion.Rollback();
 
-       public ResultadoEntidad SeleccionarPreOrdenDetalleTemp(TemporalPreOrdenEntidad TemporalPreOrdenObjetoEntidad)
-       {
-           string CadenaConexion = string.Empty;
-           TemporalPreOrdenAcceso TemporalPreOrdenAccesoObjeto = new TemporalPreOrdenAcceso();
-           ResultadoEntidad Resultado = new ResultadoEntidad();
+                if (Conexion.State == ConnectionState.Open)
+                {
+                    Conexion.Close();
+                }
+                Resultado.DescripcionError = EX.Message;
+                return Resultado;
 
-           SqlTransaction Transaccion;
-           SqlConnection Conexion;
+            }
+        }
 
-           CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+        public ResultadoEntidad SeleccionarPreOrdenDetalleTemp(TemporalPreOrdenEntidad TemporalPreOrdenObjetoEntidad)
+        {
+            string CadenaConexion = string.Empty;
+            TemporalPreOrdenAcceso TemporalPreOrdenAccesoObjeto = new TemporalPreOrdenAcceso();
+            ResultadoEntidad Resultado = new ResultadoEntidad();
 
-           Conexion = new SqlConnection(CadenaConexion);
-           Conexion.Open();
+            SqlTransaction Transaccion;
+            SqlConnection Conexion;
 
-           Transaccion = Conexion.BeginTransaction();
+            CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
-           try
-           {
-               Resultado = TemporalPreOrdenAccesoObjeto.SeleccionarPreOrdenDetalleTemp(Conexion, Transaccion, TemporalPreOrdenObjetoEntidad);
+            Conexion = new SqlConnection(CadenaConexion);
+            Conexion.Open();
 
-               return Resultado;
-           }
-           catch (Exception EX)
-           {
-               Transaccion.Rollback();
+            Transaccion = Conexion.BeginTransaction();
 
-               if (Conexion.State == ConnectionState.Open)
-               {
-                   Conexion.Close();
-               }
-               Resultado.DescripcionError = EX.Message;
-               return Resultado;
+            try
+            {
+                Resultado = TemporalPreOrdenAccesoObjeto.SeleccionarPreOrdenDetalleTemp(Conexion, Transaccion, TemporalPreOrdenObjetoEntidad);
 
-           }
+                return Resultado;
+            }
+            catch (Exception EX)
+            {
+                Transaccion.Rollback();
 
-       }
+                if (Conexion.State == ConnectionState.Open)
+                {
+                    Conexion.Close();
+                }
+                Resultado.DescripcionError = EX.Message;
+                return Resultado;
 
-       //public ResultadoEntidad GuardarTemporalPreOrdenEncabezadoTemp(SqlConnection Conexion, SqlTransaction Transaccion, TemporalPreOrdenEntidad TemporalPreOrdenObjetoEntidad)
-       //{
-       //    ResultadoEntidad Resultado = new ResultadoEntidad();
-       //    TemporalPreOrdenAcceso TemporalPreOrdenAccesoObjeto = new TemporalPreOrdenAcceso();
+            }
 
-       //    if (TemporalPreOrdenObjetoEntidad.PreOrdenId == "")
-       //    {
-       //        TemporalPreOrdenObjetoEntidad.PreOrdenId = Guid.NewGuid().ToString();              
-       //        //TemporalPreOrdenObjetoEntidad.TemporalPreOrdenId = TemporalPreOrdenObjetoEntidad.PreOrdenId;
+        }
 
-       //        Resultado = TemporalPreOrdenAccesoObjeto.InsertarTemporalPreOrdenEncabezadoTemp(Conexion, Transaccion, TemporalPreOrdenObjetoEntidad);
-       //    }
-       //    else 
-       //    {
-       //        //Resultado = TemporalPreOrdenAccesoObjeto.ActualizarTemporalPreOrdenEncabezadoTemp(Conexion, Transaccion, TemporalPreOrdenObjetoEntidad);
-           
-       //    }
-       //    return Resultado;
-       //}
+        public ResultadoEntidad CancelarNuevoPreOrden(TemporalPreOrdenEntidad TemporalPreOrdenObjetoEntidad)
+        {
+            string CadenaConexion = string.Empty;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            TemporalPreOrdenAcceso TemporalPreOrdenAccesoObjeto = new TemporalPreOrdenAcceso();
+            SqlTransaction Transaccion;
+            SqlConnection Conexion;
 
-       //public ResultadoEntidad GuardarTemporalPreOrdenDetalleTemp(SqlConnection Conexion, SqlTransaction Transaccion, TemporalPreOrdenEntidad TemporalPreOrdenObjetoEntidad)
-       //{
-       //    ResultadoEntidad Resultado = new ResultadoEntidad();
-       //    TemporalPreOrdenAcceso TemporalPreOrdenAccesoObjeto = new TemporalPreOrdenAcceso();
+            CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
-       //    if (BuscarTemporalPreOrdenDetalle(Conexion, Transaccion, TemporalPreOrdenObjetoEntidad) == true)
-       //    {
-       //        Resultado = TemporalPreOrdenAccesoObjeto.InsertarTemporalPreOrdenDetalleTemp(Conexion, Transaccion, TemporalPreOrdenObjetoEntidad);
-       //    }
-       //    else
-       //    {
-       //        //Resultado = TemporalPreOrdenAccesoObjeto.ActualizarTemporalPreOrdenDetalleTemp(Conexion, Transaccion, TemporalPreOrdenObjetoEntidad);
-       //    }
-       //    return Resultado;
-       //}
+            Conexion = new SqlConnection(CadenaConexion);
+            Conexion.Open();
 
+            Transaccion = Conexion.BeginTransaction();
 
+            try
+            {
 
-       //public ResultadoEntidad ValidarPreOrdenDuplicado(TemporalPreOrdenEntidad TemporalPreOrdenObjetoEntidad)
-       //{
-       //    ResultadoEntidad Resultado = new ResultadoEntidad();
+                //Se elimina la PreOrden temporal
+                if (TemporalPreOrdenObjetoEntidad.ProductoId != "")
+                {
 
-       //    if (BuscarTemporalPreOrdenDetalle(TemporalPreOrdenObjetoEntidad) == true)
-       //    {   // Se busca si ya existe una Preorden con ese numero de numero, si es diferente de nada
-       //        Resultado.ErrorId = (int)ConstantePrograma.PreOrden.PreOrdenTieneRegistroDuplicado;
-       //        Resultado.DescripcionError = TextoError.ProductoConNombreDuplicado;
-       //        return Resultado;           }
+                    Resultado = TemporalPreOrdenAccesoObjeto.EliminarPreOrdenDetalleTemp(Conexion, Transaccion, TemporalPreOrdenObjetoEntidad);
 
-         
-       //    return Resultado;
-       //}
+                    if (Resultado.ErrorId == (int)ConstantePrograma.TemporalPreOrden.TemporalPreOrdenEliminadoCorrectamente)
+                    {
+                        Transaccion.Commit();
+                    }
+                    else
+                    {
+                        Transaccion.Rollback();
+                    }
+                }
+                else
+                {
+                    Transaccion.Rollback();
+                }
+                Conexion.Close();
+
+                return Resultado;
+            }
+            catch (Exception EX)
+            {
+                Transaccion.Rollback();
+
+                if (Conexion.State == ConnectionState.Open)
+                {
+                    Conexion.Close();
+                }
+                Resultado.DescripcionError = EX.Message;
+                return Resultado;
+            }
+
+        }
+
 
 
     }
