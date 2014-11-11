@@ -149,7 +149,7 @@
 
 			<div>
                     <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
-                        CssClass="TablaInformacion" DataKeyNames="PreOrdenId" ID="TablaPreOrden" runat="server" PageSize="10">
+                        CssClass="TablaInformacion" DataKeyNames="PreOrdenId, ProductoId" ID="TablaPreOrden" runat="server" PageSize="10">
                         <EmptyDataTemplate>
                             <table class="TablaVacia">
                                 <tr class="Encabezado">
@@ -176,26 +176,31 @@
                                 <ItemStyle HorizontalAlign="Center" Width="10px" />
                             </asp:TemplateField>                            
                                                     
-                              <asp:TemplateField HeaderText="Clave">
+                           <%--   <asp:TemplateField HeaderText="Clave">
                                 <ItemTemplate>
                                     <asp:LinkButton CommandArgument="<%#Container.DataItemIndex%>" CommandName="Select" ID="LigaNombre" runat="server" Text='<%#Eval("Clave")%>'></asp:LinkButton>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center" Width="30px" />
-                            </asp:TemplateField>                            
+                            </asp:TemplateField>  --%>
+                             
+                             <asp:BoundField DataField="Clave" HeaderText="Clave" ItemStyle-HorizontalAlign="Left">
+                                <HeaderStyle HorizontalAlign="Center" Width="30px" />
+                            </asp:BoundField>   
+                                                      
                             
-                            <asp:BoundField DataField="NombreProducto" HeaderText="Producto" ItemStyle-HorizontalAlign="Left">
+                            <asp:BoundField DataField="Descripcion" HeaderText="Producto" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" Width="100px" />
                             </asp:BoundField>    
                             
-                              <asp:BoundField DataField="Familia" HeaderText="Familia" ItemStyle-HorizontalAlign="Left">
+                              <asp:BoundField DataField="FamiliaNombre" HeaderText="Familia" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" Width="60px" />
                             </asp:BoundField>                  
                           
-                            <asp:BoundField DataField="SubFamilia" HeaderText="SubFamilia" ItemStyle-HorizontalAlign="Left">
+                            <asp:BoundField DataField="SubFamiliaNombre" HeaderText="SubFamilia" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" Width="60px" />
                             </asp:BoundField>
                             
-                             <asp:BoundField DataField="Marca" HeaderText="Marca" ItemStyle-HorizontalAlign="Left">
+                             <asp:BoundField DataField="MarcaNombre" HeaderText="Marca" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" Width="60px" />
                             </asp:BoundField>
                             
@@ -237,7 +242,7 @@
                      <asp:HiddenField ID="ProductoIdHidden" runat="server" Value="" />
                      <asp:HiddenField ID="ClaveIdHidden" runat="server" Value="" />
                      <asp:HiddenField ID="SolicitanteIdHidden" runat="server" Value="0" />
-                     <asp:HiddenField ID="TemporalPreOrdenId" runat="server" Value="" />
+                     <asp:HiddenField ID="TemporalPreOrdenIdHidden" runat="server" Value="" />
                      <asp:HiddenField ID="TemporalProducto" runat="server" Value="" />
                 
                 

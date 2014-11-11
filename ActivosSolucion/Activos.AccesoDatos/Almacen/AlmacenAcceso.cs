@@ -210,7 +210,13 @@ namespace Activos.AccesoDatos.Almacen
                 
                 Parametro = new SqlParameter("Descripcion", SqlDbType.VarChar);
                 Parametro.Value = AlmacenEntidadObjeto.Descripcion;
-                Comando.Parameters.Add(Parametro);                              
+                Comando.Parameters.Add(Parametro);
+
+
+                //Parametro = new SqlParameter("ProductoId", SqlDbType.VarChar);
+                //Parametro.Value = AlmacenEntidadObjeto.ProductoId;
+                //Comando.Parameters.Add(Parametro);    
+
 
                 Parametro = new SqlParameter("BusquedaRapida", SqlDbType.VarChar);
                 Parametro.Value = AlmacenEntidadObjeto.BusquedaRapida;
