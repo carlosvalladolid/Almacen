@@ -171,7 +171,7 @@
                         <HeaderStyle CssClass="Encabezado" />
                         <PagerStyle CssClass="Paginacion" HorizontalAlign="Right" />
                         <Columns>
-                            <asp:TemplateField HeaderText="">
+                           <%-- <asp:TemplateField HeaderText="">
                                 <ItemTemplate>
                                     <asp:CheckBox ID="SeleccionarBorrar" runat="server" />
                                 </ItemTemplate>
@@ -183,12 +183,11 @@
                                     <asp:LinkButton CommandArgument="<%#Container.DataItemIndex%>" CommandName="Select" ID="LigaNombre" runat="server" Text='<%#Eval("Clave")%>'></asp:LinkButton>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center" Width="30px" />
-                            </asp:TemplateField> 
+                            </asp:TemplateField> --%>
                              
-                           <%--  <asp:BoundField DataField="Clave" HeaderText="Clave" ItemStyle-HorizontalAlign="Left">
+                           <asp:BoundField DataField="Clave" HeaderText="Clave" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" Width="30px" />
-                            </asp:BoundField>   --%>
-                                                      
+                            </asp:BoundField>                                                      
                             
                             <asp:BoundField DataField="Descripcion" HeaderText="Producto" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" Width="100px" />
@@ -209,6 +208,14 @@
                              <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" Width="20px" />
                             </asp:BoundField>
+                            
+                            <asp:TemplateField HeaderText="">
+                                     <ItemTemplate>
+                                         <asp:ImageButton ID="BotonEliminarActivo" CommandArgument="<%#Container.DataItemIndex%>" CommandName="EliminarPreOrden" runat="server" ImageUrl="/Imagen/Icono/IconoEliminarRegistro.gif" />
+                                     </ItemTemplate>
+                                     <ItemStyle HorizontalAlign="Center" Width="25px" />
+                            </asp:TemplateField>
+                            
                         </Columns>
                     </asp:GridView>
                 </div>

@@ -307,6 +307,6 @@ namespace Almacen.Web.Aplicacion.Almacen {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-      
+     
     }
 }

@@ -150,7 +150,7 @@ namespace Activos.ProcesoNegocio.Almacen
             {
 
                 //Se elimina la PreOrden temporal
-                if (TemporalPreOrdenObjetoEntidad.ProductoId != "")
+                if (TemporalPreOrdenObjetoEntidad.ProductoId!= "")
                 {
 
                     Resultado = TemporalPreOrdenAccesoObjeto.EliminarPreOrdenDetalleTemp(Conexion, Transaccion, TemporalPreOrdenObjetoEntidad);

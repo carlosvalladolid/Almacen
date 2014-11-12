@@ -50,17 +50,12 @@ namespace Almacen.Web.Aplicacion.Almacen
                 GuardarPreOrden();
             }
         }
-
+        
         protected void LinkBuscarClave_Click(object sender, EventArgs e)
         {
             SeleccionarClave();
         }
-
-        protected void EliminarRegistroLink_Click(Object sender, System.EventArgs e)
-        {
-            EliminarPreOrden();
-        }
-
+       
         protected void NuevoRegistro_Click(Object sender, System.EventArgs e)
         {
             CambiarNuevoRegistro();
@@ -252,11 +247,6 @@ namespace Almacen.Web.Aplicacion.Almacen
             }
         }
 
-        private void EliminarPreOrden()
-        { 
-        
-        }
-
         protected void SeleccionarTemporalPreOrden()
         {
             ResultadoEntidad Resultado = new ResultadoEntidad();
@@ -292,13 +282,6 @@ namespace Almacen.Web.Aplicacion.Almacen
             FechaPreOrdenNuevo.Text = "";
             SolicitanteIdNuevo.SelectedIndex = 0;
             JefeInmediatoIdNuevo.Items.Clear();
-            // ClaveNuevo.Text = "";
-            // FamiliaIdNuevo.SelectedIndex = 0;
-           // SubFamiliaIdNuevo.SelectedIndex = 0;
-           // MarcaIdNuevo.SelectedIndex = 0;
-           // DescripcionNuevo.Text = "";
-           //  CantidadNuevo.Text = "";
-        
             EtiquetaMensaje.Text = "";
             TablaPreOrden.DataSource = null;
             TablaPreOrden.DataBind();
@@ -316,7 +299,10 @@ namespace Almacen.Web.Aplicacion.Almacen
             MarcaIdNuevo.SelectedIndex = 0;
             DescripcionNuevo.Text = "";
             CantidadNuevo.Text = "";
+            ProductoIdHidden.Value = "";
 
+            TablaPreOrden.DataSource = null;
+            TablaPreOrden.DataBind();
             }
 
         protected void SeleccionarClave()
@@ -530,8 +516,7 @@ namespace Almacen.Web.Aplicacion.Almacen
         {
             Int16 intFila = 0;
             int intTamañoPagina = 0;
-            string ProductoId = string.Empty;
-            //string PreOrdenId = string.Empty;
+            string ProductoId = string.Empty;           
             string strCommand = string.Empty;
 
             intFila = Int16.Parse(e.CommandArgument.ToString());
@@ -557,7 +542,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                     }
                     break;
 
-                case "EliminarProducto":
+                case "EliminarPreOrden":
                     ProductoId = string.Format(TablaPreOrden.DataKeys[intFila]["ProductoId"].ToString());
                     EliminarProducto(ProductoId);
                     break;
@@ -568,30 +553,32 @@ namespace Almacen.Web.Aplicacion.Almacen
             }
         }
 
+
+
+
+       
         protected void EliminarProducto(string ProductoId)
         {
             ResultadoEntidad Resultado = new ResultadoEntidad();
             TemporalPreOrdenEntidad TemporalPreOrdenObjetoEntidad = new TemporalPreOrdenEntidad();
             TemporalPreOrdenProceso TemporalPreOrdenProcesoNegocio = new TemporalPreOrdenProceso();
 
-            if (TemporalPreOrdenIdHidden.Value != ProductoId.ToString())
-            {
-                TemporalPreOrdenObjetoEntidad.TemporalPreOrdenId = ProductoId;
+            //if (ProductoIdHidden.Value == ProductoId.ToString())
+            //{
+                TemporalPreOrdenObjetoEntidad.ProductoId = ProductoId;
+                Resultado = TemporalPreOrdenProcesoNegocio.CancelarNuevoPreOrden(TemporalPreOrdenObjetoEntidad);
 
-             Resultado = TemporalPreOrdenProcesoNegocio.CancelarNuevoPreOrden(TemporalPreOrdenObjetoEntidad);
-
-              if (Resultado.ErrorId == (int)ConstantePrograma.TemporalPreOrden.TemporalPreOrdenEliminadoCorrectamente)
-                {
-                        LimpiarProducto();
+                if (Resultado.ErrorId == (int)ConstantePrograma.TemporalPreOrden.TemporalPreOrdenEliminadoCorrectamente)
+                {                   
                         EtiquetaMensaje.Text = "";                   
-                        SeleccionarTemporalPreOrden();                        
-                   
+                        SeleccionarTemporalPreOrden();            
+
                 }
                 else
                 {
                     EtiquetaMensaje.Text = Resultado.DescripcionError;
                 }
-        }
+            //}
 
         }
         
