@@ -53,6 +53,11 @@
     </tr>
     <tr>
         <td class="Space"></td>
+        <td></td>
+        <td><a href="/Aplicacion/Almacen/Recepcion.aspx">Recepción de artículos</a></td>
+    </tr>
+    <tr>
+        <td class="Space"></td>
         <td><img alt="Inicio" border="0" src="/Imagen/Icono/IconoReporte.png" title="Reportes" /></td>
         <td class="Section">Reportes</td>
     </tr>

@@ -13,7 +13,7 @@ using System.Xml.Linq;
 
 namespace Activos.Almacen.Aplicacion.Almacen
 {
-    public partial class Recepción : System.Web.UI.Page
+    public partial class Recepcion : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

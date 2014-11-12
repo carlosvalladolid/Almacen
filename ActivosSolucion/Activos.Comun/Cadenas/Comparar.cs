@@ -7,7 +7,6 @@ namespace Activos.Comun.Cadenas
 {
     public class Comparar : Base
     {
-
         public static string EstandarizarCadena(string strCadena)
         {
             string strResultado = string.Empty;
@@ -25,5 +24,13 @@ namespace Activos.Comun.Cadenas
             return strResultado;
         }
 
+        public static string ReemplazarCadenaJavascript(string TextToChange)
+        {
+            TextToChange = TextToChange.Replace("\r", "");
+            TextToChange = TextToChange.Replace("\n", "");
+            TextToChange = TextToChange.Replace(@"\", "");
+
+            return TextToChange;
+        }
     }
 }
