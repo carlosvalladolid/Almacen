@@ -15,6 +15,7 @@ namespace Activos.Entidad.Almacen
         private string _Clave;
         private string _ProductoId ;
         private Int16 _Cantidad;
+        private string _FechaPreOrden;
       
         public TemporalPreOrdenEntidad()
         {
@@ -26,6 +27,7 @@ namespace Activos.Entidad.Almacen
             _Clave = string.Empty;
             _ProductoId = string.Empty;
             _Cantidad = 0;
+            _FechaPreOrden = string.Empty;
 
         }
 
@@ -80,6 +82,15 @@ namespace Activos.Entidad.Almacen
             get { return _Cantidad; }
             set { _Cantidad = value; }
         }
+
+
+        public string FechaPreOrden
+        {
+            get { return _FechaPreOrden; }
+            set { _FechaPreOrden = value; }
+        }
+
+
 
     }
 }

@@ -28,6 +28,15 @@ namespace Activos.ProcesoNegocio.Almacen
 
             CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
+        ////****************** aqui entra para revisar que no se agregue la PreOrden
+        //    ResultadoPreOrdenDuplicado = ValidarPreOrdenDuplicado(TemporalPreOrdenObjetoEntidad);
+
+        //    if (ResultadoPreOrdenDuplicado.ErrorId != 0)
+        //    {
+        //        return ResultadoPreOrdenDuplicado;
+        //    }
+            
+        ////**************************************************************************************            
             Conexion = new SqlConnection(CadenaConexion);
             Conexion.Open();
 
@@ -52,8 +61,10 @@ namespace Activos.ProcesoNegocio.Almacen
 
                     if (Resultado.ResultadoDatos.Tables[0].Rows.Count > 0)
                     {
+
+                        Resultado.ErrorId = ((int)ConstantePrograma.TemporalPreOrden.ClaveDuplicado);
                         //Se edita el poducto
-                        Resultado = TemporalPreOrdenAccesoObjeto.ActualizarPreOrdenDetalleTemp(Conexion, Transaccion, TemporalPreOrdenObjetoEntidad);
+                       // Resultado = TemporalPreOrdenAccesoObjeto.ActualizarPreOrdenDetalleTemp(Conexion, Transaccion, TemporalPreOrdenObjetoEntidad);
                     }
                     else
                     {
@@ -185,6 +196,39 @@ namespace Activos.ProcesoNegocio.Almacen
             }
 
         }
+
+        //public ResultadoEntidad ValidarPreOrdenDuplicado(TemporalPreOrdenEntidad TemporalPreOrdenObjetoEntidad)
+        //{
+        //    ResultadoEntidad Resultado = new ResultadoEntidad();
+
+        //    if (BuscarPreOrden(TemporalPreOrdenObjetoEntidad) == true)
+        //    {   // Se busca si ya existe una preorden 
+        //        Resultado.ErrorId = (int)ConstantePrograma.TemporalPreOrden.ClaveDuplicado;
+        //        Resultado.DescripcionError = TextoError.PreOrdenDuplicado;
+        //        return Resultado;
+        //    }
+
+        //}
+
+
+        //public bool BuscarPreOrden(TemporalPreOrdenEntidad TemporalPreOrdenObjetoEntidad)
+        //{
+        //    bool ExistePreOrden = false;
+        //    ResultadoEntidad Resultado = new ResultadoEntidad();
+        //    PreOrdenEntidad PreOrdenObjetoEntidad = new PreOrdenEntidad();
+
+        //    if (TemporalPreOrdenObjetoEntidad.ProductoId != "")
+        //    {
+        //        //PreOrdenObjetoEntidad.ProductoId = TemporalPreOrdenObjetoEntidad.ProductoId;
+
+        //        Resultado = SeleccionarPreOrdenDetalleTemp(TemporalPreOrdenObjetoEntidad);
+
+        //        if (Resultado.ResultadoDatos.Tables[0].Rows.Count > 0)
+        //            ExistePreOrden = true;
+        //    }
+
+        //    return ExistePreOrden;
+        //}
 
 
 

@@ -13,6 +13,8 @@ using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 
 using Activos.Comun.Constante;
+using Activos.Comun.Fecha;
+using Activos.Comun.Cadenas;
 using Activos.Entidad.General;
 using Activos.Entidad.Seguridad;
 using Activos.Entidad.Catalogo;
@@ -116,8 +118,12 @@ namespace Almacen.Web.Aplicacion.Almacen
                //PENDIENTE DE CHECAR SI VA LLEVAR EL CAMPO DE ESTATUS POQUE EN EL DIAGRAMA NO APARECE 06/11/2014
                 TemporalPreOrdenObjetoEntidad.EstatusId = 1;
                 TemporalPreOrdenObjetoEntidad.ProductoId = ProductoIdHidden.Value;
-                TemporalPreOrdenObjetoEntidad.Cantidad = Int16.Parse(CantidadNuevo.Text.Trim());        
+                TemporalPreOrdenObjetoEntidad.Cantidad = Int16.Parse(CantidadNuevo.Text.Trim());
 
+                if (!(FechaPreOrdenNuevo.Text.Trim() == ""))
+                    TemporalPreOrdenObjetoEntidad.FechaPreOrden = FormatoFecha.AsignarFormato(FechaPreOrdenNuevo.Text.Trim(), ConstantePrograma.UniversalFormatoFecha);
+
+                
                 AgregarProducto(TemporalPreOrdenObjetoEntidad);
             }
         }
@@ -278,7 +284,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
         protected void LimpiarNuevoRegistro()
         {
-            PreOrdenNuevo.Text = "";
+            //PreOrdenNuevo.Text = "";
             FechaPreOrdenNuevo.Text = "";
             SolicitanteIdNuevo.SelectedIndex = 0;
             JefeInmediatoIdNuevo.Items.Clear();
@@ -581,7 +587,22 @@ namespace Almacen.Web.Aplicacion.Almacen
             //}
 
         }
-        
+
+
+
+        private void ShowMessage(string Mensaje, string TipoMensaje)
+        {
+            StringBuilder FormatoMensaje = new StringBuilder();
+
+            FormatoMensaje.Append("MostrarMensaje(\"");
+            FormatoMensaje.Append(Mensaje);
+            FormatoMensaje.Append("\", \"");
+            FormatoMensaje.Append(TipoMensaje);
+            FormatoMensaje.Append("\");");
+
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
+        }
+
         #endregion
     }
 }

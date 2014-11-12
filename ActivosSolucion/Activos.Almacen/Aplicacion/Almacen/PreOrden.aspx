@@ -7,6 +7,8 @@
    <script src="/Incluir/Javascript/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
    <script src="/Incluir/Javascript/jquery.ui.datepicker-es.js" type="text/javascript"></script>
    <script src="/Incluir/Javascript/Calendar.js" type="text/javascript"></script>
+      
+   
    
   <script language="javascript" type="text/javascript">
 
@@ -18,6 +20,7 @@
 
 
     <script language="javascript" src="/Incluir/Javascript/ValidarFormulario.js" type="text/javascript"></script>
+
 
 </asp:Content>
 
@@ -36,7 +39,7 @@
                 <div class="PageTitleDiv">
                     <table class="PageTitleTable">
                         <tr>
-                            <td class="Title">
+                            <td class="SubTituloDiv">
                                 Pre Orden de Compra
                             </td>
                             <td class="Search"><asp:TextBox CssClass="SearchBox" ID="SearchText" MaxLength="50" runat="server"></asp:TextBox>&nbsp;</td>
@@ -44,90 +47,90 @@
                         </tr>
                     </table>
                 </div>
-
+                <br />
 
 		  <asp:Panel CssClass="NewRowDiv" ID="PanelNuevoRegistro" Visible="true" runat="server">
                     <table class="FormTable">
                     
 							 <tr>
-								 <td colspan="3" class="Title">
+								 <td colspan="3" class="SubTituloDiv">
 									Datos Generales
 								</td>
 							 </tr>
-						<tr>
-                            <td class="Name">Pre Orden</td>
-                            <td class="Required">*</td>
-                            <td class="Field"><asp:TextBox CssClass="CajaTextoMediana" ID="PreOrdenNuevo" Visible ="false"   runat="server" ></asp:TextBox></td>
-                        </tr>
+						<%--<tr>
+                            <td class="Nombre">Pre Orden</td>
+                            <td class="Es">*</td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="PreOrdenNuevo" Visible ="false"   runat="server" ></asp:TextBox></td>
+                        </tr>--%>
                     
 						 <tr>
-                            <td class="Name">Fecha de PreOrden</td>
+                            <td class="Nombre">Fecha de PreOrden</td>
                             <td class="Required">*</td>
-                            <td class="Field"><asp:TextBox CssClass="CajaTextoMediana" ID="FechaPreOrdenNuevo"  runat="server" ></asp:TextBox></td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="FechaPreOrdenNuevo"  runat="server" ></asp:TextBox></td>
                         </tr>
                         
                          <tr>
-                            <td class="Name">Solicitante</td>
+                            <td class="Nombre">Solicitante</td>
                             <td class="Required">*</td>
-                            <td class="Field"><asp:DropDownList CssClass="ComboGrande" ID="SolicitanteIdNuevo" OnSelectedIndexChanged="ddlSolicitante_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>                              
+                            <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="SolicitanteIdNuevo" OnSelectedIndexChanged="ddlSolicitante_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>                              
                             </td>
                         </tr>
                         
                         
                          <tr>
-                            <td class="Name">Jefe Inmediato</td>
+                            <td class="Nombre">Jefe Inmediato</td>
                             <td class="Required">*</td>
-                            <td class="Field"><asp:DropDownList CssClass="ComboGrande" ID="JefeInmediatoIdNuevo"  runat="server"></asp:DropDownList>                              
+                            <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="JefeInmediatoIdNuevo"  runat="server"></asp:DropDownList>                              
                             </td>
                         </tr>
                         
                         
                         	 <tr>
-								 <td colspan="3" class="Title">
+								 <td colspan="3" class="SubTituloDiv">
 									Detalle de Articulos
 								</td>
 							 </tr>
                         
                          <tr>
-                            <td class="Name">Clave</td>
+                            <td class="Nombre">Clave</td>
                             <td class="Required">*</td>                           
                            
                            
-                            <td class="Field">
+                            <td class="Campo">
                              <asp:Panel ID="PanelBuscarClave" runat="server" DefaultButton="LinkBuscarClave">
                              <asp:TextBox ID="ClaveNuevo" CssClass="CajaTextoMediana" MaxLength="15" runat="server"></asp:TextBox>
-                             <asp:LinkButton ID="LinkBuscarClave" OnClick="LinkBuscarClave_Click" ValidationGroup="BuscarClave" runat="server" Text="" Width="0px"></asp:LinkButton>
+                             <asp:LinkButton ID="LinkBuscarClave" OnClick="LinkBuscarClave_Click" Visible ="false"  ValidationGroup="BuscarClave" runat="server" Text="" Width="0px"></asp:LinkButton>
                              </asp:Panel>
                             </td>
                         </tr>
 						
                         <tr>
-                            <td class="Name">Familia</td>
-                            <td class="Required">*</td>
-                            <td class="Field"><asp:DropDownList CssClass="ComboGrande" ID="FamiliaIdNuevo" Enabled ="false"   runat="server"></asp:DropDownList>                              
+                            <td class="Nombre">Familia</td>
+                            <td class="Espacio"></td>
+                            <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="FamiliaIdNuevo" Enabled ="false"   runat="server"></asp:DropDownList>                              
                             </td>
                         </tr>
                         <tr>
-                            <td class="Name">SubFamilia</td>
-                            <td class="Required">*</td>
-                            <td class="Field"><asp:DropDownList CssClass="ComboGrande" ID="SubFamiliaIdNuevo"  Enabled ="false"  runat="server"></asp:DropDownList></td>
+                            <td class="Nombre">SubFamilia</td>
+                            <td class="Espacio"></td>
+                            <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="SubFamiliaIdNuevo"  Enabled ="false"  runat="server"></asp:DropDownList></td>
                         </tr>
                         
                         <tr>
-                            <td class="Name">Marca</td>
-                            <td class="Required"></td>
-                            <td class="Field"><asp:DropDownList CssClass="ComboGrande" ID="MarcaIdNuevo" Enabled ="false" runat="server"></asp:DropDownList></td>
+                            <td class="Nombre">Marca</td>
+                            <td class="Espacio"></td>
+                            <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="MarcaIdNuevo" Enabled ="false" runat="server"></asp:DropDownList></td>
                         </tr>
                         
                          <tr>
-                            <td class="Name">Descripción</td>
-                            <td class="Required">*</td>
-                            <td class="Field"><asp:TextBox CssClass="CajaTextoGrande" ID="DescripcionNuevo" Enabled ="false"   runat="server" ></asp:TextBox></td>
+                            <td class="Nombre">Descripción</td>
+                            <td class="Espacio"></td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="DescripcionNuevo" Enabled ="false"   runat="server" ></asp:TextBox></td>
                         </tr>
                     
 						 <tr>
-                            <td class="Name">Cantidad</td>
-                            <td class="Required">*</td>
+                            <td class="Nombre">Cantidad</td>
+                            <td class="Espacio"></td>
                             <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="CantidadNuevo" MaxLength="10" runat="server" Text=""></asp:TextBox></td>
                            
                         </tr>

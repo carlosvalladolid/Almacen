@@ -86,6 +86,12 @@ namespace Activos.AccesoDatos.Almacen
                Parametro.Value = TemporalPreOrdenEntidadObjeto.Clave;
                Comando.Parameters.Add(Parametro);
 
+               Parametro = new SqlParameter("FechaPreOrden", SqlDbType.VarChar);
+               Parametro.Value = TemporalPreOrdenEntidadObjeto.FechaPreOrden;
+               Comando.Parameters.Add(Parametro);
+
+
+
 
                Comando.ExecuteNonQuery();
 
@@ -204,6 +210,10 @@ namespace Activos.AccesoDatos.Almacen
 
                Parametro = new SqlParameter("Clave", SqlDbType.VarChar);
                Parametro.Value = TemporalPreOrdenEntidadObjeto.Clave;
+               Comando.Parameters.Add(Parametro);
+
+               Parametro = new SqlParameter("FechaPreOrden", SqlDbType.SmallDateTime);
+               Parametro.Value = TemporalPreOrdenEntidadObjeto.FechaPreOrden;
                Comando.Parameters.Add(Parametro);
                              
          
