@@ -3,6 +3,7 @@ using System.Collections;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
@@ -12,6 +13,7 @@ using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 
 using Activos.Comun.Constante;
+using Activos.Comun.Cadenas;
 using Activos.Entidad.Catalogo;
 using Activos.Entidad.General;
 using Activos.ProcesoNegocio.Almacen;
@@ -22,14 +24,14 @@ namespace Almacen.Web.Aplicacion.Almacen
     public partial class Orden : System.Web.UI.Page
     {
         #region "Eventos"
-            protected void Page_Load(object sender, EventArgs e)
-            {
-                Inicio();
-            }
-
             protected void EmpleadoCombo_SelectedIndexChanged(object sender, EventArgs e)
             {
                 SeleccionarJefe(Int16.Parse(EmpleadoCombo.SelectedValue));
+            }
+
+            protected void Page_Load(object sender, EventArgs e)
+            {
+                Inicio();
             }
         #endregion
 
@@ -45,6 +47,8 @@ namespace Almacen.Web.Aplicacion.Almacen
                 SeleccionarEmpleado();
 
                 JefeCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
+
+                ShowMessage("Error catastrófico", ConstantePrograma.TipoErrorAlerta);
             }
 
             private void SeleccionarEmpleado()
@@ -141,6 +145,19 @@ namespace Almacen.Web.Aplicacion.Almacen
                 }
 
                 ProveedorCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
+            }
+
+            private void ShowMessage(string Mensaje, string TipoMensaje)
+            {
+                StringBuilder FormatoMensaje = new StringBuilder();
+
+                FormatoMensaje.Append("MostrarMensaje(\"");
+                FormatoMensaje.Append(Mensaje);
+                FormatoMensaje.Append("\", \"");
+                FormatoMensaje.Append(TipoMensaje);
+                FormatoMensaje.Append("\");");
+
+                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
             }
         #endregion
     }

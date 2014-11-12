@@ -77,12 +77,12 @@
     <Compile Include="Aplicacion\Almacen\PreOrden.aspx.designer.cs">
       <DependentUpon>PreOrden.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Aplicacion\Almacen\Recepción.aspx.cs">
-      <DependentUpon>Recepción.aspx</DependentUpon>
+    <Compile Include="Aplicacion\Almacen\Recepcion.aspx.cs">
+      <DependentUpon>Recepcion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Aplicacion\Almacen\Recepción.aspx.designer.cs">
-      <DependentUpon>Recepción.aspx</DependentUpon>
+    <Compile Include="Aplicacion\Almacen\Recepcion.aspx.designer.cs">
+      <DependentUpon>Recepcion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Aplicacion\Almacen\Requisicion.aspx.cs">
       <DependentUpon>Requisicion.aspx</DependentUpon>
@@ -398,13 +398,15 @@
     <Content Include="Aplicacion\Almacen\Orden.aspx" />
     <Content Include="Aplicacion\Almacen\OrdenSalida.aspx" />
     <Content Include="Aplicacion\Almacen\PreOrden.aspx" />
-    <Content Include="Aplicacion\Almacen\Recepción.aspx" />
+    <Content Include="Aplicacion\Almacen\Recepcion.aspx" />
     <Content Include="Aplicacion\Almacen\Requisicion.aspx" />
     <Content Include="Aplicacion\Catalogo\Familia.aspx" />
     <Content Include="Aplicacion\Catalogo\Proveedor.aspx" />
     <Content Include="Aplicacion\Catalogo\SubFamilia.aspx" />
     <Content Include="Aplicacion\Inicio.aspx" />
     <Content Include="App.config" />
+    <Content Include="Incluir\Estilo\Privado\Alert.css" />
+    <Content Include="Incluir\Javascript\jquery.blockUI.js" />
     <Content Include="Incluir\Javascript\ValidarFormulario.js" />
   </ItemGroup>
   <ItemGroup>

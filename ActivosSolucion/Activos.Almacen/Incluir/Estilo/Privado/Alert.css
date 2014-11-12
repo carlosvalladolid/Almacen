@@ -1,0 +1,52 @@
+﻿/*
+* Fecha de creación:	27-Septiembre-2012
+* Autor:				Carlos Valladolid
+*
+* Descripción:			Hoja de estilos para los mensajes de aviso de la aplicación
+*/
+
+div.growlUIError
+{
+	background: url(/Imagen/Icono/IconoError.png) no-repeat 10px 10px;
+}
+
+div.growlUIError h1
+{
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+	padding: 5px 5px 5px 75px; 
+	text-align: left;
+}
+
+div.growlUIError h2
+{
+	color: white;
+	font-size: 16px;
+	font-weight: normal;
+	padding: 0px 5px 5px 75px; 
+	text-align: left;
+}
+
+div.growlUIMessage
+{
+	background: url(/Imagen/Icono/IconoInfo.png) no-repeat 10px 10px;
+}
+
+div.growlUIMessage h1
+{
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+	padding: 5px 5px 5px 75px; 
+	text-align: left;
+}
+
+div.growlUIMessage h2
+{
+	color: white;
+	font-size: 16px;
+	font-weight: normal;
+	padding: 0px 5px 5px 75px; 
+	text-align: left;
+}

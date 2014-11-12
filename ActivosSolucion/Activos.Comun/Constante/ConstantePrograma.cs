@@ -13,7 +13,6 @@ namespace Activos.Comun.Constante
         public const string DefensoriaDB_Seguridad = "DefensoriaDB.Seguridad";
         public const string DefensoriaDB_Almacen = "DefensoriaDB.Almacen";
 
-
         // Formatos para fechas
         public const string EspañolFormatoFecha = "dd/mm/aaaa";
         public const string InglesFormatoFecha = "mm/dd/aaaa";
@@ -46,6 +45,10 @@ namespace Activos.Comun.Constante
         public const string AsuntoUsuarioNuevo = "Usuario nuevo para la aplicación Web de Activos";
         public const string CorreoNuevoUsuario = "NuevoUsuario";
         public const string CorreoRecuperarContrasenia = "RecuperarContrasenia";
+
+        // Alerta de mensajes
+        public const string TipoMensajeAlerta = "Mensaje";
+        public const string TipoErrorAlerta = "Error";
 
 
         public enum Accesorio

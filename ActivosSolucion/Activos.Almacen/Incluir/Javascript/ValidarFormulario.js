@@ -12,6 +12,21 @@ function ConfirmarBorrado() {
         return false;
 }
 
+function MostrarMensaje(Mensaje, TipoMensaje) {
+    $(document).ready(function() {
+        switch(TipoMensaje)
+        {
+            case "Error":
+                $.growlUIError('Error', Mensaje);
+                break;
+
+            case "Mensaje":
+                $.growlUIMessage('Mensaje', Mensaje);
+                break;
+        }
+    });
+}
+
 function ValidarCasillas() {
     var Contador;
     var ValidateCheckbox = false;

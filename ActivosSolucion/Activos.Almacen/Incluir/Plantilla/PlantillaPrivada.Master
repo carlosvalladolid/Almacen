@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
     <head runat="server">
     <title>Aplicación de Almacén</title>
-        <link href="/Incluir/Estilo/Privado/Alerta.css" rel="Stylesheet" type="text/css" />
+        <link href="/Incluir/Estilo/Privado/Alert.css" rel="Stylesheet" type="text/css" />
         <link href="/Incluir/Estilo/Privado/Control.css" rel="Stylesheet" type="text/css" />
         <link href="/Incluir/Estilo/Privado/Division.css" rel="Stylesheet" type="text/css" />
         <link href="/Incluir/Estilo/Privado/Principal.css" rel="Stylesheet" type="text/css" />
@@ -69,6 +69,16 @@
 
                 <div id="DivPie">
                     versión 1.0.0
+                </div>
+                
+                <div class="growlUIError" style="display:none">
+                    <h1></h1>
+                    <h2></h2>
+                </div>
+                
+                <div class="growlUIMessage" style="display:none">
+                    <h1></h1>
+                    <h2></h2>
                 </div>
             </div>
         </form>
