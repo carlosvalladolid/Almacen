@@ -42,7 +42,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                     return;
 
                 SeleccionarPreOrden();
-                SeleccionarOrden();
+                //SeleccionarOrden();
                 SeleccionarProveedor();
                 SeleccionarEmpleado();
 
