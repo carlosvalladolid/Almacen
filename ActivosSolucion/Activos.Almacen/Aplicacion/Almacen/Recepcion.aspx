@@ -115,25 +115,25 @@
                          <tr>
                             <td class="Nombre">Familia</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="FamiliaIdNuevo" Enabled ="false"   runat="server"></asp:DropDownList>                              
+                            <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="FamiliaIdNuevo" OnSelectedIndexChanged="ddlFamilia_SelectedIndexChanged" AutoPostBack="true"   runat="server"></asp:DropDownList>                              
                             </td>
                         </tr>
                         <tr>
                             <td class="Nombre">SubFamilia</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="SubFamiliaIdNuevo"  Enabled ="false"  runat="server"></asp:DropDownList></td>
+                            <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="SubFamiliaIdNuevo"  runat="server"></asp:DropDownList></td>
                         </tr>
                         
                         <tr>
                             <td class="Nombre">Marca</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="MarcaIdNuevo" Enabled ="false" runat="server"></asp:DropDownList></td>
+                            <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="MarcaIdNuevo" runat="server"></asp:DropDownList></td>
                         </tr>
                         
                          <tr>
                             <td class="Nombre">Descripción</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="DescripcionNuevo" Enabled ="false"   runat="server" ></asp:TextBox></td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="DescripcionNuevo"  runat="server" ></asp:TextBox></td>
                         </tr>
                     
 						 <tr>
