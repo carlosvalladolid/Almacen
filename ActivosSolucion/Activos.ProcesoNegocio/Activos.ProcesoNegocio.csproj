@@ -81,6 +81,7 @@
     <Compile Include="Almacen\OrdenProceso.cs" />
     <Compile Include="Almacen\PreOrdenProceso.cs" />
     <Compile Include="Almacen\ProveedorProceso.cs" />
+    <Compile Include="Almacen\RecepcionProceso.cs" />
     <Compile Include="Almacen\SubFamiliaProceso.cs" />
     <Compile Include="Almacen\TemporalPreOrdenProceso.cs" />
     <Compile Include="Almacen\TipoDocumentoProceso.cs" />

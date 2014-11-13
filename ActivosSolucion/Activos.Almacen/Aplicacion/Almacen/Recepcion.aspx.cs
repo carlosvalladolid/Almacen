@@ -29,6 +29,10 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         #region "Eventos"
 
+        protected void SolicitanteCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SeleccionarJefe(Int16.Parse(SolicitanteIdNuevo.SelectedValue));
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -44,11 +48,20 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         #region "Métodos"
 
+        protected void AgregarProducto()
+        { 
+        
+
+
+        
+        }
+
+
+
         private void Inicio()
         {
             if (Page.IsPostBack)
                 return;
-
            
             SeleccionarProveedor();
             SeleccionarEmpleado();

@@ -79,6 +79,7 @@
     <Compile Include="Almacen\OrdenAcceso.cs" />
     <Compile Include="Almacen\PreOrdenAcceso.cs" />
     <Compile Include="Almacen\ProveedorAcceso.cs" />
+    <Compile Include="Almacen\RecepcionAcceso.cs" />
     <Compile Include="Almacen\SubFamiliaAcceso.cs" />
     <Compile Include="Almacen\TemporalPreOrdenAcceso.cs" />
     <Compile Include="Almacen\TipoDocumentoAcceso.cs" />

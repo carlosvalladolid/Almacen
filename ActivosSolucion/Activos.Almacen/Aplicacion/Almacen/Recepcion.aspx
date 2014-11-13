@@ -83,7 +83,7 @@
                          <tr>
                             <td class="Nombre">Solicitante</td>
                             <td class="Required">*</td>
-                            <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="SolicitanteIdNuevo" runat="server"></asp:DropDownList>                              
+                            <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="SolicitanteIdNuevo" onselectedindexchanged="SolicitanteCombo_SelectedIndexChanged" AutoPostBack="true"  runat="server"></asp:DropDownList>                              
                             </td>
                         </tr>
                         
