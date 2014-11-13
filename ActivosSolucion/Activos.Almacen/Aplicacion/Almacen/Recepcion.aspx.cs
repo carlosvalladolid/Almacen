@@ -55,7 +55,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
             SeleccionarMarca();
             SeleccionarFamilia();
             SeleccionarSubfamilia();
-            //SeleccionarTipoDocumento();
+            SeleccionarTipoDocumento();
 
             JefeInmediatoIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
         }
@@ -230,34 +230,33 @@ namespace Activos.Almacen.Aplicacion.Almacen
             JefeInmediatoIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
         }
 
-        //protected void SeleccionarTipoDocumento()
-        //{
+        protected void SeleccionarTipoDocumento()
+        {
+            Activos.ProcesoNegocio.Almacen.TipoDocumentoProceso TipoDocumentoProceso = new Activos.ProcesoNegocio.Almacen.TipoDocumentoProceso();
+            
+            TipoDocumentoProceso.SeleccionarTipoDocumento();
 
-        //    Activos.ProcesoNegocio.Almacen.ProveedorProceso ProveedorProceso = new Activos.ProcesoNegocio.Almacen.ProveedorProceso();
+            TipoDocumentoIdNuevo.DataValueField = "TipoDocumentoId";
+            TipoDocumentoIdNuevo.DataTextField = "Nombre";
 
-        //    ProveedorProceso.SeleccionarProveedor();
+            if (TipoDocumentoProceso.ErrorId == 0)
+            {
+                TipoDocumentoIdNuevo.DataSource = TipoDocumentoProceso.ResultadoDatos;
+                TipoDocumentoIdNuevo.DataBind();
+            }
+            else
+            {
+                // ToDo: Manejar mensajes de error
+                //EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+            }
 
-        //    ProveedorIdNuevo.DataValueField = "ProveedorId";
-        //    ProveedorIdNuevo.DataTextField = "Nombre";
-
-        //    if (ProveedorProceso.ErrorId == 0)
-        //    {
-        //        ProveedorIdNuevo.DataSource = ProveedorProceso.ResultadoDatos;
-        //        ProveedorIdNuevo.DataBind();
-        //    }
-        //    else
-        //    {
-        //        // ToDo: Manejar mensajes de error
-        //        //EtiquetaMensaje.Text = TextoError.ErrorGenerico;
-        //    }
-
-        //    ProveedorIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
-
+            TipoDocumentoIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
 
 
 
 
-        //}
+
+        }
 
         private void ShowMessage(string Mensaje, string TipoMensaje)
         {
