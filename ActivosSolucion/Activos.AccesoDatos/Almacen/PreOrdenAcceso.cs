@@ -134,6 +134,10 @@ namespace Activos.AccesoDatos.Almacen
                     Parametro.Value = PreOrdenEntidad.ProductoId;
                     Comando.Parameters.Add(Parametro);
 
+                    Parametro = new SqlParameter("Clave", SqlDbType.VarChar);
+                    Parametro.Value = PreOrdenEntidad.Clave;
+                    Comando.Parameters.Add(Parametro);
+
                     Adaptador = new SqlDataAdapter(Comando);
 
                     Conexion.Open();

@@ -182,7 +182,7 @@ namespace Activos.ProcesoNegocio.Almacen
 
                 CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
-                PreOrdenAcceso.SeleccionarPreOrdenDetalle(_PreOrdenEntidad, CadenaConexion);
+                _ResultadoDatos = PreOrdenAcceso.SeleccionarPreOrdenDetalle(_PreOrdenEntidad, CadenaConexion);
 
                 _ErrorId = PreOrdenAcceso.ErrorId;
                 _DescripcionError = PreOrdenAcceso.DescripcionError;
