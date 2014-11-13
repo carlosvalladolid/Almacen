@@ -83,6 +83,7 @@
     <Compile Include="Almacen\ProveedorProceso.cs" />
     <Compile Include="Almacen\SubFamiliaProceso.cs" />
     <Compile Include="Almacen\TemporalPreOrdenProceso.cs" />
+    <Compile Include="Almacen\TipoDocumentoProceso.cs" />
     <Compile Include="Almacen\UnidadMedidaProceso.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="Catalogo\BancoProceso.cs" />

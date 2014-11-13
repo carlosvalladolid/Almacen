@@ -235,6 +235,6 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-       
+      
     }
 }

@@ -81,6 +81,7 @@
     <Compile Include="Almacen\ProveedorAcceso.cs" />
     <Compile Include="Almacen\SubFamiliaAcceso.cs" />
     <Compile Include="Almacen\TemporalPreOrdenAcceso.cs" />
+    <Compile Include="Almacen\TipoDocumentoAcceso.cs" />
     <Compile Include="Almacen\UnidadMedidaAcceso.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="Catalogo\BancoAcceso.cs" />
