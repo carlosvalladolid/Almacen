@@ -110,9 +110,21 @@ namespace Almacen.Web.Aplicacion.Almacen
                 JefeCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
             }
 
-            private void SeleccionarOrden()
+            private void SeleccionarOrden(string Clave)
             {
-                TablaOrden.DataSource = null;
+                PreOrdenProceso PreOrdenProceso = new PreOrdenProceso();
+
+                PreOrdenProceso.PreOrdenEntidad.Clave = Clave;
+
+                if (PreOrdenProceso.ErrorId != 0)
+                {
+                    ShowMessage(PreOrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                    return;
+                }
+
+                // ToDo: Cambiar el estilo del grid si está vacío el dataset
+
+                TablaOrden.DataSource = PreOrdenProceso.ResultadoDatos;
                 TablaOrden.DataBind();
             }
 
