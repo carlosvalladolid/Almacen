@@ -76,6 +76,7 @@
     <Compile Include="Almacen\AlmacenAcceso.cs" />
     <Compile Include="Almacen\FamiliaAcceso.cs" />
     <Compile Include="Almacen\MarcaAcceso.cs" />
+    <Compile Include="Almacen\OrdenAcceso.cs" />
     <Compile Include="Almacen\PreOrdenAcceso.cs" />
     <Compile Include="Almacen\ProveedorAcceso.cs" />
     <Compile Include="Almacen\SubFamiliaAcceso.cs" />

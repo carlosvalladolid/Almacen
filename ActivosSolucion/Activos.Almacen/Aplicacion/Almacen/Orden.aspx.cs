@@ -47,8 +47,6 @@ namespace Almacen.Web.Aplicacion.Almacen
                 SeleccionarEmpleado();
 
                 JefeCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
-
-                ShowMessage("Error catastrófico", ConstantePrograma.TipoErrorAlerta);
             }
 
             private void SeleccionarEmpleado()

@@ -78,6 +78,7 @@
     <Compile Include="Almacen\AlmacenProceso.cs" />
     <Compile Include="Almacen\FamiliaProceso.cs" />
     <Compile Include="Almacen\MarcaProceso.cs" />
+    <Compile Include="Almacen\OrdenProceso.cs" />
     <Compile Include="Almacen\PreOrdenProceso.cs" />
     <Compile Include="Almacen\ProveedorProceso.cs" />
     <Compile Include="Almacen\SubFamiliaProceso.cs" />
