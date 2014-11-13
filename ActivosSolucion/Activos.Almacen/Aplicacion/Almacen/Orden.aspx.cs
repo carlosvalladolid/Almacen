@@ -29,6 +29,11 @@ namespace Almacen.Web.Aplicacion.Almacen
                 SeleccionarJefe(Int16.Parse(EmpleadoCombo.SelectedValue));
             }
 
+            protected void ImagenBuscarPreOrden_Click(object sender, ImageClickEventArgs e)
+            {
+                SeleccionarPreOrden(PreOrdenBusqueda.Text.Trim());
+            }
+
             protected void Page_Load(object sender, EventArgs e)
             {
                 Inicio();
@@ -41,8 +46,12 @@ namespace Almacen.Web.Aplicacion.Almacen
                 if (Page.IsPostBack)
                     return;
 
-                SeleccionarPreOrden();
-                //SeleccionarOrden();
+                TablaPreOrden.DataSource = null;
+                TablaPreOrden.DataBind();
+
+                TablaOrden.DataSource = null;
+                TablaOrden.DataBind();
+
                 SeleccionarProveedor();
                 SeleccionarEmpleado();
 
@@ -112,9 +121,16 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             private void SeleccionarOrden(string Clave)
             {
+                
+            }
+
+            private void SeleccionarPreOrden(string PreOrdenId)
+            {
                 PreOrdenProceso PreOrdenProceso = new PreOrdenProceso();
 
-                PreOrdenProceso.PreOrdenEntidad.Clave = Clave;
+                PreOrdenProceso.PreOrdenEntidad.Clave = PreOrdenId;
+
+                PreOrdenProceso.SeleccionarPreOrdenDetalle();
 
                 if (PreOrdenProceso.ErrorId != 0)
                 {
@@ -124,13 +140,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 // ToDo: Cambiar el estilo del grid si está vacío el dataset
 
-                TablaOrden.DataSource = PreOrdenProceso.ResultadoDatos;
-                TablaOrden.DataBind();
-            }
-
-            private void SeleccionarPreOrden()
-            {
-                TablaPreOrden.DataSource = null;
+                TablaPreOrden.DataSource = PreOrdenProceso.ResultadoDatos;
                 TablaPreOrden.DataBind();
             }
 
@@ -140,7 +150,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 ProveedorProceso.SeleccionarProveedor();
 
-                ProveedorCombo.DataValueField = "DependenciaId";
+                ProveedorCombo.DataValueField = "ProveedorId";
                 ProveedorCombo.DataTextField = "Nombre";
 
                 if (ProveedorProceso.ErrorId == 0)
