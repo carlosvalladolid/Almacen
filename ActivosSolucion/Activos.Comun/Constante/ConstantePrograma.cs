@@ -50,6 +50,9 @@ namespace Activos.Comun.Constante
         public const string TipoMensajeAlerta = "Mensaje";
         public const string TipoErrorAlerta = "Error";
 
+        // Nombres de comandos
+        public const string ComandoAgregar = "Agregar";
+        public const string ComandoSeleccionar = "Seleccionar";
 
         public enum Accesorio
         {
