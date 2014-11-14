@@ -15,6 +15,7 @@ using System.Xml.Linq;
 
 using Activos.Comun.Constante;
 using Activos.Comun.Cadenas;
+using Activos.Comun.Fecha;
 using Activos.Entidad.Catalogo;
 using Activos.Entidad.General;
 using Activos.Entidad.Almacen;
@@ -28,6 +29,20 @@ namespace Activos.Almacen.Aplicacion.Almacen
     {
 
         #region "Eventos"
+
+        //protected void BotonGuardar_Click(object sender, EventArgs e)
+        //{
+        //    if (Page.IsValid)
+        //    {
+        //        GuardarRecepcion();
+        //    }
+        //}
+
+        protected void BotonAgregar_Click(object sender, ImageClickEventArgs e)
+        {
+            AgregarDetalleDocumento();
+
+        }
 
         protected void SolicitanteCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -44,17 +59,145 @@ namespace Activos.Almacen.Aplicacion.Almacen
             SeleccionarSubfamilia();
         }
 
+        protected void LinkBuscarClave_Click(object sender, EventArgs e)
+        {
+            SeleccionarClave();
+        }
+
+        protected void LinkBuscarOrdenCompra_Click(object sender, EventArgs e)
+        {
+            SeleccionarOrdenCompra();
+        }
         #endregion
 
         #region "Métodos"
 
-        protected void AgregarProducto()
-        { 
+        protected void AgregarDetalleDocumento()
+        {
+
+            RecepcionEntidad RecepcionObjetoEntidad = new RecepcionEntidad();
+
+            RecepcionObjetoEntidad.TemporalRecepcionId = TemporalRecepcionIdHidden.Value;           
+            RecepcionObjetoEntidad.ProveedorId = Int16.Parse(ProveedorIdNuevo.SelectedValue);
+            RecepcionObjetoEntidad.TipoDocumentoId = Int16.Parse(TipoDocumentoIdNuevo.SelectedValue);           
+            RecepcionObjetoEntidad.EmpleadoId = Int16.Parse(SolicitanteIdNuevo.SelectedValue);
+            RecepcionObjetoEntidad.JefeId = Int16.Parse(JefeInmediatoIdNuevo.SelectedValue);
+            RecepcionObjetoEntidad.Clave = FolioNuevo.Text.Trim();
+            RecepcionObjetoEntidad.Monto = decimal.Parse(MontoDatosNuevo.Text);
+            if (!(FechaDocumentoNuevo.Text.Trim() == ""))
+                RecepcionObjetoEntidad.FechaDocumento = FormatoFecha.AsignarFormato(FechaDocumentoNuevo.Text.Trim(), ConstantePrograma.UniversalFormatoFecha);
+
+            RecepcionObjetoEntidad.ProductoId = ProductoIdHidden.Value;
+            RecepcionObjetoEntidad.Precio = decimal.Parse(PrecionUnitarioNuevo.Text);
+            RecepcionObjetoEntidad.Cantidad = MontoDocumentoNuevo.Text.Trim();
+
+            AgregarRecepcion(RecepcionObjetoEntidad);
+        }
+
+        protected void AgregarRecepcion(RecepcionEntidad RecepcionObjetoEntidad)
+        {
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            RecepcionProceso RecepcionProcesoNegocio = new RecepcionProceso();
+
+            Resultado = RecepcionProcesoNegocio.AgregarRecepcion(RecepcionObjetoEntidad);
+
+            if (Resultado.ErrorId == (int)ConstantePrograma.Recepcion.RecepcionGuardadoCorrectamente)
+            {
+                TemporalRecepcionIdHidden.Value = RecepcionObjetoEntidad.RecepcionId;
+                // LimpiarNuevo();
+                LimpiarRecepcion();          
+                SeleccionarRecepcion();
+            }
+            else
+            {
+                EtiquetaMensaje.Text = Resultado.DescripcionError;
+            }
+        }
+
+        protected void SeleccionarRecepcion()
+        {
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            RecepcionEntidad RecepcionObjetoEntidad = new RecepcionEntidad();
+            RecepcionProceso RecepcionProcesoNegocio = new RecepcionProceso();
+
+            RecepcionObjetoEntidad.RecepcionId = TemporalRecepcionIdHidden.Value;
+
+            Resultado = RecepcionProcesoNegocio.SeleccionaRecepcion(RecepcionObjetoEntidad);
+
+            if (Resultado.ErrorId == 0)
+            {
+                if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
+                    TablaRecepcion.CssClass = ConstantePrograma.ClaseTablaVacia;
+                else
+                    TablaRecepcion.CssClass = ConstantePrograma.ClaseTabla;
+
+
+
+                TablaRecepcion.DataSource = Resultado.ResultadoDatos;
+                TablaRecepcion.DataBind();
+
+            }
+            else
+            {
+                EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+            }
+        }
+
+        protected void LimpiarRecepcion()
+        {
+            ClaveNuevo.Text = "";
+            FamiliaIdNuevo.SelectedIndex = 0;
+            SeleccionarSubfamilia();
+            SubFamiliaIdNuevo.SelectedIndex = 0;
+            MarcaIdNuevo.Text = "";
+            DescripcionNuevo.Text = "";
+            PrecionUnitarioNuevo.Text = "";
+            CantidadNuevo.Text = "";
+            MontoDocumentoNuevo.Text = "";
         
-
-
         
         }
+
+
+        //protected void GuardaRecepcion()
+        //{
+        //    RecepcionEntidad RecepcionObjetoEntidad = new RecepcionEntidad();
+        //    UsuarioEntidad UsuarioSessionEntidad = new UsuarioEntidad();
+
+        //    if (TemporalRecepcionIdHidden.Value != "0")
+        //    {
+        //        if (TablaRecepcion.Rows.Count > 0)
+        //        {
+        //            RecepcionObjetoEntidad.RecepcionId= TemporalRecepcionIdHidden.Value;
+
+        //            GuardarRecepcion(RecepcionObjetoEntidad);
+        //        }
+
+        //    }
+        //    else
+        //    {
+        //        EtiquetaMensaje.Text = "Favor de agregar los Productos";
+        //    }
+        //}
+
+        //protected void GuardarRecepcion(RecepcionEntidad RecepcionObjetoEntidad)
+        //{
+        //    ResultadoEntidad Resultado = new ResultadoEntidad();
+        //    RecepcionProceso RecepcionProcesoNegocio = new RecepcionProceso();
+
+        //    Resultado = RecepcionProcesoNegocio.GuardarRecepcion(RecepcionObjetoEntidad);
+
+        //    if (Resultado.ErrorId == (int)ConstantePrograma.Recepcion.RecepcionGuardadoCorrectamente)
+        //    {
+        //        LimpiarNuevoRegistro();
+        //        LimpiarDetalleDocumento();
+
+        //    }
+        //    else
+        //    {
+        //        EtiquetaMensaje.Text = Resultado.DescripcionError;
+        //    }
+        //}
 
 
 
@@ -71,6 +214,105 @@ namespace Activos.Almacen.Aplicacion.Almacen
             SeleccionarTipoDocumento();
 
             JefeInmediatoIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
+        }
+
+        protected void SeleccionarClave()
+        {
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            AlmacenEntidad AlmacenEntidadObjeto = new AlmacenEntidad();
+            AlmacenProceso AlmacenProcesoObjeto = new AlmacenProceso();
+            bool AsignacionPermitida = true;
+
+            AlmacenEntidadObjeto.Clave = ClaveNuevo.Text.Trim();
+
+            Resultado = AlmacenProcesoObjeto.SeleccionarProducto(AlmacenEntidadObjeto);
+
+            if (Resultado.ErrorId == 0)
+            {
+                if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 1)
+                {
+                    if (AsignacionPermitida == true)
+                    {
+                        FamiliaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["FamiliaId"].ToString();
+                        SeleccionarSubfamilia();
+                        SubFamiliaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["SubFamiliaId"].ToString();
+                        MarcaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["MarcaId"].ToString();
+                        DescripcionNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["NombreProducto"].ToString();
+                        CantidadNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["MaximoPermitido"].ToString();
+                        ProductoIdHidden.Value = Resultado.ResultadoDatos.Tables[0].Rows[0]["ProductoId"].ToString();
+
+                        AgregarEtiquetaMensaje.Text = "";
+                    }
+                    else
+                    {
+                        LimpiarProducto();
+                        AgregarEtiquetaMensaje.Text = TextoError.EstatusActivoIncorrecto;
+                        ClaveNuevo.Focus();
+
+                    }
+
+
+                }
+                else
+                {
+                    LimpiarProducto();
+                    AgregarEtiquetaMensaje.Text = TextoError.NoExisteActivo;
+                    ClaveNuevo.Focus();
+                }
+            }
+            else
+            {
+                LimpiarProducto();
+                AgregarEtiquetaMensaje.Text = TextoError.ErrorGenerico;
+            }
+
+        }
+
+        protected void SeleccionarOrdenCompra()
+        {
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            OrdenEntidad OrdenEntidadObjeto = new OrdenEntidad();
+            OrdenProceso OrdenProcesoObjeto = new OrdenProceso();
+            bool AsignacionPermitida = true;
+
+            OrdenEntidadObjeto.Clave = ClaveNuevo.Text.Trim();
+
+            Resultado = OrdenProcesoObjeto.SeleccionarOrden(OrdenEntidadObjeto);
+
+            if (Resultado.ErrorId == 0)
+            {
+                if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 1)
+                {
+                    if (AsignacionPermitida == true)
+                    {
+                        FechaOrdenCompraNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["FechaOrden"].ToString();
+                        SolicitanteIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["EmpleadoId"].ToString();
+                        SeleccionarJefe();                        
+                        AgregarEtiquetaMensaje.Text = "";
+                    }
+                    else
+                    {
+                        LimpiarRecepcion();
+                        AgregarEtiquetaMensaje.Text = TextoError.EstatusActivoIncorrecto;
+                        FolioNuevo.Focus();
+
+                    }
+
+
+                }
+                else
+                {
+                    LimpiarRecepcion();
+                    AgregarEtiquetaMensaje.Text = TextoError.NoExisteActivo;
+                    FolioNuevo.Focus();
+                }
+            }
+            else
+            {
+                LimpiarRecepcion();
+                AgregarEtiquetaMensaje.Text = TextoError.ErrorGenerico;
+            }
+
         }
 
         protected void SeleccionarFamilia()

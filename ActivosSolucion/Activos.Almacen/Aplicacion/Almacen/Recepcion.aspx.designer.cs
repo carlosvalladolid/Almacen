@@ -77,13 +77,22 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.TextBox FechaDocumentoNuevo;
         
         /// <summary>
-        /// MontoNuevo control.
+        /// MontoDatosNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox MontoNuevo;
+        protected global::System.Web.UI.WebControls.TextBox MontoDatosNuevo;
+        
+        /// <summary>
+        /// PanelBuscarOrdenCompra control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PanelBuscarOrdenCompra;
         
         /// <summary>
         /// OrderCompraNuevo control.
@@ -93,6 +102,15 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox OrderCompraNuevo;
+        
+        /// <summary>
+        /// LinkBuscarOrdenCompra control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkBuscarOrdenCompra;
         
         /// <summary>
         /// FechaOrdenCompraNuevo control.
@@ -131,6 +149,15 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.Panel PanelNuevoRegistroDetalle;
         
         /// <summary>
+        /// PanelBuscarClave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PanelBuscarClave;
+        
+        /// <summary>
         /// ClaveNuevo control.
         /// </summary>
         /// <remarks>
@@ -138,6 +165,15 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ClaveNuevo;
+        
+        /// <summary>
+        /// LinkBuscarClave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkBuscarClave;
         
         /// <summary>
         /// FamiliaIdNuevo control.
@@ -176,6 +212,15 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.TextBox DescripcionNuevo;
         
         /// <summary>
+        /// PrecionUnitarioNuevo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox PrecionUnitarioNuevo;
+        
+        /// <summary>
         /// CantidadNuevo control.
         /// </summary>
         /// <remarks>
@@ -183,6 +228,15 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox CantidadNuevo;
+        
+        /// <summary>
+        /// MontoDocumentoNuevo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox MontoDocumentoNuevo;
         
         /// <summary>
         /// EtiquetaMensaje control.
@@ -194,13 +248,13 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.Label EtiquetaMensaje;
         
         /// <summary>
-        /// TablaPreOrden control.
+        /// TablaRecepcion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView TablaPreOrden;
+        protected global::System.Web.UI.WebControls.GridView TablaRecepcion;
         
         /// <summary>
         /// BotonGuardarPreOrden control.
@@ -230,11 +284,42 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.ImageButton BotonCancelarPreOrden;
         
         /// <summary>
+        /// AssociatedUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdateProgress AssociatedUpdate;
+        
+        /// <summary>
+        /// TemporalRecepcionIdHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField TemporalRecepcionIdHidden;
+        
+        /// <summary>
+        /// ProductoIdHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField ProductoIdHidden;
+        
+        /// <summary>
         /// Master property.
         /// </summary>
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-      
+        public new Almacen.Web.Incluir.Plantilla.PlantillaPrivada Master {
+            get {
+                return ((Almacen.Web.Incluir.Plantilla.PlantillaPrivada)(base.Master));
+            }
+        }
     }
 }

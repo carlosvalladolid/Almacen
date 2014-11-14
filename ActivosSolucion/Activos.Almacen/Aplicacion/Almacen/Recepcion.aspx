@@ -64,13 +64,18 @@
                       <tr>
                         <td class="Nombre">Monto</td>
                         <td class="Espacio"></td>
-                        <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="MontoNuevo" runat="server" Text=""></asp:TextBox></td>
+                        <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="MontoDatosNuevo" runat="server" Text=""></asp:TextBox></td>
                     </tr>
                     
                     <tr>
                         <td class="Nombre">Orden de Compra</td>
                         <td class="Espacio"></td>
-                        <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="OrderCompraNuevo" runat="server" Text=""></asp:TextBox></td>
+                        <td class="Campo">                        
+                            <asp:Panel ID="PanelBuscarOrdenCompra" runat="server" DefaultButton="LinkBuscarOrdenCompra">
+                             <asp:TextBox ID="OrderCompraNuevo" CssClass="CajaTextoMediana" MaxLength="15" runat="server"></asp:TextBox>
+                             <asp:LinkButton ID="LinkBuscarOrdenCompra" OnClick="LinkBuscarOrdenCompra_Click" Visible ="false"  ValidationGroup="BuscarOrdenCompra" runat="server" Text="" Width="0px"></asp:LinkButton>
+                             </asp:Panel>
+                       </td>
                     </tr>
                     
                       <tr>
@@ -104,10 +109,14 @@
               <table class="FormTable">              
                      <tr>
                             <td class="Nombre">Clave</td>
-                            <td class="Required">*</td>  
-                           
-                            <td class="Campo">
-                              <asp:TextBox ID="ClaveNuevo" CssClass="CajaTextoMediana" MaxLength="15" runat="server"></asp:TextBox>
+                            <td class="Required">*</td>
+                            <td class="Campo">                           
+                            
+                             <asp:Panel ID="PanelBuscarClave" runat="server" DefaultButton="LinkBuscarClave">
+                             <asp:TextBox ID="ClaveNuevo" CssClass="CajaTextoMediana" MaxLength="15" runat="server"></asp:TextBox>
+                             <asp:LinkButton ID="LinkBuscarClave" OnClick="LinkBuscarClave_Click" Visible ="false"  ValidationGroup="BuscarClave" runat="server" Text="" Width="0px"></asp:LinkButton>
+                             </asp:Panel>
+                         
                              
                             </td>
                         </tr>
@@ -135,11 +144,25 @@
                             <td class="Espacio"></td>
                             <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="DescripcionNuevo"  runat="server" ></asp:TextBox></td>
                         </tr>
+                        
+                         <tr>
+                            <td class="Nombre">Precio Unitario</td>
+                            <td class="Espacio"></td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="PrecionUnitarioNuevo"  runat="server" Text=""></asp:TextBox></td>
+                           
+                        </tr>
                     
 						 <tr>
                             <td class="Nombre">Cantidad</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="CantidadNuevo" MaxLength="10" runat="server" Text=""></asp:TextBox></td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="CantidadNuevo"  runat="server" Text=""></asp:TextBox></td>
+                           
+                        </tr>
+                        
+                         <tr>
+                            <td class="Nombre">Monto</td>
+                            <td class="Espacio"></td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="MontoDocumentoNuevo"  runat="server" Text=""></asp:TextBox></td>
                            
                         </tr>
                 </table>
@@ -149,7 +172,7 @@
 
              	<div>
                     <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0" 
-                        CssClass="TablaInformacion" DataKeyNames="PreOrdenId" ID="TablaPreOrden" runat="server" PageSize="10">
+                        CssClass="TablaInformacion" DataKeyNames="RecepcionId" ID="TablaRecepcion" runat="server" PageSize="10">
                         <EmptyDataTemplate>
                             <table class="TablaVacia">
                                 <tr class="Encabezado">
@@ -201,7 +224,7 @@
                 </div>
              
              
-              <div>
+                <div>
                         <table width="100%">
                            <tr>
                               <td style="width:70%;">
@@ -217,6 +240,18 @@
                      </div>
                      <br /><br /><br /> 
 
+             
+               <asp:UpdateProgress AssociatedUpdatePanelID="PageUpdate" ID="AssociatedUpdate" runat="server">
+                    <ProgressTemplate>
+                        <div class="LoadingDiv"><div class="LoadingImageDiv"><img alt="Cargando..." src="../../Image/Icon/LoadingIcon.gif" /></div></div>
+                    </ProgressTemplate>
+                </asp:UpdateProgress>   
+                
+                
+                     <asp:HiddenField ID="TemporalRecepcionIdHidden" runat="server" Value="" />
+                     <asp:HiddenField ID="ProductoIdHidden" runat="server" Value="" />
+             
+             
              
              
              </ContentTemplate>

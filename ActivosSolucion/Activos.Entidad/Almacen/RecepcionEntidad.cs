@@ -18,11 +18,12 @@ namespace Activos.Entidad.Almacen
 	public Int16 _EstatusId;
 	public string _Clave;
 	public string _FechaDocumento;
-	public string _Monto;
+	public decimal _Monto;
     //campos de RecepcionDetalle
 	public string _ProductoId;
-	public string _Precio;
+	public decimal _Precio;
     public string _Cantidad;
+    public string _TemporalRecepcionId;
 
     public RecepcionEntidad()
         {
@@ -35,11 +36,11 @@ namespace Activos.Entidad.Almacen
             _EstatusId = 0;
             _Clave = string.Empty;
             _FechaDocumento = string.Empty;
-            _Monto = string.Empty;
+            _Monto = 0;
             _ProductoId = string.Empty;
-            _Precio = string.Empty;
+            _Precio = 0;
             _Cantidad = string.Empty;
-
+            _TemporalRecepcionId = string.Empty;
         }
 
     public string RecepcionId
@@ -99,7 +100,7 @@ namespace Activos.Entidad.Almacen
         set { _FechaDocumento = value; }
     }
 
-    public string Monto
+    public decimal Monto
     {
         get { return _Monto; }
         set { _Monto = value; }
@@ -112,7 +113,7 @@ namespace Activos.Entidad.Almacen
     }
 
 
-    public string Precio
+    public decimal Precio
     {
         get { return _Precio; }
         set { _Precio = value; }
@@ -125,5 +126,13 @@ namespace Activos.Entidad.Almacen
     }
 
 
+
+    public string TemporalRecepcionId
+    {
+        get { return _TemporalRecepcionId; }
+        set { _TemporalRecepcionId = value; }
+    }
+
+      
     }
 }

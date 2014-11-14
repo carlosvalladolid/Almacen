@@ -391,6 +391,13 @@ namespace Activos.Comun.Constante
         }
 
 
+        public enum Recepcion
+        {
+            RecepcionGuardadoCorrectamente = 1,
+            RecepcionEliminadoCorrectamente = 2,
+            FolioDuplicado = 3
+        }
+
         public enum RecuperarContrasenia
         {
             ValorPorDefecto = 0,
