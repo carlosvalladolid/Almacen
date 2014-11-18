@@ -78,7 +78,7 @@ namespace Activos.ProcesoNegocio.Almacen
             /// <summary>
             ///     
             /// </summary>
-            private void GuardaProductoOrdenTemp()
+            public void GuardaProductoOrdenTemp()
             {
                 string CadenaConexion = string.Empty;
                 SqlTransaction Transaccion;
@@ -94,6 +94,7 @@ namespace Activos.ProcesoNegocio.Almacen
 
                 try
                 {
+                    //if(PreOrdenEntidad.Orden)
                     GuardaProductoOrdenEncabezadoTemp(Conexion, Transaccion, _PreOrdenEntidad);
 
                     // Guardar encabezado temporal

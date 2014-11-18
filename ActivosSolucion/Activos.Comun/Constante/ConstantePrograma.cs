@@ -54,6 +54,9 @@ namespace Activos.Comun.Constante
         public const string ComandoAgregar = "Agregar";
         public const string ComandoSeleccionar = "Seleccionar";
 
+        // Mensajes de confirmación para la pantalla de órdenes de compra
+        //public const string
+
         public enum Accesorio
         {
             AccesorioGuardadoCorrectamente = 1,
