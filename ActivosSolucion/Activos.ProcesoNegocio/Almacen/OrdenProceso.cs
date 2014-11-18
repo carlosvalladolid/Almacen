@@ -17,8 +17,8 @@ namespace Activos.ProcesoNegocio.Almacen
         private int _ErrorId;
         private string _DescripcionError;
         DataSet _ResultadoDatos;
-        PreOrdenEntidad _PreOrdenEntidad;
         OrdenEntidad _OrdenEntidad;
+        OrdenDetalleEntidad _OrdenDetalleEntidad;
 
         /// <summary>
         ///     Numero de error, en caso de que haya ocurrido uno. Cero por default.
@@ -47,19 +47,19 @@ namespace Activos.ProcesoNegocio.Almacen
         /// <summary>
         ///     Entidad del proceso.
         /// </summary>
-        public PreOrdenEntidad PreOrdenEntidad
+        public OrdenEntidad OrdenEntidad
         {
-            get { return _PreOrdenEntidad; }
-            set { _PreOrdenEntidad = value; }
+            get { return _OrdenEntidad; }
+            set { _OrdenEntidad = value; }
         }
 
         /// <summary>
         ///     Entidad del proceso.
         /// </summary>
-        public OrdenEntidad OrdenEntidad
+        public OrdenDetalleEntidad OrdenDetalleEntidad
         {
-            get { return _OrdenEntidad; }
-            set { _OrdenEntidad = value; }
+            get { return _OrdenDetalleEntidad; }
+            set { _OrdenDetalleEntidad = value; }
         }
 
         /// <summary>
@@ -70,8 +70,8 @@ namespace Activos.ProcesoNegocio.Almacen
             _ErrorId = 0;
             _DescripcionError = string.Empty;
             _ResultadoDatos = null;
-            _PreOrdenEntidad = new PreOrdenEntidad();
             _OrdenEntidad = new OrdenEntidad();
+            _OrdenDetalleEntidad = new OrdenDetalleEntidad();
         }
 
         #region "Métodos"
@@ -95,7 +95,7 @@ namespace Activos.ProcesoNegocio.Almacen
                 try
                 {
                     //if(PreOrdenEntidad.Orden)
-                    GuardaProductoOrdenEncabezadoTemp(Conexion, Transaccion, _PreOrdenEntidad);
+                    GuardaProductoOrdenEncabezadoTemp(Conexion, Transaccion, _OrdenDetalleEntidad);
 
                     // Guardar encabezado temporal
                     if (_ErrorId != 0)
@@ -106,7 +106,7 @@ namespace Activos.ProcesoNegocio.Almacen
                     }
 
                     // Si todo salió bien, guardar el detalle temporal
-                    GuardaProductoOrdenDetalleTemp(Conexion, Transaccion, _PreOrdenEntidad);
+                    GuardaProductoOrdenDetalleTemp(Conexion, Transaccion, _OrdenDetalleEntidad);
 
                     if (_ErrorId == 0)
                         Transaccion.Commit();
@@ -136,11 +136,11 @@ namespace Activos.ProcesoNegocio.Almacen
             /// <param name="Conexion"></param>
             /// <param name="Transaccion"></param>
             /// <param name="PreOrdenEntidad"></param>
-            private void GuardaProductoOrdenDetalleTemp(SqlConnection Conexion, SqlTransaction Transaccion, PreOrdenEntidad PreOrdenEntidad)
+            private void GuardaProductoOrdenDetalleTemp(SqlConnection Conexion, SqlTransaction Transaccion, OrdenDetalleEntidad OrdenDetalleEntidad)
             {
                 OrdenAcceso OrdenAcceso = new OrdenAcceso();
 
-                OrdenAcceso.InsertaProductoOrdenDetalleTemp(Conexion, Transaccion, _PreOrdenEntidad);
+                OrdenAcceso.InsertaProductoOrdenDetalleTemp(Conexion, Transaccion, _OrdenDetalleEntidad);
 
                 _ErrorId = OrdenAcceso.ErrorId;
                 _DescripcionError = OrdenAcceso.DescripcionError;
@@ -152,11 +152,11 @@ namespace Activos.ProcesoNegocio.Almacen
             /// <param name="Conexion"></param>
             /// <param name="Transaccion"></param>
             /// <param name="PreOrdenEntidad"></param>
-            private void GuardaProductoOrdenEncabezadoTemp(SqlConnection Conexion, SqlTransaction Transaccion, PreOrdenEntidad PreOrdenEntidad)
+            private void GuardaProductoOrdenEncabezadoTemp(SqlConnection Conexion, SqlTransaction Transaccion, OrdenDetalleEntidad OrdenDetalleEntidad)
             {
                 OrdenAcceso OrdenAcceso = new OrdenAcceso();
 
-                OrdenAcceso.InsertaProductoOrdenEncabezadoTemp(Conexion, Transaccion, _PreOrdenEntidad);
+                OrdenAcceso.InsertaProductoOrdenEncabezadoTemp(Conexion, Transaccion, _OrdenDetalleEntidad);
 
                 _ErrorId = OrdenAcceso.ErrorId;
                 _DescripcionError = OrdenAcceso.DescripcionError;
@@ -164,7 +164,7 @@ namespace Activos.ProcesoNegocio.Almacen
 
             private bool ValidarOrdenTemp()
             {
-                if (_PreOrdenEntidad.PreOrdenId == "")
+                if (_OrdenDetalleEntidad.PreOrdenId == "")
                 {
                     _ErrorId = (int)TextoError.Orden.PreOrdenIdVacio;
                     _DescripcionError = TextoError.OrdenConPreOrdenIdVacio;

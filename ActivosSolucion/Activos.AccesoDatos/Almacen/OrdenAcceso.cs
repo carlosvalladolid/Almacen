@@ -58,7 +58,7 @@ namespace Activos.AccesoDatos.Almacen
             /// <param name="Conexion"></param>
             /// <param name="Transaccion"></param>
             /// <param name="PreOrdenEntidad"></param>
-            public void InsertaProductoOrdenEncabezadoTemp(SqlConnection Conexion, SqlTransaction Transaccion, PreOrdenEntidad PreOrdenEntidad)
+            public void InsertaProductoOrdenEncabezadoTemp(SqlConnection Conexion, SqlTransaction Transaccion, OrdenDetalleEntidad OrdenDetalleEntidad)
             {
                 SqlCommand Commando;
                 SqlParameter Parameter;
@@ -70,12 +70,12 @@ namespace Activos.AccesoDatos.Almacen
 
                     Commando.Transaction = Transaccion;
 
-                    Parameter = new SqlParameter("PreOrdenId", SqlDbType.VarChar);
-                    Parameter.Value = PreOrdenEntidad.PreOrdenId;
+                    Parameter = new SqlParameter("OrdenId", SqlDbType.VarChar);
+                    Parameter.Value = OrdenDetalleEntidad.PreOrdenId;
                     Commando.Parameters.Add(Parameter);
 
-                    Parameter = new SqlParameter("ProductoId", SqlDbType.VarChar);
-                    Parameter.Value = PreOrdenEntidad.ProductoId;
+                    Parameter = new SqlParameter("PreOrdenId", SqlDbType.VarChar);
+                    Parameter.Value = OrdenDetalleEntidad.PreOrdenId;
                     Commando.Parameters.Add(Parameter);
 
                     Commando.ExecuteNonQuery();
@@ -93,7 +93,7 @@ namespace Activos.AccesoDatos.Almacen
             /// <param name="Conexion"></param>
             /// <param name="Transaccion"></param>
             /// <param name="PreOrdenEntidad"></param>
-            public void InsertaProductoOrdenDetalleTemp(SqlConnection Conexion, SqlTransaction Transaccion, PreOrdenEntidad PreOrdenEntidad)
+            public void InsertaProductoOrdenDetalleTemp(SqlConnection Conexion, SqlTransaction Transaccion, OrdenDetalleEntidad OrdenDetalleEntidad)
             {
                 SqlCommand Commando;
                 SqlParameter Parameter;
@@ -106,11 +106,11 @@ namespace Activos.AccesoDatos.Almacen
                     Commando.Transaction = Transaccion;
 
                     Parameter = new SqlParameter("PreOrdenId", SqlDbType.VarChar);
-                    Parameter.Value = PreOrdenEntidad.PreOrdenId;
+                    Parameter.Value = OrdenDetalleEntidad.PreOrdenId;
                     Commando.Parameters.Add(Parameter);
 
                     Parameter = new SqlParameter("ProductoId", SqlDbType.VarChar);
-                    Parameter.Value = PreOrdenEntidad.ProductoId;
+                    Parameter.Value = OrdenDetalleEntidad.ProductoId;
                     Commando.Parameters.Add(Parameter);
 
                     Commando.ExecuteNonQuery();

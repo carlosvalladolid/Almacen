@@ -50,8 +50,8 @@ namespace Almacen.Web.Aplicacion.Almacen
             {
                 OrdenProceso OrdenProceso = new OrdenProceso();
 
-                OrdenProceso.PreOrdenEntidad.PreOrdenId = PreOrdenId;
-                OrdenProceso.PreOrdenEntidad.ProductoId = ProductoId;
+                OrdenProceso.OrdenDetalleEntidad.PreOrdenId = PreOrdenId;
+                OrdenProceso.OrdenDetalleEntidad.ProductoId = ProductoId;
 
                 OrdenProceso.GuardaProductoOrdenTemp();
 

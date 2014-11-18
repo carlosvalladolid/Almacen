@@ -74,6 +74,7 @@
     <Compile Include="Almacen\AlmacenEntidad.cs" />
     <Compile Include="Almacen\FamiliaEntidad.cs" />
     <Compile Include="Almacen\MarcaEntidad.cs" />
+    <Compile Include="Almacen\OrdenDetalleEntidad.cs" />
     <Compile Include="Almacen\OrdenEntidad.cs" />
     <Compile Include="Almacen\PreOrdenEntidad.cs" />
     <Compile Include="Almacen\ProveedorEntidad.cs" />

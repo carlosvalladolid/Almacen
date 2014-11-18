@@ -8,6 +8,7 @@ namespace Activos.Entidad.Almacen
     public class OrdenEntidad : Base
     {
         private string _OrdenId;
+        private string _PreOrdenId;
         private string _EmpleadoId;
         private string _JefeId;
         private Int16 _ProveedorId;
@@ -19,6 +20,7 @@ namespace Activos.Entidad.Almacen
         public OrdenEntidad()
         {
             _OrdenId = string.Empty;
+            _PreOrdenId = string.Empty;
             _EmpleadoId = string.Empty;
             _JefeId = string.Empty;
             _ProveedorId = 0;
@@ -35,6 +37,15 @@ namespace Activos.Entidad.Almacen
         {
             get { return _OrdenId; }
             set { _OrdenId = value; }
+        }
+
+        /// <summary>
+        ///     Identificador de la preorden de compra.
+        /// </summary>
+        public string PreOrdenId
+        {
+            get { return _PreOrdenId; }
+            set { _PreOrdenId = value; }
         }
 
         /// <summary>
