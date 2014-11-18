@@ -53,40 +53,72 @@ namespace Activos.AccesoDatos.Almacen
 
         #region "Métodos"
             /// <summary>
-            ///     Método para 
+            ///     
             /// </summary>
-            /// <param name="OrdenEntidad"></param>
-            /// <param name="ConnectionString"></param>
-        public void InsertaProductoOrdenTemp(PreOrdenEntidad PreOrdenEntidad, string ConnectionString)
+            /// <param name="Conexion"></param>
+            /// <param name="Transaccion"></param>
+            /// <param name="PreOrdenEntidad"></param>
+            public void InsertaProductoOrdenEncabezadoTemp(SqlConnection Conexion, SqlTransaction Transaccion, PreOrdenEntidad PreOrdenEntidad)
             {
-                SqlConnection Connection = new SqlConnection(ConnectionString);
-                SqlCommand Command;
+                SqlCommand Commando;
                 SqlParameter Parameter;
 
                 try
                 {
-                    Command = new SqlCommand("InsertaProductoOrdenTemp", Connection);
-                    Command.CommandType = CommandType.StoredProcedure;
+                    Commando = new SqlCommand("InsertaProductoOrdenEncabezadoTemp", Conexion);
+                    Commando.CommandType = CommandType.StoredProcedure;
+
+                    Commando.Transaction = Transaccion;
 
                     Parameter = new SqlParameter("PreOrdenId", SqlDbType.VarChar);
                     Parameter.Value = PreOrdenEntidad.PreOrdenId;
-                    Command.Parameters.Add(Parameter);
+                    Commando.Parameters.Add(Parameter);
 
                     Parameter = new SqlParameter("ProductoId", SqlDbType.VarChar);
                     Parameter.Value = PreOrdenEntidad.ProductoId;
-                    Command.Parameters.Add(Parameter);
+                    Commando.Parameters.Add(Parameter);
 
-                    Connection.Open();
-                    Command.ExecuteNonQuery();
-                    Connection.Close();
+                    Commando.ExecuteNonQuery();
                 }
                 catch (SqlException Exception)
                 {
                     _ErrorId = Exception.Number;
                     _DescripcionError = Exception.Message;
+                }
+            }
 
-                    if (Connection.State == ConnectionState.Open)
-                        Connection.Close();
+            /// <summary>
+            ///     
+            /// </summary>
+            /// <param name="Conexion"></param>
+            /// <param name="Transaccion"></param>
+            /// <param name="PreOrdenEntidad"></param>
+            public void InsertaProductoOrdenDetalleTemp(SqlConnection Conexion, SqlTransaction Transaccion, PreOrdenEntidad PreOrdenEntidad)
+            {
+                SqlCommand Commando;
+                SqlParameter Parameter;
+
+                try
+                {
+                    Commando = new SqlCommand("InsertaProductoOrdenDetalleTemp", Conexion);
+                    Commando.CommandType = CommandType.StoredProcedure;
+
+                    Commando.Transaction = Transaccion;
+
+                    Parameter = new SqlParameter("PreOrdenId", SqlDbType.VarChar);
+                    Parameter.Value = PreOrdenEntidad.PreOrdenId;
+                    Commando.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("ProductoId", SqlDbType.VarChar);
+                    Parameter.Value = PreOrdenEntidad.ProductoId;
+                    Commando.Parameters.Add(Parameter);
+
+                    Commando.ExecuteNonQuery();
+                }
+                catch (SqlException Exception)
+                {
+                    _ErrorId = Exception.Number;
+                    _DescripcionError = Exception.Message;
                 }
             }
         #endregion
