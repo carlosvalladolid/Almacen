@@ -241,12 +241,12 @@ namespace Activos.Almacen.Aplicacion.Almacen
                         CantidadNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["MaximoPermitido"].ToString();
                         ProductoIdHidden.Value = Resultado.ResultadoDatos.Tables[0].Rows[0]["ProductoId"].ToString();
 
-                        AgregarEtiquetaMensaje.Text = "";
+                       // AgregarEtiquetaMensaje.Text = "";
                     }
                     else
                     {
-                        LimpiarProducto();
-                        AgregarEtiquetaMensaje.Text = TextoError.EstatusActivoIncorrecto;
+                       // LimpiarProducto();
+                        //AgregarEtiquetaMensaje.Text = TextoError.EstatusActivoIncorrecto;
                         ClaveNuevo.Focus();
 
                     }
@@ -255,15 +255,15 @@ namespace Activos.Almacen.Aplicacion.Almacen
                 }
                 else
                 {
-                    LimpiarProducto();
-                    AgregarEtiquetaMensaje.Text = TextoError.NoExisteActivo;
+                   // LimpiarProducto();
+                  //  AgregarEtiquetaMensaje.Text = TextoError.NoExisteActivo;
                     ClaveNuevo.Focus();
                 }
             }
             else
             {
-                LimpiarProducto();
-                AgregarEtiquetaMensaje.Text = TextoError.ErrorGenerico;
+               // LimpiarProducto();
+                //AgregarEtiquetaMensaje.Text = TextoError.ErrorGenerico;
             }
 
         }
@@ -277,7 +277,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
             OrdenEntidadObjeto.Clave = ClaveNuevo.Text.Trim();
 
-            Resultado = OrdenProcesoObjeto.SeleccionarOrden(OrdenEntidadObjeto);
+            //Resultado = OrdenProcesoObjeto.SeleccionarOrden(OrdenEntidadObjeto);
 
             if (Resultado.ErrorId == 0)
             {
@@ -287,13 +287,13 @@ namespace Activos.Almacen.Aplicacion.Almacen
                     {
                         FechaOrdenCompraNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["FechaOrden"].ToString();
                         SolicitanteIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["EmpleadoId"].ToString();
-                        SeleccionarJefe();                        
-                        AgregarEtiquetaMensaje.Text = "";
+                      //  SeleccionarJefe();                        
+                      //  AgregarEtiquetaMensaje.Text = "";
                     }
                     else
                     {
                         LimpiarRecepcion();
-                        AgregarEtiquetaMensaje.Text = TextoError.EstatusActivoIncorrecto;
+                      //  AgregarEtiquetaMensaje.Text = TextoError.EstatusActivoIncorrecto;
                         FolioNuevo.Focus();
 
                     }
@@ -303,14 +303,14 @@ namespace Activos.Almacen.Aplicacion.Almacen
                 else
                 {
                     LimpiarRecepcion();
-                    AgregarEtiquetaMensaje.Text = TextoError.NoExisteActivo;
+                 //   AgregarEtiquetaMensaje.Text = TextoError.NoExisteActivo;
                     FolioNuevo.Focus();
                 }
             }
             else
             {
                 LimpiarRecepcion();
-                AgregarEtiquetaMensaje.Text = TextoError.ErrorGenerico;
+               // AgregarEtiquetaMensaje.Text = TextoError.ErrorGenerico;
             }
 
         }

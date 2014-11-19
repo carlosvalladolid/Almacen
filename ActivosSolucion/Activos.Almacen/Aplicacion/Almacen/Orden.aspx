@@ -40,11 +40,12 @@
 
                 <div class="DivTabla">
                     <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
-                        CssClass="TablaInformacion" DataKeyNames="PreOrdenId" ID="TablaPreOrden"
+                        CssClass="TablaInformacion" DataKeyNames="PreOrdenId, ProductoId" ID="TablaPreOrden" OnRowCommand="TablaPreOrdenRowCommand"
                         runat="server" PageSize="10">
                         <EmptyDataTemplate>
                             <table class="TablaVacia">
                                 <tr class="Encabezado">
+                                    <th style="width: 35px;"></th>
                                     <th style="width: 100px;">Clave</th>
                                     <th>Descripción</th>
                                     <th style="width: 125px;">Familia</th>
@@ -52,13 +53,19 @@
                                     <th style="width: 125px;">Cantidad</th> 
                                  </tr>
                                 <tr>
-                                    <td colspan="5" style="text-align: center;">No se encontró información con los parámetros seleccionados</td>
+                                    <td colspan="6" style="text-align: center;">No se encontró información con los parámetros seleccionados</td>
                                 </tr>
                             </table>
                         </EmptyDataTemplate>
                         <HeaderStyle CssClass="Encabezado" />
                         <PagerStyle CssClass="Paginacion" HorizontalAlign="Right" />
                         <Columns>
+                            <asp:TemplateField HeaderText="">
+                                <ItemTemplate>
+                                    <asp:ImageButton AlternateText="Agregar" CommandArgument='<%#Container.DataItemIndex%>' CommandName="Agregar" ID="BotonAgregar" ImageUrl="/Imagen/Icono/IconoAgregar.png" runat="server" />
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Center" Width="35px" />
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Clave">
                                 <ItemTemplate>
                                     <asp:LinkButton CommandArgument="<%#Container.DataItemIndex%>" CommandName="Select" ID="Clave" runat="server" Text='<%#Eval("Clave")%>'></asp:LinkButton>
@@ -81,7 +88,7 @@
                     </asp:GridView>
                 </div>
 
-                <br />
+                <br /><br>
                 <div class="SubTituloDiv">Orden de compra</div>
 
                 <div class="DivTabla">

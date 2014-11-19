@@ -38,9 +38,19 @@ namespace Almacen.Web.Aplicacion.Almacen
             {
                 Inicio();
             }
+
+            protected void TablaPreOrden_RowCommand(object sender, GridViewCommandEventArgs e)
+            {
+                TablaPreOrdenRowCommand(e);
+            }
         #endregion
 
         #region "Métodos"
+            private void AgregarProducto(string PreOrdenId, string ProductoId)
+            {
+
+            }
+
             private void Inicio()
             {
                 if (Page.IsPostBack)
@@ -178,6 +188,26 @@ namespace Almacen.Web.Aplicacion.Almacen
                 FormatoMensaje.Append("\");");
 
                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
+            }
+
+            private void TablaPreOrdenRowCommand(GridViewCommandEventArgs e)
+            {
+                int Indice = 0;
+                string PreOrdenId = string.Empty;
+                string ProductoId = string.Empty;
+                string CommandName = string.Empty;
+
+                Indice = int.Parse(e.CommandArgument.ToString());
+                PreOrdenId = TablaPreOrden.DataKeys[Indice]["PreOrdenId"].ToString();
+                ProductoId = TablaPreOrden.DataKeys[Indice]["ProductoId"].ToString();
+                CommandName = e.CommandName.ToString();
+
+                switch(CommandName)
+                {
+                    case ConstantePrograma.ComandoAgregar:
+                        AgregarProducto(PreOrdenId, ProductoId);
+                        break;
+                }
             }
         #endregion
     }
