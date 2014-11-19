@@ -86,15 +86,6 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.TextBox MontoDatosNuevo;
         
         /// <summary>
-        /// PanelBuscarOrdenCompra control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelBuscarOrdenCompra;
-        
-        /// <summary>
         /// OrderCompraNuevo control.
         /// </summary>
         /// <remarks>
@@ -149,15 +140,6 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.Panel PanelNuevoRegistroDetalle;
         
         /// <summary>
-        /// PanelBuscarClave control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelBuscarClave;
-        
-        /// <summary>
         /// ClaveNuevo control.
         /// </summary>
         /// <remarks>
@@ -165,15 +147,6 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ClaveNuevo;
-        
-        /// <summary>
-        /// LinkBuscarClave control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkBuscarClave;
         
         /// <summary>
         /// FamiliaIdNuevo control.
@@ -316,6 +289,10 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-      
+        public new Almacen.Web.Incluir.Plantilla.PlantillaPrivada Master {
+            get {
+                return ((Almacen.Web.Incluir.Plantilla.PlantillaPrivada)(base.Master));
+            }
+        }
     }
 }

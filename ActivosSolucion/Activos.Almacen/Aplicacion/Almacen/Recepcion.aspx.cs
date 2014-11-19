@@ -59,10 +59,12 @@ namespace Activos.Almacen.Aplicacion.Almacen
             SeleccionarSubfamilia();
         }
 
-        protected void LinkBuscarClave_Click(object sender, EventArgs e)
+
+        protected void LinkBuscarClave_SelectedTextChanged(object sender, EventArgs e)
         {
             SeleccionarClave();
         }
+
 
         protected void LinkBuscarOrdenCompra_Click(object sender, EventArgs e)
         {
