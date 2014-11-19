@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -166,6 +165,26 @@ namespace Activos.ProcesoNegocio.Almacen
                 _DescripcionError = OrdenAcceso.DescripcionError;
             }
 
+            /// <summary>
+            ///     Realiza una búsqueda del detalle de una orden de compra temporal.
+            /// </summary>
+            public void SeleccionarOrdenDetalleTemp()
+            {
+                string CadenaConexion = string.Empty;
+                OrdenAcceso OrdenAcceso = new OrdenAcceso();
+
+                CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+                _ResultadoDatos = OrdenAcceso.SeleccionarOrdenDetalleTemp(_OrdenDetalleEntidad, CadenaConexion);
+
+                _ErrorId = OrdenAcceso.ErrorId;
+                _DescripcionError = OrdenAcceso.DescripcionError;
+            }
+
+            /// <summary>
+            ///     
+            /// </summary>
+            /// <returns></returns>
             private bool ValidarOrdenTemp()
             {
                 if (_OrdenDetalleEntidad.PreOrdenId == "")

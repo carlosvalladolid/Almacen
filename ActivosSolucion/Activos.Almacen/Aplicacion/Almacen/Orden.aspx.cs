@@ -168,8 +168,16 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 OrdenProceso.OrdenEncabezadoEntidad.OrdenId = OrdenId;
 
-                //OrdenProceso.Sele
+                OrdenProceso.SeleccionarOrdenDetalleTemp();
 
+                if (OrdenProceso.ErrorId != 0)
+                {
+                    MostrarMensaje(OrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                    return;
+                }
+
+                TablaOrden.DataSource = OrdenProceso.ResultadoDatos;
+                TablaOrden.DataBind();
             }
 
             private void SeleccionarPreOrden(string PreOrdenId)

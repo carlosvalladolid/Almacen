@@ -109,6 +109,10 @@ namespace Activos.AccesoDatos.Almacen
                     Parameter.Value = OrdenDetalleEntidad.OrdenId;
                     Commando.Parameters.Add(Parameter);
 
+                    Parameter = new SqlParameter("PreOrdenId", SqlDbType.VarChar);
+                    Parameter.Value = OrdenDetalleEntidad.PreOrdenId;
+                    Commando.Parameters.Add(Parameter);
+
                     Parameter = new SqlParameter("ProductoId", SqlDbType.VarChar);
                     Parameter.Value = OrdenDetalleEntidad.ProductoId;
                     Commando.Parameters.Add(Parameter);
@@ -119,6 +123,46 @@ namespace Activos.AccesoDatos.Almacen
                 {
                     _ErrorId = Exception.Number;
                     _DescripcionError = Exception.Message;
+                }
+            }
+
+            /// <summary>
+            ///     Realiza una búsqueda del detalle de una orden de compra temporal.
+            /// </summary>
+            /// <param name="OrdenDetalleEntidad">Entidad de la orden de compra.</param>
+            /// <param name="CadenaConexion">Cadena de conexión a la base de datos.</param>
+            /// <returns>Resultado de la búsqueda.</returns>
+            public DataSet SeleccionarOrdenDetalleTemp(OrdenDetalleEntidad OrdenDetalleEntidad, string CadenaConexion)
+            {
+                DataSet Resultado = new DataSet();
+                SqlConnection Conexion = new SqlConnection(CadenaConexion);
+                SqlCommand Comando;
+                SqlParameter Parametro;
+                SqlDataAdapter Adaptador;
+
+                try
+                {
+                    Comando = new SqlCommand("SeleccionarOrdenDetalleTemp", Conexion);
+                    Comando.CommandType = CommandType.StoredProcedure;
+
+                    Parametro = new SqlParameter("OrdenId", SqlDbType.VarChar);
+                    Parametro.Value = OrdenDetalleEntidad.OrdenId;
+                    Comando.Parameters.Add(Parametro);
+
+                    Adaptador = new SqlDataAdapter(Comando);
+
+                    Conexion.Open();
+                    Adaptador.Fill(Resultado);
+                    Conexion.Close();
+
+                    return Resultado;
+                }
+                catch (SqlException Excepcion)
+                {
+                    _ErrorId = Excepcion.Number;
+                    _DescripcionError = Excepcion.Message;
+
+                    return Resultado;
                 }
             }
         #endregion
