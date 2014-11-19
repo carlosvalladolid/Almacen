@@ -90,7 +90,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
                 RecepcionObjetoEntidad.FechaDocumento = FormatoFecha.AsignarFormato(FechaDocumentoNuevo.Text.Trim(), ConstantePrograma.UniversalFormatoFecha);
 
             RecepcionObjetoEntidad.ProductoId = ProductoIdHidden.Value;
-            RecepcionObjetoEntidad.Precio = decimal.Parse(PrecionUnitarioNuevo.Text);
+            RecepcionObjetoEntidad.PrecioUnitario = decimal.Parse(PrecionUnitarioNuevo.Text);
             RecepcionObjetoEntidad.Cantidad = MontoDocumentoNuevo.Text.Trim();
 
             AgregarRecepcion(RecepcionObjetoEntidad);

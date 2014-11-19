@@ -168,8 +168,15 @@
                          <tr>
                             <td class="Nombre">Monto</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="MontoDocumentoNuevo"  runat="server" Text=""></asp:TextBox></td>
-                           
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="MontoDocumentoNuevo"  runat="server" Text=""></asp:TextBox></td>                           
+                        </tr>
+                        
+                         <tr>
+                            <td colspan="3">
+                                <asp:Label CssClass="TextoError" ID="AgregarEtiquetaMensaje" runat="server" Text=""></asp:Label>
+                                <br />
+                                <asp:ImageButton AlternateText="Guardar" ID="BotonAgregar" ImageUrl="~/Imagen/Boton/BotonAgregar.png" OnClick="BotonAgregar_Click" runat="server" ValidationGroup="Save" />&nbsp;&nbsp;
+                              </td>
                         </tr>
                 </table>
              </asp:Panel>

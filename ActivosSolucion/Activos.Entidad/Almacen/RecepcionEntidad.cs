@@ -21,7 +21,7 @@ namespace Activos.Entidad.Almacen
 	public decimal _Monto;
     //campos de RecepcionDetalle
 	public string _ProductoId;
-	public decimal _Precio;
+	public decimal _PrecioUnitario;
     public string _Cantidad;
     public string _TemporalRecepcionId;
 
@@ -38,7 +38,7 @@ namespace Activos.Entidad.Almacen
             _FechaDocumento = string.Empty;
             _Monto = 0;
             _ProductoId = string.Empty;
-            _Precio = 0;
+            _PrecioUnitario = 0;
             _Cantidad = string.Empty;
             _TemporalRecepcionId = string.Empty;
         }
@@ -113,10 +113,10 @@ namespace Activos.Entidad.Almacen
     }
 
 
-    public decimal Precio
+    public decimal PrecioUnitario
     {
-        get { return _Precio; }
-        set { _Precio = value; }
+        get { return _PrecioUnitario; }
+        set { _PrecioUnitario = value; }
     }
 
     public string Cantidad

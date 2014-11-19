@@ -48,7 +48,7 @@ namespace Activos.ProcesoNegocio.Almacen
                {
                    RecepcionObjetoEntidad.RecepcionId = Guid.NewGuid().ToString();
 
-                   Resultado = RecepcionAccesoObjeto.InsertarRecepcionEncabezado(Conexion, Transaccion, RecepcionObjetoEntidad);
+                   Resultado = RecepcionAccesoObjeto.InsertarRecepcionDetalle(Conexion, Transaccion, RecepcionObjetoEntidad);
                }
                else
                {
@@ -70,7 +70,7 @@ namespace Activos.ProcesoNegocio.Almacen
                    else
                    {
                        //Se inserta el DetalleDocumento
-                       Resultado = RecepcionAccesoObjeto.InsertarRecepcionDetalle(Conexion, Transaccion, RecepcionObjetoEntidad);
+                       Resultado = RecepcionAccesoObjeto.InsertarRecepcionEncabezado(Conexion, Transaccion, RecepcionObjetoEntidad);
                    }
 
                    if (Resultado.ErrorId == (int)ConstantePrograma.Recepcion.RecepcionGuardadoCorrectamente)

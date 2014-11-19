@@ -66,8 +66,8 @@ namespace Activos.AccesoDatos.Almacen
                 Parametro.Value = RecepcionEntidadObjeto.ProductoId;
                 Comando.Parameters.Add(Parametro);
 
-                Parametro = new SqlParameter("Precio", SqlDbType.Decimal);
-                Parametro.Value = RecepcionEntidadObjeto.Precio;
+                Parametro = new SqlParameter("PrecioUnitario", SqlDbType.Decimal);
+                Parametro.Value = RecepcionEntidadObjeto.PrecioUnitario;
                 Comando.Parameters.Add(Parametro);
 
                 Parametro = new SqlParameter("Cantidad", SqlDbType.Int);
