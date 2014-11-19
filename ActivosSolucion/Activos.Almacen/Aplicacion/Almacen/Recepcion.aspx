@@ -78,14 +78,14 @@
                       <tr>
                         <td class="Nombre">Fecha O.C</td>
                         <td class="Espacio"></td>
-                        <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="FechaOrdenCompraNuevo" runat="server" Text=""></asp:TextBox></td>
+                        <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="FechaOrdenCompraNuevo" Enabled ="false"  runat="server" Text=""></asp:TextBox></td>
                     </tr>
                     
                     
                          <tr>
                             <td class="Nombre">Solicitante</td>
                             <td class="Required">*</td>
-                            <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="SolicitanteIdNuevo" onselectedindexchanged="SolicitanteCombo_SelectedIndexChanged" AutoPostBack="true"  runat="server"></asp:DropDownList>                              
+                            <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="SolicitanteIdNuevo"  Enabled ="false" onselectedindexchanged="SolicitanteCombo_SelectedIndexChanged" AutoPostBack="true"  runat="server"></asp:DropDownList>                              
                             </td>
                         </tr>
                         
@@ -93,7 +93,7 @@
                          <tr>
                             <td class="Nombre">Jefe Inmediato</td>
                             <td class="Required">*</td>
-                            <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="JefeInmediatoIdNuevo"  runat="server"></asp:DropDownList>                              
+                            <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="JefeInmediatoIdNuevo" Enabled ="false"  runat="server"></asp:DropDownList>                              
                             </td>
                         </tr>
                 </table>

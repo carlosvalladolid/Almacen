@@ -190,7 +190,7 @@ namespace Activos.ProcesoNegocio.Almacen
 
             CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
-            _ResultadoDatos = OrdenAcceso.SeleccionarBusquedaOrdenCompra(_OrdenDetalleEntidad, CadenaConexion);
+            _ResultadoDatos = OrdenAcceso.SeleccionarBusquedaOrdenCompra(_OrdenEncabezadoEntidad, CadenaConexion);
 
             _ErrorId = OrdenAcceso.ErrorId;
             _DescripcionError = OrdenAcceso.DescripcionError;

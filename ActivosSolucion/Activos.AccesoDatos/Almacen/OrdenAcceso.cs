@@ -166,7 +166,7 @@ namespace Activos.AccesoDatos.Almacen
                 }
             }
 
-            public DataSet SeleccionarBusquedaOrdenCompra(OrdenDetalleEntidad OrdenDetalleEntidad, string CadenaConexion)
+            public DataSet SeleccionarBusquedaOrdenCompra(OrdenEntidad OrdenDetalleEntidad, string CadenaConexion)
             {
                 DataSet Resultado = new DataSet();
                 SqlConnection Conexion = new SqlConnection(CadenaConexion);
@@ -183,9 +183,9 @@ namespace Activos.AccesoDatos.Almacen
                     Parametro.Value = OrdenDetalleEntidad.Clave;
                     Comando.Parameters.Add(Parametro);
 
-                    Parametro = new SqlParameter("OrdenId", SqlDbType.VarChar);
-                    Parametro.Value = OrdenDetalleEntidad.OrdenId;
-                    Comando.Parameters.Add(Parametro);
+                    //Parametro = new SqlParameter("OrdenId", SqlDbType.VarChar);
+                    //Parametro.Value = OrdenDetalleEntidad.OrdenId;
+                    //Comando.Parameters.Add(Parametro);
 
                     Adaptador = new SqlDataAdapter(Comando);
 

@@ -272,75 +272,36 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         protected void SeleccionarOrdenCompra()
         {
-            //ResultadoEntidad Resultado = new ResultadoEntidad();
-            //OrdenEntidad OrdenEntidadObjeto = new OrdenEntidad();
-          //  OrdenProceso OrdenProcesoObjeto = new OrdenProceso();
-
             OrdenProceso OrdenProceso = new OrdenProceso();
             //bool AsignacionPermitida = true;
 
             OrdenProceso.OrdenEncabezadoEntidad.Clave = OrderCompraNuevo.Text.Trim();
+
             OrdenProceso.SeleccionarBusquedaOrdenCompra();
             
             if (OrdenProceso.ErrorId == 0)
                 {
-                    // OrdenIdHidden.Value = OrdenProceso.OrdenDetalleEntidad.OrdenId;
-                     FechaOrdenCompraNuevo.Text = OrdenProceso.OrdenDetalleEntidad.FechaOrden;
-                    SolicitanteIdNuevo.SelectedValue =OrdenProceso.OrdenDetalleEntidad.EmpleadoId;
-                    
-                }
-                else
-                {
-                 //   MostrarMensaje(OrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
-                 }
+                   
+               if (OrdenProceso.ResultadoDatos.Tables[0].Rows.Count > 0)
+                    {
+                        FechaOrdenCompraNuevo.Text = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["FechaOrden"].ToString();
+                        SolicitanteIdNuevo.SelectedValue = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["EmpleadoId"].ToString();
+                        //SeleccionarJefe();
+                        //JefeInmediatoIdNuevo.SelectedValue  = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["JefeId"].ToString();
 
-             }
-
-
-
-
-
-
-
-
-           // Resultado = OrdenProcesoObjeto.SeleccionarBusquedaOrdenCompra(OrdenEntidadObjeto);
-
-            //if (Resultado.ErrorId == 0)
-            //{
-            //    if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 1)
-            //    {
-            //        if (AsignacionPermitida == true)
-            //        {
-            //            FechaOrdenCompraNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["FechaOrden"].ToString();
-            //            SolicitanteIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["EmpleadoId"].ToString();
-            //          //  SeleccionarJefe();                        
-            //          //  AgregarEtiquetaMensaje.Text = "";
-            //        }
-            //        else
-            //        {
-            //            LimpiarRecepcion();
-            //          //  AgregarEtiquetaMensaje.Text = TextoError.EstatusActivoIncorrecto;
-            //            FolioNuevo.Focus();
-
-            //        }
-
-
-            //    }
-            //    else
-            //    {
-            //        LimpiarRecepcion();
-            //     //   AgregarEtiquetaMensaje.Text = TextoError.NoExisteActivo;
-            //        FolioNuevo.Focus();
-            //    }
-            //}
-            //else
-            //{
-            //    LimpiarRecepcion();
-            //   // AgregarEtiquetaMensaje.Text = TextoError.ErrorGenerico;
-            //}
-
-        //}
-
+                    }
+               else
+                   {
+                       //   MostrarMensaje(OrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                       FechaOrdenCompraNuevo.Text = "";
+                       SolicitanteIdNuevo.SelectedIndex = 0;
+                       JefeInmediatoIdNuevo.SelectedIndex = 0;
+                       OrderCompraNuevo.Text = "";
+                       OrderCompraNuevo.Focus();
+                   }
+                     
+                   }
+            }
         protected void SeleccionarFamilia()
         {
             ResultadoEntidad Resultado = new ResultadoEntidad();
