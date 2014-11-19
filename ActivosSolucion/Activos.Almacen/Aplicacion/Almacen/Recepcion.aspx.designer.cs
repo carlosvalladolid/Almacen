@@ -95,15 +95,6 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.TextBox OrderCompraNuevo;
         
         /// <summary>
-        /// LinkBuscarOrdenCompra control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkBuscarOrdenCompra;
-        
-        /// <summary>
         /// FechaOrdenCompraNuevo control.
         /// </summary>
         /// <remarks>
@@ -289,10 +280,6 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-        public new Almacen.Web.Incluir.Plantilla.PlantillaPrivada Master {
-            get {
-                return ((Almacen.Web.Incluir.Plantilla.PlantillaPrivada)(base.Master));
-            }
-        }
+       
     }
 }

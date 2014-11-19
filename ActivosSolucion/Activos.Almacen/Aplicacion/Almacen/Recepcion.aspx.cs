@@ -66,7 +66,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
         }
 
 
-        protected void LinkBuscarOrdenCompra_Click(object sender, EventArgs e)
+        protected void LinkBuscarOrdenCompra_SelectedTextChanged(object sender, EventArgs e)
         {
             SeleccionarOrdenCompra();
         }
@@ -279,7 +279,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
             OrdenProceso OrdenProceso = new OrdenProceso();
             //bool AsignacionPermitida = true;
 
-            OrdenProceso.OrdenEncabezadoEntidad.Clave = ClaveNuevo.Text.Trim();
+            OrdenProceso.OrdenEncabezadoEntidad.Clave = OrderCompraNuevo.Text.Trim();
             OrdenProceso.SeleccionarBusquedaOrdenCompra();
             
             if (OrdenProceso.ErrorId == 0)

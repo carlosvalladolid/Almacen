@@ -71,11 +71,8 @@
                         <td class="Nombre">Orden de Compra</td>
                         <td class="Espacio"></td>
                         <td class="Campo">                        
-                            <asp:Panel ID="PanelBuscarOrdenCompra" runat="server" DefaultButton="LinkBuscarOrdenCompra">
-                             <asp:TextBox ID="OrderCompraNuevo" CssClass="CajaTextoMediana" MaxLength="15" runat="server"></asp:TextBox>
-                             <asp:LinkButton ID="LinkBuscarOrdenCompra" OnClick="LinkBuscarOrdenCompra_Click" Visible ="false"  ValidationGroup="BuscarOrdenCompra" runat="server" Text="" Width="0px"></asp:LinkButton>
-                             </asp:Panel>
-                       </td>
+                           <asp:TextBox ID="OrderCompraNuevo" CssClass="CajaTextoMediana" MaxLength="15"  OnTextChanged ="LinkBuscarOrdenCompra_SelectedTextChanged" AutoPostBack="true" runat="server"></asp:TextBox>
+                         </td>
                     </tr>
                     
                       <tr>
