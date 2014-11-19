@@ -182,6 +182,24 @@ namespace Activos.ProcesoNegocio.Almacen
             _DescripcionError = OrdenAcceso.DescripcionError;
         }
 
+
+        public void SeleccionarBusquedaOrdenCompra()
+        {
+            string CadenaConexion = string.Empty;
+            OrdenAcceso OrdenAcceso = new OrdenAcceso();
+
+            CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+            _ResultadoDatos = OrdenAcceso.SeleccionarBusquedaOrdenCompra(_OrdenDetalleEntidad, CadenaConexion);
+
+            _ErrorId = OrdenAcceso.ErrorId;
+            _DescripcionError = OrdenAcceso.DescripcionError;
+        }
+
+
+
+
+
         /// <summary>
         ///     
         /// </summary>

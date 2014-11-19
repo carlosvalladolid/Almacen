@@ -270,50 +270,74 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         protected void SeleccionarOrdenCompra()
         {
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-            OrdenEntidad OrdenEntidadObjeto = new OrdenEntidad();
-            OrdenProceso OrdenProcesoObjeto = new OrdenProceso();
-            bool AsignacionPermitida = true;
+            //ResultadoEntidad Resultado = new ResultadoEntidad();
+            //OrdenEntidad OrdenEntidadObjeto = new OrdenEntidad();
+          //  OrdenProceso OrdenProcesoObjeto = new OrdenProceso();
 
-            OrdenEntidadObjeto.Clave = ClaveNuevo.Text.Trim();
+            OrdenProceso OrdenProceso = new OrdenProceso();
+            //bool AsignacionPermitida = true;
 
-            //Resultado = OrdenProcesoObjeto.SeleccionarOrden(OrdenEntidadObjeto);
-
-            if (Resultado.ErrorId == 0)
-            {
-                if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 1)
+            OrdenProceso.OrdenEncabezadoEntidad.Clave = ClaveNuevo.Text.Trim();
+            OrdenProceso.SeleccionarBusquedaOrdenCompra();
+            
+            if (OrdenProceso.ErrorId == 0)
                 {
-                    if (AsignacionPermitida == true)
-                    {
-                        FechaOrdenCompraNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["FechaOrden"].ToString();
-                        SolicitanteIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["EmpleadoId"].ToString();
-                      //  SeleccionarJefe();                        
-                      //  AgregarEtiquetaMensaje.Text = "";
-                    }
-                    else
-                    {
-                        LimpiarRecepcion();
-                      //  AgregarEtiquetaMensaje.Text = TextoError.EstatusActivoIncorrecto;
-                        FolioNuevo.Focus();
-
-                    }
-
-
+                    // OrdenIdHidden.Value = OrdenProceso.OrdenDetalleEntidad.OrdenId;
+                     FechaOrdenCompraNuevo.Text = OrdenProceso.OrdenDetalleEntidad.FechaOrden;
+                    SolicitanteIdNuevo.SelectedValue =OrdenProceso.OrdenDetalleEntidad.EmpleadoId;
+                    
                 }
                 else
                 {
-                    LimpiarRecepcion();
-                 //   AgregarEtiquetaMensaje.Text = TextoError.NoExisteActivo;
-                    FolioNuevo.Focus();
-                }
-            }
-            else
-            {
-                LimpiarRecepcion();
-               // AgregarEtiquetaMensaje.Text = TextoError.ErrorGenerico;
-            }
+                 //   MostrarMensaje(OrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                 }
 
-        }
+             }
+
+
+
+
+
+
+
+
+           // Resultado = OrdenProcesoObjeto.SeleccionarBusquedaOrdenCompra(OrdenEntidadObjeto);
+
+            //if (Resultado.ErrorId == 0)
+            //{
+            //    if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 1)
+            //    {
+            //        if (AsignacionPermitida == true)
+            //        {
+            //            FechaOrdenCompraNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["FechaOrden"].ToString();
+            //            SolicitanteIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["EmpleadoId"].ToString();
+            //          //  SeleccionarJefe();                        
+            //          //  AgregarEtiquetaMensaje.Text = "";
+            //        }
+            //        else
+            //        {
+            //            LimpiarRecepcion();
+            //          //  AgregarEtiquetaMensaje.Text = TextoError.EstatusActivoIncorrecto;
+            //            FolioNuevo.Focus();
+
+            //        }
+
+
+            //    }
+            //    else
+            //    {
+            //        LimpiarRecepcion();
+            //     //   AgregarEtiquetaMensaje.Text = TextoError.NoExisteActivo;
+            //        FolioNuevo.Focus();
+            //    }
+            //}
+            //else
+            //{
+            //    LimpiarRecepcion();
+            //   // AgregarEtiquetaMensaje.Text = TextoError.ErrorGenerico;
+            //}
+
+        //}
 
         protected void SeleccionarFamilia()
         {

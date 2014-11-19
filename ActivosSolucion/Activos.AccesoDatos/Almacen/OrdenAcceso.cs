@@ -165,6 +165,44 @@ namespace Activos.AccesoDatos.Almacen
                     return Resultado;
                 }
             }
+
+            public DataSet SeleccionarBusquedaOrdenCompra(OrdenDetalleEntidad OrdenDetalleEntidad, string CadenaConexion)
+            {
+                DataSet Resultado = new DataSet();
+                SqlConnection Conexion = new SqlConnection(CadenaConexion);
+                SqlCommand Comando;
+                SqlParameter Parametro;
+                SqlDataAdapter Adaptador;
+
+                try
+                {
+                    Comando = new SqlCommand("SeleccionarOrdenEncabezadoProcedimiento", Conexion);
+                    Comando.CommandType = CommandType.StoredProcedure;
+
+                    Parametro = new SqlParameter("Clave", SqlDbType.VarChar);
+                    Parametro.Value = OrdenDetalleEntidad.Clave;
+                    Comando.Parameters.Add(Parametro);
+
+                    Parametro = new SqlParameter("OrdenId", SqlDbType.VarChar);
+                    Parametro.Value = OrdenDetalleEntidad.OrdenId;
+                    Comando.Parameters.Add(Parametro);
+
+                    Adaptador = new SqlDataAdapter(Comando);
+
+                    Conexion.Open();
+                    Adaptador.Fill(Resultado);
+                    Conexion.Close();
+
+                    return Resultado;
+                }
+                catch (SqlException Excepcion)
+                {
+                    _ErrorId = Excepcion.Number;
+                    _DescripcionError = Excepcion.Message;
+
+                    return Resultado;
+                }
+            }
         #endregion
     }
 }
