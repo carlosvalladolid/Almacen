@@ -15,3 +15,5 @@ SELECT * FROM Producto
 SELECT * FROM Familia
 
 SELECT * FROM Marca
+
+InsertaProductoOrdenDetalleTemp 
