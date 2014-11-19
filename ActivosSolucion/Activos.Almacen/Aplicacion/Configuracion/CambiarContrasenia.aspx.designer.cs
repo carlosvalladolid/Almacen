@@ -8,19 +8,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Almacen.Web.Application.Configuration {
+namespace Almacen.Web.Aplicacion.Configuracion {
     
     
     public partial class CambiarContrasenia {
         
         /// <summary>
-        /// ControlMenu control.
+        /// ControlMenuIzquierdo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Almacen.Web.Incluir.ControlesWeb.ControlMenu ControlMenu;
+        protected global::Almacen.Web.Incluir.ControlesWeb.ControlMenuIzquierdo ControlMenuIzquierdo;
         
         /// <summary>
         /// PanelContrasenia control.
@@ -66,15 +66,6 @@ namespace Almacen.Web.Application.Configuration {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Confirmacion;
-        
-        /// <summary>
-        /// txtprueba control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtprueba;
         
         /// <summary>
         /// AnteriorContraseniaRequerida control.
@@ -138,5 +129,6 @@ namespace Almacen.Web.Application.Configuration {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField ControlComeFromIdHidden;
+
     }
 }

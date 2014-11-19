@@ -14,7 +14,7 @@ using Activos.Entidad.General;
 using Activos.Entidad.Seguridad;
 using Activos.ProcesoNegocio.Seguridad;
 
-namespace Almacen.Web.Application.Configuration
+namespace Almacen.Web.Aplicacion.Configuracion
 {
     public partial class CambiarContrasenia : System.Web.UI.Page
     {
