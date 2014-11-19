@@ -74,6 +74,6 @@
     <tr>
         <td class="Space"></td>
         <td></td>
-        <td><a href="/Application/Configuration/ChangePassword.aspx">Cambiar la contraseña</a></td>
+        <td><a href="/Aplicacion/Configuracion/CambiarContrasenia.aspx">Cambiar la contraseña</a></td>
     </tr>
 </table>

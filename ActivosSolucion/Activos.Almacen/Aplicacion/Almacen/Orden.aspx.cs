@@ -46,9 +46,24 @@ namespace Almacen.Web.Aplicacion.Almacen
         #endregion
 
         #region "Métodos"
-            private void AgregarProducto(string PreOrdenId, string ProductoId)
+            private void GuardaProductoOrdenTemp(string OrdenId, string PreOrdenId, string ProductoId)
             {
+                OrdenProceso OrdenProceso = new OrdenProceso();
 
+                OrdenProceso.OrdenDetalleEntidad.OrdenId = OrdenId;
+                OrdenProceso.OrdenDetalleEntidad.PreOrdenId = PreOrdenId;
+                OrdenProceso.OrdenDetalleEntidad.ProductoId = ProductoId;
+
+                OrdenProceso.GuardaProductoOrdenTemp();
+
+                if (OrdenProceso.ErrorId == 0)
+                {
+                    OrdenIdHidden.Value = OrdenProceso.OrdenDetalleEntidad.OrdenId;
+
+                    SeleccionarOrden(OrdenIdHidden.Value);
+                }
+                else
+                    MostrarMensaje(OrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
             }
 
             private void Inicio()
@@ -66,6 +81,24 @@ namespace Almacen.Web.Aplicacion.Almacen
                 SeleccionarEmpleado();
 
                 JefeCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
+            }
+
+            private void LimpiarFormulario()
+            {
+                OrdenIdHidden.Value = "";
+            }
+
+            private void MostrarMensaje(string Mensaje, string TipoMensaje)
+            {
+                StringBuilder FormatoMensaje = new StringBuilder();
+
+                FormatoMensaje.Append("MostrarMensaje(\"");
+                FormatoMensaje.Append(Mensaje);
+                FormatoMensaje.Append("\", \"");
+                FormatoMensaje.Append(TipoMensaje);
+                FormatoMensaje.Append("\");");
+
+                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
             }
 
             private void SeleccionarEmpleado()
@@ -129,9 +162,22 @@ namespace Almacen.Web.Aplicacion.Almacen
                 JefeCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
             }
 
-            private void SeleccionarOrden(string Clave)
+            private void SeleccionarOrden(string OrdenId)
             {
-                
+                OrdenProceso OrdenProceso = new OrdenProceso();
+
+                OrdenProceso.OrdenEncabezadoEntidad.OrdenId = OrdenId;
+
+                OrdenProceso.SeleccionarOrdenDetalleTemp();
+
+                if (OrdenProceso.ErrorId != 0)
+                {
+                    MostrarMensaje(OrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                    return;
+                }
+
+                TablaOrden.DataSource = OrdenProceso.ResultadoDatos;
+                TablaOrden.DataBind();
             }
 
             private void SeleccionarPreOrden(string PreOrdenId)
@@ -144,7 +190,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 if (PreOrdenProceso.ErrorId != 0)
                 {
-                    ShowMessage(PreOrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                    MostrarMensaje(PreOrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
                     return;
                 }
 
@@ -177,19 +223,6 @@ namespace Almacen.Web.Aplicacion.Almacen
                 ProveedorCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
             }
 
-            private void ShowMessage(string Mensaje, string TipoMensaje)
-            {
-                StringBuilder FormatoMensaje = new StringBuilder();
-
-                FormatoMensaje.Append("MostrarMensaje(\"");
-                FormatoMensaje.Append(Mensaje);
-                FormatoMensaje.Append("\", \"");
-                FormatoMensaje.Append(TipoMensaje);
-                FormatoMensaje.Append("\");");
-
-                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
-            }
-
             private void TablaPreOrdenRowCommand(GridViewCommandEventArgs e)
             {
                 int Indice = 0;
@@ -205,7 +238,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 switch(CommandName)
                 {
                     case ConstantePrograma.ComandoAgregar:
-                        AgregarProducto(PreOrdenId, ProductoId);
+                        GuardaProductoOrdenTemp(OrdenIdHidden.Value, PreOrdenId, ProductoId);
                         break;
                 }
             }

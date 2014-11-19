@@ -66,7 +66,6 @@ namespace Activos.Comun.Constante
         public const string ActivoEsVehiculo = "· Solo se puede hacer salida de un vehiculo por documento";
         public const string ActivoAccesorio = "· El activo seleccionado es un accesorio, también se usará el activo padre";
 
-        
         // Mensajes de error para el catálogo de usuarios
         public const string UsuarioNombre = "· El campo <b>Nombre(s)</b> es obligatorio";
         public const string UsuarioApellidoPaterno = "· El campo <b>Apellido paterno</b> es obligatorio";
@@ -142,7 +141,6 @@ namespace Activos.Comun.Constante
         public const string DepartamentoDireccion = "· El campo <b>Direccion</b> es obligatorio";
         public const string DepartamentoConNombreDuplicado = "· Ya existe un departamento con ese nombre";
         public const string DepartamentoTieneRegistrosRelacionados = "· No se pueden eliminar los departamentos seleccionados debido que uno o varios de ellos tiene registros relacionados con una o varias de las siguientes tablas  <b>Empleado</b>, <b>Jefe</b>";
-        
 
         // Mensajes de error para el catálogo de jefes
         public const string JefeDireccion = "· El campo <b>Direccion(s)</b> es obligatorio";
@@ -243,18 +241,15 @@ namespace Activos.Comun.Constante
         public const string DocumentoConTiposActivosDiferentes = "· No se pueden asignar los activos de ese documento debido a que tiene activos de diferentes tipos.";
         public const string DocumentoConVariosVehiculos = "· Solo se puede asignar un vehículo a la vez.";
 
-
         // Mensajes de error para la pantalla de atencion a usuarios
         public const string MantenimientoActivosNoSeleccionados = "· Favor de seleccionar los activos que desea agregar.";
         public const string MantenimientoEmpleadoAgregadoYa = "· Ese empleado ya ha sido agregado.";
         public const string MantenimientoDescripcionObligatorio = "· La descripción del problema es obligatorio.";
         public const string MantenimientoEmpleadoAtiendeObligatorio = "· Favor de seleccionar el empleado que atiende.";
 
-
         //Mensajes de error de fecha
         public const string FechaDesdeInvalido = "· El campo <b>Fecha desde</b> no tiene un formato valido";
         public const string FechaHastaInvalido = "· El campo <b>Fecha hasta</b> no tiene un formato valido";
-
 
         // Mensajes de error para el catálogo de Producto
         public const string ProductoNombre = "· El campo <b>Nombre(s)</b> es obligatorio";
@@ -263,5 +258,18 @@ namespace Activos.Comun.Constante
         public const string ProductoTieneRegistrosRelacionados = "· No se pueden eliminar los Productos seleccionadas debido que uno o varias de ellas tiene registros relacionados con la tabla <b>Almacen</b>";
         public const string PreOrdenDuplicado = "· Ya existe una PreOrden";
 
+        // Mesnajes de error para la pantalla de órdenes de compra
+        public const string OrdenConPreOrdenIdVacio = "Se debe proporcionar un identificador de PreOrden";
+
+
+        public enum Error
+        {
+            Generico = 50000
+        }
+
+        public enum Orden
+        {
+            PreOrdenIdVacio = 1
+        }
     }
 }

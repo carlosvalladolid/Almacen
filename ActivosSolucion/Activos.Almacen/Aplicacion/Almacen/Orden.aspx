@@ -40,7 +40,7 @@
 
                 <div class="DivTabla">
                     <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
-                        CssClass="TablaInformacion" DataKeyNames="PreOrdenId, ProductoId" ID="TablaPreOrden" OnRowCommand="TablaPreOrdenRowCommand"
+                        CssClass="TablaInformacion" DataKeyNames="PreOrdenId, ProductoId" ID="TablaPreOrden" OnRowCommand="TablaPreOrden_RowCommand"
                         runat="server" PageSize="10">
                         <EmptyDataTemplate>
                             <table class="TablaVacia">
@@ -118,7 +118,7 @@
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center" />
                             </asp:TemplateField>
-                            <asp:BoundField DataField="NombreProducto" HeaderText="Descripción" ItemStyle-HorizontalAlign="Left">
+                            <asp:BoundField DataField="DescripcionProducto" HeaderText="Descripción" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" />
                             </asp:BoundField>
                             <asp:BoundField DataField="NombreFamilia" HeaderText="Familia" ItemStyle-HorizontalAlign="Left">
@@ -187,6 +187,8 @@
                         </td>
                     </tr>
                 </table>
+
+                <asp:HiddenField ID="OrdenIdHidden" runat="server" Value="" />
 
                 <asp:UpdateProgress AssociatedUpdatePanelID="PageUpdate" ID="AssociatedUpdate" runat="server">
                     <ProgressTemplate>
