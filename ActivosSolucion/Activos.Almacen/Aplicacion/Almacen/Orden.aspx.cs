@@ -46,17 +46,22 @@ namespace Almacen.Web.Aplicacion.Almacen
         #endregion
 
         #region "Métodos"
-            private void GuardaProductoOrdenTemp(string PreOrdenId, string ProductoId)
+            private void GuardaProductoOrdenTemp(string OrdenId, string PreOrdenId, string ProductoId)
             {
                 OrdenProceso OrdenProceso = new OrdenProceso();
 
+                OrdenProceso.OrdenDetalleEntidad.OrdenId = OrdenId;
                 OrdenProceso.OrdenDetalleEntidad.PreOrdenId = PreOrdenId;
                 OrdenProceso.OrdenDetalleEntidad.ProductoId = ProductoId;
 
                 OrdenProceso.GuardaProductoOrdenTemp();
 
                 if (OrdenProceso.ErrorId == 0)
-                    SeleccionarOrden(PreOrdenBusqueda.Text.Trim());
+                {
+                    OrdenIdHidden.Value = OrdenProceso.OrdenDetalleEntidad.OrdenId;
+
+                    SeleccionarOrden(OrdenIdHidden.Value);
+                }
                 else
                     MostrarMensaje(OrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
             }
@@ -76,6 +81,11 @@ namespace Almacen.Web.Aplicacion.Almacen
                 SeleccionarEmpleado();
 
                 JefeCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
+            }
+
+            private void LimpiarFormulario()
+            {
+                OrdenIdHidden.Value = "";
             }
 
             private void MostrarMensaje(string Mensaje, string TipoMensaje)
@@ -152,9 +162,14 @@ namespace Almacen.Web.Aplicacion.Almacen
                 JefeCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
             }
 
-            private void SeleccionarOrden(string Clave)
+            private void SeleccionarOrden(string OrdenId)
             {
-                
+                OrdenProceso OrdenProceso = new OrdenProceso();
+
+                OrdenProceso.OrdenEncabezadoEntidad.OrdenId = OrdenId;
+
+                //OrdenProceso.Sele
+
             }
 
             private void SeleccionarPreOrden(string PreOrdenId)
@@ -215,7 +230,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 switch(CommandName)
                 {
                     case ConstantePrograma.ComandoAgregar:
-                        GuardaProductoOrdenTemp(PreOrdenId, ProductoId);
+                        GuardaProductoOrdenTemp(OrdenIdHidden.Value, PreOrdenId, ProductoId);
                         break;
                 }
             }

@@ -17,7 +17,7 @@ namespace Activos.ProcesoNegocio.Almacen
         private int _ErrorId;
         private string _DescripcionError;
         DataSet _ResultadoDatos;
-        OrdenEntidad _OrdenEntidad;
+        OrdenEntidad _OrdenEncabezadoEntidad;
         OrdenDetalleEntidad _OrdenDetalleEntidad;
 
         /// <summary>
@@ -47,10 +47,10 @@ namespace Activos.ProcesoNegocio.Almacen
         /// <summary>
         ///     Entidad del proceso.
         /// </summary>
-        public OrdenEntidad OrdenEntidad
+        public OrdenEntidad OrdenEncabezadoEntidad
         {
-            get { return _OrdenEntidad; }
-            set { _OrdenEntidad = value; }
+            get { return _OrdenEncabezadoEntidad; }
+            set { _OrdenEncabezadoEntidad = value; }
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Activos.ProcesoNegocio.Almacen
             _ErrorId = 0;
             _DescripcionError = string.Empty;
             _ResultadoDatos = null;
-            _OrdenEntidad = new OrdenEntidad();
+            _OrdenEncabezadoEntidad = new OrdenEntidad();
             _OrdenDetalleEntidad = new OrdenDetalleEntidad();
         }
 
@@ -94,8 +94,12 @@ namespace Activos.ProcesoNegocio.Almacen
 
                 try
                 {
-                    //if(PreOrdenEntidad.Orden)
-                    GuardaProductoOrdenEncabezadoTemp(Conexion, Transaccion, _OrdenDetalleEntidad);
+                    if (_OrdenDetalleEntidad.OrdenId == "")
+                    {
+                        _OrdenDetalleEntidad.OrdenId = Guid.NewGuid().ToString();
+
+                        GuardaProductoOrdenEncabezadoTemp(Conexion, Transaccion, _OrdenDetalleEntidad);
+                    }
 
                     // Guardar encabezado temporal
                     if (_ErrorId != 0)

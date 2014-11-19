@@ -188,6 +188,8 @@
                     </tr>
                 </table>
 
+                <asp:HiddenField ID="OrdenIdHidden" runat="server" Value="" />
+
                 <asp:UpdateProgress AssociatedUpdatePanelID="PageUpdate" ID="AssociatedUpdate" runat="server">
                     <ProgressTemplate>
                         <div class="LoadingDiv"><div class="LoadingImageDiv"><img alt="Cargando..." src="../../Image/Icon/LoadingIcon.gif" /></div></div>

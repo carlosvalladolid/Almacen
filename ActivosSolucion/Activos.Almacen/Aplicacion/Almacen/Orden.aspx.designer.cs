@@ -149,6 +149,15 @@ namespace Almacen.Web.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.ImageButton BotonCancelarBusqueda;
         
         /// <summary>
+        /// OrdenIdHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField OrdenIdHidden;
+        
+        /// <summary>
         /// AssociatedUpdate control.
         /// </summary>
         /// <remarks>

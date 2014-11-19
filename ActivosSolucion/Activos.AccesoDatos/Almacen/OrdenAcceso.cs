@@ -71,7 +71,7 @@ namespace Activos.AccesoDatos.Almacen
                     Commando.Transaction = Transaccion;
 
                     Parameter = new SqlParameter("OrdenId", SqlDbType.VarChar);
-                    Parameter.Value = OrdenDetalleEntidad.PreOrdenId;
+                    Parameter.Value = OrdenDetalleEntidad.OrdenId;
                     Commando.Parameters.Add(Parameter);
 
                     Parameter = new SqlParameter("PreOrdenId", SqlDbType.VarChar);
@@ -105,8 +105,8 @@ namespace Activos.AccesoDatos.Almacen
 
                     Commando.Transaction = Transaccion;
 
-                    Parameter = new SqlParameter("PreOrdenId", SqlDbType.VarChar);
-                    Parameter.Value = OrdenDetalleEntidad.PreOrdenId;
+                    Parameter = new SqlParameter("OrdenId", SqlDbType.VarChar);
+                    Parameter.Value = OrdenDetalleEntidad.OrdenId;
                     Commando.Parameters.Add(Parameter);
 
                     Parameter = new SqlParameter("ProductoId", SqlDbType.VarChar);
