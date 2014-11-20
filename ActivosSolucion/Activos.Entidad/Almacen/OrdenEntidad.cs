@@ -31,77 +31,85 @@ namespace Activos.Entidad.Almacen
             _FechaInserto = string.Empty;
         }
 
-            /// <summary>
-            ///     Identificador de orden de compra.
-            /// </summary>
-            public string OrdenId
-            {
-                get { return _OrdenId; }
-                set { _OrdenId = value; }
-            }
+        /// <summary>
+        ///     Identificador de orden de compra.
+        /// </summary>
+        public string OrdenId
+        {
+            get { return _OrdenId; }
+            set { _OrdenId = value; }
+        }
 
-            /// <summary>
-            ///     Identificador de empleado.
-            /// </summary>
-            public string EmpleadoId
-            {
-                get { return _EmpleadoId; }
-                set { _EmpleadoId = value; }
-            }
+        /// <summary>
+        ///     Identificador de la preorden de compra.
+        /// </summary>
+        public string PreOrdenId
+        {
+            get { return _PreOrdenId; }
+            set { _PreOrdenId = value; }
+        }
 
-            /// <summary>
-            ///     Identificador de jefe directo.
-            /// </summary>
-            public string JefeId
-            {
-                get { return _JefeId; }
-                set { _JefeId = value; }
-            }
+        /// <summary>
+        ///     Identificador de empleado.
+        /// </summary>
+        public string EmpleadoId
+        {
+            get { return _EmpleadoId; }
+            set { _EmpleadoId = value; }
+        }
 
-            /// <summary>
-            ///     Identificador del proveedor.
-            /// </summary>
-            public Int16 ProveedorId
-            {
-                get { return _ProveedorId; }
-                set { _ProveedorId = value; }
-            }
+        /// <summary>
+        ///     Identificador de jefe directo.
+        /// </summary>
+        public string JefeId
+        {
+            get { return _JefeId; }
+            set { _JefeId = value; }
+        }
 
-            /// <summary>
-            ///     Identificador del estatus.
-            /// </summary>
-            public Int16 EstatusId
-            {
-                get { return _EstatusId; }
-                set { _EstatusId = value; }
-            }
+        /// <summary>
+        ///     Identificador del proveedor.
+        /// </summary>
+        public Int16 ProveedorId
+        {
+            get { return _ProveedorId; }
+            set { _ProveedorId = value; }
+        }
 
-            /// <summary>
-            ///     Folio de la orden de compra.
-            /// </summary>
-            public string Clave
-            {
-                get { return _Clave; }
-                set { _Clave = value; }
-            }
+        /// <summary>
+        ///     Identificador del estatus.
+        /// </summary>
+        public Int16 EstatusId
+        {
+            get { return _EstatusId; }
+            set { _EstatusId = value; }
+        }
 
-            /// <summary>
-            ///     Fecha de la orden de compra.
-            /// </summary>
-            public string FechaOrden
-            {
-                get { return _FechaOrden; }
-                set { _FechaOrden = value; }
-            }
+        /// <summary>
+        ///     Folio de la orden de compra.
+        /// </summary>
+        public string Clave
+        {
+            get { return _Clave; }
+            set { _Clave = value; }
+        }
 
-            /// <summary>
-            ///     Fecha en que se guardó el registro.
-            /// </summary>
-            public string FechaInserto
-            {
-                get { return _FechaInserto; }
-                set { _FechaInserto = value; }
-            }
+        /// <summary>
+        ///     Fecha de la orden de compra.
+        /// </summary>
+        public string FechaOrden
+        {
+            get { return _FechaOrden; }
+            set { _FechaOrden = value; }
+        }
 
+        /// <summary>
+        ///     Fecha en que se guardó el registro.
+        /// </summary>
+        public string FechaInserto
+        {
+            get { return _FechaInserto; }
+            set { _FechaInserto = value; }
         }
     }
+}

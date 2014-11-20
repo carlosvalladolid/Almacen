@@ -5,6 +5,19 @@
 
 <asp:Content ID="ContenidoEncabezado" ContentPlaceHolderID="ContenedorEncabezado" runat="server">
     <script language="javascript" src="/Incluir/Javascript/ValidarFormulario.js" type="text/javascript"></script>
+    <script language="javascript" src="/Incluir/Javascript/jquery.ui.datepicker.js" type="text/javascript"></script>
+    <script language="javascript" src="/Incluir/Javascript/jquery.ui.datepicker-es.js" type="text/javascript"></script>
+
+    <script language="javascript" type="text/javascript">
+        function pageLoad(sender, args)
+        {
+            //$("#<%=FechaOrdenBox.ClientID %>").datepicker($.datepicker.regional["es"]);
+        }
+        
+        $(document).ready(function() {
+            $("#<%=FechaOrdenBox.ClientID %>").datepicker($.datepicker.regional["es"]);
+        });
+    </script>
 </asp:Content>
 
 <asp:Content ID="ContenidoCuerpo" ContentPlaceHolderID="ContenedorCuerpo" runat="server">
@@ -98,6 +111,7 @@
                         <EmptyDataTemplate>
                             <table class="TablaVacia">
                                 <tr class="Encabezado">
+                                    <th style="width: 35px;"></th>
                                     <th style="width: 100px;">Clave</th>
                                     <th>Descripción</th>
                                     <th style="width: 125px;">Familia</th>
@@ -112,9 +126,15 @@
                         <HeaderStyle CssClass="Encabezado" />
                         <PagerStyle CssClass="Paginacion" HorizontalAlign="Right" />
                         <Columns>
+                            <asp:TemplateField HeaderText="">
+                                <ItemTemplate>
+                                    <asp:ImageButton AlternateText="Quitar" CommandArgument='<%#Container.DataItemIndex%>' CommandName="Agregar" ID="BotonQuitar" ImageUrl="/Imagen/Icono/IconoQuitar.png" runat="server" />
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Center" Width="35px" />
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Clave">
                                 <ItemTemplate>
-                                    <asp:LinkButton CommandArgument="<%#Container.DataItemIndex%>" CommandName="Select" ID="Clave" runat="server" Text='<%#Eval("Clave")%>'></asp:LinkButton>
+                                    <asp:LinkButton CommandArgument="<%#Container.DataItemIndex%>" CommandName="Select" ID="Clave" runat="server" Text='<%#Eval("ClaveProducto")%>'></asp:LinkButton>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center" />
                             </asp:TemplateField>
@@ -135,7 +155,7 @@
                 </div>
 
                 <br />
-                <table class="FormTable">
+                <table class="TablaFormulario">
                     <tr>
                         <td class="Nombre">Fecha Orden</td>
                         <td class="Espacio"></td>
@@ -147,7 +167,7 @@
                 <div class="SubTituloDiv">Datos del proveedor</div>
 
                 <br />
-                <table class="FormTable">
+                <table class="TablaFormulario">
                     <tr>
                         <td class="Nombre">Nombre</td>
                         <td class="Espacio"></td>

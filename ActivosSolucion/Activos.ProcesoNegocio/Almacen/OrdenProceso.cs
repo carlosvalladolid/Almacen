@@ -13,7 +13,6 @@ namespace Activos.ProcesoNegocio.Almacen
 {
     public class OrdenProceso : Base
     {
-
         private int _ErrorId;
         private string _DescripcionError;
         DataSet _ResultadoDatos;
@@ -75,146 +74,144 @@ namespace Activos.ProcesoNegocio.Almacen
         }
 
         #region "Métodos"
-        /// <summary>
-        ///     
-        /// </summary>
-        public void GuardaProductoOrdenTemp()
-        {
-            string CadenaConexion = string.Empty;
-            SqlTransaction Transaccion;
-            SqlConnection Conexion = new SqlConnection(SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen));
-
-            // Validar información
-            if (!ValidarOrdenTemp())
-                return;
-
-            Conexion.Open();
-
-            Transaccion = Conexion.BeginTransaction();
-
-            try
+            /// <summary>
+            ///     
+            /// </summary>
+            public void GuardaProductoOrdenTemp()
             {
-                if (_OrdenDetalleEntidad.OrdenId == "")
-                {
-                    _OrdenDetalleEntidad.OrdenId = Guid.NewGuid().ToString();
+                string CadenaConexion = string.Empty;
+                SqlTransaction Transaccion;
+                SqlConnection Conexion = new SqlConnection(SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen));
 
-                    GuardaProductoOrdenEncabezadoTemp(Conexion, Transaccion, _OrdenDetalleEntidad);
-                }
+                // Validar información
+                if (!ValidarOrdenTemp())
+                    return;
 
-                // Guardar encabezado temporal
-                if (_ErrorId != 0)
+                Conexion.Open();
+
+                Transaccion = Conexion.BeginTransaction();
+
+                try
                 {
-                    Transaccion.Rollback();
+                    if (_OrdenDetalleEntidad.OrdenId == "")
+                    {
+                        _OrdenDetalleEntidad.OrdenId = Guid.NewGuid().ToString();
+
+                        GuardaProductoOrdenEncabezadoTemp(Conexion, Transaccion, _OrdenDetalleEntidad);
+                    }
+
+                    // Guardar encabezado temporal
+                    if (_ErrorId != 0)
+                    {
+                        Transaccion.Rollback();
+                        Conexion.Close();
+                        return;
+                    }
+
+                    // Si todo salió bien, guardar el detalle temporal
+                    GuardaProductoOrdenDetalleTemp(Conexion, Transaccion, _OrdenDetalleEntidad);
+
+                    if (_ErrorId == 0)
+                        Transaccion.Commit();
+                    else
+                        Transaccion.Rollback();
+
                     Conexion.Close();
+
                     return;
                 }
-
-                // Si todo salió bien, guardar el detalle temporal
-                GuardaProductoOrdenDetalleTemp(Conexion, Transaccion, _OrdenDetalleEntidad);
-
-                if (_ErrorId == 0)
-                    Transaccion.Commit();
-                else
-                    Transaccion.Rollback();
-
-                Conexion.Close();
-
-                return;
-            }
-            catch (Exception Exception)
-            {
-                _ErrorId = (int)TextoError.Error.Generico;
-                _DescripcionError = Exception.Message;
-
-                if (Conexion.State == ConnectionState.Open)
+                catch (Exception Exception)
                 {
-                    Transaccion.Rollback();
-                    Conexion.Close();
+                    _ErrorId = (int)TextoError.Error.Generico;
+                    _DescripcionError = Exception.Message;
+
+                    if (Conexion.State == ConnectionState.Open)
+                    {
+                        Transaccion.Rollback();
+                        Conexion.Close();
+                    }
                 }
             }
-        }
 
-        /// <summary>
-        ///     
-        /// </summary>
-        /// <param name="Conexion"></param>
-        /// <param name="Transaccion"></param>
-        /// <param name="PreOrdenEntidad"></param>
-        private void GuardaProductoOrdenDetalleTemp(SqlConnection Conexion, SqlTransaction Transaccion, OrdenDetalleEntidad OrdenDetalleEntidad)
-        {
-            OrdenAcceso OrdenAcceso = new OrdenAcceso();
+            /// <summary>
+            ///     
+            /// </summary>
+            /// <param name="Conexion"></param>
+            /// <param name="Transaccion"></param>
+            /// <param name="PreOrdenEntidad"></param>
+            private void GuardaProductoOrdenDetalleTemp(SqlConnection Conexion, SqlTransaction Transaccion, OrdenDetalleEntidad OrdenDetalleEntidad)
+            {
+                OrdenAcceso OrdenAcceso = new OrdenAcceso();
 
-            OrdenAcceso.InsertaProductoOrdenDetalleTemp(Conexion, Transaccion, _OrdenDetalleEntidad);
+                OrdenAcceso.InsertaProductoOrdenDetalleTemp(Conexion, Transaccion, _OrdenDetalleEntidad);
 
-            _ErrorId = OrdenAcceso.ErrorId;
-            _DescripcionError = OrdenAcceso.DescripcionError;
-        }
+                _ErrorId = OrdenAcceso.ErrorId;
+                _DescripcionError = OrdenAcceso.DescripcionError;
+            }
 
-        /// <summary>
-        ///     
-        /// </summary>
-        /// <param name="Conexion"></param>
-        /// <param name="Transaccion"></param>
-        /// <param name="PreOrdenEntidad"></param>
-        private void GuardaProductoOrdenEncabezadoTemp(SqlConnection Conexion, SqlTransaction Transaccion, OrdenDetalleEntidad OrdenDetalleEntidad)
-        {
-            OrdenAcceso OrdenAcceso = new OrdenAcceso();
+            /// <summary>
+            ///     
+            /// </summary>
+            /// <param name="Conexion"></param>
+            /// <param name="Transaccion"></param>
+            /// <param name="PreOrdenEntidad"></param>
+            private void GuardaProductoOrdenEncabezadoTemp(SqlConnection Conexion, SqlTransaction Transaccion, OrdenDetalleEntidad OrdenDetalleEntidad)
+            {
+                OrdenAcceso OrdenAcceso = new OrdenAcceso();
 
-            OrdenAcceso.InsertaProductoOrdenEncabezadoTemp(Conexion, Transaccion, _OrdenDetalleEntidad);
+                OrdenAcceso.InsertaProductoOrdenEncabezadoTemp(Conexion, Transaccion, _OrdenDetalleEntidad);
 
-            _ErrorId = OrdenAcceso.ErrorId;
-            _DescripcionError = OrdenAcceso.DescripcionError;
-        }
+                _ErrorId = OrdenAcceso.ErrorId;
+                _DescripcionError = OrdenAcceso.DescripcionError;
+            }
 
-        /// <summary>
-        ///     Realiza una búsqueda del detalle de una orden de compra temporal.
-        /// </summary>
-        public void SeleccionarOrdenDetalleTemp()
-        {
-            string CadenaConexion = string.Empty;
-            OrdenAcceso OrdenAcceso = new OrdenAcceso();
+            /// <summary>
+            ///     Realiza una búsqueda del detalle de una orden de compra temporal.
+            /// </summary>
+            public void SeleccionarOrdenDetalleTemp()
+            {
+                string CadenaConexion = string.Empty;
+                OrdenAcceso OrdenAcceso = new OrdenAcceso();
 
-            CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+                CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
-            _ResultadoDatos = OrdenAcceso.SeleccionarOrdenDetalleTemp(_OrdenDetalleEntidad, CadenaConexion);
+                _ResultadoDatos = OrdenAcceso.SeleccionarOrdenDetalleTemp(_OrdenEncabezadoEntidad, CadenaConexion);
 
-            _ErrorId = OrdenAcceso.ErrorId;
-            _DescripcionError = OrdenAcceso.DescripcionError;
-        }
+                _ErrorId = OrdenAcceso.ErrorId;
+                _DescripcionError = OrdenAcceso.DescripcionError;
+            }
 
+            /// <summary>
+            ///     
+            /// </summary>
+            public void SeleccionarBusquedaOrdenCompra()
+            {
+                string CadenaConexion = string.Empty;
+                OrdenAcceso OrdenAcceso = new OrdenAcceso();
 
-        public void SeleccionarBusquedaOrdenCompra()
-        {
-            string CadenaConexion = string.Empty;
-            OrdenAcceso OrdenAcceso = new OrdenAcceso();
+                CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
-            CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+                _ResultadoDatos = OrdenAcceso.SeleccionarBusquedaOrdenCompra(_OrdenEncabezadoEntidad, CadenaConexion);
 
-            _ResultadoDatos = OrdenAcceso.SeleccionarBusquedaOrdenCompra(_OrdenEncabezadoEntidad, CadenaConexion);
+                _ErrorId = OrdenAcceso.ErrorId;
+                _DescripcionError = OrdenAcceso.DescripcionError;
+            }
 
-            _ErrorId = OrdenAcceso.ErrorId;
-            _DescripcionError = OrdenAcceso.DescripcionError;
-        }
+            /// <summary>
+            ///     
+            /// </summary>
+            /// <returns></returns>
+            private bool ValidarOrdenTemp()
+            {
+                //if (_OrdenDetalleEntidad.PreOrdenId == "")
+                //{
+                //    _ErrorId = (int)TextoError.Orden.PreOrdenIdVacio;
+                //    _DescripcionError = TextoError.OrdenConPreOrdenIdVacio;
+                //    return false;
+                //}
 
-
-
-
-
-        /// <summary>
-        ///     
-        /// </summary>
-        /// <returns></returns>
-        private bool ValidarOrdenTemp()
-        {
-            //if (_OrdenDetalleEntidad.PreOrdenId == "")
-            //{
-            //    _ErrorId = (int)TextoError.Orden.PreOrdenIdVacio;
-            //    _DescripcionError = TextoError.OrdenConPreOrdenIdVacio;
-            //    return false;
-            //}
-
-            return true;
-        }
+                return true;
+            }
         #endregion
     }
 }

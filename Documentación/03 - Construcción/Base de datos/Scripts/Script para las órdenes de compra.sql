@@ -1,5 +1,8 @@
 /*
 Script para las órdenes de compra
+
+DELETE OrdenDetalleTemp
+DELETE OrdenEncabezadoTemp
 */
 
 SELECT * FROM OrdenEncabezadoTemp
@@ -16,4 +19,4 @@ SELECT * FROM Familia
 
 SELECT * FROM Marca
 
-InsertaProductoOrdenDetalleTemp 
+SeleccionarOrdenDetalleTemp '129613C7-F6D5-42A5-ADF8-32ED8D52917F'

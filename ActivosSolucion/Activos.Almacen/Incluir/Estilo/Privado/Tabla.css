@@ -141,6 +141,12 @@
 	vertical-align: top;
 }
 
+.TablaFormulario .Campo
+{
+	vertical-align: top;
+	width: 220px;
+}
+
 .TablaFormulario .Error
 {
 	width: 20px;
@@ -151,47 +157,7 @@
 	width: 25px;
 }
 
-.TablaFormulario .Field
-{
-	vertical-align: top;
-	width: 220px;
-}
-
-.TablaFormulario .Name
-{
-	vertical-align: top;
-	width: 150px;
-}
-
-.TablaFormulario
-{
-	border-spacing: 5px;
-	padding: 5px;
-	vertical-align: top;
-}
-
-.TablaFormulario .Error
-{
-	width: 250px;
-}
-
-.TablaFormulario .Espacio
-{
-	width: 20px;
-}
-
-.TablaFormulario .EspacioColumna
-{
-	width: 50px;
-}
-
-.TablaFormulario .Field
-{
-	vertical-align: top;
-	width: 220px;
-}
-
-.TablaFormulario .Name
+.TablaFormulario .Nombre
 {
 	vertical-align: top;
 	width: 150px;
