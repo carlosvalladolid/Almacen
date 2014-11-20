@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Configuration;
 using System.Data;
-using System.Web.Security;
-using System.Web.UI.HtmlControls;
+using System.Linq;
+using System.Text;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
 
 using Activos.Comun.Constante;
+using Activos.Comun.Cadenas;
 using Activos.Entidad.General;
 using Activos.Entidad.Seguridad;
 using Activos.ProcesoNegocio.Seguridad;
@@ -76,6 +78,19 @@ namespace Almacen.Web.Aplicacion.Configuracion
                 ResetFormControl();
                 SeleccionarTextoError();
             }
+        }
+
+        private void MostrarMensaje(string Mensaje, string TipoMensaje)
+        {
+            StringBuilder FormatoMensaje = new StringBuilder();
+
+            FormatoMensaje.Append("MostrarMensaje(\"");
+            FormatoMensaje.Append(Mensaje);
+            FormatoMensaje.Append("\", \"");
+            FormatoMensaje.Append(TipoMensaje);
+            FormatoMensaje.Append("\");");
+
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
         }
 
         protected void ResetFormControl()
