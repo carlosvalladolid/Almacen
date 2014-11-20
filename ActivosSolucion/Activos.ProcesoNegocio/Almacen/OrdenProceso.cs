@@ -203,12 +203,12 @@ namespace Activos.ProcesoNegocio.Almacen
             /// <returns></returns>
             private bool ValidarOrdenTemp()
             {
-                //if (_OrdenDetalleEntidad.PreOrdenId == "")
-                //{
-                //    _ErrorId = (int)TextoError.Orden.PreOrdenIdVacio;
-                //    _DescripcionError = TextoError.OrdenConPreOrdenIdVacio;
-                //    return false;
-                //}
+                if (_OrdenDetalleEntidad.PreOrdenId == "")
+                {
+                    _ErrorId = (int)TextoError.Orden.PreOrdenIdVacio;
+                    _DescripcionError = TextoError.OrdenConPreOrdenIdVacio;
+                    return false;
+                }
 
                 return true;
             }

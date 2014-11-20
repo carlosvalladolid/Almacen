@@ -413,6 +413,15 @@
     <Content Include="Aplicacion\Configuracion\CambiarContrasenia.aspx" />
     <Content Include="Aplicacion\Inicio.aspx" />
     <Content Include="App.config" />
+    <Content Include="Incluir\Javascript\Buscar.js" />
+    <Content Include="Incluir\Javascript\Calendar.js" />
+    <Content Include="Incluir\Javascript\jquery-1.6.4.min.js" />
+    <Content Include="Incluir\Javascript\jquery-ui-1.8.16.custom.min.js" />
+    <Content Include="Incluir\Javascript\jquery.blockUI.js" />
+    <Content Include="Incluir\Javascript\jquery.jqDock.min.js" />
+    <Content Include="Incluir\Javascript\jquery.ui.core.js" />
+    <Content Include="Incluir\Javascript\jquery.ui.datepicker-es.js" />
+    <Content Include="Incluir\Javascript\jquery.ui.datepicker.js" />
     <Content Include="Incluir\Javascript\ValidarFormulario.js" />
   </ItemGroup>
   <ItemGroup>

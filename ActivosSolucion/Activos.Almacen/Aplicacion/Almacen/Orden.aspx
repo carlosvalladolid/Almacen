@@ -4,19 +4,16 @@
 <%@ Register TagPrefix="wuc" TagName="ControlMenuIzquierdo" Src="~/Incluir/ControlesWeb/ControlMenuIzquierdo.ascx" %>
 
 <asp:Content ID="ContenidoEncabezado" ContentPlaceHolderID="ContenedorEncabezado" runat="server">
+    <script src="/Incluir/Javascript/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
     <script language="javascript" src="/Incluir/Javascript/ValidarFormulario.js" type="text/javascript"></script>
     <script language="javascript" src="/Incluir/Javascript/jquery.ui.datepicker.js" type="text/javascript"></script>
-    <script language="javascript" src="/Incluir/Javascript/jquery.ui.datepicker-es.js" type="text/javascript"></script>
+    <script src="/Incluir/Javascript/Calendar.js" type="text/javascript"></script>
 
     <script language="javascript" type="text/javascript">
         function pageLoad(sender, args)
         {
-            //$("#<%=FechaOrdenBox.ClientID %>").datepicker($.datepicker.regional["es"]);
+            SetNewCalendar("#<%= FechaOrdenBox.ClientID %>");
         }
-        
-        $(document).ready(function() {
-            $("#<%=FechaOrdenBox.ClientID %>").datepicker($.datepicker.regional["es"]);
-        });
     </script>
 </asp:Content>
 
