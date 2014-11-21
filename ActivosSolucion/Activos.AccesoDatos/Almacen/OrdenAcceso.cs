@@ -53,29 +53,25 @@ namespace Activos.AccesoDatos.Almacen
 
         #region "Métodos"
             /// <summary>
-            ///     
+            ///     Guarda el detalle de una orden de compra.
             /// </summary>
-            /// <param name="Conexion"></param>
-            /// <param name="Transaccion"></param>
-            /// <param name="PreOrdenEntidad"></param>
-            public void InsertaProductoOrdenEncabezadoTemp(SqlConnection Conexion, SqlTransaction Transaccion, OrdenDetalleEntidad OrdenDetalleEntidad)
+            /// <param name="Conexion">Conexión actual a la base de datos.</param>
+            /// <param name="Transaccion">Transacción actual a la base de datos.</param>
+            /// <param name="OrdenDetalleEntidad">Entidad del detalle de una orden de compra.</param>
+            public void InsertarOrdenDetalle(SqlConnection Conexion, SqlTransaction Transaccion, OrdenEntidad OrdenEncabezadoEntidad)
             {
                 SqlCommand Commando;
                 SqlParameter Parameter;
 
                 try
                 {
-                    Commando = new SqlCommand("InsertaProductoOrdenEncabezadoTemp", Conexion);
+                    Commando = new SqlCommand("InsertaOrdenDetalle", Conexion);
                     Commando.CommandType = CommandType.StoredProcedure;
 
                     Commando.Transaction = Transaccion;
 
                     Parameter = new SqlParameter("OrdenId", SqlDbType.VarChar);
-                    Parameter.Value = OrdenDetalleEntidad.OrdenId;
-                    Commando.Parameters.Add(Parameter);
-
-                    Parameter = new SqlParameter("PreOrdenId", SqlDbType.VarChar);
-                    Parameter.Value = OrdenDetalleEntidad.PreOrdenId;
+                    Parameter.Value = OrdenEncabezadoEntidad.OrdenId;
                     Commando.Parameters.Add(Parameter);
 
                     Commando.ExecuteNonQuery();
@@ -88,12 +84,63 @@ namespace Activos.AccesoDatos.Almacen
             }
 
             /// <summary>
-            ///     
+            ///     Guarda el encabezado de una orden de compra.
             /// </summary>
-            /// <param name="Conexion"></param>
-            /// <param name="Transaccion"></param>
-            /// <param name="PreOrdenEntidad"></param>
-            public void InsertaProductoOrdenDetalleTemp(SqlConnection Conexion, SqlTransaction Transaccion, OrdenDetalleEntidad OrdenDetalleEntidad)
+            /// <param name="Conexion">Conexión actual a la base de datos.</param>
+            /// <param name="Transaccion">Transacción actual a la base de datos.</param>
+            /// <param name="OrdenDetalleEntidad">Entidad del detalle de una orden de compra.</param>
+            public void InsertarOrdenEncabezado(SqlConnection Conexion, SqlTransaction Transaccion, OrdenEntidad OrdenEncabezadoEntidad)
+            {
+                SqlCommand Commando;
+                SqlParameter Parameter;
+
+                try
+                {
+                    Commando = new SqlCommand("InsertaOrdenEncabezado", Conexion);
+                    Commando.CommandType = CommandType.StoredProcedure;
+
+                    Commando.Transaction = Transaccion;
+
+                    Parameter = new SqlParameter("OrdenId", SqlDbType.VarChar);
+                    Parameter.Value = OrdenEncabezadoEntidad.OrdenId;
+                    Commando.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("EmpleadoId", SqlDbType.VarChar);
+                    Parameter.Value = OrdenEncabezadoEntidad.EmpleadoId;
+                    Commando.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("JefeId", SqlDbType.VarChar);
+                    Parameter.Value = OrdenEncabezadoEntidad.JefeId;
+                    Commando.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("ProveedorId", SqlDbType.VarChar);
+                    Parameter.Value = OrdenEncabezadoEntidad.ProveedorId;
+                    Commando.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("EstatusId", SqlDbType.VarChar);
+                    Parameter.Value = OrdenEncabezadoEntidad.EstatusId;
+                    Commando.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("FechaOrden", SqlDbType.VarChar);
+                    Parameter.Value = OrdenEncabezadoEntidad.FechaOrden;
+                    Commando.Parameters.Add(Parameter);
+
+                    Commando.ExecuteNonQuery();
+                }
+                catch (SqlException Exception)
+                {
+                    _ErrorId = Exception.Number;
+                    _DescripcionError = Exception.Message;
+                }
+            }
+
+            /// <summary>
+            ///     Guarda el detalle de una orden de compra temporal.
+            /// </summary>
+            /// <param name="Conexion">Conexión actual a la base de datos.</param>
+            /// <param name="Transaccion">Transacción actual a la base de datos.</param>
+            /// <param name="OrdenDetalleEntidad">Entidad del detalle de una orden de compra.</param>
+            public void InsertarProductoOrdenDetalleTemp(SqlConnection Conexion, SqlTransaction Transaccion, OrdenDetalleEntidad OrdenDetalleEntidad)
             {
                 SqlCommand Commando;
                 SqlParameter Parameter;
@@ -115,6 +162,41 @@ namespace Activos.AccesoDatos.Almacen
 
                     Parameter = new SqlParameter("ProductoId", SqlDbType.VarChar);
                     Parameter.Value = OrdenDetalleEntidad.ProductoId;
+                    Commando.Parameters.Add(Parameter);
+
+                    Commando.ExecuteNonQuery();
+                }
+                catch (SqlException Exception)
+                {
+                    _ErrorId = Exception.Number;
+                    _DescripcionError = Exception.Message;
+                }
+            }
+
+            /// <summary>
+            ///     Guarda el encabezado de una orden de compra temporal.
+            /// </summary>
+            /// <param name="Conexion">Conexión actual a la base de datos.</param>
+            /// <param name="Transaccion">Transacción actual a la base de datos.</param>
+            /// <param name="OrdenDetalleEntidad">Entidad del detalle de una orden de compra.</param>
+            public void InsertarProductoOrdenEncabezadoTemp(SqlConnection Conexion, SqlTransaction Transaccion, OrdenDetalleEntidad OrdenDetalleEntidad)
+            {
+                SqlCommand Commando;
+                SqlParameter Parameter;
+
+                try
+                {
+                    Commando = new SqlCommand("InsertaProductoOrdenEncabezadoTemp", Conexion);
+                    Commando.CommandType = CommandType.StoredProcedure;
+
+                    Commando.Transaction = Transaccion;
+
+                    Parameter = new SqlParameter("OrdenId", SqlDbType.VarChar);
+                    Parameter.Value = OrdenDetalleEntidad.OrdenId;
+                    Commando.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("PreOrdenId", SqlDbType.VarChar);
+                    Parameter.Value = OrdenDetalleEntidad.PreOrdenId;
                     Commando.Parameters.Add(Parameter);
 
                     Commando.ExecuteNonQuery();

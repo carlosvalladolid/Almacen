@@ -13,7 +13,7 @@ namespace Activos.Entidad.Almacen
         private string _EmpleadoId;
         private string _JefeId;
         private Int16 _ProveedorId;
-        private Int16 _EstatusId;
+        private int _EstatusId;
         private string _Clave;
         private string _FechaOrden;
         private string _FechaInserto;
@@ -79,7 +79,7 @@ namespace Activos.Entidad.Almacen
         /// <summary>
         ///     Identificador del estatus.
         /// </summary>
-        public Int16 EstatusId
+        public int EstatusId
         {
             get { return _EstatusId; }
             set { _EstatusId = value; }

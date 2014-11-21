@@ -77,7 +77,94 @@ namespace Activos.ProcesoNegocio.Almacen
             /// <summary>
             ///     
             /// </summary>
-            public void GuardaProductoOrdenTemp()
+            public void GuardarOrden()
+            {
+                string CadenaConexion = string.Empty;
+                SqlTransaction Transaccion;
+                SqlConnection Conexion = new SqlConnection(SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen));
+
+                // Validar información
+                if (!ValidarOrden())
+                    return;
+
+                Conexion.Open();
+
+                Transaccion = Conexion.BeginTransaction();
+
+                try
+                {
+                    // Guardar encabezado temporal
+                    GuardarOrdenEncabezado(Conexion, Transaccion, _OrdenEncabezadoEntidad);
+
+                    // Si todo salió bien, guardar el detalle temporal
+                    if (_ErrorId != 0)
+                    {
+                        Transaccion.Rollback();
+                        Conexion.Close();
+                        return;
+                    }
+
+                    GuardarOrdenDetalle(Conexion, Transaccion, _OrdenEncabezadoEntidad);
+
+                    if (_ErrorId == 0)
+                        Transaccion.Commit();
+                    else
+                        Transaccion.Rollback();
+
+                    Conexion.Close();
+
+                    // Borrar información de la tabla temporal
+
+                }
+                catch (Exception Exception)
+                {
+                    _ErrorId = (int)TextoError.Error.Generico;
+                    _DescripcionError = Exception.Message;
+
+                    if (Conexion.State == ConnectionState.Open)
+                    {
+                        Transaccion.Rollback();
+                        Conexion.Close();
+                    }
+                }
+            }
+
+            /// <summary>
+            ///     Guarda el detalle de una orden de compra.
+            /// </summary>
+            /// <param name="Conexion">Conexión actual a la base de datos.</param>
+            /// <param name="Transaccion">Transacción actual a la base de datos.</param>
+            /// <param name="OrdenEncabezadoEntidad">Entidad del encabezado de una orden de compra.</param>
+            private void GuardarOrdenDetalle(SqlConnection Conexion, SqlTransaction Transaccion, OrdenEntidad OrdenEncabezadoEntidad)
+            {
+                OrdenAcceso OrdenAcceso = new OrdenAcceso();
+
+                OrdenAcceso.InsertarOrdenDetalle(Conexion, Transaccion, OrdenEncabezadoEntidad);
+
+                _ErrorId = OrdenAcceso.ErrorId;
+                _DescripcionError = OrdenAcceso.DescripcionError;
+            }
+
+            /// <summary>
+            ///     Guarda el encabezado de una orden de compra.
+            /// </summary>
+            /// <param name="Conexion">Conexión actual a la base de datos.</param>
+            /// <param name="Transaccion">Transacción actual a la base de datos.</param>
+            /// <param name="OrdenEncabezadoEntidad">Entidad del encabezado de una orden de compra.</param>
+            private void GuardarOrdenEncabezado(SqlConnection Conexion, SqlTransaction Transaccion, OrdenEntidad OrdenEncabezadoEntidad)
+            {
+                OrdenAcceso OrdenAcceso = new OrdenAcceso();
+
+                OrdenAcceso.InsertarOrdenEncabezado(Conexion, Transaccion, OrdenEncabezadoEntidad);
+
+                _ErrorId = OrdenAcceso.ErrorId;
+                _DescripcionError = OrdenAcceso.DescripcionError;
+            }
+
+            /// <summary>
+            ///     Guarda la información de una orden temporal.
+            /// </summary>
+            public void GuardarProductoOrdenTemp()
             {
                 string CadenaConexion = string.Empty;
                 SqlTransaction Transaccion;
@@ -93,14 +180,14 @@ namespace Activos.ProcesoNegocio.Almacen
 
                 try
                 {
+                    // Guardar encabezado temporal
                     if (_OrdenDetalleEntidad.OrdenId == "")
                     {
                         _OrdenDetalleEntidad.OrdenId = Guid.NewGuid().ToString();
 
-                        GuardaProductoOrdenEncabezadoTemp(Conexion, Transaccion, _OrdenDetalleEntidad);
+                        GuardarProductoOrdenEncabezadoTemp(Conexion, Transaccion, _OrdenDetalleEntidad);
                     }
 
-                    // Guardar encabezado temporal
                     if (_ErrorId != 0)
                     {
                         Transaccion.Rollback();
@@ -117,8 +204,6 @@ namespace Activos.ProcesoNegocio.Almacen
                         Transaccion.Rollback();
 
                     Conexion.Close();
-
-                    return;
                 }
                 catch (Exception Exception)
                 {
@@ -134,32 +219,32 @@ namespace Activos.ProcesoNegocio.Almacen
             }
 
             /// <summary>
-            ///     
+            ///     Guarda el detalle de una orden de compra temporal.
             /// </summary>
-            /// <param name="Conexion"></param>
-            /// <param name="Transaccion"></param>
-            /// <param name="PreOrdenEntidad"></param>
+            /// <param name="Conexion">Conexión actual a la base de datos.</param>
+            /// <param name="Transaccion">Transacción actual a la base de datos.</param>
+            /// <param name="OrdenDetalleEntidad">Entidad del detalle de una orden de compra.</param>
             private void GuardaProductoOrdenDetalleTemp(SqlConnection Conexion, SqlTransaction Transaccion, OrdenDetalleEntidad OrdenDetalleEntidad)
             {
                 OrdenAcceso OrdenAcceso = new OrdenAcceso();
 
-                OrdenAcceso.InsertaProductoOrdenDetalleTemp(Conexion, Transaccion, _OrdenDetalleEntidad);
+                OrdenAcceso.InsertarProductoOrdenDetalleTemp(Conexion, Transaccion, _OrdenDetalleEntidad);
 
                 _ErrorId = OrdenAcceso.ErrorId;
                 _DescripcionError = OrdenAcceso.DescripcionError;
             }
 
             /// <summary>
-            ///     
+            ///     Guarda el encabezado de una orden de compra temporal.
             /// </summary>
-            /// <param name="Conexion"></param>
-            /// <param name="Transaccion"></param>
-            /// <param name="PreOrdenEntidad"></param>
-            private void GuardaProductoOrdenEncabezadoTemp(SqlConnection Conexion, SqlTransaction Transaccion, OrdenDetalleEntidad OrdenDetalleEntidad)
+            /// <param name="Conexion">Conexión actual a la base de datos.</param>
+            /// <param name="Transaccion">Transacción actual a la base de datos.</param>
+            /// <param name="OrdenDetalleEntidad">Entidad del detalle de una orden de compra.</param>
+            private void GuardarProductoOrdenEncabezadoTemp(SqlConnection Conexion, SqlTransaction Transaccion, OrdenDetalleEntidad OrdenDetalleEntidad)
             {
                 OrdenAcceso OrdenAcceso = new OrdenAcceso();
 
-                OrdenAcceso.InsertaProductoOrdenEncabezadoTemp(Conexion, Transaccion, _OrdenDetalleEntidad);
+                OrdenAcceso.InsertarProductoOrdenEncabezadoTemp(Conexion, Transaccion, _OrdenDetalleEntidad);
 
                 _ErrorId = OrdenAcceso.ErrorId;
                 _DescripcionError = OrdenAcceso.DescripcionError;
@@ -195,6 +280,16 @@ namespace Activos.ProcesoNegocio.Almacen
 
                 _ErrorId = OrdenAcceso.ErrorId;
                 _DescripcionError = OrdenAcceso.DescripcionError;
+            }
+
+            /// <summary>
+            ///     
+            /// </summary>
+            public bool ValidarOrden()
+            {
+
+
+                return true;
             }
 
             /// <summary>

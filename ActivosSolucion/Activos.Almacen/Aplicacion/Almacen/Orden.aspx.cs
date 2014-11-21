@@ -12,8 +12,9 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 
-using Activos.Comun.Constante;
 using Activos.Comun.Cadenas;
+using Activos.Comun.Constante;
+using Activos.Comun.Fecha;
 using Activos.Entidad.Catalogo;
 using Activos.Entidad.General;
 using Activos.ProcesoNegocio.Almacen;
@@ -24,6 +25,11 @@ namespace Almacen.Web.Aplicacion.Almacen
     public partial class Orden : System.Web.UI.Page
     {
         #region "Eventos"
+            protected void BotonGuardar_Click(object sender, ImageClickEventArgs e)
+            {
+                GuardarOrden();
+            }
+
             protected void EmpleadoCombo_SelectedIndexChanged(object sender, EventArgs e)
             {
                 SeleccionarJefe(Int16.Parse(EmpleadoCombo.SelectedValue));
@@ -46,7 +52,28 @@ namespace Almacen.Web.Aplicacion.Almacen
         #endregion
 
         #region "Métodos"
-            private void GuardaProductoOrdenTemp(string OrdenId, string PreOrdenId, string ProductoId)
+            private void GuardarOrden()
+            {
+                OrdenProceso OrdenProceso = new OrdenProceso();
+
+                OrdenProceso.OrdenEncabezadoEntidad.OrdenId = OrdenIdHidden.Value;
+                OrdenProceso.OrdenEncabezadoEntidad.EmpleadoId = EmpleadoCombo.SelectedValue;
+                OrdenProceso.OrdenEncabezadoEntidad.JefeId = JefeCombo.SelectedValue;
+                OrdenProceso.OrdenEncabezadoEntidad.ProveedorId = Int16.Parse(ProveedorCombo.SelectedValue);
+                OrdenProceso.OrdenEncabezadoEntidad.EstatusId = (int)ConstantePrograma.EstatusOrden.SinSurtir;
+                OrdenProceso.OrdenEncabezadoEntidad.FechaOrden = FormatoFecha.AsignarFormato(FechaOrdenBox.Text.Trim(), ConstantePrograma.UniversalFormatoFecha);
+
+                OrdenProceso.GuardarOrden();
+
+                if (OrdenProceso.ErrorId == 0)
+                {
+                    LimpiarFormulario();
+                }
+                else
+                    MostrarMensaje(OrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+            }
+
+            private void GuardarProductoOrdenTemp(string OrdenId, string PreOrdenId, string ProductoId)
             {
                 OrdenProceso OrdenProceso = new OrdenProceso();
 
@@ -54,7 +81,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 OrdenProceso.OrdenDetalleEntidad.PreOrdenId = PreOrdenId;
                 OrdenProceso.OrdenDetalleEntidad.ProductoId = ProductoId;
 
-                OrdenProceso.GuardaProductoOrdenTemp();
+                OrdenProceso.GuardarProductoOrdenTemp();
 
                 if (OrdenProceso.ErrorId == 0)
                 {
@@ -85,6 +112,12 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             private void LimpiarFormulario()
             {
+                TablaPreOrden.DataSource = null;
+                TablaPreOrden.DataBind();
+
+                TablaOrden.DataSource = null;
+                TablaOrden.DataBind();
+
                 OrdenIdHidden.Value = "";
             }
 
@@ -238,7 +271,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 switch(CommandName)
                 {
                     case ConstantePrograma.ComandoAgregar:
-                        GuardaProductoOrdenTemp(OrdenIdHidden.Value, PreOrdenId, ProductoId);
+                        GuardarProductoOrdenTemp(OrdenIdHidden.Value, PreOrdenId, ProductoId);
                         break;
                 }
             }

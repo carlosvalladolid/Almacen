@@ -76,12 +76,9 @@
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center" Width="35px" />
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Clave">
-                                <ItemTemplate>
-                                    <asp:LinkButton CommandArgument="<%#Container.DataItemIndex%>" CommandName="Select" ID="Clave" runat="server" Text='<%#Eval("Clave")%>'></asp:LinkButton>
-                                </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" />
-                            </asp:TemplateField>
+                            <asp:BoundField DataField="Clave" HeaderText="Clave" ItemStyle-HorizontalAlign="Left">
+                                <HeaderStyle HorizontalAlign="Center" />
+                            </asp:BoundField>
                             <asp:BoundField DataField="Descripcion" HeaderText="Descripción" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" />
                             </asp:BoundField>
@@ -199,8 +196,8 @@
                     <tr>
                         <td colspan="3">
                             <br />
-                            <asp:ImageButton AlternateText="Buscar" ID="BotonBusqueda" ImageUrl="/Imagen/Boton/BotonBuscar.png" runat="server" />&nbsp;&nbsp;
-                            <asp:ImageButton AlternateText="Cancelar" ID="BotonCancelarBusqueda" ImageUrl="/Imagen/Boton/BotonCancelar.png" runat="server" />
+                            <asp:ImageButton AlternateText="Guardar" ID="BotonGuardar" ImageUrl="/Imagen/Boton/BotonGuardar.png" runat="server" onclick="BotonGuardar_Click" />&nbsp;&nbsp;
+                            <asp:ImageButton AlternateText="Cancelar" ID="BotonCancelar" ImageUrl="/Imagen/Boton/BotonCancelar.png" runat="server" />
                         </td>
                     </tr>
                 </table>

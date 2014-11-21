@@ -225,6 +225,11 @@ namespace Activos.Comun.Constante
             Cerrado = 28
         }
 
+        public enum EstatusOrden
+        {
+            SinSurtir = 31
+        }
+
         public enum EstatusPuestos
         {
             Activo = 11,
