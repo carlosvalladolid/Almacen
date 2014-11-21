@@ -93,9 +93,7 @@
                         
                          <tr>
                             <td class="Nombre">Clave</td>
-                            <td class="Required">*</td>                           
-                           
-                           
+                            <td class="Required">*</td>
                             <td class="Campo">
                              <asp:Panel ID="PanelBuscarClave" runat="server" DefaultButton="LinkBuscarClave">
                              <asp:TextBox ID="ClaveNuevo" CssClass="CajaTextoMediana" MaxLength="15" runat="server"></asp:TextBox>

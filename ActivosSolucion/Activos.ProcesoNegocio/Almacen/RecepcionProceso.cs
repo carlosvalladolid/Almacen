@@ -18,130 +18,156 @@ namespace Activos.ProcesoNegocio.Almacen
 {
    public class RecepcionProceso:Base
     {
-       public ResultadoEntidad AgregarRecepcion(RecepcionEntidad RecepcionObjetoEntidad)
-       {
-           RecepcionAcceso RecepcionAccesoObjeto = new RecepcionAcceso();
-           string CadenaConexion = string.Empty;
-           ResultadoEntidad Resultado = new ResultadoEntidad();
-           ResultadoEntidad ResultadoRecepcionDuplicado = new ResultadoEntidad();
-           SqlTransaction Transaccion;
-           SqlConnection Conexion;
+       //public ResultadoEntidad AgregarRecepcion(RecepcionEntidad RecepcionObjetoEntidad)
+       //{
+       //    RecepcionAcceso RecepcionAccesoObjeto = new RecepcionAcceso();
+       //    string CadenaConexion = string.Empty;
+       //    ResultadoEntidad Resultado = new ResultadoEntidad();
+       //    ResultadoEntidad ResultadoRecepcionDuplicado = new ResultadoEntidad();
+       //    SqlTransaction Transaccion;
+       //    SqlConnection Conexion;
 
-           CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+       //    CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
-           ////****************** aqui entra para revisar que no se agregue la PreOrden
-           //    ResultadoPreOrdenDuplicado = ValidarPreOrdenDuplicado(TemporalPreOrdenObjetoEntidad);
+       //    Conexion = new SqlConnection(CadenaConexion);
+       //    Conexion.Open();
 
-           //    if (ResultadoPreOrdenDuplicado.ErrorId != 0)
-           //    {
-           //        return ResultadoPreOrdenDuplicado;
-           //    }
+       //    Transaccion = Conexion.BeginTransaction();
+       //    try
+       //    {
+       //        if (RecepcionObjetoEntidad.RecepcionId == "")
+       //        {
+       //            RecepcionObjetoEntidad.RecepcionId = Guid.NewGuid().ToString();
 
-           ////**************************************************************************************            
-           Conexion = new SqlConnection(CadenaConexion);
-           Conexion.Open();
+       //            Resultado = RecepcionAccesoObjeto.InsertarRecepcionDetalle(Conexion, Transaccion, RecepcionObjetoEntidad);
+                  
+       //        }
+       //        else
+       //        {
+       //            //Editar encabezado
+       //            // Resultado = RecepcionAccesoObjeto.ActualizarRecepcionEncabezado(Conexion, Transaccion, RecepcionObjetoEntidad);
+       //        }
 
-           Transaccion = Conexion.BeginTransaction();
-           try
-           {
-               if (RecepcionObjetoEntidad.RecepcionId == "")
-               {
-                   RecepcionObjetoEntidad.RecepcionId = Guid.NewGuid().ToString();
+          
+       //        Conexion.Close();
 
-                   Resultado = RecepcionAccesoObjeto.InsertarRecepcionDetalle(Conexion, Transaccion, RecepcionObjetoEntidad);
-               }
-               else
-               {
-                   //Editar encabezado
-                  // Resultado = RecepcionAccesoObjeto.ActualizarRecepcionEncabezado(Conexion, Transaccion, RecepcionObjetoEntidad);
-               }
+       //        return Resultado;
+       //    }
+       //    catch (Exception EX)
+       //    {
+       //        Transaccion.Rollback();
 
-               if (Resultado.ErrorId == (int)ConstantePrograma.Recepcion.RecepcionGuardadoCorrectamente)
-               {
-                   Resultado = RecepcionAccesoObjeto.SeleccionarRecepcionDetalle(Conexion, Transaccion, RecepcionObjetoEntidad);
+       //        if (Conexion.State == ConnectionState.Open)
+       //        {
+       //            Conexion.Close();
+       //        }
+       //        Resultado.DescripcionError = EX.Message;
+       //        return Resultado;
 
-                   if (Resultado.ResultadoDatos.Tables[0].Rows.Count > 0)
-                   {
+       //    }
+       //}
 
-                       Resultado.ErrorId = ((int)ConstantePrograma.Recepcion.FolioDuplicado);
-                       //Se edita el poducto
-                       // Resultado = RecepcionAccesoObjeto.ActualizarPreOrdenDetalleTemp(Conexion, Transaccion, TemporalPreOrdenObjetoEntidad);
-                   }
-                   else
-                   {
-                       //Se inserta el DetalleDocumento
-                       Resultado = RecepcionAccesoObjeto.InsertarRecepcionEncabezado(Conexion, Transaccion, RecepcionObjetoEntidad);
-                   }
+       //public ResultadoEntidad SeleccionaRecepcion(RecepcionEntidad RecepcionObjetoEntidad)
+       //{
+       //    string CadenaConexion = string.Empty;
+       //    RecepcionAcceso RecepcionAccesoObjeto = new RecepcionAcceso();
+       //    ResultadoEntidad Resultado = new ResultadoEntidad();
 
-                   if (Resultado.ErrorId == (int)ConstantePrograma.Recepcion.RecepcionGuardadoCorrectamente)
-                   {
-                       Transaccion.Commit();
-                   }
-                   else
-                   {
-                       Transaccion.Rollback();
-                   }
+       //    SqlTransaction Transaccion;
+       //    SqlConnection Conexion;
 
-               }
-               else
-               {
-                   Transaccion.Rollback();
-               }
+       //    CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
-               Conexion.Close();
+       //    Conexion = new SqlConnection(CadenaConexion);
+       //    Conexion.Open();
 
-               return Resultado;
-           }
-           catch (Exception EX)
-           {
-               Transaccion.Rollback();
+       //    Transaccion = Conexion.BeginTransaction();
 
-               if (Conexion.State == ConnectionState.Open)
-               {
-                   Conexion.Close();
-               }
-               Resultado.DescripcionError = EX.Message;
-               return Resultado;
+       //    try
+       //    {
+       //        Resultado = RecepcionAccesoObjeto.SeleccionarRecepcionDetalle(Conexion, Transaccion, RecepcionObjetoEntidad);
 
-           }
-       }
+       //        return Resultado;
+       //    }
+       //    catch (Exception EX)
+       //    {
+       //        Transaccion.Rollback();
 
-       public ResultadoEntidad SeleccionaRecepcion(RecepcionEntidad RecepcionObjetoEntidad)
-       {
-           string CadenaConexion = string.Empty;
-           RecepcionAcceso RecepcionAccesoObjeto = new RecepcionAcceso();
-           ResultadoEntidad Resultado = new ResultadoEntidad();
+       //        if (Conexion.State == ConnectionState.Open)
+       //        {
+       //            Conexion.Close();
+       //        }
+       //        Resultado.DescripcionError = EX.Message;
+       //        return Resultado;
 
-           SqlTransaction Transaccion;
-           SqlConnection Conexion;
+       //    }
 
-           CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+       //}
 
-           Conexion = new SqlConnection(CadenaConexion);
-           Conexion.Open();
 
-           Transaccion = Conexion.BeginTransaction();
 
-           try
-           {
-               Resultado = RecepcionAccesoObjeto.SeleccionarRecepcionDetalle(Conexion, Transaccion, RecepcionObjetoEntidad);
 
-               return Resultado;
-           }
-           catch (Exception EX)
-           {
-               Transaccion.Rollback();
+        private int _ErrorId;
+        private string _DescripcionError;
+        DataSet _ResultadoDatos;
+        RecepcionEntidad _RecepcionEntidad;
 
-               if (Conexion.State == ConnectionState.Open)
-               {
-                   Conexion.Close();
-               }
-               Resultado.DescripcionError = EX.Message;
-               return Resultado;
+        /// <summary>
+        ///     Numero de error, en caso de que haya ocurrido uno. Cero por default.
+        /// </summary>
+        public int ErrorId
+        {
+            get { return _ErrorId; }
+        }
 
-           }
+        /// <summary>
+        ///     Descripción de error, en caso de que haya ocurrido uno. Empty por default.
+        /// </summary>
+        public string DescripcionError
+        {
+            get { return _DescripcionError; }
+        }
 
-       }
-       
+        /// <summary>
+        ///     DataSet con el resultado de la base de datos.
+        /// </summary>
+        public DataSet ResultadoDatos
+        {
+            get { return _ResultadoDatos; }
+        }
+
+        /// <summary>
+        ///     Entidad del proceso.
+        /// </summary>
+        public RecepcionEntidad RecepcionEntidad
+        {
+            get { return _RecepcionEntidad; }
+            set { _RecepcionEntidad = value; }
+        }
+
+        /// <summary>
+        ///     Constructor de la clase
+        /// </summary>
+        public RecepcionProceso()
+        {
+            _ErrorId = 0;
+            _DescripcionError = string.Empty;
+            _ResultadoDatos = null;
+            _RecepcionEntidad = new RecepcionEntidad();
+        }
+
+        #region "Métodos"
+
+
+
+
+        #endregion
+
+
+
+
+
+
+
     }
 }

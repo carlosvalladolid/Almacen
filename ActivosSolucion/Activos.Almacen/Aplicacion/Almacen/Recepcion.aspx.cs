@@ -151,7 +151,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
             FamiliaIdNuevo.SelectedIndex = 0;
             SeleccionarSubfamilia();
             SubFamiliaIdNuevo.SelectedIndex = 0;
-            MarcaIdNuevo.Text = "";
+            MarcaIdNuevo.SelectedIndex = 0;           
             DescripcionNuevo.Text = "";
             PrecionUnitarioNuevo.Text = "";
             CantidadNuevo.Text = "";
@@ -159,7 +159,6 @@ namespace Activos.Almacen.Aplicacion.Almacen
         
         
         }
-
 
         //protected void GuardaRecepcion()
         //{
@@ -201,8 +200,6 @@ namespace Activos.Almacen.Aplicacion.Almacen
         //    }
         //}
 
-
-
         private void Inicio()
         {
             if (Page.IsPostBack)
@@ -210,10 +207,14 @@ namespace Activos.Almacen.Aplicacion.Almacen
            
             SeleccionarProveedor();
             SeleccionarEmpleado();
+            BuscarJefe();
             SeleccionarMarca();
             SeleccionarFamilia();
             SeleccionarSubfamilia();
             SeleccionarTipoDocumento();
+
+            TablaRecepcion.DataSource = null;
+            TablaRecepcion.DataBind();
 
             JefeInmediatoIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
         }
@@ -286,8 +287,10 @@ namespace Activos.Almacen.Aplicacion.Almacen
                     {
                         FechaOrdenCompraNuevo.Text = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["FechaOrden"].ToString();
                         SolicitanteIdNuevo.SelectedValue = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["EmpleadoId"].ToString();
-                        //SeleccionarJefe();
-                        //JefeInmediatoIdNuevo.SelectedValue  = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["JefeId"].ToString();
+                        BuscarJefe();
+                        //Int32 EmpleadoId = Int32.Parse(SolicitanteIdNuevo.SelectedValue);
+                        //SeleccionarJefe(EmpleadoId);
+                        JefeInmediatoIdNuevo.SelectedValue  = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["JefeId"].ToString();
 
                     }
                else
@@ -302,6 +305,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
                      
                    }
             }
+
         protected void SeleccionarFamilia()
         {
             ResultadoEntidad Resultado = new ResultadoEntidad();
@@ -472,6 +476,32 @@ namespace Activos.Almacen.Aplicacion.Almacen
             JefeInmediatoIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
         }
 
+        protected void BuscarJefe()
+        {
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            EmpleadoEntidad EmpleadoEntidadObjeto = new EmpleadoEntidad();
+            EmpleadoProceso EmpleadoProcesoObjeto = new EmpleadoProceso();
+            Int16 EmpleadoIdJefe;
+
+            EmpleadoEntidadObjeto.EmpleadoId = Int16.Parse(SolicitanteIdNuevo.SelectedValue);
+
+            if (EmpleadoEntidadObjeto.EmpleadoId != 0)
+            {
+                Resultado = EmpleadoProcesoObjeto.SeleccionarEmpleado(EmpleadoEntidadObjeto);
+
+                if (Resultado.ErrorId == 0)
+                {
+                    EmpleadoIdJefe = Int16.Parse(Resultado.ResultadoDatos.Tables[0].Rows[0]["EmpleadoIdJefe"].ToString());
+                    SeleccionarJefe(EmpleadoIdJefe);
+                }
+                else
+                {
+                    EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+                }
+            }
+
+        }
+      
         protected void SeleccionarTipoDocumento()
         {
             Activos.ProcesoNegocio.Almacen.TipoDocumentoProceso TipoDocumentoProceso = new Activos.ProcesoNegocio.Almacen.TipoDocumentoProceso();

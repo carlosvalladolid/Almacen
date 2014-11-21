@@ -68,6 +68,7 @@ namespace Activos.ProcesoNegocio.Almacen
         }
 
         #region "Métodos"
+
             public ResultadoEntidad GuardarPreOrdenCompra(PreOrdenEntidad PreOrdenObjetoEntidad)
             {
                 string CadenaConexion = string.Empty;
@@ -175,6 +176,7 @@ namespace Activos.ProcesoNegocio.Almacen
             /// <summary>
             ///     Realiza una búsqueda del detalle de una preorden.
             /// </summary>
+            /// 
             public void SeleccionarPreOrdenDetalle()
             {
                 string CadenaConexion = string.Empty;
