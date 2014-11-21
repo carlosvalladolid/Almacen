@@ -54,7 +54,6 @@ namespace Almacen.Web.Aplicacion.Configuracion
             UsuarioEntidad UsuarioEntidadGuardar = new UsuarioEntidad();
             UsuarioProceso UsuarioProcesoObjeto = new UsuarioProceso();
 
-
             UsuarioEntidadActual = (UsuarioEntidad)Session["UsuarioEntidad"];
 
             UsuarioEntidadGuardar.UsuarioId = UsuarioEntidadActual.UsuarioId;
@@ -68,7 +67,7 @@ namespace Almacen.Web.Aplicacion.Configuracion
             if (ResultadoEntidad.ErrorId == (int)ConstantePrograma.Usuario.GuardadoExitoso)
                 ResetFormControl();
             else
-                MessageLabel.Text = ResultadoEntidad.DescripcionError;
+                MostrarMensaje(ResultadoEntidad.DescripcionError, ConstantePrograma.TipoErrorAlerta);
         }
 
         protected void Inicio()
