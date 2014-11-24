@@ -176,7 +176,6 @@ namespace Activos.ProcesoNegocio.Almacen
             /// <summary>
             ///     Realiza una búsqueda del detalle de una preorden.
             /// </summary>
-            /// 
             public void SeleccionarPreOrdenDetalle()
             {
                 string CadenaConexion = string.Empty;
@@ -185,6 +184,22 @@ namespace Activos.ProcesoNegocio.Almacen
                 CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
                 _ResultadoDatos = PreOrdenAcceso.SeleccionarPreOrdenDetalle(_PreOrdenEntidad, CadenaConexion);
+
+                _ErrorId = PreOrdenAcceso.ErrorId;
+                _DescripcionError = PreOrdenAcceso.DescripcionError;
+            }
+
+            /// <summary>
+            ///     Busca los productos de una preorden que todavía no es relacionada a una orden de compra temporal.
+            /// </summary>
+            public void SeleccionarPreOrdenSinOrden()
+            {
+                string CadenaConexion = string.Empty;
+                PreOrdenAcceso PreOrdenAcceso = new PreOrdenAcceso();
+
+                CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+                _ResultadoDatos = PreOrdenAcceso.SeleccionarPreOrdenSinOrden(_PreOrdenEntidad, CadenaConexion);
 
                 _ErrorId = PreOrdenAcceso.ErrorId;
                 _DescripcionError = PreOrdenAcceso.DescripcionError;

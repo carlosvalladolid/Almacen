@@ -76,16 +76,16 @@
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center" Width="35px" />
                             </asp:TemplateField>
-                            <asp:BoundField DataField="Clave" HeaderText="Clave" ItemStyle-HorizontalAlign="Left">
+                            <asp:BoundField DataField="ClaveProducto" HeaderText="Clave" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Descripcion" HeaderText="Descripción" ItemStyle-HorizontalAlign="Left">
+                            <asp:BoundField DataField="NombreProducto" HeaderText="Descripción" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="FamiliaNombre" HeaderText="Familia" ItemStyle-HorizontalAlign="Left">
+                            <asp:BoundField DataField="NombreFamilia" HeaderText="Familia" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" Width="125px" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="MarcaNombre" HeaderText="Marca" ItemStyle-HorizontalAlign="Left">
+                            <asp:BoundField DataField="NombreMarca" HeaderText="Marca" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" Width="125px" />
                             </asp:BoundField>
                             <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" ItemStyle-HorizontalAlign="Left">
@@ -126,12 +126,9 @@
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center" Width="35px" />
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Clave">
-                                <ItemTemplate>
-                                    <asp:LinkButton CommandArgument="<%#Container.DataItemIndex%>" CommandName="Select" ID="Clave" runat="server" Text='<%#Eval("ClaveProducto")%>'></asp:LinkButton>
-                                </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" />
-                            </asp:TemplateField>
+                            <asp:BoundField DataField="ClaveProducto" HeaderText="Clave" ItemStyle-HorizontalAlign="Left">
+                                <HeaderStyle HorizontalAlign="Center" Width="100px" />
+                            </asp:BoundField>
                             <asp:BoundField DataField="DescripcionProducto" HeaderText="Descripción" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" />
                             </asp:BoundField>
