@@ -217,6 +217,10 @@ namespace Almacen.Web.Aplicacion.Almacen
             {
                 PreOrdenProceso PreOrdenProceso = new PreOrdenProceso();
 
+                // Se valida que la preorden no haya sido relacionada anteriormente a una orden de compra
+                if (!ValidarPreOrden())
+                    return;
+
                 PreOrdenProceso.PreOrdenEntidad.Clave = PreOrdenId;
 
                 PreOrdenProceso.SeleccionarPreOrdenDetalle();
@@ -274,6 +278,14 @@ namespace Almacen.Web.Aplicacion.Almacen
                         GuardarProductoOrdenTemp(OrdenIdHidden.Value, PreOrdenId, ProductoId);
                         break;
                 }
+            }
+
+            private bool ValidarPreOrden()
+            {
+
+
+
+                return true;
             }
         #endregion
     }
