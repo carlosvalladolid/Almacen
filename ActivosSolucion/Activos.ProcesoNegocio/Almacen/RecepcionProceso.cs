@@ -57,5 +57,30 @@ namespace Activos.ProcesoNegocio.Almacen
 
 
 
+      public ResultadoEntidad AgregarRecepcionEncabezado(RecepcionEntidad RecepcionObjetoEntidad)
+      {
+          string CadenaConexion = string.Empty;
+          ResultadoEntidad Resultado = new ResultadoEntidad();
+          ResultadoEntidad ResultadoValidacion = new ResultadoEntidad();
+          RecepcionAcceso RecepcionAccesoObjeto = new RecepcionAcceso();
+
+          CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+          if (RecepcionObjetoEntidad.TemporalRecepcionId == "0")
+          {
+             
+              Resultado = RecepcionAccesoObjeto.InsertarRecepcionEncabezado(RecepcionObjetoEntidad, CadenaConexion);
+          }
+          else
+          {
+              // Resultado = RecepcionAccesoObjeto.ActualizarProducto(RecepcionObjetoEntidad, CadenaConexion);
+          }
+
+          return Resultado;
+      }
+
+
+
+
     }
 }
