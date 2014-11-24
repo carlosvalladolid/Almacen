@@ -86,15 +86,6 @@ namespace Almacen.Web.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.DropDownList JefeInmediatoIdNuevo;
         
         /// <summary>
-        /// PanelBuscarClave control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelBuscarClave;
-        
-        /// <summary>
         /// ClaveNuevo control.
         /// </summary>
         /// <remarks>
@@ -102,15 +93,6 @@ namespace Almacen.Web.Aplicacion.Almacen {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ClaveNuevo;
-        
-        /// <summary>
-        /// LinkBuscarClave control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkBuscarClave;
         
         /// <summary>
         /// FamiliaIdNuevo control.

@@ -51,13 +51,13 @@ namespace Almacen.Web.Aplicacion.Almacen
             {
                 GuardarPreOrden();
             }
-        }
-        
-        protected void LinkBuscarClave_Click(object sender, EventArgs e)
+        }              
+
+        protected void LinkBuscarClave_SelectedTextChanged(object sender, EventArgs e)
         {
             SeleccionarClave();
         }
-       
+
         protected void NuevoRegistro_Click(Object sender, System.EventArgs e)
         {
             CambiarNuevoRegistro();
@@ -111,9 +111,10 @@ namespace Almacen.Web.Aplicacion.Almacen
             if (TemporalPreOrdenIdHidden.Value != "0")
             {
                 TemporalPreOrdenObjetoEntidad.PreOrdenId = TemporalPreOrdenIdHidden.Value;
+                TemporalPreOrdenObjetoEntidad.TemporalPreOrdenId = TemporalPreOrdenIdHidden.Value;
                 TemporalPreOrdenObjetoEntidad.EmpleadoId = Int16.Parse(SolicitanteIdNuevo.SelectedValue);
                 TemporalPreOrdenObjetoEntidad.JefeId = Int16.Parse(JefeInmediatoIdNuevo.SelectedValue);
-                TemporalPreOrdenObjetoEntidad.Clave = ClaveNuevo.Text.Trim();
+                TemporalPreOrdenObjetoEntidad.ClaveProducto = ClaveNuevo.Text.Trim();
      
                //PENDIENTE DE CHECAR SI VA LLEVAR EL CAMPO DE ESTATUS POQUE EN EL DIAGRAMA NO APARECE 06/11/2014
                 TemporalPreOrdenObjetoEntidad.EstatusId = 1;
@@ -133,23 +134,51 @@ namespace Almacen.Web.Aplicacion.Almacen
             ResultadoEntidad Resultado = new ResultadoEntidad();
             TemporalPreOrdenProceso TemporalPreOrdenProcesoNegocio = new TemporalPreOrdenProceso();
 
+            InsertarTemporalPreOrdenEncabezadoTemp(TemporalPreOrdenObjetoEntidad);
+
             Resultado = TemporalPreOrdenProcesoNegocio.AgregarTemporalPreOrden(TemporalPreOrdenObjetoEntidad);
 
             if (Resultado.ErrorId == (int)ConstantePrograma.TemporalPreOrden.TemporalPreOrdenGuardadoCorrectamente)
              {
-                 TemporalPreOrdenIdHidden.Value = TemporalPreOrdenObjetoEntidad.PreOrdenId;
-               // LimpiarNuevo();
-                LimpiarProducto();
-                //CambiarBotonesNuevo();
-                //Se llena el grid
+                TemporalPreOrdenIdHidden.Value = TemporalPreOrdenObjetoEntidad.PreOrdenId;               
+                LimpiarProducto();                       
                 SeleccionarTemporalPreOrden();
             }
             else
             {
                 EtiquetaMensaje.Text = Resultado.DescripcionError;
             }
-        }        
-  
+        }
+
+
+        protected void InsertarTemporalPreOrdenEncabezadoTemp(TemporalPreOrdenEntidad TemporalPreOrdenObjetoEntidad)
+        {
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+           TemporalPreOrdenProceso TemporalPreOrdenProcesoNegocio = new TemporalPreOrdenProceso();
+            //UsuarioEntidad UsuarioSessionEntidad = new UsuarioEntidad();
+
+            if (TemporalPreOrdenIdHidden.Value != "0")
+            {
+             //   UsuarioSessionEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
+               // TemporalCompraObjetoEntidad.UsuarioId = UsuarioSessionEntidad.UsuarioId;
+
+                Resultado = TemporalPreOrdenProcesoNegocio.InsertarTemporalPreOrdenEncabezado(TemporalPreOrdenObjetoEntidad);
+
+                if (Resultado.ErrorId == (int)ConstantePrograma.TemporalPreOrden.TemporalPreOrdenGuardadoCorrectamente)
+                {
+                   // TemporalCompraIdHidden.Value = Resultado.NuevoRegistroId.ToString();
+                }
+                else
+                {
+                   // EtiquetaMensaje.Text = Resultado.DescripcionError;
+                }
+            }
+        }
+
+
+
+
+
         private void Inicio()
         {
           
@@ -307,8 +336,8 @@ namespace Almacen.Web.Aplicacion.Almacen
             CantidadNuevo.Text = "";
             ProductoIdHidden.Value = "";
 
-            TablaPreOrden.DataSource = null;
-            TablaPreOrden.DataBind();
+            //TablaPreOrden.DataSource = null;
+            //TablaPreOrden.DataBind();
             }
 
         protected void SeleccionarClave()
@@ -347,7 +376,6 @@ namespace Almacen.Web.Aplicacion.Almacen
                         LimpiarProducto();
                         AgregarEtiquetaMensaje.Text = TextoError.EstatusActivoIncorrecto;
                         ClaveNuevo.Focus();
-
                     }
 
 
@@ -558,10 +586,6 @@ namespace Almacen.Web.Aplicacion.Almacen
                     break;
             }
         }
-
-
-
-
        
         protected void EliminarProducto(string ProductoId)
         {
@@ -587,8 +611,6 @@ namespace Almacen.Web.Aplicacion.Almacen
             //}
 
         }
-
-
 
         private void ShowMessage(string Mensaje, string TipoMensaje)
         {

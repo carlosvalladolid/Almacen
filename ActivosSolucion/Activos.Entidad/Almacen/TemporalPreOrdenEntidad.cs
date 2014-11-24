@@ -12,7 +12,7 @@ namespace Activos.Entidad.Almacen
         private Int32 _EmpleadoId;
         private Int32 _JefeId;
         private Int16 _EstatusId;
-        private string _Clave;
+        private string _ClaveProducto;
         private string _ProductoId ;
         private Int16 _Cantidad;
         private string _FechaPreOrden;
@@ -24,7 +24,7 @@ namespace Activos.Entidad.Almacen
             _EmpleadoId = 0;
             _JefeId = 0;
             _EstatusId = 0;
-            _Clave = string.Empty;
+            _ClaveProducto = string.Empty;
             _ProductoId = string.Empty;
             _Cantidad = 0;
             _FechaPreOrden = string.Empty;
@@ -64,10 +64,10 @@ namespace Activos.Entidad.Almacen
         }
 
 
-        public string Clave
+        public string ClaveProducto
         {
-            get { return _Clave; }
-            set { _Clave = value; }
+            get { return _ClaveProducto; }
+            set { _ClaveProducto = value; }
         }
 
 

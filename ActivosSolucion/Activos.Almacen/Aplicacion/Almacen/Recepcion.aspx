@@ -194,7 +194,7 @@
                                     <th style="width: 100px;">Descripcion</th>  
                                     <th style="width: 80px;">Precio Unitario</th>                                    
                                     <th style="width: 60px;">Cantidad</th>   
-                                    <th style="width: 60px;">Monto</th>  
+                                   <%-- <th style="width: 60px;">Monto</th>  --%>
                                 </tr>
                                 <tr>
                                     <td colspan="6" style="text-align: center;">No se encontró información con los parámetros seleccionados</td>
@@ -221,9 +221,9 @@
                                 <HeaderStyle HorizontalAlign="Center" Width="60px" />
                             </asp:BoundField>
                             
-                             <asp:BoundField DataField="Monto" HeaderText="Monto" ItemStyle-HorizontalAlign="Left">
+                            <%-- <asp:BoundField DataField="Monto" HeaderText="Monto" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" Width="60px" />
-                            </asp:BoundField>
+                            </asp:BoundField>--%>
                             
                             <asp:TemplateField HeaderText="">
                                      <ItemTemplate>

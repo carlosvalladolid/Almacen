@@ -30,13 +30,13 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         #region "Eventos"
 
-        //protected void BotonGuardar_Click(object sender, EventArgs e)
-        //{
-        //    if (Page.IsValid)
-        //    {
-        //        GuardarRecepcion();
-        //    }
-        //}
+        protected void BotonGuardar_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                //GuardarRecepcion();
+            }
+        }
 
         protected void BotonAgregar_Click(object sender, ImageClickEventArgs e)
         {
@@ -79,7 +79,8 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
             RecepcionEntidad RecepcionObjetoEntidad = new RecepcionEntidad();
 
-            RecepcionObjetoEntidad.TemporalRecepcionId = TemporalRecepcionIdHidden.Value;           
+
+            RecepcionObjetoEntidad.RecepcionId = TemporalRecepcionIdHidden.Value;           
             RecepcionObjetoEntidad.ProveedorId = Int16.Parse(ProveedorIdNuevo.SelectedValue);
             RecepcionObjetoEntidad.TipoDocumentoId = Int16.Parse(TipoDocumentoIdNuevo.SelectedValue);           
             RecepcionObjetoEntidad.EmpleadoId = Int16.Parse(SolicitanteIdNuevo.SelectedValue);
@@ -101,12 +102,14 @@ namespace Activos.Almacen.Aplicacion.Almacen
             ResultadoEntidad Resultado = new ResultadoEntidad();
             RecepcionProceso RecepcionProcesoNegocio = new RecepcionProceso();
 
+
+           
             Resultado = RecepcionProcesoNegocio.AgregarRecepcionDetalle(RecepcionObjetoEntidad);
 
             if (Resultado.ErrorId == (int)ConstantePrograma.Recepcion.RecepcionGuardadoCorrectamente)
             {
                 TemporalRecepcionIdHidden.Value = RecepcionObjetoEntidad.RecepcionId;
-                // LimpiarNuevo();
+                // LimpiarNuevoRegistro();
                 LimpiarRecepcion();          
                 SeleccionarRecepcion();
             }
@@ -115,6 +118,31 @@ namespace Activos.Almacen.Aplicacion.Almacen
                 EtiquetaMensaje.Text = Resultado.DescripcionError;
             }
         }
+
+
+        //protected void InsertarRecepcionEncabezado(RecepcionEntidad RecepcionObjetoEntidad)
+        //{
+        //    ResultadoEntidad Resultado = new ResultadoEntidad();
+        //    RecepcionProceso RecepcionProcesoNegocio = new RecepcionProceso();
+        //    UsuarioEntidad UsuarioSessionEntidad = new UsuarioEntidad();
+
+        //    if (TemporalRecepcionIdHidden.Value != "0")
+        //    {
+        //        Resultado = RecepcionProcesoNegocio.InsertarTemporalPreOrdenEncabezado(RecepcionObjetoEntidad);
+
+        //        if (Resultado.ErrorId == (int)ConstantePrograma.Recepcion.RecepcionGuardadoCorrectamente)
+        //        {
+                  
+        //        }
+        //        else
+        //        {
+        //             EtiquetaMensaje.Text = Resultado.DescripcionError;
+        //        }
+        //    }
+        //}
+
+
+
 
         protected void SeleccionarRecepcion()
         {
@@ -160,38 +188,38 @@ namespace Activos.Almacen.Aplicacion.Almacen
         
         }
 
-        //protected void GuardaRecepcion()
-        //{
-        //    RecepcionEntidad RecepcionObjetoEntidad = new RecepcionEntidad();
-        //    UsuarioEntidad UsuarioSessionEntidad = new UsuarioEntidad();
+        protected void LimpiarNuevoRegistro()
+        {
+            ProveedorIdNuevo.SelectedIndex = 0;
+            TipoDocumentoIdNuevo.SelectedIndex = 0;
+            FolioNuevo.Text = "";
+            FechaDocumentoNuevo.Text = "";
+            MontoDatosNuevo.Text = "";
+            OrderCompraNuevo.Text = "";
+            FechaOrdenCompraNuevo.Text = "";
+            SolicitanteIdNuevo.SelectedIndex = 0;
+            JefeInmediatoIdNuevo.SelectedIndex = 0;
 
-        //    if (TemporalRecepcionIdHidden.Value != "0")
-        //    {
-        //        if (TablaRecepcion.Rows.Count > 0)
-        //        {
-        //            RecepcionObjetoEntidad.RecepcionId= TemporalRecepcionIdHidden.Value;
+            TablaRecepcion.DataSource = null;
+            TablaRecepcion.DataBind();
 
-        //            GuardarRecepcion(RecepcionObjetoEntidad);
-        //        }
 
-        //    }
-        //    else
-        //    {
-        //        EtiquetaMensaje.Text = "Favor de agregar los Productos";
-        //    }
-        //}
+        }
 
+       
+
+      
         //protected void GuardarRecepcion(RecepcionEntidad RecepcionObjetoEntidad)
         //{
         //    ResultadoEntidad Resultado = new ResultadoEntidad();
         //    RecepcionProceso RecepcionProcesoNegocio = new RecepcionProceso();
 
-        //    Resultado = RecepcionProcesoNegocio.GuardarRecepcion(RecepcionObjetoEntidad);
+        //    Resultado = RecepcionProcesoNegocio.AgregarRecepcionEncabezado(RecepcionObjetoEntidad);
 
         //    if (Resultado.ErrorId == (int)ConstantePrograma.Recepcion.RecepcionGuardadoCorrectamente)
         //    {
         //        LimpiarNuevoRegistro();
-        //        LimpiarDetalleDocumento();
+        //        LimpiarRecepcion();
 
         //    }
         //    else
