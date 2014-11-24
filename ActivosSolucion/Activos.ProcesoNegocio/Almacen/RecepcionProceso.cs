@@ -17,155 +17,43 @@ using Activos.Entidad.Almacen;
 namespace Activos.ProcesoNegocio.Almacen
 {
    public class RecepcionProceso:Base
-    {
-       //public ResultadoEntidad AgregarRecepcion(RecepcionEntidad RecepcionObjetoEntidad)
-       //{
-       //    RecepcionAcceso RecepcionAccesoObjeto = new RecepcionAcceso();
-       //    string CadenaConexion = string.Empty;
-       //    ResultadoEntidad Resultado = new ResultadoEntidad();
-       //    ResultadoEntidad ResultadoRecepcionDuplicado = new ResultadoEntidad();
-       //    SqlTransaction Transaccion;
-       //    SqlConnection Conexion;
+    {      
+       public ResultadoEntidad AgregarRecepcionDetalle(RecepcionEntidad RecepcionObjetoEntidad)
+       {
+           string CadenaConexion = string.Empty;
+           ResultadoEntidad Resultado = new ResultadoEntidad();
+           ResultadoEntidad ResultadoValidacion = new ResultadoEntidad();
+           RecepcionAcceso RecepcionAccesoObjeto = new RecepcionAcceso();
 
-       //    CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
-
-       //    Conexion = new SqlConnection(CadenaConexion);
-       //    Conexion.Open();
-
-       //    Transaccion = Conexion.BeginTransaction();
-       //    try
-       //    {
-       //        if (RecepcionObjetoEntidad.RecepcionId == "")
-       //        {
-       //            RecepcionObjetoEntidad.RecepcionId = Guid.NewGuid().ToString();
-
-       //            Resultado = RecepcionAccesoObjeto.InsertarRecepcionDetalle(Conexion, Transaccion, RecepcionObjetoEntidad);
-                  
-       //        }
-       //        else
-       //        {
-       //            //Editar encabezado
-       //            // Resultado = RecepcionAccesoObjeto.ActualizarRecepcionEncabezado(Conexion, Transaccion, RecepcionObjetoEntidad);
-       //        }
-
-          
-       //        Conexion.Close();
-
-       //        return Resultado;
-       //    }
-       //    catch (Exception EX)
-       //    {
-       //        Transaccion.Rollback();
-
-       //        if (Conexion.State == ConnectionState.Open)
-       //        {
-       //            Conexion.Close();
-       //        }
-       //        Resultado.DescripcionError = EX.Message;
-       //        return Resultado;
-
-       //    }
-       //}
-
-       //public ResultadoEntidad SeleccionaRecepcion(RecepcionEntidad RecepcionObjetoEntidad)
-       //{
-       //    string CadenaConexion = string.Empty;
-       //    RecepcionAcceso RecepcionAccesoObjeto = new RecepcionAcceso();
-       //    ResultadoEntidad Resultado = new ResultadoEntidad();
-
-       //    SqlTransaction Transaccion;
-       //    SqlConnection Conexion;
-
-       //    CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
-
-       //    Conexion = new SqlConnection(CadenaConexion);
-       //    Conexion.Open();
-
-       //    Transaccion = Conexion.BeginTransaction();
-
-       //    try
-       //    {
-       //        Resultado = RecepcionAccesoObjeto.SeleccionarRecepcionDetalle(Conexion, Transaccion, RecepcionObjetoEntidad);
-
-       //        return Resultado;
-       //    }
-       //    catch (Exception EX)
-       //    {
-       //        Transaccion.Rollback();
-
-       //        if (Conexion.State == ConnectionState.Open)
-       //        {
-       //            Conexion.Close();
-       //        }
-       //        Resultado.DescripcionError = EX.Message;
-       //        return Resultado;
-
-       //    }
-
-       //}
+           CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+         
+           if (RecepcionObjetoEntidad.RecepcionId != "0")
+               {
+                   RecepcionObjetoEntidad.RecepcionId = Guid.NewGuid().ToString();
+                   Resultado = RecepcionAccesoObjeto.InsertarRecepcionDetalle(RecepcionObjetoEntidad, CadenaConexion);
+               }
+               else
+               {
+                  // Resultado = RecepcionAccesoObjeto.ActualizarProducto(RecepcionObjetoEntidad, CadenaConexion);
+               }
+         
+           return Resultado;
+       }
 
 
+     
+      public ResultadoEntidad SeleccionaRecepcion(RecepcionEntidad RecepcionObjetoEntidad)
+      {
+          string CadenaConexion = string.Empty;
+          ResultadoEntidad Resultado = new ResultadoEntidad();
+          RecepcionAcceso RecepcionAccesoObjeto = new RecepcionAcceso();
 
+          CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
-        private int _ErrorId;
-        private string _DescripcionError;
-        DataSet _ResultadoDatos;
-        RecepcionEntidad _RecepcionEntidad;
+          Resultado = RecepcionAccesoObjeto.SeleccionarRecepcionDetalle(RecepcionObjetoEntidad, CadenaConexion);
 
-        /// <summary>
-        ///     Numero de error, en caso de que haya ocurrido uno. Cero por default.
-        /// </summary>
-        public int ErrorId
-        {
-            get { return _ErrorId; }
-        }
-
-        /// <summary>
-        ///     Descripción de error, en caso de que haya ocurrido uno. Empty por default.
-        /// </summary>
-        public string DescripcionError
-        {
-            get { return _DescripcionError; }
-        }
-
-        /// <summary>
-        ///     DataSet con el resultado de la base de datos.
-        /// </summary>
-        public DataSet ResultadoDatos
-        {
-            get { return _ResultadoDatos; }
-        }
-
-        /// <summary>
-        ///     Entidad del proceso.
-        /// </summary>
-        public RecepcionEntidad RecepcionEntidad
-        {
-            get { return _RecepcionEntidad; }
-            set { _RecepcionEntidad = value; }
-        }
-
-        /// <summary>
-        ///     Constructor de la clase
-        /// </summary>
-        public RecepcionProceso()
-        {
-            _ErrorId = 0;
-            _DescripcionError = string.Empty;
-            _ResultadoDatos = null;
-            _RecepcionEntidad = new RecepcionEntidad();
-        }
-
-        #region "Métodos"
-
-
-
-
-        #endregion
-
-
-
-
+          return Resultado;
+      }
 
 
 

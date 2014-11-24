@@ -101,7 +101,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
             ResultadoEntidad Resultado = new ResultadoEntidad();
             RecepcionProceso RecepcionProcesoNegocio = new RecepcionProceso();
 
-            Resultado = RecepcionProcesoNegocio.AgregarRecepcion(RecepcionObjetoEntidad);
+            Resultado = RecepcionProcesoNegocio.AgregarRecepcionDetalle(RecepcionObjetoEntidad);
 
             if (Resultado.ErrorId == (int)ConstantePrograma.Recepcion.RecepcionGuardadoCorrectamente)
             {
