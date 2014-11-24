@@ -30,12 +30,12 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         #region "Eventos"
 
-        protected void BotonGuardar_Click(object sender, EventArgs e)
+        protected void BotonGuardar_Click(object sender, ImageClickEventArgs e)
         {
-            if (Page.IsValid)
-            {
-                //GuardarRecepcion();
-            }
+            //if (Page.IsValid)
+            //{
+                GuardarRecepcion();
+            //}
         }
 
         protected void BotonAgregar_Click(object sender, ImageClickEventArgs e)
@@ -59,17 +59,16 @@ namespace Activos.Almacen.Aplicacion.Almacen
             SeleccionarSubfamilia();
         }
 
-
         protected void LinkBuscarClave_SelectedTextChanged(object sender, EventArgs e)
         {
             SeleccionarClave();
         }
 
-
         protected void LinkBuscarOrdenCompra_SelectedTextChanged(object sender, EventArgs e)
         {
             SeleccionarOrdenCompra();
         }
+
         #endregion
 
         #region "Métodos"
@@ -80,15 +79,16 @@ namespace Activos.Almacen.Aplicacion.Almacen
             RecepcionEntidad RecepcionObjetoEntidad = new RecepcionEntidad();
 
 
-            RecepcionObjetoEntidad.RecepcionId = TemporalRecepcionIdHidden.Value;           
-            RecepcionObjetoEntidad.ProveedorId = Int16.Parse(ProveedorIdNuevo.SelectedValue);
-            RecepcionObjetoEntidad.TipoDocumentoId = Int16.Parse(TipoDocumentoIdNuevo.SelectedValue);           
-            RecepcionObjetoEntidad.EmpleadoId = Int16.Parse(SolicitanteIdNuevo.SelectedValue);
-            RecepcionObjetoEntidad.JefeId = Int16.Parse(JefeInmediatoIdNuevo.SelectedValue);
-            RecepcionObjetoEntidad.Clave = FolioNuevo.Text.Trim();
-            RecepcionObjetoEntidad.Monto = decimal.Parse(MontoDatosNuevo.Text);
-            if (!(FechaDocumentoNuevo.Text.Trim() == ""))
-                RecepcionObjetoEntidad.FechaDocumento = FormatoFecha.AsignarFormato(FechaDocumentoNuevo.Text.Trim(), ConstantePrograma.UniversalFormatoFecha);
+            RecepcionObjetoEntidad.RecepcionId = TemporalRecepcionIdHidden.Value;
+            RecepcionObjetoEntidad.TemporalRecepcionId = TemporalRecepcionIdHidden.Value;
+            //RecepcionObjetoEntidad.ProveedorId = Int16.Parse(ProveedorIdNuevo.SelectedValue);
+            //RecepcionObjetoEntidad.TipoDocumentoId = Int16.Parse(TipoDocumentoIdNuevo.SelectedValue);           
+            //RecepcionObjetoEntidad.EmpleadoId = Int16.Parse(SolicitanteIdNuevo.SelectedValue);
+            //RecepcionObjetoEntidad.JefeId = Int16.Parse(JefeInmediatoIdNuevo.SelectedValue);
+            //RecepcionObjetoEntidad.Clave = FolioNuevo.Text.Trim();
+            //RecepcionObjetoEntidad.Monto = decimal.Parse(MontoDatosNuevo.Text);
+            //if (!(FechaDocumentoNuevo.Text.Trim() == ""))
+            //    RecepcionObjetoEntidad.FechaDocumento = FormatoFecha.AsignarFormato(FechaDocumentoNuevo.Text.Trim(), ConstantePrograma.UniversalFormatoFecha);
 
             RecepcionObjetoEntidad.ProductoId = ProductoIdHidden.Value;
             RecepcionObjetoEntidad.PrecioUnitario = decimal.Parse(PrecionUnitarioNuevo.Text);
@@ -118,31 +118,48 @@ namespace Activos.Almacen.Aplicacion.Almacen
                 EtiquetaMensaje.Text = Resultado.DescripcionError;
             }
         }
+     
+        protected void GuardarRecepcion()
+        {
+            RecepcionEntidad RecepcionObjetoEntidad = new RecepcionEntidad();
 
+            RecepcionObjetoEntidad.RecepcionId = TemporalRecepcionIdHidden.Value;
+            RecepcionObjetoEntidad.ProveedorId = Int16.Parse(ProveedorIdNuevo.SelectedValue);
+            RecepcionObjetoEntidad.TipoDocumentoId = Int16.Parse(TipoDocumentoIdNuevo.SelectedValue);
+            RecepcionObjetoEntidad.EmpleadoId = Int16.Parse(SolicitanteIdNuevo.SelectedValue);
+            RecepcionObjetoEntidad.JefeId = Int16.Parse(JefeInmediatoIdNuevo.SelectedValue);
+            RecepcionObjetoEntidad.Clave = FolioNuevo.Text.Trim();
+            RecepcionObjetoEntidad.Monto = decimal.Parse(MontoDatosNuevo.Text);
+            RecepcionObjetoEntidad.OrdenId = OrdenIdHidden.Value;
+            if (!(FechaDocumentoNuevo.Text.Trim() == ""))
+                RecepcionObjetoEntidad.FechaDocumento = FormatoFecha.AsignarFormato(FechaDocumentoNuevo.Text.Trim(), ConstantePrograma.UniversalFormatoFecha);
 
-        //protected void InsertarRecepcionEncabezado(RecepcionEntidad RecepcionObjetoEntidad)
-        //{
-        //    ResultadoEntidad Resultado = new ResultadoEntidad();
-        //    RecepcionProceso RecepcionProcesoNegocio = new RecepcionProceso();
-        //    UsuarioEntidad UsuarioSessionEntidad = new UsuarioEntidad();
-
-        //    if (TemporalRecepcionIdHidden.Value != "0")
-        //    {
-        //        Resultado = RecepcionProcesoNegocio.InsertarTemporalPreOrdenEncabezado(RecepcionObjetoEntidad);
-
-        //        if (Resultado.ErrorId == (int)ConstantePrograma.Recepcion.RecepcionGuardadoCorrectamente)
-        //        {
-                  
-        //        }
-        //        else
-        //        {
-        //             EtiquetaMensaje.Text = Resultado.DescripcionError;
-        //        }
-        //    }
-        //}
+             GuardarRecepcion(RecepcionObjetoEntidad);
 
 
 
+        }
+
+        protected void  GuardarRecepcion(RecepcionEntidad RecepcionObjetoEntidad)
+        {
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            RecepcionProceso RecepcionProcesoNegocio = new RecepcionProceso();
+         
+            Resultado = RecepcionProcesoNegocio.AgregarRecepcionEncabezado(RecepcionObjetoEntidad);
+
+            if (Resultado.ErrorId == (int)ConstantePrograma.Recepcion.RecepcionGuardadoCorrectamente)
+            {
+              //  TemporalRecepcionIdHidden.Value = RecepcionObjetoEntidad.RecepcionId;
+                LimpiarNuevoRegistro();
+                LimpiarRecepcion();          
+             
+            }
+            else
+            {
+                EtiquetaMensaje.Text = Resultado.DescripcionError;
+            }
+        
+        }
 
         protected void SeleccionarRecepcion()
         {
@@ -199,35 +216,14 @@ namespace Activos.Almacen.Aplicacion.Almacen
             FechaOrdenCompraNuevo.Text = "";
             SolicitanteIdNuevo.SelectedIndex = 0;
             JefeInmediatoIdNuevo.SelectedIndex = 0;
+            OrdenIdHidden.Value = "";
 
             TablaRecepcion.DataSource = null;
             TablaRecepcion.DataBind();
 
 
-        }
-
+        }             
        
-
-      
-        //protected void GuardarRecepcion(RecepcionEntidad RecepcionObjetoEntidad)
-        //{
-        //    ResultadoEntidad Resultado = new ResultadoEntidad();
-        //    RecepcionProceso RecepcionProcesoNegocio = new RecepcionProceso();
-
-        //    Resultado = RecepcionProcesoNegocio.AgregarRecepcionEncabezado(RecepcionObjetoEntidad);
-
-        //    if (Resultado.ErrorId == (int)ConstantePrograma.Recepcion.RecepcionGuardadoCorrectamente)
-        //    {
-        //        LimpiarNuevoRegistro();
-        //        LimpiarRecepcion();
-
-        //    }
-        //    else
-        //    {
-        //        EtiquetaMensaje.Text = Resultado.DescripcionError;
-        //    }
-        //}
-
         private void Inicio()
         {
             if (Page.IsPostBack)
@@ -319,6 +315,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
                         //Int32 EmpleadoId = Int32.Parse(SolicitanteIdNuevo.SelectedValue);
                         //SeleccionarJefe(EmpleadoId);
                         JefeInmediatoIdNuevo.SelectedValue  = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["JefeId"].ToString();
+                        OrdenIdHidden.Value = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["OrdenId"].ToString();
 
                     }
                else
