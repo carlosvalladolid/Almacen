@@ -1348,8 +1348,6 @@ namespace Activos.Web.Aplicacion.Activo
                 }
             }
 
-
-
             protected void CambiarTipoAccesorioID()
             {
                 switch (Int16.Parse(TipoAccesorioId.SelectedValue))

@@ -79,7 +79,8 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
             RecepcionEntidad RecepcionObjetoEntidad = new RecepcionEntidad();
 
-            RecepcionObjetoEntidad.TemporalRecepcionId = TemporalRecepcionIdHidden.Value;           
+
+            RecepcionObjetoEntidad.RecepcionId = TemporalRecepcionIdHidden.Value;           
             RecepcionObjetoEntidad.ProveedorId = Int16.Parse(ProveedorIdNuevo.SelectedValue);
             RecepcionObjetoEntidad.TipoDocumentoId = Int16.Parse(TipoDocumentoIdNuevo.SelectedValue);           
             RecepcionObjetoEntidad.EmpleadoId = Int16.Parse(SolicitanteIdNuevo.SelectedValue);

@@ -94,12 +94,13 @@
                          <tr>
                             <td class="Nombre">Clave</td>
                             <td class="Required">*</td>
-                            <td class="Campo">
-                             <asp:Panel ID="PanelBuscarClave" runat="server" DefaultButton="LinkBuscarClave">
+                            <td class="Campo"> <asp:TextBox ID="ClaveNuevo" CssClass="CajaTextoMediana" MaxLength="15" OnTextChanged ="LinkBuscarClave_SelectedTextChanged" AutoPostBack="true"  runat="server"></asp:TextBox>     
+                            
+                           <%--  <asp:Panel ID="PanelBuscarClave" runat="server" DefaultButton="LinkBuscarClave">
                              <asp:TextBox ID="ClaveNuevo" CssClass="CajaTextoMediana" MaxLength="15" runat="server"></asp:TextBox>
                              <asp:LinkButton ID="LinkBuscarClave" OnClick="LinkBuscarClave_Click" Visible ="false"  ValidationGroup="BuscarClave" runat="server" Text="" Width="0px"></asp:LinkButton>
                              </asp:Panel>
-                            </td>
+--%>                            </td>
                         </tr>
 						
                         <tr>
