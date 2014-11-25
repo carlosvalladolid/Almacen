@@ -99,7 +99,6 @@ namespace Activos.Almacen.Aplicacion.Almacen
             TablaRecepcionEventoComando(e);
         }
 
-
         //protected void TablaRecepcion_RowDataBound(object sender, GridViewRowEventArgs e)
         //{
         //    decimal Monto = 0;
@@ -140,8 +139,6 @@ namespace Activos.Almacen.Aplicacion.Almacen
         {
             ResultadoEntidad Resultado = new ResultadoEntidad();
             RecepcionProceso RecepcionProcesoNegocio = new RecepcionProceso();
-
-
            
             Resultado = RecepcionProcesoNegocio.AgregarRecepcionDetalle(RecepcionObjetoEntidad);
 
@@ -154,7 +151,10 @@ namespace Activos.Almacen.Aplicacion.Almacen
             }
             else
             {
+                
                 EtiquetaMensaje.Text = Resultado.DescripcionError;
+                LimpiarRecepcion();
+                
             }
         }
      
@@ -240,6 +240,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
             PrecionUnitarioNuevo.Text = "";
             CantidadNuevo.Text = "";
             MontoDocumentoNuevo.Text = "";
+            EtiquetaMensaje.Text = "";
         
         
         }
