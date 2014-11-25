@@ -175,7 +175,7 @@
                             <td colspan="3">
                                 <asp:Label CssClass="TextoError" ID="AgregarEtiquetaMensaje" runat="server" Text=""></asp:Label>
                                 <br />
-                                <asp:ImageButton AlternateText="Guardar" ID="BotonAgregar" ImageUrl="~/Imagen/Boton/BotonAgregar.png" OnClick="BotonAgregar_Click" runat="server" ValidationGroup="Save" />&nbsp;&nbsp;
+                                <asp:ImageButton AlternateText="Guardar" ID="BotonAgregar" ImageUrl="~/Imagen/Boton/BotonAgregar.png" OnClick="BotonAgregar_Click" runat="server"/>&nbsp;&nbsp;
                               </td>
                         </tr>
                 </table>
@@ -243,7 +243,7 @@
                               <td style="width:70%;">
                                  
                               <br />
-                              <asp:ImageButton AlternateText="Guardar" ID="BotonGuardarPreOrden"  ImageUrl="/Imagen/Boton/BotonGuardar.png" runat="server" />&nbsp;&nbsp;
+                              <asp:ImageButton AlternateText="Guardar" ID="BotonGuardarPreOrden"  ImageUrl="/Imagen/Boton/BotonGuardar.png" OnClick="BotonGuardar_Click" runat="server" ValidationGroup="Save" />&nbsp;&nbsp;
                               <asp:ImageButton AlternateText="Limpiar" ID="BotonLimpiarRegistro"  ImageUrl="/Imagen/Boton/BotonLimpiar.png" runat="server" />&nbsp;&nbsp;
                               <asp:ImageButton AlternateText="Cancelar" ID="BotonCancelarPreOrden" ImageUrl="/Imagen/Boton/BotonCancelar.png" runat="server" />
                               
@@ -263,6 +263,7 @@
                 
                      <asp:HiddenField ID="TemporalRecepcionIdHidden" runat="server" Value="" />
                      <asp:HiddenField ID="ProductoIdHidden" runat="server" Value="" />
+                     <asp:HiddenField ID="OrdenIdHidden" runat="server" Value="" />
              
              
              

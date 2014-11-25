@@ -27,7 +27,7 @@ namespace Activos.ProcesoNegocio.Almacen
 
            CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
          
-           if (RecepcionObjetoEntidad.TemporalRecepcionId == "0")
+           if (RecepcionObjetoEntidad.TemporalRecepcionId != "0")
                {
                    RecepcionObjetoEntidad.RecepcionId = Guid.NewGuid().ToString();
                    Resultado = RecepcionAccesoObjeto.InsertarRecepcionDetalle(RecepcionObjetoEntidad, CadenaConexion);
@@ -66,7 +66,7 @@ namespace Activos.ProcesoNegocio.Almacen
 
           CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
-          if (RecepcionObjetoEntidad.TemporalRecepcionId == "0")
+          if (RecepcionObjetoEntidad.RecepcionId != "")
           {
              
               Resultado = RecepcionAccesoObjeto.InsertarRecepcionEncabezado(RecepcionObjetoEntidad, CadenaConexion);
