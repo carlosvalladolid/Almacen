@@ -162,8 +162,7 @@ namespace Activos.AccesoDatos.Almacen
                 return Resultado;
             }
         }
-
-
+     
 
         //public ResultadoEntidad InsertarRecepcionDetalle(SqlConnection Conexion, SqlTransaction Transaccion, RecepcionEntidad RecepcionEntidadObjeto)
         //{

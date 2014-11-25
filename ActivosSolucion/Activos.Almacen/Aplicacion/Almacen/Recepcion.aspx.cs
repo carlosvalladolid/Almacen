@@ -44,6 +44,32 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         }
 
+        protected void CalcularMonto_Click(object sender, EventArgs e)
+        {
+         
+            int PrecioUnitario = 0;
+            int Cantidad = 0;
+            int Resultado = 0;
+
+            if (PrecionUnitarioNuevo.Text != "0")
+            {
+                PrecioUnitario = int.Parse(PrecionUnitarioNuevo.Text.Trim());
+                Cantidad = int.Parse(CantidadNuevo.Text.Trim());
+                Resultado = PrecioUnitario * Cantidad;
+
+                MontoDocumentoNuevo.Text = Resultado.ToString();
+            }
+            else
+            {
+
+                EtiquetaMensaje.Text = "Capture el Precio";
+                PrecionUnitarioNuevo.Focus();
+
+            }
+
+        }
+
+
         protected void SolicitanteCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             SeleccionarJefe(Int16.Parse(SolicitanteIdNuevo.SelectedValue));
@@ -81,15 +107,6 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
             RecepcionObjetoEntidad.RecepcionId = TemporalRecepcionIdHidden.Value;
             RecepcionObjetoEntidad.TemporalRecepcionId = TemporalRecepcionIdHidden.Value;
-            //RecepcionObjetoEntidad.ProveedorId = Int16.Parse(ProveedorIdNuevo.SelectedValue);
-            //RecepcionObjetoEntidad.TipoDocumentoId = Int16.Parse(TipoDocumentoIdNuevo.SelectedValue);           
-            //RecepcionObjetoEntidad.EmpleadoId = Int16.Parse(SolicitanteIdNuevo.SelectedValue);
-            //RecepcionObjetoEntidad.JefeId = Int16.Parse(JefeInmediatoIdNuevo.SelectedValue);
-            //RecepcionObjetoEntidad.Clave = FolioNuevo.Text.Trim();
-            //RecepcionObjetoEntidad.Monto = decimal.Parse(MontoDatosNuevo.Text);
-            //if (!(FechaDocumentoNuevo.Text.Trim() == ""))
-            //    RecepcionObjetoEntidad.FechaDocumento = FormatoFecha.AsignarFormato(FechaDocumentoNuevo.Text.Trim(), ConstantePrograma.UniversalFormatoFecha);
-
             RecepcionObjetoEntidad.ProductoId = ProductoIdHidden.Value;
             RecepcionObjetoEntidad.PrecioUnitario = decimal.Parse(PrecionUnitarioNuevo.Text);
             RecepcionObjetoEntidad.Cantidad = MontoDocumentoNuevo.Text.Trim();
@@ -312,9 +329,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
                         FechaOrdenCompraNuevo.Text = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["FechaOrden"].ToString();
                         SolicitanteIdNuevo.SelectedValue = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["EmpleadoId"].ToString();
                         BuscarJefe();
-                        //Int32 EmpleadoId = Int32.Parse(SolicitanteIdNuevo.SelectedValue);
-                        //SeleccionarJefe(EmpleadoId);
-                        JefeInmediatoIdNuevo.SelectedValue  = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["JefeId"].ToString();
+                        //JefeInmediatoIdNuevo.SelectedValue = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["EmpleadoIdJefe"].ToString();
                         OrdenIdHidden.Value = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["OrdenId"].ToString();
 
                     }

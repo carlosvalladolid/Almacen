@@ -65,7 +65,7 @@
               
                     <tr>
                         <td class="Nombre">Folio</td>
-                        <td class="Espacio"></td>
+                        <td class="Espacio">*</td>
                         <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="FolioNuevo"  runat="server" Text=""></asp:TextBox></td>
                     </tr>
                     
@@ -154,7 +154,7 @@
                          <tr>
                             <td class="Nombre">Precio Unitario</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="PrecionUnitarioNuevo"  runat="server" Text=""></asp:TextBox></td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="PrecionUnitarioNuevo" OnTextChanged="CalcularMonto_Click" AutoPostBack="true"   runat="server" Text=""></asp:TextBox></td>
                            
                         </tr>
                     
