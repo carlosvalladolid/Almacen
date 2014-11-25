@@ -260,6 +260,7 @@ namespace Activos.Comun.Constante
 
         // Mesnajes de error para la pantalla de órdenes de compra
         public const string OrdenConPreOrdenIdVacio = "Se debe proporcionar un identificador de PreOrden";
+        public const string OrdenConPreOrdenId = "La preorden proporcionada ya tiene una orden de compra asignada";
 
 
         public enum Error

@@ -6,18 +6,20 @@
 *					
 * PARÁMETROS:		OrdenId					Identificador de la orden de compra temporal
 *					PreOrdenId				Identificador de la preorden
+*					SesionId				Identificador de la sesión de usuario
 *********************************************************************************************/
 ALTER PROCEDURE [dbo].[InsertaProductoOrdenEncabezadoTemp]
 (
 	@OrdenId VARCHAR(36),
-	@PreOrdenId VARCHAR(36)
+	@PreOrdenId VARCHAR(36),
+	@SesionId VARCHAR(36)
 )
 
 AS
 
 	SET NOCOUNT ON
 
-		INSERT INTO OrdenEncabezadoTemp(OrdenId, PreOrdenId, EmpleadoId, JefeId, ProveedorId, EstatusId, Clave, FechaOrden, FechaInserto)
-			VALUES(@OrdenId, @PreOrdenId, NULL, NULL, NULL, NULL, NULL, NULL, GETDATE())
+		INSERT INTO OrdenEncabezadoTemp(OrdenId, PreOrdenId, EmpleadoId, JefeId, ProveedorId, EstatusId, SesionId, Clave, FechaOrden, FechaInserto)
+			VALUES(@OrdenId, @PreOrdenId, NULL, NULL, NULL, NULL, @SesionId, NULL, NULL, GETDATE())
 
 	SET NOCOUNT OFF

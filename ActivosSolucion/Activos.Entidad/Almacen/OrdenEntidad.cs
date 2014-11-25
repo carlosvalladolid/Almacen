@@ -18,6 +18,8 @@ namespace Activos.Entidad.Almacen
         private string _FechaOrden;
         private string _FechaInserto;
 
+        private string _SesionId;
+
         public OrdenEntidad()
         {
             _OrdenId = string.Empty;
@@ -29,6 +31,8 @@ namespace Activos.Entidad.Almacen
             _Clave = string.Empty;
             _FechaOrden = string.Empty;
             _FechaInserto = string.Empty;
+
+            _SesionId = string.Empty;
         }
 
         /// <summary>
@@ -110,6 +114,15 @@ namespace Activos.Entidad.Almacen
         {
             get { return _FechaInserto; }
             set { _FechaInserto = value; }
+        }
+
+        /// <summary>
+        ///     Identificador de la sesión de usuario.
+        /// </summary>
+        public string SesionId
+        {
+            get { return _SesionId; }
+            set { _SesionId = value; }
         }
     }
 }

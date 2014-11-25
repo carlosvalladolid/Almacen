@@ -38,11 +38,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             protected void ImagenBuscarPreOrden_Click(object sender, ImageClickEventArgs e)
             {
-                UsuarioEntidad UsuarioEntidad = new UsuarioEntidad();
-
-                UsuarioEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
-
-                SeleccionarPreOrden(PreOrdenBusqueda.Text.Trim(), UsuarioEntidad.SesionId);
+                ValidarPreOrden(PreOrdenBusqueda.Text.Trim());
             }
 
             protected void Page_Load(object sender, EventArgs e)
@@ -57,6 +53,26 @@ namespace Almacen.Web.Aplicacion.Almacen
         #endregion
 
         #region "Métodos"
+            private bool ExistePreOrdenConOrden(string PreOrdenId)
+            {
+                OrdenProceso OrdenProceso = new OrdenProceso();
+
+                OrdenProceso.OrdenEncabezadoEntidad.PreOrdenId = PreOrdenId;
+
+                OrdenProceso.SeleccionarOrdenEncabezado();
+
+                if (OrdenProceso.ErrorId != 0)
+                {
+                    MostrarMensaje(OrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                    return false;
+                }
+
+                if (OrdenProceso.ResultadoDatos.Tables[0].Rows.Count == 0)
+                    return false;
+                else
+                    return true;
+            }
+
             private void GuardarOrden()
             {
                 OrdenProceso OrdenProceso = new OrdenProceso();
@@ -223,10 +239,6 @@ namespace Almacen.Web.Aplicacion.Almacen
             {
                 PreOrdenProceso PreOrdenProceso = new PreOrdenProceso();
 
-                // Se valida que la preorden no haya sido relacionada anteriormente a una orden de compra
-                if (!ValidarPreOrden())
-                    return;
-
                 PreOrdenProceso.PreOrdenEntidad.Clave = PreOrdenId;
                 PreOrdenProceso.PreOrdenEntidad.SesionId = SesionId;
 
@@ -293,12 +305,19 @@ namespace Almacen.Web.Aplicacion.Almacen
                 }
             }
 
-            private bool ValidarPreOrden()
+            private void ValidarPreOrden(string PreOrdenId)
             {
+                UsuarioEntidad UsuarioEntidad = new UsuarioEntidad();
 
+                UsuarioEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
 
+                if (ExistePreOrdenConOrden(PreOrdenId))
+                {
+                    MostrarMensaje(TextoError.OrdenConPreOrdenId, ConstantePrograma.TipoErrorAlerta);
+                    return;
+                }
 
-                return true;
+                SeleccionarPreOrden(PreOrdenId, UsuarioEntidad.SesionId);
             }
         #endregion
     }
