@@ -27,20 +27,18 @@ namespace Activos.ProcesoNegocio.Almacen
 
            CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
          
-           if (RecepcionObjetoEntidad.TemporalRecepcionId != "0")
+           if (RecepcionObjetoEntidad.TemporalRecepcionId == "")
                {
                    RecepcionObjetoEntidad.RecepcionId = Guid.NewGuid().ToString();
                    Resultado = RecepcionAccesoObjeto.InsertarRecepcionDetalle(RecepcionObjetoEntidad, CadenaConexion);
                }
                else
                {
-                  // Resultado = RecepcionAccesoObjeto.ActualizarProducto(RecepcionObjetoEntidad, CadenaConexion);
+                   Resultado = RecepcionAccesoObjeto.InsertarRecepcionDetalle(RecepcionObjetoEntidad, CadenaConexion);
                }
          
            return Resultado;
        }
-
-
      
       public ResultadoEntidad SeleccionaRecepcion(RecepcionEntidad RecepcionObjetoEntidad)
       {
@@ -54,8 +52,6 @@ namespace Activos.ProcesoNegocio.Almacen
 
           return Resultado;
       }
-
-
 
       public ResultadoEntidad AgregarRecepcionEncabezado(RecepcionEntidad RecepcionObjetoEntidad)
       {
@@ -79,6 +75,60 @@ namespace Activos.ProcesoNegocio.Almacen
           return Resultado;
       }
 
+      public ResultadoEntidad CancelarNuevoRecepcion(RecepcionEntidad RecepcionObjetoEntidad)
+      {
+          string CadenaConexion = string.Empty;
+          ResultadoEntidad Resultado = new ResultadoEntidad();
+          RecepcionAcceso RecepcionAccesoObjeto = new RecepcionAcceso();
+          SqlTransaction Transaccion;
+          SqlConnection Conexion;
+
+          CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+          Conexion = new SqlConnection(CadenaConexion);
+          Conexion.Open();
+
+          Transaccion = Conexion.BeginTransaction();
+
+          try
+          {
+
+              //Se elimina la RecepcionDetalle del producto
+              if (RecepcionObjetoEntidad.ProductoId != "")
+              {
+
+                  Resultado = RecepcionAccesoObjeto.EliminarRecepcionDetalle(Conexion, Transaccion, RecepcionObjetoEntidad);
+
+                  if (Resultado.ErrorId == (int)ConstantePrograma.Recepcion.RecepcionEliminadoCorrectamente)
+                  {
+                      Transaccion.Commit();
+                  }
+                  else
+                  {
+                      Transaccion.Rollback();
+                  }
+              }
+              else
+              {
+                  Transaccion.Rollback();
+              }
+              Conexion.Close();
+
+              return Resultado;
+          }
+          catch (Exception EX)
+          {
+              Transaccion.Rollback();
+
+              if (Conexion.State == ConnectionState.Open)
+              {
+                  Conexion.Close();
+              }
+              Resultado.DescripcionError = EX.Message;
+              return Resultado;
+          }
+
+      }
 
 
 

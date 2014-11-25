@@ -185,7 +185,7 @@
 
              	<div>
                     <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0" 
-                        CssClass="TablaInformacion" DataKeyNames="RecepcionId" ID="TablaRecepcion" runat="server" PageSize="10">
+                        CssClass="TablaInformacion" DataKeyNames="RecepcionId, ProductoId" ID="TablaRecepcion" OnRowCommand="TablaRecepcion_RowCommand" runat="server" PageSize="10">
                         <EmptyDataTemplate>
                             <table class="TablaVacia">
                                 <tr class="Encabezado">
@@ -194,7 +194,7 @@
                                     <th style="width: 100px;">Descripcion</th>  
                                     <th style="width: 80px;">Precio Unitario</th>                                    
                                     <th style="width: 60px;">Cantidad</th>   
-                                   <%-- <th style="width: 60px;">Monto</th>  --%>
+                                   <%-- <th style="width: 60px;">Monto</th>--%>
                                 </tr>
                                 <tr>
                                     <td colspan="6" style="text-align: center;">No se encontró información con los parámetros seleccionados</td>
@@ -221,13 +221,13 @@
                                 <HeaderStyle HorizontalAlign="Center" Width="60px" />
                             </asp:BoundField>
                             
-                            <%-- <asp:BoundField DataField="Monto" HeaderText="Monto" ItemStyle-HorizontalAlign="Left">
+                        <%--  <asp:BoundField DataField="Monto" HeaderText="Monto" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" Width="60px" />
                             </asp:BoundField>--%>
                             
                             <asp:TemplateField HeaderText="">
                                      <ItemTemplate>
-                                         <asp:ImageButton ID="BotonEliminarActivo" CommandArgument="<%#Container.DataItemIndex%>" CommandName="EliminarPreOrden" runat="server" ImageUrl="/Imagen/Icono/IconoEliminarRegistro.gif" />
+                                         <asp:ImageButton ID="BotonEliminarActivo" CommandArgument="<%#Container.DataItemIndex%>" CommandName="EliminarRecepcion" runat="server" ImageUrl="/Imagen/Icono/IconoEliminarRegistro.gif" />
                                      </ItemTemplate>
                                      <ItemStyle HorizontalAlign="Center" Width="25px" />
                             </asp:TemplateField>
@@ -246,8 +246,13 @@
                               <asp:ImageButton AlternateText="Guardar" ID="BotonGuardarPreOrden"  ImageUrl="/Imagen/Boton/BotonGuardar.png" OnClick="BotonGuardar_Click" runat="server" ValidationGroup="Save" />&nbsp;&nbsp;
                               <asp:ImageButton AlternateText="Limpiar" ID="BotonLimpiarRegistro"  ImageUrl="/Imagen/Boton/BotonLimpiar.png" runat="server" />&nbsp;&nbsp;
                               <asp:ImageButton AlternateText="Cancelar" ID="BotonCancelarPreOrden" ImageUrl="/Imagen/Boton/BotonCancelar.png" runat="server" />
+                             
+                              </td>     
                               
-                              </td>                            
+                               <td style="width:20%; text-align:right;">
+                                 <asp:Label ID="LabelEtiquetaTotal" CssClass="MontoTotal" Text="Total:" runat="server"></asp:Label>&nbsp;
+                                 <asp:Label ID="LabelMontoTotal" CssClass="MontoTotal" runat="server"></asp:Label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              </td>                       
                            </tr>
                         </table> 
                      </div>

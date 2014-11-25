@@ -318,7 +318,38 @@ namespace Activos.AccesoDatos.Almacen
         }
 
 
+        public ResultadoEntidad EliminarRecepcionDetalle(SqlConnection Conexion, SqlTransaction Transaccion, RecepcionEntidad RecepcionEntidadObjeto)
+        {
+            SqlCommand Comando;
+            SqlParameter Parametro;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
 
+            try
+            {
+                Comando = new SqlCommand("EliminarRecepcionDetalleProcedimiento", Conexion);
+                Comando.CommandType = CommandType.StoredProcedure;
+
+                Comando.Transaction = Transaccion;
+
+                Parametro = new SqlParameter("ProductoId", SqlDbType.VarChar);
+                Parametro.Value = RecepcionEntidadObjeto.ProductoId;
+                Comando.Parameters.Add(Parametro);
+
+                Comando.ExecuteNonQuery();
+
+                Resultado.ErrorId = (int)ConstantePrograma.Recepcion.RecepcionEliminadoCorrectamente;
+
+                return Resultado;
+            }
+            catch (SqlException sqlEx)
+            {
+                Resultado.ErrorId = sqlEx.Number;
+                Resultado.DescripcionError = sqlEx.Message;
+
+                return Resultado;
+            }
+        }
+   
 
 
 

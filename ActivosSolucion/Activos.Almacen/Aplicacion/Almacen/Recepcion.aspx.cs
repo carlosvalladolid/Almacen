@@ -69,7 +69,6 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         }
 
-
         protected void SolicitanteCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             SeleccionarJefe(Int16.Parse(SolicitanteIdNuevo.SelectedValue));
@@ -95,6 +94,30 @@ namespace Activos.Almacen.Aplicacion.Almacen
             SeleccionarOrdenCompra();
         }
 
+        protected void TablaRecepcion_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            TablaRecepcionEventoComando(e);
+        }
+
+
+        //protected void TablaRecepcion_RowDataBound(object sender, GridViewRowEventArgs e)
+        //{
+        //    decimal Monto = 0;
+        //    decimal SumaMonto = 0;
+        //    decimal Resultado = 0;
+        //    DataRowView drFila;
+
+        //    if (e.Row.RowType == DataControlRowType.DataRow)
+        //    {
+        //        drFila = (DataRowView)e.Row.DataItem;
+        //        Monto = decimal.Parse(drFila["Monto"].ToString());
+        //       // e.Row.Cells[5].Text = string.Format("{0:C}", Monto);
+        //        Resultado = SumaMonto + Monto;
+
+        //        LabelMontoTotal.Text = Resultado.ToString();
+        //    }
+        //}
+
         #endregion
 
         #region "Métodos"
@@ -103,7 +126,6 @@ namespace Activos.Almacen.Aplicacion.Almacen
         {
 
             RecepcionEntidad RecepcionObjetoEntidad = new RecepcionEntidad();
-
 
             RecepcionObjetoEntidad.RecepcionId = TemporalRecepcionIdHidden.Value;
             RecepcionObjetoEntidad.TemporalRecepcionId = TemporalRecepcionIdHidden.Value;
@@ -157,7 +179,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         }
 
-        protected void  GuardarRecepcion(RecepcionEntidad RecepcionObjetoEntidad)
+        protected void GuardarRecepcion(RecepcionEntidad RecepcionObjetoEntidad)
         {
             ResultadoEntidad Resultado = new ResultadoEntidad();
             RecepcionProceso RecepcionProcesoNegocio = new RecepcionProceso();
@@ -570,6 +592,63 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         }
 
+
+        protected void TablaRecepcionEventoComando(GridViewCommandEventArgs e)
+        {
+            Int16 intFila = 0;
+            int intTamañoPagina = 0;
+            string ProductoId = string.Empty;
+            string strCommand = string.Empty;
+
+            intFila = Int16.Parse(e.CommandArgument.ToString());
+            strCommand = e.CommandName.ToString();
+            intTamañoPagina = TablaRecepcion.PageSize;
+
+            if (intFila >= intTamañoPagina)
+                intFila = (Int16)(intFila - (intTamañoPagina * TablaRecepcion.PageIndex));
+
+            switch (strCommand)
+            {
+                   case "EliminarRecepcion":
+                    ProductoId = string.Format(TablaRecepcion.DataKeys[intFila]["ProductoId"].ToString());
+                    EliminarProducto(ProductoId);
+                    break;
+
+                default:
+                    // Do nothing
+                    break;
+            }
+        }
+
+        protected void EliminarProducto(string ProductoId)
+        {
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            RecepcionEntidad RecepcionObjetoEntidad = new RecepcionEntidad();
+            RecepcionProceso RecepcionProcesoNegocio = new RecepcionProceso();
+
+            //if (ProductoIdHidden.Value == ProductoId.ToString())
+            //{
+            RecepcionObjetoEntidad.ProductoId = ProductoId;
+            Resultado = RecepcionProcesoNegocio.CancelarNuevoRecepcion(RecepcionObjetoEntidad);
+
+            if (Resultado.ErrorId == (int)ConstantePrograma.Recepcion.RecepcionEliminadoCorrectamente)
+            {
+                EtiquetaMensaje.Text = "";
+                SeleccionarRecepcion();
+
+            }
+            else
+            {
+                EtiquetaMensaje.Text = Resultado.DescripcionError;
+            }
+            //}
+
+        }
+
+
+
+
+
         private void ShowMessage(string Mensaje, string TipoMensaje)
         {
             StringBuilder FormatoMensaje = new StringBuilder();
@@ -582,8 +661,6 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
         }
-
-
 
         #endregion
 

@@ -266,6 +266,24 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.ImageButton BotonCancelarPreOrden;
         
         /// <summary>
+        /// LabelEtiquetaTotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelEtiquetaTotal;
+        
+        /// <summary>
+        /// LabelMontoTotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelMontoTotal;
+        
+        /// <summary>
         /// AssociatedUpdate control.
         /// </summary>
         /// <remarks>
@@ -307,6 +325,6 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-       
+      
     }
 }
