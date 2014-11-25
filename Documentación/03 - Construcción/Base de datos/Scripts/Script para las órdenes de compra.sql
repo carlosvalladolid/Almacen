@@ -3,6 +3,8 @@ Script para las órdenes de compra
 
 DELETE OrdenDetalleTemp
 DELETE OrdenEncabezadoTemp
+DELETE OrdenDetalle
+DELETE OrdenEncabezado
 */
 
 SELECT * FROM OrdenEncabezadoTemp
@@ -21,6 +23,8 @@ SELECT * FROM Producto
 
 SELECT * FROM Familia
 
+SELECT * FROM SubFamilia
+
 SELECT * FROM Marca
 
 SELECT * FROM OrdenClave
@@ -29,4 +33,5 @@ SELECT * FROM [DefensoriaDB.Seguridad].dbo.Estatus
 
 SELECT * FROM [DefensoriaDB.Seguridad].dbo.Seccion
 
-SeleccionarOrdenDetalleTemp '129613C7-F6D5-42A5-ADF8-32ED8D52917F'
+SeleccionarOrdenEncabezado '', '12'
+

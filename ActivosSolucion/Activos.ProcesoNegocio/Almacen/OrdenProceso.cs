@@ -162,6 +162,38 @@ namespace Activos.ProcesoNegocio.Almacen
             }
 
             /// <summary>
+            ///     Guarda el detalle de una orden de compra temporal.
+            /// </summary>
+            /// <param name="Conexion">Conexión actual a la base de datos.</param>
+            /// <param name="Transaccion">Transacción actual a la base de datos.</param>
+            /// <param name="OrdenDetalleEntidad">Entidad del detalle de una orden de compra.</param>
+            private void GuardaProductoOrdenDetalleTemp(SqlConnection Conexion, SqlTransaction Transaccion, OrdenDetalleEntidad OrdenDetalleEntidad)
+            {
+                OrdenAcceso OrdenAcceso = new OrdenAcceso();
+
+                OrdenAcceso.InsertarProductoOrdenDetalleTemp(Conexion, Transaccion, _OrdenDetalleEntidad);
+
+                _ErrorId = OrdenAcceso.ErrorId;
+                _DescripcionError = OrdenAcceso.DescripcionError;
+            }
+
+            /// <summary>
+            ///     Guarda el encabezado de una orden de compra temporal.
+            /// </summary>
+            /// <param name="Conexion">Conexión actual a la base de datos.</param>
+            /// <param name="Transaccion">Transacción actual a la base de datos.</param>
+            /// <param name="OrdenDetalleEntidad">Entidad del detalle de una orden de compra.</param>
+            private void GuardarProductoOrdenEncabezadoTemp(SqlConnection Conexion, SqlTransaction Transaccion, OrdenDetalleEntidad OrdenDetalleEntidad)
+            {
+                OrdenAcceso OrdenAcceso = new OrdenAcceso();
+
+                OrdenAcceso.InsertarProductoOrdenEncabezadoTemp(Conexion, Transaccion, _OrdenDetalleEntidad);
+
+                _ErrorId = OrdenAcceso.ErrorId;
+                _DescripcionError = OrdenAcceso.DescripcionError;
+            }
+
+            /// <summary>
             ///     Guarda la información de una orden temporal.
             /// </summary>
             public void GuardarProductoOrdenTemp()
@@ -219,32 +251,16 @@ namespace Activos.ProcesoNegocio.Almacen
             }
 
             /// <summary>
-            ///     Guarda el detalle de una orden de compra temporal.
+            ///     
             /// </summary>
-            /// <param name="Conexion">Conexión actual a la base de datos.</param>
-            /// <param name="Transaccion">Transacción actual a la base de datos.</param>
-            /// <param name="OrdenDetalleEntidad">Entidad del detalle de una orden de compra.</param>
-            private void GuardaProductoOrdenDetalleTemp(SqlConnection Conexion, SqlTransaction Transaccion, OrdenDetalleEntidad OrdenDetalleEntidad)
+            public void SeleccionarBusquedaOrdenCompra()
             {
+                string CadenaConexion = string.Empty;
                 OrdenAcceso OrdenAcceso = new OrdenAcceso();
 
-                OrdenAcceso.InsertarProductoOrdenDetalleTemp(Conexion, Transaccion, _OrdenDetalleEntidad);
+                CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
-                _ErrorId = OrdenAcceso.ErrorId;
-                _DescripcionError = OrdenAcceso.DescripcionError;
-            }
-
-            /// <summary>
-            ///     Guarda el encabezado de una orden de compra temporal.
-            /// </summary>
-            /// <param name="Conexion">Conexión actual a la base de datos.</param>
-            /// <param name="Transaccion">Transacción actual a la base de datos.</param>
-            /// <param name="OrdenDetalleEntidad">Entidad del detalle de una orden de compra.</param>
-            private void GuardarProductoOrdenEncabezadoTemp(SqlConnection Conexion, SqlTransaction Transaccion, OrdenDetalleEntidad OrdenDetalleEntidad)
-            {
-                OrdenAcceso OrdenAcceso = new OrdenAcceso();
-
-                OrdenAcceso.InsertarProductoOrdenEncabezadoTemp(Conexion, Transaccion, _OrdenDetalleEntidad);
+                _ResultadoDatos = OrdenAcceso.SeleccionarBusquedaOrdenCompra(_OrdenEncabezadoEntidad, CadenaConexion);
 
                 _ErrorId = OrdenAcceso.ErrorId;
                 _DescripcionError = OrdenAcceso.DescripcionError;
@@ -267,16 +283,16 @@ namespace Activos.ProcesoNegocio.Almacen
             }
 
             /// <summary>
-            ///     
+            ///     Busca órdenes de compra que coincidan con los parámetros enviados.
             /// </summary>
-            public void SeleccionarBusquedaOrdenCompra()
+            public void SeleccionarOrdenEncabezado()
             {
                 string CadenaConexion = string.Empty;
                 OrdenAcceso OrdenAcceso = new OrdenAcceso();
 
                 CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
-                _ResultadoDatos = OrdenAcceso.SeleccionarBusquedaOrdenCompra(_OrdenEncabezadoEntidad, CadenaConexion);
+                _ResultadoDatos = OrdenAcceso.SeleccionarOrdenEncabezado(_OrdenEncabezadoEntidad, CadenaConexion);
 
                 _ErrorId = OrdenAcceso.ErrorId;
                 _DescripcionError = OrdenAcceso.DescripcionError;

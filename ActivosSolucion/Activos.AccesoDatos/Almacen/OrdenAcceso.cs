@@ -199,6 +199,10 @@ namespace Activos.AccesoDatos.Almacen
                     Parameter.Value = OrdenDetalleEntidad.PreOrdenId;
                     Commando.Parameters.Add(Parameter);
 
+                    Parameter = new SqlParameter("SesionId", SqlDbType.VarChar);
+                    Parameter.Value = OrdenDetalleEntidad.SesionId;
+                    Commando.Parameters.Add(Parameter);
+
                     Commando.ExecuteNonQuery();
                 }
                 catch (SqlException Exception)
@@ -252,7 +256,6 @@ namespace Activos.AccesoDatos.Almacen
                 }
             }
 
-
             /// <summary>
             ///     Realiza una búsqueda del detalle de una orden de compra temporal.
             /// </summary>
@@ -274,6 +277,50 @@ namespace Activos.AccesoDatos.Almacen
 
                     Parametro = new SqlParameter("OrdenId", SqlDbType.VarChar);
                     Parametro.Value = OrdenDetalleEntidad.OrdenId;
+                    Comando.Parameters.Add(Parametro);
+
+                    Adaptador = new SqlDataAdapter(Comando);
+
+                    Conexion.Open();
+                    Adaptador.Fill(Resultado);
+                    Conexion.Close();
+
+                    return Resultado;
+                }
+                catch (SqlException Excepcion)
+                {
+                    _ErrorId = Excepcion.Number;
+                    _DescripcionError = Excepcion.Message;
+
+                    return Resultado;
+                }
+            }
+
+            /// <summary>
+            ///     Busca órdenes de compra que coincidan con los parámetros enviados.
+            /// </summary>
+            /// <param name="OrdenEncabezadoEntidad">Entidad del encabezado de una orden de compra.</param>
+            /// <param name="CadenaConexion">Cadena de conexión a la base de datos.</param>
+            /// <returns>Resultado de la búsqueda.</returns>
+            public DataSet SeleccionarOrdenEncabezado(OrdenEntidad OrdenEncabezadoEntidad, string CadenaConexion)
+            {
+                DataSet Resultado = new DataSet();
+                SqlConnection Conexion = new SqlConnection(CadenaConexion);
+                SqlCommand Comando;
+                SqlParameter Parametro;
+                SqlDataAdapter Adaptador;
+
+                try
+                {
+                    Comando = new SqlCommand("SeleccionarOrdenEncabezado", Conexion);
+                    Comando.CommandType = CommandType.StoredProcedure;
+
+                    Parametro = new SqlParameter("OrdenId", SqlDbType.VarChar);
+                    Parametro.Value = OrdenEncabezadoEntidad.OrdenId;
+                    Comando.Parameters.Add(Parametro);
+
+                    Parametro = new SqlParameter("PreOrdenId", SqlDbType.VarChar);
+                    Parametro.Value = OrdenEncabezadoEntidad.PreOrdenId;
                     Comando.Parameters.Add(Parametro);
 
                     Adaptador = new SqlDataAdapter(Comando);

@@ -15,6 +15,8 @@ namespace Activos.Entidad.Almacen
         private string _ProductoId ;
         private Int16 _Cantidad;
         private string _FechaPreOrden;
+
+        private string _SesionId;
       
         public PreOrdenEntidad()
         {
@@ -27,6 +29,7 @@ namespace Activos.Entidad.Almacen
             _Cantidad = 0;
             _FechaPreOrden = string.Empty;
 
+            _SesionId = string.Empty;
         }
       
         public string PreOrdenId
@@ -82,5 +85,13 @@ namespace Activos.Entidad.Almacen
             set { _FechaPreOrden = value; }
         }
 
+        /// <summary>
+        ///     Identificador de la sesión de usuario.
+        /// </summary>
+        public string SesionId
+        {
+            get { return _SesionId; }
+            set { _SesionId = value; }
+        }
     }
 }
