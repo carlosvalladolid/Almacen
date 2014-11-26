@@ -24,17 +24,17 @@
     <tr>
         <td class="Space"></td>
         <td></td>
+        <td><a href="/Aplicacion/Catalogo/SubFamilia.aspx">Catálogo de subfamilias</a></td>
+    </tr>
+    <tr>
+        <td class="Space"></td>
+        <td></td>
         <td><a href="/Aplicacion/Catalogo/Marca.aspx">Catálogo de marcas</a></td>
     </tr>
     <tr>
         <td class="Space"></td>
         <td></td>
         <td><a href="/Aplicacion/Catalogo/Producto.aspx">Catálogo de productos</a></td>
-    </tr>
-    <tr>
-        <td class="Space"></td>
-        <td></td>
-        <td><a href="/Aplicacion/Catalogo/SubFamilia.aspx">Catálogo de subfamilias</a></td>
     </tr>
     <tr>
         <td class="Space"></td>
