@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Activos.Entidad.Almacen
 {
-    class RequisicionEntidad
+  public  class RequisicionEntidad:Base
     {
     }
 }
