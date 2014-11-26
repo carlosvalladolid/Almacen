@@ -3,6 +3,7 @@ using System.Collections;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
@@ -11,6 +12,14 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 
+using Activos.Comun.Cadenas;
+using Activos.Comun.Constante;
+using Activos.Entidad.Almacen;
+using Activos.Entidad.General;
+using Activos.Entidad.Seguridad;
+using Activos.ProcesoNegocio.Almacen;
+using Activos.ProcesoNegocio.Seguridad;
+
 namespace Almacen.Web.Aplicacion.Catalogo
 {
     public partial class SubFamilia : System.Web.UI.Page
@@ -18,29 +27,29 @@ namespace Almacen.Web.Aplicacion.Catalogo
         #region "Eventos"
             protected void BotonBusqueda_Click(object sender, EventArgs e)
             {
-                //TextoBusquedaRapida.Text = "";
-                //BusquedaAvanzada();
+                TextoBusquedaRapida.Text = "";
+                BusquedaAvanzada();
             }
 
             protected void BotonBusquedaRapida_Click(object sender, ImageClickEventArgs e)
             {
-                //NombreBusqueda.Text = "";
-                //BusquedaAvanzada();
+                NombreBusqueda.Text = "";
+                BusquedaAvanzada();
             }
 
             protected void BotonCancelarBusqueda_Click(object sender, EventArgs e)
             {
-                //CambiarBusquedaAvanzada();
+                CambiarBusquedaAvanzada();
             }
 
             protected void BotonCancelarNuevo_Click(object sender, EventArgs e)
             {
-                //CambiarNuevoRegistro();
+                CambiarNuevoRegistro();
             }
 
             protected void BotonGuardar_Click(object sender, EventArgs e)
             {
-                //GuardarSubFamilia();
+                GuardarSubFamilia();
             }
 
             protected void BusquedaAvanzadaLink_Click(Object sender, System.EventArgs e)
@@ -50,7 +59,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
 
             protected void EliminarRegistroLink_Click(Object sender, System.EventArgs e)
             {
-
+                EliminarSubFamilia();
             }
 
             protected void NuevoRegistro_Click(Object sender, System.EventArgs e)
@@ -65,21 +74,37 @@ namespace Almacen.Web.Aplicacion.Catalogo
 
             protected void TablaSubFamilia_PageIndexChanging(object sender, GridViewPageEventArgs e)
             {
-                //TablaSubFamilia.PageIndex = e.NewPageIndex;
-                //BusquedaAvanzada();
+                TablaSubFamilia.PageIndex = e.NewPageIndex;
+                BusquedaAvanzada();
             }
 
             protected void TablaSubFamilia_RowCommand(object sender, GridViewCommandEventArgs e)
             {
-                //TablaSubFamiliaEventoComando(e);
+                TablaSubFamiliaEventoComando(e);
             }
         #endregion
 
         #region "Métodos"
+            protected void BusquedaAvanzada()
+            {
+                SubFamiliaEntidad SubFamiliaEntidadObjeto = new SubFamiliaEntidad();
+
+                SubFamiliaEntidadObjeto.Nombre = NombreBusqueda.Text.Trim();
+                SubFamiliaEntidadObjeto.BusquedaRapida = TextoBusquedaRapida.Text.Trim();
+
+                SeleccionarSubFamilia(SubFamiliaEntidadObjeto);
+            }
+
             private void CambiarBusquedaAvanzada()
             {
                 PanelBusquedaAvanzada.Visible = !PanelBusquedaAvanzada.Visible;
                 PanelNuevoRegistro.Visible = false;
+            }
+
+            protected void CambiarEditarRegistro()
+            {
+                PanelBusquedaAvanzada.Visible = false;
+                PanelNuevoRegistro.Visible = true;
             }
 
             private void CambiarNuevoRegistro()
@@ -87,6 +112,68 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 PanelBusquedaAvanzada.Visible = false;
                 PanelNuevoRegistro.Visible = !PanelNuevoRegistro.Visible;
                 LimpiarNuevoRegistro();
+            }
+
+            protected void EliminarSubFamilia()
+            {
+                ResultadoEntidad ResultadoEntidadObjeto = new ResultadoEntidad();
+                SubFamiliaEntidad SubFamiliaEntidadObjeto = new SubFamiliaEntidad();
+
+                SubFamiliaEntidadObjeto.CadenaSubFamiliaId = ObtenerCadenaSubFamiliaId();
+
+                EliminarSubFamilia(SubFamiliaEntidadObjeto);
+            }
+
+            protected void EliminarSubFamilia(SubFamiliaEntidad SubFamiliaEntidadObjeto)
+            {
+                ResultadoEntidad ResultadoEntidadObjeto = new ResultadoEntidad();
+                SubFamiliaProceso SubFamiliaProcesoObjeto = new SubFamiliaProceso();
+
+                ResultadoEntidadObjeto = SubFamiliaProcesoObjeto.EliminarSubFamilia(SubFamiliaEntidadObjeto);
+
+                if (ResultadoEntidadObjeto.ErrorId == (int)ConstantePrograma.SubFamilia.EliminacionExitosa)
+                {
+                    // ToDo: Se muestra vacío el mensaje
+                    MostrarMensaje(ResultadoEntidadObjeto.DescripcionError, ConstantePrograma.TipoMensajeAlerta);
+                    BusquedaAvanzada();
+                }
+                else
+                    MostrarMensaje(ResultadoEntidadObjeto.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+            }
+
+            protected void GuardarSubFamilia()
+            {
+                SubFamiliaEntidad SubFamiliaObjetoEntidad = new SubFamiliaEntidad();
+                UsuarioEntidad UsuarioSessionEntidad = new UsuarioEntidad();
+
+                UsuarioSessionEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
+
+                SubFamiliaObjetoEntidad.SubFamiliaId = Int16.Parse(SubFamiliaIdHidden.Value);
+                SubFamiliaObjetoEntidad.FamiliaId = Int16.Parse(FamiliaNuevo.SelectedValue);
+                SubFamiliaObjetoEntidad.EstatusId = Int16.Parse(EstatusNuevo.SelectedValue);
+                SubFamiliaObjetoEntidad.UsuarioIdInserto = UsuarioSessionEntidad.UsuarioId;
+                SubFamiliaObjetoEntidad.UsuarioIdModifico = UsuarioSessionEntidad.UsuarioId;
+                SubFamiliaObjetoEntidad.Nombre = NombreNuevo.Text.Trim();
+
+                GuardarSubFamilia(SubFamiliaObjetoEntidad);
+            }
+
+            protected void GuardarSubFamilia(SubFamiliaEntidad SubFamiliaObjetoEntidad)
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                SubFamiliaProceso SubFamiliaProcesoNegocio = new SubFamiliaProceso();
+
+                Resultado = SubFamiliaProcesoNegocio.GuardarSubFamilia(SubFamiliaObjetoEntidad);
+
+                if (Resultado.ErrorId == (int)ConstantePrograma.SubFamilia.SubFamiliaGuardadoCorrectamente)
+                {
+                    LimpiarNuevoRegistro();
+                    PanelNuevoRegistro.Visible = false;
+                    PanelBusquedaAvanzada.Visible = false;
+                    BusquedaAvanzada();
+                }
+                else
+                    MostrarMensaje(Resultado.DescripcionError, ConstantePrograma.TipoErrorAlerta);
             }
 
             private void Inicio()
@@ -98,8 +185,8 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 if (!Page.IsPostBack)
                 {
                     SeleccionarFamiliaNuevo();
-                    //SeleccionarEstatusNuevo();
-                    SeleccionarSubFamilia();
+                    SeleccionarEstatusNuevo();
+                    BusquedaAvanzada();
                 }
             }
 
@@ -111,36 +198,155 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 SubFamiliaIdHidden.Value = "0";
             }
 
-            protected void SeleccionarFamiliaNuevo()
+            private void MostrarMensaje(string Mensaje, string TipoMensaje)
             {
-                //ResultadoEntidad Resultado = new ResultadoEntidad();
-                //FamiliaEntidad FamiliaEntidadObjeto = new FamiliaEntidad();
-                //FamiliaProceso FamiliaProcesoObjeto = new FamiliaProceso();
+                StringBuilder FormatoMensaje = new StringBuilder();
 
-                ////FamiliaEntidadObjeto.SeccionId = (int)ConstantePrograma.Seccion.Familia;
+                FormatoMensaje.Append("MostrarMensaje(\"");
+                FormatoMensaje.Append(Mensaje);
+                FormatoMensaje.Append("\", \"");
+                FormatoMensaje.Append(TipoMensaje);
+                FormatoMensaje.Append("\");");
 
-                //Resultado = FamiliaProcesoObjeto.SeleccionarFamilia(FamiliaEntidadObjeto);
-
-                //FamiliaNuevo.DataValueField = "FamiliaId";
-                //FamiliaNuevo.DataTextField = "Nombre";
-
-                //if (Resultado.ErrorId == 0)
-                //{
-                //    FamiliaNuevo.DataSource = Resultado.ResultadoDatos;
-                //    FamiliaNuevo.DataBind();
-                //}
-                //else
-                //{
-                //    EtiquetaMensaje.Text = TextoError.ErrorGenerico;
-                //}
-
-                //FamiliaNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
+                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
             }
 
-            private void SeleccionarSubFamilia()
+            protected string ObtenerCadenaSubFamiliaId()
             {
-                TablaSubFamilia.DataSource = null;
-                TablaSubFamilia.DataBind();
+                StringBuilder CadenaSubFamiliaId = new StringBuilder();
+                CheckBox CasillaEliminar;
+
+                CadenaSubFamiliaId.Append(",");
+
+                foreach (GridViewRow Registro in TablaSubFamilia.Rows)
+                {
+                    CasillaEliminar = (CheckBox)Registro.FindControl("SeleccionarBorrar");
+
+                    if (CasillaEliminar.Checked)
+                    {
+                        CadenaSubFamiliaId.Append(TablaSubFamilia.DataKeys[Registro.RowIndex]["SubFamiliaId"].ToString());
+                        CadenaSubFamiliaId.Append(",");
+                    }
+                }
+
+                return CadenaSubFamiliaId.ToString();
+            }
+
+            protected void SeleccionarEstatusNuevo()
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                EstatusEntidad EstatusEntidadObjeto = new EstatusEntidad();
+                EstatusProceso EstatusProcesoObjeto = new EstatusProceso();
+
+                EstatusEntidadObjeto.SeccionId = (int)ConstantePrograma.Seccion.SubFamilia;
+
+                Resultado = EstatusProcesoObjeto.SeleccionarEstatus(EstatusEntidadObjeto);
+
+                EstatusNuevo.DataValueField = "EstatusId";
+                EstatusNuevo.DataTextField = "Nombre";
+
+                if (Resultado.ErrorId == 0)
+                {
+                    EstatusNuevo.DataSource = Resultado.ResultadoDatos;
+                    EstatusNuevo.DataBind();
+                }
+                else
+                    MostrarMensaje(TextoError.ErrorGenerico, ConstantePrograma.TipoErrorAlerta);
+
+                EstatusNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
+            }
+
+            protected void SeleccionarFamiliaNuevo()
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                FamiliaEntidad FamiliaEntidadObjeto = new FamiliaEntidad();
+                FamiliaProceso FamiliaProcesoObjeto = new FamiliaProceso();
+
+                Resultado = FamiliaProcesoObjeto.SeleccionarFamilia(FamiliaEntidadObjeto);
+
+                FamiliaNuevo.DataValueField = "FamiliaId";
+                FamiliaNuevo.DataTextField = "Nombre";
+
+                if (Resultado.ErrorId == 0)
+                {
+                    FamiliaNuevo.DataSource = Resultado.ResultadoDatos;
+                    FamiliaNuevo.DataBind();
+                }
+                else
+                    MostrarMensaje(TextoError.ErrorGenerico, ConstantePrograma.TipoErrorAlerta);
+
+                FamiliaNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
+            }
+
+            private void SeleccionarSubFamilia(SubFamiliaEntidad SubFamiliaObjetoEntidad)
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                SubFamiliaProceso SubFamiliaProcesoNegocio = new SubFamiliaProceso();
+
+                Resultado = SubFamiliaProcesoNegocio.SeleccionarSubFamilia(SubFamiliaObjetoEntidad);
+
+                if (Resultado.ErrorId == 0)
+                {
+                    if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
+                        TablaSubFamilia.CssClass = ConstantePrograma.ClaseTablaVacia;
+                    else
+                        TablaSubFamilia.CssClass = ConstantePrograma.ClaseTabla;
+
+                    TablaSubFamilia.DataSource = Resultado.ResultadoDatos;
+                    TablaSubFamilia.DataBind();
+                }
+                else
+                    MostrarMensaje(TextoError.ErrorGenerico, ConstantePrograma.TipoErrorAlerta);
+            }
+
+            protected void SeleccionarSubFamiliaParaEditar(SubFamiliaEntidad SubFamiliaObjetoEntidad)
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                SubFamiliaProceso SubFamiliaProcesoNegocio = new SubFamiliaProceso();
+
+                Resultado = SubFamiliaProcesoNegocio.SeleccionarSubFamilia(SubFamiliaObjetoEntidad);
+
+                if (Resultado.ErrorId == 0)
+                {
+                    FamiliaNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["FamiliaId"].ToString();
+                    EstatusNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["EstatusId"].ToString();
+                    NombreNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Nombre"].ToString();
+                    //SeleccionarDependenciaNuevo();
+                    CambiarEditarRegistro();
+                }
+                else
+                    MostrarMensaje(Resultado.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+            }
+
+            protected void TablaSubFamiliaEventoComando(GridViewCommandEventArgs e)
+            {
+                SubFamiliaEntidad SubFamiliaEntidadObjeto = new SubFamiliaEntidad();
+                Int16 intFila = 0;
+                int intTamañoPagina = 0;
+                Int16 SubFamiliaId = 0;
+                string strCommand = string.Empty;
+
+                intFila = Int16.Parse(e.CommandArgument.ToString());
+                strCommand = e.CommandName.ToString();
+                intTamañoPagina = TablaSubFamilia.PageSize;
+
+                if (intFila >= intTamañoPagina)
+                    intFila = (Int16)(intFila - (intTamañoPagina * TablaSubFamilia.PageIndex));
+
+
+                switch (strCommand)
+                {
+                    case "Select":
+                        SubFamiliaId = Int16.Parse(TablaSubFamilia.DataKeys[intFila]["SubFamiliaId"].ToString());
+                        SubFamiliaEntidadObjeto.SubFamiliaId = SubFamiliaId;
+                        SubFamiliaIdHidden.Value = SubFamiliaId.ToString();
+                        SeleccionarSubFamiliaParaEditar(SubFamiliaEntidadObjeto);
+                        break;
+
+                    default:
+                        // Do nothing
+                        break;
+                }
             }
         #endregion
     }
