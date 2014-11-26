@@ -153,8 +153,6 @@ namespace Activos.ProcesoNegocio.Almacen
 
         }
 
-
-
         public ResultadoEntidad BuscarRecepcionProducto(RecepcionEntidad RecepcionObjetoEntidad)
         {
             ResultadoEntidad Resultado = new ResultadoEntidad();
@@ -186,9 +184,6 @@ namespace Activos.ProcesoNegocio.Almacen
             return Resultado;
 
         }
-
-
-
 
 
     }

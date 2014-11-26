@@ -37,7 +37,10 @@
                      <tr>
                         <td class="Nombre">Solicitante</td>
                         <td class="Espacio">*</td>
-                        <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="SolicitanteNuevo" runat="server" Text=""></asp:TextBox></td>
+                        <td class="Campo"> <asp:TextBox ID="Solicitante"  CssClass="CajaTextoMediana" MaxLength="10" runat="server"></asp:TextBox>&nbsp;
+                          
+                                               
+                        </td>
                      </tr>
                         
                       <tr>
@@ -203,9 +206,6 @@
                 
                  <asp:HiddenField ID="TemporalRequisicionIdHidden" runat="server" Value="" />
                  <asp:HiddenField ID="ProductoIdHidden" runat="server" Value="" />
-                
-          
-          
           </ContentTemplate>
       </asp:UpdatePanel>   
       </div>

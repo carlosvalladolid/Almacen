@@ -170,6 +170,7 @@ namespace Activos.Comun.Constante
         public const string CodigoBarrasGeneralTemporalActivoDuplicado = "· Ya se agregó un Activo con ese código de barras general";
         public const string CodigoBarrasGeneralActivoDuplicado = "· Ya existe un Activo con ese código de barras general";
 
+        public const string RequisicionDocumentoDuplicado = "· Ya se capturó ese documento con anterioridad";
         public const string RecepcionDocumentoDuplicado = "· Ya se capturó ese documento con anterioridad";
         public const string EmpleadoInactivo = "· Ese empleado no esta activo";
         public const string EmpleadoNoEncontrado = "· Empleado no encontrado";

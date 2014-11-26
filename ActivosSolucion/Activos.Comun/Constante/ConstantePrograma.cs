@@ -409,6 +409,15 @@ namespace Activos.Comun.Constante
             FolioDuplicado = 3
         }
 
+
+        public enum Requisicion
+        {
+            RequisicionGuardadoCorrectamente = 1,
+            EliminadoExitosamente = 2,
+            RequisicionTieneRegistroDuplicado = 3,
+            RequisicionTieneRegistrosRelacionados = 4
+        }
+
         public enum RecuperarContrasenia
         {
             ValorPorDefecto = 0,

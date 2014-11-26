@@ -41,13 +41,13 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.Panel PanelNuevoRegistroSolicitante;
         
         /// <summary>
-        /// SolicitanteNuevo control.
+        /// Solicitante control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SolicitanteNuevo;
+        protected global::System.Web.UI.WebControls.TextBox Solicitante;
         
         /// <summary>
         /// DependenciaNuevo control.
@@ -262,6 +262,6 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-        
+      
     }
 }
