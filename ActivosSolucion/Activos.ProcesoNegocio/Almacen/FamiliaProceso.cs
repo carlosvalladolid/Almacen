@@ -17,36 +17,33 @@ namespace Activos.ProcesoNegocio.Almacen
 {
    public class FamiliaProceso:Base
     {
+       public ResultadoEntidad GuardarFamilia(FamiliaEntidad FamiliaObjetoEntidad)
+       {
+           string CadenaConexion = string.Empty;
+           ResultadoEntidad Resultado = new ResultadoEntidad();
+           FamiliaAcceso FamiliaAccesoObjeto = new FamiliaAcceso();
 
+           CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
+           //if (BuscarFamiliaDuplicada(FamiliaObjetoEntidad) == false)
+           //{
+           if (FamiliaObjetoEntidad.FamiliaId == 0)
+           {
+               Resultado = FamiliaAccesoObjeto.InsertarFamilia(FamiliaObjetoEntidad, CadenaConexion);
+           }
+           else
+           {
+               Resultado = FamiliaAccesoObjeto.ActualizarFamilia(FamiliaObjetoEntidad, CadenaConexion);
+           }
+           //}
+           //else
+           //{
+           //    Resultado.ErrorId = (int)ConstantePrograma.Familia.FamiliaConNombreDuplicado;
+           //    Resultado.DescripcionError = TextoError.FamiliaConNombreDuplicado;
+           //}
 
-        //public ResultadoEntidad GuardarFamilia(FamiliaEntidad FamiliaObjetoEntidad)
-        //{
-        //    string CadenaConexion = string.Empty;
-        //    ResultadoEntidad Resultado = new ResultadoEntidad();
-        //    FamiliaAcceso FamiliaAccesoObjeto = new FamiliaAcceso();
-
-        //    CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
-
-        //    //if (BuscarFamiliaDuplicada(FamiliaObjetoEntidad) == false)
-        //    //{
-        //        if (FamiliaObjetoEntidad.FamiliaId == 0)
-        //        {
-        //            Resultado = FamiliaAccesoObjeto.InsertarFamilia(FamiliaObjetoEntidad, CadenaConexion);
-        //        }
-        //        else
-        //        {
-        //            Resultado = FamiliaAccesoObjeto.ActualizarFamilia(FamiliaObjetoEntidad, CadenaConexion);
-        //        }
-        //    //}
-        //    //else
-        //    //{
-        //    //    Resultado.ErrorId = (int)ConstantePrograma.Familia.FamiliaConNombreDuplicado;
-        //    //    Resultado.DescripcionError = TextoError.FamiliaConNombreDuplicado;
-        //    //}
-
-        //    return Resultado;
-        //}
+           return Resultado;
+       }
 
         public ResultadoEntidad SeleccionarFamilia(FamiliaEntidad FamiliaObjetoEntidad)
         {

@@ -14,6 +14,103 @@ namespace Activos.AccesoDatos.Almacen
 {
    public class FamiliaAcceso:Base
     {
+       public ResultadoEntidad ActualizarFamilia(FamiliaEntidad FamiliaEntidadObjeto, string CadenaConexion)
+       {
+           SqlConnection Conexion = new SqlConnection(CadenaConexion);
+           SqlCommand Comando;
+           SqlParameter Parametro;
+           ResultadoEntidad Resultado = new ResultadoEntidad();
+
+           try
+           {
+               Comando = new SqlCommand("ActualizarFamiliaProcedimiento", Conexion);
+               Comando.CommandType = CommandType.StoredProcedure;
+
+               Parametro = new SqlParameter("FamiliaId", SqlDbType.SmallInt);
+               Parametro.Value = FamiliaEntidadObjeto.FamiliaId;
+               Comando.Parameters.Add(Parametro);
+
+
+               Parametro = new SqlParameter("DependenciaId", SqlDbType.SmallInt);
+               Parametro.Value = FamiliaEntidadObjeto.DependenciaId;
+               Comando.Parameters.Add(Parametro);
+
+               Parametro = new SqlParameter("Nombre", SqlDbType.VarChar);
+               Parametro.Value = FamiliaEntidadObjeto.Nombre;
+               Comando.Parameters.Add(Parametro);
+
+               Parametro = new SqlParameter("EstatusId", SqlDbType.SmallInt);
+               Parametro.Value = FamiliaEntidadObjeto.EstatusId;
+               Comando.Parameters.Add(Parametro);
+
+               Parametro = new SqlParameter("UsuarioIdModifico", SqlDbType.SmallInt);
+               Parametro.Value = FamiliaEntidadObjeto.UsuarioIdModifico;
+               Comando.Parameters.Add(Parametro);
+
+
+               Conexion.Open();
+               Comando.ExecuteNonQuery();
+               Conexion.Close();
+
+               Resultado.ErrorId = (int)ConstantePrograma.Familia.FamiliaGuardadoCorrectamente;
+
+               return Resultado;
+           }
+           catch (SqlException sqlEx)
+           {
+               Resultado.ErrorId = sqlEx.Number;
+               Resultado.DescripcionError = sqlEx.Message;
+
+               return Resultado;
+           }
+       }
+
+       public ResultadoEntidad InsertarFamilia(FamiliaEntidad FamiliaEntidadObjeto, string CadenaConexion)
+       {
+           SqlConnection Conexion = new SqlConnection(CadenaConexion);
+           SqlCommand Comando;
+           SqlParameter Parametro;
+           ResultadoEntidad Resultado = new ResultadoEntidad();
+
+           try
+           {
+               Comando = new SqlCommand("InsertarFamiliaProcedimiento", Conexion);
+               Comando.CommandType = CommandType.StoredProcedure;
+
+
+               Parametro = new SqlParameter("DependenciaId", SqlDbType.SmallInt);
+               Parametro.Value = FamiliaEntidadObjeto.DependenciaId;
+               Comando.Parameters.Add(Parametro);
+
+               Parametro = new SqlParameter("Nombre", SqlDbType.VarChar);
+               Parametro.Value = FamiliaEntidadObjeto.Nombre;
+               Comando.Parameters.Add(Parametro);
+
+
+               Parametro = new SqlParameter("EstatusId", SqlDbType.SmallInt);
+               Parametro.Value = FamiliaEntidadObjeto.EstatusId;
+               Comando.Parameters.Add(Parametro);
+
+               Parametro = new SqlParameter("UsuarioIdInserto", SqlDbType.SmallInt);
+               Parametro.Value = FamiliaEntidadObjeto.UsuarioIdInserto;
+               Comando.Parameters.Add(Parametro);
+
+               Conexion.Open();
+               Comando.ExecuteNonQuery();
+               Conexion.Close();
+
+               Resultado.ErrorId = (int)ConstantePrograma.Familia.FamiliaGuardadoCorrectamente;
+
+               return Resultado;
+           }
+           catch (SqlException sqlEx)
+           {
+               Resultado.ErrorId = sqlEx.Number;
+               Resultado.DescripcionError = sqlEx.Message;
+
+               return Resultado;
+           }
+       }
 
        public ResultadoEntidad SeleccionarFamilia(FamiliaEntidad FamiliaEntidadObjeto, string CadenaConexion)
        {

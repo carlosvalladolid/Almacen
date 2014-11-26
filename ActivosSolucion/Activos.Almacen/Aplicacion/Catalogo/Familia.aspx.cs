@@ -3,6 +3,7 @@ using System.Collections;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
@@ -11,6 +12,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 
+using Activos.Comun.Cadenas;
 using Activos.Comun.Constante;
 using Activos.Entidad.Almacen;
 using Activos.Entidad.Catalogo;
@@ -48,7 +50,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
 
             protected void BotonGuardar_Click(object sender, EventArgs e)
             {
-                //GuardarMarca();
+                GuardarFamilia();
             }
 
             protected void BusquedaAvanzadaLink_Click(Object sender, System.EventArgs e)
@@ -121,6 +123,43 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 LimpiarNuevoRegistro();
             }
 
+            protected void GuardarFamilia()
+            {
+                FamiliaEntidad FamiliaObjetoEntidad = new FamiliaEntidad();
+                UsuarioEntidad UsuarioSessionEntidad = new UsuarioEntidad();
+
+                UsuarioSessionEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
+
+                FamiliaObjetoEntidad.FamiliaId = Int16.Parse(FamiliaIdHidden.Value);
+                FamiliaObjetoEntidad.DependenciaId = Int16.Parse(DependenciaNuevo.SelectedValue);
+                FamiliaObjetoEntidad.EstatusId = Int16.Parse(EstatusNuevo.SelectedValue);
+                FamiliaObjetoEntidad.UsuarioIdInserto = UsuarioSessionEntidad.UsuarioId;
+                FamiliaObjetoEntidad.UsuarioIdModifico = UsuarioSessionEntidad.UsuarioId;
+                FamiliaObjetoEntidad.Nombre = NombreNuevo.Text.Trim();
+
+                GuardarFamilia(FamiliaObjetoEntidad);
+            }
+
+            protected void GuardarFamilia(FamiliaEntidad FamiliaObjetoEntidad)
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                FamiliaProceso FamiliaProcesoNegocio = new FamiliaProceso();
+
+                Resultado = FamiliaProcesoNegocio.GuardarFamilia(FamiliaObjetoEntidad);
+
+                if (Resultado.ErrorId == (int)ConstantePrograma.Familia.FamiliaGuardadoCorrectamente)
+                {
+                    LimpiarNuevoRegistro();
+                    PanelNuevoRegistro.Visible = false;
+                    PanelBusquedaAvanzada.Visible = false;
+                    BusquedaAvanzada();
+                }
+                else
+                {
+                    MostrarMensaje(Resultado.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                }
+            }
+
             private void Inicio()
             {
                 Master.NuevoRegistroMaster.Click += new EventHandler(NuevoRegistro_Click);
@@ -138,6 +177,19 @@ namespace Almacen.Web.Aplicacion.Catalogo
             private void LimpiarNuevoRegistro()
             {
 
+            }
+
+            private void MostrarMensaje(string Mensaje, string TipoMensaje)
+            {
+                StringBuilder FormatoMensaje = new StringBuilder();
+
+                FormatoMensaje.Append("MostrarMensaje(\"");
+                FormatoMensaje.Append(Mensaje);
+                FormatoMensaje.Append("\", \"");
+                FormatoMensaje.Append(TipoMensaje);
+                FormatoMensaje.Append("\");");
+
+                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
             }
 
             protected void SeleccionarDependencia()
