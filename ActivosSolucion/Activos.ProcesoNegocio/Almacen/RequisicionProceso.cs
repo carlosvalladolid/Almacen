@@ -188,6 +188,19 @@ namespace Activos.ProcesoNegocio.Almacen
        }
 
 
+       public ResultadoEntidad SeleccionarEmpleado(RequisicionEntidad RequisicionObjetoEntidad)
+       {
+           string CadenaConexion = string.Empty;
+           ResultadoEntidad Resultado = new ResultadoEntidad();
+           RequisicionAcceso RequisicionAccesoObjeto = new RequisicionAcceso();
+
+           CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+           Resultado = RequisicionAccesoObjeto.SeleccionarEmpleado(RequisicionObjetoEntidad, CadenaConexion);
+
+           return Resultado;
+       }
+
 
 
 

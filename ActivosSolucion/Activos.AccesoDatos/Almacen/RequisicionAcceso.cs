@@ -212,7 +212,52 @@ namespace Activos.AccesoDatos.Almacen
                 return Resultado;
             }
         }
-   
+
+
+
+
+        public ResultadoEntidad SeleccionarEmpleado(RequisicionEntidad RequisicionEntidadObjeto, string CadenaConexion)
+        {
+            DataSet ResultadoDatos = new DataSet();
+            SqlConnection Conexion = new SqlConnection(CadenaConexion);
+            SqlCommand Comando;
+            SqlParameter Parametro;
+            SqlDataAdapter Adaptador;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+
+            try
+            {
+                Comando = new SqlCommand("SeleccionarEmpleadoProcedimiento", Conexion);
+                Comando.CommandType = CommandType.StoredProcedure;
+
+              
+                Parametro = new SqlParameter("Nombre", SqlDbType.VarChar);
+                Parametro.Value = RequisicionEntidadObjeto.Nombre;
+                Comando.Parameters.Add(Parametro);
+
+                Adaptador = new SqlDataAdapter(Comando);
+                ResultadoDatos = new DataSet();
+
+                Conexion.Open();
+                Adaptador.Fill(ResultadoDatos);
+                Conexion.Close();
+
+                Resultado.ResultadoDatos = ResultadoDatos;
+
+                return Resultado;
+            }
+            catch (SqlException Excepcion)
+            {
+                Resultado.ErrorId = Excepcion.Number;
+                Resultado.DescripcionError = Excepcion.Message;
+
+                return Resultado;
+            }
+        }
+
+
+
+
 
         #endregion
 

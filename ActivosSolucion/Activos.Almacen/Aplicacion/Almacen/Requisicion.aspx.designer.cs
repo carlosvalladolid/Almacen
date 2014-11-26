@@ -50,22 +50,22 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.Panel PanelBusquedaSolicitante;
         
         /// <summary>
-        /// TextBox1 control.
+        /// SolicitanteBusqueda control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox SolicitanteBusqueda;
         
         /// <summary>
-        /// ImageButton1 control.
+        /// BotonBusquedaEmpleado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton1;
+        protected global::System.Web.UI.WebControls.ImageButton BotonBusquedaEmpleado;
         
         /// <summary>
         /// ImageButton2 control.
@@ -298,10 +298,6 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-        public new Almacen.Web.Incluir.Plantilla.PlantillaPrivada Master {
-            get {
-                return ((Almacen.Web.Incluir.Plantilla.PlantillaPrivada)(base.Master));
-            }
-        }
+      
     }
 }

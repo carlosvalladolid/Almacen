@@ -29,7 +29,12 @@ namespace Activos.Almacen.Aplicacion.Almacen
     {
         #region "Eventos"
 
-         protected void BotonGuardar_Click(object sender, ImageClickEventArgs e)
+        protected void BotonBusquedaEmpleado_Click(object sender, EventArgs e)
+        {
+            BuscarEmpleado();
+        }
+
+        protected void BotonGuardar_Click(object sender, ImageClickEventArgs e)
         {
             //GuardarRequisicion();
         }
@@ -58,11 +63,48 @@ namespace Activos.Almacen.Aplicacion.Almacen
         {
             SeleccionarSubfamilia();
         }
-
+      
+        protected void TablaEmpleado_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            TablaEmpleado.PageIndex = e.NewPageIndex;
+            BuscarEmpleado();
+        }
       
         #endregion
 
         #region "Métodos"
+
+        protected void BuscarEmpleado()
+        {
+            RequisicionEntidad RequisicionEntidadObjeto = new RequisicionEntidad();
+            RequisicionEntidadObjeto.Nombre = SolicitanteBusqueda.Text.Trim();
+            BuscarEmpleado(RequisicionEntidadObjeto);
+        }
+
+        protected void BuscarEmpleado(RequisicionEntidad RequisicionObjetoEntidad)
+        {
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            RequisicionProceso RequisicionProcesoNegocio = new RequisicionProceso();
+
+            Resultado = RequisicionProcesoNegocio.SeleccionarEmpleado(RequisicionObjetoEntidad);
+
+            if (Resultado.ErrorId == 0)
+            {
+                if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
+                    TablaEmpleado.CssClass = ConstantePrograma.ClaseTablaVacia;
+                else
+                    TablaEmpleado.CssClass = ConstantePrograma.ClaseTabla;
+
+                TablaEmpleado.DataSource = Resultado.ResultadoDatos;
+                TablaEmpleado.DataBind();
+            }
+            else
+            {
+               // EtiquetaControlBuscarEmpleadoMensaje.Text = TextoError.ErrorGenerico;
+            }
+        }
+
+
       
         protected void SeleccionarClave()
         {
@@ -236,6 +278,9 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
             TablaRequisicion.DataSource = null;
             TablaRequisicion.DataBind();
+
+            TablaEmpleado.DataSource = null;
+            TablaEmpleado.DataBind();
 
         }
 

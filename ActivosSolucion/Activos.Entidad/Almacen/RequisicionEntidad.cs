@@ -14,6 +14,7 @@ namespace Activos.Entidad.Almacen
         public Int32 _JefeId;
         public Int16 _EstatusId;
         public string _TemporalRequisicionId;
+        public string _Nombre;
 
 
         public RequisicionEntidad()
@@ -25,6 +26,7 @@ namespace Activos.Entidad.Almacen
             _JefeId = 0;
             _EstatusId = 0;
             _TemporalRequisicionId = string.Empty;
+            _Nombre = string.Empty;
         
         }
       
@@ -69,6 +71,13 @@ namespace Activos.Entidad.Almacen
         {
             get { return _TemporalRequisicionId; }
             set { _TemporalRequisicionId = value; }
+        }
+
+
+        public string Nombre
+        {
+            get { return _Nombre; }
+            set { _Nombre = value; }
         }
 
     }
