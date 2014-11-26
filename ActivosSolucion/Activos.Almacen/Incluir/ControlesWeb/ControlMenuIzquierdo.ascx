@@ -44,6 +44,11 @@
     <tr>
         <td class="Space"></td>
         <td></td>
+        <td><a href="/Aplicacion/Almacen/Requisicion.aspx">Requisición</a></td>
+    </tr>
+    <tr>
+        <td class="Space"></td>
+        <td></td>
         <td><a href="/Aplicacion/Almacen/PreOrden.aspx">Pre Orden de compra</a></td>
     </tr>
     <tr>
