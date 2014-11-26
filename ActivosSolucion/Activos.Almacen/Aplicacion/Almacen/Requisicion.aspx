@@ -33,35 +33,85 @@
               
               <asp:Panel CssClass="NewRowDiv" ID="PanelNuevoRegistroSolicitante" Visible="true" runat="server">
               
-              <table class="FormTable">
-                     <tr>
-                        <td class="Nombre">Solicitante</td>
-                        <td class="Espacio">*</td>
-                        <td class="Campo"> <asp:TextBox ID="Solicitante"  CssClass="CajaTextoMediana" MaxLength="10" runat="server"></asp:TextBox>&nbsp;
-                          
-                                               
-                        </td>
-                     </tr>
-                        
-                      <tr>
+                  <asp:Panel ID="PanelBusquedaSolicitante" Visible="true" runat="server"> 
+                  <div>
+                       <table class="FormTable">
+                         <tr>
+                            <td class="Nombre">Solicitante</td>
+                            <td class="Espacio">*</td>
+                            <td class="Campo"> <asp:TextBox ID="TextBox1"  CssClass="CajaTextoGrande" MaxLength="10" runat="server"></asp:TextBox>&nbsp;</td>
+                            </tr>
+                            
+                            <tr>
+                            <td>
+                               <br />
+                                <asp:ImageButton AlternateText="Buscar" ID="ImageButton1" ImageUrl="/Imagen/Boton/BotonBuscar.png"  runat="server" />&nbsp;&nbsp;
+                                <asp:ImageButton AlternateText="Cancelar" ID="ImageButton2" ImageUrl="/Imagen/Boton/BotonCancelar.png"  runat="server" />
+                            </td>
+                            </tr>
+                      </table>
+                     </div>
+                      <div> 
+                  
+                              <asp:GridView AllowPaging="false" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0" 
+                                  CssClass="TablaInformacion" DataKeyNames="EmpleadoId" ID="TablaEmpleado" runat="server">
+                                  <EmptyDataTemplate>
+                                      <table class="TablaVacia">
+                                          <tr class="Encabezado">
+                                              <th style="width: 25px;"></th>
+                                              <th>No.Emp</th>
+                                              <th style="width: 200px;">Nombre</th>
+                                              <th style="width: 100px;">Direccion</th>
+                                              <th style="width: 100px;">Puesto</th>
+                                          </tr>
+                                          <tr>
+                                              <td colspan="5" style="text-align: center;">No se encontró información con los parámetros seleccionados</td>
+                                          </tr>
+                                      </table>
+                                  </EmptyDataTemplate>
+                                  <HeaderStyle CssClass="Encabezado" />
+                                  <PagerStyle CssClass="Paginacion" HorizontalAlign="Right" />
+                                  <Columns>                                         
+                                      <asp:BoundField DataField="NumeroEmpleado" HeaderText="No.Emp" ItemStyle-HorizontalAlign="Center">
+                                          <HeaderStyle HorizontalAlign="Center" />
+                                      </asp:BoundField>
+                                      <asp:BoundField DataField="Nombre" HeaderText="Nombre" ItemStyle-HorizontalAlign="Center">
+                                          <HeaderStyle HorizontalAlign="Center" Width="200px" />
+                                      </asp:BoundField>
+                                      <asp:BoundField DataField="Direccion" HeaderText="Direccion" ItemStyle-HorizontalAlign="Center">
+                                          <HeaderStyle HorizontalAlign="Center" Width="100px" />
+                                      </asp:BoundField>
+                                       <asp:BoundField DataField="Puesto" HeaderText="Puesto" ItemStyle-HorizontalAlign="Center">
+                                          <HeaderStyle HorizontalAlign="Center" Width="100px" />
+                                      </asp:BoundField>
+                                  </Columns>
+                              </asp:GridView>
+                              <br />
+                            
+                      </div>       
+                  </asp:Panel>               
+              
+              
+                  <table class="FormTable">
+                  <tr>
                         <td class="Nombre">Dependencia</td>
                         <td class="Espacio"></td>
                         <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="DependenciaNuevo" runat="server" Text=""></asp:TextBox></td> 
                      </tr>
               
-                    <tr>
+                  <tr>
                         <td class="Nombre">Dirección</td>
                         <td class="Espacio"></td>
                         <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="DireccionNuevo"  runat="server" Text=""></asp:TextBox></td>
                     </tr>
                     
-                     <tr>
+                  <tr>
                         <td class="Nombre">Puesto</td>
                         <td class="Espacio"></td>
                         <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="PuestoNuevo" runat="server" Text=""></asp:TextBox></td>
                     </tr>
                     
-                      <tr>
+                  <tr>
                         <td class="Nombre">Jefe Inmediato</td>
                         <td class="Espacio"></td>
                         <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="JefeInmediatoNuevo" runat="server" Text=""></asp:TextBox></td>
@@ -71,7 +121,7 @@
              
               <div class="SubTituloDiv">Articulos</div>
               
-              <asp:Panel CssClass="NewRowDiv" ID="PanelNuevoRegistroDetalle" Visible="true" runat="server">
+                <asp:Panel CssClass="NewRowDiv" ID="PanelNuevoRegistroDetalle" Visible="true" runat="server">
                  <table class="FormTable">              
                      <tr>
                             <td class="Nombre">Clave</td>
