@@ -29,13 +29,14 @@ namespace Almacen.Web.Aplicacion.Catalogo
         #region "Eventos"
             protected void BotonBusqueda_Click(object sender, EventArgs e)
             {
-                //BusquedaAvanzada();
+                TextoBusquedaRapida.Text = "";
+                BusquedaAvanzada();
             }
 
             protected void BotonBusquedaRapida_Click(object sender, ImageClickEventArgs e)
             {
-
-                //BusquedaRapida();
+                NombreBusqueda.Text = "";
+                BusquedaAvanzada();
             }
 
             protected void BotonCancelarBusqueda_Click(object sender, EventArgs e)
@@ -60,7 +61,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
 
             protected void EliminarRegistroLink_Click(Object sender, System.EventArgs e)
             {
-                //EliminarMarca();
+                EliminarFamilia();
             }
 
             protected void NuevoRegistro_Click(Object sender, System.EventArgs e)
@@ -87,21 +88,12 @@ namespace Almacen.Web.Aplicacion.Catalogo
         #region "Métodos"
             private void BusquedaAvanzada()
             {
-                //MarcaEntidad MarcaEntidadObjeto = new MarcaEntidad();
+                FamiliaEntidad FamiliaEntidadObjeto = new FamiliaEntidad();
 
-                //TextoBusquedaRapida.Text = "";
-                //MarcaEntidadObjeto.Nombre = NombreBusqueda.Text.Trim();
+                FamiliaEntidadObjeto.Nombre = NombreBusqueda.Text.Trim();
+                FamiliaEntidadObjeto.BusquedaRapida = TextoBusquedaRapida.Text.Trim();
 
-                //SeleccionarMarca(MarcaEntidadObjeto);
-            }
-
-            private void BusquedaRapida()
-            {
-                //MarcaEntidad MarcaEntidadObjeto = new MarcaEntidad();
-
-                //MarcaEntidadObjeto.BusquedaRapida = TextoBusquedaRapida.Text.Trim();
-
-                //SeleccionarMarca(MarcaEntidadObjeto);
+                SeleccionarFamilia(FamiliaEntidadObjeto);
             }
 
             private void CambiarBusquedaAvanzada()
@@ -121,6 +113,32 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 PanelBusquedaAvanzada.Visible = false;
                 PanelNuevoRegistro.Visible = !PanelNuevoRegistro.Visible;
                 LimpiarNuevoRegistro();
+            }
+
+            protected void EliminarFamilia()
+            {
+                ResultadoEntidad ResultadoEntidadObjeto = new ResultadoEntidad();
+                FamiliaEntidad FamiliaEntidadObjeto = new FamiliaEntidad();
+
+                FamiliaEntidadObjeto.CadenaFamiliaId = ObtenerCadenaFamiliaId();
+
+                EliminarFamilia(FamiliaEntidadObjeto);
+            }
+
+            protected void EliminarFamilia(FamiliaEntidad FamiliaEntidadObjeto)
+            {
+                ResultadoEntidad ResultadoEntidadObjeto = new ResultadoEntidad();
+                FamiliaProceso FamiliaProcesoObjeto = new FamiliaProceso();
+
+                ResultadoEntidadObjeto = FamiliaProcesoObjeto.EliminarFamilia(FamiliaEntidadObjeto);
+
+                if (ResultadoEntidadObjeto.ErrorId == (int)ConstantePrograma.Familia.EliminacionExitosa)
+                {
+                    MostrarMensaje(ResultadoEntidadObjeto.DescripcionError, ConstantePrograma.TipoMensajeAlerta);
+                    BusquedaAvanzada();
+                }
+                else
+                    MostrarMensaje(ResultadoEntidadObjeto.DescripcionError, ConstantePrograma.TipoMensajeAlerta);
             }
 
             protected void GuardarFamilia()
@@ -176,7 +194,10 @@ namespace Almacen.Web.Aplicacion.Catalogo
 
             private void LimpiarNuevoRegistro()
             {
-
+                DependenciaNuevo.SelectedIndex = 0;
+                EstatusNuevo.SelectedIndex = 0;
+                NombreNuevo.Text = "";
+                FamiliaIdHidden.Value = "0";
             }
 
             private void MostrarMensaje(string Mensaje, string TipoMensaje)
@@ -190,6 +211,27 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 FormatoMensaje.Append("\");");
 
                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
+            }
+
+            protected string ObtenerCadenaFamiliaId()
+            {
+                StringBuilder CadenaFamiliaId = new StringBuilder();
+                CheckBox CasillaEliminar;
+
+                CadenaFamiliaId.Append(",");
+
+                foreach (GridViewRow Registro in TablaFamilia.Rows)
+                {
+                    CasillaEliminar = (CheckBox)Registro.FindControl("SeleccionarBorrar");
+
+                    if (CasillaEliminar.Checked)
+                    {
+                        CadenaFamiliaId.Append(TablaFamilia.DataKeys[Registro.RowIndex]["FamiliaId"].ToString());
+                        CadenaFamiliaId.Append(",");
+                    }
+                }
+
+                return CadenaFamiliaId.ToString();
             }
 
             protected void SeleccionarDependencia()

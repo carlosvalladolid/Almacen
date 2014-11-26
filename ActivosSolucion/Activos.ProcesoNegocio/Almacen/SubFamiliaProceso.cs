@@ -17,9 +17,6 @@ namespace Activos.ProcesoNegocio.Almacen
 {
   public  class SubFamiliaProceso:Base
     {
-
-
-       
         public ResultadoEntidad SeleccionarSubFamilia(SubFamiliaEntidad SubFamiliaObjetoEntidad)
         {
             string CadenaConexion = string.Empty;
@@ -33,5 +30,20 @@ namespace Activos.ProcesoNegocio.Almacen
             return Resultado;
         }
 
+        public bool SeleccionarSubFamiliaFamiliaRelacionadas(string CadenaFamiliaId)
+        {
+            string CadenaConexion = string.Empty;
+            ResultadoEntidad ResultadoEntidadObjeto = new ResultadoEntidad();
+            SubFamiliaAcceso SubFamiliaAccesoObjeto = new SubFamiliaAcceso();
+
+            CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+            ResultadoEntidadObjeto = SubFamiliaAccesoObjeto.SeleccionarSubFamiliaFamiliaRelacionadas(CadenaFamiliaId, CadenaConexion);
+
+            if (ResultadoEntidadObjeto.ResultadoDatos.Tables[0].Rows.Count == 0)
+                return false;
+            else
+                return true;
+        }
     }
 }

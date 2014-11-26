@@ -65,6 +65,39 @@ namespace Activos.AccesoDatos.Almacen
            }
        }
 
+       public ResultadoEntidad EliminarFamilia(string CadenaFamiliaId, string CadenaConexion)
+       {
+           SqlConnection Conexion = new SqlConnection(CadenaConexion);
+           SqlCommand Comando;
+           SqlParameter Parametro;
+           ResultadoEntidad Resultado = new ResultadoEntidad();
+
+           try
+           {
+               Comando = new SqlCommand("EliminarFamiliaProcedimiento", Conexion);
+               Comando.CommandType = CommandType.StoredProcedure;
+
+               Parametro = new SqlParameter("CadenaFamiliaId", SqlDbType.VarChar);
+               Parametro.Value = CadenaFamiliaId;
+               Comando.Parameters.Add(Parametro);
+
+               Conexion.Open();
+               Comando.ExecuteNonQuery();
+               Conexion.Close();
+
+               Resultado.ErrorId = (int)ConstantePrograma.Familia.EliminacionExitosa;
+
+               return Resultado;
+           }
+           catch (SqlException sqlEx)
+           {
+               Resultado.ErrorId = sqlEx.Number;
+               Resultado.DescripcionError = sqlEx.Message;
+
+               return Resultado;
+           }
+       }
+
        public ResultadoEntidad InsertarFamilia(FamiliaEntidad FamiliaEntidadObjeto, string CadenaConexion)
        {
            SqlConnection Conexion = new SqlConnection(CadenaConexion);
