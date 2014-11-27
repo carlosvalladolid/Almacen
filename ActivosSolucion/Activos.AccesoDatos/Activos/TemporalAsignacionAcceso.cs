@@ -14,39 +14,6 @@ namespace Activos.AccesoDatos.Activos
 {
     public class TemporalAsignacionAcceso : Base
     {
-        public ResultadoEntidad LimpiarTemporalTablaAsignacion(TemporalAsignacionEntidad TemporalAsignacionEntidadObjeto, string CadenaConexion)
-        {
-            SqlConnection Conexion = new SqlConnection(CadenaConexion);
-            SqlCommand Comando;
-            SqlParameter Parametro;
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-
-            try
-            {
-                Comando = new SqlCommand("EliminarTemporalAsignacionProcedimiento", Conexion);
-                Comando.CommandType = CommandType.StoredProcedure;
-
-                Parametro = new SqlParameter("TemporalAsignacionId", SqlDbType.Int);
-                Parametro.Value = TemporalAsignacionEntidadObjeto.TemporalAsignacionId;
-                Comando.Parameters.Add(Parametro);
-
-                Conexion.Open();
-                Comando.ExecuteNonQuery();
-                Conexion.Close();
-
-                Resultado.ErrorId = (int)ConstantePrograma.TemporalAsignacion.TemporalAsignacionEliminadoCorrectamente;
-
-                return Resultado;
-            }
-            catch (SqlException sqlEx)
-            {
-                Resultado.ErrorId = sqlEx.Number;
-                Resultado.DescripcionError = sqlEx.Message;
-
-                return Resultado;
-            }
-        }
-
         public ResultadoEntidad InsertarTemporalAsignacion(SqlConnection Conexion, SqlTransaction Transaccion, TemporalAsignacionEntidad TemporalAsignacionEntidadObjeto)
         {
             SqlCommand Comando;
@@ -79,5 +46,37 @@ namespace Activos.AccesoDatos.Activos
             }
         }
 
+        public ResultadoEntidad LimpiarTemporalTablaAsignacion(TemporalAsignacionEntidad TemporalAsignacionEntidadObjeto, string CadenaConexion)
+        {
+            SqlConnection Conexion = new SqlConnection(CadenaConexion);
+            SqlCommand Comando;
+            SqlParameter Parametro;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+
+            try
+            {
+                Comando = new SqlCommand("EliminarTemporalAsignacionProcedimiento", Conexion);
+                Comando.CommandType = CommandType.StoredProcedure;
+
+                Parametro = new SqlParameter("TemporalAsignacionId", SqlDbType.Int);
+                Parametro.Value = TemporalAsignacionEntidadObjeto.TemporalAsignacionId;
+                Comando.Parameters.Add(Parametro);
+
+                Conexion.Open();
+                Comando.ExecuteNonQuery();
+                Conexion.Close();
+
+                Resultado.ErrorId = (int)ConstantePrograma.TemporalAsignacion.TemporalAsignacionEliminadoCorrectamente;
+
+                return Resultado;
+            }
+            catch (SqlException sqlEx)
+            {
+                Resultado.ErrorId = sqlEx.Number;
+                Resultado.DescripcionError = sqlEx.Message;
+
+                return Resultado;
+            }
+        }
     }
 }
