@@ -14,7 +14,6 @@ namespace Activos.AccesoDatos.Activos
 {
     public class TemporalTransferenciaActivoAcceso : Base
     {
-
         public ResultadoEntidad EliminarTemporalTransferenciaActivo(TemporalTransferenciaActivoEntidad TemporalTransferenciaActivoEntidadObjeto, string CadenaConexion)
         {
             SqlConnection Conexion = new SqlConnection(CadenaConexion);
@@ -92,7 +91,7 @@ namespace Activos.AccesoDatos.Activos
             }
         }
 
-        public ResultadoEntidad SeleccionarTemporalTransferenciaActivoPorDocumento(TemporalTransferenciaActivoEntidad TemporalTransferenciaActivoEntidadObjeto, string CadenaConexion)
+        public ResultadoEntidad SeleccionarTemporalTransferenciaActivo(TemporalTransferenciaActivoEntidad TemporalTransferenciaActivoEntidadObjeto, string CadenaConexion)
         {
             DataSet ResultadoDatos = new DataSet();
             SqlConnection Conexion = new SqlConnection(CadenaConexion);
@@ -103,7 +102,7 @@ namespace Activos.AccesoDatos.Activos
 
             try
             {
-                Comando = new SqlCommand("SeleccionarTemporalTransferenciaActivoPorDocumentoProcedimiento", Conexion);
+                Comando = new SqlCommand("SeleccionarTemporalTransferenciaActivoProcedimiento", Conexion);
                 Comando.CommandType = CommandType.StoredProcedure;
 
                 Parametro = new SqlParameter("SesionId", SqlDbType.VarChar);
@@ -130,7 +129,7 @@ namespace Activos.AccesoDatos.Activos
             }
         }
 
-        public ResultadoEntidad SeleccionarTemporalTransferenciaActivo(TemporalTransferenciaActivoEntidad TemporalTransferenciaActivoEntidadObjeto, string CadenaConexion)
+        public ResultadoEntidad SeleccionarTemporalTransferenciaActivoPorDocumento(TemporalTransferenciaActivoEntidad TemporalTransferenciaActivoEntidadObjeto, string CadenaConexion)
         {
             DataSet ResultadoDatos = new DataSet();
             SqlConnection Conexion = new SqlConnection(CadenaConexion);
@@ -141,7 +140,7 @@ namespace Activos.AccesoDatos.Activos
 
             try
             {
-                Comando = new SqlCommand("SeleccionarTemporalTransferenciaActivoProcedimiento", Conexion);
+                Comando = new SqlCommand("SeleccionarTemporalTransferenciaActivoPorDocumentoProcedimiento", Conexion);
                 Comando.CommandType = CommandType.StoredProcedure;
 
                 Parametro = new SqlParameter("SesionId", SqlDbType.VarChar);
