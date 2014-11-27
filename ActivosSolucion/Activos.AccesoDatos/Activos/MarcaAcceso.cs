@@ -91,6 +91,47 @@ namespace Activos.AccesoDatos.Activos
             }
         }
         
+        public ResultadoEntidad InsertarMarca(MarcaEntidad MarcaEntidadObjeto, string CadenaConexion)
+        {
+            SqlConnection Conexion = new SqlConnection(CadenaConexion);
+            SqlCommand Comando;
+            SqlParameter Parametro;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+
+            try
+            {
+                Comando = new SqlCommand("InsertarMarcaProcedimiento", Conexion);
+                Comando.CommandType = CommandType.StoredProcedure;
+
+                Parametro = new SqlParameter("DependenciaId", SqlDbType.SmallInt);
+                Parametro.Value = MarcaEntidadObjeto.DependenciaId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("Nombre", SqlDbType.VarChar);
+                Parametro.Value = MarcaEntidadObjeto.Nombre;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("EstatusId", SqlDbType.SmallInt);
+                Parametro.Value = MarcaEntidadObjeto.EstatusId;
+                Comando.Parameters.Add(Parametro);
+
+                Conexion.Open();
+                Comando.ExecuteNonQuery();
+                Conexion.Close();
+
+                Resultado.ErrorId = (int)ConstantePrograma.Marca.MarcaGuardadoCorrectamente;
+
+                return Resultado;
+            }
+            catch (SqlException sqlEx)
+            {
+                Resultado.ErrorId = sqlEx.Number;
+                Resultado.DescripcionError = sqlEx.Message;
+
+                return Resultado;
+            }
+        }
+    
         public ResultadoEntidad SeleccionarMarca(MarcaEntidad MarcaEntidadObjeto, string CadenaConexion)
         {
             DataSet ResultadoDatos = new DataSet();
@@ -144,48 +185,6 @@ namespace Activos.AccesoDatos.Activos
             {
                 Resultado.ErrorId = Excepcion.Number;
                 Resultado.DescripcionError = Excepcion.Message;
-
-                return Resultado;
-            }
-        }
-
-        public ResultadoEntidad InsertarMarca(MarcaEntidad MarcaEntidadObjeto, string CadenaConexion)
-        {
-            SqlConnection Conexion = new SqlConnection(CadenaConexion);
-            SqlCommand Comando;
-            SqlParameter Parametro;
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-
-            try
-            {
-                Comando = new SqlCommand("InsertarMarcaProcedimiento", Conexion);
-                Comando.CommandType = CommandType.StoredProcedure;
-
-                Parametro = new SqlParameter("DependenciaId", SqlDbType.SmallInt);
-                Parametro.Value = MarcaEntidadObjeto.DependenciaId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("Nombre", SqlDbType.VarChar);
-                Parametro.Value = MarcaEntidadObjeto.Nombre;
-                Comando.Parameters.Add(Parametro);
-
-
-                Parametro = new SqlParameter("EstatusId", SqlDbType.SmallInt);
-                Parametro.Value = MarcaEntidadObjeto.EstatusId;
-                Comando.Parameters.Add(Parametro);
-
-                Conexion.Open();
-                Comando.ExecuteNonQuery();
-                Conexion.Close();
-
-                Resultado.ErrorId = (int)ConstantePrograma.Marca.MarcaGuardadoCorrectamente;
-
-                return Resultado;
-            }
-            catch (SqlException sqlEx)
-            {
-                Resultado.ErrorId = sqlEx.Number;
-                Resultado.DescripcionError = sqlEx.Message;
 
                 return Resultado;
             }
