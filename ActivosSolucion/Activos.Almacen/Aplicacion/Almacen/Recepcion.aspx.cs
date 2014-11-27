@@ -241,7 +241,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
             CantidadNuevo.Text = "";
             MontoDocumentoNuevo.Text = "";
             EtiquetaMensaje.Text = "";
-        
+            //ProductoIdHidden.Value = "";
         
         }
 

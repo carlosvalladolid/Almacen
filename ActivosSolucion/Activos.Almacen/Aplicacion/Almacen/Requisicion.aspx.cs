@@ -41,7 +41,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         protected void BotonAgregar_Click(object sender, ImageClickEventArgs e)
         {
-           // AgregarDetalleDocumento();
+            AgregarDetalleDocumento();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -74,6 +74,42 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         #region "Métodos"
 
+        protected void AgregarDetalleDocumento()
+        {
+
+            RequisicionEntidad RequisicionObjetoEntidad = new RequisicionEntidad();
+
+            RequisicionObjetoEntidad.RequisicionId = TemporalRequisicionIdHidden.Value;
+            RequisicionObjetoEntidad.TemporalRequisicionId = TemporalRequisicionIdHidden.Value;
+            RequisicionObjetoEntidad.ProductoId = ProductoIdHidden.Value;
+            RequisicionObjetoEntidad.Cantidad = Int16.Parse(CantidadNuevo.Text.Trim());
+           
+            AgregarRequisicion(RequisicionObjetoEntidad);
+        }
+
+        protected void AgregarRequisicion(RequisicionEntidad RequisicionObjetoEntidad)
+        {
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            RequisicionProceso RequisicionProcesoNegocio = new RequisicionProceso();
+
+            Resultado = RequisicionProcesoNegocio.AgregarRequisicionDetalle(RequisicionObjetoEntidad);
+
+            if (Resultado.ErrorId == (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente)
+            {
+                TemporalRequisicionIdHidden.Value = RequisicionObjetoEntidad.RequisicionId;
+                // LimpiarNuevoRegistro();
+                LimpiarRequisicion();
+                SeleccionarRequisicion();
+            }
+            else
+            {
+
+                EtiquetaMensaje.Text = Resultado.DescripcionError;
+                LimpiarRequisicion();
+
+            }
+        }
+
         protected void BuscarEmpleado()
         {
             RequisicionEntidad RequisicionEntidadObjeto = new RequisicionEntidad();
@@ -103,8 +139,6 @@ namespace Activos.Almacen.Aplicacion.Almacen
                // EtiquetaControlBuscarEmpleadoMensaje.Text = TextoError.ErrorGenerico;
             }
         }
-
-
       
         protected void SeleccionarClave()
         {
@@ -335,6 +369,22 @@ namespace Activos.Almacen.Aplicacion.Almacen
             //}
 
         }
+
+        protected void LimpiarRequisicion()
+        {
+            ClaveNuevo.Text = "";
+            FamiliaIdNuevo.SelectedIndex = 0;
+            SeleccionarSubfamilia();
+            SubFamiliaIdNuevo.SelectedIndex = 0;
+            MarcaIdNuevo.SelectedIndex = 0;
+            DescripcionNuevo.Text = "";         
+            CantidadNuevo.Text = "";           
+            EtiquetaMensaje.Text = "";
+            ProductoIdHidden.Value = "";
+
+
+        }
+
 
         #endregion
 

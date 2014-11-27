@@ -156,9 +156,9 @@ namespace Activos.AccesoDatos.Almacen
                 Parametro.Value = RequisicionObjetoEntidad.ProductoId;
                 Comando.Parameters.Add(Parametro);
 
-                 Parametro = new SqlParameter("Cantidad", SqlDbType.Int);
-                Parametro.Value = RequisicionObjetoEntidad.Cantidad;
-                Comando.Parameters.Add(Parametro);
+                // Parametro = new SqlParameter("Cantidad", SqlDbType.Int);
+                //Parametro.Value = RequisicionObjetoEntidad.Cantidad;
+                //Comando.Parameters.Add(Parametro);
 
                 Adaptador = new SqlDataAdapter(Comando);
                 ResultadoDatos = new DataSet();

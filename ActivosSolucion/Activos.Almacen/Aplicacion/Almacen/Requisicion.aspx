@@ -70,17 +70,17 @@
                                   <HeaderStyle CssClass="Encabezado" />
                                   <PagerStyle CssClass="Paginacion" HorizontalAlign="Right" />
                                   <Columns>                                         
-                                      <asp:BoundField DataField="EmpleadoId" HeaderText="No.Emp" ItemStyle-HorizontalAlign="Center">
-                                          <HeaderStyle HorizontalAlign="Center" Width="25px" />
+                                      <asp:BoundField DataField="EmpleadoId" HeaderText="No.Emp" ItemStyle-HorizontalAlign="left">
+                                          <HeaderStyle HorizontalAlign="left" Width="25px" />
                                       </asp:BoundField>
-                                      <asp:BoundField DataField="Nombre" HeaderText="Nombre" ItemStyle-HorizontalAlign="Center">
-                                          <HeaderStyle HorizontalAlign="Center" Width="60px" />
+                                      <asp:BoundField DataField="Nombre" HeaderText="Nombre" ItemStyle-HorizontalAlign="left">
+                                          <HeaderStyle HorizontalAlign="left" Width="60px" />
                                       </asp:BoundField>
-                                      <asp:BoundField DataField="Direccion" HeaderText="Direccion" ItemStyle-HorizontalAlign="Center">
-                                          <HeaderStyle HorizontalAlign="Center" Width="60px" />
+                                      <asp:BoundField DataField="Direccion" HeaderText="Direccion" ItemStyle-HorizontalAlign="left">
+                                          <HeaderStyle HorizontalAlign="left" Width="60px" />
                                       </asp:BoundField>
-                                       <asp:BoundField DataField="Puesto" HeaderText="Puesto" ItemStyle-HorizontalAlign="Center">
-                                          <HeaderStyle HorizontalAlign="Center" Width="60px" />
+                                       <asp:BoundField DataField="Puesto" HeaderText="Puesto" ItemStyle-HorizontalAlign="left">
+                                          <HeaderStyle HorizontalAlign="left" Width="60px" />
                                       </asp:BoundField>
                                   </Columns>
                               </asp:GridView>
@@ -174,7 +174,7 @@
             
              	<div>
                     <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0" 
-                        CssClass="TablaInformacion" DataKeyNames="RecepcionId, ProductoId" ID="TablaRequisicion" OnRowCommand="TablaRequisicion_RowCommand" runat="server" PageSize="10">
+                        CssClass="TablaInformacion" DataKeyNames="RequisicionId, ProductoId" ID="TablaRequisicion" OnRowCommand="TablaRequisicion_RowCommand" runat="server" PageSize="10">
                         <EmptyDataTemplate>
                             <table class="TablaVacia">
                                 <tr class="Encabezado">

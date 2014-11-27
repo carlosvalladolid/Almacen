@@ -37,12 +37,7 @@ namespace Activos.ProcesoNegocio.Almacen
             {
                 return ResultadoValidacion;
             }
-
-
-            //if (ResultadoValidacion.ErrorId != 0)
-            //{
-
-
+           
             if (RequisicionObjetoEntidad.TemporalRequisicionId == "")
             {
                 RequisicionObjetoEntidad.RequisicionId = Guid.NewGuid().ToString();
@@ -53,14 +48,7 @@ namespace Activos.ProcesoNegocio.Almacen
                 Resultado = RequisicionAccesoObjeto.InsertarRequisicionDetalle(RequisicionObjetoEntidad, CadenaConexion);
             }
 
-            // }
-            //else 
-            //{
-            //    Resultado = Resultado.ErrorId = (int)ConstantePrograma.Recepcion.FolioDuplicado;
-
-
-            //}
-
+        
 
             return Resultado;
         }
