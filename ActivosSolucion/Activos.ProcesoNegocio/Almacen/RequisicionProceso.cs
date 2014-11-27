@@ -18,8 +18,6 @@ namespace Activos.ProcesoNegocio.Almacen
 {
    public class RequisicionProceso:Base
     {
-
-
        public ResultadoEntidad AgregarRequisicionDetalle(RequisicionEntidad RequisicionObjetoEntidad)
         {
             string CadenaConexion = string.Empty;
@@ -175,7 +173,6 @@ namespace Activos.ProcesoNegocio.Almacen
 
        }
 
-
        public ResultadoEntidad SeleccionarEmpleado(RequisicionEntidad RequisicionObjetoEntidad)
        {
            string CadenaConexion = string.Empty;
@@ -188,9 +185,6 @@ namespace Activos.ProcesoNegocio.Almacen
 
            return Resultado;
        }
-
-
-
-
+       
     }
 }

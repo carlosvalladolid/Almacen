@@ -36,7 +36,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         protected void BotonGuardar_Click(object sender, ImageClickEventArgs e)
         {
-            //GuardarRequisicion();
+           // GuardarRequisicion();
         }
 
         protected void BotonAgregar_Click(object sender, ImageClickEventArgs e)
@@ -110,6 +110,40 @@ namespace Activos.Almacen.Aplicacion.Almacen
             }
         }
 
+        //protected void GuardarRequisicion()
+        //{
+        //    RequisicionEntidad RequisicionObjetoEntidad = new RequisicionEntidad();
+
+        //    RequisicionObjetoEntidad.RequisicionId = TemporalRequisicionIdHidden.Value;
+        //    GuardarRequisicion(RequisicionObjetoEntidad);
+
+
+
+        //}
+
+        //protected void GuardarRequisicion(RequisicionEntidad RequisicionObjetoEntidad)
+        //{
+        //    ResultadoEntidad Resultado = new ResultadoEntidad();
+        //    RequisicionProceso RecepcionProcesoNegocio = new RecepcionProceso();
+
+        //    Resultado = RecepcionProcesoNegocio.AgregarRecepcionEncabezado(RecepcionObjetoEntidad);
+
+        //    if (Resultado.ErrorId == (int)ConstantePrograma.Recepcion.RecepcionGuardadoCorrectamente)
+        //    {
+        //        //  TemporalRecepcionIdHidden.Value = RecepcionObjetoEntidad.RecepcionId;
+        //        LimpiarNuevoRegistro();
+        //        LimpiarRecepcion();
+
+        //    }
+        //    else
+        //    {
+        //        EtiquetaMensaje.Text = Resultado.DescripcionError;
+        //    }
+
+        //}
+        
+        
+        
         protected void BuscarEmpleado()
         {
             RequisicionEntidad RequisicionEntidadObjeto = new RequisicionEntidad();
