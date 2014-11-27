@@ -14,7 +14,6 @@ namespace Activos.AccesoDatos.Activos
 {
     public class CompraAcceso : Base
     {
-
         public ResultadoEntidad InsertarCompra(SqlConnection Conexion, SqlTransaction Transaccion, CompraEntidad CompraEntidadObjeto)
         {
             SqlCommand Comando;
