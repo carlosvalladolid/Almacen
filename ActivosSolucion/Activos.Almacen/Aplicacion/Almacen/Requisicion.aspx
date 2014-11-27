@@ -53,26 +53,42 @@
                     
                       <div id="DivTablaControl"> 
                               <asp:GridView AllowPaging="false" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0" 
-                                  CssClass="TablaInformacion" DataKeyNames="EmpleadoId" ID="TablaEmpleado" runat="server">
+                                  CssClass="TablaInformacion" DataKeyNames="EmpleadoId" ID="TablaEmpleado" OnRowCommand="TablaEmpleado_RowCommand" runat="server">
                                   <EmptyDataTemplate>
                                       <table class="TablaVacia">
                                           <tr class="Encabezado">
+                                              <th></th>
                                               <th style="width: 25px;">No.Emp</th>
+                                              <th style="width: 25px;">IdJefe</th>
                                               <th style="width: 60px;">Nombre</th>
                                               <th style="width: 60px;">Direccion</th>
                                               <th style="width: 60px;">Puesto</th>
+                                             
                                           </tr>
                                           <tr>
-                                              <td colspan="4" style="text-align: center;">No se encontró información con los parámetros seleccionados</td>
+                                              <td colspan="6" style="text-align: center;">No se encontró información con los parámetros seleccionados</td>
                                           </tr>
                                       </table>
                                   </EmptyDataTemplate>
                                   <HeaderStyle CssClass="Encabezado" />
                                   <PagerStyle CssClass="Paginacion" HorizontalAlign="Right" />
-                                  <Columns>                                         
+                                  <Columns> 
+                                  
+                                     <asp:TemplateField HeaderText="">
+                                     <ItemTemplate>
+                                         <asp:ImageButton ID="BotonSeleccionarEmpleado" CommandArgument="<%#Container.DataItemIndex%>" CommandName="SeleccionarEmpleado" runat="server" ImageUrl="/Imagen/Icono/IconoEliminarRegistro.gif" />
+                                     </ItemTemplate>
+                                     <ItemStyle HorizontalAlign="Center" Width="25px" />
+                                     </asp:TemplateField>
+                                                                          
                                       <asp:BoundField DataField="EmpleadoId" HeaderText="No.Emp" ItemStyle-HorizontalAlign="left">
                                           <HeaderStyle HorizontalAlign="left" Width="25px" />
                                       </asp:BoundField>
+                                      
+                                       <asp:BoundField DataField="EmpleadoIdJefe" HeaderText="IdJefe" ItemStyle-HorizontalAlign="left">
+                                          <HeaderStyle HorizontalAlign="left" Width="25px" />
+                                      </asp:BoundField>
+                                      
                                       <asp:BoundField DataField="Nombre" HeaderText="Nombre" ItemStyle-HorizontalAlign="left">
                                           <HeaderStyle HorizontalAlign="left" Width="60px" />
                                       </asp:BoundField>
@@ -82,6 +98,7 @@
                                        <asp:BoundField DataField="Puesto" HeaderText="Puesto" ItemStyle-HorizontalAlign="left">
                                           <HeaderStyle HorizontalAlign="left" Width="60px" />
                                       </asp:BoundField>
+                                      
                                   </Columns>
                               </asp:GridView>
                               <br />
@@ -254,6 +271,9 @@
                 
                  <asp:HiddenField ID="TemporalRequisicionIdHidden" runat="server" Value="" />
                  <asp:HiddenField ID="ProductoIdHidden" runat="server" Value="" />
+                 
+                  <asp:HiddenField ID="EmpleadoIdHidden" runat="server" Value="" />
+                 <asp:HiddenField ID="JefeIdHidden" runat="server" Value="" />
           </ContentTemplate>
       </asp:UpdatePanel>   
       </div>

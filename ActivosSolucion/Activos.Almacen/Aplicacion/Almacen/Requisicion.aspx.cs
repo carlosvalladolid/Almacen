@@ -36,7 +36,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         protected void BotonGuardar_Click(object sender, ImageClickEventArgs e)
         {
-           // GuardarRequisicion();
+           GuardarRequisicion();
         }
 
         protected void BotonAgregar_Click(object sender, ImageClickEventArgs e)
@@ -58,6 +58,11 @@ namespace Activos.Almacen.Aplicacion.Almacen
         {
             TablaRequisicionEventoComando(e);
         }
+
+        //protected void TablaEmpleado_RowCommand(object sender, GridViewCommandEventArgs e)
+        //{
+        //    TablaEmpleadoEventoComando(e);
+        //}
 
         protected void ddlFamilia_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -110,38 +115,38 @@ namespace Activos.Almacen.Aplicacion.Almacen
             }
         }
 
-        //protected void GuardarRequisicion()
-        //{
-        //    RequisicionEntidad RequisicionObjetoEntidad = new RequisicionEntidad();
+        protected void GuardarRequisicion()
+        {
+            RequisicionEntidad RequisicionObjetoEntidad = new RequisicionEntidad();
 
-        //    RequisicionObjetoEntidad.RequisicionId = TemporalRequisicionIdHidden.Value;
-        //    RequisicionObjetoEntidad.EmpleadoId 
-        //    GuardarRequisicion(RequisicionObjetoEntidad);
+            RequisicionObjetoEntidad.RequisicionId = TemporalRequisicionIdHidden.Value;
+            RequisicionObjetoEntidad.EmpleadoId = Int16.Parse(EmpleadoIdHidden.Value);
+            RequisicionObjetoEntidad.JefeId = Int16.Parse(JefeIdHidden.Value);
 
+            GuardarRequisicion(RequisicionObjetoEntidad);
 
+        }
 
-        //}
+        protected void GuardarRequisicion(RequisicionEntidad RequisicionObjetoEntidad)
+        {
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            RequisicionProceso RequisicionProcesoNegocio = new RequisicionProceso();
 
-        //protected void GuardarRequisicion(RequisicionEntidad RequisicionObjetoEntidad)
-        //{
-        //    ResultadoEntidad Resultado = new ResultadoEntidad();
-        //    RequisicionProceso RecepcionProcesoNegocio = new RecepcionProceso();
+            Resultado = RequisicionProcesoNegocio.AgregarRequisicionEncabezado(RequisicionObjetoEntidad);
 
-        //    Resultado = RecepcionProcesoNegocio.AgregarRecepcionEncabezado(RecepcionObjetoEntidad);
+            if (Resultado.ErrorId == (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente)
+            {
+                //  TemporalRecepcionIdHidden.Value = RecepcionObjetoEntidad.RecepcionId;
+                LimpiarNuevoRegistro();
+                LimpiarRequisicion();
 
-        //    if (Resultado.ErrorId == (int)ConstantePrograma.Recepcion.RecepcionGuardadoCorrectamente)
-        //    {
-        //        //  TemporalRecepcionIdHidden.Value = RecepcionObjetoEntidad.RecepcionId;
-        //        LimpiarNuevoRegistro();
-        //        LimpiarRecepcion();
+            }
+            else
+            {
+                EtiquetaMensaje.Text = Resultado.DescripcionError;
+            }
 
-        //    }
-        //    else
-        //    {
-        //        EtiquetaMensaje.Text = Resultado.DescripcionError;
-        //    }
-
-        //}
+        }
         
         
         
@@ -420,6 +425,53 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         }
 
+        protected void LimpiarNuevoRegistro()
+        {
+            SolicitanteBusqueda.Text = "";
+            DependenciaNuevo.Text = "";
+            DireccionNuevo.Text = "";
+            PuestoNuevo.Text = "";
+            JefeInmediatoNuevo.Text = "";
+            TemporalRequisicionIdHidden.Value = "";
+            EmpleadoIdHidden.Value = "";
+            JefeIdHidden.Value = "";
+
+            TablaEmpleado.DataSource = null;
+            TablaEmpleado.DataBind();
+            EtiquetaMensaje.Text = "";
+        
+        
+        }
+
+        //protected void TablaEmpleadoEventoComando(GridViewCommandEventArgs e)
+        //{
+        //    Int16 intFila = 0;
+        //    int intTamañoPagina = 0;
+        //    int EmpleadoId = 0;
+        //    int JefeId = 0;
+        //    string strCommand = string.Empty;
+
+        //    intFila = Int16.Parse(e.CommandArgument.ToString());
+        //    strCommand = e.CommandName.ToString();
+        //    intTamañoPagina = TablaEmpleado.PageSize;
+
+        //    if (intFila >= intTamañoPagina)
+        //        intFila = (Int16)(intFila - (intTamañoPagina * TablaEmpleado.PageIndex));
+
+        //    switch (strCommand)
+        //    {
+        //        case "SeleccionarEmpleado":
+        //            EmpleadoId = int.Parse(TablaEmpleado.DataKeys[intFila]["EmpleadoId"].ToString());
+        //            EmpleadoIdHidden.Value = Int16.Parse(EmpleadoId);
+        //            JefeId = Int16.Parse(TablaEmpleado.DataKeys[intFila]["EmpleadoIdJefe"].ToString());
+        //            JefeIdHidden.Value = Int16.Parse(JefeId);
+        //            break;
+
+        //        default:
+        //            // Do nothing
+        //            break;
+        //    }
+        //}
 
         #endregion
 
