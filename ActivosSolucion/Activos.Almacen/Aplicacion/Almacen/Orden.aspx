@@ -113,7 +113,7 @@
                                     <th style="width: 125px;">Cantidad</th> 
                                  </tr>
                                 <tr>
-                                    <td colspan="5" style="text-align: center;">No se encontró información con los parámetros seleccionados</td>
+                                    <td colspan="6" style="text-align: center;">No se encontró información con los parámetros seleccionados</td>
                                 </tr>
                             </table>
                         </EmptyDataTemplate>
