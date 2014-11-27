@@ -14,7 +14,6 @@ namespace Activos.AccesoDatos.Activos
 {
     public class TemporalActivoAcceso : Base
     {
-
         public ResultadoEntidad ActualizarTemporalActivo(SqlConnection Conexion, SqlTransaction Transaccion, TemporalActivoEntidad TemporalActivoEntidadObjeto)
         {
             SqlCommand Comando;
@@ -304,6 +303,5 @@ namespace Activos.AccesoDatos.Activos
                 return Resultado;
             }
         }
-
     }
 }
