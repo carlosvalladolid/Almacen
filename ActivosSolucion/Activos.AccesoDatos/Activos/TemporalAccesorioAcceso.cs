@@ -10,12 +10,10 @@ using Activos.Entidad.Catalogo;
 using Activos.Entidad.Activos;
 using Activos.Comun.Constante;
 
-
 namespace Activos.AccesoDatos.Activos
 {
     public class TemporalAccesorioAcceso : Base
     {
-
         public ResultadoEntidad ActualizarTemporalAccesorio(SqlConnection Conexion, SqlTransaction Transaccion, TemporalAccesorioEntidad TemporalAccesorioEntidadObjeto)
         {
             SqlCommand Comando;
@@ -209,6 +207,5 @@ namespace Activos.AccesoDatos.Activos
                 return Resultado;
             }
         }
-
     }
 }
