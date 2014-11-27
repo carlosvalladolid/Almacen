@@ -154,8 +154,7 @@ namespace Activos.AccesoDatos.Activos
         //        //Parametro = new SqlParameter("Descripcion", SqlDbType.VarChar);
         //        //Parametro.Value = ActivoEntidadObjeto.Descripcion;
         //        //Comando.Parameters.Add(Parametro);
-
-               
+       
         //        Adaptador = new SqlDataAdapter(Comando);
         //        ResultadoDatos = new DataSet();
 
