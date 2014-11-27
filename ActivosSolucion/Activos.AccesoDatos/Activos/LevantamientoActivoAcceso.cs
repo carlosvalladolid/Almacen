@@ -14,6 +14,77 @@ namespace Activos.AccesoDatos.Activos
 {
     public class LevantamientoActivoAcceso : Base
     {
+        public ResultadoEntidad InsertarLevantamiento(SqlConnection Conexion, SqlTransaction Transaccion, LevantamientoActivoEntidad LevantamientoActivoEntidadObjeto)
+        {
+            SqlCommand Comando;
+            SqlParameter Parametro;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+
+            try
+            {
+                Comando = new SqlCommand("InsertarLevantamientoProcedimiento", Conexion);
+                Comando.CommandType = CommandType.StoredProcedure;
+
+                Comando.Transaction = Transaccion;
+
+                Parametro = new SqlParameter("LevantamientoID", SqlDbType.Int);
+                Parametro.Value = LevantamientoActivoEntidadObjeto.LevantamientoID;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("CadenaActivosXML", SqlDbType.Xml);
+                Parametro.Value = LevantamientoActivoEntidadObjeto.CadenaActivosXML;
+                Comando.Parameters.Add(Parametro);
+
+                Comando.ExecuteNonQuery();
+
+                Resultado.ErrorId = (int)ConstantePrograma.LevantamientoActivo.LevantamientoActivoGuardadoCorrectamente;
+
+                return Resultado;
+            }
+            catch (SqlException sqlEx)
+            {
+                Resultado.ErrorId = sqlEx.Number;
+                Resultado.DescripcionError = sqlEx.Message;
+
+                return Resultado;
+            }
+        }
+
+        public ResultadoEntidad InsertarLevantamientoEncabezado(SqlConnection Conexion, SqlTransaction Transaccion, LevantamientoActivoEntidad LevantamientoActivoEntidadObjeto)
+        {
+            SqlCommand Comando;
+            SqlParameter Parametro;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+
+            try
+            {
+                Comando = new SqlCommand("InsertarLevantamientoEncabezadoProcedimiento", Conexion);
+                Comando.CommandType = CommandType.StoredProcedure;
+
+                Comando.Transaction = Transaccion;
+
+                Parametro = new SqlParameter("UsuarioId", SqlDbType.SmallInt);
+                Parametro.Value = LevantamientoActivoEntidadObjeto.UsuarioIdInserto;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("EmpleadoId", SqlDbType.Int);
+                Parametro.Value = LevantamientoActivoEntidadObjeto.EmpleadoId;
+                Comando.Parameters.Add(Parametro);
+
+                Resultado.NuevoRegistroId = int.Parse(Comando.ExecuteScalar().ToString());
+
+                Resultado.ErrorId = (int)ConstantePrograma.LevantamientoActivo.LevantamientoActivoGuardadoCorrectamente;
+
+                return Resultado;
+            }
+            catch (SqlException sqlEx)
+            {
+                Resultado.ErrorId = sqlEx.Number;
+                Resultado.DescripcionError = sqlEx.Message;
+
+                return Resultado;
+            }
+        }
 
         //public ResultadoEntidad SeleccionarLevantamientoEmpleadosRelacionados(string CadenaEmpleadoId, string CadenaConexion)
         //{
@@ -143,77 +214,6 @@ namespace Activos.AccesoDatos.Activos
             }
         }
 
-        public ResultadoEntidad InsertarLevantamiento(SqlConnection Conexion, SqlTransaction Transaccion, LevantamientoActivoEntidad LevantamientoActivoEntidadObjeto)
-        {
-            SqlCommand Comando;
-            SqlParameter Parametro;
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-
-            try
-            {
-                Comando = new SqlCommand("InsertarLevantamientoProcedimiento", Conexion);
-                Comando.CommandType = CommandType.StoredProcedure;
-
-                Comando.Transaction = Transaccion;
-
-                Parametro = new SqlParameter("LevantamientoID", SqlDbType.Int);
-                Parametro.Value = LevantamientoActivoEntidadObjeto.LevantamientoID;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("CadenaActivosXML", SqlDbType.Xml);
-                Parametro.Value = LevantamientoActivoEntidadObjeto.CadenaActivosXML;
-                Comando.Parameters.Add(Parametro);
-                
-                Comando.ExecuteNonQuery();
-
-                Resultado.ErrorId = (int)ConstantePrograma.LevantamientoActivo.LevantamientoActivoGuardadoCorrectamente;
-
-                return Resultado;
-            }
-            catch (SqlException sqlEx)
-            {
-                Resultado.ErrorId = sqlEx.Number;
-                Resultado.DescripcionError = sqlEx.Message;
-
-                return Resultado;
-            }
-        }
-
-        public ResultadoEntidad InsertarLevantamientoEncabezado(SqlConnection Conexion, SqlTransaction Transaccion, LevantamientoActivoEntidad LevantamientoActivoEntidadObjeto)
-        {
-            SqlCommand Comando;
-            SqlParameter Parametro;
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-
-            try
-            {
-                Comando = new SqlCommand("InsertarLevantamientoEncabezadoProcedimiento", Conexion);
-                Comando.CommandType = CommandType.StoredProcedure;
-
-                Comando.Transaction = Transaccion;
-
-                Parametro = new SqlParameter("UsuarioId", SqlDbType.SmallInt);
-                Parametro.Value = LevantamientoActivoEntidadObjeto.UsuarioIdInserto;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("EmpleadoId", SqlDbType.Int);
-                Parametro.Value = LevantamientoActivoEntidadObjeto.EmpleadoId;
-                Comando.Parameters.Add(Parametro);
-
-                Resultado.NuevoRegistroId = int.Parse(Comando.ExecuteScalar().ToString());
-
-                Resultado.ErrorId = (int)ConstantePrograma.LevantamientoActivo.LevantamientoActivoGuardadoCorrectamente;
-
-                return Resultado;
-            }
-            catch (SqlException sqlEx)
-            {
-                Resultado.ErrorId = sqlEx.Number;
-                Resultado.DescripcionError = sqlEx.Message;
-
-                return Resultado;
-            }
-        }
     
     }
 }
