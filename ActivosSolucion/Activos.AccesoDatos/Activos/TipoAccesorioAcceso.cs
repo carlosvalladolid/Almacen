@@ -13,7 +13,6 @@ namespace Activos.AccesoDatos.Activos
 {
     public class TipoAccesorioAcceso : Base
     {
-
         public ResultadoEntidad SeleccionarTipoAccesorio(TipoAccesorioEntidad TipoAccesorioEntidadObjeto, string CadenaConexion)
         {
             DataSet ResultadoDatos = new DataSet();
@@ -51,6 +50,5 @@ namespace Activos.AccesoDatos.Activos
                 return Resultado;
             }
         }
-
     }
 }
