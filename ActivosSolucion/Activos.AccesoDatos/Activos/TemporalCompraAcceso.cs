@@ -14,40 +14,6 @@ namespace Activos.AccesoDatos.Activos
 {
     public class TemporalCompraAcceso : Base
     {
-
-        public ResultadoEntidad LimpiarTemporalTabla(TemporalCompraEntidad TemporalCompraEntidadObjeto, string CadenaConexion)
-        {
-            SqlConnection Conexion = new SqlConnection(CadenaConexion);
-            SqlCommand Comando;
-            SqlParameter Parametro;
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-
-            try
-            {
-                Comando = new SqlCommand("EliminarTemporalRecepcionProcedimiento", Conexion);
-                Comando.CommandType = CommandType.StoredProcedure;
-
-                Parametro = new SqlParameter("TemporalCompraId", SqlDbType.Int);
-                Parametro.Value = TemporalCompraEntidadObjeto.TemporalCompraId;
-                Comando.Parameters.Add(Parametro);
-
-                Conexion.Open();
-                Comando.ExecuteNonQuery();
-                Conexion.Close();
-
-                Resultado.ErrorId = (int)ConstantePrograma.TemporalCompra.TemporalCompraEliminadoCorrectamente;
-
-                return Resultado;
-            }
-            catch (SqlException sqlEx)
-            {
-                Resultado.ErrorId = sqlEx.Number;
-                Resultado.DescripcionError = sqlEx.Message;
-
-                return Resultado;
-            }
-        }
-
         public ResultadoEntidad InsertarTemporalCompra(TemporalCompraEntidad TemporalCompraEntidadObjeto, string CadenaConexion)
         {
             SqlConnection Conexion = new SqlConnection(CadenaConexion);
@@ -80,6 +46,38 @@ namespace Activos.AccesoDatos.Activos
                 return Resultado;
             }
         }
+        
+        public ResultadoEntidad LimpiarTemporalTabla(TemporalCompraEntidad TemporalCompraEntidadObjeto, string CadenaConexion)
+        {
+            SqlConnection Conexion = new SqlConnection(CadenaConexion);
+            SqlCommand Comando;
+            SqlParameter Parametro;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
 
+            try
+            {
+                Comando = new SqlCommand("EliminarTemporalRecepcionProcedimiento", Conexion);
+                Comando.CommandType = CommandType.StoredProcedure;
+
+                Parametro = new SqlParameter("TemporalCompraId", SqlDbType.Int);
+                Parametro.Value = TemporalCompraEntidadObjeto.TemporalCompraId;
+                Comando.Parameters.Add(Parametro);
+
+                Conexion.Open();
+                Comando.ExecuteNonQuery();
+                Conexion.Close();
+
+                Resultado.ErrorId = (int)ConstantePrograma.TemporalCompra.TemporalCompraEliminadoCorrectamente;
+
+                return Resultado;
+            }
+            catch (SqlException sqlEx)
+            {
+                Resultado.ErrorId = sqlEx.Number;
+                Resultado.DescripcionError = sqlEx.Message;
+
+                return Resultado;
+            }
+        }  
     }
 }
