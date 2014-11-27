@@ -115,6 +115,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
         //    RequisicionEntidad RequisicionObjetoEntidad = new RequisicionEntidad();
 
         //    RequisicionObjetoEntidad.RequisicionId = TemporalRequisicionIdHidden.Value;
+        //    RequisicionObjetoEntidad.EmpleadoId 
         //    GuardarRequisicion(RequisicionObjetoEntidad);
 
 
