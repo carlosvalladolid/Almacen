@@ -28,12 +28,19 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             protected void Page_Load(object sender, EventArgs e)
             {
-
+                Inicio();
             }
         #endregion
 
         #region "Métodos"
+            private void Inicio()
+            {
+                if (Page.IsPostBack)
+                    return;
 
+                TablaOrden.DataSource = null;
+                TablaOrden.DataBind();
+            }
         #endregion
     }
 }

@@ -167,6 +167,15 @@ namespace Almacen.Web.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.Button BotonAgregar;
         
         /// <summary>
+        /// TablaOrden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView TablaOrden;
+        
+        /// <summary>
         /// BotonGuardar control.
         /// </summary>
         /// <remarks>
@@ -201,5 +210,17 @@ namespace Almacen.Web.Aplicacion.Almacen {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdateProgress AssociatedUpdate;
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new Almacen.Web.Incluir.Plantilla.PlantillaPrivada Master {
+            get {
+                return ((Almacen.Web.Incluir.Plantilla.PlantillaPrivada)(base.Master));
+            }
+        }
     }
 }

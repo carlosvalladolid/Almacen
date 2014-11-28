@@ -111,7 +111,50 @@
                 </table>
 
                 <div class="DivTabla">
-                    
+                    <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
+                        CssClass="TablaInformacion" DataKeyNames="OrdenId" ID="TablaOrden"
+                        runat="server" PageSize="10">
+                        <EmptyDataTemplate>
+                            <table class="TablaVacia">
+                                <tr class="Encabezado">
+                                    <th style="width: 35px;"></th>
+                                    <th style="width: 100px;">Clave</th>
+                                    <th>Descripción</th>
+                                    <th style="width: 125px;">Familia</th>
+                                    <th style="width: 125px;">Marca</th>
+                                    <th style="width: 125px;">Cantidad</th> 
+                                 </tr>
+                                <tr>
+                                    <td colspan="6" style="text-align: center;">No se encontró información con los parámetros seleccionados</td>
+                                </tr>
+                            </table>
+                        </EmptyDataTemplate>
+                        <HeaderStyle CssClass="Encabezado" />
+                        <PagerStyle CssClass="Paginacion" HorizontalAlign="Right" />
+                        <Columns>
+                            <asp:TemplateField HeaderText="">
+                                <ItemTemplate>
+                                    <asp:ImageButton AlternateText="Quitar" CommandArgument='<%#Container.DataItemIndex%>' CommandName="Agregar" ID="BotonQuitar" ImageUrl="/Imagen/Icono/IconoQuitar.png" runat="server" />
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Center" Width="35px" />
+                            </asp:TemplateField>
+                            <asp:BoundField DataField="ClaveProducto" HeaderText="Clave" ItemStyle-HorizontalAlign="Left">
+                                <HeaderStyle HorizontalAlign="Center" Width="100px" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="DescripcionProducto" HeaderText="Descripción" ItemStyle-HorizontalAlign="Left">
+                                <HeaderStyle HorizontalAlign="Center" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="NombreFamilia" HeaderText="Familia" ItemStyle-HorizontalAlign="Left">
+                                <HeaderStyle HorizontalAlign="Center" Width="125px" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="NombreMarca" HeaderText="Marca" ItemStyle-HorizontalAlign="Left">
+                                <HeaderStyle HorizontalAlign="Center" Width="125px" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" ItemStyle-HorizontalAlign="Left">
+                                <HeaderStyle HorizontalAlign="Center" Width="125px" />
+                            </asp:BoundField>                                 
+                        </Columns>
+                    </asp:GridView>
                 </div>
 
                 <table class="TablaFormulario">
