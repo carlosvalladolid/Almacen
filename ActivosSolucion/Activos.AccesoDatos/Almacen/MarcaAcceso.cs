@@ -111,7 +111,6 @@ namespace Activos.AccesoDatos.Almacen
                Parametro.Value = MarcaEntidadObjeto.Nombre;
                Comando.Parameters.Add(Parametro);
 
-
                Parametro = new SqlParameter("EstatusId", SqlDbType.SmallInt);
                Parametro.Value = MarcaEntidadObjeto.EstatusId;
                Comando.Parameters.Add(Parametro);
@@ -190,5 +189,5 @@ namespace Activos.AccesoDatos.Almacen
                return Resultado;
            }
        }
-    }
+   }
 }
