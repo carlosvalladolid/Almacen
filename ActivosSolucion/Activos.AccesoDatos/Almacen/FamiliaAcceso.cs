@@ -30,7 +30,6 @@ namespace Activos.AccesoDatos.Almacen
                Parametro.Value = FamiliaEntidadObjeto.FamiliaId;
                Comando.Parameters.Add(Parametro);
 
-
                Parametro = new SqlParameter("DependenciaId", SqlDbType.SmallInt);
                Parametro.Value = FamiliaEntidadObjeto.DependenciaId;
                Comando.Parameters.Add(Parametro);
@@ -46,7 +45,6 @@ namespace Activos.AccesoDatos.Almacen
                Parametro = new SqlParameter("UsuarioIdModifico", SqlDbType.SmallInt);
                Parametro.Value = FamiliaEntidadObjeto.UsuarioIdModifico;
                Comando.Parameters.Add(Parametro);
-
 
                Conexion.Open();
                Comando.ExecuteNonQuery();
@@ -110,7 +108,6 @@ namespace Activos.AccesoDatos.Almacen
                Comando = new SqlCommand("InsertarFamiliaProcedimiento", Conexion);
                Comando.CommandType = CommandType.StoredProcedure;
 
-
                Parametro = new SqlParameter("DependenciaId", SqlDbType.SmallInt);
                Parametro.Value = FamiliaEntidadObjeto.DependenciaId;
                Comando.Parameters.Add(Parametro);
@@ -118,7 +115,6 @@ namespace Activos.AccesoDatos.Almacen
                Parametro = new SqlParameter("Nombre", SqlDbType.VarChar);
                Parametro.Value = FamiliaEntidadObjeto.Nombre;
                Comando.Parameters.Add(Parametro);
-
 
                Parametro = new SqlParameter("EstatusId", SqlDbType.SmallInt);
                Parametro.Value = FamiliaEntidadObjeto.EstatusId;
