@@ -19,7 +19,7 @@ using Activos.Comun.Fecha;
 using Activos.Entidad.Catalogo;
 using Activos.Entidad.General;
 using Activos.Entidad.Almacen;
-//using Activos.Entidad.Activos;
+using Activos.Entidad.Seguridad;
 using Activos.ProcesoNegocio.Almacen;
 using Activos.ProcesoNegocio.Catalogo;
 
@@ -29,10 +29,10 @@ namespace Activos.Almacen.Aplicacion.Almacen
     {
         #region "Eventos"
 
-        protected void BotonBusquedaEmpleado_Click(object sender, EventArgs e)
-        {
-            BuscarEmpleado();
-        }
+        //protected void BotonBusquedaEmpleado_Click(object sender, EventArgs e)
+        //{
+        //    BuscarEmpleado();
+        //}
 
         protected void BotonGuardar_Click(object sender, ImageClickEventArgs e)
         {
@@ -69,11 +69,11 @@ namespace Activos.Almacen.Aplicacion.Almacen
             SeleccionarSubfamilia();
         }
       
-        protected void TablaEmpleado_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            TablaEmpleado.PageIndex = e.NewPageIndex;
-            BuscarEmpleado();
-        }
+        //protected void TablaEmpleado_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        //{
+        //    TablaEmpleado.PageIndex = e.NewPageIndex;
+        //    BuscarEmpleado();
+        //}
       
         #endregion
 
@@ -147,38 +147,59 @@ namespace Activos.Almacen.Aplicacion.Almacen
             }
 
         }
-        
-        
-        
-        protected void BuscarEmpleado()
-        {
-            RequisicionEntidad RequisicionEntidadObjeto = new RequisicionEntidad();
-            RequisicionEntidadObjeto.Nombre = SolicitanteBusqueda.Text.Trim();
-            BuscarEmpleado(RequisicionEntidadObjeto);
-        }
 
-        protected void BuscarEmpleado(RequisicionEntidad RequisicionObjetoEntidad)
+        protected void CargarInformacionUsuario()
         {
             ResultadoEntidad Resultado = new ResultadoEntidad();
             RequisicionProceso RequisicionProcesoNegocio = new RequisicionProceso();
+            RequisicionEntidad RequisicionObjetoEntidad = new RequisicionEntidad();
+            UsuarioEntidad UsuarioSessionEntidad = new UsuarioEntidad();
+
+            UsuarioSessionEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
+
+            RequisicionObjetoEntidad.EmpleadoId = UsuarioSessionEntidad.UsuarioId;
 
             Resultado = RequisicionProcesoNegocio.SeleccionarEmpleado(RequisicionObjetoEntidad);
 
+
             if (Resultado.ErrorId == 0)
             {
-                if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
-                    TablaEmpleado.CssClass = ConstantePrograma.ClaseTablaVacia;
-                else
-                    TablaEmpleado.CssClass = ConstantePrograma.ClaseTabla;
-
-                TablaEmpleado.DataSource = Resultado.ResultadoDatos;
-                TablaEmpleado.DataBind();
+                EmpleadoIdHidden.Value = Resultado.ResultadoDatos.Tables[0].Rows[0]["EmpleadoId"].ToString();
+                SolicitanteNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Nombre"].ToString();
+               // DependenciaNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Dependencia"].ToString();
+                DireccionNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Direccion"].ToString();
+                PuestoNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Puesto"].ToString();
+                //JefeInmediatoNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Jefe"].ToString();
+                JefeIdHidden.Value = Resultado.ResultadoDatos.Tables[0].Rows[0]["EmpleadoIdJefe"].ToString();
             }
             else
             {
-               // EtiquetaControlBuscarEmpleadoMensaje.Text = TextoError.ErrorGenerico;
+                EtiquetaMensaje.Text = TextoError.ErrorGenerico;
             }
         }
+
+        //protected void BuscarEmpleado(RequisicionEntidad RequisicionObjetoEntidad)
+        //{
+        //    ResultadoEntidad Resultado = new ResultadoEntidad();
+        //    RequisicionProceso RequisicionProcesoNegocio = new RequisicionProceso();
+
+        //    Resultado = RequisicionProcesoNegocio.SeleccionarEmpleado(RequisicionObjetoEntidad);
+
+        //    if (Resultado.ErrorId == 0)
+        //    {
+        //        if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
+        //            TablaEmpleado.CssClass = ConstantePrograma.ClaseTablaVacia;
+        //        else
+        //            TablaEmpleado.CssClass = ConstantePrograma.ClaseTabla;
+
+        //        TablaEmpleado.DataSource = Resultado.ResultadoDatos;
+        //        TablaEmpleado.DataBind();
+        //    }
+        //    else
+        //    {
+        //       // EtiquetaControlBuscarEmpleadoMensaje.Text = TextoError.ErrorGenerico;
+        //    }
+        //}
       
         protected void SeleccionarClave()
         {
@@ -346,6 +367,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
             if (Page.IsPostBack)
                 return;
 
+            CargarInformacionUsuario();
             SeleccionarMarca();
             SeleccionarFamilia();
             SeleccionarSubfamilia();
@@ -353,8 +375,8 @@ namespace Activos.Almacen.Aplicacion.Almacen
             TablaRequisicion.DataSource = null;
             TablaRequisicion.DataBind();
 
-            TablaEmpleado.DataSource = null;
-            TablaEmpleado.DataBind();
+            //TablaEmpleado.DataSource = null;
+            //TablaEmpleado.DataBind();
 
         }
 
@@ -427,7 +449,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         protected void LimpiarNuevoRegistro()
         {
-            SolicitanteBusqueda.Text = "";
+            SolicitanteNuevo.Text = "";
             DependenciaNuevo.Text = "";
             DireccionNuevo.Text = "";
             PuestoNuevo.Text = "";
@@ -436,12 +458,13 @@ namespace Activos.Almacen.Aplicacion.Almacen
             EmpleadoIdHidden.Value = "";
             JefeIdHidden.Value = "";
 
-            TablaEmpleado.DataSource = null;
-            TablaEmpleado.DataBind();
+            TablaRequisicion.DataSource = null;
+            TablaRequisicion.DataBind();
             EtiquetaMensaje.Text = "";
         
         
         }
+
 
         //protected void TablaEmpleadoEventoComando(GridViewCommandEventArgs e)
         //{
@@ -462,9 +485,9 @@ namespace Activos.Almacen.Aplicacion.Almacen
         //    {
         //        case "SeleccionarEmpleado":
         //            EmpleadoId = int.Parse(TablaEmpleado.DataKeys[intFila]["EmpleadoId"].ToString());
-        //            EmpleadoIdHidden.Value = Int16.Parse(EmpleadoId);
-        //            JefeId = Int16.Parse(TablaEmpleado.DataKeys[intFila]["EmpleadoIdJefe"].ToString());
-        //            JefeIdHidden.Value = Int16.Parse(JefeId);
+        //           // EmpleadoIdHidden.Value = Int16.Parse(EmpleadoId);
+        //            JefeId = int.Parse(TablaEmpleado.DataKeys[intFila]["EmpleadoIdJefe"].ToString());
+        //         //   JefeIdHidden.Value = Int16.Parse(JefeId);
         //            break;
 
         //        default:

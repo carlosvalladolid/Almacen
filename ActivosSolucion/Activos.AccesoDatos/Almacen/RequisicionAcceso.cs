@@ -230,10 +230,13 @@ namespace Activos.AccesoDatos.Almacen
                 Comando = new SqlCommand("SeleccionarEmpleadoProcedimiento", Conexion);
                 Comando.CommandType = CommandType.StoredProcedure;
 
-              
-                Parametro = new SqlParameter("Nombre", SqlDbType.VarChar);
-                Parametro.Value = RequisicionEntidadObjeto.Nombre;
+                Parametro = new SqlParameter("EmpleadoId", SqlDbType.Int);
+                Parametro.Value = RequisicionEntidadObjeto.EmpleadoId;
                 Comando.Parameters.Add(Parametro);
+              
+                //Parametro = new SqlParameter("Nombre", SqlDbType.VarChar);
+                //Parametro.Value = RequisicionEntidadObjeto.Nombre;
+                //Comando.Parameters.Add(Parametro);
 
                 Adaptador = new SqlDataAdapter(Comando);
                 ResultadoDatos = new DataSet();

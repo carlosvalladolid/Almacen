@@ -41,49 +41,13 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.Panel PanelNuevoRegistroSolicitante;
         
         /// <summary>
-        /// PanelBusquedaSolicitante control.
+        /// SolicitanteNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelBusquedaSolicitante;
-        
-        /// <summary>
-        /// SolicitanteBusqueda control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SolicitanteBusqueda;
-        
-        /// <summary>
-        /// BotonBusquedaEmpleado control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton BotonBusquedaEmpleado;
-        
-        /// <summary>
-        /// ImageButton2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton2;
-        
-        /// <summary>
-        /// TablaEmpleado control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView TablaEmpleado;
+        protected global::System.Web.UI.WebControls.TextBox SolicitanteNuevo;
         
         /// <summary>
         /// DependenciaNuevo control.
@@ -316,6 +280,6 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-       
+      
     }
 }

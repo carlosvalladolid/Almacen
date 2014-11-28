@@ -33,7 +33,7 @@
               
               <asp:Panel CssClass="NewRowDiv" ID="PanelNuevoRegistroSolicitante" Visible="true" runat="server">
               
-                  <asp:Panel ID="PanelBusquedaSolicitante" Visible="true" runat="server"> 
+    <%--              <asp:Panel ID="PanelBusquedaSolicitante" Visible="true" runat="server"> 
                   
                        <table class="FormTable">
                          <tr>
@@ -52,8 +52,10 @@
                       </table>
                     
                       <div id="DivTablaControl"> 
-                              <asp:GridView AllowPaging="false" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0" 
-                                  CssClass="TablaInformacion" DataKeyNames="EmpleadoId" ID="TablaEmpleado" OnRowCommand="TablaEmpleado_RowCommand" runat="server">
+                              <asp:GridView AllowPaging="false" AllowSorting="false" AutoGenerateColumns="false" CssClass="TablaInformacion" 
+                                  DataKeyNames="EmpleadoId" ID="TablaEmpleado" OnPageIndexChanging="TablaEmpleado_PageIndexChanging"                                   
+                                  OnRowCommand="TablaEmpleado_RowCommand" runat="server">
+                                  
                                   <EmptyDataTemplate>
                                       <table class="TablaVacia">
                                           <tr class="Encabezado">
@@ -105,22 +107,29 @@
                             
                       </div>       
                   </asp:Panel>               
-              
+             --%> 
               
                   <table class="FormTable">
-                  <tr>
+                     <tr>
+                            <td class="Nombre">Solicitante</td>
+                            <td class="Espacio">*</td>
+                            <td class="Campo"> <asp:TextBox ID="SolicitanteNuevo"  CssClass="CajaTextoGrande" MaxLength="10" runat="server"></asp:TextBox>&nbsp;</td>
+                     </tr>
+                  
+                  
+                    <tr>
                         <td class="Nombre">Dependencia</td>
                         <td class="Espacio"></td>
                         <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="DependenciaNuevo" runat="server" Text=""></asp:TextBox></td> 
                      </tr>
               
-                  <tr>
+                    <tr>
                         <td class="Nombre">Dirección</td>
                         <td class="Espacio"></td>
                         <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="DireccionNuevo"  runat="server" Text=""></asp:TextBox></td>
                     </tr>
                     
-                  <tr>
+                    <tr>
                         <td class="Nombre">Puesto</td>
                         <td class="Espacio"></td>
                         <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="PuestoNuevo" runat="server" Text=""></asp:TextBox></td>
