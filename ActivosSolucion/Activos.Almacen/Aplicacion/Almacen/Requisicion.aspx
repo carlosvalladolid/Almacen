@@ -31,7 +31,7 @@
              
               <div class="SubTituloDiv">Solicitante</div>
               
-              <asp:Panel CssClass="NewRowDiv" ID="PanelNuevoRegistroSolicitante" Visible="true" runat="server">
+              <asp:Panel CssClass="NewRowDiv" ID="PanelNuevoRegistroSolicitante" Visible="true" Enabled="false" runat="server">
               
     <%--              <asp:Panel ID="PanelBusquedaSolicitante" Visible="true" runat="server"> 
                   
@@ -120,25 +120,25 @@
                     <tr>
                         <td class="Nombre">Dependencia</td>
                         <td class="Espacio"></td>
-                        <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="DependenciaNuevo" runat="server" Text=""></asp:TextBox></td> 
+                        <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="DependenciaNuevo" runat="server" Text=""></asp:TextBox></td> 
                      </tr>
               
                     <tr>
                         <td class="Nombre">Dirección</td>
                         <td class="Espacio"></td>
-                        <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="DireccionNuevo"  runat="server" Text=""></asp:TextBox></td>
+                        <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="DireccionNuevo"  runat="server" Text=""></asp:TextBox></td>
                     </tr>
                     
                     <tr>
                         <td class="Nombre">Puesto</td>
                         <td class="Espacio"></td>
-                        <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="PuestoNuevo" runat="server" Text=""></asp:TextBox></td>
+                        <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="PuestoNuevo" runat="server" Text=""></asp:TextBox></td>
                     </tr>
                     
                   <tr>
                         <td class="Nombre">Jefe Inmediato</td>
                         <td class="Espacio"></td>
-                        <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="JefeInmediatoNuevo" runat="server" Text=""></asp:TextBox></td>
+                        <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="JefeInmediatoNuevo" runat="server" Text=""></asp:TextBox></td>
                     </tr>
                 </table>
              </asp:Panel>

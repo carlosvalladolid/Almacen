@@ -29,11 +29,6 @@ namespace Activos.Almacen.Aplicacion.Almacen
     {
         #region "Eventos"
 
-        //protected void BotonBusquedaEmpleado_Click(object sender, EventArgs e)
-        //{
-        //    BuscarEmpleado();
-        //}
-
         protected void BotonGuardar_Click(object sender, ImageClickEventArgs e)
         {
            GuardarRequisicion();
@@ -58,22 +53,11 @@ namespace Activos.Almacen.Aplicacion.Almacen
         {
             TablaRequisicionEventoComando(e);
         }
-
-        //protected void TablaEmpleado_RowCommand(object sender, GridViewCommandEventArgs e)
-        //{
-        //    TablaEmpleadoEventoComando(e);
-        //}
-
+        
         protected void ddlFamilia_SelectedIndexChanged(object sender, EventArgs e)
         {
             SeleccionarSubfamilia();
-        }
-      
-        //protected void TablaEmpleado_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        //{
-        //    TablaEmpleado.PageIndex = e.NewPageIndex;
-        //    BuscarEmpleado();
-        //}
+        }         
       
         #endregion
 
@@ -166,7 +150,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
             {
                 EmpleadoIdHidden.Value = Resultado.ResultadoDatos.Tables[0].Rows[0]["EmpleadoId"].ToString();
                 SolicitanteNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Nombre"].ToString();
-               // DependenciaNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Dependencia"].ToString();
+                DependenciaNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Dependencia"].ToString();
                 DireccionNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Direccion"].ToString();
                 PuestoNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Puesto"].ToString();
                 //JefeInmediatoNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Jefe"].ToString();
@@ -466,35 +450,9 @@ namespace Activos.Almacen.Aplicacion.Almacen
         }
 
 
-        //protected void TablaEmpleadoEventoComando(GridViewCommandEventArgs e)
-        //{
-        //    Int16 intFila = 0;
-        //    int intTamañoPagina = 0;
-        //    int EmpleadoId = 0;
-        //    int JefeId = 0;
-        //    string strCommand = string.Empty;
 
-        //    intFila = Int16.Parse(e.CommandArgument.ToString());
-        //    strCommand = e.CommandName.ToString();
-        //    intTamañoPagina = TablaEmpleado.PageSize;
 
-        //    if (intFila >= intTamañoPagina)
-        //        intFila = (Int16)(intFila - (intTamañoPagina * TablaEmpleado.PageIndex));
-
-        //    switch (strCommand)
-        //    {
-        //        case "SeleccionarEmpleado":
-        //            EmpleadoId = int.Parse(TablaEmpleado.DataKeys[intFila]["EmpleadoId"].ToString());
-        //           // EmpleadoIdHidden.Value = Int16.Parse(EmpleadoId);
-        //            JefeId = int.Parse(TablaEmpleado.DataKeys[intFila]["EmpleadoIdJefe"].ToString());
-        //         //   JefeIdHidden.Value = Int16.Parse(JefeId);
-        //            break;
-
-        //        default:
-        //            // Do nothing
-        //            break;
-        //    }
-        //}
+   
 
         #endregion
 
