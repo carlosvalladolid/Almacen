@@ -23,7 +23,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             protected void ImagenBuscarPreOrden_Click(object sender, ImageClickEventArgs e)
             {
-
+                ValidarRequisicion(RequisicionBox.Text.Trim());
             }
 
             protected void Page_Load(object sender, EventArgs e)
@@ -40,6 +40,36 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 TablaOrden.DataSource = null;
                 TablaOrden.DataBind();
+            }
+
+            private void LimpiarFormulario()
+            {
+
+            }
+
+            private void MostrarMensaje(string Mensaje, string TipoMensaje)
+            {
+                StringBuilder FormatoMensaje = new StringBuilder();
+
+                FormatoMensaje.Append("MostrarMensaje(\"");
+                FormatoMensaje.Append(Mensaje);
+                FormatoMensaje.Append("\", \"");
+                FormatoMensaje.Append(TipoMensaje);
+                FormatoMensaje.Append("\");");
+
+                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
+            }
+
+            private void SeleccionarRequisicion()
+            {
+
+            }
+
+            private void ValidarRequisicion()
+            {
+                // Validar que la requisición tenga un estatus válido
+
+                SeleccionarRequisicion();
             }
         #endregion
     }
