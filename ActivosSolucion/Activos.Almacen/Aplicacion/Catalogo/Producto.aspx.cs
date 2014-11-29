@@ -29,13 +29,13 @@ namespace Almacen.Web.Aplicacion.Catalogo
 
             protected void BotonBusqueda_Click(object sender, EventArgs e)
             {
-              
+              // TextoBusquedaRapida.Text = "";
                 BusquedaAvanzada();
-            }
-
-            protected void AdvancedSearchLink_Click(Object sender, System.EventArgs e)
+            }         
+            protected void BotonBusquedaRapida_Click(object sender, ImageClickEventArgs e)
             {
-
+                DescripcionBusqueda.Text = "";
+                BusquedaAvanzada();
             }
 
             protected void BusquedaAvanzadaLink_Click(Object sender, System.EventArgs e)
@@ -53,9 +53,15 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 CambiarNuevoRegistro();
             }
 
-            protected void BotonBusquedaRapida_Click(object sender, ImageClickEventArgs e)
-            {
 
+            protected void BotonCancelarBusqueda_Click(object sender, EventArgs e)
+            {
+                CambiarBusquedaAvanzada();
+            }
+
+            protected void BotonCancelarNuevo_Click(object sender, EventArgs e)
+            {
+                CambiarNuevoRegistro();
             }
 
             protected void BotonGuardar_Click(object sender, ImageClickEventArgs e)
@@ -84,17 +90,8 @@ namespace Almacen.Web.Aplicacion.Catalogo
             protected void BotonCancelar_Click(object sender, ImageClickEventArgs e)
             {
 
-            }
-        
-            protected void DeleteRecordLink_Click(Object sender, System.EventArgs e)
-            {
-
-            }
-
-            protected void NewRecordLink_Click(Object sender, System.EventArgs e)
-            {
-
-            }
+            }               
+          
 
             protected void Page_Load(object sender, EventArgs e)
             {
@@ -118,9 +115,11 @@ namespace Almacen.Web.Aplicacion.Catalogo
         
             private void Inicio()
                 {
-                    //Master.NuevoRegistroMaster.Click += new EventHandler(NuevoRegistro_Click);
-                    //Master.BusquedaAvanzadaMaster.Click += new EventHandler(BusquedaAvanzadaLink_Click);
-                    //Master.EliminarRegistroMaster.Click += new EventHandler(EliminarRegistroLink_Click);
+                    Master.NuevoRegistroMaster.Click += new EventHandler(NuevoRegistro_Click);
+                    Master.BusquedaAvanzadaMaster.Click += new EventHandler(BusquedaAvanzadaLink_Click);
+                    Master.EliminarRegistroMaster.Click += new EventHandler(EliminarRegistroLink_Click);
+                    
+                
 
                     if (!Page.IsPostBack)
                     {

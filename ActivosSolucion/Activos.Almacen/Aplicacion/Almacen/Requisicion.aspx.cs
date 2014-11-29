@@ -447,12 +447,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
             EtiquetaMensaje.Text = "";
         
         
-        }
-
-
-
-
-   
+        }  
 
         #endregion
 
