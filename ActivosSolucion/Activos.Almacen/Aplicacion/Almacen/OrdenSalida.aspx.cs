@@ -3,6 +3,7 @@ using System.Collections;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
@@ -10,6 +11,8 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
+
+using Activos.Comun.Cadenas;
 
 namespace Almacen.Web.Aplicacion.Almacen
 {
@@ -23,7 +26,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             protected void ImagenBuscarPreOrden_Click(object sender, ImageClickEventArgs e)
             {
-                ValidarRequisicion(RequisicionBox.Text.Trim());
+                //ValidarRequisicion(RequisicionBox.Text.Trim());
             }
 
             protected void Page_Load(object sender, EventArgs e)
