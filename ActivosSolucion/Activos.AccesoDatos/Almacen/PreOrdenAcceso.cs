@@ -10,7 +10,6 @@ using Activos.Entidad.Catalogo;
 using Activos.Entidad.Almacen;
 using Activos.Comun.Constante;
 
-
 namespace Activos.AccesoDatos.Almacen
 {
    public class PreOrdenAcceso:Base
