@@ -54,6 +54,7 @@ namespace Almacen.Web.Aplicacion.Almacen
         #endregion
 
         #region "Métodos"
+
             private void Inicio()
             {
                 if (Page.IsPostBack)
