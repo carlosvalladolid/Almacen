@@ -10,5 +10,5 @@ SELECT * FROM RequisicionDetalle
 
 SELECT * FROM Producto
 
-SELECT * FROM [DefensoriaDB.Catalogo][dbo].Empleado
+SELECT * FROM [DefensoriaDB.Catalogo].[dbo].Empleado
 
