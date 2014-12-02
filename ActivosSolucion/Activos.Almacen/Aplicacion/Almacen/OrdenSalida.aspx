@@ -80,7 +80,7 @@
                     <tr>
                         <td class="Nombre">Familia</td>
                         <td class="Espacio"></td>
-                        <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="FamiliaCombo" runat="server" ></asp:DropDownList></td>
+                        <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="FamiliaCombo" OnSelectedIndexChanged="ddlFamilia_SelectedIndexChanged" AutoPostBack="true" runat="server" ></asp:DropDownList></td>
                     </tr>
                     <tr>
                         <td class="Nombre">Sub familia</td>

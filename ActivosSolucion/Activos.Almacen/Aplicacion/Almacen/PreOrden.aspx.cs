@@ -150,7 +150,6 @@ namespace Almacen.Web.Aplicacion.Almacen
             }
         }
 
-
         protected void InsertarTemporalPreOrdenEncabezadoTemp(TemporalPreOrdenEntidad TemporalPreOrdenObjetoEntidad)
         {
             ResultadoEntidad Resultado = new ResultadoEntidad();
@@ -174,10 +173,6 @@ namespace Almacen.Web.Aplicacion.Almacen
                 }
             }
         }
-
-
-
-
 
         private void Inicio()
         {
