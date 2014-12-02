@@ -83,8 +83,13 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 // ToDo: Cambiar el estilo del grid si está vacío el dataset
 
-                //TablaPreOrden.DataSource = PreOrdenProceso.ResultadoDatos;
-                //TablaPreOrden.DataBind();
+                if (RequisicionProceso.ResultadoDatos.Tables[0].Rows == 0)
+                    LimpiarFormulario();
+                else
+                {
+
+
+                }
             }
 
             private void ValidarRequisicion(string ClaveRequisicion)
