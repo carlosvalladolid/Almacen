@@ -1,0 +1,9 @@
+C:\Sistemas\Almacen\ActivosSolucion\Activos.AccesoDatos\obj\Debug\ResolveAssemblyReference.cache
+C:\Sistemas\Almacen\ActivosSolucion\Activos.AccesoDatos\bin\Debug\Activos.AccesoDatos.dll
+C:\Sistemas\Almacen\ActivosSolucion\Activos.AccesoDatos\bin\Debug\Activos.AccesoDatos.pdb
+C:\Sistemas\Almacen\ActivosSolucion\Activos.AccesoDatos\bin\Debug\Activos.Comun.dll
+C:\Sistemas\Almacen\ActivosSolucion\Activos.AccesoDatos\bin\Debug\Activos.Entidad.dll
+C:\Sistemas\Almacen\ActivosSolucion\Activos.AccesoDatos\bin\Debug\Activos.Entidad.pdb
+C:\Sistemas\Almacen\ActivosSolucion\Activos.AccesoDatos\bin\Debug\Activos.Comun.pdb
+C:\Sistemas\Almacen\ActivosSolucion\Activos.AccesoDatos\obj\Debug\Activos.AccesoDatos.dll
+C:\Sistemas\Almacen\ActivosSolucion\Activos.AccesoDatos\obj\Debug\Activos.AccesoDatos.pdb
