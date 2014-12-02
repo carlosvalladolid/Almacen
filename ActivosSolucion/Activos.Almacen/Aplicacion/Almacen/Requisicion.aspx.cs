@@ -450,7 +450,20 @@ namespace Activos.Almacen.Aplicacion.Almacen
             EtiquetaMensaje.Text = "";
         
         
-        }  
+        }
+
+        private void MostrarMensaje(string Mensaje, string TipoMensaje)
+        {
+            StringBuilder FormatoMensaje = new StringBuilder();
+
+            FormatoMensaje.Append("MostrarMensaje(\"");
+            FormatoMensaje.Append(Mensaje);
+            FormatoMensaje.Append("\", \"");
+            FormatoMensaje.Append(TipoMensaje);
+            FormatoMensaje.Append("\");");
+
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
+        }
 
         #endregion
 

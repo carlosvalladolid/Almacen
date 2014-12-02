@@ -302,7 +302,6 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 }
             }
 
-
             private void MostrarMensaje(string Mensaje, string TipoMensaje)
             {
                 StringBuilder FormatoMensaje = new StringBuilder();
