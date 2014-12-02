@@ -50,6 +50,19 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             private void LimpiarFormulario()
             {
+                RequisicionBox.Text = "";
+                SolicitanteBox.Text = "";
+                DependenciaBox.Text = "";
+                DireccionBox.Text = "";
+                PuestoBox.Text = "";
+                JefeBox.Text = "";
+                //***********************
+                ClaveRequisicionBox.Text = "";
+                FamiliaCombo.SelectedIndex = 0;
+                SubFamiliaCombo.SelectedIndex = 0;
+                MarcaCombo.SelectedIndex = 0;
+                DescripcionBox.Text = "";
+                CantidadBox.Text = "";
 
             }
 

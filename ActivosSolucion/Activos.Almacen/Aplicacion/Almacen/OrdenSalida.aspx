@@ -73,7 +73,7 @@
                         <td class="Nombre">Requisición</td>
                         <td class="Espacio"></td>
                         <td class="Campo">
-                            <asp:TextBox CssClass="CajaTextoChica" ID="TextBox1" MaxLength="10" runat="server" Text="">
+                            <asp:TextBox CssClass="CajaTextoChica" ID="ClaveRequisicionBox" MaxLength="10" runat="server" Text="">
                             </asp:TextBox><asp:ImageButton ID="ImageButton1" ImageUrl="/Imagen/Icono/ImagenBuscar.gif" runat="server" onclick="ImagenBuscarPreOrden_Click" />
                         </td>
                     </tr>
