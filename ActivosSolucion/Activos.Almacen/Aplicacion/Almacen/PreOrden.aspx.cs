@@ -108,7 +108,7 @@ namespace Almacen.Web.Aplicacion.Almacen
         {
             TemporalPreOrdenEntidad TemporalPreOrdenObjetoEntidad = new TemporalPreOrdenEntidad();
 
-            if (TemporalPreOrdenIdHidden.Value != "0")
+            if (TemporalPreOrdenIdHidden.Value == "")
             {
                 TemporalPreOrdenObjetoEntidad.PreOrdenId = TemporalPreOrdenIdHidden.Value;
                 TemporalPreOrdenObjetoEntidad.TemporalPreOrdenId = TemporalPreOrdenIdHidden.Value;

@@ -125,14 +125,17 @@ namespace Activos.Almacen.Aplicacion.Almacen
         {
 
             RecepcionEntidad RecepcionObjetoEntidad = new RecepcionEntidad();
+          
+            if (TemporalRecepcionIdHidden.Value == "")
+            {
+                RecepcionObjetoEntidad.RecepcionId = TemporalRecepcionIdHidden.Value;
+                RecepcionObjetoEntidad.TemporalRecepcionId = TemporalRecepcionIdHidden.Value;
+                RecepcionObjetoEntidad.ProductoId = ProductoIdHidden.Value;
+                RecepcionObjetoEntidad.PrecioUnitario = decimal.Parse(PrecionUnitarioNuevo.Text);
+                RecepcionObjetoEntidad.Cantidad = MontoDocumentoNuevo.Text.Trim();
 
-            RecepcionObjetoEntidad.RecepcionId = TemporalRecepcionIdHidden.Value;
-            RecepcionObjetoEntidad.TemporalRecepcionId = TemporalRecepcionIdHidden.Value;
-            RecepcionObjetoEntidad.ProductoId = ProductoIdHidden.Value;
-            RecepcionObjetoEntidad.PrecioUnitario = decimal.Parse(PrecionUnitarioNuevo.Text);
-            RecepcionObjetoEntidad.Cantidad = MontoDocumentoNuevo.Text.Trim();
-
-            AgregarRecepcion(RecepcionObjetoEntidad);
+                AgregarRecepcion(RecepcionObjetoEntidad);
+            }
         }
 
         protected void AgregarRecepcion(RecepcionEntidad RecepcionObjetoEntidad)

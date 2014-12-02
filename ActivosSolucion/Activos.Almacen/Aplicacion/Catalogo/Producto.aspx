@@ -5,6 +5,14 @@
 
 <asp:Content ID="ContenidoEncabezado" ContentPlaceHolderID="ContenedorEncabezado" runat="server">
     <script language="javascript" src="/Incluir/Javascript/ValidarFormulario.js" type="text/javascript"></script>
+    
+    <script type="text/javascript">
+       // Solo permite ingresar numeros.
+        function soloNumeros(e){
+	        var key = window.Event ? e.which : e.keyCode
+	        return (key >= 48 && key <= 57)
+        }
+</script>
 </asp:Content>
 
 <asp:Content ID="ContenidoCuerpo" ContentPlaceHolderID="ContenedorCuerpo" runat="server">
@@ -94,26 +102,26 @@
                     
 						 <tr>
                             <td class="Nombre">Minimo</td>
-                            <td class="Espacio"></td>
-                            <td class="Campo"><asp:TextBox CssClass="cajatextopequenia" ID="MinimoNuevo" MaxLength="20"  runat="server" ></asp:TextBox></td>
+                            <td class="Requerido">*</td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoPequenia" ID="MinimoNuevo" MaxLength="20" value="" onKeyPress="return soloNumeros(event)"   runat="server" ></asp:TextBox></td>
                         </tr>
                         
                          <tr>
                             <td class="Nombre">Maximo</td>
-                            <td class="Espacio"></td>
-                            <td class="Campo"><asp:TextBox CssClass="cajatextopequenia" ID="MaximoNuevo" MaxLength="20" runat="server" ></asp:TextBox></td>
+                            <td class="Requerido">*</td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoPequenia" ID="MaximoNuevo" MaxLength="20" value="" onKeyPress="return soloNumeros(event)"  runat="server" ></asp:TextBox></td>
                         </tr>
                         
                          <tr>
                             <td class="Nombre">Unidad de Medida</td>
-                            <td class="Espacio"></td>
+                            <td class="Requerido">*</td>
                             <td class="Campo"><asp:DropDownList CssClass="Combopequenia" ID="UnidaddeMedidaIdNuevo"  runat="server"></asp:DropDownList></td>
                         </tr>
                         
                         <tr>
                             <td class="Nombre">Maximo Permitido</td>
-                            <td class="Espacio"></td>
-                            <td class="Campo"><asp:TextBox CssClass="cajatextopequenia" ID="MaximoPermitivoNuevo"  MaxLength="20" runat="server" ></asp:TextBox></td>
+                            <td class="Requerido">*</td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoPequenia" ID="MaximoPermitivoNuevo"  MaxLength="20" value="" onKeyPress="return soloNumeros(event)"  runat="server" ></asp:TextBox></td>
                         </tr>
                         
                          <tr>
@@ -128,6 +136,7 @@
                             <td colspan="3">
                                 <asp:CompareValidator CssClass="TextoError" ControlToValidate="FamiliaIdNuevo" Display="Dynamic" ErrorMessage="" ID="FamiliaIdRequerido" Operator="GreaterThan" ValidationGroup="Guardar" ValueToCompare="0" runat="server"></asp:CompareValidator>
                                 <asp:CompareValidator CssClass="TextoError" ControlToValidate="SubFamiliaIdNuevo" Display="Dynamic" ErrorMessage="" ID="SubFamiliaIdRequerido" Operator="GreaterThan" ValidationGroup="Guardar" ValueToCompare="0" runat="server"></asp:CompareValidator>
+                                <asp:CompareValidator CssClass="TextoError" ControlToValidate="UnidaddeMedidaIdNuevo" Display="Dynamic" ErrorMessage="" ID="UnidaddeMedidaIdRequerido" Operator="GreaterThan" ValidationGroup="Guardar" ValueToCompare="0" runat="server"></asp:CompareValidator>
                                 
                                 <asp:RequiredFieldValidator CssClass="TextoError" ControlToValidate="ClaveNuevo" Display="Dynamic" ErrorMessage="" ID="ClaveRequerido" SetFocusOnError="true" ValidationGroup="Guardar" runat="server"></asp:RequiredFieldValidator>
                                 <asp:RequiredFieldValidator CssClass="TextoError" ControlToValidate="DescripcionNuevo" Display="Dynamic" ErrorMessage="" ID="DescripcionRequerido" SetFocusOnError="true" ValidationGroup="Guardar" runat="server"></asp:RequiredFieldValidator>

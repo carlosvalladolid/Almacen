@@ -13,6 +13,7 @@ using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 
 using Activos.Comun.Constante;
+using Activos.Comun.Cadenas;
 using Activos.Entidad.General;
 using Activos.Entidad.Seguridad;
 using Activos.Entidad.Catalogo;
@@ -239,28 +240,46 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 AlmacenEntidad AlmacenObjetoEntidad = new AlmacenEntidad();
                 UsuarioEntidad UsuarioSessionEntidad = new UsuarioEntidad();
 
-                UsuarioSessionEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
-
-                AlmacenObjetoEntidad.ProductoId = ProductoIdHidden.Value;
-                AlmacenObjetoEntidad.Clave = ClaveNuevo.Text.Trim();
-                AlmacenObjetoEntidad.FamiliaId = Int16.Parse(FamiliaIdNuevo.SelectedValue);
-                AlmacenObjetoEntidad.SubFamiliaId = Int16.Parse(SubFamiliaIdNuevo.SelectedValue);
-                AlmacenObjetoEntidad.MarcaId = Int16.Parse(MarcaIdNuevo.SelectedValue);
-                AlmacenObjetoEntidad.Descripcion = DescripcionNuevo.Text.Trim();
-                AlmacenObjetoEntidad.Minimo = Int16.Parse(MinimoNuevo.Text.Trim());
-                AlmacenObjetoEntidad.Maximo = Int16.Parse(MaximoNuevo.Text.Trim());
-                AlmacenObjetoEntidad.MaximoPermitido = Int16.Parse(MaximoPermitivoNuevo.Text.Trim());
-                AlmacenObjetoEntidad.UnidadMedidaId = (UnidaddeMedidaIdNuevo.SelectedValue);
-
-                if (EstatusProductoNuevo.Checked == true)
+                if (ProductoIdHidden.Value == "")
                 {
-                    AlmacenObjetoEntidad.EstatusId = true;
+
+                    UsuarioSessionEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
+
+                    AlmacenObjetoEntidad.ProductoId = ProductoIdHidden.Value;
+                    AlmacenObjetoEntidad.Clave = ClaveNuevo.Text.Trim();
+                    AlmacenObjetoEntidad.FamiliaId = Int16.Parse(FamiliaIdNuevo.SelectedValue);
+                    AlmacenObjetoEntidad.SubFamiliaId = Int16.Parse(SubFamiliaIdNuevo.SelectedValue);
+                    AlmacenObjetoEntidad.MarcaId = Int16.Parse(MarcaIdNuevo.SelectedValue);
+                    AlmacenObjetoEntidad.Descripcion = DescripcionNuevo.Text.Trim();
+
+                    if (MinimoNuevo.Text == "")
+                    { AlmacenObjetoEntidad.Minimo = 0; }
+                    else
+                    { AlmacenObjetoEntidad.Minimo = Int16.Parse(MinimoNuevo.Text.Trim()); }
+
+                    
+                    if (MaximoNuevo.Text == "")
+                    { AlmacenObjetoEntidad.Maximo = 0; }
+                    else
+                    { AlmacenObjetoEntidad.Maximo = Int16.Parse(MaximoNuevo.Text.Trim()); }
+
+                    if (MaximoPermitivoNuevo.Text == "")
+                    { AlmacenObjetoEntidad.MaximoPermitido = 0; }
+                    else
+                    { AlmacenObjetoEntidad.MaximoPermitido = Int16.Parse(MaximoPermitivoNuevo.Text.Trim()); }
+
+
+                    AlmacenObjetoEntidad.UnidadMedidaId = (UnidaddeMedidaIdNuevo.SelectedValue);
+
+                    if (EstatusProductoNuevo.Checked == true)
+                    { AlmacenObjetoEntidad.EstatusId = true; }
+                    else
+                    { AlmacenObjetoEntidad.EstatusId = false; }
+
+                    GuardarProducto(AlmacenObjetoEntidad);
                 }
-                else
-                {
-                    AlmacenObjetoEntidad.EstatusId = false;
-                }
-                GuardarProducto(AlmacenObjetoEntidad);
+                             
+
             }
 
             protected void GuardarProducto(AlmacenEntidad AlmacenObjetoEntidad)
@@ -279,8 +298,22 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 }
                 else
                 {
-                    EtiquetaMensaje.Text = Resultado.DescripcionError;
+                    MostrarMensaje(Resultado.DescripcionError, ConstantePrograma.TipoErrorAlerta);
                 }
+            }
+
+
+            private void MostrarMensaje(string Mensaje, string TipoMensaje)
+            {
+                StringBuilder FormatoMensaje = new StringBuilder();
+
+                FormatoMensaje.Append("MostrarMensaje(\"");
+                FormatoMensaje.Append(Mensaje);
+                FormatoMensaje.Append("\", \"");
+                FormatoMensaje.Append(TipoMensaje);
+                FormatoMensaje.Append("\");");
+
+                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
             }
 
             private void SeleccionarProducto(AlmacenEntidad AlmacenObjetoEntidad)
@@ -484,6 +517,18 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 {
                     EtiquetaMensaje.Text = TextoError.ErrorGenerico;
                 }
+            }
+
+            protected void SeleccionarTextoError()
+            {
+                ClaveRequerido.ErrorMessage = TextoError.ClaveProducto + "<br />";
+                FamiliaIdRequerido.ErrorMessage = TextoError.FamiliaProducto + "<br />";
+                SubFamiliaIdRequerido.ErrorMessage = TextoError.SubFamiliaProducto + "<br />";
+                DescripcionRequerido.ErrorMessage = TextoError.DescripcionProducto + "<br />";
+                MinimoRequerido.ErrorMessage = TextoError.MinimoProducto + "<br />";
+                MaximoPermitidoRequerido.ErrorMessage = TextoError.MaximoPermitidoProducto + "<br />";
+                UnidaddeMedidaIdRequerido.ErrorMessage = TextoError.UnidaddeMedidaProducto + "<br />";
+                MaximoPermitidoRequerido.ErrorMessage = TextoError.MaximoPermitidoProducto + "<br />";
             }
 
         #endregion

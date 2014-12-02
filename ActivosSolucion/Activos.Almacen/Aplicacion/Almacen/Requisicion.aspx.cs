@@ -68,12 +68,15 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
             RequisicionEntidad RequisicionObjetoEntidad = new RequisicionEntidad();
 
-            RequisicionObjetoEntidad.RequisicionId = TemporalRequisicionIdHidden.Value;
-            RequisicionObjetoEntidad.TemporalRequisicionId = TemporalRequisicionIdHidden.Value;
-            RequisicionObjetoEntidad.ProductoId = ProductoIdHidden.Value;
-            RequisicionObjetoEntidad.Cantidad = Int16.Parse(CantidadNuevo.Text.Trim());
-           
-            AgregarRequisicion(RequisicionObjetoEntidad);
+            if (TemporalRequisicionIdHidden.Value == "")
+            {
+                RequisicionObjetoEntidad.RequisicionId = TemporalRequisicionIdHidden.Value;
+                RequisicionObjetoEntidad.TemporalRequisicionId = TemporalRequisicionIdHidden.Value;
+                RequisicionObjetoEntidad.ProductoId = ProductoIdHidden.Value;
+                RequisicionObjetoEntidad.Cantidad = Int16.Parse(CantidadNuevo.Text.Trim());
+
+                AgregarRequisicion(RequisicionObjetoEntidad);
+            }
         }
 
         protected void AgregarRequisicion(RequisicionEntidad RequisicionObjetoEntidad)

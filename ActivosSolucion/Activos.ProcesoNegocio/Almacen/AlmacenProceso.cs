@@ -29,7 +29,7 @@ namespace Activos.ProcesoNegocio.Almacen
           
             if (BuscarProductoDuplicada(AlmacenObjetoEntidad) == false)
             {
-                  if (AlmacenObjetoEntidad.ProductoId =="0")
+                  if (AlmacenObjetoEntidad.ProductoId =="")
                   {
                    
                       AlmacenObjetoEntidad.ProductoId = Guid.NewGuid().ToString();

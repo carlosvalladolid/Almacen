@@ -263,6 +263,16 @@ namespace Activos.Comun.Constante
         public const string OrdenConPreOrdenIdVacio = "Se debe proporcionar un identificador de PreOrden";
         public const string OrdenConPreOrdenId = "La preorden proporcionada ya tiene una orden de compra asignada";
 
+        //pantalla de Producto de Almacen
+        public const string ClaveProducto = "· El campo <b>Clave</b> es obligatorio";
+        public const string FamiliaProducto = "· El campo <b>Familia</b> es obligatorio";
+        public const string SubFamiliaProducto = "· El campo <b>SubFamilia</b> es obligatorio";
+        public const string MarcaProducto = "· El campo <b>Marca</b> es obligatorio";
+        public const string DescripcionProducto = "· El campo <b>Descripcion</b> es obligatorio";
+        public const string MinimoProducto = "· El campo <b>Minimo</b> es obligatorio";
+        public const string MaximoProducto = "· El campo <b>Maximo</b> es obligatorio";
+        public const string UnidaddeMedidaProducto = "· El campo <b>Unidad de Medida</b> es obligatorio";
+        public const string MaximoPermitidoProducto = "· El campo <b>MaximoPermitido</b> es obligatorio";
 
         public enum Error
         {
