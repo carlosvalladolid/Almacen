@@ -143,7 +143,11 @@ namespace Activos.AccesoDatos.Almacen
 
                     Parametro = new SqlParameter("EstatusId", SqlDbType.SmallInt);
                     Parametro.Value = RequisicionEntidadObjeto.EstatusId;
-                    Comando.Parameters.Add(Parametro);              
+                    Comando.Parameters.Add(Parametro);
+
+                    //Parametro = new SqlParameter("Clave", SqlDbType.VarChar);
+                    //Parametro.Value = RequisicionEntidadObjeto.Clave;
+                    //Comando.Parameters.Add(Parametro);
 
                     Conexion.Open();
                     Comando.ExecuteNonQuery();

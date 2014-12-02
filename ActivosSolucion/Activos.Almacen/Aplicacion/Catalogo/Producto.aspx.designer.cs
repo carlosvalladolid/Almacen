@@ -194,6 +194,69 @@ namespace Almacen.Web.Aplicacion.Catalogo {
         protected global::System.Web.UI.WebControls.CheckBox EstatusProductoNuevo;
         
         /// <summary>
+        /// FamiliaIdRequerido control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator FamiliaIdRequerido;
+        
+        /// <summary>
+        /// SubFamiliaIdRequerido control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator SubFamiliaIdRequerido;
+        
+        /// <summary>
+        /// ClaveRequerido control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ClaveRequerido;
+        
+        /// <summary>
+        /// DescripcionRequerido control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator DescripcionRequerido;
+        
+        /// <summary>
+        /// MinimoRequerido control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator MinimoRequerido;
+        
+        /// <summary>
+        /// MaximoRequerido control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator MaximoRequerido;
+        
+        /// <summary>
+        /// MaximoPermitidoRequerido control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator MaximoPermitidoRequerido;
+        
+        /// <summary>
         /// BotonGuardar control.
         /// </summary>
         /// <remarks>
@@ -264,15 +327,17 @@ namespace Almacen.Web.Aplicacion.Catalogo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField ClaveIdHidden;
-        
+
         /// <summary>
         /// Master property.
         /// </summary>
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-        public new Incluir.Plantilla.PlantillaPrivada Master {
-            get {
+        public new Incluir.Plantilla.PlantillaPrivada Master
+        {
+            get
+            {
                 return ((Incluir.Plantilla.PlantillaPrivada)(base.Master));
             }
         }

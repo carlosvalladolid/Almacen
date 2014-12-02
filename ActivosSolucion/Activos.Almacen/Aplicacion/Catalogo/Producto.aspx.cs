@@ -32,6 +32,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
               // TextoBusquedaRapida.Text = "";
                 BusquedaAvanzada();
             }         
+
             protected void BotonBusquedaRapida_Click(object sender, ImageClickEventArgs e)
             {
                 DescripcionBusqueda.Text = "";
@@ -52,7 +53,6 @@ namespace Almacen.Web.Aplicacion.Catalogo
             {
                 CambiarNuevoRegistro();
             }
-
 
             protected void BotonCancelarBusqueda_Click(object sender, EventArgs e)
             {
@@ -90,8 +90,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
             protected void BotonCancelar_Click(object sender, ImageClickEventArgs e)
             {
 
-            }               
-          
+            }                         
 
             protected void Page_Load(object sender, EventArgs e)
             {
@@ -114,23 +113,20 @@ namespace Almacen.Web.Aplicacion.Catalogo
         #region "Métodos"         
         
             private void Inicio()
-                {
-                    Master.NuevoRegistroMaster.Click += new EventHandler(NuevoRegistro_Click);
-                    Master.BusquedaAvanzadaMaster.Click += new EventHandler(BusquedaAvanzadaLink_Click);
-                    Master.EliminarRegistroMaster.Click += new EventHandler(EliminarRegistroLink_Click);
-                    
-                
+            {
+                Master.NuevoRegistroMaster.Click += new EventHandler(NuevoRegistro_Click);
+                Master.BusquedaAvanzadaMaster.Click += new EventHandler(BusquedaAvanzadaLink_Click);
+                Master.EliminarRegistroMaster.Click += new EventHandler(EliminarRegistroLink_Click);
 
-                    if (!Page.IsPostBack)
-                    {
-                        SeleccionarFamilia();
-                        SeleccionarSubfamilia();
-                        SeleccionarMarca();
-                        SeleccionarUnidadMedida();
-                        BusquedaAvanzada();
-                    }
-                    
+                if (!Page.IsPostBack)
+                {
+                    SeleccionarFamilia();
+                    SeleccionarSubfamilia();
+                    SeleccionarMarca();
+                    SeleccionarUnidadMedida();
+                    BusquedaAvanzada();
                 }
+            }
 
             protected void BusquedaAvanzada()
             {

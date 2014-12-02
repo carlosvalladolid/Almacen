@@ -46,6 +46,9 @@
 							</tr>
 							  <tr>
                             <td colspan="3">
+                            
+                            
+                            
                                 <br />
                                 <asp:ImageButton AlternateText="Buscar" ID="BotonBusqueda" ImageUrl="~/Imagen/Boton/BotonBuscar.png"  OnClick="BotonBusqueda_Click"  runat="server" />&nbsp;&nbsp;
                                 <asp:ImageButton AlternateText="Limpiar" ID="BotonLimpiarBusqueda" ImageUrl="~/Imagen/Boton/BotonLimpiar.png" OnClick="BotonLimpiarBusqueda_Click" runat="server" />
@@ -61,7 +64,7 @@
 						<tr>
                             <td class="Nombre">Clave</td>
                             <td class="Requerido">*</td>
-                            <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="ClaveNuevo"  runat="server" ></asp:TextBox></td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="ClaveNuevo" MaxLength="20" runat="server" ></asp:TextBox></td>
                         </tr>
                     
 						
@@ -86,19 +89,19 @@
                          <tr>
                             <td class="Nombre">Descripción</td>
                             <td class="Requerido">*</td>
-                            <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="DescripcionNuevo"  runat="server" ></asp:TextBox></td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="DescripcionNuevo" MaxLength="100" runat="server" ></asp:TextBox></td>
                         </tr>
                     
 						 <tr>
                             <td class="Nombre">Minimo</td>
-                            <td class="Requerido">*</td>
-                            <td class="Campo"><asp:TextBox CssClass="cajatextopequenia" ID="MinimoNuevo"  runat="server" ></asp:TextBox></td>
+                            <td class="Espacio"></td>
+                            <td class="Campo"><asp:TextBox CssClass="cajatextopequenia" ID="MinimoNuevo" MaxLength="20"  runat="server" ></asp:TextBox></td>
                         </tr>
                         
                          <tr>
                             <td class="Nombre">Maximo</td>
-                            <td class="Requerido">*</td>
-                            <td class="Campo"><asp:TextBox CssClass="cajatextopequenia" ID="MaximoNuevo"  runat="server" ></asp:TextBox></td>
+                            <td class="Espacio"></td>
+                            <td class="Campo"><asp:TextBox CssClass="cajatextopequenia" ID="MaximoNuevo" MaxLength="20" runat="server" ></asp:TextBox></td>
                         </tr>
                         
                          <tr>
@@ -109,20 +112,30 @@
                         
                         <tr>
                             <td class="Nombre">Maximo Permitido</td>
-                            <td class="Requerido">*</td>
-                            <td class="Campo"><asp:TextBox CssClass="cajatextopequenia" ID="MaximoPermitivoNuevo"  runat="server" ></asp:TextBox></td>
+                            <td class="Espacio"></td>
+                            <td class="Campo"><asp:TextBox CssClass="cajatextopequenia" ID="MaximoPermitivoNuevo"  MaxLength="20" runat="server" ></asp:TextBox></td>
                         </tr>
                         
                          <tr>
                             <td class="Nombre">Estatus</td>
-                            <td class="Requerido">*</td>
-                            <td class="Campo"><asp:CheckBox ID="EstatusProductoNuevo" Checked="false" runat="server" Text=" Activo" /> </td>
+                            <td class="Espacio"></td>
+                            <td class="Campo"><asp:CheckBox ID="EstatusProductoNuevo" Checked="false" Enabled ="false" runat="server" Text=" Activo" /> </td>
                         </tr>
                         
                         
                         
                         <tr>
                             <td colspan="3">
+                                <asp:CompareValidator CssClass="TextoError" ControlToValidate="FamiliaIdNuevo" Display="Dynamic" ErrorMessage="" ID="FamiliaIdRequerido" Operator="GreaterThan" ValidationGroup="Guardar" ValueToCompare="0" runat="server"></asp:CompareValidator>
+                                <asp:CompareValidator CssClass="TextoError" ControlToValidate="SubFamiliaIdNuevo" Display="Dynamic" ErrorMessage="" ID="SubFamiliaIdRequerido" Operator="GreaterThan" ValidationGroup="Guardar" ValueToCompare="0" runat="server"></asp:CompareValidator>
+                                
+                                <asp:RequiredFieldValidator CssClass="TextoError" ControlToValidate="ClaveNuevo" Display="Dynamic" ErrorMessage="" ID="ClaveRequerido" SetFocusOnError="true" ValidationGroup="Guardar" runat="server"></asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator CssClass="TextoError" ControlToValidate="DescripcionNuevo" Display="Dynamic" ErrorMessage="" ID="DescripcionRequerido" SetFocusOnError="true" ValidationGroup="Guardar" runat="server"></asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator CssClass="TextoError" ControlToValidate="MinimoNuevo" Display="Dynamic" ErrorMessage="" ID="MinimoRequerido" SetFocusOnError="true" ValidationGroup="Guardar" runat="server"></asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator CssClass="TextoError" ControlToValidate="MaximoNuevo" Display="Dynamic" ErrorMessage="" ID="MaximoRequerido" SetFocusOnError="true" ValidationGroup="Guardar" runat="server"></asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator CssClass="TextoError" ControlToValidate="MaximoPermitivoNuevo" Display="Dynamic" ErrorMessage="" ID="MaximoPermitidoRequerido" SetFocusOnError="true" ValidationGroup="Guardar" runat="server"></asp:RequiredFieldValidator>
+                           
+                            
                                 <br />
                                 <asp:ImageButton AlternateText="Guardar" ID="BotonGuardar" ImageUrl="~/Imagen/Boton/BotonGuardar.png" OnClick="BotonGuardar_Click" runat="server" ValidationGroup="Save" />&nbsp;&nbsp;
                                 <asp:ImageButton AlternateText="Limpiar" ID="LimpiarBoton" ImageUrl="~/Imagen/Boton/BotonLimpiar.png"  OnClick="BotonLimpiar_Click" runat="server" ValidationGroup="Save" />&nbsp;&nbsp;

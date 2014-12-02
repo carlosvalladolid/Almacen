@@ -3,8 +3,7 @@
 <%@ Register TagPrefix="wuc" TagName="ControlMenuIzquierdo" Src="~/Incluir/ControlesWeb/ControlMenuIzquierdo.ascx" %>
 
 
-<asp:Content ID="ContenidoEncabezado" ContentPlaceHolderID="ContenedorEncabezado" runat="server">
-           
+<asp:Content ID="ContenidoEncabezado" ContentPlaceHolderID="ContenedorEncabezado" runat="server">           
      <script language="javascript" src="/Incluir/Javascript/ValidarFormulario.js" type="text/javascript"></script>
 </asp:Content>
 
