@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Activos.Entidad.Almacen
 {
-  public  class RequisicionEntidad:Base
+    public  class RequisicionEntidad:Base
     {
         public string _RequisicionId;
         public string _ProductoId;
@@ -13,9 +13,11 @@ namespace Activos.Entidad.Almacen
         public Int32 _EmpleadoId;
         public Int32 _JefeId;
         public Int16 _EstatusId;
+        public string _Clave;
         public string _TemporalRequisicionId;
         public string _Nombre;
 
+        private string _SesionId;
 
         public RequisicionEntidad()
         { 
@@ -25,11 +27,13 @@ namespace Activos.Entidad.Almacen
             _EmpleadoId = 0;
             _JefeId = 0;
             _EstatusId = 0;
+            _Clave = string.Empty;
             _TemporalRequisicionId = string.Empty;
             _Nombre = string.Empty;
-        
+
+            _SesionId = string.Empty;
         }
-      
+
         public string RequisicionId
         {
             get { return _RequisicionId; }
@@ -60,11 +64,16 @@ namespace Activos.Entidad.Almacen
             set { _JefeId = value; }
         }
 
-
         public Int16 EstatusId
         {
             get { return _EstatusId; }
             set { _EstatusId = value; }
+        }
+
+        public string Clave
+        {
+            get { return _Clave; }
+            set { _Clave = value; }
         }
 
         public string TemporalRequisicionId
@@ -73,12 +82,19 @@ namespace Activos.Entidad.Almacen
             set { _TemporalRequisicionId = value; }
         }
 
-
         public string Nombre
         {
             get { return _Nombre; }
             set { _Nombre = value; }
         }
 
+        /// <summary>
+        ///     Identificador de la sesión de usuario.
+        /// </summary>
+        public string SesionId
+        {
+            get { return _SesionId; }
+            set { _SesionId = value; }
+        }
     }
 }
