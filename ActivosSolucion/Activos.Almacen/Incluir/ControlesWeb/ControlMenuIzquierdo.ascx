@@ -9,7 +9,7 @@
     <tr>
         <td class="Space"></td>
         <td></td>
-        <td><a href="/Application/Index.aspx">Ir a la pantalla principal</a></td>
+        <td><a href="/Aplicacion/Inicio.aspx">Ir a la pantalla principal</a></td>
     </tr>
     <tr>
         <td class="Space"></td>
