@@ -29,6 +29,11 @@ namespace Activos.Almacen.Aplicacion.Almacen
     {
         #region "Eventos"
 
+        protected void NuevoRegistro_Click(Object sender, System.EventArgs e)
+        {
+            CambiarNuevoRegistro();
+        }
+
         protected void BotonGuardar_Click(object sender, ImageClickEventArgs e)
         {
            GuardarRequisicion();
@@ -62,6 +67,25 @@ namespace Activos.Almacen.Aplicacion.Almacen
         #endregion
 
         #region "Métodos"
+
+        //private void CambiarBusquedaAvanzada()
+        //{
+        //    PanelBusquedaAvanzada.Visible = !PanelBusquedaAvanzada.Visible;
+        //    PanelNuevoRegistro.Visible = false;
+        //}
+
+        //protected void CambiarEditarRegistro()
+        //{
+        //    PanelBusquedaAvanzada.Visible = false;
+        //    PanelNuevoRegistro.Visible = true;
+        //}
+
+        private void CambiarNuevoRegistro()
+        {
+            //PanelBusquedaAvanzada.Visible = false;
+            PanelNuevoRegistroSolicitante.Visible = !PanelNuevoRegistroSolicitante.Visible;
+            LimpiarNuevoRegistro();
+        }
 
         protected void AgregarDetalleDocumento()
         {
@@ -351,6 +375,12 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         private void Inicio()
         {
+            //Master.NuevoRegistroMaster.Click += new EventHandler(NuevoRegistro_Click);
+            //Master.BusquedaAvanzadaMaster.Click += new EventHandler(BusquedaAvanzadaLink_Click);
+            //Master.EliminarRegistroMaster.Click += new EventHandler(EliminarRegistroLink_Click);
+
+
+
             if (Page.IsPostBack)
                 return;
 
