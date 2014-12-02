@@ -171,8 +171,6 @@ namespace Almacen.Web.Aplicacion.Almacen
                 SubFamiliaCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
             }
 
-
-
             private void MostrarMensaje(string Mensaje, string TipoMensaje)
             {
                 StringBuilder FormatoMensaje = new StringBuilder();
@@ -223,7 +221,6 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 SeleccionarRequisicion(ClaveRequisicion, UsuarioEntidad.SesionId);
             }
-
 
 
         #endregion
