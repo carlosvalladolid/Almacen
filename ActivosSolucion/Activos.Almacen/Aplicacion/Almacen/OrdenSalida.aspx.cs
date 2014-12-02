@@ -142,8 +142,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 ResultadoEntidad Resultado = new ResultadoEntidad();
                 SubFamiliaEntidad SubFamiliaEntidadObjeto = new SubFamiliaEntidad();
                 SubFamiliaProceso SubFamiliaProcesoObjeto = new SubFamiliaProceso();
-
-                //SubFamiliaEntidadObjeto.EstatusId = (Int16)ConstantePrograma.EstatusSubFamilia.Activo;
+               
                 SubFamiliaEntidadObjeto.FamiliaId = Int16.Parse(FamiliaCombo.SelectedValue);
 
                 if (SubFamiliaEntidadObjeto.FamiliaId == 0)
