@@ -68,18 +68,18 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             private void SeleccionarRequisicion(string ClaveRequisicion, string SesionId)
             {
-                RequisicionProceso RequisicionProceso = new RequisicionProceso();
+                //RequisicionProceso RequisicionProceso = new RequisicionProceso();
 
-                RequisicionProceso.RequisicionEntidad.Clave = ClaveRequisicion;
-                RequisicionProceso.RequisicionEntidad.SesionId = SesionId;
+                //RequisicionProceso.RequisicionEntidad.Clave = ClaveRequisicion;
+                //RequisicionProceso.RequisicionEntidad.SesionId = SesionId;
 
-                RequisicionProceso.SeleccionarRequisicionOrdenSalida();
+                //RequisicionProceso.SeleccionarRequisicionOrdenSalida();
 
-                if (RequisicionProceso.ErrorId != 0)
-                {
-                    MostrarMensaje(RequisicionProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
-                    return;
-                }
+                //if (RequisicionProceso.ErrorId != 0)
+                //{
+                //    MostrarMensaje(RequisicionProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                //    return;
+                //}
 
                 // ToDo: Cambiar el estilo del grid si está vacío el dataset
 
