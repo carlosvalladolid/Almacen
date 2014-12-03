@@ -260,39 +260,42 @@ namespace Activos.AccesoDatos.Almacen
             /// <param name="RequisicionEntidad">Entidad de la requisición.</param>
             /// <param name="CadenaConexion">Cadena de conexión a la base de datos.</param>
             /// <returns>Resultado de la búsqueda.</returns>
-            public DataSet SeleccionarRequisicionOrdenSalida(RequisicionEntidad RequisicionEntidad, string CadenaConexion)
-            {
-                DataSet Resultado = new DataSet();
-                SqlConnection Conexion = new SqlConnection(CadenaConexion);
-                SqlCommand Comando;
-                SqlParameter Parametro;
-                SqlDataAdapter Adaptador;
+            //public DataSet SeleccionarRequisicionOrdenSalida(RequisicionEntidad RequisicionEntidad, string CadenaConexion)
+            //{
+            //    DataSet Resultado = new DataSet();
+            //    SqlConnection Conexion = new SqlConnection(CadenaConexion);
+            //    SqlCommand Comando;
+            //    SqlParameter Parametro;
+            //    SqlDataAdapter Adaptador;
 
-                try
-                {
-                    Comando = new SqlCommand("SeleccionarRequisicionOrdenSalida", Conexion);
-                    Comando.CommandType = CommandType.StoredProcedure;
+            //    try
+            //    {
+            //        Comando = new SqlCommand("SeleccionarRequisicionOrdenSalida", Conexion);
+            //        Comando.CommandType = CommandType.StoredProcedure;
 
-                    //Parametro = new SqlParameter("Clave", SqlDbType.VarChar);
-                    //Parametro.Value = RequisicionEntidad.Clave;
-                    //Comando.Parameters.Add(Parametro);
+            //        Parametro = new SqlParameter("Clave", SqlDbType.VarChar);
+            //        Parametro.Value = RequisicionEntidad.Clave;
+            //        Comando.Parameters.Add(Parametro);
 
-                    Adaptador = new SqlDataAdapter(Comando);
+            //        Adaptador = new SqlDataAdapter(Comando);
 
-                    Conexion.Open();
-                    Adaptador.Fill(Resultado);
-                    Conexion.Close();
+            //        Conexion.Open();
+            //        Adaptador.Fill(Resultado);
+            //        Conexion.Close();
 
-                    return Resultado;
-                }
-                catch (SqlException Excepcion)
-                {
-                    _ErrorId = Excepcion.Number;
-                    _DescripcionError = Excepcion.Message;
+            //        return Resultado;
+            //    }
+            //    catch (SqlException Excepcion)
+            //    {
+            //        _ErrorId = Excepcion.Number;
+            //        _DescripcionError = Excepcion.Message;
 
-                    return Resultado;
-                }
-            }
+            //        return Resultado;
+            //    }
+            //}
+
+
+
         #endregion
     }
 }

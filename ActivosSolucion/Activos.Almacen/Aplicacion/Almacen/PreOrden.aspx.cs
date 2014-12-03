@@ -141,7 +141,8 @@ namespace Almacen.Web.Aplicacion.Almacen
             if (Resultado.ErrorId == (int)ConstantePrograma.TemporalPreOrden.TemporalPreOrdenGuardadoCorrectamente)
              {
                 TemporalPreOrdenIdHidden.Value = TemporalPreOrdenObjetoEntidad.PreOrdenId;               
-                LimpiarProducto();                       
+                LimpiarProducto();
+                      
                 SeleccionarTemporalPreOrden();
             }
             else
@@ -156,7 +157,7 @@ namespace Almacen.Web.Aplicacion.Almacen
            TemporalPreOrdenProceso TemporalPreOrdenProcesoNegocio = new TemporalPreOrdenProceso();
             //UsuarioEntidad UsuarioSessionEntidad = new UsuarioEntidad();
 
-            if (TemporalPreOrdenIdHidden.Value != "0")
+            if (TemporalPreOrdenIdHidden.Value == "")
             {
              //   UsuarioSessionEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
                // TemporalCompraObjetoEntidad.UsuarioId = UsuarioSessionEntidad.UsuarioId;
@@ -165,7 +166,9 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 if (Resultado.ErrorId == (int)ConstantePrograma.TemporalPreOrden.TemporalPreOrdenGuardadoCorrectamente)
                 {
-                   // TemporalCompraIdHidden.Value = Resultado.NuevoRegistroId.ToString();
+
+                   // TemporalPreOrdenObjetoEntidad = TemporalPreOrdenObjetoEntidad.PreOrdenId;
+                    // LimpiarProducto();
                 }
                 else
                 {
@@ -361,7 +364,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                         SubFamiliaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["SubFamiliaId"].ToString();
                         MarcaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["MarcaId"].ToString();
                         DescripcionNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["NombreProducto"].ToString();
-                        CantidadNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["MaximoPermitido"].ToString();
+                        //CantidadNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["MaximoPermitido"].ToString();
                         ProductoIdHidden.Value = Resultado.ResultadoDatos.Tables[0].Rows[0]["ProductoId"].ToString();
 
                         AgregarEtiquetaMensaje.Text = "";
