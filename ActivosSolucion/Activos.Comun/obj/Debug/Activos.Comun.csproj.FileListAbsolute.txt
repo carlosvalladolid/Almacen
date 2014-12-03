@@ -1,5 +1,0 @@
-C:\Sistemas\Almacen\ActivosSolucion\Activos.Comun\bin\Debug\Activos.Comun.dll
-C:\Sistemas\Almacen\ActivosSolucion\Activos.Comun\bin\Debug\Activos.Comun.pdb
-C:\Sistemas\Almacen\ActivosSolucion\Activos.Comun\obj\Debug\ResolveAssemblyReference.cache
-C:\Sistemas\Almacen\ActivosSolucion\Activos.Comun\obj\Debug\Activos.Comun.dll
-C:\Sistemas\Almacen\ActivosSolucion\Activos.Comun\obj\Debug\Activos.Comun.pdb
