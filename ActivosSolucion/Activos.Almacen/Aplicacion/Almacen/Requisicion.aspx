@@ -13,10 +13,9 @@
     </div>
 
      <div class="RightBodyDiv">     
-      <asp:UpdatePanel ID="PageUpdate" runat="server">
-          <ContentTemplate>
-          
-               <div class="PageTitleDiv">
+        <asp:UpdatePanel ID="PageUpdate" runat="server">
+            <ContentTemplate>
+                <div class="PageTitleDiv">
                     <table class="PageTitleTable">
                         <tr>
                             <td class="Title">
@@ -28,10 +27,9 @@
                     </table>
                 </div>
              
-              <div class="SubTituloDiv">Solicitante</div>
+                <div class="SubTituloDiv">Solicitante</div>
               
               <asp:Panel CssClass="NewRowDiv" ID="PanelNuevoRegistroSolicitante" Visible="true" Enabled="false" runat="server">
-              
     <%--              <asp:Panel ID="PanelBusquedaSolicitante" Visible="true" runat="server"> 
                   
                        <table class="FormTable">

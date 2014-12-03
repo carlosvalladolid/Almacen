@@ -23,7 +23,7 @@ using Activos.Entidad.Seguridad;
 using Activos.ProcesoNegocio.Almacen;
 using Activos.ProcesoNegocio.Catalogo;
 
-namespace Activos.Almacen.Aplicacion.Almacen
+namespace Almacen.Web.Aplicacion.Almacen
 {
     public partial class Requisicion : System.Web.UI.Page
     {
