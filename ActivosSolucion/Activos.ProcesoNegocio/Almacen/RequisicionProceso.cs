@@ -232,18 +232,23 @@ namespace Activos.ProcesoNegocio.Almacen
             /// <summary>
             ///      Busca la información de una requisición para generar la orden de salida.
             /// </summary>
-            public void SeleccionarRequisicionOrdenSalida()
-            {
-                string CadenaConexion = string.Empty;
-                RequisicionAcceso RequisicionAcceso = new RequisicionAcceso();
+            //public void SeleccionarRequisicionOrdenSalida()
+            //{
+            //    string CadenaConexion = string.Empty;
+            //    RequisicionAcceso RequisicionAcceso = new RequisicionAcceso();
 
-                CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+            //    CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
-                _ResultadoDatos = RequisicionAcceso.SeleccionarRequisicionOrdenSalida(_RequisicionEntidad, CadenaConexion);
+            //    _ResultadoDatos = RequisicionAcceso.SeleccionarRequisicionOrdenSalida(_RequisicionEntidad, CadenaConexion);
 
-                _ErrorId = RequisicionAcceso.ErrorId;
-                _DescripcionError = RequisicionAcceso.DescripcionError;
-            }
+            //    _ErrorId = RequisicionAcceso.ErrorId;
+            //    _DescripcionError = RequisicionAcceso.DescripcionError;
+            //}
+
+
+
+
+           
         #endregion
     }
 }

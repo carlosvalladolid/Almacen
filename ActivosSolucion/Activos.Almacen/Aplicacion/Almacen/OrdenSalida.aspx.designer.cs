@@ -113,31 +113,31 @@ namespace Almacen.Web.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.ImageButton ImageButton1;
         
         /// <summary>
-        /// FamiliaCombo control.
+        /// FamiliaBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList FamiliaCombo;
+        protected global::System.Web.UI.WebControls.TextBox FamiliaBox;
         
         /// <summary>
-        /// SubFamiliaCombo control.
+        /// SubFamiliaBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList SubFamiliaCombo;
+        protected global::System.Web.UI.WebControls.TextBox SubFamiliaBox;
         
         /// <summary>
-        /// MarcaCombo control.
+        /// MarcaBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList MarcaCombo;
+        protected global::System.Web.UI.WebControls.TextBox MarcaBox;
         
         /// <summary>
         /// DescripcionBox control.
@@ -217,6 +217,6 @@ namespace Almacen.Web.Aplicacion.Almacen {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-       
+      
     }
 }

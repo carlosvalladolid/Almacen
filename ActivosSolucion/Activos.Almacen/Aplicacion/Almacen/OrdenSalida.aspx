@@ -70,7 +70,7 @@
 
                 <table class="TablaFormulario">
                     <tr>
-                        <td class="Nombre">Requisición</td>
+                        <td class="Nombre">Clave</td>
                         <td class="Espacio"></td>
                         <td class="Campo">
                             <asp:TextBox CssClass="CajaTextoChica" ID="ClaveRequisicionBox" MaxLength="10" runat="server" Text="">
@@ -80,18 +80,17 @@
                     <tr>
                         <td class="Nombre">Familia</td>
                         <td class="Espacio"></td>
-                        <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="FamiliaCombo" OnSelectedIndexChanged="ddlFamilia_SelectedIndexChanged" AutoPostBack="true" runat="server" ></asp:DropDownList></td>
+                          <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="FamiliaBox" MaxLength="50" runat="server" Text=""></asp:TextBox></td>
                     </tr>
                     <tr>
                         <td class="Nombre">Sub familia</td>
                         <td class="Espacio"></td>
-                        <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="SubFamiliaCombo" runat="server" ></asp:DropDownList></td>
-                    </tr>
+                        <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="SubFamiliaBox" MaxLength="50" runat="server" Text=""></asp:TextBox></td>                 </tr>
                     <tr>
                         <td class="Nombre">Marca</td>
                         <td class="Espacio"></td>
-                        <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="MarcaCombo" runat="server" ></asp:DropDownList></td>
-                    </tr>
+                        <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="MarcaBox" MaxLength="50" runat="server" Text=""></asp:TextBox></td>
+                   </tr>
                     <tr>
                         <td class="Nombre">Descripción</td>
                         <td class="Espacio"></td>
