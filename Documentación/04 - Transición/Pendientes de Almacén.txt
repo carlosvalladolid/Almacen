@@ -1,0 +1,16 @@
+Pendientes
+
+Catálogo de producto
+1. Agregar registros de productos que parezcan reales (*** LISTO ***)
+
+PreOrden
+2. Mostrar correctamente el calendario (*** LISTO ***)
+3. No se debe rellenar el campo de Cantidad (*** LISTO ***)
+4. Modificar el formato del grid
+5. No agrega el segundo producto en la preorden
+
+Estatus para la PreOrden
+1. Incompleta
+2. Sin orden de compra
+3. Con orden de compra
+
