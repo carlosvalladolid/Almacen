@@ -123,9 +123,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         protected void AgregarDetalleDocumento()
         {
-
-            RecepcionEntidad RecepcionObjetoEntidad = new RecepcionEntidad();
-          
+            RecepcionEntidad RecepcionObjetoEntidad = new RecepcionEntidad();          
             if (TemporalRecepcionIdHidden.Value == "")
             {
                 RecepcionObjetoEntidad.RecepcionId = TemporalRecepcionIdHidden.Value;
@@ -147,17 +145,14 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
             if (Resultado.ErrorId == (int)ConstantePrograma.Recepcion.RecepcionGuardadoCorrectamente)
             {
-                TemporalRecepcionIdHidden.Value = RecepcionObjetoEntidad.RecepcionId;
-                // LimpiarNuevoRegistro();
+                TemporalRecepcionIdHidden.Value = RecepcionObjetoEntidad.RecepcionId;              
                 LimpiarRecepcion();          
                 SeleccionarRecepcion();
             }
             else
-            {
-                
+            {                
                 EtiquetaMensaje.Text = Resultado.DescripcionError;
-                LimpiarRecepcion();
-                
+                LimpiarRecepcion();                
             }
         }
      
@@ -177,9 +172,6 @@ namespace Activos.Almacen.Aplicacion.Almacen
                 RecepcionObjetoEntidad.FechaDocumento = FormatoFecha.AsignarFormato(FechaDocumentoNuevo.Text.Trim(), ConstantePrograma.UniversalFormatoFecha);
 
              GuardarRecepcion(RecepcionObjetoEntidad);
-
-
-
         }
 
         protected void GuardarRecepcion(RecepcionEntidad RecepcionObjetoEntidad)
@@ -190,18 +182,15 @@ namespace Activos.Almacen.Aplicacion.Almacen
             Resultado = RecepcionProcesoNegocio.AgregarRecepcionEncabezado(RecepcionObjetoEntidad);
 
             if (Resultado.ErrorId == (int)ConstantePrograma.Recepcion.RecepcionGuardadoCorrectamente)
-            {
-              //  TemporalRecepcionIdHidden.Value = RecepcionObjetoEntidad.RecepcionId;
+            {             
                 LimpiarNuevoRegistro();
-                LimpiarRecepcion();          
-             
+                LimpiarRecepcion();  
             }
             else
             {
                 EtiquetaMensaje.Text = Resultado.DescripcionError;
             }
-        
-        }
+         }
 
         protected void SeleccionarRecepcion()
         {
@@ -589,11 +578,6 @@ namespace Activos.Almacen.Aplicacion.Almacen
             }
 
             TipoDocumentoIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
-
-
-
-
-
         }
 
 
