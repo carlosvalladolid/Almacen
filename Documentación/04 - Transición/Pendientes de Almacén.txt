@@ -7,8 +7,29 @@ PreOrden
 2. Mostrar correctamente el calendario (*** LISTO ***)
 3. No se debe rellenar el campo de Cantidad (*** LISTO ***)
 4. Modificar el formato del grid
-5. No agrega el segundo producto en la preorden
+5. No agrega el segundo producto en la preorden (*** LISTO ***)
 6. Mostrar un mensaje para confirmar que la información se guardó correctamente
+7. Agregar funcionalidad de listado de productos faltantes
+
+Orden de compra
+1. Validar cuando una preorden no existe (mostrar un mensaje)
+2. Está quitando la información del gridview de la preorden
+3. Debe mostrar un campo de texto en el gridview de la orden de compra
+
+Recepción de artículos
+1. Cambiar el estilo de las tablas de los campos
+2. Formato del calendario
+3. Mostrar un mensaje cuando se proporcione una orden de compra que no existe
+4. No muestra el jefe inmediato al proporcionar una orden de compra
+5. Cambiar el nombre del campo Clave por Clave del producto
+6. Validar que la clave propocionada sea la de la orden de compra (Olivia sabe qué onda)
+
+Requisición
+1. Revisar el nombre del solicitante (usuario firmado en la aplicación)
+2. Cambiar nombre de Clave por Clave de producto
+3. Agregar la funcionalidad de búsqueda de productos
+4. El agregar no me muestra los productos en la tabla
+
 
 Estatus para la PreOrden
 1. Incompleta

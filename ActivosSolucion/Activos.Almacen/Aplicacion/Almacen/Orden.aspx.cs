@@ -55,19 +55,19 @@ namespace Almacen.Web.Aplicacion.Almacen
         #region "Métodos"
             private bool ExistePreOrdenConOrden(string PreOrdenId)
             {
-                OrdenProceso OrdenProceso = new OrdenProceso();
+                PreOrdenProceso PreOrdenProceso = new PreOrdenProceso();
 
-                OrdenProceso.OrdenEncabezadoEntidad.PreOrdenId = PreOrdenId;
+                PreOrdenProceso.PreOrdenEntidad.PreOrdenId = PreOrdenId;
 
-                OrdenProceso.SeleccionarOrdenEncabezado();
+                PreOrdenProceso.SeleccionarPreOrdenSinOrden();
 
-                if (OrdenProceso.ErrorId != 0)
+                if (PreOrdenProceso.ErrorId != 0)
                 {
-                    MostrarMensaje(OrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                    MostrarMensaje(PreOrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
                     return false;
                 }
 
-                if (OrdenProceso.ResultadoDatos.Tables[0].Rows.Count == 0)
+                if (PreOrdenProceso.ResultadoDatos.Tables[0].Rows.Count == 0)
                     return false;
                 else
                     return true;
@@ -242,7 +242,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 PreOrdenProceso.PreOrdenEntidad.Clave = PreOrdenId;
                 PreOrdenProceso.PreOrdenEntidad.SesionId = SesionId;
 
-                PreOrdenProceso.SeleccionarPreOrdenSinOrden();
+                PreOrdenProceso.SeleccionarPreOrdenDetalleSinOrden();
 
                 if (PreOrdenProceso.ErrorId != 0)
                 {

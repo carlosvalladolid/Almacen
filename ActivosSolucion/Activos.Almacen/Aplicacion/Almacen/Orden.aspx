@@ -1,6 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Incluir/Plantilla/PlantillaPrivada.Master" AutoEventWireup="true" CodeBehind="Orden.aspx.cs" Inherits="Almacen.Web.Aplicacion.Almacen.Orden" Title="" %>
 
-<%@ MasterType VirtualPath="~/Incluir/Plantilla/PlantillaPrivada.Master" %>
 <%@ Register TagPrefix="wuc" TagName="ControlMenuIzquierdo" Src="~/Incluir/ControlesWeb/ControlMenuIzquierdo.ascx" %>
 
 <asp:Content ID="ContenidoEncabezado" ContentPlaceHolderID="ContenedorEncabezado" runat="server">
@@ -76,19 +75,19 @@
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center" Width="35px" />
                             </asp:TemplateField>
-                            <asp:BoundField DataField="ClaveProducto" HeaderText="Clave" ItemStyle-HorizontalAlign="Left">
+                            <asp:BoundField DataField="ClaveProducto" HeaderText="Clave" ItemStyle-HorizontalAlign="Center">
                                 <HeaderStyle HorizontalAlign="Center" />
                             </asp:BoundField>
                             <asp:BoundField DataField="NombreProducto" HeaderText="Descripción" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="NombreFamilia" HeaderText="Familia" ItemStyle-HorizontalAlign="Left">
+                            <asp:BoundField DataField="NombreFamilia" HeaderText="Familia" ItemStyle-HorizontalAlign="Center">
                                 <HeaderStyle HorizontalAlign="Center" Width="125px" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="NombreMarca" HeaderText="Marca" ItemStyle-HorizontalAlign="Left">
+                            <asp:BoundField DataField="NombreMarca" HeaderText="Marca" ItemStyle-HorizontalAlign="Center">
                                 <HeaderStyle HorizontalAlign="Center" Width="125px" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" ItemStyle-HorizontalAlign="Left">
+                            <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" ItemStyle-HorizontalAlign="Center">
                                 <HeaderStyle HorizontalAlign="Center" Width="125px" />
                             </asp:BoundField>
                         </Columns>
