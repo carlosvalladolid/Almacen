@@ -3,18 +3,17 @@
 <%@ Register TagPrefix="wuc" TagName="ControlMenuIzquierdo" Src="~/Incluir/ControlesWeb/ControlMenuIzquierdo.ascx" %>
 
 <asp:Content ID="ContenidoEncabezado" ContentPlaceHolderID="ContenedorEncabezado" runat="server">
-   <script src="/Incluir/Javascript/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
-   <script src="/Incluir/Javascript/jquery.ui.datepicker-es.js" type="text/javascript"></script>
-   <script src="/Incluir/Javascript/Calendar.js" type="text/javascript"></script>
-      
-     <script language="javascript" type="text/javascript">
+    <link href="/Incluir/Estilo/Privado/jquery-ui-1.8.16.custom.css" rel="Stylesheet" type="text/css" />
+    <link href="/Incluir/Estilo/Privado/demos.css" rel="Stylesheet" type="text/css" />
+    <script src="/Incluir/Javascript/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
+    <script src="/Incluir/Javascript/jquery.ui.datepicker-es.js" type="text/javascript"></script>
+    <script src="/Incluir/Javascript/Calendar.js" type="text/javascript"></script>
 
-      function pageLoad(sender, args) {
-         SetNewCalendar("#<%= FechaDocumentoNuevo.ClientID %>");
-      }
-      
-   </script>
-   
+    <script language="javascript" type="text/javascript">
+        function pageLoad(sender, args) {
+            SetNewCalendar("#<%= FechaDocumentoNuevo.ClientID %>","#<%= FechaOrdenCompraNuevo.ClientID %>");
+        }
+    </script>
    
    
  <script language="javascript" src="/Incluir/Javascript/ValidarFormulario.js" type="text/javascript"></script>
@@ -48,7 +47,7 @@
              
              
               <asp:Panel CssClass="NewRowDiv" ID="PanelNuevoRegistroDatosGenerales" Visible="true" runat="server">
-              <table class="FormTable">
+              <table class="TablaFormulario">
                      <tr>
                         <td class="Nombre">Proveedor</td>
                         <td class="Espacio">*</td>
@@ -117,10 +116,10 @@
              
              
               <asp:Panel CssClass="NewRowDiv" ID="PanelNuevoRegistroDetalle" Visible="true" runat="server">
-              <table class="FormTable">              
+              <table class="TablaFormulario">              
                      <tr>
                             <td class="Nombre">Clave</td>
-                            <td class="Required">*</td>
+                            <td class="Espacio">*</td>
                             <td class="Campo">  
                              <asp:TextBox ID="ClaveNuevo" CssClass="CajaTextoMediana" MaxLength="15" OnTextChanged ="LinkBuscarClave_SelectedTextChanged" AutoPostBack="true"  runat="server"></asp:TextBox>     
                              
@@ -179,10 +178,8 @@
                               </td>
                         </tr>
                 </table>
-             </asp:Panel>
-             
+             </asp:Panel>             
             <asp:Label CssClass="TextoError" ID="EtiquetaMensaje" runat="server" Text=""></asp:Label>
-
              	<div>
                     <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0" 
                         CssClass="TablaInformacion" DataKeyNames="RecepcionId, ProductoId" ID="TablaRecepcion" OnRowCommand="TablaRecepcion_RowCommand" runat="server" PageSize="10">
@@ -193,11 +190,10 @@
                                     <th style="width: 30px;">Clave</th>
                                     <th style="width: 100px;">Descripcion</th>  
                                     <th style="width: 80px;">Precio Unitario</th>                                    
-                                    <th style="width: 60px;">Cantidad</th>   
-                                   <%-- <th style="width: 60px;">Monto</th>--%>
+                                    <th style="width: 60px;">Cantidad</th>                                   
                                 </tr>
                                 <tr>
-                                    <td colspan="6" style="text-align: center;">No se encontró información con los parámetros seleccionados</td>
+                                    <td colspan="5" style="text-align: center;">No se encontró información con los parámetros seleccionados</td>
                                 </tr>
                             </table>
                       </EmptyDataTemplate>
@@ -207,24 +203,16 @@
                         <Columns>
                            <asp:BoundField DataField="Clave" HeaderText="Clave" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" Width="30px" />
-                            </asp:BoundField>                                                      
-                            
+                            </asp:BoundField> 
                             <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" Width="100px" />
-                            </asp:BoundField>    
-                            
-                              <asp:BoundField DataField="PrecioUnitario" HeaderText="PrecioUnitario" ItemStyle-HorizontalAlign="Left">
+                            </asp:BoundField> 
+                            <asp:BoundField DataField="PrecioUnitario" HeaderText="PrecioUnitario" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" Width="60px" />
-                            </asp:BoundField>                  
-                          
+                            </asp:BoundField> 
                             <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" Width="60px" />
-                            </asp:BoundField>
-                            
-                        <%--  <asp:BoundField DataField="Monto" HeaderText="Monto" ItemStyle-HorizontalAlign="Left">
-                                <HeaderStyle HorizontalAlign="Center" Width="60px" />
-                            </asp:BoundField>--%>
-                            
+                            </asp:BoundField>                    
                             <asp:TemplateField HeaderText="">
                                      <ItemTemplate>
                                          <asp:ImageButton ID="BotonEliminarActivo" CommandArgument="<%#Container.DataItemIndex%>" CommandName="EliminarRecepcion" runat="server" ImageUrl="/Imagen/Icono/IconoEliminarRegistro.gif" />
@@ -235,10 +223,8 @@
                         </Columns>
                     </asp:GridView>
                 </div>
-             
-             
                 <div>
-                        <table width="100%">
+                     <table width="100%">
                            <tr>
                               <td style="width:70%;">
                                  
@@ -246,9 +232,7 @@
                               <asp:ImageButton AlternateText="Guardar" ID="BotonGuardarPreOrden"  ImageUrl="/Imagen/Boton/BotonGuardar.png" OnClick="BotonGuardar_Click" runat="server" ValidationGroup="Save" />&nbsp;&nbsp;
                               <asp:ImageButton AlternateText="Limpiar" ID="BotonLimpiarRegistro"  ImageUrl="/Imagen/Boton/BotonLimpiar.png" runat="server" />&nbsp;&nbsp;
                               <asp:ImageButton AlternateText="Cancelar" ID="BotonCancelarPreOrden" ImageUrl="/Imagen/Boton/BotonCancelar.png" runat="server" />
-                             
-                              </td>     
-                              
+                              </td>  
                                <td style="width:20%; text-align:right;">
                                  <asp:Label ID="LabelEtiquetaTotal" CssClass="MontoTotal" Text="Total:" runat="server"></asp:Label>&nbsp;
                                  <asp:Label ID="LabelMontoTotal" CssClass="MontoTotal" runat="server"></asp:Label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -257,22 +241,14 @@
                         </table> 
                      </div>
                 <br /><br /><br /> 
-
-             
                <asp:UpdateProgress AssociatedUpdatePanelID="PageUpdate" ID="AssociatedUpdate" runat="server">
                     <ProgressTemplate>
                         <div class="LoadingDiv"><div class="LoadingImageDiv"><img alt="Cargando..." src="../../Image/Icon/LoadingIcon.gif" /></div></div>
                     </ProgressTemplate>
                 </asp:UpdateProgress>   
-                
-                
                      <asp:HiddenField ID="TemporalRecepcionIdHidden" runat="server" Value="" />
                      <asp:HiddenField ID="ProductoIdHidden" runat="server" Value="" />
                      <asp:HiddenField ID="OrdenIdHidden" runat="server" Value="" />
-             
-             
-             
-             
              </ContentTemplate>
          </asp:UpdatePanel>
 

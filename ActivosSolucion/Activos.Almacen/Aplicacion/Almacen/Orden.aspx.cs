@@ -235,26 +235,26 @@ namespace Almacen.Web.Aplicacion.Almacen
                 TablaOrden.DataBind();
             }
 
-            private void SeleccionarPreOrden(string PreOrdenId, string SesionId)
-            {
-                PreOrdenProceso PreOrdenProceso = new PreOrdenProceso();
+            //private void SeleccionarPreOrden(string PreOrdenId, string SesionId)
+            //{
+            //    PreOrdenProceso PreOrdenProceso = new PreOrdenProceso();
 
-                PreOrdenProceso.PreOrdenEntidad.Clave = PreOrdenId;
-                PreOrdenProceso.PreOrdenEntidad.SesionId = SesionId;
+            //    PreOrdenProceso.PreOrdenEntidad.Clave = PreOrdenId;
+            //    PreOrdenProceso.PreOrdenEntidad.SesionId = SesionId;
 
-                PreOrdenProceso.SeleccionarPreOrdenDetalleSinOrden();
+            //    PreOrdenProceso.SeleccionarPreOrdenDetalleSinOrden();
 
-                if (PreOrdenProceso.ErrorId != 0)
-                {
-                    MostrarMensaje(PreOrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
-                    return;
-                }
+            //    if (PreOrdenProceso.ErrorId != 0)
+            //    {
+            //        MostrarMensaje(PreOrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+            //        return;
+            //    }
 
-                // ToDo: Cambiar el estilo del grid si está vacío el dataset
+            //    // ToDo: Cambiar el estilo del grid si está vacío el dataset
 
-                TablaPreOrden.DataSource = PreOrdenProceso.ResultadoDatos;
-                TablaPreOrden.DataBind();
-            }
+            //    TablaPreOrden.DataSource = PreOrdenProceso.ResultadoDatos;
+            //    TablaPreOrden.DataBind();
+            //}
 
             private void SeleccionarProveedor()
             {
@@ -300,7 +300,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 {
                     case ConstantePrograma.ComandoAgregar:
                         GuardarProductoOrdenTemp(OrdenIdHidden.Value, PreOrdenId, ProductoId, SesionId);
-                        SeleccionarPreOrden(PreOrdenId, SesionId);
+                       // SeleccionarPreOrden(PreOrdenId, SesionId);
                         break;
                 }
             }
@@ -317,7 +317,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                     return;
                 }
 
-                SeleccionarPreOrden(PreOrdenId, UsuarioEntidad.SesionId);
+              //  SeleccionarPreOrden(PreOrdenId, UsuarioEntidad.SesionId);
             }
         #endregion
     }
