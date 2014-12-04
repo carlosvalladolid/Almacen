@@ -73,8 +73,9 @@
                             <td class="Nombre">Clave de Producto</td>
                             <td class="Espacio">*</td>
                             <td class="Campo">  
-                             <asp:TextBox ID="ClaveNuevo" CssClass="CajaTextoMediana" MaxLength="15" OnTextChanged ="LinkBuscarClave_SelectedTextChanged" AutoPostBack="true"  runat="server"></asp:TextBox>     
-                             
+                             <%--<asp:TextBox ID="ClaveNuevo" CssClass="CajaTextoMediana" MaxLength="15" OnTextChanged ="LinkBuscarClave_SelectedTextChanged" AutoPostBack="true"  runat="server"></asp:TextBox>     --%>
+                             <asp:TextBox ID="ClaveNuevo" CssClass="CajaTextoMediana" MaxLength="10" runat="server"></asp:TextBox>     
+                             <asp:ImageButton ID="ImagenBuscarClaveProducto" ImageUrl="/Imagen/Icono/ImagenBuscar.gif" runat="server" onclick="ImagenProductoBusqueda_Click" />
                             </td>
                         </tr>
               
@@ -201,6 +202,73 @@
                  
                   <asp:HiddenField ID="EmpleadoIdHidden" runat="server" Value="" />
                  <asp:HiddenField ID="JefeIdHidden" runat="server" Value="" />
+                  <br />
+                  <br />        
+                 <asp:Panel CssClass="SearchDiv" ID="PanelBusquedaProducto" Visible="true" runat="server">
+                  <div class="SubTituloDiv">Busqueda de Productos</div>
+                  <div>
+                    <table class="TablaFormulario">
+                     <tr>
+                            <td class="Nombre">Clave Producto</td>
+                            <td class="Espacio"></td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoPequenia" ID="ClaveProductoBusqueda" MaxLength="20" runat="server" Text=""></asp:TextBox></td>
+                        </tr>
+                        <tr>
+                            <td class="Nombre">Nombre</td>
+                            <td class="Espacio"></td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="NombreProductoBusqueda" MaxLength="100" runat="server" Text=""></asp:TextBox></td>
+                        </tr>
+                        <tr>
+                              <td colspan="3">
+                                <br />
+                                <asp:ImageButton AlternateText="Buscar" ID="BotonProductoBusqueda" ImageUrl="/Imagen/Boton/BotonBuscar.png" OnClick="ImagenProductoBusqueda_Click" runat="server" />&nbsp;&nbsp;
+                              <%--  <asp:ImageButton AlternateText="Cancelar" ID="BotonCancelarProductoBusqueda" ImageUrl="/Imagen/Boton/BotonCancelar.png" OnClick="BotonCancelarProductoBusqueda_Click" runat="server" />--%>
+                            </td>
+                        </tr>
+                    </table>
+                    </div>
+                    
+                    <asp:Label CssClass="TextoError" ID="Label1" runat="server" Text=""></asp:Label>
+                    
+                   <div class="DivTabla">
+                    <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
+                        CssClass="TablaInformacion" DataKeyNames="ProductoId" ID="TablaProducto"
+                        OnRowCommand="TablaProducto_RowCommand" runat="server" PageSize="10">
+                        <EmptyDataTemplate>
+                            <table class="TablaVacia">
+                                <tr class="Encabezado">
+                                     <th style="width: 10px;"></th>
+                                     <th style="width: 30px;">Clave Producto</th>
+                                    <th  style="width: 80px;">Nombre</th>                           
+                                 </tr>
+                                <tr>
+                                    <td colspan="3" style="text-align: Center;">No se encontró información con los parámetros seleccionados</td>
+                                </tr>
+                            </table>
+                        </EmptyDataTemplate>
+                        <HeaderStyle CssClass="Encabezado" />
+                        <PagerStyle CssClass="Paginacion" HorizontalAlign="Right" />
+                        <Columns>
+                            <asp:TemplateField HeaderText="">
+                                <ItemTemplate>
+                                    <asp:CheckBox ID="SeleccionarBorrar" runat="server" />
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Center" Width="10px" />
+                            </asp:TemplateField>
+                           
+                            <asp:BoundField DataField="Clave" HeaderText="Clave Producto" ItemStyle-HorizontalAlign="Center">
+                                <HeaderStyle HorizontalAlign="Center" Width="30px" />
+                            </asp:BoundField>
+                            
+                            
+                             <asp:BoundField DataField="NombreProducto" HeaderText="Nombre" ItemStyle-HorizontalAlign="Center">
+                                <HeaderStyle HorizontalAlign="Center" Width="80px" />
+                            </asp:BoundField>
+                         
+                        </Columns>
+                    </asp:GridView>
+                </div>
+             </asp:Panel>
           </ContentTemplate>
       </asp:UpdatePanel>   
       </div>

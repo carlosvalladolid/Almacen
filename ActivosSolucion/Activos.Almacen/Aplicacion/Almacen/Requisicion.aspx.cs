@@ -39,6 +39,11 @@ namespace Activos.Almacen.Aplicacion.Almacen
            GuardarRequisicion();
         }
 
+        protected void ImagenProductoBusqueda_Click(object sender, ImageClickEventArgs e)
+        {          
+            BuscarProducto();
+        }
+
         protected void BotonAgregar_Click(object sender, ImageClickEventArgs e)
         {
             AgregarDetalleDocumento();
@@ -49,10 +54,10 @@ namespace Activos.Almacen.Aplicacion.Almacen
             Inicio();
         }
 
-        protected void LinkBuscarClave_SelectedTextChanged(object sender, EventArgs e)
-        {
-            SeleccionarClave();
-        }
+        //protected void LinkBuscarClave_SelectedTextChanged(object sender, EventArgs e)
+        //{
+        //    SeleccionarClave();
+        //}
 
         protected void TablaRequisicion_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -62,7 +67,12 @@ namespace Activos.Almacen.Aplicacion.Almacen
         protected void ddlFamilia_SelectedIndexChanged(object sender, EventArgs e)
         {
             SeleccionarSubfamilia();
-        }         
+        }
+
+        protected void TablaProducto_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            TablaProductoRowCommand(e);
+        }
       
         #endregion
 
@@ -493,6 +503,69 @@ namespace Activos.Almacen.Aplicacion.Almacen
             FormatoMensaje.Append("\");");
 
             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
+        }
+
+        private void BuscarProducto()
+        {
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            AlmacenEntidad AlmacenObjetoEntidad = new AlmacenEntidad();
+            AlmacenProceso AlmacenProcesoNegocio = new AlmacenProceso();
+
+            AlmacenObjetoEntidad.Clave = ClaveProductoBusqueda.Text.Trim();
+            AlmacenObjetoEntidad.Descripcion = NombreProductoBusqueda.Text.Trim();
+
+            Resultado = AlmacenProcesoNegocio.SeleccionarProducto(AlmacenObjetoEntidad);
+
+            if (Resultado.ErrorId == 0)
+            {
+                if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
+                    TablaProducto.CssClass = ConstantePrograma.ClaseTablaVacia;
+                else
+                    TablaProducto.CssClass = ConstantePrograma.ClaseTabla;
+
+
+
+                TablaProducto.DataSource = Resultado.ResultadoDatos;
+                TablaProducto.DataBind();
+
+            }
+            else
+            {
+                EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+            }
+        
+        }
+
+
+        private void TablaProductoRowCommand(GridViewCommandEventArgs e)
+        {
+            AlmacenEntidad AlmacenEntidadObjeto = new AlmacenEntidad();
+            Int16 intFila = 0;
+            int intTamañoPagina = 0;
+            string ProductoId = "";
+            string strCommand = string.Empty;
+
+            intFila = Int16.Parse(e.CommandArgument.ToString());
+            strCommand = e.CommandName.ToString();
+            intTamañoPagina = TablaProducto.PageSize;
+
+            if (intFila >= intTamañoPagina)
+                intFila = (Int16)(intFila - (intTamañoPagina * TablaProducto.PageIndex));
+
+
+            switch (strCommand)
+            {
+                case "Select":
+                    ProductoId = string.Format(TablaProducto.DataKeys[intFila]["ProductoId"].ToString());
+                    AlmacenEntidadObjeto.ProductoId = ProductoId;
+                    ProductoIdHidden.Value = ProductoId.ToString();
+                   // SeleccionarFamiliaParaEditar(FamiliaEntidadObjeto);
+                    break;
+
+                default:
+                    // Do nothing
+                    break;
+            }
         }
 
         #endregion
