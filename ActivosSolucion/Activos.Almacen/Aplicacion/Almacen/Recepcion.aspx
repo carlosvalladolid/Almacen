@@ -118,7 +118,7 @@
               <asp:Panel CssClass="NewRowDiv" ID="PanelNuevoRegistroDetalle" Visible="true" runat="server">
               <table class="TablaFormulario">              
                      <tr>
-                            <td class="Nombre">Clave</td>
+                            <td class="Nombre">Clave del Producto</td>
                             <td class="Espacio">*</td>
                             <td class="Campo">  
                              <asp:TextBox ID="ClaveNuevo" CssClass="CajaTextoMediana" MaxLength="15" OnTextChanged ="LinkBuscarClave_SelectedTextChanged" AutoPostBack="true"  runat="server"></asp:TextBox>     
@@ -219,7 +219,6 @@
                                      </ItemTemplate>
                                      <ItemStyle HorizontalAlign="Center" Width="25px" />
                             </asp:TemplateField>
-                            
                         </Columns>
                     </asp:GridView>
                 </div>

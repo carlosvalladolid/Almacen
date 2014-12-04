@@ -150,8 +150,8 @@ namespace Activos.Almacen.Aplicacion.Almacen
                 SeleccionarRecepcion();
             }
             else
-            {                
-                EtiquetaMensaje.Text = Resultado.DescripcionError;
+            {
+                //MostrarMensaje(RecepcionProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);  
                 LimpiarRecepcion();                
             }
         }
@@ -188,7 +188,8 @@ namespace Activos.Almacen.Aplicacion.Almacen
             }
             else
             {
-                EtiquetaMensaje.Text = Resultado.DescripcionError;
+              // MostrarMensaje(RecepcionProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                
             }
          }
 
@@ -201,7 +202,6 @@ namespace Activos.Almacen.Aplicacion.Almacen
             RecepcionObjetoEntidad.RecepcionId = TemporalRecepcionIdHidden.Value;
 
             Resultado = RecepcionProcesoNegocio.SeleccionaRecepcion(RecepcionObjetoEntidad);
-
             if (Resultado.ErrorId == 0)
             {
                 if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
@@ -635,6 +635,18 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
 
 
+        private void MostrarMensaje(string Mensaje, string TipoMensaje)
+        {
+            StringBuilder FormatoMensaje = new StringBuilder();
+
+            FormatoMensaje.Append("MostrarMensaje(\"");
+            FormatoMensaje.Append(Mensaje);
+            FormatoMensaje.Append("\", \"");
+            FormatoMensaje.Append(TipoMensaje);
+            FormatoMensaje.Append("\");");
+
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
+        }
 
 
         private void ShowMessage(string Mensaje, string TipoMensaje)

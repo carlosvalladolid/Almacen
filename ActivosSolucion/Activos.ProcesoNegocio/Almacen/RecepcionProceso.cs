@@ -27,20 +27,13 @@ namespace Activos.ProcesoNegocio.Almacen
 
             CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
-
             //****************** aqui entra para revisar que no se agregue la Orden
             ResultadoValidacion = BuscarRecepcionProducto(RecepcionObjetoEntidad);
 
             if (ResultadoValidacion.ErrorId != 0)
-            {
+            {               
                 return ResultadoValidacion;
             }
-
-
-            //if (ResultadoValidacion.ErrorId != 0)
-            //{
-
-
             if (RecepcionObjetoEntidad.TemporalRecepcionId == "")
             {
                 RecepcionObjetoEntidad.RecepcionId = Guid.NewGuid().ToString();
@@ -50,16 +43,6 @@ namespace Activos.ProcesoNegocio.Almacen
             {
                 Resultado = RecepcionAccesoObjeto.InsertarRecepcionDetalle(RecepcionObjetoEntidad, CadenaConexion);
             }
-
-            // }
-            //else 
-            //{
-            //    Resultado = Resultado.ErrorId = (int)ConstantePrograma.Recepcion.FolioDuplicado;
-
-
-            //}
-
-
             return Resultado;
         }
 
