@@ -40,10 +40,16 @@ namespace Activos.Almacen.Aplicacion.Almacen
         }
 
         protected void ImagenProductoBusqueda_Click(object sender, ImageClickEventArgs e)
-        {          
-            BuscarProducto();
+        {
+            PanelBusquedaProducto.Visible = !PanelBusquedaProducto.Visible;
         }
 
+
+        protected void BotonProductoBusqueda_Click(object sender, ImageClickEventArgs e)
+        {
+
+            BuscarProducto();
+        }
         protected void BotonAgregar_Click(object sender, ImageClickEventArgs e)
         {
             AgregarDetalleDocumento();
@@ -77,6 +83,37 @@ namespace Activos.Almacen.Aplicacion.Almacen
         #endregion
 
         #region "Métodos"
+
+        private void BuscarProducto()
+        {
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            AlmacenEntidad AlmacenObjetoEntidad = new AlmacenEntidad();
+            AlmacenProceso AlmacenProcesoNegocio = new AlmacenProceso();
+
+            AlmacenObjetoEntidad.Clave = ClaveProductoBusqueda.Text.Trim();
+            AlmacenObjetoEntidad.Descripcion = NombreProductoBusqueda.Text.Trim();
+
+            Resultado = AlmacenProcesoNegocio.SeleccionarProducto(AlmacenObjetoEntidad);
+
+            if (Resultado.ErrorId == 0)
+            {
+                if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
+                    TablaProducto.CssClass = ConstantePrograma.ClaseTablaVacia;
+                else
+                    TablaProducto.CssClass = ConstantePrograma.ClaseTabla;
+
+
+
+                TablaProducto.DataSource = Resultado.ResultadoDatos;
+                TablaProducto.DataBind();
+
+            }
+            else
+            {
+                EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+            }
+
+        }
 
         //private void CambiarBusquedaAvanzada()
         //{
@@ -389,8 +426,6 @@ namespace Activos.Almacen.Aplicacion.Almacen
             //Master.BusquedaAvanzadaMaster.Click += new EventHandler(BusquedaAvanzadaLink_Click);
             //Master.EliminarRegistroMaster.Click += new EventHandler(EliminarRegistroLink_Click);
 
-
-
             if (Page.IsPostBack)
                 return;
 
@@ -402,9 +437,8 @@ namespace Activos.Almacen.Aplicacion.Almacen
             TablaRequisicion.DataSource = null;
             TablaRequisicion.DataBind();
 
-            //TablaEmpleado.DataSource = null;
-            //TablaEmpleado.DataBind();
-
+            TablaProducto.DataSource = null;
+            TablaProducto.DataBind();
         }
 
         protected void TablaRequisicionEventoComando(GridViewCommandEventArgs e)
@@ -503,39 +537,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
             FormatoMensaje.Append("\");");
 
             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
-        }
-
-        private void BuscarProducto()
-        {
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-            AlmacenEntidad AlmacenObjetoEntidad = new AlmacenEntidad();
-            AlmacenProceso AlmacenProcesoNegocio = new AlmacenProceso();
-
-            AlmacenObjetoEntidad.Clave = ClaveProductoBusqueda.Text.Trim();
-            AlmacenObjetoEntidad.Descripcion = NombreProductoBusqueda.Text.Trim();
-
-            Resultado = AlmacenProcesoNegocio.SeleccionarProducto(AlmacenObjetoEntidad);
-
-            if (Resultado.ErrorId == 0)
-            {
-                if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
-                    TablaProducto.CssClass = ConstantePrograma.ClaseTablaVacia;
-                else
-                    TablaProducto.CssClass = ConstantePrograma.ClaseTabla;
-
-
-
-                TablaProducto.DataSource = Resultado.ResultadoDatos;
-                TablaProducto.DataBind();
-
-            }
-            else
-            {
-                EtiquetaMensaje.Text = TextoError.ErrorGenerico;
-            }
-        
-        }
-
+        }    
 
         private void TablaProductoRowCommand(GridViewCommandEventArgs e)
         {

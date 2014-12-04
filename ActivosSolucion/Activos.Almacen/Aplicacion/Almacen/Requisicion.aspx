@@ -204,7 +204,7 @@
                  <asp:HiddenField ID="JefeIdHidden" runat="server" Value="" />
                   <br />
                   <br />        
-                 <asp:Panel CssClass="SearchDiv" ID="PanelBusquedaProducto" Visible="true" runat="server">
+                 <asp:Panel CssClass="SearchDiv" ID="PanelBusquedaProducto" Visible="false" runat="server">
                   <div class="SubTituloDiv">Busqueda de Productos</div>
                   <div>
                     <table class="TablaFormulario">
@@ -221,7 +221,7 @@
                         <tr>
                               <td colspan="3">
                                 <br />
-                                <asp:ImageButton AlternateText="Buscar" ID="BotonProductoBusqueda" ImageUrl="/Imagen/Boton/BotonBuscar.png" OnClick="ImagenProductoBusqueda_Click" runat="server" />&nbsp;&nbsp;
+                                <asp:ImageButton AlternateText="Buscar" ID="BotonProductoBusqueda" ImageUrl="/Imagen/Boton/BotonBuscar.png" OnClick="BotonProductoBusqueda_Click" runat="server" />&nbsp;&nbsp;
                               <%--  <asp:ImageButton AlternateText="Cancelar" ID="BotonCancelarProductoBusqueda" ImageUrl="/Imagen/Boton/BotonCancelar.png" OnClick="BotonCancelarProductoBusqueda_Click" runat="server" />--%>
                             </td>
                         </tr>
