@@ -284,7 +284,33 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
             PreOrdenEntidadObjeto.Clave = ClaveNuevo.Text.Trim();
 
-         //   Resultado = PreOrdenProcesoObjeto.SeleccionarClaveProductoPreOrden(PreOrdenEntidadObjeto);
+            //PreOrdenProcesoObjeto.SeleccionarClaveProductoPreOrden(PreOrdenEntidadObjeto);
+
+            //if (PreOrdenProceso.ErrorId != 0)
+            //{
+            //    MostrarMensaje(PreOrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+            //    return;
+            //}
+
+            //if (PreOrdenProceso.ResultadoDatos.Tables[0].Rows.Count == 0)
+            //    LimpiarProducto();
+            //else
+            //{
+            //    FamiliaIdNuevo.SelectedValue = PreOrdenProceso.ResultadoDatos.Tables[0].Rows[0]["FamiliaId"].ToString();
+            //    SeleccionarSubfamilia();
+            //    SubFamiliaIdNuevo.SelectedValue = PreOrdenProceso.ResultadoDatos.Tables[0].Rows[0]["SubFamiliaId"].ToString();
+            //    MarcaIdNuevo.SelectedValue = PreOrdenProceso.ResultadoDatos.Tables[0].Rows[0]["MarcaId"].ToString();
+            //    DescripcionNuevo.Text = PreOrdenProceso.ResultadoDatos.Tables[0].Rows[0]["NombreProducto"].ToString();
+            //    CantidadNuevo.Text = PreOrdenProceso.ResultadoDatos.Tables[0].Rows[0]["MaximoPermitido"].ToString();
+            //    ProductoIdHidden.Value = PreOrdenProceso.ResultadoDatos.Tables[0].Rows[0]["ProductoId"].ToString();
+            //}
+
+
+
+
+
+
+
             if (Resultado.ErrorId == 0)
             {
                 if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 1)
@@ -302,13 +328,13 @@ namespace Activos.Almacen.Aplicacion.Almacen
                     }
                     else
                     {
-                     
+
                         ClaveNuevo.Focus();
 
                     }
                 }
                 else
-                {                  
+                {
                     ClaveNuevo.Focus();
                 }
             }

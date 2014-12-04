@@ -238,6 +238,46 @@ namespace Activos.AccesoDatos.Almacen
                     return Resultado;
                 }
             }
+
+
+
+            public DataSet SeleccionarClaveProductoPreOrden(PreOrdenEntidad PreOrdenEntidad, string CadenaConexion)
+            {
+                DataSet Resultado = new DataSet();
+                SqlConnection Conexion = new SqlConnection(CadenaConexion);
+                SqlCommand Comando;
+                SqlParameter Parametro;
+                SqlDataAdapter Adaptador;
+
+                try
+                {
+                    Comando = new SqlCommand("SeleccioarClavePreOrdenProcedimiento", Conexion);
+                    Comando.CommandType = CommandType.StoredProcedure;
+
+                    Parametro = new SqlParameter("Clave", SqlDbType.VarChar);
+                    Parametro.Value = PreOrdenEntidad.Clave;
+                    Comando.Parameters.Add(Parametro);
+
+                    //Parametro = new SqlParameter("SesionId", SqlDbType.VarChar);
+                    //Parametro.Value = PreOrdenEntidad.SesionId;
+                    //Comando.Parameters.Add(Parametro);
+
+                    Adaptador = new SqlDataAdapter(Comando);
+
+                    Conexion.Open();
+                    Adaptador.Fill(Resultado);
+                    Conexion.Close();
+
+                    return Resultado;
+                }
+                catch (SqlException Excepcion)
+                {
+                    _ErrorId = Excepcion.Number;
+                    _DescripcionError = Excepcion.Message;
+
+                    return Resultado;
+                }
+            }
         #endregion
     }
 }

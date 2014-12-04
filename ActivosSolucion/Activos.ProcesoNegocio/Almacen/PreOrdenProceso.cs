@@ -204,6 +204,25 @@ namespace Activos.ProcesoNegocio.Almacen
                 _ErrorId = PreOrdenAcceso.ErrorId;
                 _DescripcionError = PreOrdenAcceso.DescripcionError;
             }
+
+
+
+            /// <summary>
+            ///     Realiza una búsqueda de lA cLAVE de una preorden.
+            /// </summary>
+            public void SeleccionarClaveProductoPreOrden()
+            {
+                string CadenaConexion = string.Empty;
+                PreOrdenAcceso PreOrdenAcceso = new PreOrdenAcceso();
+
+                CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+                _ResultadoDatos = PreOrdenAcceso.SeleccionarClaveProductoPreOrden(_PreOrdenEntidad, CadenaConexion);
+
+                _ErrorId = PreOrdenAcceso.ErrorId;
+                _DescripcionError = PreOrdenAcceso.DescripcionError;
+            }
+
         #endregion
     }
 }
