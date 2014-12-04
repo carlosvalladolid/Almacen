@@ -8,6 +8,7 @@ PreOrden
 3. No se debe rellenar el campo de Cantidad (*** LISTO ***)
 4. Modificar el formato del grid
 5. No agrega el segundo producto en la preorden
+6. Mostrar un mensaje para confirmar que la información se guardó correctamente
 
 Estatus para la PreOrden
 1. Incompleta
