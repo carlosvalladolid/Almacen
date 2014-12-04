@@ -278,14 +278,13 @@ namespace Activos.Almacen.Aplicacion.Almacen
         protected void SeleccionarClave()
         {
             ResultadoEntidad Resultado = new ResultadoEntidad();
-            AlmacenEntidad AlmacenEntidadObjeto = new AlmacenEntidad();
-            AlmacenProceso AlmacenProcesoObjeto = new AlmacenProceso();
+            PreOrdenEntidad PreOrdenEntidadObjeto = new PreOrdenEntidad();
+            PreOrdenProceso PreOrdenProcesoObjeto = new PreOrdenProceso();
             bool AsignacionPermitida = true;
 
-            AlmacenEntidadObjeto.Clave = ClaveNuevo.Text.Trim();
+            PreOrdenEntidadObjeto.Clave = ClaveNuevo.Text.Trim();
 
-            Resultado = AlmacenProcesoObjeto.SeleccionarProducto(AlmacenEntidadObjeto);
-
+         //   Resultado = PreOrdenProcesoObjeto.SeleccionarClaveProductoPreOrden(PreOrdenEntidadObjeto);
             if (Resultado.ErrorId == 0)
             {
                 if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 1)
@@ -300,32 +299,78 @@ namespace Activos.Almacen.Aplicacion.Almacen
                         CantidadNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["MaximoPermitido"].ToString();
                         ProductoIdHidden.Value = Resultado.ResultadoDatos.Tables[0].Rows[0]["ProductoId"].ToString();
 
-                       // AgregarEtiquetaMensaje.Text = "";
                     }
                     else
                     {
-                       // LimpiarProducto();
-                        //AgregarEtiquetaMensaje.Text = TextoError.EstatusActivoIncorrecto;
+                     
                         ClaveNuevo.Focus();
 
                     }
-
-
                 }
                 else
-                {
-                   // LimpiarProducto();
-                  //  AgregarEtiquetaMensaje.Text = TextoError.NoExisteActivo;
+                {                  
                     ClaveNuevo.Focus();
                 }
             }
             else
             {
-               // LimpiarProducto();
+                // LimpiarProducto();
                 //AgregarEtiquetaMensaje.Text = TextoError.ErrorGenerico;
             }
 
         }
+
+        //protected void SeleccionarClave()
+        //{
+        //    ResultadoEntidad Resultado = new ResultadoEntidad();
+        //    AlmacenEntidad AlmacenEntidadObjeto = new AlmacenEntidad();
+        //    AlmacenProceso AlmacenProcesoObjeto = new AlmacenProceso();
+        //    bool AsignacionPermitida = true;
+
+        //    AlmacenEntidadObjeto.Clave = ClaveNuevo.Text.Trim();
+
+        //    Resultado = AlmacenProcesoObjeto.SeleccionarProducto(AlmacenEntidadObjeto);
+
+        //    if (Resultado.ErrorId == 0)
+        //    {
+        //        if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 1)
+        //        {
+        //            if (AsignacionPermitida == true)
+        //            {
+        //                FamiliaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["FamiliaId"].ToString();
+        //                SeleccionarSubfamilia();
+        //                SubFamiliaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["SubFamiliaId"].ToString();
+        //                MarcaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["MarcaId"].ToString();
+        //                DescripcionNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["NombreProducto"].ToString();
+        //                CantidadNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["MaximoPermitido"].ToString();
+        //                ProductoIdHidden.Value = Resultado.ResultadoDatos.Tables[0].Rows[0]["ProductoId"].ToString();
+
+        //               // AgregarEtiquetaMensaje.Text = "";
+        //            }
+        //            else
+        //            {
+        //               // LimpiarProducto();
+        //                //AgregarEtiquetaMensaje.Text = TextoError.EstatusActivoIncorrecto;
+        //                ClaveNuevo.Focus();
+
+        //            }
+
+
+        //        }
+        //        else
+        //        {
+        //           // LimpiarProducto();
+        //          //  AgregarEtiquetaMensaje.Text = TextoError.NoExisteActivo;
+        //            ClaveNuevo.Focus();
+        //        }
+        //    }
+        //    else
+        //    {
+        //       // LimpiarProducto();
+        //        //AgregarEtiquetaMensaje.Text = TextoError.ErrorGenerico;
+        //    }
+
+        //}
 
         protected void SeleccionarOrdenCompra()
         {
