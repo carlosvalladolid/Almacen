@@ -119,7 +119,7 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList FamiliaIdNuevo;
+        protected global::System.Web.UI.WebControls.TextBox FamiliaIdNuevo;
         
         /// <summary>
         /// SubFamiliaIdNuevo control.
@@ -128,7 +128,7 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList SubFamiliaIdNuevo;
+        protected global::System.Web.UI.WebControls.TextBox SubFamiliaIdNuevo;
         
         /// <summary>
         /// MarcaIdNuevo control.
@@ -137,7 +137,7 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList MarcaIdNuevo;
+        protected global::System.Web.UI.WebControls.TextBox MarcaIdNuevo;
         
         /// <summary>
         /// DescripcionNuevo control.
@@ -329,24 +329,6 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.TextBox NombreProductoBusqueda;
         
         /// <summary>
-        /// BotonProductoBusqueda control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton BotonProductoBusqueda;
-        
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
         /// TablaProducto control.
         /// </summary>
         /// <remarks>
@@ -354,6 +336,33 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView TablaProducto;
+        
+        /// <summary>
+        /// AceptarMensajeProducto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label AceptarMensajeProducto;
+        
+        /// <summary>
+        /// BotonAceptar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton BotonAceptar;
+        
+        /// <summary>
+        /// BotonCancelar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton BotonCancelar;
         
         /// <summary>
         /// Master property.

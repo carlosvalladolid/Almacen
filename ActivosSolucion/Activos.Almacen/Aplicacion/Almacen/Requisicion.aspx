@@ -74,7 +74,6 @@
                             <td class="Nombre">Clave de Producto</td>
                             <td class="Espacio">*</td>
                             <td class="Campo">  
-                             <%--<asp:TextBox ID="ClaveNuevo" CssClass="CajaTextoMediana" MaxLength="15" OnTextChanged ="LinkBuscarClave_SelectedTextChanged" AutoPostBack="true"  runat="server"></asp:TextBox>     --%>
                              <asp:TextBox ID="ClaveNuevo" CssClass="CajaTextoMediana" MaxLength="10" runat="server"></asp:TextBox>     
                              <asp:ImageButton ID="ImagenBuscarClaveProducto" ImageUrl="/Imagen/Icono/ImagenBuscar.gif" runat="server" onclick="ImagenProductoBusqueda_Click" />
                             </td>
@@ -83,26 +82,30 @@
                          <tr>
                             <td class="Nombre">Familia</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="FamiliaIdNuevo" OnSelectedIndexChanged="ddlFamilia_SelectedIndexChanged" AutoPostBack="true"  Enabled ="false"   runat="server"></asp:DropDownList>                              
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="FamiliaIdNuevo" Enabled ="false"  runat="server" ></asp:TextBox></td>
+                           <%-- <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="FamiliaIdNuevo" OnSelectedIndexChanged="ddlFamilia_SelectedIndexChanged" AutoPostBack="true"  Enabled ="false"   runat="server"></asp:DropDownList>                              --%>
                             </td>
                         </tr>
                         <tr>
                             <td class="Nombre">SubFamilia</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="SubFamiliaIdNuevo" Enabled ="false"    runat="server"></asp:DropDownList></td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="SubFamiliaIdNuevo" Enabled ="false"  runat="server" ></asp:TextBox></td>
+                            <%--<td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="SubFamiliaIdNuevo" Enabled ="false"    runat="server"></asp:DropDownList></td>--%>
                         </tr>
                         
                         <tr>
                             <td class="Nombre">Marca</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="MarcaIdNuevo" Enabled ="false"   runat="server"></asp:DropDownList></td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="MarcaIdNuevo" Enabled ="false"  runat="server" ></asp:TextBox></td>
+                <%--            <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="MarcaIdNuevo" Enabled ="false"   runat="server"></asp:DropDownList></td>--%>
                         </tr> 
                         
                          <tr>
                             <td class="Nombre">Descripción</td>
                             <td class="Espacio"></td>
                             <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="DescripcionNuevo" Enabled ="false"   runat="server" ></asp:TextBox></td>
-                        </tr>                    
+                        </tr>    
+                                        
 						 <tr>
                             <td class="Nombre">Cantidad</td>
                             <td class="Espacio"></td>
@@ -210,12 +213,8 @@
                 <asp:Panel CssClass="PopupGrandeDiv" ID="PanelBusquedaProducto" Visible="false" runat="server">
                  
                     
-                    <div class="PopupGrandeEncabezadoDiv">
-                    
-                     <asp:Label class="TitleDivPage" ID="lblTitleBuscarProducto" runat="server" Text="Busqueda de Productos de la Preorden"></asp:Label>
-                    <%-- <div style="float:right;"><asp:ImageButton ID="BotonProductoBusqueda" OnClick="BotonProductoBusqueda_Click" runat="server" ImageUrl="/Imagen/Boton/BotonCerrar.png" /></div>
- --%>
-                       <%--  <div class="SubTituloDiv">Busqueda de Productos</div>--%>
+                    <div class="PopupGrandeEncabezadoDiv">                    
+                         <asp:Label class="TitleDivPage" ID="lblTitleBuscarProducto" runat="server" Text="Busqueda de Productos de la Preorden"></asp:Label>
                     </div>
                     
                      <div class="PopupGrandeCuerpoDiv">
@@ -230,65 +229,71 @@
                                     <td class="Nombre">Nombre</td>
                                     <td class="Espacio"></td>
                                     <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="NombreProductoBusqueda" MaxLength="100" runat="server" Text=""></asp:TextBox></td>
-                                </tr>
-                                <tr>
-                                      <td colspan="3">
-                                        <br />
-                                      <asp:ImageButton AlternateText="Buscar" ID="BotonProductoBusqueda" ImageUrl="/Imagen/Boton/BotonBuscar.png" OnClick="BotonProductoBusqueda_Click" runat="server" />&nbsp;&nbsp;
-                                  <%--  <asp:ImageButton AlternateText="Cancelar" ID="BotonCancelarProductoBusqueda" ImageUrl="/Imagen/Boton/BotonCancelar.png" OnClick="BotonCancelarProductoBusqueda_Click" runat="server" />--%>
-                                    </td>
-                                </tr>
+                                </tr>                            
                             </table>
                             </div>
                             
-                            <asp:Label CssClass="TextoError" ID="Label1" runat="server" Text=""></asp:Label>
-                            
+                     
                            <div class="DivTabla">
                             <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
                                 CssClass="TablaInformacion" DataKeyNames="ProductoId" ID="TablaProducto"
                                 OnRowCommand="TablaProducto_RowCommand" runat="server" PageSize="10">
                                 <EmptyDataTemplate>
                                     <table class="TablaVacia">
-                                        <tr class="Encabezado">
-                                             <th style="width: 10px;"></th>
-                                             <th style="width: 30px;">Clave Producto</th>
-                                            <th  style="width: 80px;">Nombre</th>                           
+                                        <tr class="Encabezado">                                            
+                                            <th style="width: 30px;">Clave Producto</th>
+                                            <th  style="width: 60px;">Nombre</th>
+                                            <th  style="width: 60px;">Familia</th>  
+                                            <th  style="width: 60px;">SubFamilia</th>  
+                                            <th  style="width: 40px;">Marca</th>                            
                                          </tr>
                                         <tr>
-                                            <td colspan="3" style="text-align: Center;">No se encontró información con los parámetros seleccionados</td>
+                                            <td colspan="5" style="text-align: Center;">No se encontró información con los parámetros seleccionados</td>
                                         </tr>
                                     </table>
                                 </EmptyDataTemplate>
                                 <HeaderStyle CssClass="Encabezado" />
                                 <PagerStyle CssClass="Paginacion" HorizontalAlign="Right" />
                                 <Columns>
-                                    <asp:TemplateField HeaderText="">
-                                        <ItemTemplate>
-                                            <asp:CheckBox ID="SeleccionarBorrar" runat="server" />
-                                        </ItemTemplate>
-                                        <ItemStyle HorizontalAlign="Center" Width="10px" />
-                                    </asp:TemplateField>
-                                   
-                                    <asp:BoundField DataField="Clave" HeaderText="Clave Producto" ItemStyle-HorizontalAlign="Center">
+                                
+                              <asp:TemplateField HeaderText="Clave">
+                                     <ItemTemplate>
+                                         <asp:LinkButton CommandArgument="<%#Container.DataItemIndex%>" CommandName="Select" ID="LigaClave" runat="server" Text='<%#Eval("Clave")%>'></asp:LinkButton>
+                                     </ItemTemplate>
+                                     <ItemStyle HorizontalAlign="Center" />
+                                 </asp:TemplateField>
+                                 
+                                 <%-- <asp:BoundField DataField="Clave" HeaderText="Clave Producto" ItemStyle-HorizontalAlign="Center">
                                         <HeaderStyle HorizontalAlign="Center" Width="30px" />
-                                    </asp:BoundField>
-                                    
+                                    </asp:BoundField>  --%>                         
                                     
                                      <asp:BoundField DataField="NombreProducto" HeaderText="Nombre" ItemStyle-HorizontalAlign="Center">
-                                        <HeaderStyle HorizontalAlign="Center" Width="80px" />
+                                        <HeaderStyle HorizontalAlign="Center" Width="60px" />
+                                    </asp:BoundField>
+                                    
+                                    <asp:BoundField DataField="Familia" HeaderText="Familia" ItemStyle-HorizontalAlign="Center">
+                                        <HeaderStyle HorizontalAlign="Center" Width="60px" />
+                                    </asp:BoundField>
+                                    
+                                       <asp:BoundField DataField="SubFamilia" HeaderText="SubFamilia" ItemStyle-HorizontalAlign="Center">
+                                        <HeaderStyle HorizontalAlign="Center" Width="60px" />
+                                    </asp:BoundField>
+                                    
+                                       <asp:BoundField DataField="Marca" HeaderText="Marca" ItemStyle-HorizontalAlign="Center">
+                                        <HeaderStyle HorizontalAlign="Center" Width="40px" />
                                     </asp:BoundField>
                                  
                                 </Columns>
                             </asp:GridView>
-                        </div>
-
-                    
-                    </div>       
-                 
+                        </div>                    
+                    </div>  
                      <div class="PopupGrandePieDiv">
-                       &nbsp;
-                    </div>
-                                    
+                         <asp:Label Font-Bold="true" CssClass="TextoError" ID="AceptarMensajeProducto" runat="server" Text="" ></asp:Label><br />
+                         &nbsp;&nbsp;
+                         <asp:ImageButton ID="BotonAceptar" OnClick="BotonProductoBusqueda_Click" runat="server" ImageUrl="~/Imagen/Boton/BotonBuscar.png" />
+                         &nbsp;
+                         <asp:ImageButton ID="BotonCancelar" OnClick="BotonCerrarProductoBusqueda_Click" runat="server" ImageUrl="~/Imagen/Boton/BotonCancelar.png" />                   
+                    </div>                                    
                 </asp:Panel>
           </ContentTemplate>
       </asp:UpdatePanel>   

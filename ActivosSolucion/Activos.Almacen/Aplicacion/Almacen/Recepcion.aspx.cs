@@ -99,24 +99,6 @@ namespace Activos.Almacen.Aplicacion.Almacen
             TablaRecepcionEventoComando(e);
         }
 
-        //protected void TablaRecepcion_RowDataBound(object sender, GridViewRowEventArgs e)
-        //{
-        //    decimal Monto = 0;
-        //    decimal SumaMonto = 0;
-        //    decimal Resultado = 0;
-        //    DataRowView drFila;
-
-        //    if (e.Row.RowType == DataControlRowType.DataRow)
-        //    {
-        //        drFila = (DataRowView)e.Row.DataItem;
-        //        Monto = decimal.Parse(drFila["Monto"].ToString());
-        //       // e.Row.Cells[5].Text = string.Format("{0:C}", Monto);
-        //        Resultado = SumaMonto + Monto;
-
-        //        LabelMontoTotal.Text = Resultado.ToString();
-        //    }
-        //}
-
         #endregion
 
         #region "Métodos"
@@ -276,14 +258,11 @@ namespace Activos.Almacen.Aplicacion.Almacen
         }
 
         protected void SeleccionarClave()
-        {
-            //ResultadoEntidad Resultado = new ResultadoEntidad();
-           // PreOrdenEntidad PreOrdenEntidadObjeto = new PreOrdenEntidad();
-            PreOrdenProceso PreOrdenProcesoObjeto = new PreOrdenProceso();
-            //bool AsignacionPermitida = true;
+        {           
+            PreOrdenProceso PreOrdenProcesoObjeto = new PreOrdenProceso();          
 
-            PreOrdenProcesoObjeto.PreOrdenEntidad.Clave = ClaveNuevo.Text.Trim();   
-
+            PreOrdenProcesoObjeto.PreOrdenEntidad.Clave = ClaveNuevo.Text.Trim(); 
+  
             PreOrdenProcesoObjeto.SeleccionarClaveProductoPreOrden();
 
             if (PreOrdenProcesoObjeto.ErrorId != 0)
@@ -291,7 +270,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
                 MostrarMensaje(PreOrdenProcesoObjeto.DescripcionError, ConstantePrograma.TipoErrorAlerta);
                 return;
             }
-
+           
             if (PreOrdenProcesoObjeto.ResultadoDatos.Tables[0].Rows.Count == 0)
             {
                 //  LimpiarProducto();
@@ -306,133 +285,41 @@ namespace Activos.Almacen.Aplicacion.Almacen
                 CantidadNuevo.Text = PreOrdenProcesoObjeto.ResultadoDatos.Tables[0].Rows[0]["MaximoPermitido"].ToString();
                 ProductoIdHidden.Value = PreOrdenProcesoObjeto.ResultadoDatos.Tables[0].Rows[0]["ProductoId"].ToString();
             }
-
-
-
-
-
-
-
-        //    if (Resultado.ErrorId == 0)
-        //    {
-        //        if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 1)
-        //        {
-        //            if (AsignacionPermitida == true)
-        //            {
-        //                FamiliaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["FamiliaId"].ToString();
-        //                SeleccionarSubfamilia();
-        //                SubFamiliaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["SubFamiliaId"].ToString();
-        //                MarcaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["MarcaId"].ToString();
-        //                DescripcionNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["NombreProducto"].ToString();
-        //                CantidadNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["MaximoPermitido"].ToString();
-        //                ProductoIdHidden.Value = Resultado.ResultadoDatos.Tables[0].Rows[0]["ProductoId"].ToString();
-
-        //            }
-        //            else
-        //            {
-
-        //                ClaveNuevo.Focus();
-
-        //            }
-        //        }
-        //        else
-        //        {
-        //            ClaveNuevo.Focus();
-        //        }
-        //    }
-        //    else
-        //    {
-        //        // LimpiarProducto();
-        //        //AgregarEtiquetaMensaje.Text = TextoError.ErrorGenerico;
-        //    }
-
         }
-
-        //protected void SeleccionarClave()
-        //{
-        //    ResultadoEntidad Resultado = new ResultadoEntidad();
-        //    AlmacenEntidad AlmacenEntidadObjeto = new AlmacenEntidad();
-        //    AlmacenProceso AlmacenProcesoObjeto = new AlmacenProceso();
-        //    bool AsignacionPermitida = true;
-
-        //    AlmacenEntidadObjeto.Clave = ClaveNuevo.Text.Trim();
-
-        //    Resultado = AlmacenProcesoObjeto.SeleccionarProducto(AlmacenEntidadObjeto);
-
-        //    if (Resultado.ErrorId == 0)
-        //    {
-        //        if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 1)
-        //        {
-        //            if (AsignacionPermitida == true)
-        //            {
-        //                FamiliaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["FamiliaId"].ToString();
-        //                SeleccionarSubfamilia();
-        //                SubFamiliaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["SubFamiliaId"].ToString();
-        //                MarcaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["MarcaId"].ToString();
-        //                DescripcionNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["NombreProducto"].ToString();
-        //                CantidadNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["MaximoPermitido"].ToString();
-        //                ProductoIdHidden.Value = Resultado.ResultadoDatos.Tables[0].Rows[0]["ProductoId"].ToString();
-
-        //               // AgregarEtiquetaMensaje.Text = "";
-        //            }
-        //            else
-        //            {
-        //               // LimpiarProducto();
-        //                //AgregarEtiquetaMensaje.Text = TextoError.EstatusActivoIncorrecto;
-        //                ClaveNuevo.Focus();
-
-        //            }
-
-
-        //        }
-        //        else
-        //        {
-        //           // LimpiarProducto();
-        //          //  AgregarEtiquetaMensaje.Text = TextoError.NoExisteActivo;
-        //            ClaveNuevo.Focus();
-        //        }
-        //    }
-        //    else
-        //    {
-        //       // LimpiarProducto();
-        //        //AgregarEtiquetaMensaje.Text = TextoError.ErrorGenerico;
-        //    }
-
-        //}
 
         protected void SeleccionarOrdenCompra()
         {
             OrdenProceso OrdenProceso = new OrdenProceso();
-            //bool AsignacionPermitida = true;
-
+          
             OrdenProceso.OrdenEncabezadoEntidad.Clave = OrderCompraNuevo.Text.Trim();
 
             OrdenProceso.SeleccionarBusquedaOrdenCompra();
-            
-            if (OrdenProceso.ErrorId == 0)
-                {
-                   
-               if (OrdenProceso.ResultadoDatos.Tables[0].Rows.Count > 0)
-                    {
-                        FechaOrdenCompraNuevo.Text = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["FechaOrden"].ToString();
-                        SolicitanteIdNuevo.SelectedValue = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["EmpleadoId"].ToString();
-                        BuscarJefe();
-                        //JefeInmediatoIdNuevo.SelectedValue = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["EmpleadoIdJefe"].ToString();
-                        OrdenIdHidden.Value = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["OrdenId"].ToString();
 
-                    }
-               else
-                   {
-                       //   MostrarMensaje(OrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
-                       FechaOrdenCompraNuevo.Text = "";
-                       SolicitanteIdNuevo.SelectedIndex = 0;
-                       JefeInmediatoIdNuevo.SelectedIndex = 0;
-                       OrderCompraNuevo.Text = "";
-                       OrderCompraNuevo.Focus();
-                   }
-                     
-                   }
+            if (OrdenProceso.ErrorId != 0)
+            {
+            MostrarMensaje(OrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+            return;    
+            } 
+
+            if (OrdenProceso.ResultadoDatos.Tables[0].Rows.Count > 0)
+            {
+                FechaOrdenCompraNuevo.Text = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["FechaOrden"].ToString();
+                SolicitanteIdNuevo.SelectedValue = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["EmpleadoId"].ToString();
+                BuscarJefe();
+                //JefeInmediatoIdNuevo.SelectedValue = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["EmpleadoIdJefe"].ToString();
+                OrdenIdHidden.Value = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["OrdenId"].ToString();
+
             }
+            else
+            {
+               MostrarMensaje(OrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+               FechaOrdenCompraNuevo.Text = "";
+               SolicitanteIdNuevo.SelectedIndex = 0;
+               JefeInmediatoIdNuevo.SelectedIndex = 0;
+               OrderCompraNuevo.Text = "";
+               OrderCompraNuevo.Focus();
+            }
+        }
 
         protected void SeleccionarFamilia()
         {
