@@ -277,72 +277,74 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         protected void SeleccionarClave()
         {
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-            PreOrdenEntidad PreOrdenEntidadObjeto = new PreOrdenEntidad();
+            //ResultadoEntidad Resultado = new ResultadoEntidad();
+           // PreOrdenEntidad PreOrdenEntidadObjeto = new PreOrdenEntidad();
             PreOrdenProceso PreOrdenProcesoObjeto = new PreOrdenProceso();
-            bool AsignacionPermitida = true;
+            //bool AsignacionPermitida = true;
 
-            PreOrdenEntidadObjeto.Clave = ClaveNuevo.Text.Trim();
+            PreOrdenProcesoObjeto.PreOrdenEntidad.Clave = ClaveNuevo.Text.Trim();   
 
-            //PreOrdenProcesoObjeto.SeleccionarClaveProductoPreOrden(PreOrdenEntidadObjeto);
+            PreOrdenProcesoObjeto.SeleccionarClaveProductoPreOrden();
 
-            //if (PreOrdenProceso.ErrorId != 0)
-            //{
-            //    MostrarMensaje(PreOrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
-            //    return;
-            //}
-
-            //if (PreOrdenProceso.ResultadoDatos.Tables[0].Rows.Count == 0)
-            //    LimpiarProducto();
-            //else
-            //{
-            //    FamiliaIdNuevo.SelectedValue = PreOrdenProceso.ResultadoDatos.Tables[0].Rows[0]["FamiliaId"].ToString();
-            //    SeleccionarSubfamilia();
-            //    SubFamiliaIdNuevo.SelectedValue = PreOrdenProceso.ResultadoDatos.Tables[0].Rows[0]["SubFamiliaId"].ToString();
-            //    MarcaIdNuevo.SelectedValue = PreOrdenProceso.ResultadoDatos.Tables[0].Rows[0]["MarcaId"].ToString();
-            //    DescripcionNuevo.Text = PreOrdenProceso.ResultadoDatos.Tables[0].Rows[0]["NombreProducto"].ToString();
-            //    CantidadNuevo.Text = PreOrdenProceso.ResultadoDatos.Tables[0].Rows[0]["MaximoPermitido"].ToString();
-            //    ProductoIdHidden.Value = PreOrdenProceso.ResultadoDatos.Tables[0].Rows[0]["ProductoId"].ToString();
-            //}
-
-
-
-
-
-
-
-            if (Resultado.ErrorId == 0)
+            if (PreOrdenProcesoObjeto.ErrorId != 0)
             {
-                if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 1)
-                {
-                    if (AsignacionPermitida == true)
-                    {
-                        FamiliaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["FamiliaId"].ToString();
-                        SeleccionarSubfamilia();
-                        SubFamiliaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["SubFamiliaId"].ToString();
-                        MarcaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["MarcaId"].ToString();
-                        DescripcionNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["NombreProducto"].ToString();
-                        CantidadNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["MaximoPermitido"].ToString();
-                        ProductoIdHidden.Value = Resultado.ResultadoDatos.Tables[0].Rows[0]["ProductoId"].ToString();
+                MostrarMensaje(PreOrdenProcesoObjeto.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                return;
+            }
 
-                    }
-                    else
-                    {
-
-                        ClaveNuevo.Focus();
-
-                    }
-                }
-                else
-                {
-                    ClaveNuevo.Focus();
-                }
+            if (PreOrdenProcesoObjeto.ResultadoDatos.Tables[0].Rows.Count == 0)
+            {
+                //  LimpiarProducto();
             }
             else
             {
-                // LimpiarProducto();
-                //AgregarEtiquetaMensaje.Text = TextoError.ErrorGenerico;
+                FamiliaIdNuevo.SelectedValue = PreOrdenProcesoObjeto.ResultadoDatos.Tables[0].Rows[0]["FamiliaId"].ToString();
+                SeleccionarSubfamilia();
+                SubFamiliaIdNuevo.SelectedValue = PreOrdenProcesoObjeto.ResultadoDatos.Tables[0].Rows[0]["SubFamiliaId"].ToString();
+                MarcaIdNuevo.SelectedValue = PreOrdenProcesoObjeto.ResultadoDatos.Tables[0].Rows[0]["MarcaId"].ToString();
+                DescripcionNuevo.Text = PreOrdenProcesoObjeto.ResultadoDatos.Tables[0].Rows[0]["NombreProducto"].ToString();
+                CantidadNuevo.Text = PreOrdenProcesoObjeto.ResultadoDatos.Tables[0].Rows[0]["MaximoPermitido"].ToString();
+                ProductoIdHidden.Value = PreOrdenProcesoObjeto.ResultadoDatos.Tables[0].Rows[0]["ProductoId"].ToString();
             }
+
+
+
+
+
+
+
+        //    if (Resultado.ErrorId == 0)
+        //    {
+        //        if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 1)
+        //        {
+        //            if (AsignacionPermitida == true)
+        //            {
+        //                FamiliaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["FamiliaId"].ToString();
+        //                SeleccionarSubfamilia();
+        //                SubFamiliaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["SubFamiliaId"].ToString();
+        //                MarcaIdNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["MarcaId"].ToString();
+        //                DescripcionNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["NombreProducto"].ToString();
+        //                CantidadNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["MaximoPermitido"].ToString();
+        //                ProductoIdHidden.Value = Resultado.ResultadoDatos.Tables[0].Rows[0]["ProductoId"].ToString();
+
+        //            }
+        //            else
+        //            {
+
+        //                ClaveNuevo.Focus();
+
+        //            }
+        //        }
+        //        else
+        //        {
+        //            ClaveNuevo.Focus();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        // LimpiarProducto();
+        //        //AgregarEtiquetaMensaje.Text = TextoError.ErrorGenerico;
+        //    }
 
         }
 
@@ -718,20 +720,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
         }
-
-
-        private void ShowMessage(string Mensaje, string TipoMensaje)
-        {
-            StringBuilder FormatoMensaje = new StringBuilder();
-
-            FormatoMensaje.Append("MostrarMensaje(\"");
-            FormatoMensaje.Append(Mensaje);
-            FormatoMensaje.Append("\", \"");
-            FormatoMensaje.Append(TipoMensaje);
-            FormatoMensaje.Append("\");");
-
-            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
-        }
+               
 
         #endregion
 
