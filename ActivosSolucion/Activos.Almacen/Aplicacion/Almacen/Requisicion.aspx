@@ -4,6 +4,7 @@
 
 
 <asp:Content ID="ContenidoEncabezado" ContentPlaceHolderID="ContenedorEncabezado" runat="server">           
+    <link href="/Incluir/Estilo/Privado/Popup.css" rel="Stylesheet" type="text/css" />
      <script language="javascript" src="/Incluir/Javascript/ValidarFormulario.js" type="text/javascript"></script>
 </asp:Content>
 
@@ -203,72 +204,92 @@
                   <asp:HiddenField ID="EmpleadoIdHidden" runat="server" Value="" />
                  <asp:HiddenField ID="JefeIdHidden" runat="server" Value="" />
                   <br />
-                  <br />        
-                 <asp:Panel CssClass="SearchDiv" ID="PanelBusquedaProducto" Visible="false" runat="server">
-                  <div class="SubTituloDiv">Busqueda de Productos</div>
-                  <div>
-                    <table class="TablaFormulario">
-                     <tr>
-                            <td class="Nombre">Clave Producto</td>
-                            <td class="Espacio"></td>
-                            <td class="Campo"><asp:TextBox CssClass="CajaTextoPequenia" ID="ClaveProductoBusqueda" MaxLength="20" runat="server" Text=""></asp:TextBox></td>
-                        </tr>
-                        <tr>
-                            <td class="Nombre">Nombre</td>
-                            <td class="Espacio"></td>
-                            <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="NombreProductoBusqueda" MaxLength="100" runat="server" Text=""></asp:TextBox></td>
-                        </tr>
-                        <tr>
-                              <td colspan="3">
-                                <br />
-                                <asp:ImageButton AlternateText="Buscar" ID="BotonProductoBusqueda" ImageUrl="/Imagen/Boton/BotonBuscar.png" OnClick="BotonProductoBusqueda_Click" runat="server" />&nbsp;&nbsp;
-                              <%--  <asp:ImageButton AlternateText="Cancelar" ID="BotonCancelarProductoBusqueda" ImageUrl="/Imagen/Boton/BotonCancelar.png" OnClick="BotonCancelarProductoBusqueda_Click" runat="server" />--%>
-                            </td>
-                        </tr>
-                    </table>
+                  <br /> 
+                  
+                <asp:Panel CssClass="Superposicion" ID="pnlFondoBuscarProducto" runat="server" Visible="false"></asp:Panel>
+                <asp:Panel CssClass="PopupGrandeDiv" ID="PanelBusquedaProducto" Visible="false" runat="server">
+                 
+                    
+                    <div class="PopupGrandeEncabezadoDiv">
+                    
+                     <asp:Label class="TitleDivPage" ID="lblTitleBuscarProducto" runat="server" Text="Busqueda de Productos de la Preorden"></asp:Label>
+                    <%-- <div style="float:right;"><asp:ImageButton ID="BotonProductoBusqueda" OnClick="BotonProductoBusqueda_Click" runat="server" ImageUrl="/Imagen/Boton/BotonCerrar.png" /></div>
+ --%>
+                       <%--  <div class="SubTituloDiv">Busqueda de Productos</div>--%>
                     </div>
                     
-                    <asp:Label CssClass="TextoError" ID="Label1" runat="server" Text=""></asp:Label>
-                    
-                   <div class="DivTabla">
-                    <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
-                        CssClass="TablaInformacion" DataKeyNames="ProductoId" ID="TablaProducto"
-                        OnRowCommand="TablaProducto_RowCommand" runat="server" PageSize="10">
-                        <EmptyDataTemplate>
-                            <table class="TablaVacia">
-                                <tr class="Encabezado">
-                                     <th style="width: 10px;"></th>
-                                     <th style="width: 30px;">Clave Producto</th>
-                                    <th  style="width: 80px;">Nombre</th>                           
-                                 </tr>
+                     <div class="PopupGrandeCuerpoDiv">
+                      <div>
+                            <table class="TablaFormulario">
+                             <tr>
+                                    <td class="Nombre">Clave Producto</td>
+                                    <td class="Espacio"></td>
+                                    <td class="Campo"><asp:TextBox CssClass="CajaTextoPequenia" ID="ClaveProductoBusqueda" MaxLength="20" runat="server" Text=""></asp:TextBox></td>
+                                </tr>
                                 <tr>
-                                    <td colspan="3" style="text-align: Center;">No se encontró información con los parámetros seleccionados</td>
+                                    <td class="Nombre">Nombre</td>
+                                    <td class="Espacio"></td>
+                                    <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="NombreProductoBusqueda" MaxLength="100" runat="server" Text=""></asp:TextBox></td>
+                                </tr>
+                                <tr>
+                                      <td colspan="3">
+                                        <br />
+                                      <asp:ImageButton AlternateText="Buscar" ID="BotonProductoBusqueda" ImageUrl="/Imagen/Boton/BotonBuscar.png" OnClick="BotonProductoBusqueda_Click" runat="server" />&nbsp;&nbsp;
+                                  <%--  <asp:ImageButton AlternateText="Cancelar" ID="BotonCancelarProductoBusqueda" ImageUrl="/Imagen/Boton/BotonCancelar.png" OnClick="BotonCancelarProductoBusqueda_Click" runat="server" />--%>
+                                    </td>
                                 </tr>
                             </table>
-                        </EmptyDataTemplate>
-                        <HeaderStyle CssClass="Encabezado" />
-                        <PagerStyle CssClass="Paginacion" HorizontalAlign="Right" />
-                        <Columns>
-                            <asp:TemplateField HeaderText="">
-                                <ItemTemplate>
-                                    <asp:CheckBox ID="SeleccionarBorrar" runat="server" />
-                                </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" Width="10px" />
-                            </asp:TemplateField>
-                           
-                            <asp:BoundField DataField="Clave" HeaderText="Clave Producto" ItemStyle-HorizontalAlign="Center">
-                                <HeaderStyle HorizontalAlign="Center" Width="30px" />
-                            </asp:BoundField>
+                            </div>
                             
+                            <asp:Label CssClass="TextoError" ID="Label1" runat="server" Text=""></asp:Label>
                             
-                             <asp:BoundField DataField="NombreProducto" HeaderText="Nombre" ItemStyle-HorizontalAlign="Center">
-                                <HeaderStyle HorizontalAlign="Center" Width="80px" />
-                            </asp:BoundField>
-                         
-                        </Columns>
-                    </asp:GridView>
-                </div>
-             </asp:Panel>
+                           <div class="DivTabla">
+                            <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
+                                CssClass="TablaInformacion" DataKeyNames="ProductoId" ID="TablaProducto"
+                                OnRowCommand="TablaProducto_RowCommand" runat="server" PageSize="10">
+                                <EmptyDataTemplate>
+                                    <table class="TablaVacia">
+                                        <tr class="Encabezado">
+                                             <th style="width: 10px;"></th>
+                                             <th style="width: 30px;">Clave Producto</th>
+                                            <th  style="width: 80px;">Nombre</th>                           
+                                         </tr>
+                                        <tr>
+                                            <td colspan="3" style="text-align: Center;">No se encontró información con los parámetros seleccionados</td>
+                                        </tr>
+                                    </table>
+                                </EmptyDataTemplate>
+                                <HeaderStyle CssClass="Encabezado" />
+                                <PagerStyle CssClass="Paginacion" HorizontalAlign="Right" />
+                                <Columns>
+                                    <asp:TemplateField HeaderText="">
+                                        <ItemTemplate>
+                                            <asp:CheckBox ID="SeleccionarBorrar" runat="server" />
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" Width="10px" />
+                                    </asp:TemplateField>
+                                   
+                                    <asp:BoundField DataField="Clave" HeaderText="Clave Producto" ItemStyle-HorizontalAlign="Center">
+                                        <HeaderStyle HorizontalAlign="Center" Width="30px" />
+                                    </asp:BoundField>
+                                    
+                                    
+                                     <asp:BoundField DataField="NombreProducto" HeaderText="Nombre" ItemStyle-HorizontalAlign="Center">
+                                        <HeaderStyle HorizontalAlign="Center" Width="80px" />
+                                    </asp:BoundField>
+                                 
+                                </Columns>
+                            </asp:GridView>
+                        </div>
+
+                    
+                    </div>       
+                 
+                     <div class="PopupGrandePieDiv">
+                       &nbsp;
+                    </div>
+                                    
+                </asp:Panel>
           </ContentTemplate>
       </asp:UpdatePanel>   
       </div>

@@ -42,6 +42,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
         protected void ImagenProductoBusqueda_Click(object sender, ImageClickEventArgs e)
         {
             PanelBusquedaProducto.Visible = !PanelBusquedaProducto.Visible;
+            pnlFondoBuscarProducto.Visible = !pnlFondoBuscarProducto.Visible;
         }
 
 
