@@ -82,22 +82,19 @@
                          <tr>
                             <td class="Nombre">Familia</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="FamiliaIdNuevo" Enabled ="false"  runat="server" ></asp:TextBox></td>
-                           <%-- <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="FamiliaIdNuevo" OnSelectedIndexChanged="ddlFamilia_SelectedIndexChanged" AutoPostBack="true"  Enabled ="false"   runat="server"></asp:DropDownList>                              --%>
-                            </td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="FamiliaIdNuevo" Enabled ="false"  runat="server" ></asp:TextBox></td>                               
                         </tr>
                         <tr>
                             <td class="Nombre">SubFamilia</td>
                             <td class="Espacio"></td>
                             <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="SubFamiliaIdNuevo" Enabled ="false"  runat="server" ></asp:TextBox></td>
-                            <%--<td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="SubFamiliaIdNuevo" Enabled ="false"    runat="server"></asp:DropDownList></td>--%>
+                           
                         </tr>
                         
                         <tr>
                             <td class="Nombre">Marca</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="MarcaIdNuevo" Enabled ="false"  runat="server" ></asp:TextBox></td>
-                <%--            <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="MarcaIdNuevo" Enabled ="false"   runat="server"></asp:DropDownList></td>--%>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="MarcaIdNuevo" Enabled ="false"  runat="server" ></asp:TextBox></td>                   
                         </tr> 
                         
                          <tr>
@@ -214,7 +211,7 @@
                  
                     
                     <div class="PopupGrandeEncabezadoDiv">                    
-                         <asp:Label class="TitleDivPage" ID="lblTitleBuscarProducto" runat="server" Text="Busqueda de Productos de la Preorden"></asp:Label>
+                         <asp:Label class="TitleDivPage" ID="lblTitleBuscarProducto" runat="server" Text="Busqueda de Productos"></asp:Label>
                     </div>
                     
                      <div class="PopupGrandeCuerpoDiv">
