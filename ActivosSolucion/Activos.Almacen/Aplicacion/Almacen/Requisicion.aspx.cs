@@ -151,14 +151,9 @@ namespace Activos.Almacen.Aplicacion.Almacen
                 RequisicionObjetoEntidad.TemporalRequisicionId = TemporalRequisicionIdHidden.Value;
                 RequisicionObjetoEntidad.ProductoId = ProductoIdHidden.Value;
 
-            //if (CantidadNuevo.Text =="0")
-            //{ RequisicionObjetoEntidad.Cantidad = 0; }
-            //else
-            //{
-                RequisicionObjetoEntidad.Cantidad = Int16.Parse(CantidadNuevo.Text.Trim()); 
-
-
-                AgregarRequisicion(RequisicionObjetoEntidad);        
+               RequisicionObjetoEntidad.Cantidad = Int16.Parse(CantidadNuevo.Text.Trim()); 
+            
+               AgregarRequisicion(RequisicionObjetoEntidad);        
         }
 
         protected void AgregarRequisicion(RequisicionEntidad RequisicionObjetoEntidad)
@@ -268,13 +263,14 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
             if (Resultado.ErrorId == (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente)
             {
+                MostrarMensaje(TextoInfo.MensajeGuardadoGenerico, ConstantePrograma.TipoMensajeAlerta);
                 LimpiarNuevoRegistro();
                 LimpiarRequisicion();
             }
             else
             {
-              //  MostrarMensaje(RequisicionProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
-                 EtiquetaMensaje.Text = Resultado.DescripcionError;
+                MostrarMensaje(RequisicionProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+              //   EtiquetaMensaje.Text = Resultado.DescripcionError;
             }
         }        
         

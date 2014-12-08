@@ -58,6 +58,7 @@
     <Compile Include="Cadenas\Comparar.cs" />
     <Compile Include="Constante\ConstantePrograma.cs" />
     <Compile Include="Constante\TextoError.cs" />
+    <Compile Include="Constante\TextoInfo.cs" />
     <Compile Include="Correo\CuerpoCorreo.cs" />
     <Compile Include="Correo\Servidor.cs" />
     <Compile Include="Fecha\FormatoFecha.cs" />
