@@ -290,6 +290,7 @@
                          <asp:ImageButton ID="BotonAceptar" OnClick="BotonProductoBusqueda_Click" runat="server" ImageUrl="~/Imagen/Boton/BotonBuscar.png" />
                          &nbsp;
                          <asp:ImageButton ID="BotonCancelar" OnClick="BotonCerrarProductoBusqueda_Click" runat="server" ImageUrl="~/Imagen/Boton/BotonCancelar.png" />                   
+                       </div>                                    
                     </div>                                    
                 </asp:Panel>
           </ContentTemplate>

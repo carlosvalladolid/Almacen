@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\windows\assembly\GAC_MSIL\Microsoft.ReportViewer.WebForms\9.0.0.0__b03f5f7f11d50a3a\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core">
@@ -139,6 +143,18 @@
     </Compile>
     <Compile Include="Aplicacion\Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicacion\Reporte\DataSet\ExistenciaPoductoDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ExistenciaPoductoDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicacion\Reporte\Viewer\ExistenciaProductoViewer.aspx.cs">
+      <DependentUpon>ExistenciaProductoViewer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicacion\Reporte\Viewer\ExistenciaProductoViewer.aspx.designer.cs">
+      <DependentUpon>ExistenciaProductoViewer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Aplicacion\Salir.aspx.cs">
       <DependentUpon>Salir.aspx</DependentUpon>
@@ -412,6 +428,7 @@
     <Content Include="Aplicacion\Catalogo\SubFamilia.aspx" />
     <Content Include="Aplicacion\Configuracion\CambiarContrasenia.aspx" />
     <Content Include="Aplicacion\Inicio.aspx" />
+    <Content Include="Aplicacion\Reporte\Viewer\ExistenciaProductoViewer.aspx" />
     <Content Include="App.config" />
     <Content Include="Incluir\Javascript\Buscar.js" />
     <Content Include="Incluir\Javascript\Calendar.js" />
@@ -425,8 +442,23 @@
     <Content Include="Incluir\Javascript\ValidarFormulario.js" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Aplicacion\Reporte\DataSet\ExistenciaPoductoDS.xsc">
+      <DependentUpon>ExistenciaPoductoDS.xsd</DependentUpon>
+    </None>
+    <None Include="Aplicacion\Reporte\DataSet\ExistenciaPoductoDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ExistenciaPoductoDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Aplicacion\Reporte\DataSet\ExistenciaPoductoDS.xss">
+      <DependentUpon>ExistenciaPoductoDS.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Aplicacion\Reporte\Diseño\ExistenciProductoRPT.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Aplicacion\Error\" />
-    <Folder Include="Aplicacion\Reporte\Ventana\" />
     <Folder Include="App_Data\" />
     <Folder Include="Imagen\Otro\" />
   </ItemGroup>

@@ -50,6 +50,14 @@ namespace Activos.Almacen.Aplicacion.Almacen
           
         }
 
+        //protected void BotonImprimirProductoBusqueda_Click(object sender, ImageClickEventArgs e)
+        //{
+
+        //    ImprimirReporte();
+          
+        //}
+
+        
         protected void BotonCerrarProductoBusqueda_Click(object sender, ImageClickEventArgs e)
         {
             CargaPanelInVisibleProducto();
@@ -254,6 +262,18 @@ namespace Activos.Almacen.Aplicacion.Almacen
             }
         }
 
+        //protected void ImprimirReporte()
+        //{
+        //    StringBuilder Code = new StringBuilder();
+
+        //    Code.Append("<script type=\"text/javascript\">");
+        //    Code.Append("window.open('/Aplicacion/Reporte/Viewer/ExistenciaProductoViewer.aspx" + "', 'ImprimirDocumento', ' resizable=yes,scrollbars=1');");
+        //    Code.Append("</script>");
+
+        //    ScriptManager.RegisterStartupScript(this, typeof(string), "Message", Code.ToString(), false);
+        
+        //}
+
         protected void GuardarRequisicion(RequisicionEntidad RequisicionObjetoEntidad)
         {
             ResultadoEntidad Resultado = new ResultadoEntidad();
@@ -348,16 +368,13 @@ namespace Activos.Almacen.Aplicacion.Almacen
         }
 
         private void Inicio()
-        {
-          
+        {          
             if (Page.IsPostBack)
             return;
             CargarInformacionUsuario();
             TablaRequisicion.DataSource = null;
             TablaRequisicion.DataBind();
-            BuscarProducto();
-            //TablaProducto.DataSource = null;
-            //TablaProducto.DataBind();
+            BuscarProducto();            
         }
 
         protected void TablaRequisicionEventoComando(GridViewCommandEventArgs e)

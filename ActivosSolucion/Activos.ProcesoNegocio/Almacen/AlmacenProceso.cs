@@ -95,6 +95,20 @@ namespace Activos.ProcesoNegocio.Almacen
           return Resultado;
       }
 
+
+      public ResultadoEntidad SeleccionarExistenciaProducto(AlmacenEntidad AlmacenObjetoEntidad)
+      {
+          string CadenaConexion = string.Empty;
+          ResultadoEntidad Resultado = new ResultadoEntidad();
+          AlmacenAcceso AlmacenAccesoObjeto = new AlmacenAcceso();
+
+          CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+          Resultado = AlmacenAccesoObjeto.SeleccionarReporteExistenciaProducto(AlmacenObjetoEntidad, CadenaConexion);
+
+          return Resultado;
+      }
+
       public ResultadoEntidad SeleccionarProductoparaEditar(AlmacenEntidad AlmacenObjetoEntidad)
       {
           string CadenaConexion = string.Empty;
