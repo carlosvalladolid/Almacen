@@ -105,7 +105,7 @@
                                         
 						 <tr>
                             <td class="Nombre">Cantidad</td>
-                            <td class="Espacio"></td>
+                            <td class="Espacio">*</td>
                             <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="CantidadNuevo"  runat="server" Text=""></asp:TextBox></td>                           
                         </tr>                       
                       

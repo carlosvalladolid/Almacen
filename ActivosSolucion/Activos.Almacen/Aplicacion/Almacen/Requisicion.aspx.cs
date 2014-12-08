@@ -111,6 +111,8 @@ namespace Activos.Almacen.Aplicacion.Almacen
             else
             {
                 EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+               // MostrarMensaje(AlmacenProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+               
             }
 
         }
@@ -148,7 +150,13 @@ namespace Activos.Almacen.Aplicacion.Almacen
                 RequisicionObjetoEntidad.RequisicionId = TemporalRequisicionIdHidden.Value;
                 RequisicionObjetoEntidad.TemporalRequisicionId = TemporalRequisicionIdHidden.Value;
                 RequisicionObjetoEntidad.ProductoId = ProductoIdHidden.Value;
-                RequisicionObjetoEntidad.Cantidad = Int16.Parse(CantidadNuevo.Text.Trim());
+
+            //if (CantidadNuevo.Text =="0")
+            //{ RequisicionObjetoEntidad.Cantidad = 0; }
+            //else
+            //{
+                RequisicionObjetoEntidad.Cantidad = Int16.Parse(CantidadNuevo.Text.Trim()); 
+
 
                 AgregarRequisicion(RequisicionObjetoEntidad);        
         }
@@ -171,7 +179,9 @@ namespace Activos.Almacen.Aplicacion.Almacen
             else
             {
 
-                EtiquetaMensaje.Text = Resultado.DescripcionError;
+              //  MostrarMensaje(RequisicionProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+               
+                 EtiquetaMensaje.Text = Resultado.DescripcionError;
                 LimpiarRequisicion();
 
             }
@@ -192,7 +202,8 @@ namespace Activos.Almacen.Aplicacion.Almacen
                 }
                 else
                 {
-                     EtiquetaMensaje.Text = Resultado.DescripcionError;
+                  //  MostrarMensaje(RequisicionProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta); 
+                    EtiquetaMensaje.Text = Resultado.DescripcionError;
                 }
             }
         }
@@ -223,10 +234,9 @@ namespace Activos.Almacen.Aplicacion.Almacen
             else
             {
                 EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+               // MostrarMensaje(RequisicionProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
             }
         }
-
-
 
         protected void GuardarRequisicion()
         {
@@ -263,10 +273,10 @@ namespace Activos.Almacen.Aplicacion.Almacen
             }
             else
             {
-                EtiquetaMensaje.Text = Resultado.DescripcionError;
+              //  MostrarMensaje(RequisicionProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                 EtiquetaMensaje.Text = Resultado.DescripcionError;
             }
-        }
-        
+        }        
         
         protected void SeleccionarClave()
         {
@@ -345,15 +355,11 @@ namespace Activos.Almacen.Aplicacion.Almacen
         {
           
             if (Page.IsPostBack)
-                return;
-
-            CargarInformacionUsuario();        
-
+            return;
+            CargarInformacionUsuario();
             TablaRequisicion.DataSource = null;
             TablaRequisicion.DataBind();
-
             BuscarProducto();
-
             //TablaProducto.DataSource = null;
             //TablaProducto.DataBind();
         }

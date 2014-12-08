@@ -148,107 +148,7 @@ namespace Activos.ProcesoNegocio.Almacen
                 }
                 return Resultado;
             }
-
-           
-            
-       
-       
-       
-       //public ResultadoEntidad GuardarRequisicion(RequisicionEntidad RequisicionObjetoEntidad)
-            //{
-            //    string CadenaConexion = string.Empty;
-            //    ResultadoEntidad Resultado = new ResultadoEntidad();
-            //    RequisicionAcceso RequisicionAccesoObjeto = new RequisicionAcceso();
-            //    SqlTransaction Transaccion;
-            //    SqlConnection Conexion;
-
-            //    CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
-            //    Conexion = new SqlConnection(CadenaConexion);
-            //    Conexion.Open();
-            //    Transaccion = Conexion.BeginTransaction();
-
-            //    try
-            //    {
-
-            //        if (RequisicionObjetoEntidad.RequisicionId == "")
-            //        {
-            //            Conexion.Close();                  
-            //            return Resultado;
-
-            //        }
-            //        Resultado = RequisicionAccesoObjeto.InsertarRequisicionEncabezado(Conexion, Transaccion, RequisicionObjetoEntidad);
-
-            //        if (Resultado.ErrorId != (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente)
-            //        {
-            //            Transaccion.Rollback();                       
-            //            return Resultado;
-            //        }
-
-            //        Resultado = GuardarRequisicionDetalle(Conexion, Transaccion, RequisicionObjetoEntidad);
-
-            //        if (Resultado.ErrorId == (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente)
-            //            Transaccion.Commit();
-            //        else
-            //            Transaccion.Rollback();
-
-            //        return Resultado;
-
-
-            //    }
-            //    catch (Exception EX)
-            //    {
-            //        Transaccion.Rollback();
-
-            //        if (Conexion.State == ConnectionState.Open)
-            //        {
-            //            Conexion.Close();
-            //        }
-            //        Resultado.DescripcionError = EX.Message;
-            //        return Resultado;
-
-            //    }
-
-            //}
-
-            //public ResultadoEntidad GuardarRequisicionDetalle(SqlConnection Conexion, SqlTransaction Transaccion, RequisicionEntidad RequisicionObjetoEntidad, DataSet dsRequisicion)
-            //{
-            //    ResultadoEntidad Resultado = new ResultadoEntidad();
-            //    ResultadoEntidad ResultadoMovimiento = new ResultadoEntidad();
-            //    RequisicionProceso RequisicionProcesoNegocio = new RequisicionProceso();
-             
-            //    foreach (DataRow dtRegistro in dsRequisicion.Tables[0].Rows)
-            //    {
-            //        RequisicionObjetoEntidad.RequisicionId = TemporalRequisicionId.value;
-            //        RequisicionObjetoEntidad.ProductoId = string.Format(dtRegistro["ProductoId"].ToString());
-            //       // RequisicionObjetoEntidad.Cantidad = RequisicionObjetoEntidad.Cantidad;
-
-            //        Resultado = RequisicionProcesoNegocio.GuardarRequisicionDetalle(Conexion, Transaccion, RequisicionObjetoEntidad);
-
-            //        //Si el activo se guardo correctamente se obtiene su ID, se inserta el movimiento de alta y se inserta los accesorios
-            //        if (Resultado.ErrorId == (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente)
-            //        {
-
-
-            //        }
-            //        else
-            //        {
-            //            break;
-            //        }
-            //    }
-
-            //    return Resultado;
-            //}
-
-            //public ResultadoEntidad GuardarRequisicionDetalle(SqlConnection Conexion, SqlTransaction Transaccion, RequisicionEntidad RequisicionObjetoEntidad)
-            //{
-            //    ResultadoEntidad Resultado = new ResultadoEntidad();
-            //    RequisicionAcceso RequisicionAccesoObjeto = new RequisicionAcceso();
-
-            //    Resultado = RequisicionAccesoObjeto.InsertarRequisicionDetalle(Conexion, Transaccion, RequisicionObjetoEntidad);
-
-            //    return Resultado;
-            //}
-                
+                           
             public ResultadoEntidad BuscarRequisicionProducto(RequisicionEntidad RequisicionObjetoEntidad)
             {
                 ResultadoEntidad Resultado = new ResultadoEntidad();
@@ -391,7 +291,6 @@ namespace Activos.ProcesoNegocio.Almacen
 
             }
 
-
             public ResultadoEntidad GuardarRequisicionDetalle(SqlConnection Conexion, SqlTransaction Transaccion, RequisicionEntidad RequisicionObjetoEntidad)
             {
                 ResultadoEntidad Resultado = new ResultadoEntidad();
@@ -402,18 +301,18 @@ namespace Activos.ProcesoNegocio.Almacen
                 return Resultado;
             }
 
-       public ResultadoEntidad SeleccionarEmpleado(RequisicionEntidad RequisicionObjetoEntidad)
-            {
-                string CadenaConexion = string.Empty;
-                ResultadoEntidad Resultado = new ResultadoEntidad();
-                RequisicionAcceso RequisicionAccesoObjeto = new RequisicionAcceso();
+            public ResultadoEntidad SeleccionarEmpleado(RequisicionEntidad RequisicionObjetoEntidad)
+                {
+                    string CadenaConexion = string.Empty;
+                    ResultadoEntidad Resultado = new ResultadoEntidad();
+                    RequisicionAcceso RequisicionAccesoObjeto = new RequisicionAcceso();
 
-                CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+                    CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
-                Resultado = RequisicionAccesoObjeto.SeleccionarEmpleado(RequisicionObjetoEntidad, CadenaConexion);
+                    Resultado = RequisicionAccesoObjeto.SeleccionarEmpleado(RequisicionObjetoEntidad, CadenaConexion);
 
-                return Resultado;
-            }
+                    return Resultado;
+                }
 
             public ResultadoEntidad SeleccionaRequisicion(RequisicionEntidad RequisicionObjetoEntidad)
             {
