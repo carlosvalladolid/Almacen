@@ -352,8 +352,10 @@ namespace Activos.Almacen.Aplicacion.Almacen
             TablaRequisicion.DataSource = null;
             TablaRequisicion.DataBind();
 
-            TablaProducto.DataSource = null;
-            TablaProducto.DataBind();
+            BuscarProducto();
+
+            //TablaProducto.DataSource = null;
+            //TablaProducto.DataBind();
         }
 
         protected void TablaRequisicionEventoComando(GridViewCommandEventArgs e)
