@@ -35,8 +35,12 @@ namespace Activos.Almacen.Aplicacion.Almacen
         }
 
         protected void BotonGuardar_Click(object sender, ImageClickEventArgs e)
-        {
-           GuardarRequisicion();
+        {         
+
+           if (Page.IsValid)
+           {
+               GuardarRequisicion();
+           }
         }
 
         protected void ImagenProductoBusqueda_Click(object sender, ImageClickEventArgs e)
@@ -133,18 +137,20 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         protected void AgregarDetalleDocumento()
         {
-
             RequisicionEntidad RequisicionObjetoEntidad = new RequisicionEntidad();
 
-            if (TemporalRequisicionIdHidden.Value == "")
-            {
+            //***********************************************************************
+                RequisicionObjetoEntidad.RequisicionId = TemporalRequisicionIdHidden.Value;
+                RequisicionObjetoEntidad.TemporalRequisicionId = TemporalRequisicionIdHidden.Value;
+                RequisicionObjetoEntidad.EmpleadoId = Int16.Parse(EmpleadoIdHidden.Value);
+                RequisicionObjetoEntidad.JefeId = Int16.Parse(JefeIdHidden.Value);         
+            //***********************************************************************
                 RequisicionObjetoEntidad.RequisicionId = TemporalRequisicionIdHidden.Value;
                 RequisicionObjetoEntidad.TemporalRequisicionId = TemporalRequisicionIdHidden.Value;
                 RequisicionObjetoEntidad.ProductoId = ProductoIdHidden.Value;
                 RequisicionObjetoEntidad.Cantidad = Int16.Parse(CantidadNuevo.Text.Trim());
 
-                AgregarRequisicion(RequisicionObjetoEntidad);
-            }
+                AgregarRequisicion(RequisicionObjetoEntidad);        
         }
 
         protected void AgregarRequisicion(RequisicionEntidad RequisicionObjetoEntidad)
@@ -152,7 +158,9 @@ namespace Activos.Almacen.Aplicacion.Almacen
             ResultadoEntidad Resultado = new ResultadoEntidad();
             RequisicionProceso RequisicionProcesoNegocio = new RequisicionProceso();
 
-            Resultado = RequisicionProcesoNegocio.AgregarRequisicionDetalle(RequisicionObjetoEntidad);
+            InsertarRequisicionEncabezadoTemp(RequisicionObjetoEntidad);
+
+            Resultado = RequisicionProcesoNegocio.AgregarTemporalRequisicion(RequisicionObjetoEntidad);
 
             if (Resultado.ErrorId == (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente)
             {
@@ -167,39 +175,26 @@ namespace Activos.Almacen.Aplicacion.Almacen
                 LimpiarRequisicion();
 
             }
-        }
+        }        
 
-        protected void GuardarRequisicion()
-        {
-            RequisicionEntidad RequisicionObjetoEntidad = new RequisicionEntidad();
-
-            RequisicionObjetoEntidad.RequisicionId = TemporalRequisicionIdHidden.Value;
-            RequisicionObjetoEntidad.EmpleadoId = Int16.Parse(EmpleadoIdHidden.Value);
-            RequisicionObjetoEntidad.JefeId = Int16.Parse(JefeIdHidden.Value);
-
-            GuardarRequisicion(RequisicionObjetoEntidad);
-
-        }
-
-        protected void GuardarRequisicion(RequisicionEntidad RequisicionObjetoEntidad)
+        protected void InsertarRequisicionEncabezadoTemp(RequisicionEntidad RequisicionObjetoEntidad)
         {
             ResultadoEntidad Resultado = new ResultadoEntidad();
             RequisicionProceso RequisicionProcesoNegocio = new RequisicionProceso();
 
-            Resultado = RequisicionProcesoNegocio.AgregarRequisicionEncabezado(RequisicionObjetoEntidad);
-
-            if (Resultado.ErrorId == (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente)
+            if (TemporalRequisicionIdHidden.Value == "")
             {
-                //  TemporalRecepcionIdHidden.Value = RecepcionObjetoEntidad.RecepcionId;
-                LimpiarNuevoRegistro();
-                LimpiarRequisicion();
+                Resultado = RequisicionProcesoNegocio.InsertarTemporalRequisicionEncabezado(RequisicionObjetoEntidad);
 
+                if (Resultado.ErrorId == (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente)
+                {
+                   // LimpiarNuevoRegistro();
+                }
+                else
+                {
+                     EtiquetaMensaje.Text = Resultado.DescripcionError;
+                }
             }
-            else
-            {
-                EtiquetaMensaje.Text = Resultado.DescripcionError;
-            }
-
         }
 
         protected void CargarInformacionUsuario()
@@ -231,6 +226,48 @@ namespace Activos.Almacen.Aplicacion.Almacen
             }
         }
 
+
+
+        protected void GuardarRequisicion()
+        {
+            RequisicionEntidad RequisicionObjetoEntidad = new RequisicionEntidad();
+            UsuarioEntidad UsuarioSessionEntidad = new UsuarioEntidad();
+
+            if (TemporalRequisicionIdHidden.Value != "0")
+            {
+                if (TablaRequisicion.Rows.Count > 0)
+                {
+                    RequisicionObjetoEntidad.RequisicionId = TemporalRequisicionIdHidden.Value;
+
+                    GuardarRequisicion(RequisicionObjetoEntidad);
+                }
+
+            }
+            else
+            {
+                EtiquetaMensaje.Text = "Favor de agregar los Productos";
+            }
+        }
+
+        protected void GuardarRequisicion(RequisicionEntidad RequisicionObjetoEntidad)
+        {
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            RequisicionProceso RequisicionProcesoNegocio = new RequisicionProceso();
+
+            Resultado = RequisicionProcesoNegocio.GuardarRequisicion(RequisicionObjetoEntidad);
+
+            if (Resultado.ErrorId == (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente)
+            {
+                LimpiarNuevoRegistro();
+                LimpiarRequisicion();
+            }
+            else
+            {
+                EtiquetaMensaje.Text = Resultado.DescripcionError;
+            }
+        }
+        
+        
         protected void SeleccionarClave()
         {
             ResultadoEntidad Resultado = new ResultadoEntidad();
@@ -306,17 +343,11 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         private void Inicio()
         {
-            //Master.NuevoRegistroMaster.Click += new EventHandler(NuevoRegistro_Click);
-            //Master.BusquedaAvanzadaMaster.Click += new EventHandler(BusquedaAvanzadaLink_Click);
-            //Master.EliminarRegistroMaster.Click += new EventHandler(EliminarRegistroLink_Click);
-
+          
             if (Page.IsPostBack)
                 return;
 
-            CargarInformacionUsuario();
-            //SeleccionarMarca();
-            //SeleccionarFamilia();
-            //SeleccionarSubfamilia();
+            CargarInformacionUsuario();        
 
             TablaRequisicion.DataSource = null;
             TablaRequisicion.DataBind();

@@ -28,15 +28,6 @@ namespace Activos.ProcesoNegocio.Almacen
 
             CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
-            ////****************** aqui entra para revisar que no se agregue la PreOrden
-            //    ResultadoPreOrdenDuplicado = ValidarPreOrdenDuplicado(TemporalPreOrdenObjetoEntidad);
-
-            //    if (ResultadoPreOrdenDuplicado.ErrorId != 0)
-            //    {
-            //        return ResultadoPreOrdenDuplicado;
-            //    }
-
-            ////**************************************************************************************            
             Conexion = new SqlConnection(CadenaConexion);
             Conexion.Open();
 
@@ -109,6 +100,11 @@ namespace Activos.ProcesoNegocio.Almacen
             return Resultado;
         }
 
+       
+        
+        
+        
+        
         public ResultadoEntidad SeleccionarPreOrdenDetalleTemp(TemporalPreOrdenEntidad TemporalPreOrdenObjetoEntidad)
         {
             string CadenaConexion = string.Empty;

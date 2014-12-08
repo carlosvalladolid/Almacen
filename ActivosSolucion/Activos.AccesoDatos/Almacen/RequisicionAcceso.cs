@@ -75,9 +75,96 @@ namespace Activos.AccesoDatos.Almacen
                 }
             }
 
-            public ResultadoEntidad InsertarRequisicionDetalle(RequisicionEntidad RequisicionEntidadObjeto, string CadenaConexion)
+            //public ResultadoEntidad InsertarRequisicionDetalle(RequisicionEntidad RequisicionEntidadObjeto, string CadenaConexion)
+            //{
+            //    SqlConnection Conexion = new SqlConnection(CadenaConexion);
+            //    SqlCommand Comando;
+            //    SqlParameter Parametro;
+            //    ResultadoEntidad Resultado = new ResultadoEntidad();
+
+            //    try
+            //    {
+            //        Comando = new SqlCommand("InsertarRequisicionDetalleProcedimiento", Conexion);
+            //        Comando.CommandType = CommandType.StoredProcedure;
+
+
+            //        Parametro = new SqlParameter("RequisicionId", SqlDbType.VarChar);
+            //        Parametro.Value = RequisicionEntidadObjeto.RequisicionId;
+            //        Comando.Parameters.Add(Parametro);
+
+            //        Parametro = new SqlParameter("ProductoId", SqlDbType.VarChar);
+            //        Parametro.Value = RequisicionEntidadObjeto.ProductoId;
+            //        Comando.Parameters.Add(Parametro);               
+
+            //        Parametro = new SqlParameter("Cantidad", SqlDbType.Int);
+            //        Parametro.Value = RequisicionEntidadObjeto.Cantidad;
+            //        Comando.Parameters.Add(Parametro);
+
+            //        Conexion.Open();
+            //        Comando.ExecuteNonQuery();
+            //        Conexion.Close();
+
+            //        Resultado.ErrorId = (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente;
+
+            //        return Resultado;
+            //    }
+            //    catch (SqlException sqlEx)
+            //    {
+            //        Resultado.ErrorId = sqlEx.Number;
+            //        Resultado.DescripcionError = sqlEx.Message;
+
+            //        return Resultado;
+            //    }
+            //}
+
+            //public ResultadoEntidad InsertarRequisicionEncabezado(RequisicionEntidad RequisicionEntidadObjeto, string CadenaConexion)
+            //{
+            //    SqlConnection Conexion = new SqlConnection(CadenaConexion);
+            //    SqlCommand Comando;
+            //    SqlParameter Parametro;
+            //    ResultadoEntidad Resultado = new ResultadoEntidad();
+
+            //    try
+            //    {
+            //        Comando = new SqlCommand("InsertarRequisicionEncabezadoProcedimiento", Conexion);
+            //        Comando.CommandType = CommandType.StoredProcedure;
+
+            //        Parametro = new SqlParameter("RequisicionId", SqlDbType.VarChar);
+            //        Parametro.Value = RequisicionEntidadObjeto.RequisicionId;
+            //        Comando.Parameters.Add(Parametro);                             
+
+            //        Parametro = new SqlParameter("EmpleadoId", SqlDbType.Int);
+            //        Parametro.Value = RequisicionEntidadObjeto.EmpleadoId;
+            //        Comando.Parameters.Add(Parametro);
+
+            //        Parametro = new SqlParameter("JefeId", SqlDbType.Int);
+            //        Parametro.Value = RequisicionEntidadObjeto.JefeId;
+            //        Comando.Parameters.Add(Parametro);
+
+            //        Parametro = new SqlParameter("EstatusId", SqlDbType.SmallInt);
+            //        Parametro.Value = RequisicionEntidadObjeto.EstatusId;
+            //        Comando.Parameters.Add(Parametro);
+
+            //        Conexion.Open();
+            //        Comando.ExecuteNonQuery();
+            //        Conexion.Close();
+
+            //        Resultado.ErrorId = (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente;
+
+            //        return Resultado;
+            //    }
+            //    catch (SqlException sqlEx)
+            //    {
+            //        Resultado.ErrorId = sqlEx.Number;
+            //        Resultado.DescripcionError = sqlEx.Message;
+
+            //        return Resultado;
+            //    }
+            //}
+
+
+            public ResultadoEntidad InsertarRequisicionDetalle(SqlConnection Conexion, SqlTransaction Transaccion, RequisicionEntidad RequisicionEntidadObjeto)
             {
-                SqlConnection Conexion = new SqlConnection(CadenaConexion);
                 SqlCommand Comando;
                 SqlParameter Parametro;
                 ResultadoEntidad Resultado = new ResultadoEntidad();
@@ -87,22 +174,44 @@ namespace Activos.AccesoDatos.Almacen
                     Comando = new SqlCommand("InsertarRequisicionDetalleProcedimiento", Conexion);
                     Comando.CommandType = CommandType.StoredProcedure;
 
+                    Comando.Transaction = Transaccion;
 
                     Parametro = new SqlParameter("RequisicionId", SqlDbType.VarChar);
                     Parametro.Value = RequisicionEntidadObjeto.RequisicionId;
                     Comando.Parameters.Add(Parametro);
 
-                    Parametro = new SqlParameter("ProductoId", SqlDbType.VarChar);
-                    Parametro.Value = RequisicionEntidadObjeto.ProductoId;
-                    Comando.Parameters.Add(Parametro);               
+                    Comando.ExecuteNonQuery();
+                    Resultado.ErrorId = (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente;
 
-                    Parametro = new SqlParameter("Cantidad", SqlDbType.Int);
-                    Parametro.Value = RequisicionEntidadObjeto.Cantidad;
+                    return Resultado;
+                }
+                catch (SqlException sqlEx)
+                {
+                    Resultado.ErrorId = sqlEx.Number;
+                    Resultado.DescripcionError = sqlEx.Message;
+
+                    return Resultado;
+                }
+            }
+
+            public ResultadoEntidad InsertarRequisicionEncabezado(SqlConnection Conexion, SqlTransaction Transaccion, RequisicionEntidad RequisicionEntidadObjeto)
+            {
+                SqlCommand Comando;
+                SqlParameter Parametro;
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+
+                try
+                {
+                    Comando = new SqlCommand("InsertarRequisicionEncabezadoProcedimiento", Conexion);
+                    Comando.CommandType = CommandType.StoredProcedure;
+
+                    Comando.Transaction = Transaccion;
+
+                    Parametro = new SqlParameter("RequisicionId", SqlDbType.VarChar);
+                    Parametro.Value = RequisicionEntidadObjeto.RequisicionId;
                     Comando.Parameters.Add(Parametro);
 
-                    Conexion.Open();
                     Comando.ExecuteNonQuery();
-                    Conexion.Close();
 
                     Resultado.ErrorId = (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente;
 
@@ -117,7 +226,47 @@ namespace Activos.AccesoDatos.Almacen
                 }
             }
 
-            public ResultadoEntidad InsertarRequisicionEncabezado(RequisicionEntidad RequisicionEntidadObjeto, string CadenaConexion)
+
+            public ResultadoEntidad InsertarRequisicionDetalleTemp(SqlConnection Conexion, SqlTransaction Transaccion, RequisicionEntidad RequisicionEntidadObjeto)
+            {
+                SqlCommand Comando;
+                SqlParameter Parametro;
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+
+                try
+                {
+                    Comando = new SqlCommand("InsertarRequisicionDetalleTempProcedimiento", Conexion);
+                    Comando.CommandType = CommandType.StoredProcedure;
+
+                    Comando.Transaction = Transaccion;
+
+                    Parametro = new SqlParameter("RequisicionId", SqlDbType.VarChar);
+                    Parametro.Value = RequisicionEntidadObjeto.RequisicionId;
+                    Comando.Parameters.Add(Parametro);
+
+                    Parametro = new SqlParameter("ProductoId", SqlDbType.VarChar);
+                    Parametro.Value = RequisicionEntidadObjeto.ProductoId;
+                    Comando.Parameters.Add(Parametro);
+
+                    Parametro = new SqlParameter("Cantidad", SqlDbType.Int);
+                    Parametro.Value = RequisicionEntidadObjeto.Cantidad;
+                    Comando.Parameters.Add(Parametro);
+
+                    Comando.ExecuteNonQuery();
+                    Resultado.ErrorId = (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente;
+
+                    return Resultado;
+                }
+                catch (SqlException sqlEx)
+                {
+                    Resultado.ErrorId = sqlEx.Number;
+                    Resultado.DescripcionError = sqlEx.Message;
+
+                    return Resultado;
+                }
+            }
+              
+            public ResultadoEntidad InsertarRequisicionEncabezadoTemp(RequisicionEntidad RequisicionEntidadObjeto, string CadenaConexion)
             {
                 SqlConnection Conexion = new SqlConnection(CadenaConexion);
                 SqlCommand Comando;
@@ -126,12 +275,12 @@ namespace Activos.AccesoDatos.Almacen
 
                 try
                 {
-                    Comando = new SqlCommand("InsertarRequisicionEncabezadoProcedimiento", Conexion);
+                    Comando = new SqlCommand("InsertarRequisicionEncabezadoTempProcedimiento", Conexion);
                     Comando.CommandType = CommandType.StoredProcedure;
 
                     Parametro = new SqlParameter("RequisicionId", SqlDbType.VarChar);
                     Parametro.Value = RequisicionEntidadObjeto.RequisicionId;
-                    Comando.Parameters.Add(Parametro);                             
+                    Comando.Parameters.Add(Parametro);
 
                     Parametro = new SqlParameter("EmpleadoId", SqlDbType.Int);
                     Parametro.Value = RequisicionEntidadObjeto.EmpleadoId;
@@ -143,11 +292,7 @@ namespace Activos.AccesoDatos.Almacen
 
                     Parametro = new SqlParameter("EstatusId", SqlDbType.SmallInt);
                     Parametro.Value = RequisicionEntidadObjeto.EstatusId;
-                    Comando.Parameters.Add(Parametro);
-
-                    //Parametro = new SqlParameter("Clave", SqlDbType.VarChar);
-                    //Parametro.Value = RequisicionEntidadObjeto.Clave;
-                    //Comando.Parameters.Add(Parametro);
+                    Comando.Parameters.Add(Parametro);                   
 
                     Conexion.Open();
                     Comando.ExecuteNonQuery();
@@ -165,7 +310,7 @@ namespace Activos.AccesoDatos.Almacen
                     return Resultado;
                 }
             }
-
+                    
             public ResultadoEntidad SeleccionarEmpleado(RequisicionEntidad RequisicionEntidadObjeto, string CadenaConexion)
             {
                 DataSet ResultadoDatos = new DataSet();
@@ -219,7 +364,7 @@ namespace Activos.AccesoDatos.Almacen
 
                 try
                 {
-                    Comando = new SqlCommand("SeleccionarRequisicionDetalleProcedimiento", Conexion);
+                    Comando = new SqlCommand("SeleccionarRequisicionDetalleTempProcedimiento", Conexion);
                     Comando.CommandType = CommandType.StoredProcedure;
 
                     Parametro = new SqlParameter("RequisicionId", SqlDbType.VarChar);
@@ -253,48 +398,47 @@ namespace Activos.AccesoDatos.Almacen
                     return Resultado;
                 }
             }
+       
+            public ResultadoEntidad SeleccionarRequisicionDetalleTemp(SqlConnection Conexion, SqlTransaction Transaccion, RequisicionEntidad RequisicionObjetoEntidad)
+            {
+                DataSet ResultadoDatos = new DataSet();
+                SqlCommand Comando;
+                SqlParameter Parametro;
+                SqlDataAdapter Adaptador;
+                ResultadoEntidad Resultado = new ResultadoEntidad();
 
-            /// <summary>
-            ///     Busca la información de una requisición para generar la orden de salida.
-            /// </summary>
-            /// <param name="RequisicionEntidad">Entidad de la requisición.</param>
-            /// <param name="CadenaConexion">Cadena de conexión a la base de datos.</param>
-            /// <returns>Resultado de la búsqueda.</returns>
-            //public DataSet SeleccionarRequisicionOrdenSalida(RequisicionEntidad RequisicionEntidad, string CadenaConexion)
-            //{
-            //    DataSet Resultado = new DataSet();
-            //    SqlConnection Conexion = new SqlConnection(CadenaConexion);
-            //    SqlCommand Comando;
-            //    SqlParameter Parametro;
-            //    SqlDataAdapter Adaptador;
+                try
+                {
+                    Comando = new SqlCommand("SeleccionarRequisicionDetalleTempProcedimiento", Conexion);
+                    Comando.CommandType = CommandType.StoredProcedure;
 
-            //    try
-            //    {
-            //        Comando = new SqlCommand("SeleccionarRequisicionOrdenSalida", Conexion);
-            //        Comando.CommandType = CommandType.StoredProcedure;
+                    Comando.Transaction = Transaccion;
 
-            //        Parametro = new SqlParameter("Clave", SqlDbType.VarChar);
-            //        Parametro.Value = RequisicionEntidad.Clave;
-            //        Comando.Parameters.Add(Parametro);
+                    Parametro = new SqlParameter("RequisicionId", SqlDbType.VarChar);
+                    Parametro.Value = RequisicionObjetoEntidad.RequisicionId;
+                    Comando.Parameters.Add(Parametro);
 
-            //        Adaptador = new SqlDataAdapter(Comando);
+                    Parametro = new SqlParameter("ProductoId", SqlDbType.VarChar);
+                    Parametro.Value = RequisicionObjetoEntidad.ProductoId;
+                    Comando.Parameters.Add(Parametro);
 
-            //        Conexion.Open();
-            //        Adaptador.Fill(Resultado);
-            //        Conexion.Close();
+                    Adaptador = new SqlDataAdapter(Comando);
+                    ResultadoDatos = new DataSet();
 
-            //        return Resultado;
-            //    }
-            //    catch (SqlException Excepcion)
-            //    {
-            //        _ErrorId = Excepcion.Number;
-            //        _DescripcionError = Excepcion.Message;
+                    Adaptador.Fill(ResultadoDatos);
 
-            //        return Resultado;
-            //    }
-            //}
+                    Resultado.ResultadoDatos = ResultadoDatos;
 
+                    return Resultado;
+                }
+                catch (SqlException Excepcion)
+                {
+                    Resultado.ErrorId = Excepcion.Number;
+                    Resultado.DescripcionError = Excepcion.Message;
 
+                    return Resultado;
+                }
+            }
 
         #endregion
     }
