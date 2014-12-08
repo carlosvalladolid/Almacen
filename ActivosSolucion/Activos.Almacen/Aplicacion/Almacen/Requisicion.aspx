@@ -257,7 +257,7 @@
                                      <ItemTemplate>
                                          <asp:LinkButton CommandArgument="<%#Container.DataItemIndex%>" CommandName="Select" ID="LigaClave" runat="server" Text='<%#Eval("Clave")%>'></asp:LinkButton>
                                      </ItemTemplate>
-                                     <ItemStyle HorizontalAlign="Center" />
+                                     <ItemStyle HorizontalAlign="Center" Width="30px" />
                                  </asp:TemplateField>
                                  
                                  <%-- <asp:BoundField DataField="Clave" HeaderText="Clave Producto" ItemStyle-HorizontalAlign="Center">

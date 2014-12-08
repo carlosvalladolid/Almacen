@@ -71,11 +71,6 @@ namespace Activos.Almacen.Aplicacion.Almacen
             TablaRequisicionEventoComando(e);
         }
         
-        //protected void ddlFamilia_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    SeleccionarSubfamilia();
-        //}
-
         protected void TablaProducto_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             TablaProductoRowCommand(e);
@@ -411,20 +406,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
         
         
         }
-
-        //protected void LimpiarProducto()
-        //{
-        //    ClaveNuevo.Text = "";
-        //    FamiliaIdNuevo.Text = "";
-        //    SubFamiliaIdNuevo.Text = "";
-        //    MarcaIdNuevo.Text = "";
-        //    DescripcionNuevo.Text = "";
-        //    CantidadNuevo.Text = "";
-        //    ProductoIdHidden.Value = "";
-        //    EtiquetaMensaje.Text = "";
-
-        //}
-
+        
         private void MostrarMensaje(string Mensaje, string TipoMensaje)
         {
             StringBuilder FormatoMensaje = new StringBuilder();

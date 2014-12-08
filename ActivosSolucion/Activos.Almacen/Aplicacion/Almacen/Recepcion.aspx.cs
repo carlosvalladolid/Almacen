@@ -106,8 +106,8 @@ namespace Activos.Almacen.Aplicacion.Almacen
         protected void AgregarDetalleDocumento()
         {
             RecepcionEntidad RecepcionObjetoEntidad = new RecepcionEntidad();          
-            if (TemporalRecepcionIdHidden.Value == "")
-            {
+            //if (TemporalRecepcionIdHidden.Value == "")
+            //{
                 RecepcionObjetoEntidad.RecepcionId = TemporalRecepcionIdHidden.Value;
                 RecepcionObjetoEntidad.TemporalRecepcionId = TemporalRecepcionIdHidden.Value;
                 RecepcionObjetoEntidad.ProductoId = ProductoIdHidden.Value;
@@ -115,7 +115,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
                 RecepcionObjetoEntidad.Cantidad = MontoDocumentoNuevo.Text.Trim();
 
                 AgregarRecepcion(RecepcionObjetoEntidad);
-            }
+            //}
         }
 
         protected void AgregarRecepcion(RecepcionEntidad RecepcionObjetoEntidad)
