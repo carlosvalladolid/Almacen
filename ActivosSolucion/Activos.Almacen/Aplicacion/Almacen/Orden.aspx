@@ -87,9 +87,12 @@
                             <asp:BoundField DataField="NombreMarca" HeaderText="Marca" ItemStyle-HorizontalAlign="Center">
                                 <HeaderStyle HorizontalAlign="Center" Width="125px" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" ItemStyle-HorizontalAlign="Center">
-                                <HeaderStyle HorizontalAlign="Center" Width="125px" />
-                            </asp:BoundField>
+                            <asp:TemplateField HeaderText="Cantidad">
+                                <ItemTemplate>
+                                    <asp:TextBox CssClass="CajaTextoPequenia" ID="CantidadBox" MaxLength="3" runat="server" Text='<%#Eval("Cantidad")%>'></asp:TextBox>
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Center" Width="90px" />
+                            </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
                 </div>
