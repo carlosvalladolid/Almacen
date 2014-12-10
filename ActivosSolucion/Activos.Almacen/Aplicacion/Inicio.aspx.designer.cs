@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Activos.Almacen.Aplicacion {
+namespace Almacen.Web.Aplicacion {
     
     
     public partial class Inicio {
@@ -32,6 +32,15 @@ namespace Activos.Almacen.Aplicacion {
         protected global::System.Web.UI.UpdatePanel PageUpdate;
         
         /// <summary>
+        /// MessageGrid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView MessageGrid;
+        
+        /// <summary>
         /// AssociatedUpdate control.
         /// </summary>
         /// <remarks>
@@ -39,13 +48,5 @@ namespace Activos.Almacen.Aplicacion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdateProgress AssociatedUpdate;
-        
-        /// <summary>
-        /// Master property.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated property.
-        /// </remarks>
-        
     }
 }

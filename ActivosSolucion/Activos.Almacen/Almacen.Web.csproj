@@ -427,6 +427,8 @@
     <Content Include="Aplicacion\Inicio.aspx" />
     <Content Include="Aplicacion\Reporte\Viewer\ExistenciaProductoViewer.aspx" />
     <Content Include="App.config" />
+    <Content Include="Imagen\Banner\PublicityBanner.jpg" />
+    <Content Include="Imagen\Icono\BubbleIcon.png" />
     <Content Include="Incluir\Javascript\Buscar.js" />
     <Content Include="Incluir\Javascript\Calendar.js" />
     <Content Include="Incluir\Javascript\jquery-1.6.4.min.js" />
