@@ -16,11 +16,6 @@
   <rd:SnapToGrid>true</rd:SnapToGrid>
   <RightMargin>2.5cm</RightMargin>
   <LeftMargin>2.5cm</LeftMargin>
-  <PageHeader>
-    <PrintOnFirstPage>true</PrintOnFirstPage>
-    <Height>0.75cm</Height>
-    <PrintOnLastPage>true</PrintOnLastPage>
-  </PageHeader>
   <BottomMargin>2.5cm</BottomMargin>
   <rd:ReportID>d0122875-994c-4c0f-9049-a7c0be873565</rd:ReportID>
   <PageWidth>17.59cm</PageWidth>
@@ -72,10 +67,29 @@
     </DataSet>
   </DataSets>
   <Code />
-  <Width>17.5cm</Width>
+  <Width>29.29062cm</Width>
   <Body>
     <ColumnSpacing>1cm</ColumnSpacing>
     <ReportItems>
+      <Textbox Name="textbox16">
+        <rd:DefaultName>textbox16</rd:DefaultName>
+        <Top>0.25cm</Top>
+        <Width>24.25cm</Width>
+        <Style>
+          <FontSize>12pt</FontSize>
+          <FontWeight>700</FontWeight>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>1</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.5cm</Left>
+        <Height>0.74074cm</Height>
+        <Value>Instituto  de Defensoria Publica de Nuevo Leon</Value>
+      </Textbox>
       <Table Name="table1">
         <DataSetName>ExistenciaPoductoDS_ExistenciaProductoDT</DataSetName>
         <Top>1.5cm</Top>
@@ -88,6 +102,7 @@
                     <Textbox Name="Clave">
                       <rd:DefaultName>Clave</rd:DefaultName>
                       <Style>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -137,7 +152,7 @@
                     <Textbox Name="Minimo">
                       <rd:DefaultName>Minimo</rd:DefaultName>
                       <Style>
-                        <TextAlign>Right</TextAlign>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -154,7 +169,7 @@
                     <Textbox Name="Maximo">
                       <rd:DefaultName>Maximo</rd:DefaultName>
                       <Style>
-                        <TextAlign>Right</TextAlign>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -171,7 +186,7 @@
                     <Textbox Name="MaximoPermitido">
                       <rd:DefaultName>MaximoPermitido</rd:DefaultName>
                       <Style>
-                        <TextAlign>Right</TextAlign>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -229,6 +244,8 @@
                       <rd:DefaultName>textbox1</rd:DefaultName>
                       <Style>
                         <FontSize>8pt</FontSize>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -246,6 +263,8 @@
                       <rd:DefaultName>textbox2</rd:DefaultName>
                       <Style>
                         <FontSize>8pt</FontSize>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -263,7 +282,8 @@
                       <rd:DefaultName>textbox4</rd:DefaultName>
                       <Style>
                         <FontSize>8pt</FontSize>
-                        <TextAlign>Right</TextAlign>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -281,7 +301,8 @@
                       <rd:DefaultName>textbox10</rd:DefaultName>
                       <Style>
                         <FontSize>8pt</FontSize>
-                        <TextAlign>Right</TextAlign>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -299,7 +320,8 @@
                       <rd:DefaultName>textbox13</rd:DefaultName>
                       <Style>
                         <FontSize>8pt</FontSize>
-                        <TextAlign>Right</TextAlign>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -317,7 +339,8 @@
                       <rd:DefaultName>textbox3</rd:DefaultName>
                       <Style>
                         <FontSize>8pt</FontSize>
-                        <TextAlign>Right</TextAlign>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -335,6 +358,8 @@
                       <rd:DefaultName>textbox5</rd:DefaultName>
                       <Style>
                         <FontSize>8pt</FontSize>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -352,6 +377,8 @@
                       <rd:DefaultName>textbox11</rd:DefaultName>
                       <Style>
                         <FontSize>8pt</FontSize>
+                        <FontWeight>700</FontWeight>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -370,28 +397,28 @@
         </Header>
         <TableColumns>
           <TableColumn>
-            <Width>1.5cm</Width>
+            <Width>2.75cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>3.75cm</Width>
+            <Width>5.25cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>2cm</Width>
+            <Width>3.25cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>1.5cm</Width>
+            <Width>2.75cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>1.75cm</Width>
+            <Width>3cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>2.25cm</Width>
+            <Width>3.25cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>2.5cm</Width>
+            <Width>4.54687cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>2.25cm</Width>
+            <Width>4.24375cm</Width>
           </TableColumn>
         </TableColumns>
         <Height>1.90476cm</Height>
@@ -532,6 +559,7 @@
             </TableRow>
           </TableRows>
         </Footer>
+        <Left>0.25cm</Left>
       </Table>
     </ReportItems>
     <Height>5cm</Height>

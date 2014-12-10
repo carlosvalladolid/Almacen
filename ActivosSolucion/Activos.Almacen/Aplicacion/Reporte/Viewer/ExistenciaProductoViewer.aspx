@@ -14,10 +14,9 @@
     
     
     </asp:ScriptManager>
-    <div>
-    
-        <rsweb:ReportViewer ID="ExistenciaProductoReporteViewer" runat="server" Font-Names="Verdana" SizeToReportContent="true" 
-            Font-Size="8pt" Width="100%">
+    <div> 
+        <rsweb:ReportViewer ID="ExistenciaProductoReporteViewer" runat="server" Font-Names="Verdana" 
+            Font-Size="10pt"  Width="100%" Height ="100%">
             <LocalReport ReportPath="Aplicacion\Reporte\Diseño\ExistenciProductoRPT.rdlc">
                 <DataSources>
                     <rsweb:ReportDataSource DataSourceId="ObjectDataSource1" 
@@ -28,7 +27,6 @@
         <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
             SelectMethod="GetData" TypeName="Almacen.Web.ExistenciaPoductoDSTableAdapters.">
         </asp:ObjectDataSource>
-    
     </div>
     </form>
 </body>
