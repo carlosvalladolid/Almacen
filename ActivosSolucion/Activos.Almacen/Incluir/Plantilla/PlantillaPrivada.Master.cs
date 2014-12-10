@@ -11,6 +11,8 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 
+using Activos.Entidad.Seguridad;
+
 namespace Almacen.Web.Incluir.Plantilla
 {
     public partial class PlantillaPrivada : System.Web.UI.MasterPage
@@ -55,19 +57,19 @@ namespace Almacen.Web.Incluir.Plantilla
         #region "Métodos"
             private void Inicio()
             {
-                //UserEntity UserEntity = new UserEntity();
+                UsuarioEntidad UsuarioEntidad = new UsuarioEntidad();
 
                 try
                 {
-                    //UserEntity = (UserEntity)Session["UserEntity"];
+                    UsuarioEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
 
-                    //UserNameLabel.Text = UserEntity.Name + " " + UserEntity.LastName;
+                    UserNameLabel.Text = UsuarioEntidad.Nombre + " " + UsuarioEntidad.ApellidoPaterno;
 
                     EliminarRegistroLink.Attributes.Add("onclick", "return ValidarCasillas()");
                 }
                 catch
                 {
-                    Response.Redirect("/Include/WebUserControl/LoginControl.ascx");
+                    Response.Redirect("/Inicio.aspx");
                 }
             }
         #endregion
