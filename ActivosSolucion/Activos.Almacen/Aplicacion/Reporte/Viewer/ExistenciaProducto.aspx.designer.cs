@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Activos.Almacen.Aplicacion.Reporte.Viewer {
+namespace Almacen.Web.Aplicacion.Reporte.Viewer {
     
     
     public partial class ExistenciaProducto {
@@ -21,6 +21,42 @@ namespace Activos.Almacen.Aplicacion.Reporte.Viewer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Almacen.Web.Incluir.ControlesWeb.ControlMenuIzquierdo ControlMenuIzquierdo;
+        
+        /// <summary>
+        /// PageUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel PageUpdate;
+        
+        /// <summary>
+        /// FamiliaCombo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList FamiliaCombo;
+        
+        /// <summary>
+        /// BotonBusqueda control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton BotonBusqueda;
+        
+        /// <summary>
+        /// BotonCancelarBusqueda control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton BotonCancelarBusqueda;
         
         /// <summary>
         /// ExistenciaProductoReporteViewer control.
@@ -39,5 +75,26 @@ namespace Activos.Almacen.Aplicacion.Reporte.Viewer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSource1;
+        
+        /// <summary>
+        /// AssociatedUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdateProgress AssociatedUpdate;
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new Incluir.Plantilla.PlantillaPrivada Master {
+            get {
+                return ((Incluir.Plantilla.PlantillaPrivada)(base.Master));
+            }
+        }
     }
 }
