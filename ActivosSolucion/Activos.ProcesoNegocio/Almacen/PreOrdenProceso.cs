@@ -68,7 +68,6 @@ namespace Activos.ProcesoNegocio.Almacen
         }
 
         #region "Métodos"
-
             public ResultadoEntidad GuardarPreOrdenCompra(PreOrdenEntidad PreOrdenObjetoEntidad)
             {
                 string CadenaConexion = string.Empty;
@@ -174,16 +173,16 @@ namespace Activos.ProcesoNegocio.Almacen
             }
 
             /// <summary>
-            ///     Realiza una búsqueda del detalle de una preorden.
+            ///     Realiza una búsqueda del detalle de una preorden que no cuente con una orden de compra tomando en cuenta las tablas temporales.
             /// </summary>
-            public void SeleccionarPreOrdenDetalle()
+            public void SeleccionarPreOrdenDetalleSinOrden()
             {
                 string CadenaConexion = string.Empty;
                 PreOrdenAcceso PreOrdenAcceso = new PreOrdenAcceso();
 
                 CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
-                _ResultadoDatos = PreOrdenAcceso.SeleccionarPreOrdenDetalle(_PreOrdenEntidad, CadenaConexion);
+                _ResultadoDatos = PreOrdenAcceso.SeleccionarPreOrdenDetalleSinOrden(_PreOrdenEntidad, CadenaConexion);
 
                 _ErrorId = PreOrdenAcceso.ErrorId;
                 _DescripcionError = PreOrdenAcceso.DescripcionError;
@@ -205,8 +204,6 @@ namespace Activos.ProcesoNegocio.Almacen
                 _DescripcionError = PreOrdenAcceso.DescripcionError;
             }
 
-
-
             /// <summary>
             ///     Realiza una búsqueda de lA cLAVE de una preorden.
             /// </summary>
@@ -222,7 +219,6 @@ namespace Activos.ProcesoNegocio.Almacen
                 _ErrorId = PreOrdenAcceso.ErrorId;
                 _DescripcionError = PreOrdenAcceso.DescripcionError;
             }
-
         #endregion
     }
 }

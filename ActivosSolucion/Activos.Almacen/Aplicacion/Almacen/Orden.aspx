@@ -49,7 +49,7 @@
 
                 <div class="DivTabla">
                     <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
-                        CssClass="TablaInformacion" DataKeyNames="PreOrdenId, ProductoId" ID="TablaPreOrden" OnRowCommand="TablaPreOrden_RowCommand"
+                        CssClass="TablaInformacion" DataKeyNames="PreOrdenId, ClavePreOrden, ProductoId" ID="TablaPreOrden" OnRowCommand="TablaPreOrden_RowCommand"
                         runat="server" PageSize="10">
                         <EmptyDataTemplate>
                             <table class="TablaVacia">
@@ -59,7 +59,7 @@
                                     <th>Descripción</th>
                                     <th style="width: 125px;">Familia</th>
                                     <th style="width: 125px;">Marca</th>
-                                    <th style="width: 125px;">Cantidad</th> 
+                                    <th style="width: 90px;">Cantidad</th> 
                                  </tr>
                                 <tr>
                                     <td colspan="6" style="text-align: center;">No se encontró información con los parámetros seleccionados</td>
@@ -76,7 +76,7 @@
                                 <ItemStyle HorizontalAlign="Center" Width="35px" />
                             </asp:TemplateField>
                             <asp:BoundField DataField="ClaveProducto" HeaderText="Clave" ItemStyle-HorizontalAlign="Center">
-                                <HeaderStyle HorizontalAlign="Center" />
+                                <HeaderStyle HorizontalAlign="Center" Width="100px" />
                             </asp:BoundField>
                             <asp:BoundField DataField="NombreProducto" HeaderText="Descripción" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" />
@@ -87,12 +87,9 @@
                             <asp:BoundField DataField="NombreMarca" HeaderText="Marca" ItemStyle-HorizontalAlign="Center">
                                 <HeaderStyle HorizontalAlign="Center" Width="125px" />
                             </asp:BoundField>
-                            <asp:TemplateField HeaderText="Cantidad">
-                                <ItemTemplate>
-                                    <asp:TextBox CssClass="CajaTextoPequenia" ID="CantidadBox" MaxLength="3" runat="server" Text='<%#Eval("Cantidad")%>'></asp:TextBox>
-                                </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" Width="90px" />
-                            </asp:TemplateField>
+                            <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" ItemStyle-HorizontalAlign="Left">
+                                <HeaderStyle HorizontalAlign="Center" Width="90px" />
+                            </asp:BoundField> 
                         </Columns>
                     </asp:GridView>
                 </div>
@@ -112,7 +109,7 @@
                                     <th>Descripción</th>
                                     <th style="width: 125px;">Familia</th>
                                     <th style="width: 125px;">Marca</th>
-                                    <th style="width: 125px;">Cantidad</th> 
+                                    <th style="width: 90px;">Cantidad</th> 
                                  </tr>
                                 <tr>
                                     <td colspan="6" style="text-align: center;">No se encontró información con los parámetros seleccionados</td>
@@ -128,7 +125,7 @@
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center" Width="35px" />
                             </asp:TemplateField>
-                            <asp:BoundField DataField="ClaveProducto" HeaderText="Clave" ItemStyle-HorizontalAlign="Left">
+                            <asp:BoundField DataField="ClaveProducto" HeaderText="Clave" ItemStyle-HorizontalAlign="Center">
                                 <HeaderStyle HorizontalAlign="Center" Width="100px" />
                             </asp:BoundField>
                             <asp:BoundField DataField="DescripcionProducto" HeaderText="Descripción" ItemStyle-HorizontalAlign="Left">
@@ -140,9 +137,12 @@
                             <asp:BoundField DataField="NombreMarca" HeaderText="Marca" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" Width="125px" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" ItemStyle-HorizontalAlign="Left">
-                                <HeaderStyle HorizontalAlign="Center" Width="125px" />
-                            </asp:BoundField>                                 
+                            <asp:TemplateField HeaderText="Cantidad">
+                                <ItemTemplate>
+                                    <asp:TextBox CssClass="CajaTextoPequenia" ID="CantidadBox" MaxLength="3" runat="server" Text='<%#Eval("Cantidad")%>'></asp:TextBox>
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Center" Width="90px" />
+                            </asp:TemplateField>                                
                         </Columns>
                     </asp:GridView>
                 </div>
