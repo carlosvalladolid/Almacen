@@ -146,6 +146,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ExistenciaPoductoDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Aplicacion\Reporte\Viewer\ExistenciaProducto.aspx.cs">
+      <DependentUpon>ExistenciaProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicacion\Reporte\Viewer\ExistenciaProducto.aspx.designer.cs">
+      <DependentUpon>ExistenciaProducto.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Aplicacion\Reporte\Viewer\ExistenciaProductoViewer.aspx.cs">
       <DependentUpon>ExistenciaProductoViewer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -425,6 +432,7 @@
     <Content Include="Aplicacion\Catalogo\SubFamilia.aspx" />
     <Content Include="Aplicacion\Configuracion\CambiarContrasenia.aspx" />
     <Content Include="Aplicacion\Inicio.aspx" />
+    <Content Include="Aplicacion\Reporte\Viewer\ExistenciaProducto.aspx" />
     <Content Include="Aplicacion\Reporte\Viewer\ExistenciaProductoViewer.aspx" />
     <Content Include="App.config" />
     <Content Include="Imagen\Banner\PublicityBanner.jpg" />

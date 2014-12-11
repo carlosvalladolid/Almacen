@@ -74,7 +74,7 @@
     <tr>
         <td class="Space"></td>
         <td></td>
-        <td><a href="/Aplicacion/Reporte/Viewer/ExistenciaProductoViewer.aspx">Existencia de Producto</a></td>
+        <td><a href="/Aplicacion/Reporte/Viewer/ExistenciaProducto.aspx">Existencia de Producto</a></td>
     </tr>
     <tr>
         <td class="Space"></td>
