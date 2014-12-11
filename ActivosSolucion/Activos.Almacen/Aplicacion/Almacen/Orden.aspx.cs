@@ -53,11 +53,11 @@ namespace Almacen.Web.Aplicacion.Almacen
         #endregion
 
         #region "Métodos"
-            private bool ExistePreOrdenConOrden(string PreOrdenId)
+            private bool ExistePreOrdenConOrden(string Clave)
             {
                 PreOrdenProceso PreOrdenProceso = new PreOrdenProceso();
 
-                PreOrdenProceso.PreOrdenEntidad.PreOrdenId = PreOrdenId;
+                PreOrdenProceso.PreOrdenEntidad.Clave = Clave;
 
                 PreOrdenProceso.SeleccionarPreOrdenSinOrden();
 
@@ -109,7 +109,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 {
                     OrdenIdHidden.Value = OrdenProceso.OrdenDetalleEntidad.OrdenId;
 
-                    SeleccionarOrden(OrdenIdHidden.Value);
+                    SeleccionarOrdenDetalleTemp(OrdenIdHidden.Value);
                 }
                 else
                     MostrarMensaje(OrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
@@ -217,7 +217,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 JefeCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
             }
 
-            private void SeleccionarOrden(string OrdenId)
+            private void SeleccionarOrdenDetalleTemp(string OrdenId)
             {
                 OrdenProceso OrdenProceso = new OrdenProceso();
 
@@ -235,26 +235,26 @@ namespace Almacen.Web.Aplicacion.Almacen
                 TablaOrden.DataBind();
             }
 
-            //private void SeleccionarPreOrden(string PreOrdenId, string SesionId)
-            //{
-            //    PreOrdenProceso PreOrdenProceso = new PreOrdenProceso();
+            private void SeleccionarPreOrdenDetalleSinOrden(string PreOrdenId, string SesionId)
+            {
+                PreOrdenProceso PreOrdenProceso = new PreOrdenProceso();
 
-            //    PreOrdenProceso.PreOrdenEntidad.Clave = PreOrdenId;
-            //    PreOrdenProceso.PreOrdenEntidad.SesionId = SesionId;
+                PreOrdenProceso.PreOrdenEntidad.Clave = PreOrdenId;
+                PreOrdenProceso.PreOrdenEntidad.SesionId = SesionId;
 
-            //    PreOrdenProceso.SeleccionarPreOrdenDetalleSinOrden();
+                PreOrdenProceso.SeleccionarPreOrdenDetalleSinOrden();
 
-            //    if (PreOrdenProceso.ErrorId != 0)
-            //    {
-            //        MostrarMensaje(PreOrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
-            //        return;
-            //    }
+                if (PreOrdenProceso.ErrorId != 0)
+                {
+                    MostrarMensaje(PreOrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                    return;
+                }
 
-            //    // ToDo: Cambiar el estilo del grid si está vacío el dataset
+                // ToDo: Cambiar el estilo del grid si está vacío el dataset
 
-            //    TablaPreOrden.DataSource = PreOrdenProceso.ResultadoDatos;
-            //    TablaPreOrden.DataBind();
-            //}
+                TablaPreOrden.DataSource = PreOrdenProceso.ResultadoDatos;
+                TablaPreOrden.DataBind();
+            }
 
             private void SeleccionarProveedor()
             {
@@ -283,6 +283,7 @@ namespace Almacen.Web.Aplicacion.Almacen
             {
                 int Indice = 0;
                 string PreOrdenId = string.Empty;
+                string Clave = string.Empty;
                 string ProductoId = string.Empty;
                 string SesionId = string.Empty;
                 string CommandName = string.Empty;
@@ -292,6 +293,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 Indice = int.Parse(e.CommandArgument.ToString());
                 PreOrdenId = TablaPreOrden.DataKeys[Indice]["PreOrdenId"].ToString();
+                Clave = TablaPreOrden.DataKeys[Indice]["ClavePreOrden"].ToString();
                 ProductoId = TablaPreOrden.DataKeys[Indice]["ProductoId"].ToString();
                 SesionId = UsuarioEntidad.SesionId;
                 CommandName = e.CommandName.ToString();
@@ -300,24 +302,24 @@ namespace Almacen.Web.Aplicacion.Almacen
                 {
                     case ConstantePrograma.ComandoAgregar:
                         GuardarProductoOrdenTemp(OrdenIdHidden.Value, PreOrdenId, ProductoId, SesionId);
-                       // SeleccionarPreOrden(PreOrdenId, SesionId);
+                        SeleccionarPreOrdenDetalleSinOrden(Clave, SesionId);
                         break;
                 }
             }
 
-            private void ValidarPreOrden(string PreOrdenId)
+            private void ValidarPreOrden(string Clave)
             {
                 UsuarioEntidad UsuarioEntidad = new UsuarioEntidad();
 
                 UsuarioEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
 
-                if (ExistePreOrdenConOrden(PreOrdenId))
+                if (ExistePreOrdenConOrden(Clave))
                 {
                     MostrarMensaje(TextoError.OrdenConPreOrdenId, ConstantePrograma.TipoErrorAlerta);
                     return;
                 }
 
-              //  SeleccionarPreOrden(PreOrdenId, UsuarioEntidad.SesionId);
+                SeleccionarPreOrdenDetalleSinOrden(Clave, UsuarioEntidad.SesionId);
             }
         #endregion
     }

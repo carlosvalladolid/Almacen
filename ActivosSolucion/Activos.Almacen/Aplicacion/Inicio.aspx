@@ -34,7 +34,7 @@
                                                 <th style="width: 100px;">Fecha</th>
                                             </tr>
                                             <tr>
-                                                <td colspan="4" style="text-align: center;">Está funcionalidad no se encuentra activada</td>
+                                                <td colspan="4" style="text-align: center;">No hay mensajes del sistema</td>
                                             </tr>
                                         </table>
                                     </EmptyDataTemplate>

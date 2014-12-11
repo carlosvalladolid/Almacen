@@ -262,6 +262,7 @@ namespace Activos.Comun.Constante
         // Mesnajes de error para la pantalla de órdenes de compra
         public const string OrdenConPreOrdenIdVacio = "Se debe proporcionar un identificador de PreOrden";
         public const string OrdenConPreOrdenId = "La preorden proporcionada ya tiene una orden de compra asignada";
+        public const string OrdenNoExistePreOrden = "No se encontró una preorden con la clave proporcionada";
 
         //pantalla de Producto de Almacen
         public const string ClaveProducto = "· El campo <b>Clave</b> es obligatorio";

@@ -78,7 +78,6 @@ namespace Activos.Entidad.Almacen
             set { _Cantidad = value; }
         }
 
-
         public string FechaPreOrden
         {
             get { return _FechaPreOrden; }
