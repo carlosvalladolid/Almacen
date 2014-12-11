@@ -8,6 +8,7 @@ DELETE OrdenEncabezado
 */
 
 SELECT * FROM OrdenEncabezadoTemp
+	ORDER BY FechaInserto DESC
 
 SELECT * FROM OrdenDetalleTemp
 
@@ -33,5 +34,8 @@ SELECT * FROM [DefensoriaDB.Seguridad].dbo.Estatus
 
 SELECT * FROM [DefensoriaDB.Seguridad].dbo.Seccion
 
-SeleccionarOrdenEncabezado '', '12'
+SELECT NEWID()
+
+-- 7E4A6981-D5CA-49E9-B4A8-6D1EDE80EACA
+SeleccionarPreOrdenDetalleSinOrden '25', '7E4A6981-D5CA-49E9-B4A8-6D1EDE80EACA'
 
