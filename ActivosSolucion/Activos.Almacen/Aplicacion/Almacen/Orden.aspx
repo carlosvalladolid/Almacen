@@ -162,24 +162,24 @@
                 <br />
                 <table class="TablaFormulario">
                     <tr>
-                        <td class="Nombre">Nombre</td>
+                        <td class="Nombre">Proveedor</td>
                         <td class="Espacio"></td>
-                        <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="ProveedorCombo" MaxLength="30" runat="server" ></asp:DropDownList></td>
+                        <td class="Campo"><asp:DropDownList AutoPostBack="true" CssClass="ComboGrande" ID="ProveedorCombo" MaxLength="30" OnSelectedIndexChanged="ProveedorCombo_SelectedIndexChanged" runat="server" ></asp:DropDownList></td>
                     </tr>
                     <tr>
                         <td class="Nombre">Teléfono</td>
                         <td class="Espacio"></td>
-                        <td class="Campo"><asp:TextBox CssClass="CajaTextoMediano" ID="TelefonoBox" MaxLength="20" runat="server" Text=""></asp:TextBox></td>
+                        <td class="Campo"><asp:TextBox CssClass="CajaTextoMediano" Enabled="false" ID="TelefonoBox" MaxLength="20" runat="server" Text=""></asp:TextBox></td>
                     </tr>
                     <tr>
                         <td class="Nombre">Contacto</td>
                         <td class="Espacio"></td>
-                        <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="ContactoBox" MaxLength="50" runat="server" Text=""></asp:TextBox></td>
+                        <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" Enabled="false" ID="ContactoBox" MaxLength="50" runat="server" Text=""></asp:TextBox></td>
                     </tr>
                     <tr>
                         <td class="Nombre">Correo electrónico</td>
                         <td class="Espacio"></td>
-                        <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="CorreoBox" MaxLength="50" runat="server" Text=""></asp:TextBox></td>
+                        <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" Enabled="false" ID="CorreoBox" MaxLength="50" runat="server" Text=""></asp:TextBox></td>
                     </tr>
                     <tr><td colspan="3">&nbsp;</td></tr>
                     <tr>
@@ -190,7 +190,7 @@
                     <tr>
                         <td class="Nombre">Jefe inmediato</td>
                         <td class="Espacio"></td>
-                        <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="JefeCombo" MaxLength="30" runat="server" ></asp:DropDownList></td>
+                        <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" Enabled="false" ID="JefeBox" MaxLength="50" runat="server" Text=""></asp:TextBox></td>
                     </tr>
                     <tr>
                         <td colspan="3">

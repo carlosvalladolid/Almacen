@@ -30,6 +30,8 @@ SELECT * FROM Marca
 
 SELECT * FROM OrdenClave
 
+SELECT * FROM [DefensoriaDB.Catalogo].dbo.Proveedor
+
 SELECT * FROM [DefensoriaDB.Seguridad].dbo.Estatus
 
 SELECT * FROM [DefensoriaDB.Seguridad].dbo.Seccion

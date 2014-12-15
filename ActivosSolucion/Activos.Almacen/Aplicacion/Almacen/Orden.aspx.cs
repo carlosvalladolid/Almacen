@@ -46,6 +46,11 @@ namespace Almacen.Web.Aplicacion.Almacen
                 Inicio();
             }
 
+            protected void ProveedorCombo_SelectedIndexChanged(object sender, EventArgs e)
+            {
+                SeleccionarProveedor(Int16.Parse(ProveedorCombo.SelectedValue));
+            }
+
             protected void TablaPreOrden_RowCommand(object sender, GridViewCommandEventArgs e)
             {
                 TablaPreOrdenRowCommand(e);
@@ -79,7 +84,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 OrdenProceso.OrdenEncabezadoEntidad.OrdenId = OrdenIdHidden.Value;
                 OrdenProceso.OrdenEncabezadoEntidad.EmpleadoId = EmpleadoCombo.SelectedValue;
-                OrdenProceso.OrdenEncabezadoEntidad.JefeId = JefeCombo.SelectedValue;
+                //OrdenProceso.OrdenEncabezadoEntidad.JefeId = JefeCombo.SelectedValue;
                 OrdenProceso.OrdenEncabezadoEntidad.ProveedorId = Int16.Parse(ProveedorCombo.SelectedValue);
                 OrdenProceso.OrdenEncabezadoEntidad.EstatusId = (int)ConstantePrograma.EstatusOrden.SinSurtir;
                 OrdenProceso.OrdenEncabezadoEntidad.FechaOrden = FormatoFecha.AsignarFormato(FechaOrdenBox.Text.Trim(), ConstantePrograma.UniversalFormatoFecha);
@@ -129,7 +134,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 SeleccionarProveedor();
                 SeleccionarEmpleado();
 
-                JefeCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
+                //JefeCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
             }
 
             private void LimpiarFormulario()
@@ -186,35 +191,26 @@ namespace Almacen.Web.Aplicacion.Almacen
             private void SeleccionarJefe(Int16 EmpleadoIdJefe)
             {
                 ResultadoEntidad Resultado = new ResultadoEntidad();
-                EmpleadoEntidad EmpleadoEntidadObjeto = new EmpleadoEntidad();
-                EmpleadoProceso EmpleadoProcesoNegocio = new EmpleadoProceso();
+                EmpleadoEntidad EmpleadoEntidad = new EmpleadoEntidad();
+                EmpleadoProceso EmpleadoProceso = new EmpleadoProceso();
 
                 if (EmpleadoIdJefe == 0)
-                {
-                    JefeCombo.Items.Clear();
-                    JefeCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
+                    return;
 
+                EmpleadoEntidad.EmpleadoId = EmpleadoIdJefe;
+
+                Resultado = EmpleadoProceso.SeleccionarEmpleadoJefe(EmpleadoEntidad);
+
+                if (Resultado.ErrorId != 0)
+                {
+                    MostrarMensaje(Resultado.DescripcionError, ConstantePrograma.TipoErrorAlerta);
                     return;
                 }
 
-                EmpleadoEntidadObjeto.EmpleadoId = EmpleadoIdJefe;
-
-                Resultado = EmpleadoProcesoNegocio.SeleccionarEmpleado(EmpleadoEntidadObjeto);
-
-                JefeCombo.DataValueField = "EmpleadoIdJefe";
-                JefeCombo.DataTextField = "Nombre";
-
-                if (Resultado.ErrorId == 0)
-                {
-                    JefeCombo.DataSource = Resultado.ResultadoDatos;
-                    JefeCombo.DataBind();
-                }
+                if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
+                    JefeBox.Text = "";
                 else
-                {
-                    //EtiquetaMensaje.Text = TextoError.ErrorGenerico;
-                }
-
-                JefeCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
+                    JefeBox.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["NombreJefe"].ToString();
             }
 
             private void SeleccionarOrdenDetalleTemp(string OrdenId)
@@ -271,12 +267,31 @@ namespace Almacen.Web.Aplicacion.Almacen
                     ProveedorCombo.DataBind();
                 }
                 else
-                {
-                    // ToDo: Manejar mensajes de error
-                    //EtiquetaMensaje.Text = TextoError.ErrorGenerico;
-                }
+                    MostrarMensaje(ProveedorProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
 
                 ProveedorCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
+            }
+
+            private void SeleccionarProveedor(Int16 ProveedorId)
+            {
+                Activos.ProcesoNegocio.Almacen.ProveedorProceso ProveedorProceso = new Activos.ProcesoNegocio.Almacen.ProveedorProceso();
+
+                ProveedorProceso.ProveedorEntidad.ProveedorId = ProveedorId;
+
+                ProveedorProceso.SeleccionarProveedor();
+
+                if (ProveedorProceso.ErrorId != 0)
+                {
+                    MostrarMensaje(ProveedorProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                    return;
+                }
+
+                if (ProveedorProceso.ResultadoDatos.Tables[0].Rows.Count > 0)
+                {
+                    TelefonoBox.Text = ProveedorProceso.ResultadoDatos.Tables[0].Rows[0]["Telefono"].ToString();
+                    ContactoBox.Text = ProveedorProceso.ResultadoDatos.Tables[0].Rows[0]["NombreContacto"].ToString();
+                    CorreoBox.Text = ProveedorProceso.ResultadoDatos.Tables[0].Rows[0]["Email"].ToString();
+                }   
             }
 
             private void TablaPreOrdenRowCommand(GridViewCommandEventArgs e)
