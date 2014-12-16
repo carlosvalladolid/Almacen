@@ -45,36 +45,36 @@ namespace Activos.AccesoDatos.Almacen
         #region "Métodos"
 
             public ResultadoEntidad EliminarRecepcionDetalle(SqlConnection Conexion, SqlTransaction Transaccion, RecepcionEntidad RecepcionEntidadObjeto)
-        {
-            SqlCommand Comando;
-            SqlParameter Parametro;
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-
-            try
             {
-                Comando = new SqlCommand("EliminarRecepcionDetalleProcedimiento", Conexion);
-                Comando.CommandType = CommandType.StoredProcedure;
+                SqlCommand Comando;
+                SqlParameter Parametro;
+                ResultadoEntidad Resultado = new ResultadoEntidad();
 
-                Comando.Transaction = Transaccion;
+                try
+                {
+                    Comando = new SqlCommand("EliminarRecepcionDetalleProcedimiento", Conexion);
+                    Comando.CommandType = CommandType.StoredProcedure;
 
-                Parametro = new SqlParameter("ProductoId", SqlDbType.VarChar);
-                Parametro.Value = RecepcionEntidadObjeto.ProductoId;
-                Comando.Parameters.Add(Parametro);
+                    Comando.Transaction = Transaccion;
 
-                Comando.ExecuteNonQuery();
+                    Parametro = new SqlParameter("ProductoId", SqlDbType.VarChar);
+                    Parametro.Value = RecepcionEntidadObjeto.ProductoId;
+                    Comando.Parameters.Add(Parametro);
 
-                Resultado.ErrorId = (int)ConstantePrograma.Recepcion.RecepcionEliminadoCorrectamente;
+                    Comando.ExecuteNonQuery();
 
-                return Resultado;
+                    Resultado.ErrorId = (int)ConstantePrograma.Recepcion.RecepcionEliminadoCorrectamente;
+
+                    return Resultado;
+                }
+                catch (SqlException sqlEx)
+                {
+                    Resultado.ErrorId = sqlEx.Number;
+                    Resultado.DescripcionError = sqlEx.Message;
+
+                    return Resultado;
+                }
             }
-            catch (SqlException sqlEx)
-            {
-                Resultado.ErrorId = sqlEx.Number;
-                Resultado.DescripcionError = sqlEx.Message;
-
-                return Resultado;
-            }
-        }
 
             public ResultadoEntidad InsertarRecepcionDetalle(RecepcionEntidad RecepcionEntidadObjeto, string CadenaConexion)
             {
@@ -87,7 +87,6 @@ namespace Activos.AccesoDatos.Almacen
                 {
                     Comando = new SqlCommand("InsertarRecepcionDetalleProcedimiento", Conexion);
                     Comando.CommandType = CommandType.StoredProcedure;
-
 
                     Parametro = new SqlParameter("RecepcionId", SqlDbType.VarChar);
                     Parametro.Value = RecepcionEntidadObjeto.RecepcionId;
@@ -198,11 +197,9 @@ namespace Activos.AccesoDatos.Almacen
             //        Parametro.Value = RecepcionEntidadObjeto.ProveedorId;
             //        Comando.Parameters.Add(Parametro);
 
-
             //        Parametro = new SqlParameter("TipoDocumentoId", SqlDbType.SmallInt);
             //        Parametro.Value = RecepcionEntidadObjeto.TipoDocumentoId;
             //        Comando.Parameters.Add(Parametro);
-
 
             //        Parametro = new SqlParameter("EstatusId", SqlDbType.SmallInt);
             //        Parametro.Value = RecepcionEntidadObjeto.EstatusId;
@@ -215,7 +212,6 @@ namespace Activos.AccesoDatos.Almacen
             //        Parametro = new SqlParameter("FechaDocumento", SqlDbType.SmallDateTime);
             //        Parametro.Value = RecepcionEntidadObjeto.FechaDocumento;
             //        Comando.Parameters.Add(Parametro);
-
 
             //        Comando.ExecuteNonQuery();
 
@@ -322,7 +318,6 @@ namespace Activos.AccesoDatos.Almacen
                     Parametro = new SqlParameter("ProductoId", SqlDbType.VarChar);
                     Parametro.Value = RecepcionObjetoEntidad.ProductoId;
                     Comando.Parameters.Add(Parametro);
-
 
                     Adaptador = new SqlDataAdapter(Comando);
                     ResultadoDatos = new DataSet();

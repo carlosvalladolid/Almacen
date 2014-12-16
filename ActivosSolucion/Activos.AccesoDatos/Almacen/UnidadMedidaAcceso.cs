@@ -14,7 +14,6 @@ namespace Activos.AccesoDatos.Almacen
 {
     public class UnidadMedidaAcceso : Base
     {
-
         public ResultadoEntidad SeleccionarUnidadMedida(UnidadMedidaEntidad UnidadMedidaEntidadObjeto, string CadenaConexion)
         {
             DataSet ResultadoDatos = new DataSet();
@@ -52,8 +51,5 @@ namespace Activos.AccesoDatos.Almacen
                 return Resultado;
             }
         }
-
-
-
     }
 }

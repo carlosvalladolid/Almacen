@@ -10,7 +10,6 @@ using Activos.Entidad.General;
 using Activos.Entidad.Almacen;
 using Activos.Comun.Constante;
 
-
 namespace Activos.AccesoDatos.Almacen
 {
    public class SubFamiliaAcceso:Base
@@ -46,7 +45,6 @@ namespace Activos.AccesoDatos.Almacen
                Parametro = new SqlParameter("UsuarioIdModifico", SqlDbType.SmallInt);
                Parametro.Value = SubFamiliaEntidadObjeto.UsuarioIdModifico;
                Comando.Parameters.Add(Parametro);
-
 
                Conexion.Open();
                Comando.ExecuteNonQuery();
@@ -109,7 +107,6 @@ namespace Activos.AccesoDatos.Almacen
            {
                Comando = new SqlCommand("InsertarSubFamiliaProcedimiento", Conexion);
                Comando.CommandType = CommandType.StoredProcedure;
-
 
                Parametro = new SqlParameter("FamiliaId", SqlDbType.SmallInt);
                Parametro.Value = SubFamiliaEntidadObjeto.FamiliaId;
@@ -239,5 +236,5 @@ namespace Activos.AccesoDatos.Almacen
                return Resultado;
            }
        }
-    }
+   }
 }

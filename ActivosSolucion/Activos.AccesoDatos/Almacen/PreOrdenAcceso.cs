@@ -15,7 +15,7 @@ namespace Activos.AccesoDatos.Almacen
    public class PreOrdenAcceso:Base
     {
        protected int _ErrorId;
-        protected string _DescripcionError;
+       protected string _DescripcionError;
 
         /// <summary>
         ///     Número de error, en caso de que haya ocurrido uno. Cero por default.

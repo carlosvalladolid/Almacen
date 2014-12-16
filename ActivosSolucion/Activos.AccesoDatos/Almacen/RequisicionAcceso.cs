@@ -43,6 +43,7 @@ namespace Activos.AccesoDatos.Almacen
         }
 
         #region "Métodos"
+
             public ResultadoEntidad EliminarRequisicionDetalle(SqlConnection Conexion, SqlTransaction Transaccion, RequisicionEntidad RequisicionEntidadObjeto)
             {
                 SqlCommand Comando;
@@ -86,7 +87,6 @@ namespace Activos.AccesoDatos.Almacen
             //    {
             //        Comando = new SqlCommand("InsertarRequisicionDetalleProcedimiento", Conexion);
             //        Comando.CommandType = CommandType.StoredProcedure;
-
 
             //        Parametro = new SqlParameter("RequisicionId", SqlDbType.VarChar);
             //        Parametro.Value = RequisicionEntidadObjeto.RequisicionId;
@@ -162,7 +162,6 @@ namespace Activos.AccesoDatos.Almacen
             //    }
             //}
 
-
             public ResultadoEntidad InsertarRequisicionDetalle(SqlConnection Conexion, SqlTransaction Transaccion, RequisicionEntidad RequisicionEntidadObjeto)
             {
                 SqlCommand Comando;
@@ -225,7 +224,6 @@ namespace Activos.AccesoDatos.Almacen
                     return Resultado;
                 }
             }
-
 
             public ResultadoEntidad InsertarRequisicionDetalleTemp(SqlConnection Conexion, SqlTransaction Transaccion, RequisicionEntidad RequisicionEntidadObjeto)
             {

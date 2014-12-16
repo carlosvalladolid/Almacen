@@ -90,9 +90,6 @@ namespace Activos.AccesoDatos.Almacen
                Parametro.Value = TemporalPreOrdenEntidadObjeto.FechaPreOrden;
                Comando.Parameters.Add(Parametro);
 
-
-
-
                Comando.ExecuteNonQuery();
 
                Resultado.ErrorId = (int)ConstantePrograma.TemporalPreOrden.TemporalPreOrdenGuardadoCorrectamente;
@@ -191,7 +188,7 @@ namespace Activos.AccesoDatos.Almacen
                Comando = new SqlCommand("InsertarPreOrdenEncabezadoTempProcedimiento", Conexion);
                Comando.CommandType = CommandType.StoredProcedure;
 
-             //  Comando.Transaction = Transaccion;
+               //Comando.Transaction = Transaccion;
 
                Parametro = new SqlParameter("PreOrdenId", SqlDbType.VarChar);
                Parametro.Value = TemporalPreOrdenEntidadObjeto.PreOrdenId;
@@ -217,7 +214,6 @@ namespace Activos.AccesoDatos.Almacen
                Parametro.Value = TemporalPreOrdenEntidadObjeto.FechaPreOrden;
                Comando.Parameters.Add(Parametro);
 
-
                Conexion.Open();
                Comando.ExecuteNonQuery();
                Conexion.Close();
@@ -232,13 +228,11 @@ namespace Activos.AccesoDatos.Almacen
                Resultado.DescripcionError = sqlEx.Message;
 
                return Resultado;
-           }
-
-               
+           }              
        }
 
        public ResultadoEntidad SeleccionarPreOrdenDetalleTemp(SqlConnection Conexion, SqlTransaction Transaccion, TemporalPreOrdenEntidad TempPreOrdenDetalleObjetoEntidad)
-        {
+       {
             DataSet ResultadoDatos = new DataSet();
             SqlCommand Comando;
             SqlParameter Parametro;
@@ -277,7 +271,5 @@ namespace Activos.AccesoDatos.Almacen
                 return Resultado;
             }
         }
-
-    
     }
 }

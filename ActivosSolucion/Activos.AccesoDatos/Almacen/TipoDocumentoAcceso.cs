@@ -10,8 +10,8 @@ using Activos.Entidad.Almacen;
 namespace Activos.AccesoDatos.Almacen
 {
    public class TipoDocumentoAcceso:Base
-    {
-         protected int _ErrorId;
+   {
+        protected int _ErrorId;
         protected string _DescripcionError;
 
         /// <summary>
@@ -84,9 +84,6 @@ namespace Activos.AccesoDatos.Almacen
                 }
             }
         #endregion
-    }
+   }
 
-
-
-
-    }
+}

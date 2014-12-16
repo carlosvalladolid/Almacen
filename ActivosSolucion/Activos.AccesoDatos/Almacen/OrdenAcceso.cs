@@ -219,7 +219,7 @@ namespace Activos.AccesoDatos.Almacen
             /// <param name="CadenaConexion"></param>
             /// <returns></returns>
            public DataSet SeleccionarBusquedaOrdenCompra(OrdenEntidad OrdenDetalleEntidad, string CadenaConexion)
-            {
+           {
                 DataSet Resultado = new DataSet();
                 SqlConnection Conexion = new SqlConnection(CadenaConexion);
                 SqlCommand Comando;
@@ -254,7 +254,7 @@ namespace Activos.AccesoDatos.Almacen
 
                     return Resultado;
                 }
-            }
+           }
 
             /// <summary>
             ///     Realiza una búsqueda del detalle de una orden de compra temporal.
