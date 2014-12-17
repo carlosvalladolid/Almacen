@@ -358,8 +358,7 @@ namespace Activos.AccesoDatos.Activos
 
                 Adaptador = new SqlDataAdapter(Comando);
                 ResultadoDatos = new DataSet();
-
-                
+        
                 Adaptador.Fill(ResultadoDatos);
 
                 Resultado.ResultadoDatos = ResultadoDatos;
@@ -512,6 +511,5 @@ namespace Activos.AccesoDatos.Activos
                 return Resultado;
             }
         }
-
     }
 }

@@ -194,7 +194,7 @@ namespace Activos.AccesoDatos.Activos
             }
         }
 
-        public ResultadoEntidad EliminarTodosTemporalMovimiento(ActivoEntidad ActivoEntidadObjeto, SqlConnection Conexion)
+        public ResultadoEntidad EliminarActivoTemporalSeleccionado(ActivoEntidad ActivoEntidadObjeto, SqlConnection Conexion)
         {
             SqlCommand Comando;
             SqlParameter Parametro;
@@ -202,18 +202,11 @@ namespace Activos.AccesoDatos.Activos
 
             try
             {
-
-
-                Comando = new SqlCommand("EliminarTodosTemporalMovimientoProcedimiento", Conexion);
+                Comando = new SqlCommand("EliminarTemporalMovimientoProcedimiento", Conexion);
                 Comando.CommandType = CommandType.StoredProcedure;
 
-
-                Parametro = new SqlParameter("SesionId", SqlDbType.VarChar);
-                Parametro.Value = ActivoEntidadObjeto.SesionId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("TipoMovimientoId", SqlDbType.SmallInt);
-                Parametro.Value = ActivoEntidadObjeto.TipoDeMovimiento;
+                Parametro = new SqlParameter("MovimientoId", SqlDbType.Int);
+                Parametro.Value = ActivoEntidadObjeto.MovimientoId;
                 Comando.Parameters.Add(Parametro);
 
                 Conexion.Open();
@@ -241,11 +234,8 @@ namespace Activos.AccesoDatos.Activos
 
             try
             {
-
-
                 Comando = new SqlCommand("EliminarTemporalBajaActivo", Conexion);
                 Comando.CommandType = CommandType.StoredProcedure;
-
 
                 Parametro = new SqlParameter("SesionId", SqlDbType.VarChar);
                 Parametro.Value = ActivoEntidadObjeto.SesionId;
@@ -272,7 +262,7 @@ namespace Activos.AccesoDatos.Activos
             }
         }
 
-        public ResultadoEntidad EliminarActivoTemporalSeleccionado(ActivoEntidad ActivoEntidadObjeto, SqlConnection Conexion)
+        public ResultadoEntidad EliminarTemporalBajaActivoSeleccionado(ActivoEntidad ActivoEntidadObjeto, SqlConnection Conexion)
         {
             SqlCommand Comando;
             SqlParameter Parametro;
@@ -280,11 +270,8 @@ namespace Activos.AccesoDatos.Activos
 
             try
             {
-
-
-                Comando = new SqlCommand("EliminarTemporalMovimientoProcedimiento", Conexion);
+                Comando = new SqlCommand("EliminarTemporalBajaActivoProcedimiento", Conexion);
                 Comando.CommandType = CommandType.StoredProcedure;
-
 
                 Parametro = new SqlParameter("MovimientoId", SqlDbType.Int);
                 Parametro.Value = ActivoEntidadObjeto.MovimientoId;
@@ -306,8 +293,8 @@ namespace Activos.AccesoDatos.Activos
                 return Resultado;
             }
         }
-
-        public ResultadoEntidad EliminarTemporalBajaActivoSeleccionado(ActivoEntidad ActivoEntidadObjeto, SqlConnection Conexion)
+        
+        public ResultadoEntidad EliminarTodosTemporalMovimiento(ActivoEntidad ActivoEntidadObjeto, SqlConnection Conexion)
         {
             SqlCommand Comando;
             SqlParameter Parametro;
@@ -315,14 +302,15 @@ namespace Activos.AccesoDatos.Activos
 
             try
             {
-
-
-                Comando = new SqlCommand("EliminarTemporalBajaActivoProcedimiento", Conexion);
+                Comando = new SqlCommand("EliminarTodosTemporalMovimientoProcedimiento", Conexion);
                 Comando.CommandType = CommandType.StoredProcedure;
 
+                Parametro = new SqlParameter("SesionId", SqlDbType.VarChar);
+                Parametro.Value = ActivoEntidadObjeto.SesionId;
+                Comando.Parameters.Add(Parametro);
 
-                Parametro = new SqlParameter("MovimientoId", SqlDbType.Int);
-                Parametro.Value = ActivoEntidadObjeto.MovimientoId;
+                Parametro = new SqlParameter("TipoMovimientoId", SqlDbType.SmallInt);
+                Parametro.Value = ActivoEntidadObjeto.TipoDeMovimiento;
                 Comando.Parameters.Add(Parametro);
 
                 Conexion.Open();
@@ -380,7 +368,6 @@ namespace Activos.AccesoDatos.Activos
 
         public ResultadoEntidad InsertarBajaActivo(SqlConnection Conexion, SqlTransaction Transaccion, ActivoEntidad ActivoEntidadObjeto)
         {
-
             SqlCommand Comando;
             SqlParameter Parametro;
             ResultadoEntidad Resultado = new ResultadoEntidad();
@@ -421,7 +408,6 @@ namespace Activos.AccesoDatos.Activos
 
         public ResultadoEntidad InsertarMovimientoBaja(SqlConnection Conexion, SqlTransaction Transaccion, ActivoEntidad ActivoEntidadObjeto)
         {
-
             SqlCommand Comando;
             SqlParameter Parametro;
             ResultadoEntidad Resultado = new ResultadoEntidad();
@@ -480,53 +466,8 @@ namespace Activos.AccesoDatos.Activos
             }
         }
 
-        public ResultadoEntidad InsertarSalidaActivo(SqlConnection Conexion, SqlTransaction Transaccion, ActivoEntidad ActivoEntidadObjeto)
-        {
-
-            SqlCommand Comando;
-            SqlParameter Parametro;
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-
-            try
-            {
-                Comando = new SqlCommand("InsertarSalidaActivo", Conexion);
-                Comando.CommandType = CommandType.StoredProcedure;
-
-                Comando.Transaction = Transaccion;
-
-                Parametro = new SqlParameter("MovimientoId", SqlDbType.Int);
-                Parametro.Value = ActivoEntidadObjeto.MovimientoId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("TipoServicioId", SqlDbType.SmallInt);
-                Parametro.Value = ActivoEntidadObjeto.TipoServicioId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("ProveedorId", SqlDbType.Int);
-                Parametro.Value = ActivoEntidadObjeto.ProveedorId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("SesionId", SqlDbType.VarChar);
-                Parametro.Value = ActivoEntidadObjeto.SesionId;
-                Comando.Parameters.Add(Parametro);
-
-                Comando.ExecuteNonQuery();
-                Resultado.ErrorId = (int)ConstantePrograma.EntradasSalidas.MovimientoCorrecto;
-
-                return Resultado;
-            }
-            catch (SqlException sqlEx)
-            {
-                Resultado.ErrorId = sqlEx.Number;
-                Resultado.DescripcionError = sqlEx.Message;
-
-                return Resultado;
-            }
-        }
-
         public ResultadoEntidad InsertarMovimientoEntradaSalida(SqlConnection Conexion, SqlTransaction Transaccion, ActivoEntidad ActivoEntidadObjeto)
         {
-
             SqlCommand Comando;
             SqlParameter Parametro;
             ResultadoEntidad Resultado = new ResultadoEntidad();
@@ -587,7 +528,6 @@ namespace Activos.AccesoDatos.Activos
 
         public ResultadoEntidad InsertarMovimientoTemporal(SqlConnection Conexion, SqlTransaction Transaccion, ActivoEntidad ActivoEntidadObjeto)
         {
-
             SqlCommand Comando;
             SqlParameter Parametro;
             ResultadoEntidad Resultado = new ResultadoEntidad();
@@ -714,17 +654,57 @@ namespace Activos.AccesoDatos.Activos
             }
         }
 
-        public ResultadoEntidad InsertarTipoBajaTemporal(SqlConnection Conexion, SqlTransaction Transaccion, ActivoEntidad ActivoEntidadObjeto)
+        public ResultadoEntidad InsertarSalidaActivo(SqlConnection Conexion, SqlTransaction Transaccion, ActivoEntidad ActivoEntidadObjeto)
         {
-
             SqlCommand Comando;
             SqlParameter Parametro;
             ResultadoEntidad Resultado = new ResultadoEntidad();
 
             try
             {
+                Comando = new SqlCommand("InsertarSalidaActivo", Conexion);
+                Comando.CommandType = CommandType.StoredProcedure;
 
+                Comando.Transaction = Transaccion;
 
+                Parametro = new SqlParameter("MovimientoId", SqlDbType.Int);
+                Parametro.Value = ActivoEntidadObjeto.MovimientoId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("TipoServicioId", SqlDbType.SmallInt);
+                Parametro.Value = ActivoEntidadObjeto.TipoServicioId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("ProveedorId", SqlDbType.Int);
+                Parametro.Value = ActivoEntidadObjeto.ProveedorId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("SesionId", SqlDbType.VarChar);
+                Parametro.Value = ActivoEntidadObjeto.SesionId;
+                Comando.Parameters.Add(Parametro);
+
+                Comando.ExecuteNonQuery();
+                Resultado.ErrorId = (int)ConstantePrograma.EntradasSalidas.MovimientoCorrecto;
+
+                return Resultado;
+            }
+            catch (SqlException sqlEx)
+            {
+                Resultado.ErrorId = sqlEx.Number;
+                Resultado.DescripcionError = sqlEx.Message;
+
+                return Resultado;
+            }
+        }
+
+        public ResultadoEntidad InsertarTipoBajaTemporal(SqlConnection Conexion, SqlTransaction Transaccion, ActivoEntidad ActivoEntidadObjeto)
+        {
+            SqlCommand Comando;
+            SqlParameter Parametro;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+
+            try
+            {
                 Comando = new SqlCommand("InsertarTipoBajaTemporal", Conexion);
                 Comando.CommandType = CommandType.StoredProcedure;
 
@@ -791,6 +771,68 @@ namespace Activos.AccesoDatos.Activos
 
                 Parametro = new SqlParameter("CodigoBarrasGeneral", SqlDbType.VarChar);
                 Parametro.Value = ActivoEntidadObjeto.CodigoBarrasGeneral;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("CodigoBarrasParticular", SqlDbType.VarChar);
+                Parametro.Value = ActivoEntidadObjeto.CodigoBarrasParticular;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("Descripcion", SqlDbType.VarChar);
+                Parametro.Value = ActivoEntidadObjeto.Descripcion;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("NumeroSerie", SqlDbType.VarChar);
+                Parametro.Value = ActivoEntidadObjeto.NumeroSerie;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("Modelo", SqlDbType.VarChar);
+                Parametro.Value = ActivoEntidadObjeto.Modelo;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("Color", SqlDbType.VarChar);
+                Parametro.Value = ActivoEntidadObjeto.Color;
+                Comando.Parameters.Add(Parametro);
+
+                Adaptador = new SqlDataAdapter(Comando);
+                ResultadoDatos = new DataSet();
+
+                Conexion.Open();
+                Adaptador.Fill(ResultadoDatos);
+                Conexion.Close();
+
+                Resultado.ResultadoDatos = ResultadoDatos;
+
+                return Resultado;
+            }
+            catch (SqlException Excepcion)
+            {
+                Resultado.ErrorId = Excepcion.Number;
+                Resultado.DescripcionError = Excepcion.Message;
+
+                return Resultado;
+            }
+        }
+
+        public ResultadoEntidad SeleccionarActivoAvanzado(ActivoEntidad ActivoEntidadObjeto, string CadenaConexion)
+        {
+            DataSet ResultadoDatos = new DataSet();
+            SqlConnection Conexion = new SqlConnection(CadenaConexion);
+            SqlCommand Comando;
+            SqlParameter Parametro;
+            SqlDataAdapter Adaptador;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+
+            try
+            {
+                Comando = new SqlCommand("SeleccionarActivoAvanzadaProcedimiento", Conexion);
+                Comando.CommandType = CommandType.StoredProcedure;
+
+                Parametro = new SqlParameter("ActivoId", SqlDbType.Int);
+                Parametro.Value = ActivoEntidadObjeto.ActivoId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("GrupoTipoActivoId", SqlDbType.VarChar);
+                Parametro.Value = ActivoEntidadObjeto.GrupoTipoActivoId;
                 Comando.Parameters.Add(Parametro);
 
                 Parametro = new SqlParameter("CodigoBarrasParticular", SqlDbType.VarChar);
@@ -911,150 +953,6 @@ namespace Activos.AccesoDatos.Activos
             }
         }
 
-        public ResultadoEntidad SeleccionarActivoPorDocumento(ActivoEntidad ActivoEntidadObjeto, string CadenaConexion)
-        {
-            DataSet ResultadoDatos = new DataSet();
-            SqlConnection Conexion = new SqlConnection(CadenaConexion);
-            SqlCommand Comando;
-            SqlParameter Parametro;
-            SqlDataAdapter Adaptador;
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-
-            try
-            {
-                Comando = new SqlCommand("SeleccionarActivoPorDocumentoProcedimiento", Conexion);
-                Comando.CommandType = CommandType.StoredProcedure;
-
-                Parametro = new SqlParameter("ActivoId", SqlDbType.Int);
-                Parametro.Value = ActivoEntidadObjeto.ActivoId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("CompraId", SqlDbType.Int);
-                Parametro.Value = ActivoEntidadObjeto.CompraId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("TipoActivoId", SqlDbType.SmallInt);
-                Parametro.Value = ActivoEntidadObjeto.TipoActivoId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("SubFamiliaId", SqlDbType.SmallInt);
-                Parametro.Value = ActivoEntidadObjeto.SubFamiliaId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("MarcaId", SqlDbType.SmallInt);
-                Parametro.Value = ActivoEntidadObjeto.MarcaId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("CodigoBarrasGeneral", SqlDbType.VarChar);
-                Parametro.Value = ActivoEntidadObjeto.CodigoBarrasGeneral;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("CodigoBarrasParticular", SqlDbType.VarChar);
-                Parametro.Value = ActivoEntidadObjeto.CodigoBarrasParticular;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("Descripcion", SqlDbType.VarChar);
-                Parametro.Value = ActivoEntidadObjeto.Descripcion;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("NumeroSerie", SqlDbType.VarChar);
-                Parametro.Value = ActivoEntidadObjeto.NumeroSerie;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("Modelo", SqlDbType.VarChar);
-                Parametro.Value = ActivoEntidadObjeto.Modelo;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("Color", SqlDbType.VarChar);
-                Parametro.Value = ActivoEntidadObjeto.Color;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("TipoMovimientoId", SqlDbType.SmallInt);
-                Parametro.Value = ActivoEntidadObjeto.TipoDeMovimiento;
-                Comando.Parameters.Add(Parametro);
-
-                Adaptador = new SqlDataAdapter(Comando);
-                ResultadoDatos = new DataSet();
-
-                Conexion.Open();
-                Adaptador.Fill(ResultadoDatos);
-                Conexion.Close();
-
-                Resultado.ResultadoDatos = ResultadoDatos;
-
-                return Resultado;
-            }
-            catch (SqlException Excepcion)
-            {
-                Resultado.ErrorId = Excepcion.Number;
-                Resultado.DescripcionError = Excepcion.Message;
-
-                return Resultado;
-            }
-        }
-
-        public ResultadoEntidad SeleccionarActivoAvanzado(ActivoEntidad ActivoEntidadObjeto, string CadenaConexion)
-        {
-            DataSet ResultadoDatos = new DataSet();
-            SqlConnection Conexion = new SqlConnection(CadenaConexion);
-            SqlCommand Comando;
-            SqlParameter Parametro;
-            SqlDataAdapter Adaptador;
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-
-            try
-            {
-                Comando = new SqlCommand("SeleccionarActivoAvanzadaProcedimiento", Conexion);
-                Comando.CommandType = CommandType.StoredProcedure;
-
-                Parametro = new SqlParameter("ActivoId", SqlDbType.Int);
-                Parametro.Value = ActivoEntidadObjeto.ActivoId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("GrupoTipoActivoId", SqlDbType.VarChar);
-                Parametro.Value = ActivoEntidadObjeto.GrupoTipoActivoId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("CodigoBarrasParticular", SqlDbType.VarChar);
-                Parametro.Value = ActivoEntidadObjeto.CodigoBarrasParticular;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("Descripcion", SqlDbType.VarChar);
-                Parametro.Value = ActivoEntidadObjeto.Descripcion;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("NumeroSerie", SqlDbType.VarChar);
-                Parametro.Value = ActivoEntidadObjeto.NumeroSerie;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("Modelo", SqlDbType.VarChar);
-                Parametro.Value = ActivoEntidadObjeto.Modelo;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("Color", SqlDbType.VarChar);
-                Parametro.Value = ActivoEntidadObjeto.Color;
-                Comando.Parameters.Add(Parametro);
-
-                Adaptador = new SqlDataAdapter(Comando);
-                ResultadoDatos = new DataSet();
-
-                Conexion.Open();
-                Adaptador.Fill(ResultadoDatos);
-                Conexion.Close();
-
-                Resultado.ResultadoDatos = ResultadoDatos;
-
-                return Resultado;
-            }
-            catch (SqlException Excepcion)
-            {
-                Resultado.ErrorId = Excepcion.Number;
-                Resultado.DescripcionError = Excepcion.Message;
-
-                return Resultado;
-            }
-        }
-
         public ResultadoEntidad SeleccionarActivoMarcasRelacionados(string CadenaMarcaId, string CadenaConexion)
         {
             DataSet ResultadoDatos = new DataSet();
@@ -1093,208 +991,6 @@ namespace Activos.AccesoDatos.Activos
             }
         }
 
-        public ResultadoEntidad SeleccionarActivoReporteEstatusSinAsignar(ActivoEntidad ActivoEntidadObjeto, string CadenaConexion)
-        {
-            DataSet ResultadoDatos = new DataSet();
-            SqlConnection Conexion = new SqlConnection(CadenaConexion);
-            SqlCommand Comando;
-            SqlParameter Parametro;
-            SqlDataAdapter Adaptador;
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-
-            try
-            {
-                Comando = new SqlCommand("SeleccionarReporteActivoEstatusSinAsignarProcedimiento", Conexion);
-                Comando.CommandType = CommandType.StoredProcedure;
-
-                Parametro = new SqlParameter("FamiliaId", SqlDbType.SmallInt);
-                Parametro.Value = ActivoEntidadObjeto.FamiliaId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("SubFamiliaId", SqlDbType.SmallInt);
-                Parametro.Value = ActivoEntidadObjeto.SubFamiliaId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("TipoActivoId", SqlDbType.SmallInt);
-                Parametro.Value = ActivoEntidadObjeto.TipoActivoId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("TipoMovimientoId", SqlDbType.SmallInt);
-                Parametro.Value = ActivoEntidadObjeto.TipoDeMovimiento;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("AlmacenistaEmpleadoId", SqlDbType.SmallInt);
-                Parametro.Value = ActivoEntidadObjeto.AlmacenistaEmpleadoId;
-                Comando.Parameters.Add(Parametro);
-
-                Adaptador = new SqlDataAdapter(Comando);
-                ResultadoDatos = new DataSet();
-
-                Conexion.Open();
-                Adaptador.Fill(ResultadoDatos);
-                Conexion.Close();
-
-                Resultado.ResultadoDatos = ResultadoDatos;
-
-                return Resultado;
-            }
-            catch (SqlException Excepcion)
-            {
-                Resultado.ErrorId = Excepcion.Number;
-                Resultado.DescripcionError = Excepcion.Message;
-
-                return Resultado;
-            }
-        }
-
-        public ResultadoEntidad SeleccionarActivoReporteEstatusSinEtiquetar(ActivoEntidad ActivoEntidadObjeto, string CadenaConexion)
-        {
-            DataSet ResultadoDatos = new DataSet();
-            SqlConnection Conexion = new SqlConnection(CadenaConexion);
-            SqlCommand Comando;
-            SqlParameter Parametro;
-            SqlDataAdapter Adaptador;
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-
-            try
-            {
-                Comando = new SqlCommand("SeleccionarReporteActivoEstatusSinEtiquetarProcedimiento", Conexion);
-                Comando.CommandType = CommandType.StoredProcedure;
-
-                Parametro = new SqlParameter("FamiliaId", SqlDbType.SmallInt);
-                Parametro.Value = ActivoEntidadObjeto.FamiliaId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("SubFamiliaId", SqlDbType.SmallInt);
-                Parametro.Value = ActivoEntidadObjeto.SubFamiliaId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("TipoActivoId", SqlDbType.SmallInt);
-                Parametro.Value = ActivoEntidadObjeto.TipoActivoId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("TipoMovimientoId", SqlDbType.SmallInt);
-                Parametro.Value = ActivoEntidadObjeto.TipoDeMovimiento;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("AlmacenistaEmpleadoId", SqlDbType.SmallInt);
-                Parametro.Value = ActivoEntidadObjeto.AlmacenistaEmpleadoId;
-                Comando.Parameters.Add(Parametro);
-
-                Adaptador = new SqlDataAdapter(Comando);
-                ResultadoDatos = new DataSet();
-
-                Conexion.Open();
-                Adaptador.Fill(ResultadoDatos);
-                Conexion.Close();
-
-                Resultado.ResultadoDatos = ResultadoDatos;
-
-                return Resultado;
-            }
-            catch (SqlException Excepcion)
-            {
-                Resultado.ErrorId = Excepcion.Number;
-                Resultado.DescripcionError = Excepcion.Message;
-
-                return Resultado;
-            }
-        }
-
-        public ResultadoEntidad SeleccionarMovimientoTemporal(ActivoEntidad ActivoEntidadObjeto, string CadenaConexion)
-        {
-            DataSet ResultadoDatos = new DataSet();
-            SqlConnection Conexion = new SqlConnection(CadenaConexion);
-            SqlCommand Comando;
-            SqlParameter Parametro;
-            SqlDataAdapter Adaptador;
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-
-            try
-            {
-                Comando = new SqlCommand("SeleccionarTemporalMovimiento", Conexion);
-                Comando.CommandType = CommandType.StoredProcedure;
-
-                Parametro = new SqlParameter("SesionId", SqlDbType.VarChar);
-                Parametro.Value = ActivoEntidadObjeto.SesionId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("ActivoId", SqlDbType.Int);
-                Parametro.Value = ActivoEntidadObjeto.ActivoId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("TipoMovimientoId", SqlDbType.SmallInt);
-                Parametro.Value = ActivoEntidadObjeto.TipoDeMovimiento;
-                Comando.Parameters.Add(Parametro);
-
-                Adaptador = new SqlDataAdapter(Comando);
-                ResultadoDatos = new DataSet();
-
-                Conexion.Open();
-                Adaptador.Fill(ResultadoDatos);
-                Conexion.Close();
-
-                Resultado.ResultadoDatos = ResultadoDatos;
-
-                return Resultado;
-            }
-            catch (SqlException Excepcion)
-            {
-                Resultado.ErrorId = Excepcion.Number;
-                Resultado.DescripcionError = Excepcion.Message;
-
-                return Resultado;
-            }
-        }
-
-        public ResultadoEntidad SeleccionarMovimientoTemporalParaAccesorio(SqlConnection Conexion, SqlTransaction Transaccion, ActivoEntidad ActivoEntidadObjeto)
-        {
-            DataSet ResultadoDatos = new DataSet();
-            
-            SqlCommand Comando;
-            SqlParameter Parametro;
-            SqlDataAdapter Adaptador;
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-
-            try
-            {
-                Comando = new SqlCommand("SeleccionarTemporalMovimiento", Conexion);
-                Comando.CommandType = CommandType.StoredProcedure;
-
-                Comando.Transaction = Transaccion;
-
-                Parametro = new SqlParameter("SesionId", SqlDbType.VarChar);
-                Parametro.Value = ActivoEntidadObjeto.SesionId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("ActivoId", SqlDbType.Int);
-                Parametro.Value = ActivoEntidadObjeto.ActivoId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("TipoMovimientoId", SqlDbType.SmallInt);
-                Parametro.Value = ActivoEntidadObjeto.TipoDeMovimiento;
-                Comando.Parameters.Add(Parametro);
-
-                Adaptador = new SqlDataAdapter(Comando);
-                ResultadoDatos = new DataSet();
-
-                
-                Adaptador.Fill(ResultadoDatos);
-                
-
-                Resultado.ResultadoDatos = ResultadoDatos;
-
-                return Resultado;
-            }
-            catch (SqlException Excepcion)
-            {
-                Resultado.ErrorId = Excepcion.Number;
-                Resultado.DescripcionError = Excepcion.Message;
-
-                return Resultado;
-            }
-        }
-
         public ResultadoEntidad SeleccionarActivoMismaConexion(SqlConnection Conexion, SqlTransaction Transaccion, ActivoEntidad ActivoEntidadObjeto)
         {
             DataSet ResultadoDatos = new DataSet();
@@ -1306,6 +1002,7 @@ namespace Activos.AccesoDatos.Activos
             try
             {
                 // Ojo: Este Stored Procedure se ejecuta ademas en la siguiente funcion en esta misma clase: SeleccionarActivo
+                
                 Comando = new SqlCommand("SeleccionarActivoProcedimiento", Conexion);
                 Comando.CommandType = CommandType.StoredProcedure;
 
@@ -1455,6 +1152,88 @@ namespace Activos.AccesoDatos.Activos
             }
         }
 
+        public ResultadoEntidad SeleccionarActivoPorDocumento(ActivoEntidad ActivoEntidadObjeto, string CadenaConexion)
+        {
+            DataSet ResultadoDatos = new DataSet();
+            SqlConnection Conexion = new SqlConnection(CadenaConexion);
+            SqlCommand Comando;
+            SqlParameter Parametro;
+            SqlDataAdapter Adaptador;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+
+            try
+            {
+                Comando = new SqlCommand("SeleccionarActivoPorDocumentoProcedimiento", Conexion);
+                Comando.CommandType = CommandType.StoredProcedure;
+
+                Parametro = new SqlParameter("ActivoId", SqlDbType.Int);
+                Parametro.Value = ActivoEntidadObjeto.ActivoId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("CompraId", SqlDbType.Int);
+                Parametro.Value = ActivoEntidadObjeto.CompraId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("TipoActivoId", SqlDbType.SmallInt);
+                Parametro.Value = ActivoEntidadObjeto.TipoActivoId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("SubFamiliaId", SqlDbType.SmallInt);
+                Parametro.Value = ActivoEntidadObjeto.SubFamiliaId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("MarcaId", SqlDbType.SmallInt);
+                Parametro.Value = ActivoEntidadObjeto.MarcaId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("CodigoBarrasGeneral", SqlDbType.VarChar);
+                Parametro.Value = ActivoEntidadObjeto.CodigoBarrasGeneral;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("CodigoBarrasParticular", SqlDbType.VarChar);
+                Parametro.Value = ActivoEntidadObjeto.CodigoBarrasParticular;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("Descripcion", SqlDbType.VarChar);
+                Parametro.Value = ActivoEntidadObjeto.Descripcion;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("NumeroSerie", SqlDbType.VarChar);
+                Parametro.Value = ActivoEntidadObjeto.NumeroSerie;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("Modelo", SqlDbType.VarChar);
+                Parametro.Value = ActivoEntidadObjeto.Modelo;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("Color", SqlDbType.VarChar);
+                Parametro.Value = ActivoEntidadObjeto.Color;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("TipoMovimientoId", SqlDbType.SmallInt);
+                Parametro.Value = ActivoEntidadObjeto.TipoDeMovimiento;
+                Comando.Parameters.Add(Parametro);
+
+                Adaptador = new SqlDataAdapter(Comando);
+                ResultadoDatos = new DataSet();
+
+                Conexion.Open();
+                Adaptador.Fill(ResultadoDatos);
+                Conexion.Close();
+
+                Resultado.ResultadoDatos = ResultadoDatos;
+
+                return Resultado;
+            }
+            catch (SqlException Excepcion)
+            {
+                Resultado.ErrorId = Excepcion.Number;
+                Resultado.DescripcionError = Excepcion.Message;
+
+                return Resultado;
+            }
+        }
+
         //public ResultadoEntidad SeleccionarActivoPorEstatus(ActivoEntidad ActivoEntidadObjeto, string CadenaConexion)
         //{
         //    DataSet ResultadoDatos = new DataSet();
@@ -1545,6 +1324,114 @@ namespace Activos.AccesoDatos.Activos
         //    }
         //}
 
+        public ResultadoEntidad SeleccionarActivoReporteEstatusSinAsignar(ActivoEntidad ActivoEntidadObjeto, string CadenaConexion)
+        {
+            DataSet ResultadoDatos = new DataSet();
+            SqlConnection Conexion = new SqlConnection(CadenaConexion);
+            SqlCommand Comando;
+            SqlParameter Parametro;
+            SqlDataAdapter Adaptador;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+
+            try
+            {
+                Comando = new SqlCommand("SeleccionarReporteActivoEstatusSinAsignarProcedimiento", Conexion);
+                Comando.CommandType = CommandType.StoredProcedure;
+
+                Parametro = new SqlParameter("FamiliaId", SqlDbType.SmallInt);
+                Parametro.Value = ActivoEntidadObjeto.FamiliaId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("SubFamiliaId", SqlDbType.SmallInt);
+                Parametro.Value = ActivoEntidadObjeto.SubFamiliaId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("TipoActivoId", SqlDbType.SmallInt);
+                Parametro.Value = ActivoEntidadObjeto.TipoActivoId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("TipoMovimientoId", SqlDbType.SmallInt);
+                Parametro.Value = ActivoEntidadObjeto.TipoDeMovimiento;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("AlmacenistaEmpleadoId", SqlDbType.SmallInt);
+                Parametro.Value = ActivoEntidadObjeto.AlmacenistaEmpleadoId;
+                Comando.Parameters.Add(Parametro);
+
+                Adaptador = new SqlDataAdapter(Comando);
+                ResultadoDatos = new DataSet();
+
+                Conexion.Open();
+                Adaptador.Fill(ResultadoDatos);
+                Conexion.Close();
+
+                Resultado.ResultadoDatos = ResultadoDatos;
+
+                return Resultado;
+            }
+            catch (SqlException Excepcion)
+            {
+                Resultado.ErrorId = Excepcion.Number;
+                Resultado.DescripcionError = Excepcion.Message;
+
+                return Resultado;
+            }
+        }
+
+        public ResultadoEntidad SeleccionarActivoReporteEstatusSinEtiquetar(ActivoEntidad ActivoEntidadObjeto, string CadenaConexion)
+        {
+            DataSet ResultadoDatos = new DataSet();
+            SqlConnection Conexion = new SqlConnection(CadenaConexion);
+            SqlCommand Comando;
+            SqlParameter Parametro;
+            SqlDataAdapter Adaptador;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+
+            try
+            {
+                Comando = new SqlCommand("SeleccionarReporteActivoEstatusSinEtiquetarProcedimiento", Conexion);
+                Comando.CommandType = CommandType.StoredProcedure;
+
+                Parametro = new SqlParameter("FamiliaId", SqlDbType.SmallInt);
+                Parametro.Value = ActivoEntidadObjeto.FamiliaId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("SubFamiliaId", SqlDbType.SmallInt);
+                Parametro.Value = ActivoEntidadObjeto.SubFamiliaId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("TipoActivoId", SqlDbType.SmallInt);
+                Parametro.Value = ActivoEntidadObjeto.TipoActivoId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("TipoMovimientoId", SqlDbType.SmallInt);
+                Parametro.Value = ActivoEntidadObjeto.TipoDeMovimiento;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("AlmacenistaEmpleadoId", SqlDbType.SmallInt);
+                Parametro.Value = ActivoEntidadObjeto.AlmacenistaEmpleadoId;
+                Comando.Parameters.Add(Parametro);
+
+                Adaptador = new SqlDataAdapter(Comando);
+                ResultadoDatos = new DataSet();
+
+                Conexion.Open();
+                Adaptador.Fill(ResultadoDatos);
+                Conexion.Close();
+
+                Resultado.ResultadoDatos = ResultadoDatos;
+
+                return Resultado;
+            }
+            catch (SqlException Excepcion)
+            {
+                Resultado.ErrorId = Excepcion.Number;
+                Resultado.DescripcionError = Excepcion.Message;
+
+                return Resultado;
+            }
+        }
+
         public ResultadoEntidad SeleccionarActivoSubFamiliasRelacionadas(string CadenaSubFamiliaId, string CadenaConexion)
         {
             DataSet ResultadoDatos = new DataSet();
@@ -1594,8 +1481,6 @@ namespace Activos.AccesoDatos.Activos
 
             try
             {
-
-
                 Comando = new SqlCommand("SeleccionarActivoTemporalProcedimiento", Conexion);
                 Comando.CommandType = CommandType.StoredProcedure;
 
@@ -1630,7 +1515,6 @@ namespace Activos.AccesoDatos.Activos
         public ResultadoEntidad SeleccionarActivoTemporalMovimiento(SqlConnection Conexion, SqlTransaction Transaccion, ActivoEntidad ActivoEntidadObjeto)
         {
             DataSet ResultadoDatos = new DataSet();
-           
             SqlCommand Comando;
             SqlParameter Parametro;
             SqlDataAdapter Adaptador;
@@ -1638,8 +1522,6 @@ namespace Activos.AccesoDatos.Activos
 
             try
             {
-
-
                 Comando = new SqlCommand("SeleccionarActivoTemporalProcedimiento", Conexion);
                 Comando.CommandType = CommandType.StoredProcedure;
 
@@ -1657,7 +1539,98 @@ namespace Activos.AccesoDatos.Activos
                 ResultadoDatos = new DataSet();
 
                 Adaptador.Fill(ResultadoDatos);
+
+                Resultado.ResultadoDatos = ResultadoDatos;
+
+                return Resultado;
+            }
+            catch (SqlException Excepcion)
+            {
+                Resultado.ErrorId = Excepcion.Number;
+                Resultado.DescripcionError = Excepcion.Message;
+
+                return Resultado;
+            }
+        }
+
+        public ResultadoEntidad SeleccionarMovimientoTemporal(ActivoEntidad ActivoEntidadObjeto, string CadenaConexion)
+        {
+            DataSet ResultadoDatos = new DataSet();
+            SqlConnection Conexion = new SqlConnection(CadenaConexion);
+            SqlCommand Comando;
+            SqlParameter Parametro;
+            SqlDataAdapter Adaptador;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+
+            try
+            {
+                Comando = new SqlCommand("SeleccionarTemporalMovimiento", Conexion);
+                Comando.CommandType = CommandType.StoredProcedure;
+
+                Parametro = new SqlParameter("SesionId", SqlDbType.VarChar);
+                Parametro.Value = ActivoEntidadObjeto.SesionId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("ActivoId", SqlDbType.Int);
+                Parametro.Value = ActivoEntidadObjeto.ActivoId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("TipoMovimientoId", SqlDbType.SmallInt);
+                Parametro.Value = ActivoEntidadObjeto.TipoDeMovimiento;
+                Comando.Parameters.Add(Parametro);
+
+                Adaptador = new SqlDataAdapter(Comando);
+                ResultadoDatos = new DataSet();
+
+                Conexion.Open();
+                Adaptador.Fill(ResultadoDatos);
+                Conexion.Close();
+
+                Resultado.ResultadoDatos = ResultadoDatos;
+
+                return Resultado;
+            }
+            catch (SqlException Excepcion)
+            {
+                Resultado.ErrorId = Excepcion.Number;
+                Resultado.DescripcionError = Excepcion.Message;
+
+                return Resultado;
+            }
+        }
+
+        public ResultadoEntidad SeleccionarMovimientoTemporalParaAccesorio(SqlConnection Conexion, SqlTransaction Transaccion, ActivoEntidad ActivoEntidadObjeto)
+        {
+            DataSet ResultadoDatos = new DataSet();
+            
+            SqlCommand Comando;
+            SqlParameter Parametro;
+            SqlDataAdapter Adaptador;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+
+            try
+            {
+                Comando = new SqlCommand("SeleccionarTemporalMovimiento", Conexion);
+                Comando.CommandType = CommandType.StoredProcedure;
+
+                Comando.Transaction = Transaccion;
+
+                Parametro = new SqlParameter("SesionId", SqlDbType.VarChar);
+                Parametro.Value = ActivoEntidadObjeto.SesionId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("ActivoId", SqlDbType.Int);
+                Parametro.Value = ActivoEntidadObjeto.ActivoId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("TipoMovimientoId", SqlDbType.SmallInt);
+                Parametro.Value = ActivoEntidadObjeto.TipoDeMovimiento;
+                Comando.Parameters.Add(Parametro);
+
+                Adaptador = new SqlDataAdapter(Comando);
+                ResultadoDatos = new DataSet();
                 
+                Adaptador.Fill(ResultadoDatos);               
 
                 Resultado.ResultadoDatos = ResultadoDatos;
 
@@ -1683,8 +1656,6 @@ namespace Activos.AccesoDatos.Activos
 
             try
             {
-               
-
                 Comando = new SqlCommand("SeleccionarMovimientoPorFechaProcedimiento", Conexion);
                 Comando.CommandType = CommandType.StoredProcedure;
 
@@ -1727,8 +1698,6 @@ namespace Activos.AccesoDatos.Activos
 
             try
             {
-
-
                 Comando = new SqlCommand("SeleccionarTemporalMovimientoPorSesionId", Conexion);
                 Comando.CommandType = CommandType.StoredProcedure;
 
@@ -1759,6 +1728,5 @@ namespace Activos.AccesoDatos.Activos
                 return Resultado;
             }
         } 
-
     }
 }

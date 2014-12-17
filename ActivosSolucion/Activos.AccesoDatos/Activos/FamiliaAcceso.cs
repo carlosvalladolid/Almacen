@@ -236,6 +236,5 @@ namespace Activos.AccesoDatos.Activos
                 return Resultado;
             }
         }
-
     }
 }
