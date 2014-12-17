@@ -123,6 +123,24 @@ namespace Activos.ProcesoNegocio.Catalogo
             return Resultado;
         }
 
+        /// <summary>
+        ///     Busca el jefe del empleado enviado como parámetro.
+        /// </summary>
+        /// <param name="EmpleadoEntidad">Entidad de empleado.</param>
+        /// <returns>Entidad de resultado.</returns>
+        public ResultadoEntidad SeleccionarEmpleadoJefe(EmpleadoEntidad EmpleadoEntidad)
+        {
+            string CadenaConexion = string.Empty;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            EmpleadoAcceso EmpleadoAccesoObjeto = new EmpleadoAcceso();
+
+            CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Catalogo);
+
+            Resultado = EmpleadoAccesoObjeto.SeleccionarEmpleadoJefe(EmpleadoEntidad, CadenaConexion);
+
+            return Resultado;
+        }
+
         public bool SeleccionarEmpleadoUsuariosRelacionados(string CadenaUsuarioId)
         {
             string CadenaConexion = string.Empty;
@@ -200,16 +218,6 @@ namespace Activos.ProcesoNegocio.Catalogo
             return ResultadoEntidadObjeto;
         }
 
-        //protected bool TieneAsignacionesRelacionados(string CadenaEmpleadoId)
-        //{
-        //    bool TieneRelaciones = false;
-        //    AsignacionProceso AsignacionProcesoObjeto = new AsignacionProceso();
-
-        //    TieneRelaciones = AsignacionProcesoObjeto.SeleccionarAsignacionEmpleadosRelacionados(CadenaEmpleadoId);
-
-        //    return TieneRelaciones;
-        //}
-
         protected bool TieneComprasRelacionados(string CadenaEmpleadoId)
         {
             bool TieneRelaciones = false;
@@ -219,16 +227,6 @@ namespace Activos.ProcesoNegocio.Catalogo
 
             return TieneRelaciones;
         }
-
-        //protected bool TieneLevantamientosRelacionados(string CadenaEmpleadoId)
-        //{
-        //    bool TieneRelaciones = false;
-        //    LevantamientoActivoProceso LevantamientoActivoProcesoObjeto = new LevantamientoActivoProceso();
-
-        //    TieneRelaciones = LevantamientoActivoProcesoObjeto.SeleccionarLevantamientoEmpleadosRelacionados(CadenaEmpleadoId);
-
-        //    return TieneRelaciones;
-        //}
 
         protected bool TieneMovimientosRelacionados(string CadenaEmpleadoId)
         {

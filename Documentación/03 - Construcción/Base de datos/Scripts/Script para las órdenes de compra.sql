@@ -32,6 +32,8 @@ SELECT * FROM OrdenClave
 
 SELECT * FROM [DefensoriaDB.Catalogo].dbo.Proveedor
 
+SELECT * FROM [DefensoriaDB.Catalogo].dbo.Empleado
+
 SELECT * FROM [DefensoriaDB.Seguridad].dbo.Estatus
 
 SELECT * FROM [DefensoriaDB.Seguridad].dbo.Seccion

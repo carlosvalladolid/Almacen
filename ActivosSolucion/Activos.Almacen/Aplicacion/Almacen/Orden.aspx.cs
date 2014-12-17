@@ -84,7 +84,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 OrdenProceso.OrdenEncabezadoEntidad.OrdenId = OrdenIdHidden.Value;
                 OrdenProceso.OrdenEncabezadoEntidad.EmpleadoId = EmpleadoCombo.SelectedValue;
-                //OrdenProceso.OrdenEncabezadoEntidad.JefeId = JefeCombo.SelectedValue;
+                OrdenProceso.OrdenEncabezadoEntidad.JefeId = JefeIdHidden.Value;
                 OrdenProceso.OrdenEncabezadoEntidad.ProveedorId = Int16.Parse(ProveedorCombo.SelectedValue);
                 OrdenProceso.OrdenEncabezadoEntidad.EstatusId = (int)ConstantePrograma.EstatusOrden.SinSurtir;
                 OrdenProceso.OrdenEncabezadoEntidad.FechaOrden = FormatoFecha.AsignarFormato(FechaOrdenBox.Text.Trim(), ConstantePrograma.UniversalFormatoFecha);
@@ -133,8 +133,6 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 SeleccionarProveedor();
                 SeleccionarEmpleado();
-
-                //JefeCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
             }
 
             private void LimpiarFormulario()
@@ -146,6 +144,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 TablaOrden.DataBind();
 
                 OrdenIdHidden.Value = "";
+                JefeIdHidden.Text = "0";
             }
 
             private void MostrarMensaje(string Mensaje, string TipoMensaje)
@@ -180,10 +179,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                     EmpleadoCombo.DataBind();
                 }
                 else
-                {
-                    // ToDo: Manejar mensajes de error
-                    //EtiquetaMensaje.Text = TextoError.ErrorGenerico;
-                }
+                    MostrarMensaje(Resultado.DescripcionError, ConstantePrograma.TipoErrorAlerta);
 
                 EmpleadoCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
             }
@@ -208,9 +204,15 @@ namespace Almacen.Web.Aplicacion.Almacen
                 }
 
                 if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
+                {
                     JefeBox.Text = "";
+                    JefeIdHidden.Text = "0";
+                }
                 else
+                {
                     JefeBox.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["NombreJefe"].ToString();
+                    JefeIdHidden.Value = Resultado.ResultadoDatos.Tables[0].Rows[0]["EmpleadoId"].ToString();
+                }
             }
 
             private void SeleccionarOrdenDetalleTemp(string OrdenId)

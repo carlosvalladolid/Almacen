@@ -13,7 +13,6 @@ namespace Activos.AccesoDatos.Catalogo
 {
     public class EmpleadoAcceso : Base
     {
-
         public ResultadoEntidad ActualizarEmpleado(EmpleadoEntidad EmpleadoEntidadObjeto, string CadenaConexion)
         {
             SqlConnection Conexion = new SqlConnection(CadenaConexion);
@@ -164,100 +163,6 @@ namespace Activos.AccesoDatos.Catalogo
             }
         }
 
-        public ResultadoEntidad SeleccionarEmpleado(EmpleadoEntidad EmpleadoEntidadObjeto, string CadenaConexion)
-        {
-            DataSet ResultadoDatos = new DataSet();
-            SqlConnection Conexion = new SqlConnection(CadenaConexion);
-            SqlCommand Comando;
-            SqlParameter Parametro;
-            SqlDataAdapter Adaptador;
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-
-            try
-            {
-                Comando = new SqlCommand("SeleccionarEmpleadoProcedimiento", Conexion);
-                Comando.CommandType = CommandType.StoredProcedure;
-
-                Parametro = new SqlParameter("EmpleadoId", SqlDbType.SmallInt);
-                Parametro.Value = EmpleadoEntidadObjeto.EmpleadoId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("CiudadId", SqlDbType.SmallInt);
-                Parametro.Value = EmpleadoEntidadObjeto.CiudadId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("DireccionId", SqlDbType.SmallInt);
-                Parametro.Value = EmpleadoEntidadObjeto.DireccionId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("DepartamentoId", SqlDbType.SmallInt);
-                Parametro.Value = EmpleadoEntidadObjeto.DepartamentoId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("EdificioId", SqlDbType.SmallInt);
-                Parametro.Value = EmpleadoEntidadObjeto.EdificioId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("EmpleadoIdJefe", SqlDbType.SmallInt);
-                Parametro.Value = EmpleadoEntidadObjeto.EmpleadoIdJefe;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("PuestoId", SqlDbType.SmallInt);
-                Parametro.Value = EmpleadoEntidadObjeto.PuestoId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("EstatusId", SqlDbType.SmallInt);
-                Parametro.Value = EmpleadoEntidadObjeto.EstatusId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("Nombre", SqlDbType.VarChar);
-                Parametro.Value = EmpleadoEntidadObjeto.Nombre;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("TrabajoEmail", SqlDbType.VarChar);
-                Parametro.Value = EmpleadoEntidadObjeto.TrabajoEmail;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("BusquedaRapida", SqlDbType.VarChar);
-                Parametro.Value = EmpleadoEntidadObjeto.BusquedaRapida;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("NumeroEmpleado", SqlDbType.VarChar);
-                Parametro.Value = EmpleadoEntidadObjeto.NumeroEmpleado;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("BuscarNombre", SqlDbType.VarChar);
-                Parametro.Value = EmpleadoEntidadObjeto.BuscarNombre;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("BuscarApellidoPaterno", SqlDbType.VarChar);
-                Parametro.Value = EmpleadoEntidadObjeto.BuscarApellidoPaterno;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("BuscarApellidoMaterno", SqlDbType.VarChar);
-                Parametro.Value = EmpleadoEntidadObjeto.BuscarApellidoMaterno;
-                Comando.Parameters.Add(Parametro);
-
-                Adaptador = new SqlDataAdapter(Comando);
-                ResultadoDatos = new DataSet();
-
-                Conexion.Open();
-                Adaptador.Fill(ResultadoDatos);
-                Conexion.Close();
-
-                Resultado.ResultadoDatos = ResultadoDatos;
-
-                return Resultado;
-            }
-            catch (SqlException Excepcion)
-            {
-                Resultado.ErrorId = Excepcion.Number;
-                Resultado.DescripcionError = Excepcion.Message;
-
-                return Resultado;
-            }
-        }
-
         public ResultadoEntidad InsertarEmpleado(EmpleadoEntidad EmpleadoEntidadObjeto, string CadenaConexion)
         {
             SqlConnection Conexion = new SqlConnection(CadenaConexion);
@@ -371,7 +276,7 @@ namespace Activos.AccesoDatos.Catalogo
             }
         }
 
-        public ResultadoEntidad SeleccionarEmpleadoUsuariosRelacionados(string CadenaUsuarioId, string CadenaConexion)
+        public ResultadoEntidad SeleccionarEmpleado(EmpleadoEntidad EmpleadoEntidadObjeto, string CadenaConexion)
         {
             DataSet ResultadoDatos = new DataSet();
             SqlConnection Conexion = new SqlConnection(CadenaConexion);
@@ -382,49 +287,67 @@ namespace Activos.AccesoDatos.Catalogo
 
             try
             {
-                Comando = new SqlCommand("SeleccionarEmpleadoUsuariosRelacionadosProcedimiento", Conexion);
+                Comando = new SqlCommand("SeleccionarEmpleadoProcedimiento", Conexion);
                 Comando.CommandType = CommandType.StoredProcedure;
 
-                Parametro = new SqlParameter("CadenaUsuarioId", SqlDbType.VarChar);
-                Parametro.Value = CadenaUsuarioId;
+                Parametro = new SqlParameter("EmpleadoId", SqlDbType.SmallInt);
+                Parametro.Value = EmpleadoEntidadObjeto.EmpleadoId;
                 Comando.Parameters.Add(Parametro);
 
-                Adaptador = new SqlDataAdapter(Comando);
-                ResultadoDatos = new DataSet();
+                Parametro = new SqlParameter("CiudadId", SqlDbType.SmallInt);
+                Parametro.Value = EmpleadoEntidadObjeto.CiudadId;
+                Comando.Parameters.Add(Parametro);
 
-                Conexion.Open();
-                Adaptador.Fill(ResultadoDatos);
-                Conexion.Close();
+                Parametro = new SqlParameter("DireccionId", SqlDbType.SmallInt);
+                Parametro.Value = EmpleadoEntidadObjeto.DireccionId;
+                Comando.Parameters.Add(Parametro);
 
-                Resultado.ResultadoDatos = ResultadoDatos;
+                Parametro = new SqlParameter("DepartamentoId", SqlDbType.SmallInt);
+                Parametro.Value = EmpleadoEntidadObjeto.DepartamentoId;
+                Comando.Parameters.Add(Parametro);
 
-                return Resultado;
-            }
-            catch (SqlException Excepcion)
-            {
-                Resultado.ErrorId = Excepcion.Number;
-                Resultado.DescripcionError = Excepcion.Message;
+                Parametro = new SqlParameter("EdificioId", SqlDbType.SmallInt);
+                Parametro.Value = EmpleadoEntidadObjeto.EdificioId;
+                Comando.Parameters.Add(Parametro);
 
-                return Resultado;
-            }
-        }
+                Parametro = new SqlParameter("EmpleadoIdJefe", SqlDbType.SmallInt);
+                Parametro.Value = EmpleadoEntidadObjeto.EmpleadoIdJefe;
+                Comando.Parameters.Add(Parametro);
 
-        public ResultadoEntidad SeleccionarEmpleadoEdificioRelacionados(string CadenaEdificioId, string CadenaConexion)
-        {
-            DataSet ResultadoDatos = new DataSet();
-            SqlConnection Conexion = new SqlConnection(CadenaConexion);
-            SqlCommand Comando;
-            SqlParameter Parametro;
-            SqlDataAdapter Adaptador;
-            ResultadoEntidad Resultado = new ResultadoEntidad();
+                Parametro = new SqlParameter("PuestoId", SqlDbType.SmallInt);
+                Parametro.Value = EmpleadoEntidadObjeto.PuestoId;
+                Comando.Parameters.Add(Parametro);
 
-            try
-            {
-                Comando = new SqlCommand("SeleccionarEmpleadoEdificioRelacionadosProcedimiento", Conexion);
-                Comando.CommandType = CommandType.StoredProcedure;
+                Parametro = new SqlParameter("EstatusId", SqlDbType.SmallInt);
+                Parametro.Value = EmpleadoEntidadObjeto.EstatusId;
+                Comando.Parameters.Add(Parametro);
 
-                Parametro = new SqlParameter("CadenaEdificioId", SqlDbType.VarChar);
-                Parametro.Value = CadenaEdificioId;
+                Parametro = new SqlParameter("Nombre", SqlDbType.VarChar);
+                Parametro.Value = EmpleadoEntidadObjeto.Nombre;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("TrabajoEmail", SqlDbType.VarChar);
+                Parametro.Value = EmpleadoEntidadObjeto.TrabajoEmail;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("BusquedaRapida", SqlDbType.VarChar);
+                Parametro.Value = EmpleadoEntidadObjeto.BusquedaRapida;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("NumeroEmpleado", SqlDbType.VarChar);
+                Parametro.Value = EmpleadoEntidadObjeto.NumeroEmpleado;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("BuscarNombre", SqlDbType.VarChar);
+                Parametro.Value = EmpleadoEntidadObjeto.BuscarNombre;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("BuscarApellidoPaterno", SqlDbType.VarChar);
+                Parametro.Value = EmpleadoEntidadObjeto.BuscarApellidoPaterno;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("BuscarApellidoMaterno", SqlDbType.VarChar);
+                Parametro.Value = EmpleadoEntidadObjeto.BuscarApellidoMaterno;
                 Comando.Parameters.Add(Parametro);
 
                 Adaptador = new SqlDataAdapter(Comando);
@@ -485,6 +408,88 @@ namespace Activos.AccesoDatos.Catalogo
             }
         }
 
+        public ResultadoEntidad SeleccionarEmpleadoEdificioRelacionados(string CadenaEdificioId, string CadenaConexion)
+        {
+            DataSet ResultadoDatos = new DataSet();
+            SqlConnection Conexion = new SqlConnection(CadenaConexion);
+            SqlCommand Comando;
+            SqlParameter Parametro;
+            SqlDataAdapter Adaptador;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+
+            try
+            {
+                Comando = new SqlCommand("SeleccionarEmpleadoEdificioRelacionadosProcedimiento", Conexion);
+                Comando.CommandType = CommandType.StoredProcedure;
+
+                Parametro = new SqlParameter("CadenaEdificioId", SqlDbType.VarChar);
+                Parametro.Value = CadenaEdificioId;
+                Comando.Parameters.Add(Parametro);
+
+                Adaptador = new SqlDataAdapter(Comando);
+                ResultadoDatos = new DataSet();
+
+                Conexion.Open();
+                Adaptador.Fill(ResultadoDatos);
+                Conexion.Close();
+
+                Resultado.ResultadoDatos = ResultadoDatos;
+
+                return Resultado;
+            }
+            catch (SqlException Excepcion)
+            {
+                Resultado.ErrorId = Excepcion.Number;
+                Resultado.DescripcionError = Excepcion.Message;
+
+                return Resultado;
+            }
+        }
+
+        /// <summary>
+        ///     Busca el jefe del empleado enviado como parámetro.
+        /// </summary>
+        /// <param name="EmpleadoEntidad">Entidad de empleado.</param>
+        /// <param name="CadenaConexion">Cadena de conexión a la base de datos.</param>
+        /// <returns>Entidad de resultado.</returns>
+        public ResultadoEntidad SeleccionarEmpleadoJefe(EmpleadoEntidad EmpleadoEntidad, string CadenaConexion)
+        {
+            DataSet ResultadoDatos = new DataSet();
+            SqlConnection Conexion = new SqlConnection(CadenaConexion);
+            SqlCommand Comando;
+            SqlParameter Parametro;
+            SqlDataAdapter Adaptador;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+
+            try
+            {
+                Comando = new SqlCommand("SeleccionarEmpleadoJefe", Conexion);
+                Comando.CommandType = CommandType.StoredProcedure;
+
+                Parametro = new SqlParameter("EmpleadoId", SqlDbType.SmallInt);
+                Parametro.Value = EmpleadoEntidad.EmpleadoId;
+                Comando.Parameters.Add(Parametro);
+
+                Adaptador = new SqlDataAdapter(Comando);
+                ResultadoDatos = new DataSet();
+
+                Conexion.Open();
+                Adaptador.Fill(ResultadoDatos);
+                Conexion.Close();
+
+                Resultado.ResultadoDatos = ResultadoDatos;
+
+                return Resultado;
+            }
+            catch (SqlException Excepcion)
+            {
+                Resultado.ErrorId = Excepcion.Number;
+                Resultado.DescripcionError = Excepcion.Message;
+
+                return Resultado;
+            }
+        }
+
         public ResultadoEntidad SeleccionarEmpleadoPuestosRelacionados(string CadenaPuestoId, string CadenaConexion)
         {
             DataSet ResultadoDatos = new DataSet();
@@ -523,5 +528,42 @@ namespace Activos.AccesoDatos.Catalogo
             }
         }
 
+        public ResultadoEntidad SeleccionarEmpleadoUsuariosRelacionados(string CadenaUsuarioId, string CadenaConexion)
+        {
+            DataSet ResultadoDatos = new DataSet();
+            SqlConnection Conexion = new SqlConnection(CadenaConexion);
+            SqlCommand Comando;
+            SqlParameter Parametro;
+            SqlDataAdapter Adaptador;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+
+            try
+            {
+                Comando = new SqlCommand("SeleccionarEmpleadoUsuariosRelacionadosProcedimiento", Conexion);
+                Comando.CommandType = CommandType.StoredProcedure;
+
+                Parametro = new SqlParameter("CadenaUsuarioId", SqlDbType.VarChar);
+                Parametro.Value = CadenaUsuarioId;
+                Comando.Parameters.Add(Parametro);
+
+                Adaptador = new SqlDataAdapter(Comando);
+                ResultadoDatos = new DataSet();
+
+                Conexion.Open();
+                Adaptador.Fill(ResultadoDatos);
+                Conexion.Close();
+
+                Resultado.ResultadoDatos = ResultadoDatos;
+
+                return Resultado;
+            }
+            catch (SqlException Excepcion)
+            {
+                Resultado.ErrorId = Excepcion.Number;
+                Resultado.DescripcionError = Excepcion.Message;
+
+                return Resultado;
+            }
+        }
     }
 }

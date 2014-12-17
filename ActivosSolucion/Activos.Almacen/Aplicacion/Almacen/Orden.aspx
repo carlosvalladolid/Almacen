@@ -202,6 +202,7 @@
                 </table>
 
                 <asp:HiddenField ID="OrdenIdHidden" runat="server" Value="" />
+                <asp:HiddenField ID="JefeIdHidden" runat="server" Value="0" />
 
                 <asp:UpdateProgress AssociatedUpdatePanelID="PageUpdate" ID="AssociatedUpdate" runat="server">
                     <ProgressTemplate>
