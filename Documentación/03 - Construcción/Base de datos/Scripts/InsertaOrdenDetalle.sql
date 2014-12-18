@@ -8,7 +8,9 @@
 *********************************************************************************************/
 ALTER PROCEDURE [dbo].[InsertaOrdenDetalle]
 (
-	@OrdenId VARCHAR(36)
+	@OrdenId VARCHAR(36),
+	@ProductoId VARCHAR(36),
+	@Cantidad INT
 )
 
 AS
@@ -16,8 +18,6 @@ AS
 	SET NOCOUNT ON
 
 		INSERT INTO OrdenDetalle(OrdenId, ProductoId, Cantidad)
-			SELECT OrdenId, ProductoId, Cantidad
-				FROM OrdenDetalleTemp
-				WHERE (OrdenId = @OrdenId)
+			VALUES (@OrdenId, @ProductoId, @Cantidad)
 
 	SET NOCOUNT OFF

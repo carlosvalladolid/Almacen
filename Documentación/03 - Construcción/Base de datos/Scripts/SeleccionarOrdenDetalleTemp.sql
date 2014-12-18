@@ -16,9 +16,9 @@ AS
 	SET NOCOUNT ON
 
 		SELECT OrdenEncabezadoTemp.OrdenId, OrdenEncabezadoTemp.PreOrdenId, OrdenEncabezadoTemp.EmpleadoId, OrdenEncabezadoTemp.JefeId,
-			OrdenEncabezadoTemp.ProveedorId, OrdenEncabezadoTemp.EstatusId, OrdenEncabezadoTemp.Clave AS ClaveOrden, Producto.Clave AS ClaveProducto,
-			Producto.Descripcion AS DescripcionProducto, Familia.Nombre AS NombreFamilia, Marca.Nombre AS NombreMarca,
-			OrdenDetalleTemp.Cantidad
+			OrdenEncabezadoTemp.ProveedorId, OrdenEncabezadoTemp.EstatusId, OrdenEncabezadoTemp.Clave AS ClaveOrden, OrdenDetalleTemp.ProductoId,
+			Producto.Clave AS ClaveProducto, Producto.Descripcion AS DescripcionProducto, Familia.Nombre AS NombreFamilia,
+			Marca.Nombre AS NombreMarca, OrdenDetalleTemp.Cantidad
 			FROM OrdenEncabezadoTemp
 			INNER JOIN OrdenDetalleTemp
 			ON OrdenEncabezadoTemp.OrdenId = OrdenDetalleTemp.OrdenId

@@ -10,6 +10,8 @@ namespace Activos.Entidad.Almacen
         private string _ProductoId;
         private Int16 _Cantidad;
 
+        private string[,] _ProductoIdArray;
+
         public OrdenDetalleEntidad()
         {
             _ProductoId = string.Empty;
@@ -32,6 +34,15 @@ namespace Activos.Entidad.Almacen
         {
             get { return _Cantidad; }
             set { _Cantidad = value; }
+        }
+
+        /// <summary>
+        ///     Arreglo con los identificadores de los productos.
+        /// </summary>
+        public string[,] ProductoIdArray
+        {
+            get { return _ProductoIdArray; }
+            set { _ProductoIdArray = value; }
         }
     }
 }

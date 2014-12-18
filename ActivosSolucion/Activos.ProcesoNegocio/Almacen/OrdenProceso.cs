@@ -79,6 +79,7 @@ namespace Activos.ProcesoNegocio.Almacen
             /// </summary>
             public void GuardarOrden()
             {
+                int Contador = 0;
                 string CadenaConexion = string.Empty;
                 SqlTransaction Transaccion;
                 SqlConnection Conexion = new SqlConnection(SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen));
@@ -104,7 +105,13 @@ namespace Activos.ProcesoNegocio.Almacen
                         return;
                     }
 
-                    GuardarOrdenDetalle(Conexion, Transaccion, _OrdenEncabezadoEntidad);
+                    for (Contador = 0; Contador < _OrdenDetalleEntidad.ProductoIdArray.GetLength(0); Contador++)
+                    {
+                        GuardarOrdenDetalle(Conexion, Transaccion, _OrdenEncabezadoEntidad.OrdenId, _OrdenDetalleEntidad.ProductoIdArray[Contador, 0], int.Parse(_OrdenDetalleEntidad.ProductoIdArray[Contador, 1]));
+
+                        if (_ErrorId != 0)
+                            break;
+                    }
 
                     if (_ErrorId == 0)
                         Transaccion.Commit();
@@ -135,11 +142,11 @@ namespace Activos.ProcesoNegocio.Almacen
             /// <param name="Conexion">Conexión actual a la base de datos.</param>
             /// <param name="Transaccion">Transacción actual a la base de datos.</param>
             /// <param name="OrdenEncabezadoEntidad">Entidad del encabezado de una orden de compra.</param>
-            private void GuardarOrdenDetalle(SqlConnection Conexion, SqlTransaction Transaccion, OrdenEntidad OrdenEncabezadoEntidad)
+            private void GuardarOrdenDetalle(SqlConnection Conexion, SqlTransaction Transaccion, string OrdenId, string ProductoId, int Cantidad)
             {
                 OrdenAcceso OrdenAcceso = new OrdenAcceso();
 
-                OrdenAcceso.InsertarOrdenDetalle(Conexion, Transaccion, OrdenEncabezadoEntidad);
+                OrdenAcceso.InsertarOrdenDetalle(Conexion, Transaccion, OrdenId, ProductoId, Cantidad);
 
                 _ErrorId = OrdenAcceso.ErrorId;
                 _DescripcionError = OrdenAcceso.DescripcionError;

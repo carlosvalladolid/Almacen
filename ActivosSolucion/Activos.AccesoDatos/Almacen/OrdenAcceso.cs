@@ -58,7 +58,7 @@ namespace Activos.AccesoDatos.Almacen
             /// <param name="Conexion">Conexión actual a la base de datos.</param>
             /// <param name="Transaccion">Transacción actual a la base de datos.</param>
             /// <param name="OrdenDetalleEntidad">Entidad del detalle de una orden de compra.</param>
-            public void InsertarOrdenDetalle(SqlConnection Conexion, SqlTransaction Transaccion, OrdenEntidad OrdenEncabezadoEntidad)
+        public void InsertarOrdenDetalle(SqlConnection Conexion, SqlTransaction Transaccion, string OrdenId, string ProductoId, int Cantidad)
             {
                 SqlCommand Commando;
                 SqlParameter Parameter;
@@ -71,7 +71,15 @@ namespace Activos.AccesoDatos.Almacen
                     Commando.Transaction = Transaccion;
 
                     Parameter = new SqlParameter("OrdenId", SqlDbType.VarChar);
-                    Parameter.Value = OrdenEncabezadoEntidad.OrdenId;
+                    Parameter.Value = OrdenId;
+                    Commando.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("ProductoId", SqlDbType.VarChar);
+                    Parameter.Value = ProductoId;
+                    Commando.Parameters.Add(Parameter);
+
+                    Parameter = new SqlParameter("Cantidad", SqlDbType.VarChar);
+                    Parameter.Value = Cantidad;
                     Commando.Parameters.Add(Parameter);
 
                     Commando.ExecuteNonQuery();

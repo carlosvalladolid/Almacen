@@ -88,6 +88,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 OrdenProceso.OrdenEncabezadoEntidad.ProveedorId = Int16.Parse(ProveedorCombo.SelectedValue);
                 OrdenProceso.OrdenEncabezadoEntidad.EstatusId = (int)ConstantePrograma.EstatusOrden.SinSurtir;
                 OrdenProceso.OrdenEncabezadoEntidad.FechaOrden = FormatoFecha.AsignarFormato(FechaOrdenBox.Text.Trim(), ConstantePrograma.UniversalFormatoFecha);
+                OrdenProceso.OrdenDetalleEntidad.ProductoIdArray = ObtenerProductoId();
 
                 OrdenProceso.GuardarOrden();
 
@@ -144,7 +145,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 TablaOrden.DataBind();
 
                 OrdenIdHidden.Value = "";
-                JefeIdHidden.Text = "0";
+                JefeIdHidden.Value = "0";
             }
 
             private void MostrarMensaje(string Mensaje, string TipoMensaje)
@@ -158,6 +159,31 @@ namespace Almacen.Web.Aplicacion.Almacen
                 FormatoMensaje.Append("\");");
 
                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
+            }
+
+            private string[,] ObtenerProductoId()
+            {
+                int Contador = 0;
+                string[,] ProductoIdArray;
+                TextBox CantidadBox = new TextBox();
+                StringBuilder OrderIdString = new StringBuilder();
+
+                ProductoIdArray = new string[TablaOrden.Rows.Count, 2];
+
+                foreach (GridViewRow Registro in TablaOrden.Rows)
+                {
+                    CantidadBox = (TextBox)Registro.FindControl("CantidadBox");
+
+                    if (CantidadBox == null)
+                        continue;
+
+                    ProductoIdArray[Contador, 0] = TablaOrden.DataKeys[Contador]["ProductoId"].ToString();
+                    ProductoIdArray[Contador, 1] = CantidadBox.Text.Trim();
+
+                    Contador++;
+                }
+
+                return ProductoIdArray;
             }
 
             private void SeleccionarEmpleado()
@@ -206,7 +232,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
                 {
                     JefeBox.Text = "";
-                    JefeIdHidden.Text = "0";
+                    JefeIdHidden.Value = "0";
                 }
                 else
                 {
