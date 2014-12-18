@@ -9,65 +9,10 @@ using Activos.Entidad.General;
 using Activos.Entidad.Catalogo;
 using Activos.Comun.Constante;
 
-
 namespace Activos.AccesoDatos.Catalogo
 {
     public class DireccionAcceso : Base
     {
-        public ResultadoEntidad SeleccionarDireccion(DireccionEntidad DireccionEntidadObjeto, string CadenaConexion)
-        {
-            DataSet ResultadoDatos = new DataSet();
-            SqlConnection Conexion = new SqlConnection(CadenaConexion);
-            SqlCommand Comando;
-            SqlParameter Parametro;
-            SqlDataAdapter Adaptador;
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-
-            try
-            {
-                Comando = new SqlCommand("SeleccionarDireccionProcedimiento", Conexion);
-                Comando.CommandType = CommandType.StoredProcedure;
-
-                Parametro = new SqlParameter("DireccionId", SqlDbType.SmallInt);
-                Parametro.Value = DireccionEntidadObjeto.DireccionId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("EstatusId", SqlDbType.SmallInt);
-                Parametro.Value = DireccionEntidadObjeto.EstatusId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("Nombre", SqlDbType.VarChar);
-                Parametro.Value = DireccionEntidadObjeto.Nombre;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("BusquedaRapida", SqlDbType.VarChar);
-                Parametro.Value = DireccionEntidadObjeto.BusquedaRapida;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("BuscarNombre", SqlDbType.VarChar);
-                Parametro.Value = DireccionEntidadObjeto.BuscarNombre;
-                Comando.Parameters.Add(Parametro);
-
-                Adaptador = new SqlDataAdapter(Comando);
-                ResultadoDatos = new DataSet();
-
-                Conexion.Open();
-                Adaptador.Fill(ResultadoDatos);
-                Conexion.Close();
-
-                Resultado.ResultadoDatos = ResultadoDatos;
-
-                return Resultado;
-            }
-            catch (SqlException Excepcion)
-            {
-                Resultado.ErrorId = Excepcion.Number;
-                Resultado.DescripcionError = Excepcion.Message;
-
-                return Resultado;
-            }
-        }
-        
         public ResultadoEntidad ActualizarDireccion(DireccionEntidad DireccionEntidadObjeto, string CadenaConexion)
         {
             SqlConnection Conexion = new SqlConnection(CadenaConexion);
@@ -195,6 +140,60 @@ namespace Activos.AccesoDatos.Catalogo
             }
         }
 
+        public ResultadoEntidad SeleccionarDireccion(DireccionEntidad DireccionEntidadObjeto, string CadenaConexion)
+        {
+            DataSet ResultadoDatos = new DataSet();
+            SqlConnection Conexion = new SqlConnection(CadenaConexion);
+            SqlCommand Comando;
+            SqlParameter Parametro;
+            SqlDataAdapter Adaptador;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+
+            try
+            {
+                Comando = new SqlCommand("SeleccionarDireccionProcedimiento", Conexion);
+                Comando.CommandType = CommandType.StoredProcedure;
+
+                Parametro = new SqlParameter("DireccionId", SqlDbType.SmallInt);
+                Parametro.Value = DireccionEntidadObjeto.DireccionId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("EstatusId", SqlDbType.SmallInt);
+                Parametro.Value = DireccionEntidadObjeto.EstatusId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("Nombre", SqlDbType.VarChar);
+                Parametro.Value = DireccionEntidadObjeto.Nombre;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("BusquedaRapida", SqlDbType.VarChar);
+                Parametro.Value = DireccionEntidadObjeto.BusquedaRapida;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("BuscarNombre", SqlDbType.VarChar);
+                Parametro.Value = DireccionEntidadObjeto.BuscarNombre;
+                Comando.Parameters.Add(Parametro);
+
+                Adaptador = new SqlDataAdapter(Comando);
+                ResultadoDatos = new DataSet();
+
+                Conexion.Open();
+                Adaptador.Fill(ResultadoDatos);
+                Conexion.Close();
+
+                Resultado.ResultadoDatos = ResultadoDatos;
+
+                return Resultado;
+            }
+            catch (SqlException Excepcion)
+            {
+                Resultado.ErrorId = Excepcion.Number;
+                Resultado.DescripcionError = Excepcion.Message;
+
+                return Resultado;
+            }
+        }
+        
         public ResultadoEntidad SeleccionarDireccionUsuariosRelacionados(string CadenaUsuarioId, string CadenaConexion)
         {
             DataSet ResultadoDatos = new DataSet();

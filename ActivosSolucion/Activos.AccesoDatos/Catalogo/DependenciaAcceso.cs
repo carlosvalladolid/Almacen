@@ -8,7 +8,6 @@ using System.Text;
 using Activos.Entidad.General;
 using Activos.Entidad.Catalogo;
 
-
 namespace Activos.AccesoDatos.Catalogo
 {
     public class DependenciaAcceso : Base
@@ -50,7 +49,6 @@ namespace Activos.AccesoDatos.Catalogo
                 return Resultado;
             }
         }
-
     }
 }
 

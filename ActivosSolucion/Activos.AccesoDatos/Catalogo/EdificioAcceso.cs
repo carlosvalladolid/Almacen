@@ -13,7 +13,6 @@ namespace Activos.AccesoDatos.Catalogo
 {
     public class EdificioAcceso : Base
     {
-
         public ResultadoEntidad ActualizarEdificio(EdificioEntidad EdificioEntidadObjeto, string CadenaConexion)
         {
             SqlConnection Conexion = new SqlConnection(CadenaConexion);

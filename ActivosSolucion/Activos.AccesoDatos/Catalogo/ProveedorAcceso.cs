@@ -13,113 +13,6 @@ namespace Activos.AccesoDatos.Catalogo
 {
     public class ProveedorAcceso : Base
     {
-        public ResultadoEntidad EliminarProveedor(string CadenaProveedorId, string CadenaConexion)
-        {
-            SqlConnection Conexion = new SqlConnection(CadenaConexion);
-            SqlCommand Comando;
-            SqlParameter Parametro;
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-
-            try
-            {
-                Comando = new SqlCommand("EliminarProveedorProcedimiento", Conexion);
-                Comando.CommandType = CommandType.StoredProcedure;
-
-                Parametro = new SqlParameter("CadenaProveedorId", SqlDbType.VarChar);
-                Parametro.Value = CadenaProveedorId;
-                Comando.Parameters.Add(Parametro);
-
-                Conexion.Open();
-                Comando.ExecuteNonQuery();
-                Conexion.Close();
-
-                Resultado.ErrorId = (int)ConstantePrograma.Proveedor.EliminacionExitosa;
-
-                return Resultado;
-            }
-            catch (SqlException sqlEx)
-            {
-                Resultado.ErrorId = sqlEx.Number;
-                Resultado.DescripcionError = sqlEx.Message;
-
-                return Resultado;
-            }
-        }
-
-        public ResultadoEntidad SeleccionarProveedor(ProveedorEntidad ProveedorEntidadObjeto, string CadenaConexion)
-        {
-            DataSet ResultadoDatos = new DataSet();
-            SqlConnection Conexion = new SqlConnection(CadenaConexion);
-            SqlCommand Comando;
-            SqlParameter Parametro;
-            SqlDataAdapter Adaptador;
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-
-            try
-            {
-                Comando = new SqlCommand("SeleccionarProveedorProcedimiento", Conexion);
-                Comando.CommandType = CommandType.StoredProcedure;
-
-                Parametro = new SqlParameter("ProveedorId", SqlDbType.SmallInt);
-                Parametro.Value = ProveedorEntidadObjeto.ProveedorId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("DependenciaId", SqlDbType.SmallInt);
-                Parametro.Value = ProveedorEntidadObjeto.DependenciaId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("EstadoId", SqlDbType.SmallInt);
-                Parametro.Value = ProveedorEntidadObjeto.EstadoId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("CiudadId", SqlDbType.SmallInt);
-                Parametro.Value = ProveedorEntidadObjeto.CiudadId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("BancoId", SqlDbType.SmallInt);
-                Parametro.Value = ProveedorEntidadObjeto.BancoId;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("Nombre", SqlDbType.VarChar);
-                Parametro.Value = ProveedorEntidadObjeto.Nombre;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("RFC", SqlDbType.VarChar);
-                Parametro.Value = ProveedorEntidadObjeto.RFC;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("NombreContacto", SqlDbType.VarChar);
-                Parametro.Value = ProveedorEntidadObjeto.NombreContacto;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("BusquedaRapida", SqlDbType.VarChar);
-                Parametro.Value = ProveedorEntidadObjeto.BusquedaRapida;
-                Comando.Parameters.Add(Parametro);
-
-                Parametro = new SqlParameter("BuscarNombre", SqlDbType.VarChar);
-                Parametro.Value = ProveedorEntidadObjeto.BuscarNombre;
-                Comando.Parameters.Add(Parametro);
-
-                Adaptador = new SqlDataAdapter(Comando);
-                ResultadoDatos = new DataSet();
-
-                Conexion.Open();
-                Adaptador.Fill(ResultadoDatos);
-                Conexion.Close();
-
-                Resultado.ResultadoDatos = ResultadoDatos;
-
-                return Resultado;
-            }
-            catch (SqlException Excepcion)
-            {
-                Resultado.ErrorId = Excepcion.Number;
-                Resultado.DescripcionError = Excepcion.Message;
-
-                return Resultado;
-            }
-        }
-
         public ResultadoEntidad ActualizarProveedor(ProveedorEntidad ProveedorEntidadObjeto, string CadenaConexion)
         {
             SqlConnection Conexion = new SqlConnection(CadenaConexion);
@@ -151,7 +44,7 @@ namespace Activos.AccesoDatos.Catalogo
                 Parametro = new SqlParameter("UsuarioIdModifico", SqlDbType.SmallInt);
                 Parametro.Value = ProveedorEntidadObjeto.UsuarioIdModifico;
                 Comando.Parameters.Add(Parametro);
-                
+
                 Parametro = new SqlParameter("Nombre", SqlDbType.VarChar);
                 Parametro.Value = ProveedorEntidadObjeto.Nombre;
                 Comando.Parameters.Add(Parametro);
@@ -205,6 +98,39 @@ namespace Activos.AccesoDatos.Catalogo
                 Conexion.Close();
 
                 Resultado.ErrorId = (int)ConstantePrograma.Proveedor.ProveedorGuardadoCorrectamente;
+
+                return Resultado;
+            }
+            catch (SqlException sqlEx)
+            {
+                Resultado.ErrorId = sqlEx.Number;
+                Resultado.DescripcionError = sqlEx.Message;
+
+                return Resultado;
+            }
+        }
+
+        public ResultadoEntidad EliminarProveedor(string CadenaProveedorId, string CadenaConexion)
+        {
+            SqlConnection Conexion = new SqlConnection(CadenaConexion);
+            SqlCommand Comando;
+            SqlParameter Parametro;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+
+            try
+            {
+                Comando = new SqlCommand("EliminarProveedorProcedimiento", Conexion);
+                Comando.CommandType = CommandType.StoredProcedure;
+
+                Parametro = new SqlParameter("CadenaProveedorId", SqlDbType.VarChar);
+                Parametro.Value = CadenaProveedorId;
+                Comando.Parameters.Add(Parametro);
+
+                Conexion.Open();
+                Comando.ExecuteNonQuery();
+                Conexion.Close();
+
+                Resultado.ErrorId = (int)ConstantePrograma.Proveedor.EliminacionExitosa;
 
                 return Resultado;
             }
@@ -305,6 +231,80 @@ namespace Activos.AccesoDatos.Catalogo
             {
                 Resultado.ErrorId = sqlEx.Number;
                 Resultado.DescripcionError = sqlEx.Message;
+
+                return Resultado;
+            }
+        }
+
+        public ResultadoEntidad SeleccionarProveedor(ProveedorEntidad ProveedorEntidadObjeto, string CadenaConexion)
+        {
+            DataSet ResultadoDatos = new DataSet();
+            SqlConnection Conexion = new SqlConnection(CadenaConexion);
+            SqlCommand Comando;
+            SqlParameter Parametro;
+            SqlDataAdapter Adaptador;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+
+            try
+            {
+                Comando = new SqlCommand("SeleccionarProveedorProcedimiento", Conexion);
+                Comando.CommandType = CommandType.StoredProcedure;
+
+                Parametro = new SqlParameter("ProveedorId", SqlDbType.SmallInt);
+                Parametro.Value = ProveedorEntidadObjeto.ProveedorId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("DependenciaId", SqlDbType.SmallInt);
+                Parametro.Value = ProveedorEntidadObjeto.DependenciaId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("EstadoId", SqlDbType.SmallInt);
+                Parametro.Value = ProveedorEntidadObjeto.EstadoId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("CiudadId", SqlDbType.SmallInt);
+                Parametro.Value = ProveedorEntidadObjeto.CiudadId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("BancoId", SqlDbType.SmallInt);
+                Parametro.Value = ProveedorEntidadObjeto.BancoId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("Nombre", SqlDbType.VarChar);
+                Parametro.Value = ProveedorEntidadObjeto.Nombre;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("RFC", SqlDbType.VarChar);
+                Parametro.Value = ProveedorEntidadObjeto.RFC;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("NombreContacto", SqlDbType.VarChar);
+                Parametro.Value = ProveedorEntidadObjeto.NombreContacto;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("BusquedaRapida", SqlDbType.VarChar);
+                Parametro.Value = ProveedorEntidadObjeto.BusquedaRapida;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("BuscarNombre", SqlDbType.VarChar);
+                Parametro.Value = ProveedorEntidadObjeto.BuscarNombre;
+                Comando.Parameters.Add(Parametro);
+
+                Adaptador = new SqlDataAdapter(Comando);
+                ResultadoDatos = new DataSet();
+
+                Conexion.Open();
+                Adaptador.Fill(ResultadoDatos);
+                Conexion.Close();
+
+                Resultado.ResultadoDatos = ResultadoDatos;
+
+                return Resultado;
+            }
+            catch (SqlException Excepcion)
+            {
+                Resultado.ErrorId = Excepcion.Number;
+                Resultado.DescripcionError = Excepcion.Message;
 
                 return Resultado;
             }

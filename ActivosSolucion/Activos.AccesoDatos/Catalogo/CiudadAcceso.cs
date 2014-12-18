@@ -54,6 +54,5 @@ namespace Activos.AccesoDatos.Catalogo
                 return Resultado;
             }
         }
-
     }
 }

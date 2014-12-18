@@ -198,44 +198,6 @@ namespace Activos.AccesoDatos.Catalogo
             }
         }
 
-        public ResultadoEntidad SeleccionarDepartamentoUsuariosRelacionados(string CadenaUsuarioId, string CadenaConexion)
-        {
-            DataSet ResultadoDatos = new DataSet();
-            SqlConnection Conexion = new SqlConnection(CadenaConexion);
-            SqlCommand Comando;
-            SqlParameter Parametro;
-            SqlDataAdapter Adaptador;
-            ResultadoEntidad Resultado = new ResultadoEntidad();
-
-            try
-            {
-                Comando = new SqlCommand("SeleccionarDepartamentoUsuariosRelacionadosProcedimiento", Conexion);
-                Comando.CommandType = CommandType.StoredProcedure;
-
-                Parametro = new SqlParameter("CadenaUsuarioId", SqlDbType.VarChar);
-                Parametro.Value = CadenaUsuarioId;
-                Comando.Parameters.Add(Parametro);
-
-                Adaptador = new SqlDataAdapter(Comando);
-                ResultadoDatos = new DataSet();
-
-                Conexion.Open();
-                Adaptador.Fill(ResultadoDatos);
-                Conexion.Close();
-
-                Resultado.ResultadoDatos = ResultadoDatos;
-
-                return Resultado;
-            }
-            catch (SqlException Excepcion)
-            {
-                Resultado.ErrorId = Excepcion.Number;
-                Resultado.DescripcionError = Excepcion.Message;
-
-                return Resultado;
-            }
-        }
-
         public ResultadoEntidad SeleccionarDepartamentoDireccionesRelacionados(string CadenaDireccionId, string CadenaConexion)
         {
             DataSet ResultadoDatos = new DataSet();
@@ -274,5 +236,42 @@ namespace Activos.AccesoDatos.Catalogo
             }
         }
 
+        public ResultadoEntidad SeleccionarDepartamentoUsuariosRelacionados(string CadenaUsuarioId, string CadenaConexion)
+        {
+            DataSet ResultadoDatos = new DataSet();
+            SqlConnection Conexion = new SqlConnection(CadenaConexion);
+            SqlCommand Comando;
+            SqlParameter Parametro;
+            SqlDataAdapter Adaptador;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+
+            try
+            {
+                Comando = new SqlCommand("SeleccionarDepartamentoUsuariosRelacionadosProcedimiento", Conexion);
+                Comando.CommandType = CommandType.StoredProcedure;
+
+                Parametro = new SqlParameter("CadenaUsuarioId", SqlDbType.VarChar);
+                Parametro.Value = CadenaUsuarioId;
+                Comando.Parameters.Add(Parametro);
+
+                Adaptador = new SqlDataAdapter(Comando);
+                ResultadoDatos = new DataSet();
+
+                Conexion.Open();
+                Adaptador.Fill(ResultadoDatos);
+                Conexion.Close();
+
+                Resultado.ResultadoDatos = ResultadoDatos;
+
+                return Resultado;
+            }
+            catch (SqlException Excepcion)
+            {
+                Resultado.ErrorId = Excepcion.Number;
+                Resultado.DescripcionError = Excepcion.Message;
+
+                return Resultado;
+            }
+        }
     }
 }
