@@ -259,8 +259,6 @@ namespace Activos.AccesoDatos.Seguridad
 
                 return Resultado;
             }
-        }
-
-        
+        }      
     }
 }
