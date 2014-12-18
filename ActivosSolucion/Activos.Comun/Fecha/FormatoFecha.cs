@@ -7,7 +7,6 @@ namespace Activos.Comun.Fecha
 {
     public class FormatoFecha : Base
     {
-
         private Int16 _idLenguaje;
         private string _strHoy;
         private DateTime _dtHoy;

@@ -115,8 +115,7 @@ namespace Activos.Comun.Constante
             DepartamentoGuardadoCorrectamente = 1,
             EliminacionExitosa = 2,
             DepartamentoTieneRegistrosRelacionados = 3,
-            DepartamentoConNombreDuplicado = 4
-            
+            DepartamentoConNombreDuplicado = 4      
         }
 
         public enum Direccion
@@ -145,8 +144,7 @@ namespace Activos.Comun.Constante
         }
 
         public enum EntradasSalidas 
-        {
-           
+        {      
             ActivoNoValidoParaEntrada=13,
             ActivoValidoParaEntrada=14,
             MovimientoCorrecto=15,
@@ -154,7 +152,6 @@ namespace Activos.Comun.Constante
             ActivoValidoParaSalida = 17,
             //el 18 continua en BajaActivo
             ActivoEsVehiculo = 20
-
         }
 
         public enum EnviarCorreo
@@ -363,7 +360,6 @@ namespace Activos.Comun.Constante
             ReporteMantenimientosPorTecnico = 28,
             ReporteGeneralMantenimientos = 29,
             ReporteMantenimientosPorActivo = 30
-
         }
 
         public enum Puesto
@@ -374,7 +370,6 @@ namespace Activos.Comun.Constante
             PuestoConNombreDuplicado = 4
         }
 
-
         public enum Producto
         {
             ProductoGuardadoCorrectamente = 1,
@@ -382,7 +377,6 @@ namespace Activos.Comun.Constante
             ProductoTieneRegistroDuplicado = 3,
             PuestoTieneRegistrosRelacionados =4
         }
-
 
         public enum PreOrden
         {
@@ -392,8 +386,6 @@ namespace Activos.Comun.Constante
            // PreOrdenTieneRegistrosRelacionados = 4
         }
 
-
-
         public enum TemporalPreOrden
         {
             TemporalPreOrdenGuardadoCorrectamente = 1,
@@ -401,14 +393,12 @@ namespace Activos.Comun.Constante
             ClaveDuplicado = 3          
         }
 
-
         public enum Recepcion
         {
             RecepcionGuardadoCorrectamente = 1,
             RecepcionEliminadoCorrectamente = 2,
             FolioDuplicado = 3
         }
-
 
         public enum Requisicion
         {
@@ -525,7 +515,6 @@ namespace Activos.Comun.Constante
             Otros = 3
         }
 
-
         public enum TipoBusquedaEmpleado
         {
             Empleado = 1,
@@ -620,6 +609,5 @@ namespace Activos.Comun.Constante
             Piso = 1,
             Bodega = 2
         }
-
     }
 }
