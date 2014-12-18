@@ -14,7 +14,6 @@ namespace Activos.AccesoDatos.Mantenimiento
 {
     public class MantenimientoEmpleadoAcceso : Base
     {
-
         public ResultadoEntidad EliminarMantenimientoEmpleado(SqlConnection Conexion, SqlTransaction Transaccion, MantenimientoEmpleadoEntidad MantenimientoEmpleadoEntidadObjeto)
         {
             SqlCommand Comando;

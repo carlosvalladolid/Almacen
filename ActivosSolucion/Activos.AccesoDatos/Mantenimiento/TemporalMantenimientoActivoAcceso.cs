@@ -14,7 +14,6 @@ namespace Activos.AccesoDatos.Mantenimiento
 {
     public class TemporalMantenimientoActivoAcceso : Base
     {
-
         public ResultadoEntidad EliminarTemporalMantenimientoActivo(TemporalMantenimientoActivoEntidad TemporalMantenimientoActivoEntidadObjeto, string CadenaConexion)
         {
             SqlConnection Conexion = new SqlConnection(CadenaConexion);
@@ -154,6 +153,5 @@ namespace Activos.AccesoDatos.Mantenimiento
                 return Resultado;
             }
         }
-
     }
 }

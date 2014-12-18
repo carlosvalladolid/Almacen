@@ -170,6 +170,5 @@ namespace Activos.AccesoDatos.Mantenimiento
                 return Resultado;
             }
         }
-
     }
 }
