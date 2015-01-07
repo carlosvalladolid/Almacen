@@ -5,14 +5,12 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
-
 using Activos.AccesoDatos.Almacen;
 using Activos.ProcesoNegocio.Almacen;
 using Activos.Comun.Constante;
 using Activos.Comun.Cadenas;
 using Activos.Entidad.General;
 using Activos.Entidad.Almacen;
-
 
 namespace Activos.ProcesoNegocio.Almacen
 {
@@ -68,7 +66,6 @@ namespace Activos.ProcesoNegocio.Almacen
         }
 
         #region "Métodos"
-
             public ResultadoEntidad AgregarTemporalRequisicion(RequisicionEntidad RequisicionObjetoEntidad)
             {
                 RequisicionAcceso RequisicionAccesoObjeto = new RequisicionAcceso();
@@ -78,41 +75,29 @@ namespace Activos.ProcesoNegocio.Almacen
                 SqlTransaction Transaccion;
                 SqlConnection Conexion;
 
+                if (!ValidarProductoRequisicion(RequisicionObjetoEntidad))
+                    return Resultado;
+
                 CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
                 Conexion = new SqlConnection(CadenaConexion);
                 Conexion.Open();
 
                 Transaccion = Conexion.BeginTransaction();
+
                 try
                 {
-                    if (RequisicionObjetoEntidad.RequisicionId != "")
-                    {
-                        Resultado = RequisicionAccesoObjeto.SeleccionarRequisicionDetalleTemp(Conexion, Transaccion, RequisicionObjetoEntidad);
+                    Resultado = RequisicionAccesoObjeto.SeleccionarRequisicionDetalleTemp(Conexion, Transaccion, RequisicionObjetoEntidad);
 
-                        if (Resultado.ResultadoDatos.Tables[0].Rows.Count > 0)
-                        {
-                            Resultado.ErrorId = ((int)ConstantePrograma.Requisicion.RequisicionTieneRegistroDuplicado);
-                        }
-                        else
-                        {
-                            Resultado = RequisicionAccesoObjeto.InsertarRequisicionDetalleTemp(Conexion, Transaccion, RequisicionObjetoEntidad);
-                        }
-
-                        if (Resultado.ErrorId == (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente)
-                        {
-                            Transaccion.Commit();
-                        }
-                        else
-                        {
-                            Transaccion.Rollback();
-                        }
-
-                    }
+                    if (Resultado.ResultadoDatos.Tables[0].Rows.Count > 0)
+                        Resultado.ErrorId = ((int)ConstantePrograma.Requisicion.RequisicionTieneRegistroDuplicado);
                     else
-                    {
+                        Resultado = RequisicionAccesoObjeto.InsertarRequisicionDetalleTemp(Conexion, Transaccion, RequisicionObjetoEntidad);
+
+                    if (Resultado.ErrorId == (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente)
+                        Transaccion.Commit();
+                    else
                         Transaccion.Rollback();
-                    }
 
                     Conexion.Close();
 
@@ -123,32 +108,13 @@ namespace Activos.ProcesoNegocio.Almacen
                     Transaccion.Rollback();
 
                     if (Conexion.State == ConnectionState.Open)
-                    {
                         Conexion.Close();
-                    }
+
                     Resultado.DescripcionError = EX.Message;
                     return Resultado;
-
                 }
             }
 
-            public ResultadoEntidad InsertarTemporalRequisicionEncabezado(RequisicionEntidad RequisicionObjetoEntidad)
-            {
-                string CadenaConexion = string.Empty;
-                ResultadoEntidad Resultado = new ResultadoEntidad();
-                RequisicionAcceso RequisicionAccesoObjeto = new RequisicionAcceso();
-
-                CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
-
-                if (RequisicionObjetoEntidad.RequisicionId == "")
-                {
-                    RequisicionObjetoEntidad.RequisicionId = Guid.NewGuid().ToString();
-
-                    Resultado = RequisicionAccesoObjeto.InsertarRequisicionEncabezadoTemp(RequisicionObjetoEntidad, CadenaConexion);
-                }
-                return Resultado;
-            }
-                           
             public ResultadoEntidad BuscarRequisicionProducto(RequisicionEntidad RequisicionObjetoEntidad)
             {
                 ResultadoEntidad Resultado = new ResultadoEntidad();
@@ -162,8 +128,8 @@ namespace Activos.ProcesoNegocio.Almacen
 
                         if (Resultado.ResultadoDatos.Tables[0].Rows.Count > 0)
                         {
-                        Resultado.ErrorId = (int)ConstantePrograma.Requisicion.RequisicionTieneRegistroDuplicado;
-                        Resultado.DescripcionError = TextoError.RequisicionDocumentoDuplicado;
+                            Resultado.ErrorId = (int)ConstantePrograma.Requisicion.RequisicionTieneRegistroDuplicado;
+                            Resultado.DescripcionError = TextoError.RequisicionDocumentoDuplicado;
                         }
 
                     }
@@ -171,7 +137,7 @@ namespace Activos.ProcesoNegocio.Almacen
                     else
                     {
 
-                    Resultado.DescripcionError = TextoError.ErrorGenerico;
+                        Resultado.DescripcionError = TextoError.ErrorGenerico;
                     }
 
 
@@ -301,6 +267,23 @@ namespace Activos.ProcesoNegocio.Almacen
                 return Resultado;
             }
 
+            public ResultadoEntidad InsertarTemporalRequisicionEncabezado(RequisicionEntidad RequisicionObjetoEntidad)
+            {
+                string CadenaConexion = string.Empty;
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                RequisicionAcceso RequisicionAccesoObjeto = new RequisicionAcceso();
+
+                CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+                if (RequisicionObjetoEntidad.RequisicionId == "")
+                {
+                    RequisicionObjetoEntidad.RequisicionId = Guid.NewGuid().ToString();
+
+                    Resultado = RequisicionAccesoObjeto.InsertarRequisicionEncabezadoTemp(RequisicionObjetoEntidad, CadenaConexion);
+                }
+                return Resultado;
+            }
+
             public ResultadoEntidad SeleccionarEmpleado(RequisicionEntidad RequisicionObjetoEntidad)
                 {
                     string CadenaConexion = string.Empty;
@@ -314,6 +297,13 @@ namespace Activos.ProcesoNegocio.Almacen
                     return Resultado;
                 }
 
+            private int SeleccionarExistenciaDeProducto()
+            {
+
+
+                return 0;
+            }
+
             public ResultadoEntidad SeleccionaRequisicion(RequisicionEntidad RequisicionObjetoEntidad)
             {
                 string CadenaConexion = string.Empty;
@@ -325,8 +315,30 @@ namespace Activos.ProcesoNegocio.Almacen
                 Resultado = RequisicionAccesoObjeto.SeleccionarRequisicionDetalle(RequisicionObjetoEntidad, CadenaConexion);
 
                 return Resultado;
-            }           
-                  
+            }
+
+            public bool ValidarProductoRequisicion(RequisicionEntidad RequisicionObjetoEntidad)
+            {
+                bool Resultado = true;
+                int ExistenciaProducto = 0;
+
+                if (RequisicionObjetoEntidad.RequisicionId == "")
+                {
+                    _ErrorId = (int)TextoError.Requisicion.SinRequisicionId;
+                    _DescripcionError = TextoError.SinRequisicionId;
+                    return false;
+                }
+
+                // Validar que haya existencia del producto
+                ExistenciaProducto = SeleccionarExistenciaDeProducto();
+
+                if (ExistenciaProducto < RequisicionObjetoEntidad.Cantidad)
+                {
+
+                }
+
+                return Resultado;
+            }
         #endregion
     }
 }

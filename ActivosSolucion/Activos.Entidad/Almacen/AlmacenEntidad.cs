@@ -8,7 +8,6 @@ namespace Activos.Entidad.Almacen
 
     public class AlmacenEntidad : Base
     {
-
         private string _ProductoId;
         private Int16 _FamiliaId;
         private Int16 _SubFamiliaId;
@@ -21,12 +20,11 @@ namespace Activos.Entidad.Almacen
         private Int16 _Maximo;
         private Int16 _MaximoPermitido;
 
-
         //*********************************
 
-        private string _BusquedaRapida;             // Texto de búsqueda en el catálogo de edificios
-        private string _CadenaProductoId;              // Cadena con Ids de marcas seleccionados
-         private string _BuscarNombre;               // Campo para buscar subfamilias por nombre exacto
+        private string _BusquedaRapida;                 // Texto de búsqueda en el catálogo de edificios
+        private string _CadenaProductoId;               // Cadena con Ids de marcas seleccionados
+        private string _BuscarNombre;                   // Campo para buscar subfamilias por nombre exacto
 
         public AlmacenEntidad()
         {
@@ -48,9 +46,7 @@ namespace Activos.Entidad.Almacen
             _BusquedaRapida = string.Empty;
             _CadenaProductoId = string.Empty;
             _BuscarNombre = string.Empty;
-
         }
-
 
         public string ProductoId
         {
@@ -58,13 +54,11 @@ namespace Activos.Entidad.Almacen
             set { _ProductoId = value; }
         }
 
-
         public Int16 FamiliaId
         {
             get { return _FamiliaId; }
             set { _FamiliaId = value; }
         }
-
 
         public Int16 SubFamiliaId
         {
@@ -78,13 +72,11 @@ namespace Activos.Entidad.Almacen
             set { _MarcaId = value; }
         }
 
-
         public string UnidadMedidaId
         {
             get { return _UnidadMedidaId; }
             set { _UnidadMedidaId = value; }
         }
-
 
         public Boolean EstatusId
         {
@@ -92,20 +84,17 @@ namespace Activos.Entidad.Almacen
             set { _EstatusId = value; }
         }
 
-
         public string Clave
         {
             get { return _Clave; }
             set { _Clave = value; }
         }
 
-
         public string Descripcion
         {
             get { return _Descripcion; }
             set { _Descripcion = value; }
         }
-
 
         public Int16 Minimo
         {
@@ -119,14 +108,12 @@ namespace Activos.Entidad.Almacen
             set { _Maximo = value; }
         }
 
-
         public Int16 MaximoPermitido
         {
             get { return _MaximoPermitido; }
             set { _MaximoPermitido = value; }
         }
         
-
         public string BusquedaRapida
         {
             get { return _BusquedaRapida; }
@@ -138,15 +125,11 @@ namespace Activos.Entidad.Almacen
             get { return _CadenaProductoId; }
             set { _CadenaProductoId = value; }
         }
-        
 
         public string BuscarNombre
         {
             get { return _BuscarNombre; }
             set { _BuscarNombre = value; }
         }
-
-
-
     }
 }

@@ -43,7 +43,6 @@ namespace Activos.AccesoDatos.Almacen
         }
 
         #region "Métodos"
-
             public ResultadoEntidad EliminarRequisicionDetalle(SqlConnection Conexion, SqlTransaction Transaccion, RequisicionEntidad RequisicionEntidadObjeto)
             {
                 SqlCommand Comando;
@@ -437,7 +436,6 @@ namespace Activos.AccesoDatos.Almacen
                     return Resultado;
                 }
             }
-
         #endregion
     }
 }

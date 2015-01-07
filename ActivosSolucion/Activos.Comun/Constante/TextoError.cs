@@ -264,7 +264,7 @@ namespace Activos.Comun.Constante
         public const string OrdenConPreOrdenId = "La preorden proporcionada ya tiene una orden de compra asignada";
         public const string OrdenNoExistePreOrden = "No se encontró una preorden con la clave proporcionada";
 
-        //pantalla de Producto de Almacen
+        // pantalla de Producto de Almacen
         public const string ClaveProducto = "· El campo <b>Clave</b> es obligatorio";
         public const string FamiliaProducto = "· El campo <b>Familia</b> es obligatorio";
         public const string SubFamiliaProducto = "· El campo <b>SubFamilia</b> es obligatorio";
@@ -275,6 +275,9 @@ namespace Activos.Comun.Constante
         public const string UnidaddeMedidaProducto = "· El campo <b>Unidad de Medida</b> es obligatorio";
         public const string MaximoPermitidoProducto = "· El campo <b>MaximoPermitido</b> es obligatorio";
 
+        // Mensajes para la pantalla de Requisición
+        public const string SinRequisicionId = "No se proporcionó un identificador para la requisición";
+
         public enum Error
         {
             Generico = 50000
@@ -283,6 +286,11 @@ namespace Activos.Comun.Constante
         public enum Orden
         {
             PreOrdenIdVacio = 1
+        }
+
+        public enum Requisicion
+        {
+            SinRequisicionId = 1
         }
     }
 }

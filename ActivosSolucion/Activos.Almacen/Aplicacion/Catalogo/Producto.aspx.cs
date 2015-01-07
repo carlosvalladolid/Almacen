@@ -27,10 +27,8 @@ namespace Almacen.Web.Aplicacion.Catalogo
     public partial class Producto : System.Web.UI.Page
     {
         #region "Eventos"
-
             protected void BotonBusqueda_Click(object sender, EventArgs e)
             {
-              // TextoBusquedaRapida.Text = "";
                 BusquedaAvanzada();
             }         
 
@@ -40,19 +38,9 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 BusquedaAvanzada();
             }
 
-            protected void BusquedaAvanzadaLink_Click(Object sender, System.EventArgs e)
+            protected void BotonCancelar_Click(object sender, ImageClickEventArgs e)
             {
-                CambiarBusquedaAvanzada();
-            }
 
-            protected void EliminarRegistroLink_Click(Object sender, System.EventArgs e)
-            {
-                EliminarProducto();
-            }
-
-            protected void NuevoRegistro_Click(Object sender, System.EventArgs e)
-            {
-                CambiarNuevoRegistro();
             }
 
             protected void BotonCancelarBusqueda_Click(object sender, EventArgs e)
@@ -68,7 +56,21 @@ namespace Almacen.Web.Aplicacion.Catalogo
             protected void BotonGuardar_Click(object sender, ImageClickEventArgs e)
             {
                 GuardarProducto();
+            }
 
+            protected void BotonLimpiar_Click(object sender, ImageClickEventArgs e)
+            {
+                LimpiarNuevoRegistro();
+            }
+
+            protected void BotonLimpiarBusqueda_Click(object sender, ImageClickEventArgs e)
+            {
+                LimpiarBusquedaRegistro();
+            }
+
+            protected void BusquedaAvanzadaLink_Click(Object sender, System.EventArgs e)
+            {
+                CambiarBusquedaAvanzada();
             }
 
             protected void ddlFamilia_SelectedIndexChanged(object sender, EventArgs e)
@@ -76,22 +78,15 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 SeleccionarSubfamilia();
             }
 
-            protected void BotonLimpiarBusqueda_Click(object sender, ImageClickEventArgs e)
+            protected void EliminarRegistroLink_Click(Object sender, System.EventArgs e)
             {
-                LimpiarBusquedaRegistro();
-
+                EliminarProducto();
             }
 
-            protected void BotonLimpiar_Click(object sender, ImageClickEventArgs e)
+            protected void NuevoRegistro_Click(Object sender, System.EventArgs e)
             {
-                LimpiarNuevoRegistro();
-
+                CambiarNuevoRegistro();
             }
-
-            protected void BotonCancelar_Click(object sender, ImageClickEventArgs e)
-            {
-
-            }                         
 
             protected void Page_Load(object sender, EventArgs e)
             {
@@ -108,11 +103,9 @@ namespace Almacen.Web.Aplicacion.Catalogo
             {
                 TablaProductoEventoComando(e);
             }
-
         #endregion
 
-        #region "Métodos"         
-        
+        #region "Métodos"
             private void Inicio()
             {
                 Master.NuevoRegistroMaster.Click += new EventHandler(NuevoRegistro_Click);
@@ -190,51 +183,6 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 }
             }
 
-            private string ObtenerCadenaProductoId()
-            {
-                StringBuilder CadenaProductoId = new StringBuilder();
-                CheckBox CasillaEliminar;
-
-                CadenaProductoId.Append(",");
-
-                foreach (GridViewRow Registro in TablaProducto.Rows)
-                {
-                    CasillaEliminar = (CheckBox)Registro.FindControl("SeleccionarBorrar");
-
-                    if (CasillaEliminar.Checked)
-                    {
-                        CadenaProductoId.Append(TablaProducto.DataKeys[Registro.RowIndex]["ProductoId"].ToString());
-                        CadenaProductoId.Append(",");
-                    }
-                }
-
-                return CadenaProductoId.ToString();
-            }
-
-            protected void LimpiarNuevoRegistro()
-            {
-                ClaveNuevo.Text = "";
-                DescripcionNuevo.Text = "";
-                FamiliaIdNuevo.SelectedIndex = 0;
-                SeleccionarSubfamilia();
-                MarcaIdNuevo.SelectedIndex = 0;
-                MaximoNuevo.Text = "";
-                MinimoNuevo.Text = "";
-                UnidaddeMedidaIdNuevo.SelectedIndex = 0;
-                EstatusProductoNuevo.Checked = true;
-                MaximoPermitivoNuevo.Text = "";
-                ProductoIdHidden.Value = "";
-                EtiquetaMensaje.Text = "";
-            
-            }
-
-            protected void LimpiarBusquedaRegistro()
-            { 
-                ClaveBusqueda.Text = "";
-                DescripcionBusqueda.Text = "";
-                EtiquetaMensaje.Text = "";        
-            }        
-
             protected void GuardarProducto()
             {
                 AlmacenEntidad AlmacenObjetoEntidad = new AlmacenEntidad();
@@ -257,7 +205,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
                     else
                     { AlmacenObjetoEntidad.Minimo = Int16.Parse(MinimoNuevo.Text.Trim()); }
 
-                    
+
                     if (MaximoNuevo.Text == "")
                     { AlmacenObjetoEntidad.Maximo = 0; }
                     else
@@ -278,7 +226,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
 
                     GuardarProducto(AlmacenObjetoEntidad);
                 }
-                             
+
 
             }
 
@@ -302,6 +250,30 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 }
             }
 
+            protected void LimpiarBusquedaRegistro()
+            {
+                ClaveBusqueda.Text = "";
+                DescripcionBusqueda.Text = "";
+                EtiquetaMensaje.Text = "";
+            }
+
+            protected void LimpiarNuevoRegistro()
+            {
+                ClaveNuevo.Text = "";
+                DescripcionNuevo.Text = "";
+                FamiliaIdNuevo.SelectedIndex = 0;
+                SeleccionarSubfamilia();
+                MarcaIdNuevo.SelectedIndex = 0;
+                MaximoNuevo.Text = "";
+                MinimoNuevo.Text = "";
+                UnidaddeMedidaIdNuevo.SelectedIndex = 0;
+                EstatusProductoNuevo.Checked = true;
+                MaximoPermitivoNuevo.Text = "";
+                ProductoIdHidden.Value = "";
+                EtiquetaMensaje.Text = "";
+
+            }
+
             private void MostrarMensaje(string Mensaje, string TipoMensaje)
             {
                 StringBuilder FormatoMensaje = new StringBuilder();
@@ -313,6 +285,27 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 FormatoMensaje.Append("\");");
 
                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
+            }
+
+            private string ObtenerCadenaProductoId()
+            {
+                StringBuilder CadenaProductoId = new StringBuilder();
+                CheckBox CasillaEliminar;
+
+                CadenaProductoId.Append(",");
+
+                foreach (GridViewRow Registro in TablaProducto.Rows)
+                {
+                    CasillaEliminar = (CheckBox)Registro.FindControl("SeleccionarBorrar");
+
+                    if (CasillaEliminar.Checked)
+                    {
+                        CadenaProductoId.Append(TablaProducto.DataKeys[Registro.RowIndex]["ProductoId"].ToString());
+                        CadenaProductoId.Append(",");
+                    }
+                }
+
+                return CadenaProductoId.ToString();
             }
 
             private void SeleccionarProducto(AlmacenEntidad AlmacenObjetoEntidad)
@@ -452,37 +445,6 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 UnidaddeMedidaIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
             }
 
-            protected void TablaProductoEventoComando(GridViewCommandEventArgs e)
-            {
-                AlmacenEntidad AlmacenEntidadObjeto = new AlmacenEntidad();
-                Int16 intFila = 0;
-                int intTamañoPagina = 0;
-                string ProductoId = "";
-                string strCommand = string.Empty;
-
-                intFila = Int16.Parse(e.CommandArgument.ToString());
-                strCommand = e.CommandName.ToString();
-                intTamañoPagina = TablaProducto.PageSize;
-
-                if (intFila >= intTamañoPagina)
-                    intFila = (Int16)(intFila - (intTamañoPagina * TablaProducto.PageIndex));
-
-
-                switch (strCommand)
-                {
-                    case "Select":
-                        ProductoId = string.Format(TablaProducto.DataKeys[intFila]["ProductoId"].ToString());
-                        AlmacenEntidadObjeto.ProductoId = ProductoId;
-                        ProductoIdHidden.Value = ProductoId.ToString();
-                        SeleccionarProductoParaEditar(AlmacenEntidadObjeto);
-                        break;
-
-                    default:
-                        // Do nothing
-                        break;
-                }
-            }
-
             protected void SeleccionarProductoParaEditar(AlmacenEntidad AlmacenObjetoEntidad)
             {
                 ResultadoEntidad Resultado = new ResultadoEntidad();
@@ -530,6 +492,36 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 MaximoPermitidoRequerido.ErrorMessage = TextoError.MaximoPermitidoProducto + "<br />";
             }
 
+            protected void TablaProductoEventoComando(GridViewCommandEventArgs e)
+            {
+                AlmacenEntidad AlmacenEntidadObjeto = new AlmacenEntidad();
+                Int16 intFila = 0;
+                int intTamañoPagina = 0;
+                string ProductoId = "";
+                string strCommand = string.Empty;
+
+                intFila = Int16.Parse(e.CommandArgument.ToString());
+                strCommand = e.CommandName.ToString();
+                intTamañoPagina = TablaProducto.PageSize;
+
+                if (intFila >= intTamañoPagina)
+                    intFila = (Int16)(intFila - (intTamañoPagina * TablaProducto.PageIndex));
+
+
+                switch (strCommand)
+                {
+                    case "Select":
+                        ProductoId = string.Format(TablaProducto.DataKeys[intFila]["ProductoId"].ToString());
+                        AlmacenEntidadObjeto.ProductoId = ProductoId;
+                        ProductoIdHidden.Value = ProductoId.ToString();
+                        SeleccionarProductoParaEditar(AlmacenEntidadObjeto);
+                        break;
+
+                    default:
+                        // Do nothing
+                        break;
+                }
+            }
         #endregion
     }
 }

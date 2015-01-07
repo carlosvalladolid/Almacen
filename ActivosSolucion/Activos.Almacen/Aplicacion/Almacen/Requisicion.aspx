@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Incluir/Plantilla/PlantillaPrivada.Master" AutoEventWireup="true" CodeBehind="Requisicion.aspx.cs" Inherits="Activos.Almacen.Aplicacion.Almacen.Requisicion" Title="" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Incluir/Plantilla/PlantillaPrivada.Master" AutoEventWireup="true" CodeBehind="Requisicion.aspx.cs" Inherits="Almacen.Web.Aplicacion.Almacen.Requisicion" Title="" %>
 <%@ MasterType VirtualPath="~/Incluir/Plantilla/PlantillaPrivada.Master" %>
 <%@ Register TagPrefix="wuc" TagName="ControlMenuIzquierdo" Src="~/Incluir/ControlesWeb/ControlMenuIzquierdo.ascx" %>
 
@@ -179,12 +179,6 @@
                         <div class="LoadingDiv"><div class="LoadingImageDiv"><img alt="Cargando..." src="../../Image/Icon/LoadingIcon.gif" /></div></div>
                     </ProgressTemplate>
                 </asp:UpdateProgress>
-                
-                <asp:HiddenField ID="TemporalRequisicionIdHidden" runat="server" Value="" />
-                <asp:HiddenField ID="ProductoIdHidden" runat="server" Value="" />
-                 
-                <asp:HiddenField ID="EmpleadoIdHidden" runat="server" Value="" />
-                <asp:HiddenField ID="JefeIdHidden" runat="server" Value="" />
                 <br />
                 <br /> 
 
@@ -263,6 +257,11 @@
                          <asp:ImageButton ID="BotonCancelar" OnClick="BotonCerrarProductoBusqueda_Click" runat="server" ImageUrl="~/Imagen/Boton/BotonCancelar.png" />                   
                     </div>
                 </asp:Panel>
+                
+                <asp:HiddenField ID="TemporalRequisicionIdHidden" runat="server" Value="" />
+                <asp:HiddenField ID="ProductoIdHidden" runat="server" Value="" />
+                <asp:HiddenField ID="EmpleadoIdHidden" runat="server" Value="" />
+                <asp:HiddenField ID="JefeIdHidden" runat="server" Value="" />
             </ContentTemplate>
         </asp:UpdatePanel>   
     </div>

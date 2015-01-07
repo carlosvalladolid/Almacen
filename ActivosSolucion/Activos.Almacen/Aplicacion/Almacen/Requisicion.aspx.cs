@@ -22,51 +22,51 @@ using Activos.Entidad.Seguridad;
 using Activos.ProcesoNegocio.Almacen;
 using Activos.ProcesoNegocio.Catalogo;
 
-namespace Activos.Almacen.Aplicacion.Almacen
+namespace Almacen.Web.Aplicacion.Almacen
 {
     public partial class Requisicion : System.Web.UI.Page
     {
         #region "Eventos"
-            protected void NuevoRegistro_Click(Object sender, System.EventArgs e)
+            protected void BotonAgregar_Click(object sender, ImageClickEventArgs e)
             {
-                CambiarNuevoRegistro();
+                AgregarDetalleDocumento();
+            }
+
+            protected void BotonCerrarProductoBusqueda_Click(object sender, ImageClickEventArgs e)
+            {
+                CargaPanelInVisibleProducto();
             }
 
             protected void BotonGuardar_Click(object sender, ImageClickEventArgs e)
-            {         
-               if (Page.IsValid)
-               {
-                   GuardarRequisicion();
-               }
-            }
-
-            protected void ImagenProductoBusqueda_Click(object sender, ImageClickEventArgs e)
             {
-
-                CargaPanelVisibleProducto();
-              
+                if (Page.IsValid)
+                {
+                    GuardarRequisicion();
+                }
             }
 
             //protected void BotonImprimirProductoBusqueda_Click(object sender, ImageClickEventArgs e)
             //{
 
             //    ImprimirReporte();
-              
+
             //}
-            
-            protected void BotonCerrarProductoBusqueda_Click(object sender, ImageClickEventArgs e)
-            {
-                CargaPanelInVisibleProducto();
-            }
 
             protected void BotonProductoBusqueda_Click(object sender, ImageClickEventArgs e)
             {
                 BuscarProducto();
             }
 
-            protected void BotonAgregar_Click(object sender, ImageClickEventArgs e)
+            protected void ImagenProductoBusqueda_Click(object sender, ImageClickEventArgs e)
             {
-                AgregarDetalleDocumento();
+
+                CargaPanelVisibleProducto();
+
+            }
+
+            protected void NuevoRegistro_Click(Object sender, System.EventArgs e)
+            {
+                CambiarNuevoRegistro();
             }
 
             protected void Page_Load(object sender, EventArgs e)
@@ -74,14 +74,14 @@ namespace Activos.Almacen.Aplicacion.Almacen
                 Inicio();
             }
 
-            protected void TablaRequisicion_RowCommand(object sender, GridViewCommandEventArgs e)
-            {
-                TablaRequisicionEventoComando(e);
-            }
-            
             protected void TablaProducto_RowCommand(object sender, GridViewCommandEventArgs e)
             {
                 TablaProductoRowCommand(e);
+            }
+
+            protected void TablaRequisicion_RowCommand(object sender, GridViewCommandEventArgs e)
+            {
+                TablaRequisicionEventoComando(e);
             }
         #endregion
 
@@ -91,15 +91,14 @@ namespace Activos.Almacen.Aplicacion.Almacen
                 RequisicionEntidad RequisicionObjetoEntidad = new RequisicionEntidad();
 
                 //***********************************************************************
+                //RequisicionObjetoEntidad.RequisicionId = TemporalRequisicionIdHidden.Value;
+                //RequisicionObjetoEntidad.TemporalRequisicionId = TemporalRequisicionIdHidden.Value;
+                //***********************************************************************
                 RequisicionObjetoEntidad.RequisicionId = TemporalRequisicionIdHidden.Value;
                 RequisicionObjetoEntidad.TemporalRequisicionId = TemporalRequisicionIdHidden.Value;
                 RequisicionObjetoEntidad.EmpleadoId = Int16.Parse(EmpleadoIdHidden.Value);
                 RequisicionObjetoEntidad.JefeId = Int16.Parse(JefeIdHidden.Value);
-                //***********************************************************************
-                RequisicionObjetoEntidad.RequisicionId = TemporalRequisicionIdHidden.Value;
-                RequisicionObjetoEntidad.TemporalRequisicionId = TemporalRequisicionIdHidden.Value;
                 RequisicionObjetoEntidad.ProductoId = ProductoIdHidden.Value;
-
                 RequisicionObjetoEntidad.Cantidad = Int16.Parse(CantidadNuevo.Text.Trim());
 
                 AgregarRequisicion(RequisicionObjetoEntidad);
@@ -122,12 +121,10 @@ namespace Activos.Almacen.Aplicacion.Almacen
                 }
                 else
                 {
-
-                    //  MostrarMensaje(RequisicionProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                    MostrarMensaje(RequisicionProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
 
                     EtiquetaMensaje.Text = Resultado.DescripcionError;
                     LimpiarRequisicion();
-
                 }
             }        
 
@@ -149,19 +146,14 @@ namespace Activos.Almacen.Aplicacion.Almacen
                     else
                         TablaProducto.CssClass = ConstantePrograma.ClaseTabla;
 
-
-
                     TablaProducto.DataSource = Resultado.ResultadoDatos;
                     TablaProducto.DataBind();
-
                 }
                 else
                 {
                     EtiquetaMensaje.Text = TextoError.ErrorGenerico;
-                   // MostrarMensaje(AlmacenProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
-                   
+                    // MostrarMensaje(AlmacenProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
                 }
-
             }
 
             private void CambiarNuevoRegistro()
@@ -252,7 +244,6 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
                         GuardarRequisicion(RequisicionObjetoEntidad);
                     }
-
                 }
                 else
                 {
@@ -284,10 +275,12 @@ namespace Activos.Almacen.Aplicacion.Almacen
             {
                 if (Page.IsPostBack)
                     return;
+
                 CargarInformacionUsuario();
+                BuscarProducto();
+
                 TablaRequisicion.DataSource = null;
                 TablaRequisicion.DataBind();
-                BuscarProducto();
             }
 
             //protected void ImprimirReporte()
@@ -461,33 +454,6 @@ namespace Activos.Almacen.Aplicacion.Almacen
                 }
             }
 
-            private void TablaRequisicionEventoComando(GridViewCommandEventArgs e)
-            {
-                Int16 intFila = 0;
-                int intTamañoPagina = 0;
-                string ProductoId = string.Empty;
-                string strCommand = string.Empty;
-
-                intFila = Int16.Parse(e.CommandArgument.ToString());
-                strCommand = e.CommandName.ToString();
-                intTamañoPagina = TablaRequisicion.PageSize;
-
-                if (intFila >= intTamañoPagina)
-                    intFila = (Int16)(intFila - (intTamañoPagina * TablaRequisicion.PageIndex));
-
-                switch (strCommand)
-                {
-                    case "EliminarRequisicion":
-                        ProductoId = string.Format(TablaRequisicion.DataKeys[intFila]["ProductoId"].ToString());
-                        EliminarProducto(ProductoId);
-                        break;
-
-                    default:
-                        // Do nothing
-                        break;
-                }
-            }
-
             private void TablaProductoRowCommand(GridViewCommandEventArgs e)
             {
                 AlmacenEntidad AlmacenEntidadObjeto = new AlmacenEntidad();
@@ -511,6 +477,33 @@ namespace Activos.Almacen.Aplicacion.Almacen
                         AlmacenEntidadObjeto.ProductoId = ProductoId;
                         ProductoIdHidden.Value = ProductoId.ToString();
                         SeleccionarProductoMostrar(AlmacenEntidadObjeto);
+                        break;
+
+                    default:
+                        // Do nothing
+                        break;
+                }
+            }
+
+            private void TablaRequisicionEventoComando(GridViewCommandEventArgs e)
+            {
+                Int16 intFila = 0;
+                int intTamañoPagina = 0;
+                string ProductoId = string.Empty;
+                string strCommand = string.Empty;
+
+                intFila = Int16.Parse(e.CommandArgument.ToString());
+                strCommand = e.CommandName.ToString();
+                intTamañoPagina = TablaRequisicion.PageSize;
+
+                if (intFila >= intTamañoPagina)
+                    intFila = (Int16)(intFila - (intTamañoPagina * TablaRequisicion.PageIndex));
+
+                switch (strCommand)
+                {
+                    case "EliminarRequisicion":
+                        ProductoId = string.Format(TablaRequisicion.DataKeys[intFila]["ProductoId"].ToString());
+                        EliminarProducto(ProductoId);
                         break;
 
                     default:

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Activos.Almacen.Aplicacion.Almacen {
+namespace Almacen.Web.Aplicacion.Almacen {
     
     
     public partial class Requisicion {
@@ -248,42 +248,6 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         protected global::System.Web.UI.UpdateProgress AssociatedUpdate;
         
         /// <summary>
-        /// TemporalRequisicionIdHidden control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField TemporalRequisicionIdHidden;
-        
-        /// <summary>
-        /// ProductoIdHidden control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField ProductoIdHidden;
-        
-        /// <summary>
-        /// EmpleadoIdHidden control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField EmpleadoIdHidden;
-        
-        /// <summary>
-        /// JefeIdHidden control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField JefeIdHidden;
-        
-        /// <summary>
         /// pnlFondoBuscarProducto control.
         /// </summary>
         /// <remarks>
@@ -365,14 +329,50 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.ImageButton BotonCancelar;
         
         /// <summary>
+        /// TemporalRequisicionIdHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField TemporalRequisicionIdHidden;
+        
+        /// <summary>
+        /// ProductoIdHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField ProductoIdHidden;
+        
+        /// <summary>
+        /// EmpleadoIdHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField EmpleadoIdHidden;
+        
+        /// <summary>
+        /// JefeIdHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField JefeIdHidden;
+        
+        /// <summary>
         /// Master property.
         /// </summary>
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-        public new Almacen.Web.Incluir.Plantilla.PlantillaPrivada Master {
+        public new Incluir.Plantilla.PlantillaPrivada Master {
             get {
-                return ((Almacen.Web.Incluir.Plantilla.PlantillaPrivada)(base.Master));
+                return ((Incluir.Plantilla.PlantillaPrivada)(base.Master));
             }
         }
     }
