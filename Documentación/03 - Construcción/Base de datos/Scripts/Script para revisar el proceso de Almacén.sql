@@ -13,6 +13,8 @@ SELECT * FROM Marca
 
 SELECT * FROM Producto
 
+SELECT * FROM [DefensoriaDB.Seguridad].[dbo].[Estatus]
+
 
 -- Operación
 SELECT * FROM RequisicionEncabezado
@@ -68,7 +70,7 @@ DELETE OrdenEncabezado
 DELETE OrdenDetalle
 DELETE RecepcionEncabezado
 DELETE RecepcionDetalle
-DELETE OrdenSalidaEncabezado
+--DELETE OrdenSalidaEncabezado
 DELETE OrdenSalidaDetalle
 
 DELETE RequisicionEncabezadoTemp
