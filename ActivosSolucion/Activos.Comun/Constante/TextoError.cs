@@ -277,6 +277,10 @@ namespace Activos.Comun.Constante
 
         // Mensajes para la pantalla de Requisición
         public const string SinRequisicionId = "No se proporcionó un identificador para la requisición";
+        public const string ProductoSinRegistroDeExistencia = "No se encontró información de existencia para el producto proporcionado";
+        public const string ExistenciaInsuficiente = "El producto no cuenta con suficiente existencia";
+        public const string ProductoNoEncontrado = "No se encontró información del producto proporcionado";
+        public const string CantidadArribaDelMaximo = "La cantidad solicitada excede el máximo permitido para este producto";
 
         public enum Error
         {
@@ -290,7 +294,11 @@ namespace Activos.Comun.Constante
 
         public enum Requisicion
         {
-            SinRequisicionId = 1
+            SinRequisicionId = 1,
+            ProductoSinRegistroDeExistencia = 2,
+            ExistenciaInsuficiente = 3,
+            ProductoNoEncontrado = 4,
+            CantidadArribaDelMaximo = 5
         }
     }
 }

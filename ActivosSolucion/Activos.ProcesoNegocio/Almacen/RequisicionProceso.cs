@@ -297,13 +297,6 @@ namespace Activos.ProcesoNegocio.Almacen
                     return Resultado;
                 }
 
-            private int SeleccionarExistenciaDeProducto()
-            {
-
-
-                return 0;
-            }
-
             public ResultadoEntidad SeleccionaRequisicion(RequisicionEntidad RequisicionObjetoEntidad)
             {
                 string CadenaConexion = string.Empty;
@@ -321,7 +314,10 @@ namespace Activos.ProcesoNegocio.Almacen
             {
                 bool Resultado = true;
                 int ExistenciaProducto = 0;
+                int MaximoPermitido = 0;
+                AlmacenProceso ProductoProceso = new AlmacenProceso();
 
+                // Validar que se haya enviado un identificador de la requisición
                 if (RequisicionObjetoEntidad.RequisicionId == "")
                 {
                     _ErrorId = (int)TextoError.Requisicion.SinRequisicionId;
@@ -330,11 +326,23 @@ namespace Activos.ProcesoNegocio.Almacen
                 }
 
                 // Validar que haya existencia del producto
-                ExistenciaProducto = SeleccionarExistenciaDeProducto();
+                ExistenciaProducto = ProductoProceso.SeleccionarProductoExistencia(RequisicionObjetoEntidad.ProductoId);
 
                 if (ExistenciaProducto < RequisicionObjetoEntidad.Cantidad)
                 {
+                    _ErrorId = (int)TextoError.Requisicion.ExistenciaInsuficiente;
+                    _DescripcionError = TextoError.ExistenciaInsuficiente;
+                    return false;
+                }
 
+                // Validar que se pida una cantidad menor o igual al máximo permitido
+                MaximoPermitido = ProductoProceso.SeleccionarProductoMaximoPermitido(RequisicionObjetoEntidad.ProductoId);
+
+                if (RequisicionObjetoEntidad.Cantidad > MaximoPermitido)
+                {
+                    _ErrorId = (int)TextoError.Requisicion.CantidadArribaDelMaximo;
+                    _DescripcionError = TextoError.CantidadArribaDelMaximo;
+                    return false;
                 }
 
                 return Resultado;
