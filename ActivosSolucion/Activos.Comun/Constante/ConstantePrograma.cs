@@ -233,6 +233,11 @@ namespace Activos.Comun.Constante
             Inactivo = 12
         }
 
+        public enum EstatusRequisicion
+        {
+            Incompleta = 32
+        }
+
         public enum EstatusSubFamilia
         {
             Activo = 17,

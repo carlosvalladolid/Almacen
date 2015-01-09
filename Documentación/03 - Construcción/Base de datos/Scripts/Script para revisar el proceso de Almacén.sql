@@ -14,6 +14,7 @@ SELECT * FROM Marca
 SELECT * FROM Producto
 
 SELECT * FROM [DefensoriaDB.Seguridad].[dbo].[Estatus]
+SELECT * FROM [DefensoriaDB.Seguridad].[dbo].[Seccion]
 
 
 -- Operación
@@ -36,6 +37,8 @@ SELECT * FROM RecepcionDetalle
 --SELECT * FROM OrdenSalidaEncabezado
 
 SELECT * FROM OrdenSalidaDetalle
+
+SELECT * FROM Existencia
 
 
 -- Tablas temporales

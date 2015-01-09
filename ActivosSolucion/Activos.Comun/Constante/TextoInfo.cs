@@ -8,7 +8,7 @@ namespace Activos.Comun.Constante
   public class TextoInfo: Base
     {
       // Mensajes Genericos
-      public const string MensajeGuardadoGenerico = "La información se ha Guardado Correctamente";
+      public const string MensajeGuardadoGenerico = "La información se ha guardado correctamente";
 
       // Mensaje Informativos de Requisición
     }

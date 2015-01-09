@@ -315,33 +315,56 @@ namespace Activos.ProcesoNegocio.Almacen
                 bool Resultado = true;
                 int ExistenciaProducto = 0;
                 int MaximoPermitido = 0;
-                AlmacenProceso ProductoProceso = new AlmacenProceso();
+                AlmacenProceso ProductoProceso;
 
                 // Validar que se haya enviado un identificador de la requisición
                 if (RequisicionObjetoEntidad.RequisicionId == "")
                 {
                     _ErrorId = (int)TextoError.Requisicion.SinRequisicionId;
                     _DescripcionError = TextoError.SinRequisicionId;
+
                     return false;
                 }
 
                 // Validar que haya existencia del producto
+                ProductoProceso = new AlmacenProceso();
+
                 ExistenciaProducto = ProductoProceso.SeleccionarProductoExistencia(RequisicionObjetoEntidad.ProductoId);
+
+                if (ProductoProceso.ErrorId != 0)
+                {
+                    _ErrorId = ProductoProceso.ErrorId;
+                    _DescripcionError = ProductoProceso.DescripcionError;
+
+                    return false;
+                }
 
                 if (ExistenciaProducto < RequisicionObjetoEntidad.Cantidad)
                 {
                     _ErrorId = (int)TextoError.Requisicion.ExistenciaInsuficiente;
                     _DescripcionError = TextoError.ExistenciaInsuficiente;
+
                     return false;
                 }
 
                 // Validar que se pida una cantidad menor o igual al máximo permitido
+                ProductoProceso = new AlmacenProceso();
+
                 MaximoPermitido = ProductoProceso.SeleccionarProductoMaximoPermitido(RequisicionObjetoEntidad.ProductoId);
+
+                if (ProductoProceso.ErrorId != 0)
+                {
+                    _ErrorId = ProductoProceso.ErrorId;
+                    _DescripcionError = ProductoProceso.DescripcionError;
+
+                    return false;
+                }
 
                 if (RequisicionObjetoEntidad.Cantidad > MaximoPermitido)
                 {
                     _ErrorId = (int)TextoError.Requisicion.CantidadArribaDelMaximo;
                     _DescripcionError = TextoError.CantidadArribaDelMaximo;
+
                     return false;
                 }
 

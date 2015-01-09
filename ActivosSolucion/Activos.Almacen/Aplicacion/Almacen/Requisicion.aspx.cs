@@ -45,13 +45,6 @@ namespace Almacen.Web.Aplicacion.Almacen
                 }
             }
 
-            //protected void BotonImprimirProductoBusqueda_Click(object sender, ImageClickEventArgs e)
-            //{
-
-            //    ImprimirReporte();
-
-            //}
-
             protected void BotonProductoBusqueda_Click(object sender, ImageClickEventArgs e)
             {
                 BuscarProducto();
@@ -95,6 +88,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 //RequisicionObjetoEntidad.TemporalRequisicionId = TemporalRequisicionIdHidden.Value;
                 //***********************************************************************
                 RequisicionObjetoEntidad.RequisicionId = TemporalRequisicionIdHidden.Value;
+                RequisicionObjetoEntidad.EstatusId = (int)ConstantePrograma.EstatusRequisicion.Incompleta;
                 RequisicionObjetoEntidad.TemporalRequisicionId = TemporalRequisicionIdHidden.Value;
                 RequisicionObjetoEntidad.EmpleadoId = Int16.Parse(EmpleadoIdHidden.Value);
                 RequisicionObjetoEntidad.JefeId = Int16.Parse(JefeIdHidden.Value);
@@ -124,7 +118,6 @@ namespace Almacen.Web.Aplicacion.Almacen
                     MostrarMensaje(RequisicionProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
 
                     EtiquetaMensaje.Text = Resultado.DescripcionError;
-                    LimpiarRequisicion();
                 }
             }        
 
@@ -236,7 +229,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 RequisicionEntidad RequisicionObjetoEntidad = new RequisicionEntidad();
                 UsuarioEntidad UsuarioSessionEntidad = new UsuarioEntidad();
 
-                if (TemporalRequisicionIdHidden.Value != "0")
+                if (TemporalRequisicionIdHidden.Value != "")
                 {
                     if (TablaRequisicion.Rows.Count > 0)
                     {
@@ -246,9 +239,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                     }
                 }
                 else
-                {
-                    EtiquetaMensaje.Text = "Favor de agregar los Productos";
-                }
+                    MostrarMensaje("Favor de agregar los Productos", ConstantePrograma.TipoErrorAlerta);
             }
 
             private void GuardarRequisicion(RequisicionEntidad RequisicionObjetoEntidad)
@@ -282,18 +273,6 @@ namespace Almacen.Web.Aplicacion.Almacen
                 TablaRequisicion.DataSource = null;
                 TablaRequisicion.DataBind();
             }
-
-            //protected void ImprimirReporte()
-            //{
-            //    StringBuilder Code = new StringBuilder();
-
-            //    Code.Append("<script type=\"text/javascript\">");
-            //    Code.Append("window.open('/Aplicacion/Reporte/Viewer/ExistenciaProductoViewer.aspx" + "', 'ImprimirDocumento', ' resizable=yes,scrollbars=1');");
-            //    Code.Append("</script>");
-
-            //    ScriptManager.RegisterStartupScript(this, typeof(string), "Message", Code.ToString(), false);
-
-            //}
 
             private void InsertarRequisicionEncabezadoTemp(RequisicionEntidad RequisicionObjetoEntidad)
             {
