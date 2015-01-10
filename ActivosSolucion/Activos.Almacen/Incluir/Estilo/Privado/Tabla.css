@@ -147,6 +147,12 @@
 	width: 220px;
 }
 
+.TablaFormulario .CampoPequenio
+{
+	vertical-align: top;
+	width: 100px;
+}
+
 .TablaFormulario .Error
 {
 	width: 20px;

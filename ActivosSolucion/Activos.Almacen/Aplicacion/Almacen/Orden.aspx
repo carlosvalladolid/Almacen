@@ -3,6 +3,9 @@
 <%@ Register TagPrefix="wuc" TagName="ControlMenuIzquierdo" Src="~/Incluir/ControlesWeb/ControlMenuIzquierdo.ascx" %>
 
 <asp:Content ID="ContenidoEncabezado" ContentPlaceHolderID="ContenedorEncabezado" runat="server">
+    <link href="/Incluir/Estilo/Privado/jquery-ui-1.8.16.custom.css" rel="Stylesheet" type="text/css" />
+    <link href="/Incluir/Estilo/Privado/demos.css" rel="Stylesheet" type="text/css" />
+
     <script src="/Incluir/Javascript/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
     <script language="javascript" src="/Incluir/Javascript/ValidarFormulario.js" type="text/javascript"></script>
     <script language="javascript" src="/Incluir/Javascript/jquery.ui.datepicker.js" type="text/javascript"></script>
@@ -38,11 +41,11 @@
 
                 <div class="SubTituloDiv">Pre Orden de compra</div>
 
-                <table class="FormTable">
+                <table class="TablaFormulario">
                     <tr>
                         <td class="Nombre">Pre Orden</td>
                         <td class="Espacio"></td>
-                        <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="PreOrdenBusqueda" MaxLength="10" runat="server" Text=""></asp:TextBox></td>
+                        <td class="CampoPequenio"><asp:TextBox CssClass="CajaTextoPequenia" ID="PreOrdenBusqueda" MaxLength="10" runat="server" Text=""></asp:TextBox></td>
                         <td><asp:ImageButton ID="ImagenBuscarPreOrden" ImageUrl="/Imagen/Icono/ImagenBuscar.gif" runat="server" onclick="ImagenBuscarPreOrden_Click" /></td>
                     </tr>
                 </table>
@@ -152,7 +155,7 @@
                     <tr>
                         <td class="Nombre">Fecha Orden</td>
                         <td class="Espacio"></td>
-                        <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="FechaOrdenBox" MaxLength="10" runat="server" Text=""></asp:TextBox></td>
+                        <td class="Campo"><asp:TextBox CssClass="CajaTextoPequenia" ID="FechaOrdenBox" MaxLength="10" runat="server" Text=""></asp:TextBox></td>
                     </tr>
                 </table>
 

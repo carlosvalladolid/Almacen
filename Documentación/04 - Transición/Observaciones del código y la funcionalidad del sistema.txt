@@ -1,0 +1,11 @@
+
+Requisición
+--------------------------------------
+1. La funcionalidad para guardar el encabezado temporal de una requisición se encuentra fuera de la Transacción, permitiendo generar encabezados sin detalle.
+2. Hay textos (hard code) para mostrar mensajes de error, en lugar de utilizar la clase para constantes de error TextoError.
+3. No se le muestra al usuario el folio creado en la requisición.
+4. Los botones de Limpiar y de Cancelar no tienen funcionalidad.
+
+Pre Orden
+--------------------------------------
+5. No se muestra un mensaje para confirmar que la información se guardó correctamente.
