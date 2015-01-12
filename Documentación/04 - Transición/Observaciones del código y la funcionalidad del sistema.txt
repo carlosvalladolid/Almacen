@@ -6,6 +6,24 @@ Requisición
 3. No se le muestra al usuario el folio creado en la requisición.
 4. Los botones de Limpiar y de Cancelar no tienen funcionalidad.
 
+
 Pre Orden
 --------------------------------------
-5. No se muestra un mensaje para confirmar que la información se guardó correctamente.
+1. No se muestra un mensaje para confirmar que la información se guardó correctamente.
+
+
+Orden de compra
+--------------------------------------
+1. No hay botón de imprimir.
+2. Mostrar la fecha actual.
+3. No está habilitada la funcionalidad de búsqueda de pre órdendes de compra.
+4. No se generó el folio de la orden de compra.
+
+
+Recepción
+--------------------------------------
+1. El campo de jefe inmediato no se está llenando.
+2. No existe funcionalidad para búsqueda de productos.
+3. No se está validando la entrada de números en el campo Cantidad.
+4. No están agregando los productos en el detalle.
+5. 

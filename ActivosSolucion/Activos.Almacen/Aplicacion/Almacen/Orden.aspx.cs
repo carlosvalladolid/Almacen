@@ -95,6 +95,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 if (OrdenProceso.ErrorId == 0)
                 {
                     LimpiarFormulario();
+                    MostrarMensaje(TextoInfo.MensajeGuardadoGenerico, ConstantePrograma.TipoMensajeAlerta);
                 }
                 else
                     MostrarMensaje(OrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
@@ -138,14 +139,23 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             private void LimpiarFormulario()
             {
+                PreOrdenBusqueda.Text = "";
+                FechaOrdenBox.Text = "";
+                ProveedorCombo.SelectedIndex = 0;
+                TelefonoBox.Text = "";
+                ContactoBox.Text = "";
+                CorreoBox.Text = "";
+                EmpleadoCombo.SelectedIndex = 0;
+                JefeBox.Text = "";
+
+                OrdenIdHidden.Value = "";
+                JefeIdHidden.Value = "0";
+
                 TablaPreOrden.DataSource = null;
                 TablaPreOrden.DataBind();
 
                 TablaOrden.DataSource = null;
                 TablaOrden.DataBind();
-
-                OrdenIdHidden.Value = "";
-                JefeIdHidden.Value = "0";
             }
 
             private void MostrarMensaje(string Mensaje, string TipoMensaje)
