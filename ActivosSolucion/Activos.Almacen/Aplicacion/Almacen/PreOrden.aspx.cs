@@ -240,11 +240,12 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 if (Resultado.ErrorId == (int)ConstantePrograma.PreOrden.PreOrdenGuardadoCorrectamente)
                 {
+                    LimpiarNuevoRegistro();
+                    LimpiarProducto();
                     //12/enero/2015 oly...agregue esta linea creo que esto muestra el msg
                     MostrarMensaje(TextoInfo.MensajeGuardadoGenerico, ConstantePrograma.TipoMensajeAlerta);
                     //********************************************************************************************
-                    LimpiarNuevoRegistro();
-                    LimpiarProducto();
+
 
                 }
                 else

@@ -93,7 +93,6 @@ namespace Almacen.Web.Aplicacion.Almacen
             private void AgregarDetalleDocumento()
             {
                 RequisicionEntidad RequisicionObjetoEntidad = new RequisicionEntidad();
-
                 //***********************************************************************
                 //RequisicionObjetoEntidad.RequisicionId = TemporalRequisicionIdHidden.Value;
                 //RequisicionObjetoEntidad.TemporalRequisicionId = TemporalRequisicionIdHidden.Value;
@@ -129,7 +128,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 {
                     MostrarMensaje(RequisicionProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
 
-                    EtiquetaMensaje.Text = Resultado.DescripcionError;
+                    //EtiquetaMensaje.Text = Resultado.DescripcionError;
                 }
             }        
 
@@ -262,10 +261,10 @@ namespace Almacen.Web.Aplicacion.Almacen
                 Resultado = RequisicionProcesoNegocio.GuardarRequisicion(RequisicionObjetoEntidad);
 
                 if (Resultado.ErrorId == (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente)
-                {
-                    MostrarMensaje(TextoInfo.MensajeGuardadoGenerico, ConstantePrograma.TipoMensajeAlerta);
+                {                   
                     LimpiarNuevoRegistro();
                     LimpiarRequisicion();
+                    MostrarMensaje(TextoInfo.MensajeGuardadoGenerico, ConstantePrograma.TipoMensajeAlerta);
                 }
                 else
                 {
