@@ -27,6 +27,7 @@ namespace Almacen.Web.Aplicacion.Almacen
     public partial class Requisicion : System.Web.UI.Page
     {
         #region "Eventos"
+          
             protected void BotonAgregar_Click(object sender, ImageClickEventArgs e)
             {
                 AgregarDetalleDocumento();
@@ -87,6 +88,7 @@ namespace Almacen.Web.Aplicacion.Almacen
             {
                 TablaRequisicionEventoComando(e);
             }
+      
         #endregion
 
         #region "Métodos"
@@ -366,7 +368,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
             }
 
-             private void SeleccionarTextoError()
+            private void SeleccionarTextoError()
             {
                 ClaveNuevoRequerido.ErrorMessage = TextoError.ClaveProducto + "<br/>";
                 CantidadNuevoRequerido.ErrorMessage = TextoError.CantidadProducto + "<br/>";

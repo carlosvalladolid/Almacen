@@ -30,12 +30,29 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         #region "Eventos"
 
+        protected void ImagenProductoBusqueda_Click(object sender, ImageClickEventArgs e)
+        {
+
+            CargaPanelVisibleProducto();
+
+        }
+
         protected void BotonGuardar_Click(object sender, ImageClickEventArgs e)
         {
             //if (Page.IsValid)
             //{
                 GuardarRecepcion();
             //}
+        }
+
+        protected void BotonCerrarProductoBusqueda_Click(object sender, ImageClickEventArgs e)
+        {
+            CargaPanelInVisibleProducto();
+        }
+
+        protected void BotonProductoBusqueda_Click(object sender, ImageClickEventArgs e)
+        {
+            BuscarProducto();
         }
 
         protected void BotonAgregar_Click(object sender, ImageClickEventArgs e)
@@ -94,6 +111,11 @@ namespace Activos.Almacen.Aplicacion.Almacen
             SeleccionarOrdenCompra();
         }
 
+        protected void TablaProducto_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            TablaProductoRowCommand(e);
+        }
+
         protected void TablaRecepcion_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             TablaRecepcionEventoComando(e);
@@ -136,8 +158,36 @@ namespace Activos.Almacen.Aplicacion.Almacen
                 //MostrarMensaje(RecepcionProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);  
                 LimpiarRecepcion();                
             }
+        }      
+
+        private void BuscarProducto()
+        {
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            AlmacenEntidad AlmacenObjetoEntidad = new AlmacenEntidad();
+            AlmacenProceso AlmacenProcesoNegocio = new AlmacenProceso();
+
+            AlmacenObjetoEntidad.Clave = ClaveProductoBusqueda.Text.Trim();
+            AlmacenObjetoEntidad.Descripcion = NombreProductoBusqueda.Text.Trim();
+
+            Resultado = AlmacenProcesoNegocio.SeleccionarProducto(AlmacenObjetoEntidad);
+
+            if (Resultado.ErrorId == 0)
+            {
+                if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
+                    TablaProducto.CssClass = ConstantePrograma.ClaseTablaVacia;
+                else
+                    TablaProducto.CssClass = ConstantePrograma.ClaseTabla;
+
+                TablaProducto.DataSource = Resultado.ResultadoDatos;
+                TablaProducto.DataBind();
+            }
+            else
+            {
+                EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+                // MostrarMensaje(AlmacenProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+            }
         }
-     
+
         protected void GuardarRecepcion()
         {
             RecepcionEntidad RecepcionObjetoEntidad = new RecepcionEntidad();
@@ -246,6 +296,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
             SeleccionarProveedor();
             SeleccionarEmpleado();
             BuscarJefe();
+            BuscarProducto();
             SeleccionarMarca();
             SeleccionarFamilia();
             SeleccionarSubfamilia();
@@ -539,6 +590,19 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
             TipoDocumentoIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
         }
+
+        private void CargaPanelVisibleProducto()
+        {
+            PanelBusquedaProducto.Visible = !PanelBusquedaProducto.Visible;
+            pnlFondoBuscarProducto.Visible = !pnlFondoBuscarProducto.Visible;
+        }
+
+        private void CargaPanelInVisibleProducto()
+        {
+            PanelBusquedaProducto.Visible = false;
+            pnlFondoBuscarProducto.Visible = false;
+
+        }
         
         protected void TablaRecepcionEventoComando(GridViewCommandEventArgs e)
         {
@@ -592,6 +656,37 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         }
 
+        private void TablaProductoRowCommand(GridViewCommandEventArgs e)
+        {
+            PreOrdenEntidad PreOrdenEntidadObjeto = new PreOrdenEntidad();
+            Int16 intFila = 0;
+            int intTamañoPagina = 0;
+            string ProductoId = "";
+            string strCommand = string.Empty;
+
+            intFila = Int16.Parse(e.CommandArgument.ToString());
+            strCommand = e.CommandName.ToString();
+            intTamañoPagina = TablaProducto.PageSize;
+
+            if (intFila >= intTamañoPagina)
+                intFila = (Int16)(intFila - (intTamañoPagina * TablaProducto.PageIndex));
+
+
+            switch (strCommand)
+            {
+                case "Select":
+                    ProductoId = string.Format(TablaProducto.DataKeys[intFila]["ProductoId"].ToString());
+                    PreOrdenEntidadObjeto.ProductoId = ProductoId;
+                    ProductoIdHidden.Value = ProductoId.ToString();
+                    //SeleccionarClave(AlmacenEntidadObjeto);
+                    break;
+
+                default:
+                    // Do nothing
+                    break;
+            }
+        }
+
         private void MostrarMensaje(string Mensaje, string TipoMensaje)
         {
             StringBuilder FormatoMensaje = new StringBuilder();
@@ -605,7 +700,6 @@ namespace Activos.Almacen.Aplicacion.Almacen
             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
         }
                
-
         #endregion
 
 

@@ -140,6 +140,15 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.TextBox ClaveNuevo;
         
         /// <summary>
+        /// ImagenBuscarClaveProducto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImagenBuscarClaveProducto;
+        
+        /// <summary>
         /// FamiliaIdNuevo control.
         /// </summary>
         /// <remarks>
@@ -293,6 +302,87 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         protected global::System.Web.UI.UpdateProgress AssociatedUpdate;
         
         /// <summary>
+        /// pnlFondoBuscarProducto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlFondoBuscarProducto;
+        
+        /// <summary>
+        /// PanelBusquedaProducto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PanelBusquedaProducto;
+        
+        /// <summary>
+        /// lblTitleBuscarProducto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTitleBuscarProducto;
+        
+        /// <summary>
+        /// ClaveProductoBusqueda control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ClaveProductoBusqueda;
+        
+        /// <summary>
+        /// NombreProductoBusqueda control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox NombreProductoBusqueda;
+        
+        /// <summary>
+        /// TablaProducto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView TablaProducto;
+        
+        /// <summary>
+        /// AceptarMensajeProducto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label AceptarMensajeProducto;
+        
+        /// <summary>
+        /// BotonAceptar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton BotonAceptar;
+        
+        /// <summary>
+        /// BotonCancelar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton BotonCancelar;
+        
+        /// <summary>
         /// TemporalRecepcionIdHidden control.
         /// </summary>
         /// <remarks>
@@ -325,6 +415,6 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-    
+       
     }
 }
