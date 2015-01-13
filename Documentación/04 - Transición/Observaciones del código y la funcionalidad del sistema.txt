@@ -15,8 +15,8 @@ Pre Orden
 Orden de compra
 --------------------------------------
 1. No hay botón de imprimir.
-2. Mostrar la fecha actual.
-3. No está habilitada la funcionalidad de búsqueda de pre órdendes de compra.
+2. Mostrar la fecha actual en el campo Fecha orden.
+3. No está habilitada la funcionalidad de búsqueda de pre órdenes de compra.
 4. No se generó el folio de la orden de compra.
 
 
@@ -25,5 +25,13 @@ Recepción
 1. El campo de jefe inmediato no se está llenando.
 2. No existe funcionalidad para búsqueda de productos.
 3. No se está validando la entrada de números en el campo Cantidad.
-4. No están agregando los productos en el detalle.
-5. 
+4. No se están agregando los productos en el detalle.
+
+
+Orden de salida
+--------------------------------------
+1. No está completa la funcionalidad.
+
+
+hugo.garcia@nuevoleon.gob.mx
+

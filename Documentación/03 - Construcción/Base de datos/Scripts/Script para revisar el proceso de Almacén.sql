@@ -38,6 +38,8 @@ SELECT * FROM RecepcionDetalle
 
 SELECT * FROM OrdenSalidaDetalle
 
+SELECT * FROM OrdenClave
+
 SELECT * FROM Existencia
 
 
