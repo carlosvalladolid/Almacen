@@ -38,11 +38,11 @@ namespace Almacen.Web.Aplicacion.Almacen
                 LimpiarRequisicion();
             }
 
-
             protected void BotonLimpiar_Click(object sender, EventArgs e)
             {
                 LimpiarRequisicion();
             }
+
             protected void BotonCerrarProductoBusqueda_Click(object sender, ImageClickEventArgs e)
             {
                 CargaPanelInVisibleProducto();
@@ -120,6 +120,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 if (Resultado.ErrorId == (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente)
                 {
+                   
                     TemporalRequisicionIdHidden.Value = RequisicionObjetoEntidad.RequisicionId;
                     LimpiarRequisicion();
                     SeleccionarRequisicion();
