@@ -39,10 +39,10 @@ namespace Almacen.Web.Aplicacion.Almacen
             }
 
 
-            //protected void BotonLimpiar_Click(object sender, EventArgs e)
-            //{                
-            //    LimpiarRequisicion();
-            //}
+            protected void BotonLimpiar_Click(object sender, EventArgs e)
+            {
+                LimpiarRequisicion();
+            }
             protected void BotonCerrarProductoBusqueda_Click(object sender, ImageClickEventArgs e)
             {
                 CargaPanelInVisibleProducto();
