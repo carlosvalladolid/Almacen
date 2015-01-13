@@ -240,6 +240,9 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 if (Resultado.ErrorId == (int)ConstantePrograma.PreOrden.PreOrdenGuardadoCorrectamente)
                 {
+                    //12/enero/2015 oly...agregue esta linea creo que esto muestra el msg
+                    MostrarMensaje(TextoInfo.MensajeGuardadoGenerico, ConstantePrograma.TipoMensajeAlerta);
+                    //********************************************************************************************
                     LimpiarNuevoRegistro();
                     LimpiarProducto();
 
@@ -307,6 +310,21 @@ namespace Almacen.Web.Aplicacion.Almacen
                 //TablaPreOrden.DataSource = null;
                 //TablaPreOrden.DataBind();
                 }
+
+
+            private void MostrarMensaje(string Mensaje, string TipoMensaje)
+            {
+                StringBuilder FormatoMensaje = new StringBuilder();
+
+                FormatoMensaje.Append("MostrarMensaje(\"");
+                FormatoMensaje.Append(Mensaje);
+                FormatoMensaje.Append("\", \"");
+                FormatoMensaje.Append(TipoMensaje);
+                FormatoMensaje.Append("\");");
+
+                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
+            }
+
 
             protected void SeleccionarClave()
             {

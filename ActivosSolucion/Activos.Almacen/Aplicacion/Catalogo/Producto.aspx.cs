@@ -239,6 +239,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
 
                 if (Resultado.ErrorId == (int)ConstantePrograma.Producto.ProductoGuardadoCorrectamente)
                 {
+                   
                     LimpiarNuevoRegistro();
                     PanelNuevoRegistro.Visible = false;
                     PanelBusquedaAvanzada.Visible = false;
