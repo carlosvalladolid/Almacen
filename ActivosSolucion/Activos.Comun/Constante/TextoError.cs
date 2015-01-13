@@ -266,6 +266,7 @@ namespace Activos.Comun.Constante
 
         // pantalla de Producto de Almacen
         public const string ClaveProducto = "· El campo <b>Clave</b> es obligatorio";
+        public const string CantidadProducto = "· El campo <b>Cantidad</b> es obligatorio";
         public const string FamiliaProducto = "· El campo <b>Familia</b> es obligatorio";
         public const string SubFamiliaProducto = "· El campo <b>SubFamilia</b> es obligatorio";
         public const string MarcaProducto = "· El campo <b>Marca</b> es obligatorio";

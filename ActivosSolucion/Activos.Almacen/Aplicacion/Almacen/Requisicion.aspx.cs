@@ -90,6 +90,7 @@ namespace Almacen.Web.Aplicacion.Almacen
         #endregion
 
         #region "Métodos"
+
             private void AgregarDetalleDocumento()
             {
                 RequisicionEntidad RequisicionObjetoEntidad = new RequisicionEntidad();
@@ -103,7 +104,14 @@ namespace Almacen.Web.Aplicacion.Almacen
                 RequisicionObjetoEntidad.EmpleadoId = Int16.Parse(EmpleadoIdHidden.Value);
                 RequisicionObjetoEntidad.JefeId = Int16.Parse(JefeIdHidden.Value);
                 RequisicionObjetoEntidad.ProductoId = ProductoIdHidden.Value;
-                RequisicionObjetoEntidad.Cantidad = Int16.Parse(CantidadNuevo.Text.Trim());
+                if (CantidadNuevo.Text == "")
+                {
+                    RequisicionObjetoEntidad.Cantidad = 0;
+                }
+                else
+                {
+                    RequisicionObjetoEntidad.Cantidad = Int16.Parse(CantidadNuevo.Text.Trim());
+                }
 
                 AgregarRequisicion(RequisicionObjetoEntidad);
             }
@@ -113,22 +121,30 @@ namespace Almacen.Web.Aplicacion.Almacen
                 ResultadoEntidad Resultado = new ResultadoEntidad();
                 RequisicionProceso RequisicionProcesoNegocio = new RequisicionProceso();
 
-                InsertarRequisicionEncabezadoTemp(RequisicionObjetoEntidad);
-
-                Resultado = RequisicionProcesoNegocio.AgregarTemporalRequisicion(RequisicionObjetoEntidad);
-
-                if (Resultado.ErrorId == (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente)
+                if (ClaveNuevo.Text != "")
                 {
-                   
-                    TemporalRequisicionIdHidden.Value = RequisicionObjetoEntidad.RequisicionId;
-                    LimpiarRequisicion();
-                    SeleccionarRequisicion();
+
+                    InsertarRequisicionEncabezadoTemp(RequisicionObjetoEntidad);
+
+                    Resultado = RequisicionProcesoNegocio.AgregarTemporalRequisicion(RequisicionObjetoEntidad);
+
+                    if (Resultado.ErrorId == (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente)
+                    {
+
+                        TemporalRequisicionIdHidden.Value = RequisicionObjetoEntidad.RequisicionId;
+                        LimpiarRequisicion();
+                        SeleccionarRequisicion();
+                    }
+                    else
+                    {
+                        MostrarMensaje(RequisicionProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                    }
                 }
-                else
+                else 
                 {
-                    MostrarMensaje(RequisicionProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
 
-                    //EtiquetaMensaje.Text = Resultado.DescripcionError;
+                    EtiquetaMensaje.Text = "Debe de capturar un Producto";
+                    ClaveNuevo.Focus();
                 }
             }        
 
@@ -276,13 +292,16 @@ namespace Almacen.Web.Aplicacion.Almacen
             private void Inicio()
             {
                 if (Page.IsPostBack)
+               
                     return;
 
-                CargarInformacionUsuario();
-                BuscarProducto();
+                    CargarInformacionUsuario();
+                    BuscarProducto();
+                    SeleccionarTextoError();
 
-                TablaRequisicion.DataSource = null;
-                TablaRequisicion.DataBind();
+                    TablaRequisicion.DataSource = null;
+                    TablaRequisicion.DataBind();
+               
             }
 
             private void InsertarRequisicionEncabezadoTemp(RequisicionEntidad RequisicionObjetoEntidad)
@@ -347,6 +366,13 @@ namespace Almacen.Web.Aplicacion.Almacen
                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
             }
 
+             private void SeleccionarTextoError()
+            {
+                ClaveNuevoRequerido.ErrorMessage = TextoError.ClaveProducto + "<br/>";
+                CantidadNuevoRequerido.ErrorMessage = TextoError.CantidadProducto + "<br/>";
+            
+            }
+        
             private void SeleccionarClave()
             {
                 ResultadoEntidad Resultado = new ResultadoEntidad();
@@ -501,6 +527,8 @@ namespace Almacen.Web.Aplicacion.Almacen
                         break;
                 }
             }
+
+
         #endregion
     }
 }

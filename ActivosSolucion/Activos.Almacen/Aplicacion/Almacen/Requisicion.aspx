@@ -34,7 +34,7 @@
                     <table class="TablaFormulario">
                         <tr>
                             <td class="Nombre">Solicitante</td>
-                            <td class="Espacio">*</td>
+                            <td class="Requerido">*</td>
                             <td class="Campo"> <asp:TextBox ID="SolicitanteNuevo"  CssClass="CajaTextoGrande" MaxLength="10" runat="server"></asp:TextBox>&nbsp;</td>
                         </tr>
                         <tr>
@@ -66,7 +66,7 @@
                     <table class="TablaFormulario">              
                         <tr>
                             <td class="Nombre">Clave de Producto</td>
-                            <td class="Espacio">*</td>
+                            <td class="Requerido">*</td>
                             <td class="Campo">  
                              <asp:TextBox ID="ClaveNuevo" CssClass="CajaTextoMediana" MaxLength="10" runat="server"></asp:TextBox>     
                              <asp:ImageButton ID="ImagenBuscarClaveProducto" ImageUrl="/Imagen/Icono/ImagenBuscar.gif" runat="server" onclick="ImagenProductoBusqueda_Click" />
@@ -94,16 +94,21 @@
                         </tr>        
 						 <tr>
                             <td class="Nombre">Cantidad</td>
-                            <td class="Espacio">*</td>
+                            <td class="Requerido">*</td>
                             <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="CantidadNuevo"  runat="server" Text=""></asp:TextBox></td>                           
                         </tr>
                         <tr>
                             <td colspan="3">
-                                <asp:Label CssClass="TextoError" ID="AgregarEtiquetaMensaje" runat="server" Text=""></asp:Label>
+                                <asp:RequiredFieldValidator CssClass="TextoError" ControlToValidate="ClaveNuevo" Display="Dynamic" ErrorMessage="" ID="ClaveNuevoRequerido" SetFocusOnError ="true" ValidationGroup="Guardar" runat="server"></asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator CssClass="TextoError" ControlToValidate="CantidadNuevo" Display="Dynamic" ErrorMessage="" ID="CantidadNuevoRequerido" SetFocusOnError ="true" ValidationGroup="Guardar" runat="server"></asp:RequiredFieldValidator>
                                 <br />
                                 <asp:ImageButton AlternateText="Guardar" ID="BotonAgregar" ImageUrl="~/Imagen/Boton/BotonAgregar.png" OnClick="BotonAgregar_Click" runat="server"/>&nbsp;&nbsp;
                             </td>
                         </tr>
+                        <tr>
+                            <td colspan="3">Los campos marcados con<span class="TextoError"> * </span> son obligatorios</td>                        
+                        </tr>
+                        
                     </table>
                 </asp:Panel>
 

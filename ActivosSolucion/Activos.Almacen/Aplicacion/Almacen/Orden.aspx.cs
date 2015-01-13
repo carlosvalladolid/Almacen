@@ -374,6 +374,8 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 SeleccionarPreOrdenDetalleSinOrden(Clave, UsuarioEntidad.SesionId);
             }
+
+           
         #endregion
     }
 }
