@@ -210,7 +210,6 @@ namespace Activos.AccesoDatos.Almacen
                     Comando.Parameters.Add(Parametro);
 
                     Comando.ExecuteNonQuery();
-
                     Resultado.ErrorId = (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente;
 
                     return Resultado;
@@ -250,6 +249,7 @@ namespace Activos.AccesoDatos.Almacen
                     Comando.Parameters.Add(Parametro);
 
                     Comando.ExecuteNonQuery();
+
                     Resultado.ErrorId = (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente;
 
                     return Resultado;

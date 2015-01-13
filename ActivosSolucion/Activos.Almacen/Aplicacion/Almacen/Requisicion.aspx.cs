@@ -32,6 +32,17 @@ namespace Almacen.Web.Aplicacion.Almacen
                 AgregarDetalleDocumento();
             }
 
+            protected void BotonCancelar_Click(object sender, EventArgs e)
+            {
+                LimpiarNuevoRegistro();
+                LimpiarRequisicion();
+            }
+
+
+            //protected void BotonLimpiar_Click(object sender, EventArgs e)
+            //{                
+            //    LimpiarRequisicion();
+            //}
             protected void BotonCerrarProductoBusqueda_Click(object sender, ImageClickEventArgs e)
             {
                 CargaPanelInVisibleProducto();
@@ -289,8 +300,8 @@ namespace Almacen.Web.Aplicacion.Almacen
                     }
                     else
                     {
-                      //  MostrarMensaje(RequisicionProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta); 
-                        EtiquetaMensaje.Text = Resultado.DescripcionError;
+                      MostrarMensaje(RequisicionProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta); 
+                        //EtiquetaMensaje.Text = Resultado.DescripcionError;
                     }
                 }
             }

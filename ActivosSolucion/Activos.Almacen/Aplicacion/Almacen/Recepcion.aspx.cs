@@ -306,7 +306,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
                 FechaOrdenCompraNuevo.Text = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["FechaOrden"].ToString();
                 SolicitanteIdNuevo.SelectedValue = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["EmpleadoId"].ToString();
                 BuscarJefe();
-                //JefeInmediatoIdNuevo.SelectedValue = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["EmpleadoIdJefe"].ToString();
+               // JefeInmediatoIdNuevo.SelectedValue = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["EmpleadoIdJefe"].ToString();
                 OrdenIdHidden.Value = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["OrdenId"].ToString();
 
             }
@@ -472,7 +472,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
             }
 
             EmpleadoEntidadObjeto.EmpleadoId = EmpleadoIdJefe;
-
+          
             Resultado = EmpleadoProcesoNegocio.SeleccionarEmpleado(EmpleadoEntidadObjeto);
 
             JefeInmediatoIdNuevo.DataValueField = "EmpleadoIdJefe";
@@ -539,8 +539,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
             TipoDocumentoIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
         }
-
-
+        
         protected void TablaRecepcionEventoComando(GridViewCommandEventArgs e)
         {
             Int16 intFila = 0;
@@ -592,8 +591,6 @@ namespace Activos.Almacen.Aplicacion.Almacen
             //}
 
         }
-
-
 
         private void MostrarMensaje(string Mensaje, string TipoMensaje)
         {
