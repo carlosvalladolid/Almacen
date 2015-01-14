@@ -70,9 +70,18 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
             if (PrecionUnitarioNuevo.Text != "0")
             {
+               
                 PrecioUnitario = int.Parse(PrecionUnitarioNuevo.Text.Trim());
-                Cantidad = int.Parse(CantidadNuevo.Text.Trim());
-                Resultado = PrecioUnitario * Cantidad;
+               
+                if (CantidadNuevo.Text == "")
+                {
+                    Cantidad= 0;
+                }
+                else
+                {
+                    Cantidad = int.Parse(CantidadNuevo.Text.Trim());
+                }
+                Resultado = (PrecioUnitario * Cantidad);
 
                 MontoDocumentoNuevo.Text = Resultado.ToString();
             }
@@ -134,7 +143,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
                 RecepcionObjetoEntidad.TemporalRecepcionId = TemporalRecepcionIdHidden.Value;
                 RecepcionObjetoEntidad.ProductoId = ProductoIdHidden.Value;
                 RecepcionObjetoEntidad.PrecioUnitario = decimal.Parse(PrecionUnitarioNuevo.Text);
-                RecepcionObjetoEntidad.Cantidad = MontoDocumentoNuevo.Text.Trim();
+                RecepcionObjetoEntidad.Cantidad = Int16.Parse(CantidadNuevo.Text);
 
                 AgregarRecepcion(RecepcionObjetoEntidad);
             //}
