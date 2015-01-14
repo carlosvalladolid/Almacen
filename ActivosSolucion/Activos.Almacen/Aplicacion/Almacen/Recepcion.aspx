@@ -120,36 +120,33 @@
                      <tr>
                             <td class="Nombre">Clave del Producto</td>
                             <td class="Espacio">*</td>
-                            <td class="Campo">  
-                             <asp:TextBox ID="ClaveNuevo" CssClass="CajaTextoMediana" MaxLength="15" OnTextChanged ="LinkBuscarClave_SelectedTextChanged" AutoPostBack="true"  runat="server"></asp:TextBox>     
+                            <td class="Campo"> 
+                             <asp:TextBox ID="ClaveNuevo" CssClass="CajaTextoMediana" MaxLength="10" runat="server"></asp:TextBox>     
                              <asp:ImageButton ID="ImagenBuscarClaveProducto" ImageUrl="/Imagen/Icono/ImagenBuscar.gif" runat="server" onclick="ImagenProductoBusqueda_Click" />
                             </td>
                         </tr>
-              
-                         <tr>
+                        
+                        <tr>
                             <td class="Nombre">Familia</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="FamiliaIdNuevo" OnSelectedIndexChanged="ddlFamilia_SelectedIndexChanged" AutoPostBack="true"  Enabled ="false"   runat="server"></asp:DropDownList>                              
-                            </td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="FamiliaIdNuevo" Enabled ="false"  runat="server" ></asp:TextBox></td>                               
                         </tr>
                         <tr>
                             <td class="Nombre">SubFamilia</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="SubFamiliaIdNuevo" Enabled ="false"    runat="server"></asp:DropDownList></td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="SubFamiliaIdNuevo" Enabled ="false"  runat="server" ></asp:TextBox></td>
                         </tr>
-                        
                         <tr>
                             <td class="Nombre">Marca</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="MarcaIdNuevo" Enabled ="false"   runat="server"></asp:DropDownList></td>
-                        </tr> 
-                        
-                         <tr>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="MarcaIdNuevo" Enabled ="false"  runat="server" ></asp:TextBox></td>                   
+                        </tr>
+                        <tr>
                             <td class="Nombre">Descripción</td>
                             <td class="Espacio"></td>
                             <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="DescripcionNuevo" Enabled ="false"   runat="server" ></asp:TextBox></td>
-                        </tr>
-                        
+                        </tr>        
+                                
                          <tr>
                             <td class="Nombre">Precio Unitario</td>
                             <td class="Espacio"></td>

@@ -155,7 +155,7 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList FamiliaIdNuevo;
+        protected global::System.Web.UI.WebControls.TextBox FamiliaIdNuevo;
         
         /// <summary>
         /// SubFamiliaIdNuevo control.
@@ -164,7 +164,7 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList SubFamiliaIdNuevo;
+        protected global::System.Web.UI.WebControls.TextBox SubFamiliaIdNuevo;
         
         /// <summary>
         /// MarcaIdNuevo control.
@@ -173,7 +173,7 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList MarcaIdNuevo;
+        protected global::System.Web.UI.WebControls.TextBox MarcaIdNuevo;
         
         /// <summary>
         /// DescripcionNuevo control.
@@ -415,6 +415,6 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-       
+      
     }
 }
