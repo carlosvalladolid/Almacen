@@ -75,3 +75,16 @@ function()
         });
     });
 };
+
+jQuery.fn.Confirmar =
+function(Mensaje)
+{
+    return this.each(function()
+    {
+        $(this).click(function()
+        {
+            if(confirm(Mensaje)) return true;
+            return false;
+        });
+    });
+};

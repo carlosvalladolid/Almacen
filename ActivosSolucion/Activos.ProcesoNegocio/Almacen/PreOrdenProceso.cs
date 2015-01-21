@@ -219,6 +219,25 @@ namespace Activos.ProcesoNegocio.Almacen
                 _ErrorId = PreOrdenAcceso.ErrorId;
                 _DescripcionError = PreOrdenAcceso.DescripcionError;
             }
+
+            /// <summary>
+            ///     Obtiene la info de la tabla PreOrdenEncabezado
+            /// </summary>
+            public ResultadoEntidad SeleccionarPreOrdenEncabezado()
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                string CadenaConexion = string.Empty;
+                PreOrdenAcceso PreOrdenAcceso = new PreOrdenAcceso();
+
+                CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+                Resultado = PreOrdenAcceso.SeleccionarPreOrdenEncabezadoTabla(_PreOrdenEntidad, CadenaConexion);
+
+                return Resultado;
+            }
+
+
+
         #endregion
     }
 }

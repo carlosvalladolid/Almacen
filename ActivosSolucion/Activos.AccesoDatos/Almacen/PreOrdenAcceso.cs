@@ -356,6 +356,50 @@ namespace Activos.AccesoDatos.Almacen
                     return Resultado;
                 }
             }
+
+
+
+            /// <summary>
+            ///     Obtiene la información del encabezado de la pre-orden con el ID de la pre-orden.
+            /// </summary>
+            /// <param name="PreOrdenEntidad">Entidad de la preorden.</param>
+            /// <param name="CadenaConexion">Cadena de conexión a la base de datos.</param>
+            /// <returns>Resultado de la búsqueda.</returns>
+            public ResultadoEntidad SeleccionarPreOrdenEncabezadoTabla(PreOrdenEntidad PreOrdenEntidad, string CadenaConexion)
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                SqlConnection Conexion = new SqlConnection(CadenaConexion);
+                SqlCommand Comando;
+                SqlParameter Parametro;
+                SqlDataAdapter Adaptador;
+
+                try
+                {
+                    
+                    Comando = new SqlCommand("SeleccionarPreOrdenEncabezado", Conexion);
+                    Comando.CommandType = CommandType.StoredProcedure;
+
+                    Parametro = new SqlParameter("@PreOrdenId", SqlDbType.VarChar);
+                    Parametro.Value = PreOrdenEntidad.PreOrdenId;
+                    Comando.Parameters.Add(Parametro);
+
+                    Adaptador = new SqlDataAdapter(Comando);
+
+                    Conexion.Open();
+                    Adaptador.Fill(Resultado.ResultadoDatos);
+                    Conexion.Close();
+
+                    return Resultado;
+                }
+                catch (SqlException Excepcion)
+                {
+                    Resultado.ErrorId = Excepcion.Number;
+                    Resultado.DescripcionError = Excepcion.Message;
+
+                    return Resultado;
+                }
+            }
+
         #endregion
     }
 }

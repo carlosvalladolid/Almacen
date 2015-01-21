@@ -127,6 +127,8 @@ namespace Almacen.Web.Aplicacion.Almacen
                 if (Page.IsPostBack)
                     return;
 
+                FechaOrdenBox.Text = DateTime.Now.Date.ToShortDateString();
+
                 TablaPreOrden.DataSource = null;
                 TablaPreOrden.DataBind();
 

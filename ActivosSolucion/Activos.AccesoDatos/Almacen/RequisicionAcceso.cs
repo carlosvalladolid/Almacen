@@ -436,6 +436,53 @@ namespace Activos.AccesoDatos.Almacen
                     return Resultado;
                 }
             }
+
+
+
+            /// <summary>
+            ///     Obtiene la información del encabezado de la Requisicion con el ID de la requisicion.
+            ///     ***PENDIENTE***
+            /// </summary>
+            /// <param name="RequisicionEntidad">Entidad de la requisicion.</param>
+            /// <param name="CadenaConexion">Cadena de conexión a la base de datos.</param>
+            /// <returns>Resultado de la búsqueda.</returns>
+            //public ResultadoEntidad SeleccionarRequisicionEncabezado(RequisicionEntidad RequisicionEntidad, string CadenaConexion)
+            //{
+            //    ResultadoEntidad Resultado = new ResultadoEntidad();
+            //    SqlConnection Conexion = new SqlConnection(CadenaConexion);
+            //    SqlCommand Comando;
+            //    SqlParameter Parametro;
+            //    SqlDataAdapter Adaptador;
+
+            //    try
+            //    {
+
+            //        Comando = new SqlCommand("SeleccionarRequisicionEncabezado", Conexion);
+            //        Comando.CommandType = CommandType.StoredProcedure;
+
+            //        Parametro = new SqlParameter("@RequisicionId", SqlDbType.VarChar);
+            //        Parametro.Value = RequisicionEntidad.PreOrdenId;
+            //        Comando.Parameters.Add(Parametro);
+
+            //        Adaptador = new SqlDataAdapter(Comando);
+
+            //        Conexion.Open();
+            //        Adaptador.Fill(Resultado.ResultadoDatos);
+            //        Conexion.Close();
+
+            //        return Resultado;
+            //    }
+            //    catch (SqlException Excepcion)
+            //    {
+            //        Resultado.ErrorId = Excepcion.Number;
+            //        Resultado.DescripcionError = Excepcion.Message;
+
+            //        return Resultado;
+            //    }
+            //}
+
+
+
         #endregion
     }
 }

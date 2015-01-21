@@ -14,6 +14,8 @@
         function pageLoad(sender, args) {
             SetNewCalendar("#<%= FechaPreOrdenNuevo.ClientID %>");
             $("#<%= CantidadNuevo.ClientID %>").SoloNumeros();
+            $("#<%= BotonGuardarPreOrden.ClientID %>").Confirmar("<%= MensajeConfirmacion.Value%>");
+            $("#<%= BotonLimpiarRegistro.ClientID %>").Confirmar("<%= MensajeLimpieza.Value%>");
         }
     </script>
 
@@ -199,7 +201,7 @@
 
                                 <br />
                                 <asp:ImageButton AlternateText="Guardar" ID="BotonGuardarPreOrden"  ImageUrl="/Imagen/Boton/BotonGuardar.png" OnClick="BotonGuardar_Click" runat="server"/>&nbsp;&nbsp;
-                                <asp:ImageButton AlternateText="Limpiar" ID="BotonLimpiarRegistro"  ImageUrl="/Imagen/Boton/BotonLimpiar.png" runat="server" />&nbsp;&nbsp;
+                                <asp:ImageButton AlternateText="Limpiar" ID="BotonLimpiarRegistro"  ImageUrl="/Imagen/Boton/BotonLimpiar.png" OnClick="BotonLimpiarRegistro_Click" runat="server" />&nbsp;&nbsp;
                                 <asp:ImageButton AlternateText="Cancelar" ID="BotonCancelarPreOrden" ImageUrl="/Imagen/Boton/BotonCancelar.png" runat="server" />
                                 <asp:ImageButton AlternateText="Imprimir" ID="BotonImprimir"  ImageUrl="/Imagen/Boton/BotonImprimir.png"  runat="server" />&nbsp;&nbsp;
                             </td>                            
@@ -300,6 +302,9 @@
                 <asp:HiddenField ID="SolicitanteIdHidden" runat="server" Value="0" />
                 <asp:HiddenField ID="TemporalPreOrdenIdHidden" runat="server" Value="" />
                 <asp:HiddenField ID="TemporalProducto" runat="server" Value="" />
+                <asp:HiddenField ID="MensajeConfirmacion" runat="server" Value="" />
+                <asp:HiddenField ID="MensajeLimpieza" runat="server" Value="" />
+                
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>

@@ -232,7 +232,7 @@ namespace Activos.ProcesoNegocio.Almacen
                     }
 
                     Resultado = GuardarRequisicionDetalle(Conexion, Transaccion, RequisicionObjetoEntidad);
-
+                   
                     if (Resultado.ErrorId == (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente)
                         Transaccion.Commit();
                     else
@@ -367,6 +367,21 @@ namespace Activos.ProcesoNegocio.Almacen
 
                     return false;
                 }
+
+                return Resultado;
+            }
+            /// <summary>
+            ///     Obtiene la info de la tabla RequisicionEncabezado
+            /// </summary>
+            public ResultadoEntidad SeleccionarPreOrdenEncabezado()
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                string CadenaConexion = string.Empty;
+                RequisicionAcceso PreOrdenAcceso = new RequisicionAcceso();
+
+                CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+                //Resultado = RequisicionAcceso.(_PreOrdenEntidad, CadenaConexion);
 
                 return Resultado;
             }

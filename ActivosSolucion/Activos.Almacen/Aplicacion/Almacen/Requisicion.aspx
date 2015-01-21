@@ -4,8 +4,20 @@
 
 
 <asp:Content ID="ContenidoEncabezado" ContentPlaceHolderID="ContenedorEncabezado" runat="server">           
+    <link href="/Incluir/Estilo/Privado/jquery-ui-1.8.16.custom.css" rel="Stylesheet" type="text/css" />
+    <link href="/Incluir/Estilo/Privado/demos.css" rel="Stylesheet" type="text/css" />
+
+    <script src="/Incluir/Javascript/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
+    <script src="/Incluir/Javascript/Calendar.js" type="text/javascript"></script>
     <link href="/Incluir/Estilo/Privado/Popup.css" rel="Stylesheet" type="text/css" />
-     <script language="javascript" src="/Incluir/Javascript/ValidarFormulario.js" type="text/javascript"></script>
+    <script language="javascript" type="text/javascript">
+        function pageLoad(sender, args) {
+            $("#<%= CantidadNuevo.ClientID %>").SoloNumeros();
+            $("#<%= BotonLimpiarRegistro.ClientID %>").Confirmar("<%= MensajeLimpieza.Value%>");
+        }
+    </script>
+
+    <script language="javascript" src="/Incluir/Javascript/ValidarFormulario.js" type="text/javascript"></script>
 </asp:Content>
 
 <asp:Content ID="ContenidoCuerpo" ContentPlaceHolderID="ContenedorCuerpo" runat="server">
@@ -68,7 +80,7 @@
                             <td class="Nombre">Clave de Producto</td>
                             <td class="Requerido">*</td>
                             <td class="Campo">  
-                             <asp:TextBox ID="ClaveNuevo" CssClass="CajaTextoMediana" MaxLength="10" runat="server"></asp:TextBox>     
+                             <asp:TextBox ID="ClaveNuevo" CssClass="CajaTextoMediana" MaxLength="10" runat="server" Enabled="false"></asp:TextBox>     
                              <asp:ImageButton ID="ImagenBuscarClaveProducto" ImageUrl="/Imagen/Icono/ImagenBuscar.gif" runat="server" onclick="ImagenProductoBusqueda_Click" />
                             </td>
                         </tr>
@@ -95,7 +107,7 @@
 						 <tr>
                             <td class="Nombre">Cantidad</td>
                             <td class="Requerido">*</td>
-                            <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="CantidadNuevo"  runat="server" Text=""></asp:TextBox></td>                           
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="CantidadNuevo" MaxLength="7"  runat="server" Text=""></asp:TextBox></td>                           
                         </tr>
                         <tr>
                             <td colspan="3">
@@ -181,7 +193,7 @@
 
                 <asp:UpdateProgress AssociatedUpdatePanelID="PageUpdate" ID="AssociatedUpdate" runat="server">
                     <ProgressTemplate>
-                        <div class="LoadingDiv"><div class="LoadingImageDiv"><img alt="Cargando..." src="../../Image/Icon/LoadingIcon.gif" /></div></div>
+                        <div class="LoadingDiv"><div class="LoadingImageDiv"><img alt="Cargando..." src="../../../../Imagen/Icono/IconoCargando.gif" /></div></div>
                     </ProgressTemplate>
                 </asp:UpdateProgress>
                 <br />
@@ -267,6 +279,7 @@
                 <asp:HiddenField ID="ProductoIdHidden" runat="server" Value="" />
                 <asp:HiddenField ID="EmpleadoIdHidden" runat="server" Value="" />
                 <asp:HiddenField ID="JefeIdHidden" runat="server" Value="" />
+                <asp:HiddenField ID="MensajeLimpieza" runat="server" Value="" />
             </ContentTemplate>
         </asp:UpdatePanel>   
     </div>

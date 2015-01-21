@@ -30,7 +30,8 @@ namespace Almacen.Web.Aplicacion.Almacen
           
             protected void BotonAgregar_Click(object sender, ImageClickEventArgs e)
             {
-                AgregarDetalleDocumento();
+                if (ValidarAgregarProducto()) AgregarDetalleDocumento();
+                
             }
 
             protected void BotonCancelar_Click(object sender, EventArgs e)
@@ -56,6 +57,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                     GuardarRequisicion();
                 }
             }
+        
 
             protected void BotonProductoBusqueda_Click(object sender, ImageClickEventArgs e)
             {
@@ -263,8 +265,9 @@ namespace Almacen.Web.Aplicacion.Almacen
                     if (TablaRequisicion.Rows.Count > 0)
                     {
                         RequisicionObjetoEntidad.RequisicionId = TemporalRequisicionIdHidden.Value;
-
+                        
                         GuardarRequisicion(RequisicionObjetoEntidad);
+                        
                     }
                 }
                 else
@@ -282,6 +285,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 {                   
                     LimpiarNuevoRegistro();
                     LimpiarRequisicion();
+                    //MostrarMensaje(TextoInfo.MensajeNoRequisicion + RequisicionObjetoEntidad.Clave, ConstantePrograma.TipoMensajeSimpleAlerta);
                     MostrarMensaje(TextoInfo.MensajeGuardadoGenerico, ConstantePrograma.TipoMensajeAlerta);
                 }
                 else
@@ -293,10 +297,9 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             private void Inicio()
             {
-                if (Page.IsPostBack)
-               
-                    return;
+                if (Page.IsPostBack) return;
 
+                    MensajeLimpieza.Value = Comparar.ReemplazarCadenaJavascript(TextoInfo.MensajeLimpiarFormulario);
                     CargarInformacionUsuario();
                     BuscarProducto();
                     SeleccionarTextoError();
@@ -530,6 +533,42 @@ namespace Almacen.Web.Aplicacion.Almacen
                 }
             }
 
+            private Boolean ValidarFormulario()
+            {
+                String Mensaje = "";
+                if (TablaRequisicion.Rows.Count <= 0) Mensaje = TextoInfo.MensajeProductoGenerico;
+
+                if (Mensaje == "") return true;
+                else MostrarMensaje(Mensaje, "Error");
+                return false;
+            }
+
+            private Boolean ValidarAgregarProducto()
+            {
+                String Mensaje = "";
+                Int16 NumeroTemporal = 0;
+                if (!Int16.TryParse(CantidadNuevo.Text, out NumeroTemporal)) Mensaje = TextoInfo.MensajeCantidadGenerico;
+                if (NumeroTemporal == 0) Mensaje = TextoInfo.MensajeCantidadGenerico;
+                if (String.IsNullOrEmpty(ClaveNuevo.Text)) Mensaje = TextoInfo.MensajeClaveGenerico;
+                
+
+                if (Mensaje == "") return true;
+                else MostrarMensaje(Mensaje, "Error");
+                return false;
+            }
+            //RUBEN ** PENDIENTE
+            //private string ObtenerClaveRequisicion(RequisicionEntidad RequisicionObjetoEntidad)
+            //{
+            //    ResultadoEntidad Resultado = new ResultadoEntidad();
+            //    RequisicionProceso RequisicionProcesoNegocio = new RequisicionProceso();
+            //    RequisicionProcesoNegocio.RequisicionEntidad = RequisicionObjetoEntidad;
+            //    Resultado = RequisicionProcesoNegocio();
+
+            //    if (Resultado.ResultadoDatos.Tables.Count > 0)
+            //        if (Resultado.ResultadoDatos.Tables[0].Rows.Count > 0) return Resultado.ResultadoDatos.Tables[0].Rows[0]["Clave"].ToString();
+
+            //    return String.Empty;
+            //}
 
         #endregion
     }

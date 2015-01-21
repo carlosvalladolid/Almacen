@@ -338,6 +338,24 @@ namespace Almacen.Web.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.HiddenField TemporalProducto;
         
         /// <summary>
+        /// MensajeConfirmacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField MensajeConfirmacion;
+        
+        /// <summary>
+        /// MensajeLimpieza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField MensajeLimpieza;
+        
+        /// <summary>
         /// Master property.
         /// </summary>
         /// <remarks>
