@@ -316,6 +316,46 @@ namespace Activos.AccesoDatos.Almacen
                     return Resultado;
                 }
             }
+
+            /// <summary>
+            ///     Busca los productos de una preorden que todavía no es relacionada a una orden de compra temporal.
+            /// </summary>
+            /// <param name="PreOrdenEntidad">Entidad de la preorden.</param>
+            /// <param name="CadenaConexion">Cadena de conexión a la base de datos.</param>
+            /// <returns>Resultado de la búsqueda.</returns>
+            public DataSet SeleccionarPreOrdenEncabezado(PreOrdenEntidad PreOrdenEntidad, string CadenaConexion)
+            {
+                DataSet Resultado = new DataSet();
+                SqlConnection Conexion = new SqlConnection(CadenaConexion);
+                SqlCommand Comando;
+                SqlParameter Parametro;
+                SqlDataAdapter Adaptador;
+
+                try
+                {
+                    Comando = new SqlCommand("SeleccionarPreOrdenSinOrden", Conexion);
+                    Comando.CommandType = CommandType.StoredProcedure;
+
+                    Parametro = new SqlParameter("Clave", SqlDbType.VarChar);
+                    Parametro.Value = PreOrdenEntidad.Clave;
+                    Comando.Parameters.Add(Parametro);
+
+                    Adaptador = new SqlDataAdapter(Comando);
+
+                    Conexion.Open();
+                    Adaptador.Fill(Resultado);
+                    Conexion.Close();
+
+                    return Resultado;
+                }
+                catch (SqlException Excepcion)
+                {
+                    _ErrorId = Excepcion.Number;
+                    _DescripcionError = Excepcion.Message;
+
+                    return Resultado;
+                }
+            }
         #endregion
     }
 }

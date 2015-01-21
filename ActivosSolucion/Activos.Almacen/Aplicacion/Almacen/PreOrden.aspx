@@ -9,10 +9,11 @@
     <script src="/Incluir/Javascript/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
     <script src="/Incluir/Javascript/jquery.ui.datepicker-es.js" type="text/javascript"></script>
     <script src="/Incluir/Javascript/Calendar.js" type="text/javascript"></script>
-
+    <link href="/Incluir/Estilo/Privado/Popup.css" rel="Stylesheet" type="text/css" />
     <script language="javascript" type="text/javascript">
         function pageLoad(sender, args) {
             SetNewCalendar("#<%= FechaPreOrdenNuevo.ClientID %>");
+            $("#<%= CantidadNuevo.ClientID %>").SoloNumeros();
         }
     </script>
 
@@ -61,7 +62,7 @@
                     <tr>
                         <td class="Nombre">Jefe Inmediato</td>
                         <td class="Requerido">*</td>
-                        <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="JefeInmediatoIdNuevo"  runat="server"></asp:DropDownList>                              
+                        <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="JefeInmediatoNombreNuevo"  runat="server" ReadOnly="true" Enabled ="false"></asp:TextBox>                              
                         </td>
                     </tr>
                 </table>
@@ -73,8 +74,10 @@
                     <tr>
                         <td class="Nombre">Clave</td>
                         <td class="Requerido">*</td>
-                        <td class="Campo"> <asp:TextBox ID="ClaveNuevo" CssClass="CajaTextoMediana" MaxLength="15" OnTextChanged ="LinkBuscarClave_SelectedTextChanged" AutoPostBack="true"  runat="server"></asp:TextBox>     
-
+                        <td class="Campo"> <asp:TextBox ID="ClaveNuevo" CssClass="CajaTextoMediana" MaxLength="15" AutoPostBack="true"  runat="server" Enabled="False"></asp:TextBox>     
+                                           <asp:ImageButton ID="ImagenBuscarClaveProducto" 
+                                ImageUrl="/Imagen/Icono/ImagenBuscar.gif" runat="server" 
+                                onclick="ImagenBuscarClaveProducto_Click"/>
                         <%--  <asp:Panel ID="PanelBuscarClave" runat="server" DefaultButton="LinkBuscarClave">
                         <asp:TextBox ID="ClaveNuevo" CssClass="CajaTextoMediana" MaxLength="15" runat="server"></asp:TextBox>
                         <asp:LinkButton ID="LinkBuscarClave" OnClick="LinkBuscarClave_Click" Visible ="false"  ValidationGroup="BuscarClave" runat="server" Text="" Width="0px"></asp:LinkButton>
@@ -82,22 +85,21 @@
                         --%>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="Nombre">Familia</td>
-                        <td class="Requerido"></td>
-                        <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="FamiliaIdNuevo" Enabled ="false"   runat="server"></asp:DropDownList>                              
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="Nombre">SubFamilia</td>
-                        <td class="Requerido"></td>
-                        <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="SubFamiliaIdNuevo"  Enabled ="false"  runat="server"></asp:DropDownList></td>
-                    </tr>
-                    <tr>
-                        <td class="Nombre">Marca</td>
-                        <td class="Requerido"></td>
-                        <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="MarcaIdNuevo" Enabled ="false" runat="server"></asp:DropDownList></td>
-                    </tr>
+                        <tr>
+                            <td class="Nombre">Familia</td>
+                            <td class="Espacio"></td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="FamiliaIdNuevo" Enabled ="false"  runat="server" ></asp:TextBox></td>                               
+                        </tr>
+                        <tr>
+                            <td class="Nombre">SubFamilia</td>
+                            <td class="Espacio"></td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="SubFamiliaIdNuevo" Enabled ="false"  runat="server" ></asp:TextBox></td>
+                        </tr>
+                        <tr>
+                            <td class="Nombre">Marca</td>
+                            <td class="Espacio"></td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="MarcaIdNuevo" Enabled ="false"  runat="server" ></asp:TextBox></td>                   
+                        </tr>
                     <tr>
                         <td class="Nombre">Descripción</td>
                         <td class="Requerido"></td>
@@ -106,7 +108,7 @@
                     <tr>
                         <td class="Nombre">Cantidad</td>
                         <td class="Requerido"></td>
-                        <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="CantidadNuevo" MaxLength="10" runat="server" Text=""></asp:TextBox></td>
+                        <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="CantidadNuevo" MaxLength="7" runat="server" Text=""></asp:TextBox></td>
                     </tr>
                     <tr>
                         <td colspan="3">
@@ -196,7 +198,7 @@
                                 <asp:CustomValidator CssClass="TextoError" ControlToValidate="FechaPreOrdenNuevo" EnableClientScript="false" ErrorMessage="" ID="FechaPreOrden" OnServerValidate="FechaPreOrden_Validate"  runat="server" SetFocusOnError="true" ValidationGroup="Guardar" ValidateEmptyText="True"></asp:CustomValidator>
 
                                 <br />
-                                <asp:ImageButton AlternateText="Guardar" ID="BotonGuardarPreOrden"  ImageUrl="/Imagen/Boton/BotonGuardar.png" OnClick="BotonGuardar_Click" runat="server" />&nbsp;&nbsp;
+                                <asp:ImageButton AlternateText="Guardar" ID="BotonGuardarPreOrden"  ImageUrl="/Imagen/Boton/BotonGuardar.png" OnClick="BotonGuardar_Click" runat="server"/>&nbsp;&nbsp;
                                 <asp:ImageButton AlternateText="Limpiar" ID="BotonLimpiarRegistro"  ImageUrl="/Imagen/Boton/BotonLimpiar.png" runat="server" />&nbsp;&nbsp;
                                 <asp:ImageButton AlternateText="Cancelar" ID="BotonCancelarPreOrden" ImageUrl="/Imagen/Boton/BotonCancelar.png" runat="server" />
                                 <asp:ImageButton AlternateText="Imprimir" ID="BotonImprimir"  ImageUrl="/Imagen/Boton/BotonImprimir.png"  runat="server" />&nbsp;&nbsp;
@@ -206,11 +208,92 @@
                 </div>
                 <br /><br /><br /> 
 
+
                 <asp:UpdateProgress AssociatedUpdatePanelID="PageUpdate" ID="AssociatedUpdate" runat="server">
                     <ProgressTemplate>
-                        <div class="LoadingDiv"><div class="LoadingImageDiv"><img alt="Cargando..." src="../../Image/Icon/LoadingIcon.gif" /></div></div>
+                        <div class="LoadingDiv"><div class="LoadingImageDiv"><img alt="Cargando..." src="../../../../Imagen/Icono/IconoCargando.gif" /></div></div>
                     </ProgressTemplate>
-                </asp:UpdateProgress>   
+                </asp:UpdateProgress>
+                <br />
+                <br /> 
+
+                <asp:Panel CssClass="Superposicion" ID="pnlFondoBuscarProducto" runat="server" Visible="false"></asp:Panel>
+
+                <asp:Panel CssClass="PopupGrandeDiv" ID="PanelBusquedaProducto" Visible="false" runat="server">
+                    <div class="PopupGrandeEncabezadoDiv">                    
+                        <asp:Label class="TitleDivPage" ID="lblTitleBuscarProducto" runat="server" Text="Busqueda de Productos"></asp:Label>
+                    </div>
+
+                    <div class="PopupGrandeCuerpoDiv">
+                        <div>
+                            <table class="TablaFormulario">
+                                <tr>
+                                    <td class="Nombre">Clave Producto</td>
+                                    <td class="Espacio"></td>
+                                    <td class="Campo"><asp:TextBox CssClass="CajaTextoPequenia" ID="ClaveProductoBusqueda" MaxLength="20" runat="server" Text=""></asp:TextBox>
+                                                      
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="Nombre">Nombre</td>
+                                    <td class="Espacio"></td>
+                                    <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="NombreProductoBusqueda" MaxLength="100" runat="server" Text=""></asp:TextBox></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="DivTabla">
+                            <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
+                                CssClass="TablaInformacion" DataKeyNames="ProductoId" ID="TablaProducto"
+                                OnRowCommand="TablaProducto_RowCommand" runat="server" PageSize="10">
+                                <EmptyDataTemplate>
+                                    <table class="TablaVacia">
+                                        <tr class="Encabezado">
+                                            <th style="width: 30px;">Clave Producto</th>
+                                            <th  style="width: 60px;">Nombre</th>
+                                            <th  style="width: 60px;">Familia</th>
+                                            <th  style="width: 60px;">SubFamilia</th>
+                                            <th  style="width: 40px;">Marca</th>
+                                        </tr>
+                                        <tr>
+                                        <td colspan="5" style="text-align: Center;">No se encontró información con los parámetros seleccionados</td>
+                                        </tr>
+                                    </table>
+                                </EmptyDataTemplate>
+                                <HeaderStyle CssClass="Encabezado" />
+                                <PagerStyle CssClass="Paginacion" HorizontalAlign="Right" />
+                                <Columns>
+                                    <asp:TemplateField HeaderText="Clave">
+                                        <ItemTemplate>
+                                        <asp:LinkButton CommandArgument="<%#Container.DataItemIndex%>" CommandName="Select" ID="LigaClave" runat="server" Text='<%#Eval("Clave")%>'></asp:LinkButton>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Center" Width="30px" />
+                                    </asp:TemplateField>
+                                    <asp:BoundField DataField="NombreProducto" HeaderText="Nombre" ItemStyle-HorizontalAlign="Center">
+                                        <HeaderStyle HorizontalAlign="Center" Width="60px" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="Familia" HeaderText="Familia" ItemStyle-HorizontalAlign="Center">
+                                        <HeaderStyle HorizontalAlign="Center" Width="60px" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="SubFamilia" HeaderText="SubFamilia" ItemStyle-HorizontalAlign="Center">
+                                        <HeaderStyle HorizontalAlign="Center" Width="60px" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="Marca" HeaderText="Marca" ItemStyle-HorizontalAlign="Center">
+                                        <HeaderStyle HorizontalAlign="Center" Width="40px" />
+                                    </asp:BoundField>
+                                </Columns>
+                            </asp:GridView>
+                        </div>                    
+                    </div>
+
+                    <div class="PopupGrandePieDiv">
+                         <asp:Label Font-Bold="true" CssClass="TextoError" ID="AceptarMensajeProducto" runat="server" Text="" ></asp:Label><br />
+                         &nbsp;&nbsp;
+                         <asp:ImageButton ID="BotonAceptar" OnClick="BotonProductoBusqueda_Click" runat="server" ImageUrl="~/Imagen/Boton/BotonBuscar.png" />
+                         &nbsp;
+                         <asp:ImageButton ID="BotonCancelar" OnClick="BotonCerrarProductoBusqueda_Click" runat="server" ImageUrl="~/Imagen/Boton/BotonCancelar.png" />                   
+                    </div>
+                </asp:Panel> 
 
                 <asp:HiddenField ID="ProductoIdHidden" runat="server" Value="" />
                 <asp:HiddenField ID="ClaveIdHidden" runat="server" Value="" />

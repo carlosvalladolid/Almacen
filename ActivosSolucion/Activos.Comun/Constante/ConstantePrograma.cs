@@ -49,6 +49,7 @@ namespace Activos.Comun.Constante
         // Alerta de mensajes
         public const string TipoMensajeAlerta = "Mensaje";
         public const string TipoErrorAlerta = "Error";
+        public const string TipoMensajeSimpleAlerta = "SimpleAlerta";
 
         // Nombres de comandos
         public const string ComandoAgregar = "Agregar";
