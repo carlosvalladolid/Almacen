@@ -4,11 +4,11 @@ Requisición
 *1. La funcionalidad para guardar el encabezado temporal de una requisición se encuentra fuera de la Transacción, permitiendo generar encabezados sin detalle. (NO)
 *2. Hay textos (hard code) para mostrar mensajes de error, en lugar de utilizar la clase para constantes de error TextoError. (NO)
 3. No se le muestra al usuario el folio creado en la requisición.  (NO) 
-4. Los botones de Limpiar y de Cancelar no tienen funcionalidad. (*** LISTO ***)
+4. Los botones de Limpiar y de Cancelar no tienen funcionalidad. (*** LISTO ***) /*Se puede quitar boton Cancelar*/
 5. Se guarda un registro en la tabla RequisicionEncabezadoTemp, aún y cuando entra una validación (exceder el máximo permitido y producto sin existencia).
 6. Marca error al querer guardar una segunda requisición. (** LISTO **)
 7. No funciona el borrado de los registros de la requisición. (** POSIBLEMENTE HAY QUE MODIFICAR EL PROCEDIMIENTO ALMACENADO)
-
+8. No Guarda*****
 
 Pre Orden
 --------------------------------------
@@ -17,20 +17,22 @@ Pre Orden
 3. No hay una opción para búsqueda de productos.  (*** LISTO ***)
 4. No se muestra el folio de la preorden al guardar la información. (** LISTO **)
 5. Validar formulario (*** LISTO ***)
+6. En el primer producto agregado, debe bloquearse el cambio de fecha. (NO)
+7. Al seleccionar empleado, limpiar el Jefe (NO)
 
 
 Orden de compra
 --------------------------------------
-1. No hay botón de imprimir. (** Agregado e boton pero falta funcionalidad *PREGUNTAR A LACHO PORQUE VIENE DIFERENTE EN EL BOSQUEJO)
+1. No hay botón de imprimir. (** Agregado e boton pero falta funcionalidad * SE IMPRIME NORMAL SIN ENVIAR POR CORREO)
 2. Mostrar la fecha actual en el campo Fecha orden. (** LISTO **)
-3. No está habilitada la funcionalidad de búsqueda de pre órdenes de compra.
-4. No se generó el folio de la orden de compra.
+3. No está habilitada la funcionalidad de búsqueda de pre órdenes de compra.(NO)
+4. No se generó el folio de la orden de compra. (NO)
 
 
 Recepción
 --------------------------------------
 1. El campo de jefe inmediato no se está llenando. (NO)
-2. No existe funcionalidad para búsqueda de productos. (NO)
+2. No existe funcionalidad para búsqueda de productos. (NO) (COPIAR FUNCIONALIDAD DE LA BUSQUEDA EN PRE ORDEN)
 3. No se está validando la entrada de números en el campo Cantidad. (NO)
 4. No se están agregando los productos en el detalle. (NO)
 
