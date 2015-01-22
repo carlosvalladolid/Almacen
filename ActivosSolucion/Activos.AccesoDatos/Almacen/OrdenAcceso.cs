@@ -7,6 +7,8 @@ using System.Text;
 
 using Activos.AccesoDatos.Almacen;
 using Activos.Comun.Constante;
+using Activos.Entidad.General;
+using Activos.Entidad.Catalogo;
 using Activos.Entidad.Almacen;
 
 namespace Activos.AccesoDatos.Almacen
@@ -347,6 +349,51 @@ namespace Activos.AccesoDatos.Almacen
                     return Resultado;
                 }
             }
+
+
+
+
+            /// <summary>
+            ///     Obtiene la información del encabezado de la orden con el ID de la Orden.
+            /// </summary>
+            /// <param name="PreOrdenEntidad">Entidad de la orden.</param>
+            /// <param name="CadenaConexion">Cadena de conexión a la base de datos.</param>
+            /// <returns>Resultado de la búsqueda.</returns>
+            public ResultadoEntidad SeleccionarOrdenEncabezadoPorOrdenId(string OrdenId, string CadenaConexion)
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                SqlConnection Conexion = new SqlConnection(CadenaConexion);
+                SqlCommand Comando;
+                SqlParameter Parametro;
+                SqlDataAdapter Adaptador;
+
+                try
+                {
+
+                    Comando = new SqlCommand("SeleccionarOrdenEncabezadoPorOrdenId", Conexion);
+                    Comando.CommandType = CommandType.StoredProcedure;
+
+                    Parametro = new SqlParameter("@OrdenId", SqlDbType.VarChar);
+                    Parametro.Value = OrdenId;
+                    Comando.Parameters.Add(Parametro);
+
+                    Adaptador = new SqlDataAdapter(Comando);
+
+                    Conexion.Open();
+                    Adaptador.Fill(Resultado.ResultadoDatos);
+                    Conexion.Close();
+
+                    return Resultado;
+                }
+                catch (SqlException Excepcion)
+                {
+                    Resultado.ErrorId = Excepcion.Number;
+                    Resultado.DescripcionError = Excepcion.Message;
+
+                    return Resultado;
+                }
+            }
+
         #endregion
     }
 }

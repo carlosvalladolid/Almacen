@@ -3,12 +3,13 @@ Requisición
 --------------------------------------
 *1. La funcionalidad para guardar el encabezado temporal de una requisición se encuentra fuera de la Transacción, permitiendo generar encabezados sin detalle. (NO)
 *2. Hay textos (hard code) para mostrar mensajes de error, en lugar de utilizar la clase para constantes de error TextoError. (NO)
-3. No se le muestra al usuario el folio creado en la requisición.  (NO) 
+3. No se le muestra al usuario el folio creado en la requisición.  (** LISTO **)
 4. Los botones de Limpiar y de Cancelar no tienen funcionalidad. (*** LISTO ***) /*Se puede quitar boton Cancelar*/
 5. Se guarda un registro en la tabla RequisicionEncabezadoTemp, aún y cuando entra una validación (exceder el máximo permitido y producto sin existencia).
 6. Marca error al querer guardar una segunda requisición. (** LISTO **)
-7. No funciona el borrado de los registros de la requisición. (** POSIBLEMENTE HAY QUE MODIFICAR EL PROCEDIMIENTO ALMACENADO)
-8. No Guarda*****
+7. No funciona el borrado de los registros de la requisición. (** LISTO **)
+8. No Guarda (** LISTO **) (Guardo solo no le movi a nada xD )
+9. Cantidad total de articulos no aparece (** LISTO **)
 
 Pre Orden
 --------------------------------------
@@ -17,8 +18,10 @@ Pre Orden
 3. No hay una opción para búsqueda de productos.  (*** LISTO ***)
 4. No se muestra el folio de la preorden al guardar la información. (** LISTO **)
 5. Validar formulario (*** LISTO ***)
-6. En el primer producto agregado, debe bloquearse el cambio de fecha. (NO)
-7. Al seleccionar empleado, limpiar el Jefe (NO)
+6. En el primer producto agregado, debe bloquearse el cambio de fecha. (** LISTO **)
+7. Al seleccionar empleado, limpiar el Jefe (** LISTO **)
+8. Cantidad total de articulos no aparece (** LISTO **)
+
 
 
 Orden de compra
@@ -26,8 +29,9 @@ Orden de compra
 1. No hay botón de imprimir. (** Agregado e boton pero falta funcionalidad * SE IMPRIME NORMAL SIN ENVIAR POR CORREO)
 2. Mostrar la fecha actual en el campo Fecha orden. (** LISTO **)
 3. No está habilitada la funcionalidad de búsqueda de pre órdenes de compra.(NO)
-4. No se generó el folio de la orden de compra. (NO)
-
+4. No se generó el folio de la orden de compra. (** LISTO **)
+5. Validar formulario, marca errores al dar clic en guardar. (** LISTO **)
+6. No borra objetos de la orden de compra. (NO)
 
 Recepción
 --------------------------------------

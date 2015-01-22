@@ -10,11 +10,16 @@
     <script src="/Incluir/Javascript/jquery.ui.datepicker-es.js" type="text/javascript"></script>
     <script language="javascript" src="/Incluir/Javascript/ValidarFormulario.js" type="text/javascript"></script>
     <script src="/Incluir/Javascript/Calendar.js" type="text/javascript"></script>
-
+    <link href="/Incluir/Estilo/Privado/Popup.css" rel="Stylesheet" type="text/css" />
     <script language="javascript" type="text/javascript">
         function pageLoad(sender, args)
         {
             SetNewCalendar("#<%= FechaOrdenBox.ClientID %>");
+            SetNewCalendar("#<%= FechaFiltroInicioBox.ClientID %>");
+            SetNewCalendar("#<%= FechaFiltroFinBox.ClientID %>");
+            $("#<%= BotonGuardar.ClientID %>").Confirmar("<%= MensajeConfirmacion.Value%>");
+            $("#<%= FechaFiltroInicioBox.ClientID %>").VerificarFechas("#<%= FechaFiltroInicioBox.ClientID %>","#<%= FechaFiltroFinBox.ClientID %>","<%= MensajeRangoDeFechasInvalido.Value %>");
+            $("#<%= FechaFiltroFinBox.ClientID %>").VerificarFechas("#<%= FechaFiltroInicioBox.ClientID %>","#<%= FechaFiltroFinBox.ClientID %>","<%= MensajeRangoDeFechasInvalido.Value %>");
         }
     </script>
 </asp:Content>
@@ -205,9 +210,93 @@
                     </tr>
                 </table>
 
+                <%--POPUP Busqueda por Orden--%>
+                <asp:Panel CssClass="Superposicion" ID="pnlFondoBuscarProducto" runat="server" Visible="false"></asp:Panel>
+
+                <asp:Panel CssClass="PopupGrandeDiv" ID="PanelBusquedaProducto" Visible="false" runat="server">
+                    <div class="PopupGrandeEncabezadoDiv">                    
+                        <asp:Label class="TitleDivPage" ID="lblTitleBuscarProducto" runat="server" Text="Busqueda de Productos"></asp:Label>
+                    </div>
+
+                    <div class="PopupGrandeCuerpoDiv">
+                        <div>
+                            <table class="TablaFormulario">
+                                <tr>
+                                    <td class="Nombre">Clave PreOrden</td>
+                                    <td class="Espacio"></td>
+                                    <td class="Campo"><asp:TextBox CssClass="CajaTextoPequenia" ID="ClaveProductoBusqueda" MaxLength="20" runat="server" Text=""></asp:TextBox>
+                                                      
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="Nombre">Fecha Inicio</td>
+                                    <td class="Espacio"></td>
+                                    <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="FechaFiltroInicioBox" MaxLength="11" runat="server" Text=""></asp:TextBox></td>
+                                </tr>
+                                <tr>
+                                    <td class="Nombre">Fecha Fin</td>
+                                    <td class="Espacio"></td>
+                                    <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="FechaFiltroFinBox" MaxLength="11" runat="server" Text=""></asp:TextBox></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="DivTabla">
+                            <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
+                                CssClass="TablaInformacion" DataKeyNames="ProductoId" ID="TablaProducto"
+                                 runat="server" PageSize="10">
+                                <EmptyDataTemplate>
+                                    <table class="TablaVacia">
+                                        <tr class="Encabezado">
+                                            <th style="width: 30px;">Clave PreOrden</th>
+                                            <th  style="width: 60px;">Nombre Empleado</th>
+                                            <th  style="width: 60px;">Estatus</th>
+                                            <th  style="width: 60px;">Fecha</th>
+                                        </tr>
+                                        <tr>
+                                        <td colspan="5" style="text-align: Center;">No se encontró información con los parámetros seleccionados</td>
+                                        </tr>
+                                    </table>
+                                </EmptyDataTemplate>
+                                <HeaderStyle CssClass="Encabezado" />
+                                <PagerStyle CssClass="Paginacion" HorizontalAlign="Right" />
+                                <Columns>
+                                    <asp:TemplateField HeaderText="Clave">
+                                        <ItemTemplate>
+                                        <asp:LinkButton CommandArgument="<%#Container.DataItemIndex%>" CommandName="Select" ID="LigaClave" runat="server" Text='<%#Eval("Clave")%>'></asp:LinkButton>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Center" Width="30px" />
+                                    </asp:TemplateField>
+                                    <asp:BoundField DataField="NombreEmpleado" HeaderText="NombreEmpleado" ItemStyle-HorizontalAlign="Center">
+                                        <HeaderStyle HorizontalAlign="Center" Width="60px" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="Estatus" HeaderText="Estatus" ItemStyle-HorizontalAlign="Center">
+                                        <HeaderStyle HorizontalAlign="Center" Width="60px" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="Fecha" HeaderText="Fecha" ItemStyle-HorizontalAlign="Center">
+                                        <HeaderStyle HorizontalAlign="Center" Width="60px" />
+                                    </asp:BoundField>
+                                </Columns>
+                            </asp:GridView>
+                        </div>                    
+                    </div>
+
+                    <div class="PopupGrandePieDiv">
+                         <asp:Label Font-Bold="true" CssClass="TextoError" ID="AceptarMensajeProducto" runat="server" Text="" ></asp:Label><br />
+                         &nbsp;&nbsp;
+                         <asp:ImageButton ID="BotonPeOrdenBusqueda" OnClick="BotonPreOrdenBusqueda_Click" runat="server" ImageUrl="~/Imagen/Boton/BotonBuscar.png" />
+                         &nbsp;
+                         <asp:ImageButton ID="BotonPreOrdenCerrar" OnClick="BotonCerrarPreOrdenBusqueda_Click" runat="server" ImageUrl="~/Imagen/Boton/BotonCancelar.png" />                   
+                    </div>
+                </asp:Panel> 
+
+
+
+
                 <asp:HiddenField ID="OrdenIdHidden" runat="server" Value="" />
                 <asp:HiddenField ID="JefeIdHidden" runat="server" Value="0" />
-
+                <asp:HiddenField ID="MensajeConfirmacion" runat="server" Value=""/>
+                 <asp:HiddenField ID="MensajeRangoDeFechasInvalido" runat="server" Value=""/>
                 <asp:UpdateProgress AssociatedUpdatePanelID="PageUpdate" ID="AssociatedUpdate" runat="server">
                     <ProgressTemplate>
                         <div class="LoadingDiv"><div class="LoadingImageDiv"><img alt="Cargando..." src="../../../../Imagen/Icono/IconoCargando.gif" /></div></div>

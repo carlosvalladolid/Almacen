@@ -238,6 +238,23 @@ namespace Activos.ProcesoNegocio.Almacen
 
 
 
+            /// <summary>
+            ///     Hace la busuqeda de PreOrdenes con los parametros de FechaInicio,FechaFinal y PreOrdenId
+            /// </summary>
+            public ResultadoEntidad SeleccionarPreOrdenEncabezadoPorBusqueda(string Clave,DateTime FechaInicio,DateTime FechaFin)
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                string CadenaConexion = string.Empty;
+                PreOrdenAcceso PreOrdenAcceso = new PreOrdenAcceso();
+
+                CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+                Resultado = PreOrdenAcceso.SeleccionarPreOrdenEncabezadoBusqueda(Clave,FechaInicio,FechaFin, CadenaConexion);
+
+                return Resultado;
+            }
+
+
         #endregion
     }
 }

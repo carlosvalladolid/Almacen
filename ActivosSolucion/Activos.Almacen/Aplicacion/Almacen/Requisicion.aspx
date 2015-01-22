@@ -179,7 +179,7 @@
                                 <br />
                                 <asp:ImageButton AlternateText="Guardar" ID="BotonGuardarPreOrden"  ImageUrl="/Imagen/Boton/BotonGuardar.png" OnClick="BotonGuardar_Click" runat="server" ValidationGroup="Save" />&nbsp;&nbsp;
                                 <asp:ImageButton AlternateText="Limpiar" ID="BotonLimpiarRegistro"  ImageUrl="/Imagen/Boton/BotonLimpiar.png" OnClick="BotonLimpiar_Click" runat="server" />&nbsp;&nbsp;
-                                <asp:ImageButton AlternateText="Cancelar" ID="BotonCancelarPreOrden" ImageUrl="/Imagen/Boton/BotonCancelar.png"  OnClick="BotonCancelar_Click" runat="server" />                                
+                                <%--<asp:ImageButton AlternateText="Cancelar" ID="BotonCancelarPreOrden" ImageUrl="/Imagen/Boton/BotonCancelar.png"  OnClick="BotonCancelar_Click" runat="server" />--%>                                
                             </td>     
                             <td style="width:20%; text-align:right;">
                                 <asp:Label ID="LabelEtiquetaTotal" CssClass="MontoTotal" Text="Total Articulos:" runat="server"></asp:Label>&nbsp;

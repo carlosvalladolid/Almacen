@@ -5,13 +5,6 @@
 * Descripción:			Métodos para la validación de los formularios
 */
 
-function ConfirmarBorrado() {
-    if (confirm("¿Desea eliminar los registros seleccionados?"))
-        return true;
-    else
-        return false;
-}
-
 function MostrarMensaje(Mensaje, TipoMensaje) {
     $(document).ready(function() {
         switch(TipoMensaje)
@@ -85,6 +78,21 @@ function(Mensaje)
         {
             if(confirm(Mensaje)) return true;
             return false;
+        });
+    });
+};
+
+jQuery.fn.VerificarFechas = 
+function(FechaInicio,FechaFin,Mensaje)
+{
+    return this.each(function()
+    {
+        $(this).change(function()
+        {
+              var Inicio = $(FechaInicio).val();
+              var Fin = $(FechaFin).val();
+              if (Date.parse(Inicio) > Date.parse(Fin))
+                  $(this).val("");
         });
     });
 };

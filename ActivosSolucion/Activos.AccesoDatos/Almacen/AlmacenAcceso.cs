@@ -419,6 +419,8 @@ namespace Activos.AccesoDatos.Almacen
                     return Resultado;
                 }
             }
+
+        
         #endregion
     }
 }

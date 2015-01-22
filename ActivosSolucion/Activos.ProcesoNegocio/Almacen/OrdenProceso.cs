@@ -7,6 +7,8 @@ using System.Text;
 
 using Activos.AccesoDatos.Almacen;
 using Activos.Comun.Constante;
+using Activos.Entidad.General;
+using Activos.Entidad.Catalogo;
 using Activos.Entidad.Almacen;
 
 namespace Activos.ProcesoNegocio.Almacen
@@ -330,6 +332,24 @@ namespace Activos.ProcesoNegocio.Almacen
 
                 return true;
             }
+
+
+            /// <summary>
+            ///     Obtiene la info de la tabla OrdenEncabezado
+            /// </summary>
+            public ResultadoEntidad SeleccionarOrdenEncabezadoPorOrdenId()
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                string CadenaConexion = string.Empty;
+                OrdenAcceso OrdenAcceso = new OrdenAcceso();
+
+                CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+                Resultado = OrdenAcceso.SeleccionarOrdenEncabezadoPorOrdenId(this.OrdenEncabezadoEntidad.OrdenId, CadenaConexion);
+
+                return Resultado;
+            }
+
         #endregion
     }
 }

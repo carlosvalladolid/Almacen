@@ -400,6 +400,61 @@ namespace Activos.AccesoDatos.Almacen
                 }
             }
 
+
+
+
+
+            /// <summary>
+            ///    Hace una busqueda de las PreOrdenes en el sistema 
+            /// </summary>
+            /// <param name="PreOrdenId">ID de la PreOrden.</param>
+            /// /// <param name="FechaInicio">Fecha de inicio del rango.</param>
+            /// /// <param name="FechaFin">Fecha de fin del rango.</param>
+            /// <param name="CadenaConexion">Cadena de conexión a la base de datos.</param>
+            /// <returns>Resultado de la búsqueda.</returns>
+            public ResultadoEntidad SeleccionarPreOrdenEncabezadoBusqueda(string Clave, DateTime FechaInicio, DateTime FechaFin, string CadenaConexion)
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                SqlConnection Conexion = new SqlConnection(CadenaConexion);
+                SqlCommand Comando;
+                SqlParameter Parametro;
+                SqlDataAdapter Adaptador;
+
+                try
+                {
+
+                    Comando = new SqlCommand("SeleccionarPreOrdenEncabezadoPorRangoDeFechas", Conexion);
+                    Comando.CommandType = CommandType.StoredProcedure;
+
+                    Parametro = new SqlParameter("@Clave", SqlDbType.VarChar);
+                    Parametro.Value = Clave;
+                    Comando.Parameters.Add(Parametro);
+
+                    Parametro = new SqlParameter("@FechaInicio", SqlDbType.DateTime);
+                    Parametro.Value = FechaInicio.ToShortDateString();
+                    Comando.Parameters.Add(Parametro);
+
+                    Parametro = new SqlParameter("@FechaFin", SqlDbType.DateTime);
+                    Parametro.Value = FechaFin.ToShortDateString();
+                    Comando.Parameters.Add(Parametro);
+
+                    Adaptador = new SqlDataAdapter(Comando);
+
+                    Conexion.Open();
+                    Adaptador.Fill(Resultado.ResultadoDatos);
+                    Conexion.Close();
+
+                    return Resultado;
+                }
+                catch (SqlException Excepcion)
+                {
+                    Resultado.ErrorId = Excepcion.Number;
+                    Resultado.DescripcionError = Excepcion.Message;
+
+                    return Resultado;
+                }
+            }
+
         #endregion
     }
 }

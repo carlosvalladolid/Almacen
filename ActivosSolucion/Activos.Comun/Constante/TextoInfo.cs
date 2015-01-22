@@ -21,7 +21,17 @@ namespace Activos.Comun.Constante
       //Mensajes Formulario Requisicion
       public const string MensajeNoRequisicion= "No. Requisicion: ";
 
+      //Mensajes Formulario Orden
+      public const string MensajeNoOrden= "No. Orden: ";
+      public const string MensajeSeleccioneEmpleado = "Por favor, especifique el empleado.";
+      public const string MensajeSeleccioneProveedor = "Por favor, especifique el proveedor.";
+      public const string MensajeEmpleadosVacio = "No existen empleados en la lista.";
+      public const string MensajeProveedoresVacio = "No existen proveedores en la lista.";
+      public const string MensajeOrdenVacia = "Por favor, seleccione los articulos de la orden.";
+      public const string MensajeConfirmacionOrden = "¿Desea guardar la Orden?";
 
+
+      public const string MensajeRangoFechasInvalido = "Por favor, indique un rango de fechas valido.";
       public const string MensajeLimpiarFormulario = "¿Desea limpiar el formulario?";
       // Mensaje Informativos de Requisición
     }

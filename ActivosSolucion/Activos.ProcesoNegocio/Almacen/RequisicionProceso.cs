@@ -373,15 +373,15 @@ namespace Activos.ProcesoNegocio.Almacen
             /// <summary>
             ///     Obtiene la info de la tabla RequisicionEncabezado
             /// </summary>
-            public ResultadoEntidad SeleccionarPreOrdenEncabezado()
+            public ResultadoEntidad SeleccionarRequisicionEncabezado()
             {
                 ResultadoEntidad Resultado = new ResultadoEntidad();
                 string CadenaConexion = string.Empty;
-                RequisicionAcceso PreOrdenAcceso = new RequisicionAcceso();
+                RequisicionAcceso RequisicionAcceso = new RequisicionAcceso();
 
                 CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
-                //Resultado = RequisicionAcceso.(_PreOrdenEntidad, CadenaConexion);
+                Resultado = RequisicionAcceso.SeleccionarRequisicionEncabezadoPorRequisicionId(RequisicionEntidad, CadenaConexion);
 
                 return Resultado;
             }

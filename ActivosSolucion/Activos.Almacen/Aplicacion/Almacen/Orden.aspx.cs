@@ -21,6 +21,8 @@ using Activos.Entidad.Seguridad;
 using Activos.ProcesoNegocio.Almacen;
 using Activos.ProcesoNegocio.Catalogo;
 
+using Activos.Entidad.Almacen;
+
 namespace Almacen.Web.Aplicacion.Almacen
 {
     public partial class Orden : System.Web.UI.Page
@@ -28,7 +30,7 @@ namespace Almacen.Web.Aplicacion.Almacen
         #region "Eventos"
             protected void BotonGuardar_Click(object sender, ImageClickEventArgs e)
             {
-                GuardarOrden();
+                if (ValidarFormulario()) GuardarOrden();
             }
 
             protected void EmpleadoCombo_SelectedIndexChanged(object sender, EventArgs e)
@@ -38,7 +40,8 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             protected void ImagenBuscarPreOrden_Click(object sender, ImageClickEventArgs e)
             {
-                ValidarPreOrden(PreOrdenBusqueda.Text.Trim());
+                CargaPanelVisibleProducto();
+                //ValidarPreOrden(PreOrdenBusqueda.Text.Trim());
             }
 
             protected void Page_Load(object sender, EventArgs e)
@@ -55,6 +58,20 @@ namespace Almacen.Web.Aplicacion.Almacen
             {
                 TablaPreOrdenRowCommand(e);
             }
+
+
+            protected void BotonPreOrdenBusqueda_Click(object sender, ImageClickEventArgs e)
+            {
+                if(VerificarFechas()) BuscarPreOrden();
+            }
+
+            protected void BotonCerrarPreOrdenBusqueda_Click(object sender, ImageClickEventArgs e)
+            {
+                CargaPanelInVisibleProducto();
+            }
+
+
+
         #endregion
 
         #region "Métodos"
@@ -80,6 +97,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             private void GuardarOrden()
             {
+                
                 OrdenProceso OrdenProceso = new OrdenProceso();
 
                 OrdenProceso.OrdenEncabezadoEntidad.OrdenId = OrdenIdHidden.Value;
@@ -95,7 +113,9 @@ namespace Almacen.Web.Aplicacion.Almacen
                 if (OrdenProceso.ErrorId == 0)
                 {
                     LimpiarFormulario();
-                    MostrarMensaje(TextoInfo.MensajeGuardadoGenerico, ConstantePrograma.TipoMensajeAlerta);
+
+                    MostrarMensaje(TextoInfo.MensajeNoOrden + OrdenProceso.SeleccionarOrdenEncabezadoPorOrdenId().ResultadoDatos.Tables[0].Rows[0]["Clave"], ConstantePrograma.TipoMensajeSimpleAlerta);
+                    //MostrarMensaje(TextoInfo.MensajeGuardadoGenerico, ConstantePrograma.TipoMensajeAlerta);
                 }
                 else
                     MostrarMensaje(OrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
@@ -127,6 +147,8 @@ namespace Almacen.Web.Aplicacion.Almacen
                 if (Page.IsPostBack)
                     return;
 
+                MensajeRangoDeFechasInvalido.Value = TextoInfo.MensajeRangoFechasInvalido;
+                MensajeConfirmacion.Value = TextoInfo.MensajeConfirmacionOrden;
                 FechaOrdenBox.Text = DateTime.Now.Date.ToShortDateString();
 
                 TablaPreOrden.DataSource = null;
@@ -377,7 +399,117 @@ namespace Almacen.Web.Aplicacion.Almacen
                 SeleccionarPreOrdenDetalleSinOrden(Clave, UsuarioEntidad.SesionId);
             }
 
-           
+
+
+
+            private Boolean ValidarFormulario()
+            {
+                String Mensaje = "";
+                DateTime Temporal = new DateTime();
+
+                if (EmpleadoCombo.Items.Count <= 0)
+                    Mensaje = TextoInfo.MensajeEmpleadosVacio;
+                    else if (EmpleadoCombo.SelectedIndex == 0) Mensaje = TextoInfo.MensajeSeleccioneEmpleado;
+
+                if (ProveedorCombo.Items.Count <= 0)
+                    Mensaje = TextoInfo.MensajeProveedoresVacio;
+                    else if (ProveedorCombo.SelectedIndex == 0) Mensaje = TextoInfo.MensajeSeleccioneProveedor;
+                
+                
+                if (!DateTime.TryParse(FechaOrdenBox.Text, out Temporal)) Mensaje = TextoInfo.MensajeFechaGenerico;
+                
+                if(TablaOrden.Rows.Count <= 0) Mensaje = TextoInfo.MensajeOrdenVacia;
+
+                if (Mensaje == "") return true;
+                else MostrarMensaje(Mensaje, "Error");
+                return false;
+            }
+
+            //private Boolean ValidarAgregarProducto()
+            //{
+            //    String Mensaje = "";
+            //    Int16 NumeroTemporal = 0;
+            //    if (!Int16.TryParse(CantidadNuevo.Text, out NumeroTemporal)) Mensaje = TextoInfo.MensajeCantidadGenerico;
+            //    if (NumeroTemporal == 0) Mensaje = TextoInfo.MensajeCantidadGenerico;
+            //    if (String.IsNullOrEmpty(ClaveNuevo.Text)) Mensaje = TextoInfo.MensajeClaveGenerico;
+            //    DateTime Temporal = new DateTime();
+            //    if (!DateTime.TryParse(FechaPreOrdenNuevo.Text, out Temporal)) Mensaje = TextoInfo.MensajeFechaGenerico;
+            //    if (SolicitanteIdNuevo.SelectedIndex == 0) Mensaje = TextoInfo.MensajeSolicitanteGenerico;
+
+            //    if (Mensaje == "") return true;
+            //    else MostrarMensaje(Mensaje, "Error");
+            //    return false;
+            //}
+            private string ObtenerClaveOrden(OrdenEntidad OrdenObjetoEntidad)
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                OrdenProceso OrdenProcesoNegocio = new OrdenProceso();
+                OrdenProcesoNegocio.OrdenEncabezadoEntidad = OrdenObjetoEntidad;
+                Resultado = OrdenProcesoNegocio.SeleccionarOrdenEncabezadoPorOrdenId();
+
+                if (Resultado.ResultadoDatos.Tables.Count > 0)
+                    if (Resultado.ResultadoDatos.Tables[0].Rows.Count > 0) return Resultado.ResultadoDatos.Tables[0].Rows[0]["Clave"].ToString();
+
+                return String.Empty;
+            }
+
+            private void CargaPanelVisibleProducto()
+            {
+                PanelBusquedaProducto.Visible = !PanelBusquedaProducto.Visible;
+                pnlFondoBuscarProducto.Visible = !pnlFondoBuscarProducto.Visible;
+            }
+
+
+            private void BuscarPreOrden()
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                PreOrdenProceso PreOrdenProcesoNegocio = new PreOrdenProceso();
+
+                DateTime FechaInicio = DateTime.Parse(FechaFiltroInicioBox.Text);
+                DateTime FechaFin = DateTime.Parse(FechaFiltroInicioBox.Text);
+
+                //AlmacenObjetoEntidad.Clave = ClaveProductoBusqueda.Text.Trim();
+                //AlmacenObjetoEntidad.Descripcion = NombreProductoBusqueda.Text.Trim();
+
+                Resultado = PreOrdenProcesoNegocio.SeleccionarPreOrdenEncabezadoPorBusqueda(ClaveProductoBusqueda.Text, FechaInicio, FechaFin);
+
+                if (Resultado.ErrorId == 0)
+                {
+                    if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
+                        TablaProducto.CssClass = ConstantePrograma.ClaseTablaVacia;
+                    else
+                        TablaProducto.CssClass = ConstantePrograma.ClaseTabla;
+
+                    TablaProducto.DataSource = Resultado.ResultadoDatos;
+                    TablaProducto.DataBind();
+                }
+                else
+                {
+                    //EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+                    // MostrarMensaje(AlmacenProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                }
+            }
+
+            private void CargaPanelInVisibleProducto()
+            {
+                PanelBusquedaProducto.Visible = false;
+                pnlFondoBuscarProducto.Visible = false;
+
+            }
+
+            private Boolean VerificarFechas()
+            {
+                DateTime Temporal = new DateTime();
+                DateTime Temporal2 = new DateTime();
+                String Mensaje = "";
+                if (!DateTime.TryParse(FechaFiltroInicioBox.Text, out Temporal)) Mensaje = TextoInfo.MensajeFechaGenerico;
+                if (!DateTime.TryParse(FechaFiltroFinBox.Text, out Temporal2)) Mensaje = TextoInfo.MensajeFechaGenerico;
+                if (Mensaje == "") if (Temporal > Temporal2) Mensaje = TextoInfo.MensajeRangoFechasInvalido;
+
+                if (Mensaje == "") return true;
+                else MostrarMensaje(Mensaje,ConstantePrograma.TipoErrorAlerta);
+                return false;                
+            }
         #endregion
     }
 }

@@ -138,6 +138,8 @@ namespace Almacen.Web.Aplicacion.Almacen
         {
             if (!ValidarAgregarProducto()) return;
 
+            
+            
 
             TemporalPreOrdenEntidad TemporalPreOrdenObjetoEntidad = new TemporalPreOrdenEntidad();
 
@@ -173,6 +175,10 @@ namespace Almacen.Web.Aplicacion.Almacen
                 LimpiarProducto();
 
                 SeleccionarTemporalPreOrden();
+
+                //NO DEJAR QUE LA FECHA SEA MODIFICADA
+                FechaPreOrdenNuevo.Enabled = false;
+                SolicitanteIdNuevo.Enabled = false;
             }
             else
             {
@@ -318,11 +324,15 @@ namespace Almacen.Web.Aplicacion.Almacen
                 else
                     TablaPreOrden.CssClass = ConstantePrograma.ClaseTabla;
 
-
-
+                int CantidadTotal = 0;
+                foreach (DataRow Fila in Resultado.ResultadoDatos.Tables[0].Rows)
+                {
+                    CantidadTotal += Convert.ToInt32(Fila["Cantidad"]);
+                }
+                LabelTotalArticulo.Text = CantidadTotal.ToString();
+                
                 TablaPreOrden.DataSource = Resultado.ResultadoDatos;
                 TablaPreOrden.DataBind();
-
             }
             else
             {
@@ -524,6 +534,9 @@ namespace Almacen.Web.Aplicacion.Almacen
                     if (Resultado.ErrorId == 0)
                     {
                         //JefeInmediatoIdNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["EmpleadoIdJefe"].ToString();
+
+
+
                         JefeInmediatoNombreNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Nombre"].ToString();
                         //JefeInmediatoIdNuevo.DataSource = Resultado.ResultadoDatos;
                         //JefeInmediatoIdNuevo.DataBind();
@@ -536,6 +549,10 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                     //JefeInmediatoIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
                 }
+            }
+            else
+            {
+                JefeInmediatoNombreNuevo.Text = "";
             }
         }
 
