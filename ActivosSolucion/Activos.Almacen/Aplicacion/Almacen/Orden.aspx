@@ -19,7 +19,7 @@
             SetNewCalendar("#<%= FechaFiltroFinBox.ClientID %>");
             $("#<%= BotonGuardar.ClientID %>").Confirmar("<%= MensajeConfirmacion.Value%>");
             $("#<%= FechaFiltroInicioBox.ClientID %>").VerificarFechas("#<%= FechaFiltroInicioBox.ClientID %>","#<%= FechaFiltroFinBox.ClientID %>","<%= MensajeRangoDeFechasInvalido.Value %>");
-            $("#<%= FechaFiltroFinBox.ClientID %>").VerificarFechas("#<%= FechaFiltroInicioBox.ClientID %>","#<%= FechaFiltroFinBox.ClientID %>","<%= MensajeRangoDeFechasInvalido.Value %>");
+            $("#<%= FechaFiltroFinBox.ClientID %>").VerificarFechas("#<%= FechaFiltroInicioBox.ClientID %>","#<%= FechaFiltroFinBox.ClientID %>","<%= MensajeRangoDeFechasInvalido.Value %>");        
         }
     </script>
 </asp:Content>
@@ -50,7 +50,7 @@
                     <tr>
                         <td class="Nombre">Pre Orden</td>
                         <td class="Espacio"></td>
-                        <td class="CampoPequenio"><asp:TextBox CssClass="CajaTextoPequenia" ID="PreOrdenBusqueda" MaxLength="10" runat="server" Text=""></asp:TextBox></td>
+                        <td class="CampoPequenio"><asp:TextBox CssClass="CajaTextoPequenia" Enabled="false" ID="PreOrdenBusqueda" MaxLength="10" runat="server" Text=""></asp:TextBox></td>
                         <td><asp:ImageButton ID="ImagenBuscarPreOrden" ImageUrl="/Imagen/Icono/ImagenBuscar.gif" runat="server" onclick="ImagenBuscarPreOrden_Click" /></td>
                     </tr>
                 </table>
@@ -243,7 +243,7 @@
 
                         <div class="DivTabla">
                             <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
-                                CssClass="TablaInformacion" DataKeyNames="ProductoId" ID="TablaProducto"
+                                CssClass="TablaInformacion" DataKeyNames="Clave" ID="TablaPreOrdenBusqueda" OnRowCommand="TablaPreOrdenBusqueda_RowCommand"
                                  runat="server" PageSize="10">
                                 <EmptyDataTemplate>
                                     <table class="TablaVacia">
@@ -267,14 +267,14 @@
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Center" Width="30px" />
                                     </asp:TemplateField>
-                                    <asp:BoundField DataField="NombreEmpleado" HeaderText="NombreEmpleado" ItemStyle-HorizontalAlign="Center">
-                                        <HeaderStyle HorizontalAlign="Center" Width="60px" />
+                                    <asp:BoundField DataField="NombreEmpleado" HeaderText="Nombre Empleado" ItemStyle-HorizontalAlign="Center">
+                                        <HeaderStyle HorizontalAlign="Center" Width="25%" />
                                     </asp:BoundField>
                                     <asp:BoundField DataField="Estatus" HeaderText="Estatus" ItemStyle-HorizontalAlign="Center">
-                                        <HeaderStyle HorizontalAlign="Center" Width="60px" />
+                                        <HeaderStyle HorizontalAlign="Center" Width="25%" />
                                     </asp:BoundField>
-                                    <asp:BoundField DataField="Fecha" HeaderText="Fecha" ItemStyle-HorizontalAlign="Center">
-                                        <HeaderStyle HorizontalAlign="Center" Width="60px" />
+                                    <asp:BoundField DataField="FechaPreOrden" HeaderText="Fecha" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/MM/yyyy}">
+                                        <HeaderStyle HorizontalAlign="Center" Width="25%" />
                                     </asp:BoundField>
                                 </Columns>
                             </asp:GridView>

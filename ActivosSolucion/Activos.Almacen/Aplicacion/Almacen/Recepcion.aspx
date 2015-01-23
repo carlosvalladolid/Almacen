@@ -8,10 +8,13 @@
     <script src="/Incluir/Javascript/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
     <script src="/Incluir/Javascript/jquery.ui.datepicker-es.js" type="text/javascript"></script>
     <script src="/Incluir/Javascript/Calendar.js" type="text/javascript"></script>
-
+    <link href="/Incluir/Estilo/Privado/Popup.css" rel="Stylesheet" type="text/css" />
     <script language="javascript" type="text/javascript">
         function pageLoad(sender, args) {
             SetNewCalendar("#<%= FechaDocumentoNuevo.ClientID %>","#<%= FechaOrdenCompraNuevo.ClientID %>");
+            $("#<%= CantidadNuevo.ClientID %>").SoloNumeros();
+            $("#<%= PrecionUnitarioNuevo.ClientID %>").NumerosDecimales();
+            $("#<%= MontoDocumentoNuevo.ClientID %>").NumerosDecimales();
         }
     </script>
    
@@ -85,6 +88,11 @@
                         <td class="Espacio"></td>
                         <td class="Campo">                        
                            <asp:TextBox ID="OrderCompraNuevo" CssClass="CajaTextoMediana" MaxLength="15"  OnTextChanged ="LinkBuscarOrdenCompra_SelectedTextChanged" AutoPostBack="true" runat="server"></asp:TextBox>
+                                <asp:ImageButton ID="ImagenBuscarOrden" 
+                                ImageUrl="/Imagen/Icono/ImagenBuscar.gif" runat="server" />
+                         
+                         
+                         
                          </td>
                     </tr>
                     
@@ -150,7 +158,7 @@
                          <tr>
                             <td class="Nombre">Precio Unitario</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="PrecionUnitarioNuevo" OnTextChanged="CalcularMonto_Click" AutoPostBack="true"   runat="server" Text=""></asp:TextBox></td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="PrecionUnitarioNuevo" MaxLength="7" OnTextChanged="CalcularMonto_Click" AutoPostBack="true"   runat="server" Text=""></asp:TextBox></td>
                            
                         </tr>
                     
@@ -164,7 +172,7 @@
                          <tr>
                             <td class="Nombre">Monto</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="MontoDocumentoNuevo"  runat="server" Text=""></asp:TextBox></td>                           
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="MontoDocumentoNuevo" Enabled="false" MaxLength="7" runat="server" Text=""></asp:TextBox></td>                           
                         </tr>
                         
                          <tr>
@@ -239,7 +247,7 @@
                 <br /><br /><br /> 
                <asp:UpdateProgress AssociatedUpdatePanelID="PageUpdate" ID="AssociatedUpdate" runat="server">
                     <ProgressTemplate>
-                        <div class="LoadingDiv"><div class="LoadingImageDiv"><img alt="Cargando..." src="../../Image/Icon/LoadingIcon.gif" /></div></div>
+                        <div class="LoadingDiv"><div class="LoadingImageDiv"><img alt="Cargando..." src="../../../../Imagen/Icono/IconoCargando.gif" /></div></div>
                     </ProgressTemplate>
                 </asp:UpdateProgress>   
                 <br />

@@ -137,10 +137,6 @@ namespace Almacen.Web.Aplicacion.Almacen
         protected void AgregarProducto()
         {
             if (!ValidarAgregarProducto()) return;
-
-            
-            
-
             TemporalPreOrdenEntidad TemporalPreOrdenObjetoEntidad = new TemporalPreOrdenEntidad();
 
             TemporalPreOrdenObjetoEntidad.PreOrdenId = TemporalPreOrdenIdHidden.Value;
@@ -150,7 +146,7 @@ namespace Almacen.Web.Aplicacion.Almacen
             TemporalPreOrdenObjetoEntidad.ClaveProducto = ClaveNuevo.Text.Trim();
 
             //PENDIENTE DE CHECAR SI VA LLEVAR EL CAMPO DE ESTATUS POQUE EN EL DIAGRAMA NO APARECE 06/11/2014
-            TemporalPreOrdenObjetoEntidad.EstatusId = 1;
+            TemporalPreOrdenObjetoEntidad.EstatusId = Convert.ToInt16(ConstantePrograma.EstatusPreOrden.SinOC);
             TemporalPreOrdenObjetoEntidad.ProductoId = ProductoIdHidden.Value;
             TemporalPreOrdenObjetoEntidad.Cantidad = Int16.Parse(CantidadNuevo.Text.Trim());
 
@@ -297,7 +293,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 LimpiarProducto();
                 //12/enero/2015 oly...agregue esta linea creo que esto muestra el msg
                 MostrarMensaje(TextoInfo.MensajeNoPreOrden + ObtenerClavePreOrden(PreOrdenObjetoEntidad), ConstantePrograma.TipoMensajeSimpleAlerta);
-                MostrarMensaje(TextoInfo.MensajeGuardadoGenerico, ConstantePrograma.TipoMensajeAlerta);
+                //MostrarMensaje(TextoInfo.MensajeGuardadoGenerico, ConstantePrograma.TipoMensajeAlerta);
 
                 //********************************************************************************************
             }

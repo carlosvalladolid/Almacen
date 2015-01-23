@@ -30,6 +30,13 @@ namespace Activos.Comun.Constante
       public const string MensajeOrdenVacia = "Por favor, seleccione los articulos de la orden.";
       public const string MensajeConfirmacionOrden = "¿Desea guardar la Orden?";
 
+      //Mensajes Formulario Recepcion
+      public const string MensajeTipoDocumentoVacio = "No existen tipos de documentos.";
+      public const string MensajeSeleccioneTipoDocumento = "Por favor, especifique el tipo de documento.";
+      public const string MensajeFolioVacio = "Por favor, capture un folio.";
+      public const string MensajePrecioInvalido = "Por favor, especifique un precio válido.";
+      public const string MensajeMontoInvalido = "Por favor, especifique un monto válido";
+      public const string MensajeRecepcionVacia = "Por favor, especifique los productos de la recepción.";
 
       public const string MensajeRangoFechasInvalido = "Por favor, indique un rango de fechas valido.";
       public const string MensajeLimpiarFormulario = "¿Desea limpiar el formulario?";

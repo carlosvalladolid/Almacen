@@ -71,6 +71,11 @@ namespace Almacen.Web.Aplicacion.Almacen
             }
 
 
+            protected void TablaPreOrdenBusqueda_RowCommand(object sender, GridViewCommandEventArgs e)
+            {
+                TablaPreOrdenBusquedaRowCommand(e);
+            }
+
 
         #endregion
 
@@ -163,6 +168,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             private void LimpiarFormulario()
             {
+                ImagenBuscarPreOrden.Enabled = true;
                 PreOrdenBusqueda.Text = "";
                 FechaOrdenBox.Text = "";
                 ProveedorCombo.SelectedIndex = 0;
@@ -380,6 +386,10 @@ namespace Almacen.Web.Aplicacion.Almacen
                     case ConstantePrograma.ComandoAgregar:
                         GuardarProductoOrdenTemp(OrdenIdHidden.Value, PreOrdenId, ProductoId, SesionId);
                         SeleccionarPreOrdenDetalleSinOrden(Clave, SesionId);
+
+                        //Se inabilita el boton para cambiar de PreOrden
+                        ImagenBuscarPreOrden.Enabled = false;
+                        
                         break;
                 }
             }
@@ -466,7 +476,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 PreOrdenProceso PreOrdenProcesoNegocio = new PreOrdenProceso();
 
                 DateTime FechaInicio = DateTime.Parse(FechaFiltroInicioBox.Text);
-                DateTime FechaFin = DateTime.Parse(FechaFiltroInicioBox.Text);
+                DateTime FechaFin = DateTime.Parse(FechaFiltroFinBox.Text);
 
                 //AlmacenObjetoEntidad.Clave = ClaveProductoBusqueda.Text.Trim();
                 //AlmacenObjetoEntidad.Descripcion = NombreProductoBusqueda.Text.Trim();
@@ -476,12 +486,12 @@ namespace Almacen.Web.Aplicacion.Almacen
                 if (Resultado.ErrorId == 0)
                 {
                     if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
-                        TablaProducto.CssClass = ConstantePrograma.ClaseTablaVacia;
+                        TablaPreOrdenBusqueda.CssClass = ConstantePrograma.ClaseTablaVacia;
                     else
-                        TablaProducto.CssClass = ConstantePrograma.ClaseTabla;
+                        TablaPreOrdenBusqueda.CssClass = ConstantePrograma.ClaseTabla;
 
-                    TablaProducto.DataSource = Resultado.ResultadoDatos;
-                    TablaProducto.DataBind();
+                    TablaPreOrdenBusqueda.DataSource = Resultado.ResultadoDatos;
+                    TablaPreOrdenBusqueda.DataBind();
                 }
                 else
                 {
@@ -510,6 +520,47 @@ namespace Almacen.Web.Aplicacion.Almacen
                 else MostrarMensaje(Mensaje,ConstantePrograma.TipoErrorAlerta);
                 return false;                
             }
+
+
+
+
+            private void TablaPreOrdenBusquedaRowCommand(GridViewCommandEventArgs e)
+            {
+                //AlmacenEntidad AlmacenEntidadObjeto = new AlmacenEntidad();
+                Int16 intFila = 0;
+                int intTamañoPagina = 0;
+                string Clave = "";
+                string strCommand = string.Empty;
+
+                intFila = Int16.Parse(e.CommandArgument.ToString());
+                strCommand = e.CommandName.ToString();
+                intTamañoPagina = TablaPreOrdenBusqueda.PageSize;
+
+                if (intFila >= intTamañoPagina)
+                    intFila = (Int16)(intFila - (intTamañoPagina * TablaPreOrdenBusqueda.PageIndex));
+
+
+                switch (strCommand)
+                {
+                    case "Select":
+                        Clave = string.Format(TablaPreOrdenBusqueda.DataKeys[intFila]["Clave"].ToString());
+                        //AlmacenEntidadObjeto.Clave = ProductoId;
+                        //ProductoIdHidden.Value = Clave.ToString();
+                        //SeleccionarProductoMostrar(AlmacenEntidadObjeto);
+                        ValidarPreOrden(Clave);
+                        PreOrdenBusqueda.Text = Clave;
+                        CargaPanelInVisibleProducto();
+                        break;
+
+                    default:
+                        // Do nothing
+                        break;
+                }
+            }
+
+
+
+
         #endregion
     }
 }

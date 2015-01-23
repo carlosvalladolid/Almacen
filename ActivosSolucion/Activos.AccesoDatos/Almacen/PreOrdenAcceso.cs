@@ -431,11 +431,11 @@ namespace Activos.AccesoDatos.Almacen
                     Comando.Parameters.Add(Parametro);
 
                     Parametro = new SqlParameter("@FechaInicio", SqlDbType.DateTime);
-                    Parametro.Value = FechaInicio.ToShortDateString();
+                    Parametro.Value = FechaInicio.ToString(ConstantePrograma.SqlServerFormatoFecha);
                     Comando.Parameters.Add(Parametro);
 
                     Parametro = new SqlParameter("@FechaFin", SqlDbType.DateTime);
-                    Parametro.Value = FechaFin.ToShortDateString();
+                    Parametro.Value = FechaFin.ToString(ConstantePrograma.SqlServerFormatoFecha);
                     Comando.Parameters.Add(Parametro);
 
                     Adaptador = new SqlDataAdapter(Comando);

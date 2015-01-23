@@ -95,6 +95,15 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.TextBox OrderCompraNuevo;
         
         /// <summary>
+        /// ImagenBuscarOrden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImagenBuscarOrden;
+        
+        /// <summary>
         /// FechaOrdenCompraNuevo control.
         /// </summary>
         /// <remarks>
@@ -415,6 +424,6 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-      
+
     }
 }

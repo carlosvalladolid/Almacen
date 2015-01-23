@@ -8,7 +8,7 @@ Requisición
 5. Se guarda un registro en la tabla RequisicionEncabezadoTemp, aún y cuando entra una validación (exceder el máximo permitido y producto sin existencia).
 6. Marca error al querer guardar una segunda requisición. (** LISTO **)
 7. No funciona el borrado de los registros de la requisición. (** LISTO **)
-8. No Guarda (** LISTO **) (Guardo solo no le movi a nada xD )
+8. No Guarda (** LISTO **)
 9. Cantidad total de articulos no aparece (** LISTO **)
 
 Pre Orden
@@ -21,24 +21,30 @@ Pre Orden
 6. En el primer producto agregado, debe bloquearse el cambio de fecha. (** LISTO **)
 7. Al seleccionar empleado, limpiar el Jefe (** LISTO **)
 8. Cantidad total de articulos no aparece (** LISTO **)
-
+9. Los estatus no corresponden a los definidos en el sistema (NO)
+	Estatus:
+		Sin Orden de Compra (OK)
+		COn Orden de Compra Incompleta
+		Con Orden de Compra Completa
 
 
 Orden de compra
 --------------------------------------
 1. No hay botón de imprimir. (** Agregado e boton pero falta funcionalidad * SE IMPRIME NORMAL SIN ENVIAR POR CORREO)
 2. Mostrar la fecha actual en el campo Fecha orden. (** LISTO **)
-3. No está habilitada la funcionalidad de búsqueda de pre órdenes de compra.(NO)
+3. No está habilitada la funcionalidad de búsqueda de pre órdenes de compra.(*** LISTO ***)
 4. No se generó el folio de la orden de compra. (** LISTO **)
 5. Validar formulario, marca errores al dar clic en guardar. (** LISTO **)
 6. No borra objetos de la orden de compra. (NO)
+7. Cuando se hace el cambio de PreOrdenes en la busqueda permite agregar articulos de otras PreOrdenes (** LISTO **)
 
 Recepción
 --------------------------------------
 1. El campo de jefe inmediato no se está llenando. (NO)
-2. No existe funcionalidad para búsqueda de productos. (NO) (COPIAR FUNCIONALIDAD DE LA BUSQUEDA EN PRE ORDEN)
-3. No se está validando la entrada de números en el campo Cantidad. (NO)
+2. No existe funcionalidad para búsqueda de productos. (** LISTO **)
+3. No se está validando la entrada de números en el campo Cantidad. (** LISTO **)
 4. No se están agregando los productos en el detalle. (NO)
+5. Busqueda por Orden de compra (No)
 
 
 Orden de salida

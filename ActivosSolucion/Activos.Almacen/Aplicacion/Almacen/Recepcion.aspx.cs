@@ -41,7 +41,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
         {
             //if (Page.IsValid)
             //{
-                GuardarRecepcion();
+            if (ValidarFormulario()) GuardarRecepcion();
             //}
         }
 
@@ -57,7 +57,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         protected void BotonAgregar_Click(object sender, ImageClickEventArgs e)
         {
-            AgregarDetalleDocumento();
+            if (ValidarAgregarProducto()) AgregarDetalleDocumento();
 
         }
 
@@ -735,7 +735,63 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
         }
-               
+
+        private Boolean ValidarFormulario()
+        {
+            ConstantePrograma.EstatusPreOrden
+            String Mensaje = "";
+            Single PrecioTemp = new Single();
+            Single MontoTemp = new Single();
+            Int16 CantidadTemp = new Int16();
+            DateTime FechaTemp = new DateTime();
+            if (!Single.TryParse(MontoDatosNuevo.Text, out MontoTemp)) Mensaje = TextoInfo.MensajeMontoInvalido;
+            if (!Int16.TryParse(CantidadNuevo.Text, out CantidadTemp)) Mensaje = TextoInfo.MensajeCantidadGenerico;
+            if (!Single.TryParse(PrecionUnitarioNuevo.Text, out PrecioTemp)) Mensaje = TextoInfo.MensajePrecioInvalido;
+            if (String.IsNullOrEmpty(FolioNuevo.Text)) Mensaje = TextoInfo.MensajeFolioVacio;
+            
+            if (SolicitanteIdNuevo.SelectedIndex == 0) Mensaje = TextoInfo.MensajeSolicitanteGenerico;
+
+            if (ProveedorIdNuevo.Items.Count > 0)
+            {
+                if (ProveedorIdNuevo.SelectedIndex == 0) Mensaje = TextoInfo.MensajeSeleccioneProveedor;
+            }
+            else
+            {   
+                Mensaje = TextoInfo.MensajeProveedoresVacio;
+            }
+
+            if (TipoDocumentoIdNuevo.Items.Count > 0)
+            {
+                if (TipoDocumentoIdNuevo.SelectedIndex == 0) Mensaje = TextoInfo.MensajeSeleccioneTipoDocumento;
+            }
+            else
+            {
+                Mensaje = TextoInfo.MensajeTipoDocumentoVacio;
+            }
+
+            if (TablaRecepcion.Rows.Count <= 0) Mensaje = TextoInfo.MensajeRecepcionVacia;
+            if (!DateTime.TryParse(FechaDocumentoNuevo.Text, out FechaTemp)) Mensaje = TextoInfo.MensajeFechaGenerico;
+            if (!Single.TryParse(MontoDatosNuevo.Text, out MontoTemp)) Mensaje = TextoInfo.MensajeMontoInvalido;
+
+            if (Mensaje == "") return true;
+            else MostrarMensaje(Mensaje, "Error");
+            return false;
+        }
+
+        private Boolean ValidarAgregarProducto()
+        {
+            String Mensaje = "";
+            Int16 NumeroTemporal = 0;
+            if (!Int16.TryParse(CantidadNuevo.Text, out NumeroTemporal)) Mensaje = TextoInfo.MensajeCantidadGenerico;
+            if (NumeroTemporal == 0) Mensaje = TextoInfo.MensajeCantidadGenerico;
+            if (String.IsNullOrEmpty(ClaveNuevo.Text)) Mensaje = TextoInfo.MensajeClaveGenerico;
+            
+            if (SolicitanteIdNuevo.SelectedIndex == 0) Mensaje = TextoInfo.MensajeSolicitanteGenerico;
+
+            if (Mensaje == "") return true;
+            else MostrarMensaje(Mensaje, "Error");
+            return false;
+        }
         #endregion
 
 
