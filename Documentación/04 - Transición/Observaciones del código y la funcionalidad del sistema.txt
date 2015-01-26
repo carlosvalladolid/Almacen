@@ -49,7 +49,11 @@ Recepción
 
 Orden de salida
 --------------------------------------
-1. No está completa la funcionalidad. (NO)
+1. Falta la funcionalidad de buscar requisiciones.
+2. 
+
+
+
 
 
 hugo.garcia@nuevoleon.gob.mx

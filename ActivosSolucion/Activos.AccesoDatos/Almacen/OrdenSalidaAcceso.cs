@@ -5,7 +5,8 @@ using System.Text;
 
 namespace Activos.AccesoDatos.Almacen
 {
-    class OrdenSalidaAcceso
+    public class OrdenSalidaAcceso : Base
     {
+
     }
 }

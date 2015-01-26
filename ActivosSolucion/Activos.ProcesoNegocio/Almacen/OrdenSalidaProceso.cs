@@ -5,7 +5,8 @@ using System.Text;
 
 namespace Activos.ProcesoNegocio.Almacen
 {
-    class OrdenSalidaProceso
+    public class OrdenSalidaProceso : Base
     {
+
     }
 }
