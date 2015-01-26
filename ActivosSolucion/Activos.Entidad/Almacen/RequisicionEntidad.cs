@@ -18,6 +18,8 @@ namespace Activos.Entidad.Almacen
         public string _Nombre;
 
         private string _SesionId;
+        private string _FechaInicial;
+        private string _FechaFinal;
 
         public RequisicionEntidad()
         { 
@@ -32,6 +34,8 @@ namespace Activos.Entidad.Almacen
             _Nombre = string.Empty;
 
             _SesionId = string.Empty;
+            _FechaInicial = string.Empty;
+            _FechaFinal = string.Empty;
         }
 
         public string RequisicionId
@@ -95,6 +99,24 @@ namespace Activos.Entidad.Almacen
         {
             get { return _SesionId; }
             set { _SesionId = value; }
+        }
+
+        /// <summary>
+        ///     Fecha inicial del rango de búsqueda.
+        /// </summary>
+        public string FechaInicial
+        {
+            get { return _FechaInicial; }
+            set { _FechaInicial = value; }
+        }
+
+        /// <summary>
+        ///     Fecha final del rango de búsqueda.
+        /// </summary>
+        public string FechaFinal
+        {
+            get { return _FechaFinal; }
+            set { _FechaFinal = value; }
         }
     }
 }

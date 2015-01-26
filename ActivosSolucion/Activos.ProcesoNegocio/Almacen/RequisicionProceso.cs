@@ -310,6 +310,21 @@ namespace Activos.ProcesoNegocio.Almacen
                 return Resultado;
             }
 
+            /// <summary>
+            ///     Busca información de las requisiciones que coincidan con los parámetros enviados.
+            /// </summary>
+            public void SeleccionarRequisicionSalida()
+            {
+                string CadenaConexion = string.Empty;
+                RequisicionAcceso RequisicionAcceso = new RequisicionAcceso();
+
+                CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+                _ResultadoDatos = RequisicionAcceso.SeleccionarRequisicionSalida(_RequisicionEntidad, CadenaConexion);
+
+                return;
+            }
+
             public bool ValidarProductoRequisicion(RequisicionEntidad RequisicionObjetoEntidad)
             {
                 bool Resultado = true;

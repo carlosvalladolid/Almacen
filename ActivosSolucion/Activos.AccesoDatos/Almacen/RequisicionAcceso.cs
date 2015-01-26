@@ -437,8 +437,6 @@ namespace Activos.AccesoDatos.Almacen
                 }
             }
 
-
-
             /// <summary>
             ///     Obtiene la información del encabezado de la Requisicion con el ID de la requisicion.
             /// </summary>
@@ -479,8 +477,61 @@ namespace Activos.AccesoDatos.Almacen
                 }
             }
 
+            /// <summary>
+            ///     Busca información de las requisiciones que coincidan con los parámetros enviados.
+            /// </summary>
+            /// <param name="RequisicionEntidad">Entidad de la requisición.</param>
+            /// <param name="CadenaConexion">Cadena de conexión a la base de datos.</param>
+            /// <returns>Resultado de a búsqueda.</returns>
+            public DataSet SeleccionarRequisicionSalida(RequisicionEntidad RequisicionEntidad, string CadenaConexion)
+            {
+                DataSet Resultado = new DataSet();
+                SqlConnection Conexion = new SqlConnection(CadenaConexion);
+                SqlCommand Comando;
+                SqlParameter Parametro;
+                SqlDataAdapter Adaptador;
 
+                try
+                {
+                    Comando = new SqlCommand("SeleccionarRequisicionSalida", Conexion);
+                    Comando.CommandType = CommandType.StoredProcedure;
 
+                    Parametro = new SqlParameter("RequisicionId", SqlDbType.VarChar);
+                    Parametro.Value = RequisicionEntidad.RequisicionId;
+                    Comando.Parameters.Add(Parametro);
+
+                    Parametro = new SqlParameter("Empleado", SqlDbType.VarChar);
+                    Parametro.Value = RequisicionEntidad.Nombre;
+                    Comando.Parameters.Add(Parametro);
+
+                    Parametro = new SqlParameter("FechaInicial", SqlDbType.VarChar);
+                    Parametro.Value = RequisicionEntidad.FechaInicial;
+                    Comando.Parameters.Add(Parametro);
+
+                    Parametro = new SqlParameter("FechaFinal", SqlDbType.VarChar);
+                    Parametro.Value = RequisicionEntidad.FechaFinal;
+                    Comando.Parameters.Add(Parametro);
+
+                    Parametro = new SqlParameter("EstatusId", SqlDbType.VarChar);
+                    Parametro.Value = RequisicionEntidad.EstatusId;
+                    Comando.Parameters.Add(Parametro);
+
+                    Adaptador = new SqlDataAdapter(Comando);
+
+                    Conexion.Open();
+                    Adaptador.Fill(Resultado);
+                    Conexion.Close();
+
+                    return Resultado;
+                }
+                catch (SqlException Excepcion)
+                {
+                    _ErrorId = Excepcion.Number;
+                    _DescripcionError = Excepcion.Message;
+
+                    return Resultado;
+                }
+            }
         #endregion
     }
 }
