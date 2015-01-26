@@ -40,11 +40,11 @@ Orden de compra
 
 Recepción
 --------------------------------------
-1. El campo de jefe inmediato no se está llenando. (NO)
+1. El campo de jefe inmediato no se está llenando. (** LISTO **)
 2. No existe funcionalidad para búsqueda de productos. (** LISTO **)
 3. No se está validando la entrada de números en el campo Cantidad. (** LISTO **)
 4. No se están agregando los productos en el detalle. (NO)
-5. Busqueda por Orden de compra (No)
+5. Busqueda por Orden de compra (** LISTO **)
 
 
 Orden de salida

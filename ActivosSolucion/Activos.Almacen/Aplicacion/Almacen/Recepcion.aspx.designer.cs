@@ -41,6 +41,24 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.Panel PanelNuevoRegistroDatosGenerales;
         
         /// <summary>
+        /// OrderCompraNuevo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox OrderCompraNuevo;
+        
+        /// <summary>
+        /// ImagenBuscarOrden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImagenBuscarOrden;
+        
+        /// <summary>
         /// ProveedorIdNuevo control.
         /// </summary>
         /// <remarks>
@@ -84,24 +102,6 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox MontoDatosNuevo;
-        
-        /// <summary>
-        /// OrderCompraNuevo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox OrderCompraNuevo;
-        
-        /// <summary>
-        /// ImagenBuscarOrden control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImagenBuscarOrden;
         
         /// <summary>
         /// FechaOrdenCompraNuevo control.
@@ -390,6 +390,105 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton BotonCancelar;
+        
+        /// <summary>
+        /// pnlFondoBuscarOrden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlFondoBuscarOrden;
+        
+        /// <summary>
+        /// PanelBusquedaOrden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PanelBusquedaOrden;
+        
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// OrdenBusquedaBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox OrdenBusquedaBox;
+        
+        /// <summary>
+        /// FechaFiltroInicioOrdenBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox FechaFiltroInicioOrdenBox;
+        
+        /// <summary>
+        /// FechaFiltroFinOrdenBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox FechaFiltroFinOrdenBox;
+        
+        /// <summary>
+        /// TablaOrdenBusqueda control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView TablaOrdenBusqueda;
+        
+        /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+        
+        /// <summary>
+        /// BotonOrdenBusqueda control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton BotonOrdenBusqueda;
+        
+        /// <summary>
+        /// BotonOrdenCerrar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton BotonOrdenCerrar;
+        
+        /// <summary>
+        /// MensajeRangoDeFechasInvalido control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField MensajeRangoDeFechasInvalido;
         
         /// <summary>
         /// TemporalRecepcionIdHidden control.

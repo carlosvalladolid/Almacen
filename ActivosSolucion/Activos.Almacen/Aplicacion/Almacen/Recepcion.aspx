@@ -12,9 +12,15 @@
     <script language="javascript" type="text/javascript">
         function pageLoad(sender, args) {
             SetNewCalendar("#<%= FechaDocumentoNuevo.ClientID %>","#<%= FechaOrdenCompraNuevo.ClientID %>");
+            SetNewCalendar("#<%=FechaFiltroInicioOrdenBox.ClientID %>");
+            SetNewCalendar("#<%=FechaFiltroFinOrdenBox.ClientID %>");
             $("#<%= CantidadNuevo.ClientID %>").SoloNumeros();
+            $("#<%= MontoDatosNuevo.ClientID %>").SoloNumeros();
             $("#<%= PrecionUnitarioNuevo.ClientID %>").NumerosDecimales();
             $("#<%= MontoDocumentoNuevo.ClientID %>").NumerosDecimales();
+            $("#<%= FechaFiltroInicioOrdenBox.ClientID %>").VerificarFechas("#<%= FechaFiltroInicioOrdenBox.ClientID %>","#<%= FechaFiltroFinOrdenBox.ClientID %>","<%= MensajeRangoDeFechasInvalido.Value %>");
+            $("#<%= FechaFiltroFinOrdenBox.ClientID %>").VerificarFechas("#<%= FechaFiltroInicioOrdenBox.ClientID %>","#<%= FechaFiltroFinOrdenBox.ClientID %>","<%= MensajeRangoDeFechasInvalido.Value %>");        
+       
         }
     </script>
    
@@ -51,6 +57,15 @@
              
               <asp:Panel CssClass="NewRowDiv" ID="PanelNuevoRegistroDatosGenerales" Visible="true" runat="server">
               <table class="TablaFormulario">
+                    <tr>
+                        <td class="Nombre">Orden de Compra</td>
+                        <td class="Espacio"></td>
+                        <td class="Campo">                        
+                           <asp:TextBox ID="OrderCompraNuevo" CssClass="CajaTextoMediana" Enabled="false" MaxLength="15"  OnTextChanged ="LinkBuscarOrdenCompra_SelectedTextChanged" AutoPostBack="true" runat="server"></asp:TextBox>
+                                <asp:ImageButton ID="ImagenBuscarOrden" OnClick="OrdenCompraNuevo_Click"
+                                ImageUrl="/Imagen/Icono/ImagenBuscar.gif" runat="server" />
+                         </td>
+                    </tr>
                      <tr>
                         <td class="Nombre">Proveedor</td>
                         <td class="Espacio">*</td>
@@ -83,18 +98,7 @@
                         <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="MontoDatosNuevo" runat="server" Text=""></asp:TextBox></td>
                     </tr>
                     
-                    <tr>
-                        <td class="Nombre">Orden de Compra</td>
-                        <td class="Espacio"></td>
-                        <td class="Campo">                        
-                           <asp:TextBox ID="OrderCompraNuevo" CssClass="CajaTextoMediana" MaxLength="15"  OnTextChanged ="LinkBuscarOrdenCompra_SelectedTextChanged" AutoPostBack="true" runat="server"></asp:TextBox>
-                                <asp:ImageButton ID="ImagenBuscarOrden" 
-                                ImageUrl="/Imagen/Icono/ImagenBuscar.gif" runat="server" />
-                         
-                         
-                         
-                         </td>
-                    </tr>
+
                     
                       <tr>
                         <td class="Nombre">Fecha O.C</td>
@@ -158,14 +162,14 @@
                          <tr>
                             <td class="Nombre">Precio Unitario</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="PrecionUnitarioNuevo" MaxLength="7" OnTextChanged="CalcularMonto_Click" AutoPostBack="true"   runat="server" Text=""></asp:TextBox></td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="PrecionUnitarioNuevo" MaxLength="7" OnTextChanged="PrecionUnitarioNuevo_SelectedTextChanged" AutoPostBack="true"   runat="server" Text=""></asp:TextBox></td>
                            
                         </tr>
                     
 						 <tr>
                             <td class="Nombre">Cantidad</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="CantidadNuevo"  MaxLength = "5" runat="server" Text=""></asp:TextBox></td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="CantidadNuevo"  MaxLength = "5" OnTextChanged="CantidadNuevo_SelectedTextChanged" AutoPostBack="true"  runat="server" Text=""></asp:TextBox></td>
                            
                         </tr>
                         
@@ -331,9 +335,92 @@
                 </asp:Panel>
                 
                 
+                <%--POPUP Busqueda por Orden--%>
+                <asp:Panel CssClass="Superposicion" ID="pnlFondoBuscarOrden" runat="server" Visible="false"></asp:Panel>
+
+                <asp:Panel CssClass="PopupGrandeDiv" ID="PanelBusquedaOrden" Visible="false" runat="server">
+                    <div class="PopupGrandeEncabezadoDiv">                    
+                        <asp:Label class="TitleDivPage" ID="Label1" runat="server" Text="Busqueda de Productos"></asp:Label>
+                    </div>
+
+                    <div class="PopupGrandeCuerpoDiv">
+                        <div>
+                            <table class="TablaFormulario">
+                                <tr>
+                                    <td class="Nombre">Clave Orden</td>
+                                    <td class="Espacio"></td>
+                                    <td class="Campo"><asp:TextBox CssClass="CajaTextoPequenia" ID="OrdenBusquedaBox" MaxLength="20" runat="server" Text=""></asp:TextBox>
+                                                      
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="Nombre">Fecha Inicio</td>
+                                    <td class="Espacio"></td>
+                                    <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="FechaFiltroInicioOrdenBox" MaxLength="11" runat="server" Text=""></asp:TextBox></td>
+                                </tr>
+                                <tr>
+                                    <td class="Nombre">Fecha Fin</td>
+                                    <td class="Espacio"></td>
+                                    <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="FechaFiltroFinOrdenBox" MaxLength="11" runat="server" Text=""></asp:TextBox></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="DivTabla">
+                            <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
+                                CssClass="TablaInformacion" DataKeyNames="Clave" ID="TablaOrdenBusqueda" OnRowCommand="TablaOrdenBusqueda_RowCommand"
+                                 runat="server" PageSize="10">
+                                <EmptyDataTemplate>
+                                    <table class="TablaVacia">
+                                        <tr class="Encabezado">
+                                            <th style="width: 30px;">Clave Orden</th>
+                                            <th  style="width: 60px;">Nombre Empleado</th>
+                                            <th  style="width: 60px;">Estatus</th>
+                                            <th  style="width: 60px;">Proveedor</th>
+                                            <th  style="width: 60px;">Fecha</th>
+                                        </tr>
+                                        <tr>
+                                        <td colspan="5" style="text-align: Center;">No se encontró información con los parámetros seleccionados</td>
+                                        </tr>
+                                    </table>
+                                </EmptyDataTemplate>
+                                <HeaderStyle CssClass="Encabezado" />
+                                <PagerStyle CssClass="Paginacion" HorizontalAlign="Right" />
+                                <Columns>
+                                    <asp:TemplateField HeaderText="Clave">
+                                        <ItemTemplate>
+                                        <asp:LinkButton CommandArgument="<%#Container.DataItemIndex%>" CommandName="Select" ID="LigaClave" runat="server" Text='<%#Eval("Clave")%>'></asp:LinkButton>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Center" Width="20%" />
+                                    </asp:TemplateField>
+                                    <asp:BoundField DataField="NombreEmpleado" HeaderText="Nombre Empleado" ItemStyle-HorizontalAlign="Center">
+                                        <HeaderStyle HorizontalAlign="Center" Width="20%" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="Estatus" HeaderText="Estatus" ItemStyle-HorizontalAlign="Center">
+                                        <HeaderStyle HorizontalAlign="Center" Width="20%" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="Proveedor" HeaderText="Proveedor" ItemStyle-HorizontalAlign="Center">
+                                        <HeaderStyle HorizontalAlign="Center" Width="20%" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="FechaOrden" HeaderText="Fecha" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/MM/yyyy}">
+                                        <HeaderStyle HorizontalAlign="Center" Width="20%" />
+                                    </asp:BoundField>
+                                </Columns>
+                            </asp:GridView>
+                        </div>                    
+                    </div>
+
+                    <div class="PopupGrandePieDiv">
+                         <asp:Label Font-Bold="true" CssClass="TextoError" ID="Label2" runat="server" Text="" ></asp:Label><br />
+                         &nbsp;&nbsp;
+                         <asp:ImageButton ID="BotonOrdenBusqueda" OnClick="BotonOrdenBusqueda_Click" runat="server" ImageUrl="~/Imagen/Boton/BotonBuscar.png" />
+                         &nbsp;
+                         <asp:ImageButton ID="BotonOrdenCerrar" OnClick="BotonCerrarOrdenBusqueda_Click" runat="server" ImageUrl="~/Imagen/Boton/BotonCancelar.png" />                   
+                    </div>
+                </asp:Panel> 
+
                 
-                
-                
+                    <asp:HiddenField ID= "MensajeRangoDeFechasInvalido" runat="server" Value=""/>
                      <asp:HiddenField ID="TemporalRecepcionIdHidden" runat="server" Value="" />
                      <asp:HiddenField ID="ProductoIdHidden" runat="server" Value="" />
                      <asp:HiddenField ID="OrdenIdHidden" runat="server" Value="" />

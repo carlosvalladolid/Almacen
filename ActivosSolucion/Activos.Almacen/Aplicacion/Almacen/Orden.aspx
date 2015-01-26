@@ -210,7 +210,7 @@
                     </tr>
                 </table>
 
-                <%--POPUP Busqueda por Orden--%>
+                <%--POPUP Busqueda por PreOrden--%>
                 <asp:Panel CssClass="Superposicion" ID="pnlFondoBuscarProducto" runat="server" Visible="false"></asp:Panel>
 
                 <asp:Panel CssClass="PopupGrandeDiv" ID="PanelBusquedaProducto" Visible="false" runat="server">

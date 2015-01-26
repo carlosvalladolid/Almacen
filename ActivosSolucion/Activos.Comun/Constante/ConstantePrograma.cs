@@ -17,6 +17,7 @@ namespace Activos.Comun.Constante
         public const string EspañolFormatoFecha = "dd/mm/aaaa";
         public const string InglesFormatoFecha = "mm/dd/aaaa";
         public const string UniversalFormatoFecha = "aaaa/mm/dd";
+        public const string EspañolFormatoFecha2 = "dd/MM/yyyy";
         public const string SqlServerFormatoFecha = "yyyy-MM-dd HH:mm:ss";
 
         // Nombres de clases para los gridviews de la aplicación

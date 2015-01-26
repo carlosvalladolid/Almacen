@@ -350,6 +350,20 @@ namespace Activos.ProcesoNegocio.Almacen
                 return Resultado;
             }
 
+            /// <summary>
+            ///     Obtiene la info de la tabla OrdenEncabezado por rangos de fecha
+            /// </summary>
+            public ResultadoEntidad SeleccionarOrdenEncabezadoPorRangoFechas(string Clave,DateTime FechaInicio,DateTime FechaFin)
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                OrdenAcceso OrdenAcceso = new OrdenAcceso();
+                string CadenaConexion = String.Empty;
+                CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+                Resultado = OrdenAcceso.SeleccionarOrdenEncabezadoBusquedaPorRangoFechas(Clave, FechaInicio, FechaFin, CadenaConexion);
+
+                return Resultado;
+            }
         #endregion
     }
 }

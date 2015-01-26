@@ -61,38 +61,59 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         }
 
-        protected void CalcularMonto_Click(object sender, EventArgs e)
+        protected void CantidadNuevo_SelectedTextChanged(object sender, EventArgs e)
         {
-         
+            ObtenerMonto();
+        }
+
+        protected void PrecionUnitarioNuevo_SelectedTextChanged(object sender, EventArgs e)
+        {
+            ObtenerMonto();
+        }
+
+        private bool ObtenerMonto()
+        {
             int PrecioUnitario = 0;
             int Cantidad = 0;
-            int Resultado = 0;
+            //decimal Resultado = 0;
+            string Mensaje = "";
+            if (!Int32.TryParse(PrecionUnitarioNuevo.Text.Trim(), out PrecioUnitario)) Mensaje = TextoInfo.MensajePrecioInvalido;
+            if (!Int32.TryParse(CantidadNuevo.Text.Trim(), out Cantidad)) Mensaje = TextoInfo.MensajeCantidadGenerico;
 
-            if (PrecionUnitarioNuevo.Text != "0")
+            if (Mensaje == "")
             {
-               
-                PrecioUnitario = int.Parse(PrecionUnitarioNuevo.Text.Trim());
-               
-                if (CantidadNuevo.Text == "")
-                {
-                    Cantidad= 0;
-                }
-                else
-                {
-                    Cantidad = int.Parse(CantidadNuevo.Text.Trim());
-                }
-                Resultado = (PrecioUnitario * Cantidad);
-
-                MontoDocumentoNuevo.Text = Resultado.ToString();
+                MontoDocumentoNuevo.Text = ((decimal)(PrecioUnitario * Cantidad)).ToString();
+                return true;
             }
-            else
-            {
+                
+            MostrarMensaje(Mensaje,ConstantePrograma.TipoErrorAlerta);
+            return false;
 
-                EtiquetaMensaje.Text = "Capture el Precio";
-                PrecionUnitarioNuevo.Focus();
 
-            }
+            //if (PrecionUnitarioNuevo.Text != "0")
+            //{
 
+            //    PrecioUnitario = int.Parse(PrecionUnitarioNuevo.Text.Trim());
+
+            //    if (CantidadNuevo.Text == "")
+            //    {
+            //        Cantidad = 0;
+            //    }
+            //    else
+            //    {
+            //        Cantidad = int.Parse(CantidadNuevo.Text.Trim());
+            //    }
+            //    Resultado = (PrecioUnitario * Cantidad);
+
+            //    MontoDocumentoNuevo.Text = Resultado.ToString();
+            //}
+            //else
+            //{
+
+            //    EtiquetaMensaje.Text = "Capture el Precio";
+            //    PrecionUnitarioNuevo.Focus();
+
+            //}
         }
 
         protected void SolicitanteCombo_SelectedIndexChanged(object sender, EventArgs e)
@@ -100,9 +121,25 @@ namespace Activos.Almacen.Aplicacion.Almacen
             SeleccionarJefe(Int16.Parse(SolicitanteIdNuevo.SelectedValue));
         }
 
+        protected void BotonCerrarOrdenBusqueda_Click(object sender, ImageClickEventArgs e)
+        {
+            CargaPanelInVisibleOrden();
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             Inicio();
+        }
+
+        protected void OrdenCompraNuevo_Click(object sender, ImageClickEventArgs e)
+        {
+            CargaPanelVisibleOrden();
+        }
+
+
+        protected void TablaOrdenBusqueda_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            TablaOrdenBusquedaRowCommand(e);
         }
 
         //protected void ddlFamilia_SelectedIndexChanged(object sender, EventArgs e)
@@ -117,12 +154,18 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         protected void LinkBuscarOrdenCompra_SelectedTextChanged(object sender, EventArgs e)
         {
-            SeleccionarOrdenCompra();
+            //SeleccionarOrdenCompra(Clave);
         }
 
         protected void TablaProducto_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             TablaProductoRowCommand(e);
+        }
+
+
+        protected void BotonOrdenBusqueda_Click(object sender, ImageClickEventArgs e)
+        {
+            if (VerificarFechas(FechaFiltroInicioOrdenBox.Text,FechaFiltroFinOrdenBox.Text)) BuscarOrden();
         }
 
         protected void TablaRecepcion_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -133,6 +176,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
         #endregion
 
         #region "Métodos"
+
 
         protected void AgregarDetalleDocumento()
         {
@@ -196,6 +240,34 @@ namespace Activos.Almacen.Aplicacion.Almacen
                 // MostrarMensaje(AlmacenProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
             }
         }
+
+        private void BuscarOrden()
+        {
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            OrdenProceso OrdenProcesoNegocio = new OrdenProceso();
+
+            DateTime FechaInicio = DateTime.Parse(FechaFiltroInicioOrdenBox.Text);
+            DateTime FechaFin = DateTime.Parse(FechaFiltroFinOrdenBox.Text);
+
+            Resultado = OrdenProcesoNegocio.SeleccionarOrdenEncabezadoPorRangoFechas(OrdenBusquedaBox.Text, FechaInicio, FechaFin);
+
+            if (Resultado.ErrorId == 0)
+            {
+                if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
+                    TablaOrdenBusqueda.CssClass = ConstantePrograma.ClaseTablaVacia;
+                else
+                    TablaOrdenBusqueda.CssClass = ConstantePrograma.ClaseTabla;
+
+                TablaOrdenBusqueda.DataSource = Resultado.ResultadoDatos;
+                TablaOrdenBusqueda.DataBind();
+            }
+            else
+            {
+                //EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+                // MostrarMensaje(AlmacenProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+            }
+        }
+
 
         protected void GuardarRecepcion()
         {
@@ -304,7 +376,8 @@ namespace Activos.Almacen.Aplicacion.Almacen
         {
             if (Page.IsPostBack)
                 return;
-           
+
+            MensajeRangoDeFechasInvalido.Value = TextoInfo.MensajeRangoFechasInvalido;
             SeleccionarProveedor();
             SeleccionarEmpleado();
             BuscarJefe();
@@ -350,11 +423,11 @@ namespace Activos.Almacen.Aplicacion.Almacen
         //    }
         //}
 
-        protected void SeleccionarOrdenCompra()
+        protected void SeleccionarOrdenCompra(string Clave)
         {
             OrdenProceso OrdenProceso = new OrdenProceso();
-          
-            OrdenProceso.OrdenEncabezadoEntidad.Clave = OrderCompraNuevo.Text.Trim();
+
+            OrdenProceso.OrdenEncabezadoEntidad.Clave = Clave;
 
             OrdenProceso.SeleccionarBusquedaOrdenCompra();
 
@@ -366,9 +439,10 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
             if (OrdenProceso.ResultadoDatos.Tables[0].Rows.Count > 0)
             {
-                FechaOrdenCompraNuevo.Text = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["FechaOrden"].ToString();
+                FechaOrdenCompraNuevo.Text = String.Format("{0:" + ConstantePrograma.EspañolFormatoFecha2 + "}", OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["FechaOrden"]);
                 SolicitanteIdNuevo.SelectedValue = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["EmpleadoId"].ToString();
                 BuscarJefe();
+                ProveedorIdNuevo.SelectedValue = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["ProveedorId"].ToString();
                // JefeInmediatoIdNuevo.SelectedValue = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["EmpleadoIdJefe"].ToString();
                 OrdenIdHidden.Value = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["OrdenId"].ToString();
 
@@ -738,7 +812,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
         private Boolean ValidarFormulario()
         {
-            ConstantePrograma.EstatusPreOrden
+            //ConstantePrograma.EstatusPreOrden
             String Mensaje = "";
             Single PrecioTemp = new Single();
             Single MontoTemp = new Single();
@@ -792,6 +866,72 @@ namespace Activos.Almacen.Aplicacion.Almacen
             else MostrarMensaje(Mensaje, "Error");
             return false;
         }
+
+
+        private void CargaPanelInVisibleOrden()
+        {
+            PanelBusquedaOrden.Visible = false;
+            pnlFondoBuscarOrden.Visible = false;
+        }
+
+        private void CargaPanelVisibleOrden()
+        {
+            PanelBusquedaOrden.Visible = !PanelBusquedaOrden.Visible;
+            pnlFondoBuscarOrden.Visible = !pnlFondoBuscarOrden.Visible;
+        }
+
+
+
+
+            private void TablaOrdenBusquedaRowCommand(GridViewCommandEventArgs e)
+            {
+                Int16 intFila = 0;
+                int intTamañoPagina = 0;
+                string Clave = "";
+                string strCommand = string.Empty;
+
+                intFila = Int16.Parse(e.CommandArgument.ToString());
+                strCommand = e.CommandName.ToString();
+                intTamañoPagina = TablaOrdenBusqueda.PageSize;
+
+                if (intFila >= intTamañoPagina)
+                    intFila = (Int16)(intFila - (intTamañoPagina * TablaOrdenBusqueda.PageIndex));
+
+
+                switch (strCommand)
+                {
+                    case "Select":
+                        Clave = string.Format(TablaOrdenBusqueda.DataKeys[intFila]["Clave"].ToString());
+                        //AlmacenEntidadObjeto.Clave = ProductoId;
+                        //ProductoIdHidden.Value = Clave.ToString();
+                        //SeleccionarProductoMostrar(AlmacenEntidadObjeto);
+                        //ValidarPreOrden(Clave);
+                        SeleccionarOrdenCompra(Clave);
+                        OrderCompraNuevo.Text = Clave;
+                        CargaPanelInVisibleOrden();
+                        break;
+
+                    default:
+                        // Do nothing
+                        break;
+                }
+            }
+
+            private Boolean VerificarFechas(string FechaInicio,string FechaFin)
+            {
+                DateTime Temporal = new DateTime();
+                DateTime Temporal2 = new DateTime();
+                String Mensaje = "";
+                if (!DateTime.TryParse(FechaInicio, out Temporal)) Mensaje = TextoInfo.MensajeFechaGenerico;
+                if (!DateTime.TryParse(FechaFin, out Temporal2)) Mensaje = TextoInfo.MensajeFechaGenerico;
+                if (Mensaje == "") if (Temporal > Temporal2) Mensaje = TextoInfo.MensajeRangoFechasInvalido;
+
+                if (Mensaje == "") return true;
+                else MostrarMensaje(Mensaje, ConstantePrograma.TipoErrorAlerta);
+                return false;
+            }
+
+
         #endregion
 
 
