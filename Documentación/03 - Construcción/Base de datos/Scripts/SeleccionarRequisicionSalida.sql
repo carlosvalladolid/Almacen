@@ -6,7 +6,7 @@
 *					
 * PARÁMETROS:		RequisicionId				Identificador de la requisición
 *					Empleado					Nombre del empleado
-*					FechaInicio					Fecha inicial del rango de búsqueda
+*					FechaInicial				Fecha inicial del rango de búsqueda
 *					FechaFinal					Fecha final del rango de búsqueda
 *					EstatusId					Estatus de la requisición
 *					
@@ -15,7 +15,7 @@ ALTER PROCEDURE [dbo].[SeleccionarRequisicionSalida]
 (
 	@RequisicionId VARCHAR(36) = '',
 	@Empleado VARCHAR(50) = '',
-	@FechaInicio VARCHAR(10) = '',
+	@FechaInicial VARCHAR(10) = '',
 	@FechaFin VARCHAR(10) = '',
 	@EstatusId SMALLINT = 0
 )

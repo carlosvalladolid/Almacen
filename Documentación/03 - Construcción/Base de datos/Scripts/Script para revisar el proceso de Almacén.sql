@@ -16,6 +16,8 @@ SELECT * FROM Producto
 SELECT * FROM [DefensoriaDB.Seguridad].[dbo].[Estatus]
 SELECT * FROM [DefensoriaDB.Seguridad].[dbo].[Seccion]
 
+SELECT * FROM [DefensoriaDB.Catalogo].[dbo].[Empleado]
+
 
 -- Operación
 SELECT * FROM RequisicionEncabezado
