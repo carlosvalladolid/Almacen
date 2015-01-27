@@ -12,9 +12,6 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 
-
-
-
 using Activos.Comun.Constante;
 using Activos.Comun.Fecha;
 using Activos.Comun.Cadenas;
@@ -31,39 +28,60 @@ namespace Almacen.Web.Aplicacion.Almacen
     public partial class OrdenSalida : System.Web.UI.Page
     {
         #region "Eventos"
+            protected void BotonRequisicionBusqueda(object sender, ImageClickEventArgs e)
+            {
+                SeleccionarRequisicion();
+            }
 
             protected void BotonGuardar_Click(object sender, ImageClickEventArgs e)
             {
 
-            }           
-
-            protected void ImagenBuscarPreOrden_Click(object sender, ImageClickEventArgs e)
-            {
-                ValidarRequisicion(RequisicionBox.Text.Trim());
             }
 
+            protected void BotonRequisicionCerrar_Click(object sender, ImageClickEventArgs e)
+            {
+                OcultarBusquedaRequisicion();
+            }
+
+            protected void ImagenBuscarRequisicion_Click(object sender, ImageClickEventArgs e)
+            {
+                BuscarRequisicion();
+            }
 
             protected void ImagenBuscarArticulo_Click(object sender, ImageClickEventArgs e)
             {
-               // ValidarArticulo(ClaveRequisicionBox.Text.Trim());
+               
             }
 
             protected void Page_Load(object sender, EventArgs e)
             {
                 Inicio();
             }
+
+            protected void TablaRequisicionBusqueda_RowCommand(object sender, GridViewCommandEventArgs e)
+            {
+
+            }
         #endregion
 
         #region "Métodos"
+            private void BuscarRequisicion()
+            {
+                SeleccionarEstatus();
+
+                MostrarBusquedaRequisicion();
+            }
 
             private void Inicio()
             {
                 if (Page.IsPostBack)
                     return;
-
                 
                 TablaOrden.DataSource = null;
                 TablaOrden.DataBind();
+
+                TablaRequisicionBusqueda.DataSource = null;
+                TablaRequisicionBusqueda.DataBind();
             }
 
             private void LimpiarFormulario()
@@ -83,6 +101,12 @@ namespace Almacen.Web.Aplicacion.Almacen
                 CantidadBox.Text = "";
 
             }
+
+            private void MostrarBusquedaRequisicion()
+            {
+                FondoBusquedaRequisicion.Visible = true;
+                PanelBusquedaRequisicion.Visible = true;
+            }
           
             private void MostrarMensaje(string Mensaje, string TipoMensaje)
             {
@@ -97,93 +121,65 @@ namespace Almacen.Web.Aplicacion.Almacen
                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
             }
 
-            private void SeleccionarRequisicion(string ClaveRequisicion, string SesionId)
+            private void OcultarBusquedaRequisicion()
             {
-              //  RequisicionProceso RequisicionProceso = new RequisicionProceso();
-
-              //  RequisicionProceso.RequisicionEntidad.Clave = ClaveRequisicion;
-              //// RequisicionProceso.RequisicionEntidad.SesionId = SesionId;
-
-              //  RequisicionProceso.SeleccionarRequisicionOrdenSalida();
-
-              //  if (RequisicionProceso.ErrorId != 0)
-              //  {
-              //      MostrarMensaje(RequisicionProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
-              //      return;
-              //  }
-
-              //  // ToDo: Cambiar el estilo del grid si está vacío el dataset
-
-              //  if (RequisicionProceso.ResultadoDatos.Tables[0].Rows.Count == 0)
-              //      LimpiarFormulario();
-              //  else
-              //  {
-
-              //      SolicitanteBox.Text = RequisicionProceso.ResultadoDatos.Tables[0].Rows[0]["NombreEmpleado"].ToString();
-              //      DependenciaBox.Text = RequisicionProceso.ResultadoDatos.Tables[0].Rows[0]["Dependencia"].ToString();
-              //      DireccionBox.Text = RequisicionProceso.ResultadoDatos.Tables[0].Rows[0]["Direccion"].ToString();
-              //      PuestoBox.Text = RequisicionProceso.ResultadoDatos.Tables[0].Rows[0]["Puesto"].ToString();
-              //      JefeBox.Text = RequisicionProceso.ResultadoDatos.Tables[0].Rows[0]["Jefe"].ToString();
-                       
-              //  }
+                FondoBusquedaRequisicion.Visible = false;
+                PanelBusquedaRequisicion.Visible = false;
             }
 
-            private void ValidarRequisicion(string ClaveRequisicion)
+            protected void SeleccionarEstatus()
             {
-                //UsuarioEntidad UsuarioEntidad = new UsuarioEntidad();
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                EstatusEntidad EstatusEntidad = new EstatusEntidad();
+                EstatusProceso EstatusProceso = new EstatusProceso();
 
-                //UsuarioEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
+                EstatusEntidad.SeccionId = (int)ConstantePrograma.Seccion.Familia;
 
-                //// Validar que la requisición tenga un estatus válido
+                Resultado = EstatusProceso.SeleccionarEstatus(EstatusEntidad);
 
+                EstatusBusquedaCombo.DataValueField = "EstatusId";
+                EstatusBusquedaCombo.DataTextField = "Nombre";
 
-                //SeleccionarRequisicion(ClaveRequisicion, UsuarioEntidad.SesionId);
+                if (Resultado.ErrorId == 0)
+                {
+                    EstatusBusquedaCombo.DataSource = Resultado.ResultadoDatos;
+                    EstatusBusquedaCombo.DataBind();
+                }
+                else
+                    MostrarMensaje(Resultado.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+
+                EstatusBusquedaCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroTodos, "0"));
             }
 
-            //private void SeleccionarArticulo(string ClaveAticulo, string SesionId)
-            //{
-            //    AlmacenProceso AlmacenProceso = new AlmacenProceso();
+            private void SeleccionarRequisicion()
+            {
+                RequisicionProceso RequisicionProceso = new RequisicionProceso();
 
-            //    AlmacenProceso.AlmacenEntidad.Clave = ClaveArticulo;
-            //    AlmacenProceso.AlmacenEntidad.SesionId = SesionId;
+                //RequisicionProceso.RequisicionEntidad.Clave = ClaveRequisicion;
+                // RequisicionProceso.RequisicionEntidad.SesionId = SesionId;
 
-            //    AlmacenProceso.SeleccionarAticuloRequisicion();
+                //RequisicionProceso.SeleccionarRequisicion();
 
-            //    if (RequisicionProceso.ErrorId != 0)
-            //    {
-            //        MostrarMensaje(RequisicionProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
-            //        return;
-            //    }
+                if (RequisicionProceso.ErrorId != 0)
+                {
+                    MostrarMensaje(RequisicionProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                    return;
+                }
 
-            //    // ToDo: Cambiar el estilo del grid si está vacío el dataset
+                // ToDo: Cambiar el estilo del grid si está vacío el dataset
 
-            //    if (RequisicionProceso.ResultadoDatos.Tables[0].Rows == 0)
-            //        LimpiarFormulario();
-            //    else
-            //    {
+                if (RequisicionProceso.ResultadoDatos.Tables[0].Rows.Count == 0)
+                    LimpiarFormulario();
+                else
+                {
 
-            //        FamiliaBox.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Familia"].ToString();
-            //        SubFamiliaBox.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["SubFamilia"].ToString();
-            //        MarcaBox.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Marca"].ToString();
-            //        DescripcionBox.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Descripcion"].ToString();
-            //        CantidadBox.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Cantidad"].ToString();
-
-            //    }
-            //}
-
-
-            //private void ValidarArticulo(string ClaveArticulo)
-            //{
-            //    UsuarioEntidad UsuarioEntidad = new UsuarioEntidad();
-
-            //    UsuarioEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
-
-            //    // Validar que la requisición tenga un estatus válido
-
-
-            //    SeleccionarClaveRequisicion(ClaveArticulo, UsuarioEntidad.SesionId);
-            //}
-
+                    SolicitanteBox.Text = RequisicionProceso.ResultadoDatos.Tables[0].Rows[0]["NombreEmpleado"].ToString();
+                    DependenciaBox.Text = RequisicionProceso.ResultadoDatos.Tables[0].Rows[0]["Dependencia"].ToString();
+                    DireccionBox.Text = RequisicionProceso.ResultadoDatos.Tables[0].Rows[0]["Direccion"].ToString();
+                    PuestoBox.Text = RequisicionProceso.ResultadoDatos.Tables[0].Rows[0]["Puesto"].ToString();
+                    JefeBox.Text = RequisicionProceso.ResultadoDatos.Tables[0].Rows[0]["Jefe"].ToString();
+                }
+            }
         #endregion
     }
 }
