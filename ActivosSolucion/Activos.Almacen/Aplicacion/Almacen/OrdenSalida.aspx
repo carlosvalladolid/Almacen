@@ -207,16 +207,15 @@
 
                         <div class="DivTabla">
                             <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
-                                CssClass="TablaInformacion" DataKeyNames="Clave" ID="TablaRequisicionBusqueda" OnRowCommand="TablaRequisicionBusqueda_RowCommand"
-                                runat="server" PageSize="10">
+                                CssClass="TablaInformacion" DataKeyNames="Clave" ID="TablaRequisicionBusqueda"
+                                OnRowCommand="TablaRequisicionBusqueda_RowCommand" runat="server" PageSize="10">
                                 <EmptyDataTemplate>
                                     <table class="TablaVacia">
                                         <tr class="Encabezado">
                                             <th style="width: 30px;">Clave requisición</th>
-                                            <th  style="width: 60px;">Nombre Empleado</th>
-                                            <th  style="width: 60px;">Estatus</th>
-                                            <th  style="width: 60px;">Proveedor</th>
-                                            <th  style="width: 60px;">Fecha</th>
+                                            <th>Nombre Empleado</th>
+                                            <th style="width: 100px;">Estatus</th>
+                                            <th style="width: 100px;">Fecha</th>
                                         </tr>
                                         <tr>
                                         <td colspan="5" style="text-align: Center;">No se encontró información con los parámetros seleccionados</td>
@@ -228,21 +227,18 @@
                                 <Columns>
                                     <asp:TemplateField HeaderText="Clave">
                                         <ItemTemplate>
-                                        <asp:LinkButton CommandArgument="<%#Container.DataItemIndex%>" CommandName="Select" ID="LigaClave" runat="server" Text='<%#Eval("Clave")%>'></asp:LinkButton>
-                                    </ItemTemplate>
-                                    <ItemStyle HorizontalAlign="Center" Width="20%" />
+                                            <asp:LinkButton CommandArgument="<%#Container.DataItemIndex%>" CommandName="Select" ID="LigaClave" runat="server" Text='<%#Eval("Clave")%>'></asp:LinkButton>
+                                        </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Center" Width="30px" />
                                     </asp:TemplateField>
                                     <asp:BoundField DataField="NombreEmpleado" HeaderText="Nombre Empleado" ItemStyle-HorizontalAlign="Center">
-                                        <HeaderStyle HorizontalAlign="Center" Width="20%" />
+                                        <HeaderStyle HorizontalAlign="Center" />
                                     </asp:BoundField>
-                                    <asp:BoundField DataField="Estatus" HeaderText="Estatus" ItemStyle-HorizontalAlign="Center">
-                                        <HeaderStyle HorizontalAlign="Center" Width="20%" />
+                                    <asp:BoundField DataField="NombreEstatus" HeaderText="Estatus" ItemStyle-HorizontalAlign="Center">
+                                        <HeaderStyle HorizontalAlign="Center" Width="100px" />
                                     </asp:BoundField>
-                                    <asp:BoundField DataField="Proveedor" HeaderText="Proveedor" ItemStyle-HorizontalAlign="Center">
-                                        <HeaderStyle HorizontalAlign="Center" Width="20%" />
-                                    </asp:BoundField>
-                                    <asp:BoundField DataField="FechaOrden" HeaderText="Fecha" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/MM/yyyy}">
-                                        <HeaderStyle HorizontalAlign="Center" Width="20%" />
+                                    <asp:BoundField DataField="FechaInserto" HeaderText="Fecha" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/MM/yyyy}">
+                                        <HeaderStyle HorizontalAlign="Center" Width="100px" />
                                     </asp:BoundField>
                                 </Columns>
                             </asp:GridView>

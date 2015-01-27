@@ -58,6 +58,8 @@ SELECT * FROM OrdenEncabezadoTemp
 
 SELECT * FROM OrdenDetalleTemp
 
+SeleccionarRequisicionSalida
+
 --SELECT * FROM RecepcionEncabezadoTemp
 
 --SELECT * FROM RecepcionDetalleTemp

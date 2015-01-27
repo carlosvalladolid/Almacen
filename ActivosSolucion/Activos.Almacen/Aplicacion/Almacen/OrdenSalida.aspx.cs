@@ -28,9 +28,9 @@ namespace Almacen.Web.Aplicacion.Almacen
     public partial class OrdenSalida : System.Web.UI.Page
     {
         #region "Eventos"
-            protected void BotonRequisicionBusqueda(object sender, ImageClickEventArgs e)
+            protected void BotonRequisicionBusqueda_Click(object sender, ImageClickEventArgs e)
             {
-                SeleccionarRequisicion();
+                SeleccionarRequisicion(RequisicionBusquedaBox.Text.Trim(), EmpleadoBusquedaBox.Text.Trim(), FechaInicioBusquedaBox.Text.Trim(), FechaFinBusquedaBox.Text.Trim(), Int16.Parse(EstatusBusquedaCombo.SelectedValue));
             }
 
             protected void BotonGuardar_Click(object sender, ImageClickEventArgs e)
@@ -76,12 +76,11 @@ namespace Almacen.Web.Aplicacion.Almacen
             {
                 if (Page.IsPostBack)
                     return;
+
+                SeleccionarRequisicion();
                 
                 TablaOrden.DataSource = null;
                 TablaOrden.DataBind();
-
-                TablaRequisicionBusqueda.DataSource = null;
-                TablaRequisicionBusqueda.DataBind();
             }
 
             private void LimpiarFormulario()
@@ -133,7 +132,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 EstatusEntidad EstatusEntidad = new EstatusEntidad();
                 EstatusProceso EstatusProceso = new EstatusProceso();
 
-                EstatusEntidad.SeccionId = (int)ConstantePrograma.Seccion.Familia;
+                EstatusEntidad.SeccionId = (int)ConstantePrograma.Seccion.PreOrden;
 
                 Resultado = EstatusProceso.SeleccionarEstatus(EstatusEntidad);
 
@@ -153,12 +152,20 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             private void SeleccionarRequisicion()
             {
+                SeleccionarRequisicion("", "", "", "", 0);
+            }
+
+            private void SeleccionarRequisicion(string RequisicionId, string Empleado, string FechaInicial, string FechaFinal, Int16 EstatusId)
+            {
                 RequisicionProceso RequisicionProceso = new RequisicionProceso();
 
-                //RequisicionProceso.RequisicionEntidad.Clave = ClaveRequisicion;
-                // RequisicionProceso.RequisicionEntidad.SesionId = SesionId;
+                RequisicionProceso.RequisicionEntidad.RequisicionId = RequisicionId;
+                RequisicionProceso.RequisicionEntidad.Nombre = Empleado;
+                RequisicionProceso.RequisicionEntidad.FechaInicial = FechaInicial;
+                RequisicionProceso.RequisicionEntidad.FechaFinal = FechaFinal;
+                RequisicionProceso.RequisicionEntidad.EstatusId = EstatusId;
 
-                //RequisicionProceso.SeleccionarRequisicion();
+                RequisicionProceso.SeleccionarRequisicionSalida();
 
                 if (RequisicionProceso.ErrorId != 0)
                 {
@@ -168,17 +175,8 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 // ToDo: Cambiar el estilo del grid si está vacío el dataset
 
-                if (RequisicionProceso.ResultadoDatos.Tables[0].Rows.Count == 0)
-                    LimpiarFormulario();
-                else
-                {
-
-                    SolicitanteBox.Text = RequisicionProceso.ResultadoDatos.Tables[0].Rows[0]["NombreEmpleado"].ToString();
-                    DependenciaBox.Text = RequisicionProceso.ResultadoDatos.Tables[0].Rows[0]["Dependencia"].ToString();
-                    DireccionBox.Text = RequisicionProceso.ResultadoDatos.Tables[0].Rows[0]["Direccion"].ToString();
-                    PuestoBox.Text = RequisicionProceso.ResultadoDatos.Tables[0].Rows[0]["Puesto"].ToString();
-                    JefeBox.Text = RequisicionProceso.ResultadoDatos.Tables[0].Rows[0]["Jefe"].ToString();
-                }
+                TablaRequisicionBusqueda.DataSource = RequisicionProceso.ResultadoDatos;
+                TablaRequisicionBusqueda.DataBind();
             }
         #endregion
     }

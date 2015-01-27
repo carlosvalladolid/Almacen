@@ -16,7 +16,7 @@ ALTER PROCEDURE [dbo].[SeleccionarRequisicionSalida]
 	@RequisicionId VARCHAR(36) = '',
 	@Empleado VARCHAR(50) = '',
 	@FechaInicial VARCHAR(10) = '',
-	@FechaFin VARCHAR(10) = '',
+	@FechaFinal VARCHAR(10) = '',
 	@EstatusId SMALLINT = 0
 )
 
@@ -29,7 +29,9 @@ AS
 		IF(@RequisicionId <> '')
 			SET @RequisicionIdGuid = CONVERT(VARCHAR(36), @RequisicionId)
 
-		SELECT RequisicionEncabezado.RequisicionId
+		SELECT RequisicionEncabezado.RequisicionId, RequisicionEncabezado.Clave,
+			(Empleado.Nombre + ' ' + Empleado.ApellidoPaterno + ' ' + ISNULL(Empleado.ApellidoMaterno, '')) AS NombreEmpleado,
+			Estatus.Nombre AS NombreEstatus, RequisicionEncabezado.FechaInserto
 			FROM RequisicionEncabezado
 			INNER JOIN RequisicionDetalle
 			ON RequisicionEncabezado.RequisicionId = RequisicionDetalle.RequisicionId
@@ -40,6 +42,8 @@ AS
 			WHERE (RequisicionEncabezado.RequisicionId = @RequisicionIdGuid OR @RequisicionId = '')
 			AND ((Empleado.Nombre + ' ' + Empleado.ApellidoPaterno) LIKE '%' + @Empleado + '%' OR @Empleado = '')
 			AND (RequisicionEncabezado.EstatusId = @EstatusId OR @EstatusId = 0)
+			GROUP BY RequisicionEncabezado.RequisicionId, RequisicionEncabezado.Clave, Empleado.Nombre, Empleado.ApellidoPaterno,
+			Empleado.ApellidoMaterno, Estatus.Nombre, RequisicionEncabezado.FechaInserto
 			ORDER BY RequisicionEncabezado.FechaInserto DESC
 
 	SET NOCOUNT OFF

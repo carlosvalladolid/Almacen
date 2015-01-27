@@ -600,7 +600,8 @@ namespace Activos.Comun.Constante
             Jefes = 10,
             Activos = 11,
             Levantamiento = 12,
-            Mantenimientos = 13
+            Mantenimientos = 13,
+            PreOrden = 14
         }
 
         public enum Usuario
