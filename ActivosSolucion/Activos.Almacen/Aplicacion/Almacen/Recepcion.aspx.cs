@@ -181,8 +181,8 @@ namespace Activos.Almacen.Aplicacion.Almacen
         protected void AgregarDetalleDocumento()
         {
             RecepcionEntidad RecepcionObjetoEntidad = new RecepcionEntidad();          
-            //if (TemporalRecepcionIdHidden.Value == "")
-            //{
+            if (TemporalRecepcionIdHidden.Value != "")
+            {
                 RecepcionObjetoEntidad.RecepcionId = TemporalRecepcionIdHidden.Value;
                 RecepcionObjetoEntidad.TemporalRecepcionId = TemporalRecepcionIdHidden.Value;
                 RecepcionObjetoEntidad.ProductoId = ProductoIdHidden.Value;
@@ -190,7 +190,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
                 RecepcionObjetoEntidad.Cantidad = Int16.Parse(CantidadNuevo.Text);
 
                 AgregarRecepcion(RecepcionObjetoEntidad);
-            //}
+            }
         }
 
         protected void AgregarRecepcion(RecepcionEntidad RecepcionObjetoEntidad)
@@ -198,18 +198,20 @@ namespace Activos.Almacen.Aplicacion.Almacen
             ResultadoEntidad Resultado = new ResultadoEntidad();
             RecepcionProceso RecepcionProcesoNegocio = new RecepcionProceso();
            
-            Resultado = RecepcionProcesoNegocio.AgregarRecepcionDetalle(RecepcionObjetoEntidad);
+           
+           
+            Resultado = RecepcionProcesoNegocio.AgregarRecepcionDetalleTemp(RecepcionObjetoEntidad);
 
             if (Resultado.ErrorId == (int)ConstantePrograma.Recepcion.RecepcionGuardadoCorrectamente)
             {
                 TemporalRecepcionIdHidden.Value = RecepcionObjetoEntidad.RecepcionId;              
-                LimpiarRecepcion();          
+                LimpiarRecepcion();
                 SeleccionarRecepcion();
             }
             else
             {
                 //MostrarMensaje(RecepcionProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);  
-                LimpiarRecepcion();                
+                LimpiarRecepcion();
             }
         }      
 
@@ -295,7 +297,9 @@ namespace Activos.Almacen.Aplicacion.Almacen
             Resultado = RecepcionProcesoNegocio.AgregarRecepcionEncabezado(RecepcionObjetoEntidad);
 
             if (Resultado.ErrorId == (int)ConstantePrograma.Recepcion.RecepcionGuardadoCorrectamente)
-            {             
+            {
+                RecepcionObjetoEntidad.RecepcionId = TemporalRecepcionIdHidden.Value;
+                Resultado = RecepcionProcesoNegocio.AgregarRecepcionDetalle(RecepcionObjetoEntidad);
                 LimpiarNuevoRegistro();
                 LimpiarRecepcion();  
             }
@@ -314,13 +318,25 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
             RecepcionObjetoEntidad.RecepcionId = TemporalRecepcionIdHidden.Value;
 
-            Resultado = RecepcionProcesoNegocio.SeleccionaRecepcion(RecepcionObjetoEntidad);
+            Resultado = RecepcionProcesoNegocio.SeleccionaRecepcionTemp(RecepcionObjetoEntidad);
             if (Resultado.ErrorId == 0)
             {
                 if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
+                {
+
                     TablaRecepcion.CssClass = ConstantePrograma.ClaseTablaVacia;
+                    LabelMontoTotal.Text = "0";
+                }
                 else
+                {
                     TablaRecepcion.CssClass = ConstantePrograma.ClaseTabla;
+                    int Suma = 0;
+                    foreach (DataRow Fila in Resultado.ResultadoDatos.Tables[0].Rows)
+                    {
+                        Suma += Convert.ToInt32(Fila["Cantidad"]);
+                    }
+                    LabelMontoTotal.Text = Suma.ToString();
+                }
 
 
 
@@ -376,7 +392,10 @@ namespace Activos.Almacen.Aplicacion.Almacen
         {
             if (Page.IsPostBack)
                 return;
-
+            //#
+            TemporalRecepcionIdHidden.Value = Guid.NewGuid().ToString();
+            
+            
             MensajeRangoDeFechasInvalido.Value = TextoInfo.MensajeRangoFechasInvalido;
             SeleccionarProveedor();
             SeleccionarEmpleado();
@@ -750,6 +769,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
             //if (ProductoIdHidden.Value == ProductoId.ToString())
             //{
             RecepcionObjetoEntidad.ProductoId = ProductoId;
+            RecepcionObjetoEntidad.RecepcionId = TemporalRecepcionIdHidden.Value;
             Resultado = RecepcionProcesoNegocio.CancelarNuevoRecepcion(RecepcionObjetoEntidad);
 
             if (Resultado.ErrorId == (int)ConstantePrograma.Recepcion.RecepcionEliminadoCorrectamente)
@@ -818,9 +838,9 @@ namespace Activos.Almacen.Aplicacion.Almacen
             Single MontoTemp = new Single();
             Int16 CantidadTemp = new Int16();
             DateTime FechaTemp = new DateTime();
-            if (!Single.TryParse(MontoDatosNuevo.Text, out MontoTemp)) Mensaje = TextoInfo.MensajeMontoInvalido;
-            if (!Int16.TryParse(CantidadNuevo.Text, out CantidadTemp)) Mensaje = TextoInfo.MensajeCantidadGenerico;
-            if (!Single.TryParse(PrecionUnitarioNuevo.Text, out PrecioTemp)) Mensaje = TextoInfo.MensajePrecioInvalido;
+            //if (!Single.TryParse(MontoDatosNuevo.Text, out MontoTemp)) Mensaje = TextoInfo.MensajeMontoInvalido;
+            //if (!Int16.TryParse(CantidadNuevo.Text, out CantidadTemp)) Mensaje = TextoInfo.MensajeCantidadGenerico;
+            //if (!Single.TryParse(PrecionUnitarioNuevo.Text, out PrecioTemp)) Mensaje = TextoInfo.MensajePrecioInvalido;
             if (String.IsNullOrEmpty(FolioNuevo.Text)) Mensaje = TextoInfo.MensajeFolioVacio;
             
             if (SolicitanteIdNuevo.SelectedIndex == 0) Mensaje = TextoInfo.MensajeSolicitanteGenerico;

@@ -524,5 +524,6 @@ namespace Activos.Almacen.Aplicacion.Almacen {
         /// Auto-generated property.
         /// </remarks>
 
+
     }
 }

@@ -28,23 +28,48 @@ namespace Activos.ProcesoNegocio.Almacen
             CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
             //****************** aqui entra para revisar que no se agregue la Orden
-            ResultadoValidacion = BuscarRecepcionProducto(RecepcionObjetoEntidad);
+            //ResultadoValidacion = BuscarRecepcionProducto(RecepcionObjetoEntidad);
 
             if (ResultadoValidacion.ErrorId != 0)
             {               
                 return ResultadoValidacion;
             }
-            if (RecepcionObjetoEntidad.TemporalRecepcionId == "")
+            if (RecepcionObjetoEntidad.RecepcionId != "")
             {
-                RecepcionObjetoEntidad.RecepcionId = Guid.NewGuid().ToString();
-                Resultado = RecepcionAccesoObjeto.InsertarRecepcionDetalle(RecepcionObjetoEntidad, CadenaConexion);
-            }
-            else
-            {
+                //RecepcionObjetoEntidad.RecepcionId = Guid.NewGuid().ToString();
                 Resultado = RecepcionAccesoObjeto.InsertarRecepcionDetalle(RecepcionObjetoEntidad, CadenaConexion);
             }
             return Resultado;
         }
+
+        public ResultadoEntidad AgregarRecepcionDetalleTemp(RecepcionEntidad RecepcionObjetoEntidad)
+        {
+            string CadenaConexion = string.Empty;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            ResultadoEntidad ResultadoValidacion = new ResultadoEntidad();
+            RecepcionAcceso RecepcionAccesoObjeto = new RecepcionAcceso();
+
+            CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+            //****************** aqui entra para revisar que no se agregue la Orden
+            //ResultadoValidacion = BuscarRecepcionProducto(RecepcionObjetoEntidad);
+
+            if (ResultadoValidacion.ErrorId != 0)
+            {
+                return ResultadoValidacion;
+            }
+            if (RecepcionObjetoEntidad.TemporalRecepcionId == "")
+            {
+                //RecepcionObjetoEntidad.RecepcionId = Guid.NewGuid().ToString();
+                Resultado = RecepcionAccesoObjeto.InsertarRecepcionDetalleTemp(RecepcionObjetoEntidad, CadenaConexion);
+            }
+            else
+            {
+                Resultado = RecepcionAccesoObjeto.InsertarRecepcionDetalleTemp(RecepcionObjetoEntidad, CadenaConexion);
+            }
+            return Resultado;
+        }
+
 
         public ResultadoEntidad SeleccionaRecepcion(RecepcionEntidad RecepcionObjetoEntidad)
         {
@@ -55,6 +80,19 @@ namespace Activos.ProcesoNegocio.Almacen
             CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
             Resultado = RecepcionAccesoObjeto.SeleccionarRecepcionDetalle(RecepcionObjetoEntidad, CadenaConexion);
+
+            return Resultado;
+        }
+
+        public ResultadoEntidad SeleccionaRecepcionTemp(RecepcionEntidad RecepcionObjetoEntidad)
+        {
+            string CadenaConexion = string.Empty;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            RecepcionAcceso RecepcionAccesoObjeto = new RecepcionAcceso();
+
+            CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+            Resultado = RecepcionAccesoObjeto.SeleccionarRecepcionDetalleTemp(RecepcionObjetoEntidad, CadenaConexion);
 
             return Resultado;
         }
@@ -80,6 +118,20 @@ namespace Activos.ProcesoNegocio.Almacen
 
             return Resultado;
         }
+
+        public ResultadoEntidad AgregarRecepcionEncabezadoTemp(RecepcionEntidad RecepcionObjetoEntidad)
+        {
+            string CadenaConexion = string.Empty;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            ResultadoEntidad ResultadoValidacion = new ResultadoEntidad();
+            RecepcionAcceso RecepcionAccesoObjeto = new RecepcionAcceso();
+
+            CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+            Resultado = RecepcionAccesoObjeto.InsertarRecepcionEncabezadoTemp(RecepcionObjetoEntidad, CadenaConexion);
+
+            return Resultado;
+        }
+
 
         public ResultadoEntidad CancelarNuevoRecepcion(RecepcionEntidad RecepcionObjetoEntidad)
         {

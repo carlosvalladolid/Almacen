@@ -9,7 +9,6 @@
     <script src="/Incluir/Javascript/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
     <script src="/Incluir/Javascript/jquery.ui.datepicker-es.js" type="text/javascript"></script>
     <script src="/Incluir/Javascript/Calendar.js" type="text/javascript"></script>
-    <link href="/Incluir/Estilo/Privado/Popup.css" rel="Stylesheet" type="text/css" />
     <script language="javascript" type="text/javascript">
         function pageLoad(sender, args) {
             SetNewCalendar("#<%= FechaPreOrdenNuevo.ClientID %>");

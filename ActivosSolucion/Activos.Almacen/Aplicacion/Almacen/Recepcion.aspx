@@ -8,7 +8,6 @@
     <script src="/Incluir/Javascript/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
     <script src="/Incluir/Javascript/jquery.ui.datepicker-es.js" type="text/javascript"></script>
     <script src="/Incluir/Javascript/Calendar.js" type="text/javascript"></script>
-    <link href="/Incluir/Estilo/Privado/Popup.css" rel="Stylesheet" type="text/css" />
     <script language="javascript" type="text/javascript">
         function pageLoad(sender, args) {
             SetNewCalendar("#<%= FechaDocumentoNuevo.ClientID %>","#<%= FechaOrdenCompraNuevo.ClientID %>");
@@ -133,7 +132,7 @@
                             <td class="Nombre">Clave del Producto</td>
                             <td class="Espacio">*</td>
                             <td class="Campo"> 
-                             <asp:TextBox ID="ClaveNuevo" CssClass="CajaTextoMediana" MaxLength="10" runat="server"></asp:TextBox>     
+                             <asp:TextBox ID="ClaveNuevo" CssClass="CajaTextoMediana" Enabled="false" MaxLength="10" runat="server"></asp:TextBox>     
                              <asp:ImageButton ID="ImagenBuscarClaveProducto" ImageUrl="/Imagen/Icono/ImagenBuscar.gif" runat="server" onclick="ImagenProductoBusqueda_Click" />
                             </td>
                         </tr>
@@ -270,7 +269,7 @@
                                 <tr>
                                     <td class="Nombre">Clave Producto</td>
                                     <td class="Espacio"></td>
-                                    <td class="Campo"><asp:TextBox CssClass="CajaTextoPequenia" ID="ClaveProductoBusqueda" MaxLength="20" runat="server" Text=""></asp:TextBox></td>
+                                    <td class="Campo"><asp:TextBox CssClass="CajaTextoPequenia" ID="ClaveProductoBusqueda" Enabled="false" MaxLength="20" runat="server" Text=""></asp:TextBox></td>
                                 </tr>
                                 <tr>
                                     <td class="Nombre">Nombre</td>
