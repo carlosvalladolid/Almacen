@@ -145,7 +145,7 @@ namespace Almacen.Web.Aplicacion.Almacen
             //TemporalPreOrdenObjetoEntidad.JefeId = Int16.Parse(JefeInmediatoIdNuevo.Text);
             TemporalPreOrdenObjetoEntidad.ClaveProducto = ClaveNuevo.Text.Trim();
 
-            //PENDIENTE DE CHECAR SI VA LLEVAR EL CAMPO DE ESTATUS POQUE EN EL DIAGRAMA NO APARECE 06/11/2014
+            
             TemporalPreOrdenObjetoEntidad.EstatusId = Convert.ToInt16(ConstantePrograma.EstatusPreOrden.SinOC);
             TemporalPreOrdenObjetoEntidad.ProductoId = ProductoIdHidden.Value;
             TemporalPreOrdenObjetoEntidad.Cantidad = Int16.Parse(CantidadNuevo.Text.Trim());

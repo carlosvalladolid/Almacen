@@ -364,6 +364,23 @@ namespace Activos.ProcesoNegocio.Almacen
 
                 return Resultado;
             }
+
+            /// <summary>
+            ///     Elimina un producto de la tabla OrdenDetalleTemp y lo agrega a la tabla de PreOrdenDetalleTemp
+            /// </summary>
+            /// <param name="Conexion">Conexión actual a la base de datos.</param>
+            /// <param name="Transaccion">Transacción actual a la base de datos.</param>
+            /// <param name="OrdenDetalleEntidad">Entidad del detalle de una orden de compra.</param>
+            public void EliminarProductoOrdenDetalleTemp()
+            {
+                OrdenAcceso OrdenAcceso = new OrdenAcceso();
+                string CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+                OrdenAcceso.EliminarProductoOrdenDetalleTemp(CadenaConexion, this.OrdenDetalleEntidad);
+
+                _ErrorId = OrdenAcceso.ErrorId;
+                _DescripcionError = OrdenAcceso.DescripcionError;
+            }
+
         #endregion
     }
 }

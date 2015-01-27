@@ -77,8 +77,9 @@ namespace Activos.Almacen.Aplicacion.Almacen
             int Cantidad = 0;
             //decimal Resultado = 0;
             string Mensaje = "";
-            if (!Int32.TryParse(PrecionUnitarioNuevo.Text.Trim(), out PrecioUnitario)) Mensaje = TextoInfo.MensajePrecioInvalido;
-            if (!Int32.TryParse(CantidadNuevo.Text.Trim(), out Cantidad)) Mensaje = TextoInfo.MensajeCantidadGenerico;
+            if (!Int32.TryParse(PrecionUnitarioNuevo.Text.Trim(), out PrecioUnitario) && String.IsNullOrEmpty(CantidadNuevo.Text.Trim())) Mensaje = TextoInfo.MensajePrecioInvalido;
+            if (!Int32.TryParse(CantidadNuevo.Text.Trim(), out Cantidad) && String.IsNullOrEmpty(PrecionUnitarioNuevo.Text.Trim())) Mensaje = TextoInfo.MensajeCantidadGenerico;
+            
 
             if (Mensaje == "")
             {

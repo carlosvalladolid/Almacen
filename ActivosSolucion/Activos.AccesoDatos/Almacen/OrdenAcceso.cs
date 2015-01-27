@@ -445,6 +445,58 @@ namespace Activos.AccesoDatos.Almacen
                 }
             }
 
+
+
+            /// <summary>
+            ///    Elimina una un producto de la orden de compra de la tabla OrdenDetalleTemp y lo agrega a la tabla de PreOrdenDetalletemp
+            /// </summary>
+            /// <param name="Clave">Clave de la Orden.</param>
+            /// /// <param name="FechaInicio">Fecha de inicio del rango.</param>
+            /// /// <param name="FechaFin">Fecha de fin del rango.</param>
+            /// <param name="CadenaConexion">Cadena de conexión a la base de datos.</param>
+            /// <returns>Resultado de la búsqueda.</returns>
+            public ResultadoEntidad EliminarProductoOrdenDetalleTemp(string CadenaConexion,OrdenDetalleEntidad OrdenDetalleEntidad)
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                SqlConnection Conexion = new SqlConnection(CadenaConexion);
+                SqlCommand Comando;
+                SqlParameter Parametro;
+                SqlDataAdapter Adaptador;
+
+                try
+                {
+                    Comando = new SqlCommand("EliminarProductoOrdenDetalleTemp", Conexion);
+                    Comando.CommandType = CommandType.StoredProcedure;
+
+                    Parametro = new SqlParameter("OrdenId", SqlDbType.VarChar);
+                    Parametro.Value = OrdenDetalleEntidad.OrdenId;
+                    Comando.Parameters.Add(Parametro);
+
+                    Parametro = new SqlParameter("@PreOrdenId", SqlDbType.VarChar);
+                    Parametro.Value = OrdenDetalleEntidad.PreOrdenId;
+                    Comando.Parameters.Add(Parametro);
+
+                    Parametro = new SqlParameter("@ProductoId", SqlDbType.VarChar);
+                    Parametro.Value = OrdenDetalleEntidad.ProductoId;
+                    Comando.Parameters.Add(Parametro);
+
+                    Adaptador = new SqlDataAdapter(Comando);
+
+                    Conexion.Open();
+                    Adaptador.Fill(Resultado.ResultadoDatos);
+                    Conexion.Close();
+
+                    return Resultado;
+                }
+                catch (SqlException Excepcion)
+                {
+                    Resultado.ErrorId = Excepcion.Number;
+                    Resultado.DescripcionError = Excepcion.Message;
+
+                    return Resultado;
+                }
+            }
+
         #endregion
     }
 }

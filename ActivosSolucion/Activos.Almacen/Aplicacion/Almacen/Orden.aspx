@@ -106,7 +106,7 @@
 
                 <div class="DivTabla">
                     <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
-                        CssClass="TablaInformacion" DataKeyNames="OrdenId, ProductoId" ID="TablaOrden"
+                        CssClass="TablaInformacion" DataKeyNames="OrdenId, ProductoId, PreOrdenId" ID="TablaOrden" OnRowCommand ="TablaOrden_RowCommand"
                         runat="server" PageSize="10">
                         <EmptyDataTemplate>
                             <table class="TablaVacia">
@@ -128,7 +128,7 @@
                         <Columns>
                             <asp:TemplateField HeaderText="">
                                 <ItemTemplate>
-                                    <asp:ImageButton AlternateText="Quitar" CommandArgument='<%#Container.DataItemIndex%>' CommandName="Agregar" ID="BotonQuitar" ImageUrl="/Imagen/Icono/IconoQuitar.png" runat="server" />
+                                    <asp:ImageButton AlternateText="Quitar" CommandArgument='<%#Container.DataItemIndex%>' CommandName="Eliminar" ID="BotonQuitar" ImageUrl="/Imagen/Icono/IconoQuitar.png" runat="server" />
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center" Width="35px" />
                             </asp:TemplateField>

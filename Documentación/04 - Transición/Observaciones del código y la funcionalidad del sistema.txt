@@ -35,7 +35,7 @@ Orden de compra
 3. No está habilitada la funcionalidad de búsqueda de pre órdenes de compra.(*** LISTO ***)
 4. No se generó el folio de la orden de compra. (** LISTO **)
 5. Validar formulario, marca errores al dar clic en guardar. (** LISTO **)
-6. No borra objetos de la orden de compra. (NO)
+6. No borra objetos de la orden de compra. (** LISTO **)
 7. Cuando se hace el cambio de PreOrdenes en la busqueda permite agregar articulos de otras PreOrdenes (** LISTO **)
 
 Recepción

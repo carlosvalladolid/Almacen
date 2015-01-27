@@ -76,6 +76,11 @@ namespace Almacen.Web.Aplicacion.Almacen
                 TablaPreOrdenBusquedaRowCommand(e);
             }
 
+            protected void TablaOrden_RowCommand(object sender,GridViewCommandEventArgs e)
+            {
+                TablaOrdenRowCommand(e);
+            }
+
 
         #endregion
 
@@ -113,6 +118,9 @@ namespace Almacen.Web.Aplicacion.Almacen
                 OrdenProceso.OrdenEncabezadoEntidad.FechaOrden = FormatoFecha.AsignarFormato(FechaOrdenBox.Text.Trim(), ConstantePrograma.UniversalFormatoFecha);
                 OrdenProceso.OrdenDetalleEntidad.ProductoIdArray = ObtenerProductoId();
 
+                ObtenerEstatusOrden();
+
+
                 OrdenProceso.GuardarOrden();
 
                 if (OrdenProceso.ErrorId == 0)
@@ -126,6 +134,19 @@ namespace Almacen.Web.Aplicacion.Almacen
                     MostrarMensaje(OrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
             }
 
+            private short ObtenerEstatusPreOrden(OrdenEntidad OrdenEntidad)
+            {
+                short Estatus = ConstantePrograma.EstatusPreOrden.SinOC;
+
+
+
+
+
+                return Estatus;
+            }
+
+
+            
             private void GuardarProductoOrdenTemp(string OrdenId, string PreOrdenId, string ProductoId, string SesionId)
             {
                 OrdenProceso OrdenProceso = new OrdenProceso();
@@ -393,6 +414,76 @@ namespace Almacen.Web.Aplicacion.Almacen
                         break;
                 }
             }
+
+            private void TablaOrdenRowCommand(GridViewCommandEventArgs e)
+            {
+                int Indice = 0;
+                string OrdenId = string.Empty;
+                string PreOrdenId = string.Empty;
+                string ProductoId = string.Empty;
+                string SesionId = string.Empty;
+                string CommandName = string.Empty;
+                UsuarioEntidad UsuarioEntidad = new UsuarioEntidad();
+
+                UsuarioEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
+
+                Indice = int.Parse(e.CommandArgument.ToString());
+                OrdenId = TablaOrden.DataKeys[Indice]["OrdenId"].ToString();
+                PreOrdenId = TablaOrden.DataKeys[Indice]["PreOrdenId"].ToString();
+                ProductoId = TablaOrden.DataKeys[Indice]["ProductoId"].ToString();
+                SesionId = UsuarioEntidad.SesionId;
+                CommandName = e.CommandName.ToString();
+
+                switch(CommandName)
+                {
+                    case ConstantePrograma.ComandoEliminar:
+                        EliminarProductoDetalleTemp(OrdenId, PreOrdenId, ProductoId, SesionId);
+                        PreOrdenEntidad PreOrdenObjetoEntidad = new PreOrdenEntidad();
+                        PreOrdenObjetoEntidad.PreOrdenId = PreOrdenId;
+                        string ClavePreOrden = ObtenerClavePreOrden(PreOrdenObjetoEntidad);
+                        if (ClavePreOrden != "") SeleccionarPreOrdenDetalleSinOrden(ClavePreOrden, SesionId);
+                        else MostrarMensaje("No se encuentra la clave de la PreOrden",ConstantePrograma.TipoErrorAlerta);
+
+                        
+                        break;
+                }
+            }
+
+            private string ObtenerClavePreOrden(PreOrdenEntidad PreOrdenObjetoEntidad)
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                PreOrdenProceso PreOrdenProcesoNegocio = new PreOrdenProceso();
+                PreOrdenProcesoNegocio.PreOrdenEntidad = PreOrdenObjetoEntidad;
+                Resultado = PreOrdenProcesoNegocio.SeleccionarPreOrdenEncabezado();
+
+                if (Resultado.ResultadoDatos.Tables.Count > 0)
+                    if (Resultado.ResultadoDatos.Tables[0].Rows.Count > 0) return Resultado.ResultadoDatos.Tables[0].Rows[0]["Clave"].ToString();
+
+                return String.Empty;
+            }
+
+            private void EliminarProductoDetalleTemp(string OrdenId, string PreOrdenId, string ProductoId, string SesionId)
+            {
+                OrdenProceso OrdenProceso = new OrdenProceso();
+
+                OrdenProceso.OrdenDetalleEntidad.OrdenId = OrdenId;
+                OrdenProceso.OrdenDetalleEntidad.PreOrdenId = PreOrdenId;
+                OrdenProceso.OrdenDetalleEntidad.ProductoId = ProductoId;
+                OrdenProceso.OrdenDetalleEntidad.SesionId = SesionId;
+
+                OrdenProceso.EliminarProductoOrdenDetalleTemp();
+
+                if (OrdenProceso.ErrorId == 0)
+                {
+                    //OrdenIdHidden.Value = OrdenProceso.OrdenDetalleEntidad.OrdenId;
+
+                    SeleccionarOrdenDetalleTemp(OrdenId);
+                }
+                else
+                    MostrarMensaje(OrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+            }
+
+        
 
             private void ValidarPreOrden(string Clave)
             {
