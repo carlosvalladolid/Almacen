@@ -118,9 +118,6 @@ namespace Almacen.Web.Aplicacion.Almacen
                 OrdenProceso.OrdenEncabezadoEntidad.FechaOrden = FormatoFecha.AsignarFormato(FechaOrdenBox.Text.Trim(), ConstantePrograma.UniversalFormatoFecha);
                 OrdenProceso.OrdenDetalleEntidad.ProductoIdArray = ObtenerProductoId();
 
-                ObtenerEstatusOrden();
-
-
                 OrdenProceso.GuardarOrden();
 
                 if (OrdenProceso.ErrorId == 0)
@@ -134,16 +131,6 @@ namespace Almacen.Web.Aplicacion.Almacen
                     MostrarMensaje(OrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
             }
 
-            private short ObtenerEstatusPreOrden(OrdenEntidad OrdenEntidad)
-            {
-                short Estatus = ConstantePrograma.EstatusPreOrden.SinOC;
-
-
-
-
-
-                return Estatus;
-            }
 
 
             

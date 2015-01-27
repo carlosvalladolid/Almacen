@@ -146,7 +146,7 @@
                             </asp:BoundField>
                             <asp:TemplateField HeaderText="Cantidad">
                                 <ItemTemplate>
-                                    <asp:TextBox CssClass="CajaTextoPequenia" ID="CantidadBox" MaxLength="3" runat="server" Text='<%#Eval("Cantidad")%>'></asp:TextBox>
+                                    <asp:TextBox CssClass="CajaTextoPequenia" ID="CantidadBox" AutoPostBack="true" MaxLength="3" runat="server" Text='<%#Eval("Cantidad")%>'></asp:TextBox>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center" Width="90px" />
                             </asp:TemplateField>                                

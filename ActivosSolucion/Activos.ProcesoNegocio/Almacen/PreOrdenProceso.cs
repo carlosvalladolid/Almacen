@@ -254,6 +254,18 @@ namespace Activos.ProcesoNegocio.Almacen
                 return Resultado;
             }
 
+            /// <summary>
+            ///     Seleccioan el detalle de la PreOrden por medio de la clave
+            /// </summary>
+            public DataSet SeleccionarPreOrdenDetallePorClave()
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                PreOrdenAcceso PreOrdenAcceso = new PreOrdenAcceso();
+                string CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+                Resultado = PreOrdenAcceso.SeleccionarPreOrdenDetallePorClave(this.PreOrdenEntidad,CadenaConexion);
+                return Resultado.ResultadoDatos;
+            }
+
 
         #endregion
     }
