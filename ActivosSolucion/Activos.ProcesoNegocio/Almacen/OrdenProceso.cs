@@ -381,6 +381,22 @@ namespace Activos.ProcesoNegocio.Almacen
                 _DescripcionError = OrdenAcceso.DescripcionError;
             }
 
+            /// <summary>
+            ///     Resta los productos de la PreOrden a la Orden.
+            /// </summary>
+            /// <param name="Conexion">Conexión actual a la base de datos.</param>
+            /// <param name="Transaccion">Transacción actual a la base de datos.</param>
+            /// <param name="OrdenDetalleEntidad">Entidad del detalle de una orden de compra.</param>
+            public void RestarDiferenciaPreOrden()
+            {
+                OrdenAcceso OrdenAcceso = new OrdenAcceso();
+                string CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+                OrdenAcceso.RestarDiferenciaPreOrden(CadenaConexion, this.OrdenEncabezadoEntidad.OrdenId);
+
+                _ErrorId = OrdenAcceso.ErrorId;
+                _DescripcionError = OrdenAcceso.DescripcionError;
+            }
+
         #endregion
     }
 }

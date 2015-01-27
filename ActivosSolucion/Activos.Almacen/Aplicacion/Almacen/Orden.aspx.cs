@@ -118,10 +118,14 @@ namespace Almacen.Web.Aplicacion.Almacen
                 OrdenProceso.OrdenEncabezadoEntidad.FechaOrden = FormatoFecha.AsignarFormato(FechaOrdenBox.Text.Trim(), ConstantePrograma.UniversalFormatoFecha);
                 OrdenProceso.OrdenDetalleEntidad.ProductoIdArray = ObtenerProductoId();
 
+                ObtenerEstatusPreOrden(OrdenProceso);
+
+                //#
                 OrdenProceso.GuardarOrden();
 
                 if (OrdenProceso.ErrorId == 0)
                 {
+                    //OrdenProceso.RestarDiferenciaPreOrden();
                     LimpiarFormulario();
 
                     MostrarMensaje(TextoInfo.MensajeNoOrden + OrdenProceso.SeleccionarOrdenEncabezadoPorOrdenId().ResultadoDatos.Tables[0].Rows[0]["Clave"], ConstantePrograma.TipoMensajeSimpleAlerta);
@@ -131,7 +135,24 @@ namespace Almacen.Web.Aplicacion.Almacen
                     MostrarMensaje(OrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
             }
 
+            private short ObtenerEstatusPreOrden(OrdenProceso OrdenProceso)
+            {
+                short Estatus = (short)ConstantePrograma.EstatusPreOrden.SinOC;
+                UsuarioEntidad UsuarioEntidad = new UsuarioEntidad();
+                UsuarioEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
+                string SesionId = UsuarioEntidad.SesionId;
+                PreOrdenProceso PreOrdenProceso = new PreOrdenProceso();
 
+                PreOrdenProceso.PreOrdenEntidad.Clave = PreOrdenBusqueda.Text;
+
+
+                DataSet DatosPreOrden = PreOrdenProceso.SeleccionarPreOrdenDetallePorClave();
+                
+
+
+                return Estatus;
+            }
+            
 
             
             private void GuardarProductoOrdenTemp(string OrdenId, string PreOrdenId, string ProductoId, string SesionId)
