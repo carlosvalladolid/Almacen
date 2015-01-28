@@ -492,6 +492,46 @@ namespace Activos.AccesoDatos.Almacen
                 }
             }
 
+
+            public ResultadoEntidad ActualizarPreOrdenEstatus(PreOrdenEntidad PreOrdenEntidad, string CadenaConexion)
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                SqlConnection Conexion = new SqlConnection(CadenaConexion);
+                SqlCommand Comando;
+                SqlParameter Parametro;
+                SqlDataAdapter Adaptador;
+
+                try
+                {
+
+                    Comando = new SqlCommand("ActualizarPreOrdenEstatus", Conexion);
+                    Comando.CommandType = CommandType.StoredProcedure;
+
+                    Parametro = new SqlParameter("@Clave", SqlDbType.SmallInt);
+                    Parametro.Value = PreOrdenEntidad.Clave;
+                    Comando.Parameters.Add(Parametro);
+
+                    Parametro = new SqlParameter("@EstatusId", SqlDbType.SmallInt);
+                    Parametro.Value = PreOrdenEntidad.EstatusId;
+                    Comando.Parameters.Add(Parametro);
+
+                    Adaptador = new SqlDataAdapter(Comando);
+
+                    Conexion.Open();
+                    Adaptador.Fill(Resultado.ResultadoDatos);
+                    Conexion.Close();
+
+                    return Resultado;
+                }
+                catch (SqlException Excepcion)
+                {
+                    Resultado.ErrorId = Excepcion.Number;
+                    Resultado.DescripcionError = Excepcion.Message;
+
+                    return Resultado;
+                }
+            }
+
         #endregion
     }
 }

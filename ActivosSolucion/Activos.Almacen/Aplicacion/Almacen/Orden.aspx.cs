@@ -118,8 +118,16 @@ namespace Almacen.Web.Aplicacion.Almacen
                 OrdenProceso.OrdenEncabezadoEntidad.FechaOrden = FormatoFecha.AsignarFormato(FechaOrdenBox.Text.Trim(), ConstantePrograma.UniversalFormatoFecha);
                 OrdenProceso.OrdenDetalleEntidad.ProductoIdArray = ObtenerProductoId();
 
-                ObtenerEstatusPreOrden(OrdenProceso);
+                
+                //ACTUALIZAR ESTATUS DE LA PREORDEN
+                PreOrdenProceso PreOrdenProceso = new PreOrdenProceso();
+                PreOrdenEntidad PreOrdenEntidad = new PreOrdenEntidad();
 
+                PreOrdenEntidad.Clave = PreOrdenBusqueda.Text;
+                PreOrdenEntidad.EstatusId = ObtenerEstatusPreOrden(OrdenProceso);
+                PreOrdenProceso.ActualizarPreOrdenEstatus(PreOrdenEntidad);
+                
+                
                 //#
                 OrdenProceso.GuardarOrden();
 
@@ -147,9 +155,35 @@ namespace Almacen.Web.Aplicacion.Almacen
 
 
                 DataSet DatosPreOrden = PreOrdenProceso.SeleccionarPreOrdenDetallePorClave();
+
+                if (DatosPreOrden.Tables[0].Rows.Count > OrdenProceso.OrdenDetalleEntidad.ProductoIdArray.GetLength(0))
+                {
+                    Estatus = (short)ConstantePrograma.EstatusPreOrden.ConOCIncompleta;
+                }
+                else
+                {
+
+                    foreach (DataRow FilaPreOrden in DatosPreOrden.Tables[0].Rows)
+                    {
+                        for (int i = 0; i < OrdenProceso.OrdenDetalleEntidad.ProductoIdArray.GetLength(0); i++)
+                        {
+                            if (FilaPreOrden["ProductoId"].ToString() == OrdenProceso.OrdenDetalleEntidad.ProductoIdArray[i,0])
+                            {
+                                if ((Convert.ToInt32(FilaPreOrden["Cantidad"]) - Convert.ToInt32(OrdenProceso.OrdenDetalleEntidad.ProductoIdArray[i,1])) > 0)
+                                {
+                                    Estatus = (short)ConstantePrograma.EstatusPreOrden.ConOCIncompleta;
+                                    break;
+                                }
+                            }
+                        }
+                        if (Estatus != (short)ConstantePrograma.EstatusPreOrden.SinOC) break;
+                    }
+                }
+
+                if (Estatus == (short)ConstantePrograma.EstatusPreOrden.SinOC)
+                    Estatus = (short)ConstantePrograma.EstatusPreOrden.ConOCCompleta;
+
                 
-
-
                 return Estatus;
             }
             

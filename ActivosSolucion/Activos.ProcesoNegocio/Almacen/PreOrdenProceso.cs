@@ -266,6 +266,14 @@ namespace Activos.ProcesoNegocio.Almacen
                 return Resultado.ResultadoDatos;
             }
 
+            public DataSet ActualizarPreOrdenEstatus(PreOrdenEntidad PreOrdenEntidad)
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                PreOrdenAcceso PreOrdenAcceso = new PreOrdenAcceso();
+                string CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+                Resultado = PreOrdenAcceso.ActualizarPreOrdenEstatus(PreOrdenEntidad, CadenaConexion);
+                return Resultado.ResultadoDatos;
+            }
 
         #endregion
     }
