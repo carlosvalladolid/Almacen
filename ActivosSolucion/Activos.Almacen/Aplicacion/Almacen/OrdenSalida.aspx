@@ -336,7 +336,9 @@
                 <!-- Termina búsqueda de productos -->
 
                 <asp:HiddenField ID="RequisicionIdHidden" runat="server" Value="" />
-
+                <asp:HiddenField ID="OrdenSalidaIdHidden" runat="server" Value="" />
+                <asp:HiddenField ID="ProductoIdHidden" runat="server" Value="" />
+                
                 <asp:UpdateProgress AssociatedUpdatePanelID="PageUpdate" ID="AssociatedUpdate" runat="server">
                     <ProgressTemplate>
                         <div class="LoadingDiv"><div class="LoadingImageDiv"><img alt="Cargando..." src="/Imagen/Icono/IconoCargando.gif" /></div></div>

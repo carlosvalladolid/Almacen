@@ -101,6 +101,8 @@ namespace Almacen.Web.Aplicacion.Almacen
             {
                 int Cantidad = 0;
                 string ClaveProducto = string.Empty;
+                UsuarioEntidad UsuarioEntidad = new UsuarioEntidad();
+                OrdenSalidaProceso OrdenSalidaProceso = new OrdenSalidaProceso();
 
                 if (!int.TryParse(ClaveRequisicionBox.Text.Trim(), out Cantidad))
                 {
@@ -109,14 +111,39 @@ namespace Almacen.Web.Aplicacion.Almacen
                 }
 
                 ClaveProducto = ClaveRequisicionBox.Text.Trim();
+                UsuarioEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
 
-                
+                OrdenSalidaProceso.OrdenSalidaDetalleEntidad.OrdenSalidaId = OrdenSalidaIdHidden.Value;
+                OrdenSalidaProceso.OrdenSalidaDetalleEntidad.RequisicionId = RequisicionIdHidden.Value;
+                OrdenSalidaProceso.OrdenSalidaDetalleEntidad.EstatusId = (short)ConstantePrograma.EstatusOrdenSalida.SalidaCompleta;
+                OrdenSalidaProceso.OrdenSalidaDetalleEntidad.UsuarioIdInserto = UsuarioEntidad.UsuarioId;
+
+                OrdenSalidaProceso.OrdenSalidaDetalleEntidad.ProductoId = ProductoIdHidden.Value;
+                OrdenSalidaProceso.OrdenSalidaDetalleEntidad.Cantidad = Convert.ToInt16(CantidadBox.Text);
+
+                OrdenSalidaProceso.GuardarOrdenSalidaTemp();
+
+                if (OrdenSalidaProceso.ErrorId == 0)
+                {
+                    //# IMPLEMENTANDO...
+                    //OrdenSalidaIdHidden.Value = OrdenSalidaProceso.OrdenSalidaDetalleEntidad.OrdenSalidaId;
+                    //LimpiarFormularioProducto();
+                    //SeleccionarOrdenSalidaDetalleTemp(OrdenSalidaProceso);
+                }
+                else
+                {
+                    MostrarMensaje(OrdenSalidaProceso.DescripcionError,ConstantePrograma.TipoErrorAlerta);
+                }
             }
 
             private void Inicio()
             {
                 if (Page.IsPostBack)
                     return;
+
+                RequisicionIdHidden.Value = "";
+                ProductoIdHidden.Value = "";
+
 
                 SeleccionarRequisicion();
                 
@@ -136,6 +163,15 @@ namespace Almacen.Web.Aplicacion.Almacen
                 FamiliaBox.Text = "";
                 SubFamiliaBox.Text = "";
                 MarcaBox.Text = "";                
+                DescripcionBox.Text = "";
+                CantidadBox.Text = "";
+            }
+
+            private void LimpiarFormularioProducto()
+            {
+                FamiliaBox.Text = "";
+                SubFamiliaBox.Text = "";
+                MarcaBox.Text = "";
                 DescripcionBox.Text = "";
                 CantidadBox.Text = "";
             }
@@ -201,6 +237,11 @@ namespace Almacen.Web.Aplicacion.Almacen
                 EstatusBusquedaCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroTodos, "0"));
             }
 
+            private void SeleccionarOrdenSalidaDetalleTemp(OrdenSalidaProceso OrdenSalidaProceso)
+            {
+                TablaProducto.DataSource = OrdenSalidaProceso.SeleccionarOrdenSalidaDetalleTemp();
+            }
+
             private void SeleccionarProducto()
             {
                 SeleccionarProducto("", "");
@@ -226,6 +267,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                     MostrarMensaje(TextoError.ProductoNoEncontrado, ConstantePrograma.TipoErrorAlerta);
                 else
                 {
+                    ProductoIdHidden.Value = Resultado.ResultadoDatos.Tables[0].Rows[0]["ProductoId"].ToString();
                     ClaveRequisicionBox.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Clave"].ToString();
                     FamiliaBox.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Familia"].ToString();
                     SubFamiliaBox.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["SubFamilia"].ToString();
@@ -332,6 +374,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 RequisicionId = e.CommandArgument.ToString();
 
+                RequisicionIdHidden.Value = RequisicionId;
                 SeleccionarRequisicion(RequisicionId);
                 OcultarBusquedaRequisicion();
             }

@@ -56,7 +56,7 @@ namespace Activos.AccesoDatos.Almacen
             /// <param name="Conexion">Conexión actual a la base de datos.</param>
             /// <param name="Transaccion">Transacción actual a la base de datos.</param>
             /// <param name="OrdenSalidaEntidad">Entidad de la orden de salida.</param>
-            public void InsertarOrdenSalidaTemp(SqlConnection Conexion, SqlTransaction Transaccion, OrdenSalidaEntidad OrdenSalidaEntidad)
+        public void InsertarOrdenSalidaTemp(SqlConnection Conexion, SqlTransaction Transaccion, OrdenSalidaDetalleEntidad OrdenSalidaDetalleEntidad)
             {
                 SqlCommand Commando;
                 SqlParameter Parameter;
@@ -69,23 +69,19 @@ namespace Activos.AccesoDatos.Almacen
                     Commando.Transaction = Transaccion;
 
                     Parameter = new SqlParameter("OrdenSalidaId", SqlDbType.VarChar);
-                    Parameter.Value = OrdenSalidaEntidad.OrdenSalidaId;
+                    Parameter.Value = OrdenSalidaDetalleEntidad.OrdenSalidaId;
                     Commando.Parameters.Add(Parameter);
 
                     Parameter = new SqlParameter("RequisicionId", SqlDbType.VarChar);
-                    Parameter.Value = OrdenSalidaEntidad.RequisicionId;
+                    Parameter.Value = OrdenSalidaDetalleEntidad.RequisicionId;
                     Commando.Parameters.Add(Parameter);
 
                     Parameter = new SqlParameter("EstatusId", SqlDbType.VarChar);
-                    Parameter.Value = OrdenSalidaEntidad.EstatusId;
+                    Parameter.Value = OrdenSalidaDetalleEntidad.EstatusId;
                     Commando.Parameters.Add(Parameter);
 
-                    Parameter = new SqlParameter("UsuarioIdInserto", SqlDbType.VarChar);
-                    Parameter.Value = OrdenSalidaEntidad.UsuarioIdInserto;
-                    Commando.Parameters.Add(Parameter);
-
-                    Parameter = new SqlParameter("Clave", SqlDbType.VarChar);
-                    Parameter.Value = OrdenSalidaEntidad.Clave;
+                    Parameter = new SqlParameter("UsuarioInserto", SqlDbType.VarChar);
+                    Parameter.Value = OrdenSalidaDetalleEntidad.UsuarioIdInserto;
                     Commando.Parameters.Add(Parameter);
 
                     Commando.ExecuteNonQuery();
@@ -96,6 +92,80 @@ namespace Activos.AccesoDatos.Almacen
                     _DescripcionError = Exception.Message;
                 }
             }
+
+        /// <summary>
+        ///     Guarda el detalle de una orden de salida temporal.
+        /// </summary>
+        /// <param name="Conexion">Conexión actual a la base de datos.</param>
+        /// <param name="Transaccion">Transacción actual a la base de datos.</param>
+        /// <param name="OrdenDetalleEntidad">Entidad del detalle de una orden de compra.</param>
+        public void InsertarOrdenDetalleTemp(SqlConnection Conexion, SqlTransaction Transaccion, OrdenSalidaDetalleEntidad OrdenSalidaDetalleEntidad)
+        {
+            SqlCommand Commando;
+            SqlParameter Parameter;
+
+            try
+            {
+                Commando = new SqlCommand("InsertaOrdenSalidaDetalleTemp", Conexion);
+                Commando.CommandType = CommandType.StoredProcedure;
+
+                Commando.Transaction = Transaccion;
+
+                Parameter = new SqlParameter("OrdenSalidaId", SqlDbType.VarChar);
+                Parameter.Value = OrdenSalidaDetalleEntidad.OrdenSalidaId;
+                Commando.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("ProductoId", SqlDbType.VarChar);
+                Parameter.Value = OrdenSalidaDetalleEntidad.ProductoId;
+                Commando.Parameters.Add(Parameter);
+
+                Parameter = new SqlParameter("Cantidad", SqlDbType.VarChar);
+                Parameter.Value = OrdenSalidaDetalleEntidad.Cantidad;
+                Commando.Parameters.Add(Parameter);
+
+                Commando.ExecuteNonQuery();
+            }
+            catch (SqlException Exception)
+            {
+                _ErrorId = Exception.Number;
+                _DescripcionError = Exception.Message;
+            }
+        }
+
+
+        /// <summary>
+        ///     Selecciona el detalle temporal de las ordenes de salida
+        /// </summary>
+        /// <param name="Conexion">Conexión actual a la base de datos.</param>
+        /// <param name="Transaccion">Transacción actual a la base de datos.</param>
+        /// <param name="OrdenDetalleEntidad">Entidad del detalle de una orden de compra.</param>
+        public void SeleccionarOrdenSalidaDetalleTemp(SqlConnection Conexion, string OrdenSalidaId)
+        {
+            SqlCommand Commando;
+            SqlParameter Parameter;
+
+            try
+            {
+                Commando = new SqlCommand("SeleccionarOrdenSalidaDetalleTemp", Conexion);
+                Commando.CommandType = CommandType.StoredProcedure;
+
+       
+                Parameter = new SqlParameter("OrdenSalidaId", SqlDbType.VarChar);
+                Parameter.Value = OrdenSalidaId;
+                Commando.Parameters.Add(Parameter);
+
+                SqlDataAdapter Adaptador = new SqlDataAdapter(Commando);
+                Adaptador.Fill(ResultadoDatos);
+                Conexion.Close();
+               
+
+            }
+            catch (SqlException Exception)
+            {
+                _ErrorId = Exception.Number;
+                _DescripcionError = Exception.Message;
+            }
+        }
         #endregion
     }
 }

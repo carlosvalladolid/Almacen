@@ -29,11 +29,11 @@ namespace Activos.Entidad.Almacen
         public AlmacenEntidad()
         {
             //_ProductoId = Guid.NewGuid().ToString();
-            _ProductoId = Guid.Empty.ToString();
+            _ProductoId = string.Empty;
             _FamiliaId = 0;
             _SubFamiliaId = 0;
             _MarcaId = 0;
-            _UnidadMedidaId = Guid.Empty.ToString();
+            _UnidadMedidaId = string.Empty;
             _EstatusId = true;
             _Clave = string.Empty;
             _Descripcion = string.Empty;

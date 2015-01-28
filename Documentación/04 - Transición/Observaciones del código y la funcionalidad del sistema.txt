@@ -10,6 +10,10 @@ Requisición
 7. No funciona el borrado de los registros de la requisición. (** LISTO **)
 8. No Guarda (** LISTO **)
 9. Cantidad total de articulos no aparece (** LISTO **)
+10. Validar Máximo permitido de productos.
+11. Agregar limpieza de Cantidad al dar clic en guardar
+12. Afectar la existencia temporal de los productos solicitados.
+
 
 Pre Orden
 --------------------------------------
@@ -21,11 +25,12 @@ Pre Orden
 6. En el primer producto agregado, debe bloquearse el cambio de fecha. (** LISTO **)
 7. Al seleccionar empleado, limpiar el Jefe (** LISTO **)
 8. Cantidad total de articulos no aparece (** LISTO **)
-9. Los estatus no corresponden a los definidos en el sistema (NO)
+9. Los estatus no corresponden a los definidos en el sistema (** LISTO **)
 	Estatus:
 		Sin Orden de Compra (OK)
-		COn Orden de Compra Incompleta
-		Con Orden de Compra Completa
+		COn Orden de Compra Incompleta (OK)
+		Con Orden de Compra Completa (OK)
+10. Agregar limpieza de Cantidad al dar clic en guardar
 
 
 Orden de compra
@@ -46,11 +51,16 @@ Recepción
 4. No se están agregando los productos en el detalle. (** LISTO **)
 5. Busqueda por Orden de compra (** LISTO **)
 
+BASE DE DATOS:
+1. Agregar campo Factura al encabezado de la recepcion.
+2. Agregar tabla que controle la clave de cada recepcion.
+
 
 Orden de salida
 --------------------------------------
-1. Falta la funcionalidad de buscar requisiciones.
-2. 
+1. Falta la funcionalidad de buscar requisiciones.(** LISTO **)
+2. Falta funcion del boton Guardar.
+3. Verificar la funcion RowCommand de la tabla productos busqueda.
 
 
 

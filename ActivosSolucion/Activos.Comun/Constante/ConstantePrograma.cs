@@ -231,6 +231,13 @@ namespace Activos.Comun.Constante
             SinSurtir = 31
         }
 
+        public enum EstatusOrdenSalida
+        {
+            Cancelada = 34,
+            SalidaCompleta = 35,
+            SalidaIncompleta = 36
+        }
+
         public enum EstatusPreOrden:short
         {
             SinOC = 33,

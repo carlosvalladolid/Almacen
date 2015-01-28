@@ -361,6 +361,7 @@ namespace Almacen.Web.Aplicacion.Almacen
             DescripcionNuevo.Text = "";
             CantidadNuevo.Text = "";
             ProductoIdHidden.Value = "";
+            
 
             //TablaPreOrden.DataSource = null;
             //TablaPreOrden.DataBind();
