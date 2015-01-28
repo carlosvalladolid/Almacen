@@ -139,8 +139,9 @@ namespace Activos.AccesoDatos.Almacen
         /// <param name="Conexion">Conexión actual a la base de datos.</param>
         /// <param name="Transaccion">Transacción actual a la base de datos.</param>
         /// <param name="OrdenDetalleEntidad">Entidad del detalle de una orden de compra.</param>
-        public void SeleccionarOrdenSalidaDetalleTemp(SqlConnection Conexion, string OrdenSalidaId)
+        public DataSet SeleccionarOrdenSalidaDetalleTemp(SqlConnection Conexion, string OrdenSalidaId)
         {
+            DataSet Resultado = new DataSet();
             SqlCommand Commando;
             SqlParameter Parameter;
 
@@ -155,15 +156,17 @@ namespace Activos.AccesoDatos.Almacen
                 Commando.Parameters.Add(Parameter);
 
                 SqlDataAdapter Adaptador = new SqlDataAdapter(Commando);
-                Adaptador.Fill(ResultadoDatos);
+                Adaptador.Fill(Resultado);
                 Conexion.Close();
-               
 
+                return Resultado;
             }
             catch (SqlException Exception)
             {
                 _ErrorId = Exception.Number;
                 _DescripcionError = Exception.Message;
+
+                return Resultado;
             }
         }
         #endregion

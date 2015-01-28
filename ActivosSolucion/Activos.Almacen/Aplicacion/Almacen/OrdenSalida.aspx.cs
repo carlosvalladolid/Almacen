@@ -82,6 +82,12 @@ namespace Almacen.Web.Aplicacion.Almacen
             {
                 TablaRequisicionBusquedaRowCommand(e);
             }
+
+            protected void TablaOrden_RowCommand(object sender,GridViewCommandEventArgs e)
+            {
+                TablaOrdenRowCommmand(e);
+            }
+        
         #endregion
 
         #region "Métodos"
@@ -97,6 +103,21 @@ namespace Almacen.Web.Aplicacion.Almacen
                 MostrarBusquedaRequisicion();
             }
 
+            private void BorrarOrdenSalidaDetalleTemp(string ProductoId)
+            {
+                //#IMPLEMENTANDO...
+                
+                OrdenSalidaProceso OrdenSalidaProceso = new OrdenSalidaProceso();
+                OrdenSalidaProceso.OrdenSalidaDetalleEntidad.OrdenSalidaId = OrdenSalidaIdHidden.Value;
+                OrdenSalidaProceso.OrdenSalidaDetalleEntidad.ProductoId = ProductoId;
+                OrdenSalidaProceso.BorrarOrdenSalidaDetalleTemp(OrdenSalidaProceso);
+
+                if(OrdenSalidaProceso.ErrorId != 0)
+                {
+                    MostrarMensaje(OrdenSalidaProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                }
+            }
+        
             private void GuardarProductoTemp()
             {
                 int Cantidad = 0;
@@ -104,13 +125,13 @@ namespace Almacen.Web.Aplicacion.Almacen
                 UsuarioEntidad UsuarioEntidad = new UsuarioEntidad();
                 OrdenSalidaProceso OrdenSalidaProceso = new OrdenSalidaProceso();
 
-                if (!int.TryParse(ClaveRequisicionBox.Text.Trim(), out Cantidad))
+                if (!int.TryParse(ClaveProductoBox.Text.Trim(), out Cantidad))
                 {
                     MostrarMensaje(TextoError.SalidaClaveProducto, ConstantePrograma.TipoErrorAlerta);
                     return;
                 }
 
-                ClaveProducto = ClaveRequisicionBox.Text.Trim();
+                ClaveProducto = ClaveProductoBox.Text.Trim();
                 UsuarioEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
 
                 OrdenSalidaProceso.OrdenSalidaDetalleEntidad.OrdenSalidaId = OrdenSalidaIdHidden.Value;
@@ -125,10 +146,9 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 if (OrdenSalidaProceso.ErrorId == 0)
                 {
-                    //# IMPLEMENTANDO...
-                    //OrdenSalidaIdHidden.Value = OrdenSalidaProceso.OrdenSalidaDetalleEntidad.OrdenSalidaId;
-                    //LimpiarFormularioProducto();
-                    //SeleccionarOrdenSalidaDetalleTemp(OrdenSalidaProceso);
+                    OrdenSalidaIdHidden.Value = OrdenSalidaProceso.OrdenSalidaDetalleEntidad.OrdenSalidaId;
+                    LimpiarFormularioProducto();
+                    SeleccionarOrdenSalidaDetalleTemp(OrdenSalidaProceso);
                 }
                 else
                 {
@@ -159,7 +179,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 DireccionBox.Text = "";
                 PuestoBox.Text = "";
                 JefeBox.Text = "";
-                ClaveRequisicionBox.Text = "";
+                ClaveProductoBox.Text = "";
                 FamiliaBox.Text = "";
                 SubFamiliaBox.Text = "";
                 MarcaBox.Text = "";                
@@ -174,6 +194,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 MarcaBox.Text = "";
                 DescripcionBox.Text = "";
                 CantidadBox.Text = "";
+                ClaveProductoBox.Text = "";
             }
 
             private void MostrarBusquedaProducto()
@@ -239,7 +260,8 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             private void SeleccionarOrdenSalidaDetalleTemp(OrdenSalidaProceso OrdenSalidaProceso)
             {
-                TablaProducto.DataSource = OrdenSalidaProceso.SeleccionarOrdenSalidaDetalleTemp();
+                TablaOrden.DataSource = OrdenSalidaProceso.SeleccionarOrdenSalidaDetalleTemp();
+                TablaOrden.DataBind();
             }
 
             private void SeleccionarProducto()
@@ -268,7 +290,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 else
                 {
                     ProductoIdHidden.Value = Resultado.ResultadoDatos.Tables[0].Rows[0]["ProductoId"].ToString();
-                    ClaveRequisicionBox.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Clave"].ToString();
+                    ClaveProductoBox.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Clave"].ToString();
                     FamiliaBox.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Familia"].ToString();
                     SubFamiliaBox.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["SubFamilia"].ToString();
                     MarcaBox.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Marca"].ToString();
@@ -356,6 +378,12 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 TablaRequisicionBusqueda.DataSource = RequisicionProceso.ResultadoDatos;
                 TablaRequisicionBusqueda.DataBind();
+            }
+
+            private void TablaOrdenRowCommmand(GridViewCommandEventArgs e)
+            {
+                //#IMPLEMENTANDO...
+                BorrarOrdenSalidaDetalleTemp(e.CommandArgument.ToString());
             }
 
             private void TablaProductoRowCommand(GridViewCommandEventArgs e)

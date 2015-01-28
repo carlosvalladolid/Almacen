@@ -95,13 +95,13 @@ namespace Almacen.Web.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.TextBox JefeBox;
         
         /// <summary>
-        /// ClaveRequisicionBox control.
+        /// ClaveProductoBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ClaveRequisicionBox;
+        protected global::System.Web.UI.WebControls.TextBox ClaveProductoBox;
         
         /// <summary>
         /// ImagenBuscarProducto control.
@@ -158,13 +158,13 @@ namespace Almacen.Web.Aplicacion.Almacen {
         protected global::System.Web.UI.WebControls.TextBox CantidadBox;
         
         /// <summary>
-        /// BotonAgregar control.
+        /// ImageButton2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BotonAgregar;
+        protected global::System.Web.UI.WebControls.ImageButton ImageButton2;
         
         /// <summary>
         /// TablaOrden control.
@@ -408,6 +408,24 @@ namespace Almacen.Web.Aplicacion.Almacen {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField ProductoIdHidden;
+        
+        /// <summary>
+        /// MensajeConfirmacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField MensajeConfirmacion;
+        
+        /// <summary>
+        /// MensajeLimpieza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField MensajeLimpieza;
         
         /// <summary>
         /// AssociatedUpdate control.

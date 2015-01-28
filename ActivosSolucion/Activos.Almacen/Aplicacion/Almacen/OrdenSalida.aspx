@@ -4,7 +4,20 @@
 <%@ Register TagPrefix="wuc" TagName="ControlMenuIzquierdo" Src="~/Incluir/ControlesWeb/ControlMenuIzquierdo.ascx" %>
 
 <asp:Content ID="ContenidoEncabezado" ContentPlaceHolderID="ContenedorEncabezado" runat="server">
-    
+    <link href="/Incluir/Estilo/Privado/jquery-ui-1.8.16.custom.css" rel="Stylesheet" type="text/css" />
+    <link href="/Incluir/Estilo/Privado/demos.css" rel="Stylesheet" type="text/css" />
+
+    <script src="/Incluir/Javascript/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
+    <script src="/Incluir/Javascript/jquery.ui.datepicker-es.js" type="text/javascript"></script>
+    <script src="/Incluir/Javascript/Calendar.js" type="text/javascript"></script>
+    <script language="javascript" type="text/javascript">
+        function pageLoad(sender, args) {
+            $("#<%= CantidadBox.ClientID %>").SoloNumeros();
+            $("#<%= BotonGuardar.ClientID %>").Confirmar("<%= MensajeConfirmacion.Value%>");
+        }
+    </script>
+
+    <script language="javascript" src="/Incluir/Javascript/ValidarFormulario.js" type="text/javascript"></script>
 </asp:Content>
 
 <asp:Content ID="ContenidoCuerpo" ContentPlaceHolderID="ContenedorCuerpo" runat="server">
@@ -73,7 +86,7 @@
                         <td class="Nombre">Clave</td>
                         <td class="Espacio"></td>
                         <td class="Campo">
-                            <asp:TextBox CssClass="CajaTextoPequenia" Enabled ="false" ID="ClaveRequisicionBox" MaxLength="10" runat="server" Text="">
+                            <asp:TextBox CssClass="CajaTextoPequenia" Enabled ="false" ID="ClaveProductoBox" MaxLength="10" runat="server" Text="">
                             </asp:TextBox><asp:ImageButton ID="ImagenBuscarProducto" ImageUrl="/Imagen/Icono/ImagenBuscar.gif" onclick="ImagenProductoBusqueda_Click" runat="server" />
                         </td>
                     </tr>
@@ -102,57 +115,67 @@
                         <td class="Campo"><asp:TextBox CssClass="CajaTextoPequenia" ID="CantidadBox" MaxLength="10" runat="server" Text=""></asp:TextBox></td>
                     </tr>
                     <tr>
-                        <td coslpan="3">
+                        <td colspan="3">
                             <br />
-                            <asp:Button ID="BotonAgregar" runat="server" Text="Agregar" 
-                                onclick="BotonAgregar_Click" />
+                            <asp:ImageButton AlternateText="Guardar" ID="ImageButton2" ImageUrl="~/Imagen/Boton/BotonAgregar.png" OnClick="BotonAgregar_Click" runat="server" ValidationGroup="Save" />
                         </td>
                     </tr>
                 </table>
-
-                <div class="DivTabla">
-                    <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
-                        CssClass="TablaInformacion" DataKeyNames="OrdenId" ID="TablaOrden"
-                        runat="server" PageSize="10">
+                
+                
+                
+			    <div>
+                    <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0" 
+                        CssClass="TablaInformacion" DataKeyNames="ProductoId" ID="TablaOrden" OnRowCommand="TablaOrden_RowCommand" runat="server" PageSize="10">
                         <EmptyDataTemplate>
                             <table class="TablaVacia">
                                 <tr class="Encabezado">
-                                    <th style="width: 35px;"></th>
-                                    <th style="width: 100px;">Clave</th>
-                                    <th>Descripción</th>
-                                    <th style="width: 125px;">Familia</th>
-                                    <th style="width: 125px;">Marca</th>
-                                    <th style="width: 125px;">Cantidad</th> 
-                                 </tr>
+                                    <th style="width: 10px;"></th>
+                                    <th style="width: 30px;">Clave</th>
+                                    <th style="width: 100px;">Nombre</th>  
+                                    <th style="width: 80px;">Familia</th>                                    
+                                    <th style="width: 60px;">SubFamilia</th>   
+                                    <th style="width: 60px;">Marca</th>  
+                                    <th style="width: 20px;">Cantidad</th>  
+                                </tr>
                                 <tr>
-                                    <td colspan="6" style="text-align: center;">No se encontró información con los parámetros seleccionados</td>
+                                    <td colspan="7" style="text-align: center;">No se encontró información con los parámetros seleccionados</td>
                                 </tr>
                             </table>
-                        </EmptyDataTemplate>
+                      </EmptyDataTemplate>
                         <HeaderStyle CssClass="Encabezado" />
                         <PagerStyle CssClass="Paginacion" HorizontalAlign="Right" />
                         <Columns>
-                            <asp:TemplateField HeaderText="">
-                                <ItemTemplate>
-                                    <asp:ImageButton AlternateText="Quitar" CommandArgument='<%#Container.DataItemIndex%>' CommandName="Agregar" ID="BotonQuitar" ImageUrl="/Imagen/Icono/IconoQuitar.png" runat="server" />
-                                </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" Width="35px" />
-                            </asp:TemplateField>
-                            <asp:BoundField DataField="ClaveProducto" HeaderText="Clave" ItemStyle-HorizontalAlign="Left">
-                                <HeaderStyle HorizontalAlign="Center" Width="100px" />
-                            </asp:BoundField>
-                            <asp:BoundField DataField="DescripcionProducto" HeaderText="Descripción" ItemStyle-HorizontalAlign="Left">
+                           <asp:BoundField DataField="ClaveProducto" HeaderText="Clave" ItemStyle-HorizontalAlign="Left">
+                                <HeaderStyle HorizontalAlign="Center" Width="15px" />
+                            </asp:BoundField>                                                      
+                            
+                            <asp:BoundField DataField="DescripcionProducto" HeaderText="Producto" ItemStyle-HorizontalAlign="Left">
+                                <HeaderStyle HorizontalAlign="Center"/>
+                            </asp:BoundField>    
+                            
+                              <asp:BoundField DataField="FamiliaNombre" HeaderText="Familia" ItemStyle-HorizontalAlign="Left">
+                                <HeaderStyle HorizontalAlign="Center"/>
+                            </asp:BoundField>                  
+                          
+                            <asp:BoundField DataField="SubFamiliaNombre" HeaderText="SubFamilia" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="NombreFamilia" HeaderText="Familia" ItemStyle-HorizontalAlign="Left">
-                                <HeaderStyle HorizontalAlign="Center" Width="125px" />
+                            
+                             <asp:BoundField DataField="MarcaNombre" HeaderText="Marca" ItemStyle-HorizontalAlign="Left">
+                                <HeaderStyle HorizontalAlign="Center"  />
                             </asp:BoundField>
-                            <asp:BoundField DataField="NombreMarca" HeaderText="Marca" ItemStyle-HorizontalAlign="Left">
-                                <HeaderStyle HorizontalAlign="Center" Width="125px" />
+                            
+                             <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" ItemStyle-HorizontalAlign="Left">
+                                <HeaderStyle HorizontalAlign="Center"  />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" ItemStyle-HorizontalAlign="Left">
-                                <HeaderStyle HorizontalAlign="Center" Width="125px" />
-                            </asp:BoundField>                                 
+                            
+                            <asp:TemplateField HeaderText="">
+                                     <ItemTemplate>
+                                         <asp:ImageButton ID="BotonEliminarActivo" CommandArgument='<%#Eval("ProductoId")%>'  CommandName="EliminarPreOrden" runat="server" ImageUrl="/Imagen/Icono/IconoEliminarRegistro.gif" />
+                                     </ItemTemplate>
+                                     <ItemStyle HorizontalAlign="Center" Width="25px" />
+                            </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
                 </div>
@@ -338,6 +361,9 @@
                 <asp:HiddenField ID="RequisicionIdHidden" runat="server" Value="" />
                 <asp:HiddenField ID="OrdenSalidaIdHidden" runat="server" Value="" />
                 <asp:HiddenField ID="ProductoIdHidden" runat="server" Value="" />
+                
+                <asp:HiddenField ID="MensajeConfirmacion" runat="server" Value="" />
+                <asp:HiddenField ID="MensajeLimpieza" runat="server" Value="" />
                 
                 <asp:UpdateProgress AssociatedUpdatePanelID="PageUpdate" ID="AssociatedUpdate" runat="server">
                     <ProgressTemplate>

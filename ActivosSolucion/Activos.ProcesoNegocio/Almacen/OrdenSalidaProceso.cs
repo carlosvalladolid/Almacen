@@ -146,21 +146,69 @@ namespace Activos.ProcesoNegocio.Almacen
 
             public DataSet SeleccionarOrdenSalidaDetalleTemp()
             {
-                SqlConnection Conexion = new SqlConnection(SeleccionarConexion(ConstantePrograma.DefensoriaDB_Catalogo));
+                SqlConnection Conexion = new SqlConnection(SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen));
                 OrdenSalidaAcceso OrdenSalidaAcceso = new OrdenSalidaAcceso();
-
-                OrdenSalidaAcceso.SeleccionarOrdenSalidaDetalleTemp(Conexion, OrdenSalidaDetalleEntidad.OrdenSalidaId);
+                DataSet Resultado = new DataSet();
+                Resultado = OrdenSalidaAcceso.SeleccionarOrdenSalidaDetalleTemp(Conexion, OrdenSalidaDetalleEntidad.OrdenSalidaId);
 
                 _ErrorId = OrdenSalidaAcceso.ErrorId;
                 _DescripcionError = OrdenSalidaAcceso.DescripcionError;
 
-                return OrdenSalidaAcceso.ResultadoDatos;
+                return Resultado;
             }
 
             private bool ValidarOrdenSalidaTemp()
             {
 
                 return true;
+            }
+
+            private void BorrarOrdenSalidaDetalleTemp(OrdenSalidaProceso OrdenSalidaProceso)
+            {
+                SqlConnection Conexion = new SqlConnection(SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen));
+                SqlTransaction Transaccion;
+
+                if (!ValidarOrdenSalidaTemp()) return;
+
+                Conexion.Open();
+                Transaccion = Conexion.BeginTransaction();
+
+                try
+                {
+                    // Guardar encabezado temporal
+                    if (_OrdenSalidaDetalleEntidad.OrdenSalidaId == "")
+                    {
+                        _OrdenSalidaDetalleEntidad.OrdenSalidaId = Guid.NewGuid().ToString();
+
+                        GuardarOrdenSalidaEncabezadoTemp(Conexion, Transaccion, _OrdenSalidaDetalleEntidad);
+                    }
+
+                    if (_ErrorId != 0)
+                    {
+                        Transaccion.Rollback();
+                        Conexion.Close();
+                        return;
+                    }
+
+                    // Si todo salió bien, guardar el detalle temporal
+                    GuardaOrdenSalidaDetalleTemp(Conexion, Transaccion, _OrdenSalidaDetalleEntidad);
+
+                    if (_ErrorId == 0)
+                        Transaccion.Commit();
+                    else
+                        Transaccion.Rollback();
+
+                    Conexion.Close();
+                }
+                catch
+                {
+                    if (Conexion.State == ConnectionState.Open)
+                    {
+                        Transaccion.Rollback();
+                        Conexion.Close();
+                    }
+                }
+
             }
         #endregion
     }
