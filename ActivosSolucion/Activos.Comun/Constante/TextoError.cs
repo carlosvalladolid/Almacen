@@ -285,6 +285,7 @@ namespace Activos.Comun.Constante
 
         // Mensajes de error para la pantalla de orden de salida
         public const string SalidaOrdenNoEncontrada = "No se encontró información de la orden seleccionada";
+        public const string SalidaClaveProducto = "El campo Clave de producto es obligatorio";
 
         public enum Error
         {

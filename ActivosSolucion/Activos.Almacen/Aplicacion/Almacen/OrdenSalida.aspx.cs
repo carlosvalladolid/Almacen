@@ -28,9 +28,19 @@ namespace Almacen.Web.Aplicacion.Almacen
     public partial class OrdenSalida : System.Web.UI.Page
     {
         #region "Eventos"
+            protected void BotonAgregar_Click(object sender, EventArgs e)
+            {
+                GuardarProductoTemp();
+            }
+
             protected void BotonCerrarProductoBusqueda_Click(object sender, ImageClickEventArgs e)
             {
                 OcultarBusquedaProducto();
+            }
+
+            protected void BotonGuardar_Click(object sender, ImageClickEventArgs e)
+            {
+
             }
 
             protected void BotonProductoBusqueda_Click(object sender, ImageClickEventArgs e)
@@ -41,11 +51,6 @@ namespace Almacen.Web.Aplicacion.Almacen
             protected void BotonRequisicionBusqueda_Click(object sender, ImageClickEventArgs e)
             {
                 SeleccionarRequisicion(RequisicionBusquedaBox.Text.Trim(), EmpleadoBusquedaBox.Text.Trim(), FechaInicioBusquedaBox.Text.Trim(), FechaFinBusquedaBox.Text.Trim(), Int16.Parse(EstatusBusquedaCombo.SelectedValue));
-            }
-
-            protected void BotonGuardar_Click(object sender, ImageClickEventArgs e)
-            {
-
             }
 
             protected void BotonRequisicionCerrar_Click(object sender, ImageClickEventArgs e)
@@ -83,15 +88,29 @@ namespace Almacen.Web.Aplicacion.Almacen
             private void BuscarProducto()
             {
                 SeleccionarProducto();
-
                 MostrarBusquedaProducto();
             }
 
             private void BuscarRequisicion()
             {
                 SeleccionarEstatus();
-
                 MostrarBusquedaRequisicion();
+            }
+
+            private void GuardarProductoTemp()
+            {
+                int Cantidad = 0;
+                string ClaveProducto = string.Empty;
+
+                if (!int.TryParse(ClaveRequisicionBox.Text.Trim(), out Cantidad))
+                {
+                    MostrarMensaje(TextoError.SalidaClaveProducto, ConstantePrograma.TipoErrorAlerta);
+                    return;
+                }
+
+                ClaveProducto = ClaveRequisicionBox.Text.Trim();
+
+                
             }
 
             private void Inicio()
@@ -113,14 +132,12 @@ namespace Almacen.Web.Aplicacion.Almacen
                 DireccionBox.Text = "";
                 PuestoBox.Text = "";
                 JefeBox.Text = "";
-                //***********************
                 ClaveRequisicionBox.Text = "";
                 FamiliaBox.Text = "";
                 SubFamiliaBox.Text = "";
                 MarcaBox.Text = "";                
                 DescripcionBox.Text = "";
                 CantidadBox.Text = "";
-
             }
 
             private void MostrarBusquedaProducto()

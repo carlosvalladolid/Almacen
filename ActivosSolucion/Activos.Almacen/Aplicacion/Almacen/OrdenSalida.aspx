@@ -104,7 +104,8 @@
                     <tr>
                         <td coslpan="3">
                             <br />
-                            <asp:Button ID="BotonAgregar" runat="server" Text="Agregar" />
+                            <asp:Button ID="BotonAgregar" runat="server" Text="Agregar" 
+                                onclick="BotonAgregar_Click" />
                         </td>
                     </tr>
                 </table>
