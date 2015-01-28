@@ -283,6 +283,9 @@ namespace Activos.Comun.Constante
         public const string ProductoNoEncontrado = "No se encontró información del producto proporcionado";
         public const string CantidadArribaDelMaximo = "La cantidad solicitada excede el máximo permitido para este producto";
 
+        // Mensajes de error para la pantalla de orden de salida
+        public const string SalidaOrdenNoEncontrada = "No se encontró información de la orden seleccionada";
+
         public enum Error
         {
             Generico = 50000

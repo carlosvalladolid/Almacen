@@ -28,6 +28,16 @@ namespace Almacen.Web.Aplicacion.Almacen
     public partial class OrdenSalida : System.Web.UI.Page
     {
         #region "Eventos"
+            protected void BotonCerrarProductoBusqueda_Click(object sender, ImageClickEventArgs e)
+            {
+                OcultarBusquedaProducto();
+            }
+
+            protected void BotonProductoBusqueda_Click(object sender, ImageClickEventArgs e)
+            {
+                SeleccionarProducto(ClaveProductoBusqueda.Text.Trim(), NombreProductoBusqueda.Text.Trim());
+            }
+
             protected void BotonRequisicionBusqueda_Click(object sender, ImageClickEventArgs e)
             {
                 SeleccionarRequisicion(RequisicionBusquedaBox.Text.Trim(), EmpleadoBusquedaBox.Text.Trim(), FechaInicioBusquedaBox.Text.Trim(), FechaFinBusquedaBox.Text.Trim(), Int16.Parse(EstatusBusquedaCombo.SelectedValue));
@@ -48,9 +58,9 @@ namespace Almacen.Web.Aplicacion.Almacen
                 BuscarRequisicion();
             }
 
-            protected void ImagenBuscarArticulo_Click(object sender, ImageClickEventArgs e)
+            protected void ImagenProductoBusqueda_Click(object sender, ImageClickEventArgs e)
             {
-               
+                BuscarProducto();
             }
 
             protected void Page_Load(object sender, EventArgs e)
@@ -58,13 +68,25 @@ namespace Almacen.Web.Aplicacion.Almacen
                 Inicio();
             }
 
+            protected void TablaProducto_RowCommand(object sender, GridViewCommandEventArgs e)
+            {
+                TablaProductoRowCommand(e);
+            }
+
             protected void TablaRequisicionBusqueda_RowCommand(object sender, GridViewCommandEventArgs e)
             {
-
+                TablaRequisicionBusquedaRowCommand(e);
             }
         #endregion
 
         #region "Métodos"
+            private void BuscarProducto()
+            {
+                SeleccionarProducto();
+
+                MostrarBusquedaProducto();
+            }
+
             private void BuscarRequisicion()
             {
                 SeleccionarEstatus();
@@ -101,6 +123,12 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             }
 
+            private void MostrarBusquedaProducto()
+            {
+                FondoBuscarProducto.Visible = true;
+                PanelBusquedaProducto.Visible = true;
+            }
+
             private void MostrarBusquedaRequisicion()
             {
                 FondoBusquedaRequisicion.Visible = true;
@@ -120,13 +148,19 @@ namespace Almacen.Web.Aplicacion.Almacen
                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
             }
 
+            private void OcultarBusquedaProducto()
+            {
+                FondoBuscarProducto.Visible = false;
+                PanelBusquedaProducto.Visible = false;
+            }
+
             private void OcultarBusquedaRequisicion()
             {
                 FondoBusquedaRequisicion.Visible = false;
                 PanelBusquedaRequisicion.Visible = false;
             }
 
-            protected void SeleccionarEstatus()
+            private void SeleccionarEstatus()
             {
                 ResultadoEntidad Resultado = new ResultadoEntidad();
                 EstatusEntidad EstatusEntidad = new EstatusEntidad();
@@ -150,9 +184,95 @@ namespace Almacen.Web.Aplicacion.Almacen
                 EstatusBusquedaCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroTodos, "0"));
             }
 
+            private void SeleccionarProducto()
+            {
+                SeleccionarProducto("", "");
+            }
+
+            private void SeleccionarProducto(string ProductoId)
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                AlmacenEntidad AlmacenObjetoEntidad = new AlmacenEntidad();
+                AlmacenProceso AlmacenProcesoNegocio = new AlmacenProceso();
+
+                AlmacenObjetoEntidad.ProductoId = ProductoId;
+
+                Resultado = AlmacenProcesoNegocio.SeleccionarProducto(AlmacenObjetoEntidad);
+
+                if (Resultado.ErrorId != 0)
+                {
+                    MostrarMensaje(Resultado.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                    return;
+                }
+
+                if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
+                    MostrarMensaje(TextoError.ProductoNoEncontrado, ConstantePrograma.TipoErrorAlerta);
+                else
+                {
+                    ClaveRequisicionBox.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Clave"].ToString();
+                    FamiliaBox.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Familia"].ToString();
+                    SubFamiliaBox.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["SubFamilia"].ToString();
+                    MarcaBox.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Marca"].ToString();
+                    DescripcionBox.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["NombreProducto"].ToString();
+                }
+            }
+
+            private void SeleccionarProducto(string Clave, string Nombre)
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                AlmacenEntidad AlmacenObjetoEntidad = new AlmacenEntidad();
+                AlmacenProceso AlmacenProcesoNegocio = new AlmacenProceso();
+
+                AlmacenObjetoEntidad.Clave = Clave;
+                AlmacenObjetoEntidad.Descripcion = Nombre;
+
+                Resultado = AlmacenProcesoNegocio.SeleccionarProducto(AlmacenObjetoEntidad);
+
+                if (Resultado.ErrorId != 0)
+                {
+                    MostrarMensaje(Resultado.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                    return;
+                }
+
+                if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
+                    TablaProducto.CssClass = ConstantePrograma.ClaseTablaVacia;
+                else
+                    TablaProducto.CssClass = ConstantePrograma.ClaseTabla;
+
+                TablaProducto.DataSource = Resultado.ResultadoDatos;
+                TablaProducto.DataBind();
+            }
+
             private void SeleccionarRequisicion()
             {
                 SeleccionarRequisicion("", "", "", "", 0);
+            }
+
+            private void SeleccionarRequisicion(string RequisicionId)
+            {
+                RequisicionProceso RequisicionProceso = new RequisicionProceso();
+
+                RequisicionProceso.RequisicionEntidad.RequisicionId = RequisicionId;
+
+                RequisicionProceso.SeleccionarRequisicionSalida();
+
+                if (RequisicionProceso.ErrorId != 0)
+                {
+                    MostrarMensaje(RequisicionProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                    return;
+                }
+
+                if (RequisicionProceso.ResultadoDatos.Tables[0].Rows.Count == 0)
+                    MostrarMensaje(TextoError.SalidaOrdenNoEncontrada, ConstantePrograma.TipoErrorAlerta);
+                else
+                {
+                    RequisicionBox.Text = RequisicionProceso.ResultadoDatos.Tables[0].Rows[0]["Clave"].ToString();
+                    SolicitanteBox.Text = RequisicionProceso.ResultadoDatos.Tables[0].Rows[0]["NombreEmpleado"].ToString();
+                    DependenciaBox.Text = RequisicionProceso.ResultadoDatos.Tables[0].Rows[0]["NombreDependencia"].ToString();
+                    DireccionBox.Text = RequisicionProceso.ResultadoDatos.Tables[0].Rows[0]["NombreDireccion"].ToString();
+                    PuestoBox.Text = RequisicionProceso.ResultadoDatos.Tables[0].Rows[0]["NombrePuesto"].ToString();
+                    JefeBox.Text = RequisicionProceso.ResultadoDatos.Tables[0].Rows[0]["NombreJefe"].ToString();
+                }
             }
 
             private void SeleccionarRequisicion(string RequisicionId, string Empleado, string FechaInicial, string FechaFinal, Int16 EstatusId)
@@ -177,6 +297,26 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 TablaRequisicionBusqueda.DataSource = RequisicionProceso.ResultadoDatos;
                 TablaRequisicionBusqueda.DataBind();
+            }
+
+            private void TablaProductoRowCommand(GridViewCommandEventArgs e)
+            {
+                string ProductoId = string.Empty;
+
+                ProductoId = e.CommandArgument.ToString();
+
+                SeleccionarProducto(ProductoId);
+                OcultarBusquedaProducto();
+            }
+
+            private void TablaRequisicionBusquedaRowCommand(GridViewCommandEventArgs e)
+            {
+                string RequisicionId = string.Empty;
+
+                RequisicionId = e.CommandArgument.ToString();
+
+                SeleccionarRequisicion(RequisicionId);
+                OcultarBusquedaRequisicion();
             }
         #endregion
     }
