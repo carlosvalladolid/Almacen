@@ -496,51 +496,6 @@ namespace Activos.AccesoDatos.Almacen
                     return Resultado;
                 }
             }
-
-
-            /// <summary>
-            ///   
-            /// </summary>
-            /// <param name="CadenaConexion">Cadena de conexión a la base de datos.</param>
-            /// <param name="OrdenId">ID de la Orden.</param>
-            /// <returns>Resultado de la búsqueda.</returns>
-            public ResultadoEntidad RestarDiferenciaPreOrden(string CadenaConexion, string OrdenId)
-            {
-                ResultadoEntidad Resultado = new ResultadoEntidad();
-                SqlConnection Conexion = new SqlConnection(CadenaConexion);
-                SqlCommand Comando;
-                SqlParameter Parametro;
-                SqlDataAdapter Adaptador;
-
-                try
-                {
-                    Comando = new SqlCommand("ActualizarPreOrdenConRestaDeOrden", Conexion);
-                    Comando.CommandType = CommandType.StoredProcedure;
-
-                    Parametro = new SqlParameter("OrdenId", SqlDbType.VarChar);
-                    Parametro.Value = OrdenId;
-                    Comando.Parameters.Add(Parametro);
-
-                    Adaptador = new SqlDataAdapter(Comando);
-
-                    Conexion.Open();
-                    Adaptador.Fill(Resultado.ResultadoDatos);
-                    Conexion.Close();
-
-                    return Resultado;
-                }
-                catch (SqlException Excepcion)
-                {
-                    Resultado.ErrorId = Excepcion.Number;
-                    Resultado.DescripcionError = Excepcion.Message;
-
-                    return Resultado;
-                }
-            }
-
-
-        
-        
         #endregion
     }
 }

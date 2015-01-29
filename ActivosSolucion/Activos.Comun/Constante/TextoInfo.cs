@@ -38,6 +38,10 @@ namespace Activos.Comun.Constante
       public const string MensajeMontoInvalido = "Por favor, especifique un monto válido";
       public const string MensajeRecepcionVacia = "Por favor, especifique los productos de la recepción.";
 
+      //Mensajes Formulario Orden Salida
+      public const string MensajeNoOrdenSalida = "No. Orden Salida: ";
+      public const string MensajeConfirmOrdenSalida = "¿Desea guardar la Orden de Salida?";
+
       public const string MensajeRangoFechasInvalido = "Por favor, indique un rango de fechas valido.";
       public const string MensajeLimpiarFormulario = "¿Desea limpiar el formulario?";
       // Mensaje Informativos de Requisición

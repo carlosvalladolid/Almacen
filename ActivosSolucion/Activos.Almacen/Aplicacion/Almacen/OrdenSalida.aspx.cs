@@ -40,7 +40,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             protected void BotonGuardar_Click(object sender, ImageClickEventArgs e)
             {
-
+                GuardarOrdenSalida();
             }
 
             protected void BotonProductoBusqueda_Click(object sender, ImageClickEventArgs e)
@@ -106,11 +106,10 @@ namespace Almacen.Web.Aplicacion.Almacen
             private void BorrarOrdenSalidaDetalleTemp(string ProductoId)
             {
                 //#IMPLEMENTANDO...
-                
                 OrdenSalidaProceso OrdenSalidaProceso = new OrdenSalidaProceso();
                 OrdenSalidaProceso.OrdenSalidaDetalleEntidad.OrdenSalidaId = OrdenSalidaIdHidden.Value;
                 OrdenSalidaProceso.OrdenSalidaDetalleEntidad.ProductoId = ProductoId;
-                OrdenSalidaProceso.BorrarOrdenSalidaDetalleTemp(OrdenSalidaProceso);
+                OrdenSalidaProceso.BorrarOrdenSalidaDetalleTemp();
 
                 if(OrdenSalidaProceso.ErrorId != 0)
                 {
@@ -156,6 +155,23 @@ namespace Almacen.Web.Aplicacion.Almacen
                 }
             }
 
+            private void GuardarOrdenSalida()
+            {
+                OrdenSalidaProceso OrdenSalidaProceso = new OrdenSalidaProceso();
+                OrdenSalidaProceso.OrdenSalidaDetalleEntidad.OrdenSalidaId = OrdenSalidaIdHidden.Value;
+                
+                string OrdenSalidaClave = OrdenSalidaProceso.GuardarOrdenSalida();
+
+                if (OrdenSalidaProceso.ErrorId != 0)
+                {
+                    MostrarMensaje(OrdenSalidaProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                    return;
+                }
+
+                MostrarMensaje(TextoInfo.MensajeNoOrdenSalida+OrdenSalidaClave,ConstantePrograma.TipoMensajeSimpleAlerta);
+                LimpiarFormulario();
+            }
+
             private void Inicio()
             {
                 if (Page.IsPostBack)
@@ -164,6 +180,8 @@ namespace Almacen.Web.Aplicacion.Almacen
                 RequisicionIdHidden.Value = "";
                 ProductoIdHidden.Value = "";
 
+                MensajeConfirmacion.Value = TextoInfo.MensajeConfirmOrdenSalida;
+                MensajeLimpieza.Value = TextoInfo.MensajeLimpiarFormulario;
 
                 SeleccionarRequisicion();
                 
@@ -185,6 +203,16 @@ namespace Almacen.Web.Aplicacion.Almacen
                 MarcaBox.Text = "";                
                 DescripcionBox.Text = "";
                 CantidadBox.Text = "";
+
+                ProductoIdHidden.Value = "";
+                OrdenSalidaIdHidden.Value = "";
+                RequisicionIdHidden.Value = "";
+
+                TablaProducto.DataSource = null;
+                TablaProducto.DataBind();
+
+                TablaOrden.DataSource = null;
+                TablaOrden.DataBind();
             }
 
             private void LimpiarFormularioProducto()
@@ -382,8 +410,11 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             private void TablaOrdenRowCommmand(GridViewCommandEventArgs e)
             {
-                //#IMPLEMENTANDO...
                 BorrarOrdenSalidaDetalleTemp(e.CommandArgument.ToString());
+                OrdenSalidaProceso OrdenSalidaProceso = new OrdenSalidaProceso();
+                OrdenSalidaProceso.OrdenSalidaDetalleEntidad.ProductoId = e.CommandArgument.ToString();
+                OrdenSalidaProceso.OrdenSalidaDetalleEntidad.OrdenSalidaId = OrdenSalidaIdHidden.Value;
+                SeleccionarOrdenSalidaDetalleTemp(OrdenSalidaProceso);
             }
 
             private void TablaProductoRowCommand(GridViewCommandEventArgs e)

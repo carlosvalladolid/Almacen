@@ -345,6 +345,7 @@ namespace Almacen.Web.Aplicacion.Almacen
             JefeInmediatoNombreNuevo.Text = "";
             //JefeInmediatoIdNuevo.Text = "";
             EtiquetaMensaje.Text = "";
+            LabelTotalArticulo.Text = "";
             TablaPreOrden.DataSource = null;
             TablaPreOrden.DataBind();
             TemporalPreOrdenIdHidden.Value = "";
@@ -378,6 +379,8 @@ namespace Almacen.Web.Aplicacion.Almacen
             TemporalPreOrdenIdHidden.Value = "";
             TemporalProducto.Value = "";
             MensajeConfirmacion.Value = "";
+            LabelTotalArticulo.Text = "";
+            
             TablaPreOrden.DataSource = null;
             TablaPreOrden.DataBind();
         }

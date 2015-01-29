@@ -344,6 +344,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 TablaRequisicion.DataSource = null;
                 TablaRequisicion.DataBind();
                 EtiquetaMensaje.Text = "";
+                LabelTotalArticulo.Text = "";
             }
 
             private void LimpiarRequisicion()
@@ -356,6 +357,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 CantidadNuevo.Text = "";
                 EtiquetaMensaje.Text = "";
                 ProductoIdHidden.Value = "";
+                LabelTotalArticulo.Text = "";
             }
 
             private void MostrarMensaje(string Mensaje, string TipoMensaje)

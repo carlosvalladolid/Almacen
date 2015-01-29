@@ -77,6 +77,57 @@ namespace Activos.ProcesoNegocio.Almacen
         /// <summary>
         ///     Guarda un registro nuevo en la tabla temporal de orden de salida.
         /// </summary>
+
+        public string  GuardarOrdenSalida()
+        {
+            SqlConnection Conexion = new SqlConnection(SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen));
+            SqlTransaction Transaccion;
+            string OrdenSalidaClave = String.Empty;
+
+            if (!ValidarOrdenSalidaTemp()) return OrdenSalidaClave;
+
+            Conexion.Open();
+            Transaccion = Conexion.BeginTransaction();
+
+            try
+            {
+                //// Guardar encabezado 
+                //if (_OrdenSalidaDetalleEntidad.OrdenSalidaId == "")
+                //{
+                    //_OrdenSalidaDetalleEntidad.OrdenSalidaId = Guid.NewGuid().ToString();
+
+                OrdenSalidaClave = GuardarOrdenSalidaEncabezado(Conexion, Transaccion, _OrdenSalidaDetalleEntidad);
+                //}
+
+                if (_ErrorId != 0)
+                {
+                    Transaccion.Rollback();
+                    Conexion.Close();
+                    return OrdenSalidaClave;
+                }
+
+                // Si todo salió bien, guardar el detalle
+                GuardaOrdenSalidaDetalle(Conexion, Transaccion, _OrdenSalidaDetalleEntidad);
+
+                if (_ErrorId == 0)
+                    Transaccion.Commit();
+                else
+                    Transaccion.Rollback();
+
+                Conexion.Close();
+                return OrdenSalidaClave;
+            }
+            catch(SqlException Ex)
+            {
+                if (Conexion.State == ConnectionState.Open)
+                {
+                    Transaccion.Rollback();
+                    Conexion.Close();
+                }
+                return OrdenSalidaClave;
+            }
+        }
+        
             public void GuardarOrdenSalidaTemp()
             {
                 SqlConnection Conexion = new SqlConnection(SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen));
@@ -89,7 +140,7 @@ namespace Activos.ProcesoNegocio.Almacen
                 
                 try
                 {
-                    // Guardar encabezado temporal
+                    // Guardar encabezado en la tabla principal
                     if (_OrdenSalidaDetalleEntidad.OrdenSalidaId == "")
                     {
                         _OrdenSalidaDetalleEntidad.OrdenSalidaId = Guid.NewGuid().ToString();
@@ -104,7 +155,7 @@ namespace Activos.ProcesoNegocio.Almacen
                         return;
                     }
 
-                    // Si todo salió bien, guardar el detalle temporal
+                    // Si todo salió bien, guardar el detalle
                     GuardaOrdenSalidaDetalleTemp(Conexion, Transaccion, _OrdenSalidaDetalleEntidad);
 
                     if (_ErrorId == 0)
@@ -124,14 +175,35 @@ namespace Activos.ProcesoNegocio.Almacen
                 }
             }
 
-            private void GuardaOrdenSalidaDetalleTemp(SqlConnection Conexion, SqlTransaction Transaccion, OrdenSalidaDetalleEntidad OrdenSalidaDetalleEntidad)
+            private void GuardaOrdenSalidaDetalle(SqlConnection Conexion, SqlTransaction Transaccion, OrdenSalidaDetalleEntidad OrdenSalidaDetalleEntidad)
             {
                 OrdenSalidaAcceso OrdenSalidaAcceso = new OrdenSalidaAcceso();
                 
-                OrdenSalidaAcceso.InsertarOrdenDetalleTemp(Conexion, Transaccion, OrdenSalidaDetalleEntidad);
+                OrdenSalidaAcceso.InsertarOrdenSalidaDetalle(Conexion, Transaccion, OrdenSalidaDetalleEntidad);
 
                 _ErrorId = OrdenSalidaAcceso.ErrorId;
                 _DescripcionError = OrdenSalidaAcceso.DescripcionError;
+            }
+
+            private void GuardaOrdenSalidaDetalleTemp(SqlConnection Conexion, SqlTransaction Transaccion, OrdenSalidaDetalleEntidad OrdenSalidaDetalleEntidad)
+            {
+                OrdenSalidaAcceso OrdenSalidaAcceso = new OrdenSalidaAcceso();
+
+                OrdenSalidaAcceso.InsertarOrdenSalidaDetalleTemp(Conexion, Transaccion, OrdenSalidaDetalleEntidad);
+
+                _ErrorId = OrdenSalidaAcceso.ErrorId;
+                _DescripcionError = OrdenSalidaAcceso.DescripcionError;
+            }
+
+            private string GuardarOrdenSalidaEncabezado(SqlConnection Conexion, SqlTransaction Transaccion, OrdenSalidaDetalleEntidad OrdenSalidaDetalleEntidad)
+            {
+                OrdenSalidaAcceso OrdenSalidaAcceso = new OrdenSalidaAcceso();
+                string OrdenSalidaClave = String.Empty;
+                OrdenSalidaClave = OrdenSalidaAcceso.InsertarOrdenSalidaEncabezado(Conexion, Transaccion, OrdenSalidaDetalleEntidad);
+
+                _ErrorId = OrdenSalidaAcceso.ErrorId;
+                _DescripcionError = OrdenSalidaAcceso.DescripcionError;
+                return OrdenSalidaClave;
             }
 
             private void GuardarOrdenSalidaEncabezadoTemp(SqlConnection Conexion,SqlTransaction Transaccion, OrdenSalidaDetalleEntidad OrdenSalidaDetalleEntidad)
@@ -143,7 +215,8 @@ namespace Activos.ProcesoNegocio.Almacen
                 _ErrorId = OrdenSalidaAcceso.ErrorId;
                 _DescripcionError = OrdenSalidaAcceso.DescripcionError;
             }
-
+            
+            
             public DataSet SeleccionarOrdenSalidaDetalleTemp()
             {
                 SqlConnection Conexion = new SqlConnection(SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen));
@@ -163,35 +236,19 @@ namespace Activos.ProcesoNegocio.Almacen
                 return true;
             }
 
-            private void BorrarOrdenSalidaDetalleTemp(OrdenSalidaProceso OrdenSalidaProceso)
+            public void BorrarOrdenSalidaDetalleTemp()
             {
                 SqlConnection Conexion = new SqlConnection(SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen));
                 SqlTransaction Transaccion;
-
-                if (!ValidarOrdenSalidaTemp()) return;
+                OrdenSalidaAcceso OrdenSalidaAcceso = new OrdenSalidaAcceso();
 
                 Conexion.Open();
                 Transaccion = Conexion.BeginTransaction();
 
                 try
                 {
-                    // Guardar encabezado temporal
-                    if (_OrdenSalidaDetalleEntidad.OrdenSalidaId == "")
-                    {
-                        _OrdenSalidaDetalleEntidad.OrdenSalidaId = Guid.NewGuid().ToString();
-
-                        GuardarOrdenSalidaEncabezadoTemp(Conexion, Transaccion, _OrdenSalidaDetalleEntidad);
-                    }
-
-                    if (_ErrorId != 0)
-                    {
-                        Transaccion.Rollback();
-                        Conexion.Close();
-                        return;
-                    }
-
-                    // Si todo salió bien, guardar el detalle temporal
-                    GuardaOrdenSalidaDetalleTemp(Conexion, Transaccion, _OrdenSalidaDetalleEntidad);
+                    // Borrar detalle temporal
+                    OrdenSalidaAcceso.BorrarOrdenSalidaDetalleTemp(Conexion, Transaccion, _OrdenSalidaDetalleEntidad);
 
                     if (_ErrorId == 0)
                         Transaccion.Commit();

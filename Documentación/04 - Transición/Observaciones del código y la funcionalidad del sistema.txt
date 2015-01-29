@@ -11,7 +11,7 @@ Requisición
 8. No Guarda (** LISTO **)
 9. Cantidad total de articulos no aparece (** LISTO **)
 10. Validar Máximo permitido de productos.
-11. Agregar limpieza de Cantidad al dar clic en guardar
+11. Agregar limpieza de Cantidad al dar clic en guardar (** LISTO **)
 12. Afectar la existencia temporal de los productos solicitados.
 
 
@@ -30,7 +30,7 @@ Pre Orden
 		Sin Orden de Compra (OK)
 		COn Orden de Compra Incompleta (OK)
 		Con Orden de Compra Completa (OK)
-10. Agregar limpieza de Cantidad al dar clic en guardar
+10. Agregar limpieza de Cantidad al dar clic en guardar (** LISTO **)
 
 
 Orden de compra
@@ -59,9 +59,15 @@ BASE DE DATOS:
 Orden de salida
 --------------------------------------
 1. Falta la funcionalidad de buscar requisiciones.(** LISTO **)
-2. Falta funcion del boton Guardar.
-3. Verificar la funcion RowCommand de la tabla productos busqueda.
+2. Falta funcion del boton Guardar. (** LISTO **)
+3. En la tabla de los productos que se agregan falta habilitar la funciond e eliminar (** LISTO **)
+4. Boton agregar no tiene funcionalidad (** LISTO **)
+5. Mostrar la clave de la orden de salida al guardar (** LISTO **)
 
+
+GLOBAL
+--------------------------------------
+1. Eliminar registros temporales al guardar definitivamente[PreOrdenes,Ordenes,Requisiciones,OrdenesDeSalida,Etc].
 
 
 
