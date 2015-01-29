@@ -249,8 +249,19 @@ namespace Activos.Almacen.Aplicacion.Almacen
             ResultadoEntidad Resultado = new ResultadoEntidad();
             OrdenProceso OrdenProcesoNegocio = new OrdenProceso();
 
-            DateTime FechaInicio = DateTime.Parse(FechaFiltroInicioOrdenBox.Text);
-            DateTime FechaFin = DateTime.Parse(FechaFiltroFinOrdenBox.Text);
+
+            DateTime FechaInicio;
+            DateTime FechaFin;
+            if (String.IsNullOrEmpty(FechaFiltroInicioOrdenBox.Text.Trim()) && String.IsNullOrEmpty(FechaFiltroFinOrdenBox.Text.Trim()))
+            {
+                FechaInicio = DateTime.Parse(ConstantePrograma.SqlSmallDateTimeMinValue);
+                FechaFin = DateTime.Parse(ConstantePrograma.SqlSmallDateTimeMaxValue);
+            }
+            else
+            {
+                FechaInicio = DateTime.Parse(FechaFiltroInicioOrdenBox.Text);
+                FechaFin = DateTime.Parse(FechaFiltroFinOrdenBox.Text);
+            }
 
             Resultado = OrdenProcesoNegocio.SeleccionarOrdenEncabezadoPorRangoFechas(OrdenBusquedaBox.Text, FechaInicio, FechaFin);
 
@@ -402,6 +413,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
             SeleccionarEmpleado();
             BuscarJefe();
             BuscarProducto();
+            BuscarOrden();
             //SeleccionarMarca();
             //SeleccionarFamilia();
             //SeleccionarSubfamilia();
@@ -943,6 +955,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
                 DateTime Temporal = new DateTime();
                 DateTime Temporal2 = new DateTime();
                 String Mensaje = "";
+                if (String.IsNullOrEmpty(FechaFiltroInicioOrdenBox.Text) && String.IsNullOrEmpty(FechaFiltroFinOrdenBox.Text)) return true;
                 if (!DateTime.TryParse(FechaInicio, out Temporal)) Mensaje = TextoInfo.MensajeFechaGenerico;
                 if (!DateTime.TryParse(FechaFin, out Temporal2)) Mensaje = TextoInfo.MensajeFechaGenerico;
                 if (Mensaje == "") if (Temporal > Temporal2) Mensaje = TextoInfo.MensajeRangoFechasInvalido;

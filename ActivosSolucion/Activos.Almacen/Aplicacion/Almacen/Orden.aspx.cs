@@ -227,6 +227,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 SeleccionarProveedor();
                 SeleccionarEmpleado();
+                BuscarPreOrden();
             }
 
             private void LimpiarFormulario()
@@ -608,11 +609,18 @@ namespace Almacen.Web.Aplicacion.Almacen
                 ResultadoEntidad Resultado = new ResultadoEntidad();
                 PreOrdenProceso PreOrdenProcesoNegocio = new PreOrdenProceso();
 
-                DateTime FechaInicio = DateTime.Parse(FechaFiltroInicioBox.Text);
-                DateTime FechaFin = DateTime.Parse(FechaFiltroFinBox.Text);
-
-                //AlmacenObjetoEntidad.Clave = ClaveProductoBusqueda.Text.Trim();
-                //AlmacenObjetoEntidad.Descripcion = NombreProductoBusqueda.Text.Trim();
+                DateTime FechaInicio;
+                DateTime FechaFin ;
+                if (String.IsNullOrEmpty(FechaFiltroInicioBox.Text.Trim()) && String.IsNullOrEmpty(FechaFiltroFinBox.Text.Trim()))
+                {
+                    FechaInicio = DateTime.Parse(ConstantePrograma.SqlSmallDateTimeMinValue);
+                    FechaFin = DateTime.Parse(ConstantePrograma.SqlSmallDateTimeMaxValue); 
+                }
+                else
+                {
+                    FechaInicio = DateTime.Parse(FechaFiltroInicioBox.Text);
+                    FechaFin = DateTime.Parse(FechaFiltroFinBox.Text);
+                }
 
                 Resultado = PreOrdenProcesoNegocio.SeleccionarPreOrdenEncabezadoPorBusqueda(ClaveProductoBusqueda.Text, FechaInicio, FechaFin);
 
@@ -645,6 +653,8 @@ namespace Almacen.Web.Aplicacion.Almacen
                 DateTime Temporal = new DateTime();
                 DateTime Temporal2 = new DateTime();
                 String Mensaje = "";
+
+                if (String.IsNullOrEmpty(FechaFiltroFinBox.Text) && String.IsNullOrEmpty(FechaFiltroInicioBox.Text)) return true;
                 if (!DateTime.TryParse(FechaFiltroInicioBox.Text, out Temporal)) Mensaje = TextoInfo.MensajeFechaGenerico;
                 if (!DateTime.TryParse(FechaFiltroFinBox.Text, out Temporal2)) Mensaje = TextoInfo.MensajeFechaGenerico;
                 if (Mensaje == "") if (Temporal > Temporal2) Mensaje = TextoInfo.MensajeRangoFechasInvalido;

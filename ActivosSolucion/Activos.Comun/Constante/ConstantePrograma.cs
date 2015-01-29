@@ -61,6 +61,10 @@ namespace Activos.Comun.Constante
         // Mensajes de confirmación para la pantalla de órdenes de compra
         //public const string
 
+        //Maximos valores Sql
+        public const string SqlSmallDateTimeMinValue = "1900-01-01";
+        public const string SqlSmallDateTimeMaxValue = "2079-06-06";
+
         public enum Accesorio
         {
             AccesorioGuardadoCorrectamente = 1,

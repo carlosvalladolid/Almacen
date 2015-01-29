@@ -12,14 +12,14 @@ namespace Activos.Entidad.Almacen
 
         public string ProductoId
         {
-            get;
-            set;
+            get { return _ProductoId; }
+            set { _ProductoId = value; }
         }
 
         public Int16 Cantidad
         {
-            get;
-            set;
+            get { return _Cantidad;}
+            set { _Cantidad = value; }
         }
     }
 }

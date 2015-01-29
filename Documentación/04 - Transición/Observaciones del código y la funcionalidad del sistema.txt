@@ -10,9 +10,10 @@ Requisición
 7. No funciona el borrado de los registros de la requisición. (** LISTO **)
 8. No Guarda (** LISTO **)
 9. Cantidad total de articulos no aparece (** LISTO **)
-10. Validar Máximo permitido de productos.
+10. Validar Máximo permitido de productos. (No)
 11. Agregar limpieza de Cantidad al dar clic en guardar (** LISTO **)
-12. Afectar la existencia temporal de los productos solicitados.
+12. Afectar la existencia temporal de los productos solicitados. (No)
+13. Relacionar la tabla de empleados con la tabla de usuarios. (No)
 
 
 Pre Orden
@@ -42,14 +43,20 @@ Orden de compra
 5. Validar formulario, marca errores al dar clic en guardar. (** LISTO **)
 6. No borra objetos de la orden de compra. (** LISTO **)
 7. Cuando se hace el cambio de PreOrdenes en la busqueda permite agregar articulos de otras PreOrdenes (** LISTO **)
+8. Busqueda de preOrden hay que mostrar todos los registros al inicio. (** LISTO **)
 
 Recepción
 --------------------------------------
-1. El campo de jefe inmediato no se está llenando. (** LISTO **)
+1. El campo de jefe inmediato no se está llenando. (No)
 2. No existe funcionalidad para búsqueda de productos. (** LISTO **)
 3. No se está validando la entrada de números en el campo Cantidad. (** LISTO **)
 4. No se están agregando los productos en el detalle. (** LISTO **)
 5. Busqueda por Orden de compra (** LISTO **)
+6. validar precio a decimal.
+7. verificar bosquejo.
+8. regresar folio de la recepcion.
+9. validacion de Monto de la factura con el puesto.
+10. Busqueda de orden hay que mostrar todos los registros al inicio. (** LISTO **)
 
 BASE DE DATOS:
 1. Agregar campo Factura al encabezado de la recepcion.
@@ -68,6 +75,19 @@ Orden de salida
 GLOBAL
 --------------------------------------
 1. Eliminar registros temporales al guardar definitivamente[PreOrdenes,Ordenes,Requisiciones,OrdenesDeSalida,Etc].
+
+
+-----------------------------------------------------------
+CATALOGOS
+
+-----------------------------------------------------------
+Catalogos Subfamilia no funcionan
+
+Catalogo Productos: 
+	Falta Funcionalidad de edición. y agregar columna de Familia[].
+	Falta campo de existencia inicial.
+	
+
 
 
 
