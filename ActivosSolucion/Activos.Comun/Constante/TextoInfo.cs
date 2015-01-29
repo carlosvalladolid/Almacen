@@ -9,6 +9,8 @@ namespace Activos.Comun.Constante
     {
       // Mensajes Genericos
       public const string MensajeGuardadoGenerico = "La información se ha guardado correctamente";
+      public const string MensajeBorradoGenerico = "La información se ha eliminado correctamente";
+
       //Mensajes Formulario PreOrden
       public const string MensajeFechaGenerico = "Por favor, inserte una fecha válida.";
       public const string MensajeSolicitanteGenerico = "Por favor, especifique el solicitante.";
@@ -41,9 +43,10 @@ namespace Activos.Comun.Constante
       //Mensajes Formulario Orden Salida
       public const string MensajeNoOrdenSalida = "No. Orden Salida: ";
       public const string MensajeConfirmOrdenSalida = "¿Desea guardar la Orden de Salida?";
-
       public const string MensajeRangoFechasInvalido = "Por favor, indique un rango de fechas valido.";
       public const string MensajeLimpiarFormulario = "¿Desea limpiar el formulario?";
+
       // Mensaje Informativos de Requisición
+
     }
 }
