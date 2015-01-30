@@ -168,7 +168,7 @@
 						 <tr>
                             <td class="Nombre">Cantidad</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="CantidadNuevo"  MaxLength = "5" OnTextChanged="CantidadNuevo_SelectedTextChanged" AutoPostBack="true"  runat="server" Text=""></asp:TextBox></td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="CantidadNuevo"  MaxLength = "4" OnTextChanged="CantidadNuevo_SelectedTextChanged" AutoPostBack="true"  runat="server" Text=""></asp:TextBox></td>
                            
                         </tr>
                         
@@ -220,7 +220,10 @@
                             </asp:BoundField> 
                             <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" ItemStyle-HorizontalAlign="Left">
                                 <HeaderStyle HorizontalAlign="Center" Width="60px" />
-                            </asp:BoundField>                    
+                            </asp:BoundField>    
+                            <asp:BoundField DataField="Monto" HeaderText="Monto" ItemStyle-HorizontalAlign="Left">
+                                <HeaderStyle HorizontalAlign="Center" Width="60px" />
+                            </asp:BoundField>    
                             <asp:TemplateField HeaderText="">
                                      <ItemTemplate>
                                          <asp:ImageButton ID="BotonEliminarActivo" CommandArgument="<%#Container.DataItemIndex%>" CommandName="EliminarRecepcion" runat="server" ImageUrl="/Imagen/Icono/IconoEliminarRegistro.gif" />

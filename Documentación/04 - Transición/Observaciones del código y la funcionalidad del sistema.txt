@@ -47,20 +47,20 @@ Orden de compra
 
 Recepción
 --------------------------------------
-1. El campo de jefe inmediato no se está llenando. (No)
+1. El campo de jefe inmediato no se está llenando. (** LISTO **)
 2. No existe funcionalidad para búsqueda de productos. (** LISTO **)
 3. No se está validando la entrada de números en el campo Cantidad. (** LISTO **)
 4. No se están agregando los productos en el detalle. (** LISTO **)
 5. Busqueda por Orden de compra (** LISTO **)
-6. validar precio a decimal.
-7. verificar bosquejo.
-8. regresar folio de la recepcion.
-9. validacion de Monto de la factura con el puesto.
+6. validar precio a decimal. (** LISTO **)
+7. verificar bosquejo. (** LISTO **)
+8. Regresar folio de la recepcion. (** LISTO **)
+9. validacion de Monto de la factura con el puesto. 
 10. Busqueda de orden hay que mostrar todos los registros al inicio. (** LISTO **)
 
 BASE DE DATOS:
 1. Agregar campo Factura al encabezado de la recepcion.
-2. Agregar tabla que controle la clave de cada recepcion.
+2. Agregar tabla que controle la clave de cada recepcion. (** LISTO **)
 
 
 Orden de salida

@@ -323,9 +323,9 @@ namespace Activos.AccesoDatos.Almacen
                     Parametro.Value = RecepcionEntidadObjeto.EstatusId;
                     Comando.Parameters.Add(Parametro);
 
-                    Parametro = new SqlParameter("Clave", SqlDbType.VarChar);
-                    Parametro.Value = RecepcionEntidadObjeto.Clave;
-                    Comando.Parameters.Add(Parametro);
+                    //Parametro = new SqlParameter("Clave", SqlDbType.VarChar);
+                    //Parametro.Value = RecepcionEntidadObjeto.Clave;
+                    //Comando.Parameters.Add(Parametro);
 
                     Parametro = new SqlParameter("FechaDocumento", SqlDbType.SmallDateTime);
                     Parametro.Value = RecepcionEntidadObjeto.FechaDocumento;
@@ -336,7 +336,7 @@ namespace Activos.AccesoDatos.Almacen
                     Comando.Parameters.Add(Parametro);
 
                     Conexion.Open();
-                    Comando.ExecuteNonQuery();
+                    Resultado.NuevoRegistroId = (int)Comando.ExecuteScalar();
                     Conexion.Close();
 
                     Resultado.ErrorId = (int)ConstantePrograma.Recepcion.RecepcionGuardadoCorrectamente;

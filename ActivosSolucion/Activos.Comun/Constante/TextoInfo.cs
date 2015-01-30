@@ -31,12 +31,14 @@ namespace Activos.Comun.Constante
       public const string MensajeConfirmacionOrden = "¿Desea guardar la Orden?";
 
       //Mensajes Formulario Recepcion
+      public const string MensajeNoRecepcion = "No. Recepción: ";
       public const string MensajeTipoDocumentoVacio = "No existen tipos de documentos.";
       public const string MensajeSeleccioneTipoDocumento = "Por favor, especifique el tipo de documento.";
       public const string MensajeFolioVacio = "Por favor, capture un folio.";
       public const string MensajePrecioInvalido = "Por favor, especifique un precio válido.";
       public const string MensajeMontoInvalido = "Por favor, especifique un monto válido";
       public const string MensajeRecepcionVacia = "Por favor, especifique los productos de la recepción.";
+      public const string MensajeMontosNoConcuerdan = "El monto de la factura no corresponde al la suma del monto de los articulos.";
 
       //Mensajes Formulario Orden Salida
       public const string MensajeNoOrdenSalida = "No. Orden Salida: ";
