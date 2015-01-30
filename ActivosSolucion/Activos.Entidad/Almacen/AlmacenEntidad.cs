@@ -19,6 +19,7 @@ namespace Activos.Entidad.Almacen
         private Int16 _Minimo;
         private Int16 _Maximo;
         private Int16 _MaximoPermitido;
+        private Int16 _ExistenciaInicial;
 
         //*********************************
 
@@ -40,6 +41,7 @@ namespace Activos.Entidad.Almacen
             _Minimo = 0;
             _Maximo = 0;
             _MaximoPermitido = 0;
+            _ExistenciaInicial = 0;
 
             //**************************
 
@@ -112,6 +114,12 @@ namespace Activos.Entidad.Almacen
         {
             get { return _MaximoPermitido; }
             set { _MaximoPermitido = value; }
+        }
+
+        public Int16 ExistenciaInicial
+        {
+            get { return _ExistenciaInicial; }
+            set { _ExistenciaInicial = value; }
         }
         
         public string BusquedaRapida

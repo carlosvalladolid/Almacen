@@ -9,10 +9,11 @@
 //------------------------------------------------------------------------------
 
 namespace Almacen.Web.Aplicacion.Reporte.Viewer {
-    
-    
-    public partial class ExistenciaProducto {
-        
+
+
+    public partial class ExistenciaProducto
+    {
+
         /// <summary>
         /// ControlMenuIzquierdo control.
         /// </summary>
@@ -21,7 +22,7 @@ namespace Almacen.Web.Aplicacion.Reporte.Viewer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Almacen.Web.Incluir.ControlesWeb.ControlMenuIzquierdo ControlMenuIzquierdo;
-        
+
         /// <summary>
         /// PageUpdate control.
         /// </summary>
@@ -30,7 +31,7 @@ namespace Almacen.Web.Aplicacion.Reporte.Viewer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel PageUpdate;
-        
+
         /// <summary>
         /// FamiliaCombo control.
         /// </summary>
@@ -39,7 +40,7 @@ namespace Almacen.Web.Aplicacion.Reporte.Viewer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList FamiliaCombo;
-        
+
         /// <summary>
         /// BotonBusqueda control.
         /// </summary>
@@ -48,7 +49,7 @@ namespace Almacen.Web.Aplicacion.Reporte.Viewer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton BotonBusqueda;
-        
+
         /// <summary>
         /// BotonCancelarBusqueda control.
         /// </summary>
@@ -57,7 +58,7 @@ namespace Almacen.Web.Aplicacion.Reporte.Viewer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton BotonCancelarBusqueda;
-        
+
         /// <summary>
         /// ExistenciaProductoReporteViewer control.
         /// </summary>
@@ -66,7 +67,7 @@ namespace Almacen.Web.Aplicacion.Reporte.Viewer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Microsoft.Reporting.WebForms.ReportViewer ExistenciaProductoReporteViewer;
-        
+
         /// <summary>
         /// ObjectDataSource1 control.
         /// </summary>
@@ -75,7 +76,7 @@ namespace Almacen.Web.Aplicacion.Reporte.Viewer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSource1;
-        
+
         /// <summary>
         /// AssociatedUpdate control.
         /// </summary>
@@ -84,16 +85,5 @@ namespace Almacen.Web.Aplicacion.Reporte.Viewer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdateProgress AssociatedUpdate;
-<<<<<<< HEAD
-        
-        /// <summary>
-        /// Master property.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated property.
-        /// </remarks>
-
-=======
->>>>>>> origin/master
     }
 }

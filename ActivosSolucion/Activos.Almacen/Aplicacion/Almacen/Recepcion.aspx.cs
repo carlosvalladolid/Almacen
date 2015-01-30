@@ -868,7 +868,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
             //}
             //Decimal MontoTotal;
             //if (!Decimal.TryParse(LabelMontoTotal.Text, System.Globalization.NumberStyles.Currency, null, out MontoDatosNuevo)) Mensaje = "BAD";
-            if (Suma != MontoTotal) Mensaje = TextoInfo.MensajeMontosNoConcuerdan;
+            //if (Suma != MontoTotal) Mensaje = TextoInfo.MensajeMontosNoConcuerdan;
 
             if (String.IsNullOrEmpty(FolioNuevo.Text)) Mensaje = TextoInfo.MensajeFolioVacio;
             

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -10,9 +11,7 @@ using Activos.ProcesoNegocio.Almacen;
 using Activos.Comun.Constante;
 using Activos.Comun.Cadenas;
 using Activos.Entidad.General;
-//using Activos.Entidad.Catalogo;
 using Activos.Entidad.Almacen;
-
 
 namespace Activos.ProcesoNegocio.Almacen
 {
@@ -89,38 +88,6 @@ namespace Activos.ProcesoNegocio.Almacen
                 return ExisteProducto;
             }
 
-            public ResultadoEntidad GuardarProducto(AlmacenEntidad AlmacenObjetoEntidad)
-            {
-                string CadenaConexion = string.Empty;
-                ResultadoEntidad Resultado = new ResultadoEntidad();
-                ResultadoEntidad ResultadoValidacion = new ResultadoEntidad();
-                AlmacenAcceso AlmacenAccesoObjeto = new AlmacenAcceso();
-
-                CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
-
-                if (BuscarProductoDuplicada(AlmacenObjetoEntidad) == false)
-                {
-                      if (AlmacenObjetoEntidad.ProductoId =="")
-                      {
-                       
-                          AlmacenObjetoEntidad.ProductoId = Guid.NewGuid().ToString();
-
-                          Resultado = AlmacenAccesoObjeto.InsertarProducto(AlmacenObjetoEntidad, CadenaConexion);
-                      }
-                      else
-                      {
-                          Resultado = AlmacenAccesoObjeto.ActualizarProducto(AlmacenObjetoEntidad, CadenaConexion);
-                      }
-                }
-                else
-                {
-                    Resultado.ErrorId = (int)ConstantePrograma.Producto.ProductoTieneRegistroDuplicado;
-                    Resultado.DescripcionError = TextoError.ProductoConNombreDuplicado;
-                }
-
-                return Resultado;
-            }
-
             protected ResultadoEntidad EliminarProducto(string CadenaProductoId)
             {
                 string CadenaConexion = string.Empty;
@@ -151,6 +118,83 @@ namespace Activos.ProcesoNegocio.Almacen
                 }
 
                 return ResultadoEntidadObjeto;
+            }
+
+            public ResultadoEntidad GuardarProducto(AlmacenEntidad AlmacenObjetoEntidad)
+            {
+                string CadenaConexion = string.Empty;
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                ResultadoEntidad ResultadoValidacion = new ResultadoEntidad();
+                AlmacenAcceso AlmacenAcceso = new AlmacenAcceso();
+                SqlTransaction Transaccion;
+                SqlConnection Conexion = new SqlConnection(SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen));
+
+                CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+                if (BuscarProductoDuplicada(AlmacenObjetoEntidad))
+                {
+                    Resultado.ErrorId = (int)ConstantePrograma.Producto.ProductoTieneRegistroDuplicado;
+                    Resultado.DescripcionError = TextoError.ProductoConNombreDuplicado;
+                    return Resultado;
+                }
+
+                // Si es una actualización se lleva a cabo sin transacción
+                if (AlmacenObjetoEntidad.ProductoId != "")
+                {
+                    Resultado = AlmacenAcceso.ActualizarProducto(AlmacenObjetoEntidad, CadenaConexion);
+                    return Resultado;
+                }
+
+                // Si es un producto nuevo hay que manejar transacción
+                Conexion.Open();
+
+                Transaccion = Conexion.BeginTransaction();
+
+                try
+                {
+                    AlmacenObjetoEntidad.ProductoId = Guid.NewGuid().ToString();
+
+
+                    // Primero se guarda la información del producto
+                    Resultado = AlmacenAcceso.InsertarProducto(Conexion, Transaccion, AlmacenObjetoEntidad);
+
+                    if (Resultado.ErrorId != (int)ConstantePrograma.Producto.ProductoGuardadoCorrectamente)
+                    {
+                        Transaccion.Rollback();
+                        Conexion.Close();
+                        return Resultado;
+                    }
+
+                    // Luego la información de la existencia
+                    AlmacenAcceso.InsertarProductoExistencia(Conexion, Transaccion, AlmacenObjetoEntidad);
+
+                    if (AlmacenAcceso.ErrorId == 0)
+                        Transaccion.Commit();
+                    else
+                    {
+                        Transaccion.Rollback();
+
+                        Resultado.ErrorId = AlmacenAcceso.ErrorId;
+                        Resultado.DescripcionError = AlmacenAcceso.DescripcionError;
+                    }
+
+                    Conexion.Close();
+
+                    return Resultado;
+                }
+                catch (Exception Exception)
+                {
+                    Resultado.ErrorId = (int)TextoError.Error.Generico;
+                    Resultado.DescripcionError = Exception.Message;
+
+                    if (Conexion.State == ConnectionState.Open)
+                    {
+                        Transaccion.Rollback();
+                        Conexion.Close();
+                    }
+
+                    return Resultado;
+                }
             }
           
             public ResultadoEntidad SeleccionarProducto(AlmacenEntidad AlmacenObjetoEntidad)
@@ -187,7 +231,7 @@ namespace Activos.ProcesoNegocio.Almacen
 
                 CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
-                Resultado = AlmacenAccesoObjeto.SeleccionarProductoparaEditar(AlmacenObjetoEntidad, CadenaConexion);
+                Resultado = AlmacenAccesoObjeto.SeleccionarProductoParaEditar(AlmacenObjetoEntidad, CadenaConexion);
 
                 return Resultado;
             }

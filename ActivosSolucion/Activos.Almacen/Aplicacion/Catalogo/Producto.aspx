@@ -25,8 +25,6 @@
     <div class="RightBodyDiv">
         <asp:UpdatePanel ID="PageUpdate" runat="server">
             <ContentTemplate>
-            <br/>
-            <br/>
                 <div class="PageTitleDiv">
                     <table class="PageTitleTable">
                         <tr>
@@ -39,45 +37,35 @@
                     </table>
                 </div>
 
-
-			
                 <asp:Panel CssClass="SearchDiv" ID="PanelBusquedaAvanzada" Visible="false" runat="server">
-						 <table class="TablaFormulario">
-							<tr>
-								<td class="Nombre">Clave</td>
-								<td class="Espacio"></td>
-								<td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="ClaveBusqueda"  runat="server" ></asp:TextBox></td>
-							</tr>
-							
-							<tr>
-								<td class="Nombre">Descripción</td>
-								<td class="Espacio"></td>
-								<td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="DescripcionBusqueda" MaxLength="100" runat="server" Text="" ></asp:TextBox></td>
-							</tr>
-							  <tr>
+                    <table class="TablaFormulario">
+						<tr>
+							<td class="Nombre">Clave</td>
+							<td class="Espacio"></td>
+							<td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="ClaveBusqueda"  runat="server" ></asp:TextBox></td>
+						</tr>
+						<tr>
+							<td class="Nombre">Descripción</td>
+							<td class="Espacio"></td>
+							<td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="DescripcionBusqueda" MaxLength="100" runat="server" Text="" ></asp:TextBox></td>
+						</tr>
+						<tr>
                             <td colspan="3">
-                            
-                            
-                            
                                 <br />
                                 <asp:ImageButton AlternateText="Buscar" ID="BotonBusqueda" ImageUrl="~/Imagen/Boton/BotonBuscar.png"  OnClick="BotonBusqueda_Click"  runat="server" />&nbsp;&nbsp;
                                 <asp:ImageButton AlternateText="Limpiar" ID="BotonLimpiarBusqueda" ImageUrl="~/Imagen/Boton/BotonLimpiar.png" OnClick="BotonLimpiarBusqueda_Click" runat="server" />
                             </td>
-                        </tr>							
-							                        
-                        </table>
+                        </tr>
+                    </table>
                 </asp:Panel>
 
-
-		  <asp:Panel CssClass="NewRowDiv" ID="PanelNuevoRegistro" Visible="false" runat="server">
+                <asp:Panel CssClass="NewRowDiv" ID="PanelNuevoRegistro" Visible="false" runat="server">
                     <table class="TablaFormulario">
 						<tr>
                             <td class="Nombre">Clave</td>
                             <td class="Requerido">*</td>
                             <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="ClaveNuevo" MaxLength="20" runat="server" ></asp:TextBox></td>
                         </tr>
-                    
-						
                         <tr>
                             <td class="Nombre">Familia</td>
                             <td class="Requerido">*</td>
@@ -89,51 +77,46 @@
                             <td class="Requerido">*</td>
                             <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="SubFamiliaIdNuevo" runat="server"></asp:DropDownList></td>
                         </tr>
-                        
                         <tr>
                             <td class="Nombre">Marca</td>
                             <td class="Espacio"></td>
                             <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="MarcaIdNuevo"  runat="server"></asp:DropDownList></td>
                         </tr>
-                        
-                         <tr>
+                        <tr>
                             <td class="Nombre">Descripción</td>
                             <td class="Requerido">*</td>
                             <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="DescripcionNuevo" MaxLength="100" runat="server" ></asp:TextBox></td>
                         </tr>
-                    
-						 <tr>
+					    <tr>
                             <td class="Nombre">Minimo</td>
                             <td class="Requerido">*</td>
                             <td class="Campo"><asp:TextBox CssClass="CajaTextoPequenia" ID="MinimoNuevo" MaxLength="20" value="" onKeyPress="return soloNumeros(event)"   runat="server" ></asp:TextBox></td>
                         </tr>
-                        
-                         <tr>
+                        <tr>
                             <td class="Nombre">Maximo</td>
                             <td class="Requerido">*</td>
                             <td class="Campo"><asp:TextBox CssClass="CajaTextoPequenia" ID="MaximoNuevo" MaxLength="20" value="" onKeyPress="return soloNumeros(event)"  runat="server" ></asp:TextBox></td>
                         </tr>
-                        
-                         <tr>
+                        <tr>
                             <td class="Nombre">Unidad de Medida</td>
                             <td class="Requerido">*</td>
                             <td class="Campo"><asp:DropDownList CssClass="Combopequenia" ID="UnidaddeMedidaIdNuevo"  runat="server"></asp:DropDownList></td>
                         </tr>
-                        
                         <tr>
                             <td class="Nombre">Maximo Permitido</td>
                             <td class="Requerido">*</td>
                             <td class="Campo"><asp:TextBox CssClass="CajaTextoPequenia" ID="MaximoPermitivoNuevo"  MaxLength="20" value="" onKeyPress="return soloNumeros(event)"  runat="server" ></asp:TextBox></td>
                         </tr>
-                        
-                         <tr>
+                        <tr>
+                            <td class="Nombre">Existencia inicial</td>
+                            <td class="Requerido">*</td>
+                            <td class="Campo"><asp:TextBox CssClass="CajaTextoPequenia" ID="ExistenciaInicialBox"  MaxLength="5" value="0" onKeyPress="return soloNumeros(event)"  runat="server" ></asp:TextBox></td>
+                        </tr>
+                        <tr>
                             <td class="Nombre">Estatus</td>
                             <td class="Espacio"></td>
                             <td class="Campo"><asp:CheckBox ID="EstatusProductoNuevo" Checked="false" Enabled ="false" runat="server" Text=" Activo" /> </td>
                         </tr>
-                        
-                        
-                        
                         <tr>
                             <td colspan="3">
                                 <asp:CompareValidator CssClass="TextoError" ControlToValidate="FamiliaIdNuevo" Display="Dynamic" ErrorMessage="" ID="FamiliaIdRequerido" Operator="GreaterThan" ValidationGroup="Guardar" ValueToCompare="0" runat="server"></asp:CompareValidator>
@@ -153,7 +136,6 @@
                                 <asp:ImageButton AlternateText="Cancelar" ID="BotonCancelar" ImageUrl="~/Imagen/Boton/BotonCancelar.png" runat="server" />
                             </td>
                         </tr>
-                        
                         <tr>
                             <td colspan="3">
                                 Los campos marcados con <span class="TextoError">*</span> son obligatorios
@@ -162,11 +144,9 @@
                     </table>
                 </asp:Panel>
 
+                <asp:Label CssClass="TextoError" ID="EtiquetaMensaje" runat="server" Text=""></asp:Label>
 
-
-           <asp:Label CssClass="TextoError" ID="EtiquetaMensaje" runat="server" Text=""></asp:Label>
-
-			<div class="DivTabla">
+			    <div class="DivTabla">
                     <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
                         CssClass="TablaInformacion" DataKeyNames="ProductoId" ID="TablaProducto" OnPageIndexChanging="TablaProducto_PageIndexChanging"  OnRowCommand="TablaProducto_RowCommand" runat="server" PageSize="10">
                         <EmptyDataTemplate>
@@ -210,21 +190,16 @@
                     </asp:GridView>
                 </div>
 
-
-
+                <br /><br />
                 <asp:UpdateProgress AssociatedUpdatePanelID="PageUpdate" ID="AssociatedUpdate" runat="server">
                     <ProgressTemplate>
                         <div class="LoadingDiv"><div class="LoadingImageDiv"><img alt="Cargando..." src="../../Image/Icon/LoadingIcon.gif" /></div></div>
                     </ProgressTemplate>
                 </asp:UpdateProgress>   
                 
-                
-                     <asp:HiddenField ID="ProductoIdHidden" runat="server" Value="0" />
-                     <asp:HiddenField ID="ClaveIdHidden" runat="server" Value="0" />
-                
-                
-                
+                <asp:HiddenField ID="ProductoIdHidden" runat="server" Value="" />
+                <asp:HiddenField ID="ClaveIdHidden" runat="server" Value="" />
             </ContentTemplate>
-      </asp:UpdatePanel>
+        </asp:UpdatePanel>
     </div>
 </asp:Content>

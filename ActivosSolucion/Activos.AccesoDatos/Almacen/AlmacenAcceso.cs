@@ -145,9 +145,8 @@ namespace Activos.AccesoDatos.Almacen
                 }
             }
 
-            public ResultadoEntidad InsertarProducto(AlmacenEntidad AlmacenEntidadObjeto, string CadenaConexion)
+            public ResultadoEntidad InsertarProducto(SqlConnection Conexion, SqlTransaction Transaccion, AlmacenEntidad AlmacenEntidad)
             {
-                SqlConnection Conexion = new SqlConnection(CadenaConexion);
                 SqlCommand Comando;
                 SqlParameter Parametro;
                 ResultadoEntidad Resultado = new ResultadoEntidad();
@@ -157,49 +156,49 @@ namespace Activos.AccesoDatos.Almacen
                     Comando = new SqlCommand("InsertarProductoProcedimiento", Conexion);
                     Comando.CommandType = CommandType.StoredProcedure;
 
+                    Comando.Transaction = Transaccion;
+
                     Parametro = new SqlParameter("ProductoId", SqlDbType.VarChar);
-                    Parametro.Value = AlmacenEntidadObjeto.ProductoId;
+                    Parametro.Value = AlmacenEntidad.ProductoId;
                     Comando.Parameters.Add(Parametro);
 
                     Parametro = new SqlParameter("SubFamiliaId", SqlDbType.SmallInt);
-                    Parametro.Value = AlmacenEntidadObjeto.SubFamiliaId;
+                    Parametro.Value = AlmacenEntidad.SubFamiliaId;
                     Comando.Parameters.Add(Parametro);
 
                     Parametro = new SqlParameter("MarcaId", SqlDbType.SmallInt);
-                    Parametro.Value = AlmacenEntidadObjeto.MarcaId;
+                    Parametro.Value = AlmacenEntidad.MarcaId;
                     Comando.Parameters.Add(Parametro);
 
                     Parametro = new SqlParameter("UnidadMedidaId", SqlDbType.VarChar);
-                    Parametro.Value = AlmacenEntidadObjeto.UnidadMedidaId;
+                    Parametro.Value = AlmacenEntidad.UnidadMedidaId;
                     Comando.Parameters.Add(Parametro);
 
                     Parametro = new SqlParameter("EstatusId", SqlDbType.Int);
-                    Parametro.Value = AlmacenEntidadObjeto.EstatusId;
+                    Parametro.Value = AlmacenEntidad.EstatusId;
                     Comando.Parameters.Add(Parametro);
 
                     Parametro = new SqlParameter("Clave", SqlDbType.VarChar);
-                    Parametro.Value = AlmacenEntidadObjeto.Clave;
+                    Parametro.Value = AlmacenEntidad.Clave;
                     Comando.Parameters.Add(Parametro);
 
                     Parametro = new SqlParameter("Descripcion", SqlDbType.VarChar);
-                    Parametro.Value = AlmacenEntidadObjeto.Descripcion;
+                    Parametro.Value = AlmacenEntidad.Descripcion;
                     Comando.Parameters.Add(Parametro);
 
                     Parametro = new SqlParameter("Minimo", SqlDbType.SmallInt);
-                    Parametro.Value = AlmacenEntidadObjeto.Minimo;
+                    Parametro.Value = AlmacenEntidad.Minimo;
                     Comando.Parameters.Add(Parametro);
 
                     Parametro = new SqlParameter("Maximo", SqlDbType.SmallInt);
-                    Parametro.Value = AlmacenEntidadObjeto.Maximo;
+                    Parametro.Value = AlmacenEntidad.Maximo;
                     Comando.Parameters.Add(Parametro);
 
                     Parametro = new SqlParameter("MaximoPermitido", SqlDbType.SmallInt);
-                    Parametro.Value = AlmacenEntidadObjeto.MaximoPermitido;
+                    Parametro.Value = AlmacenEntidad.MaximoPermitido;
                     Comando.Parameters.Add(Parametro);
 
-                    Conexion.Open();
                     Comando.ExecuteNonQuery();
-                    Conexion.Close();
 
                     Resultado.ErrorId = (int)ConstantePrograma.Producto.ProductoGuardadoCorrectamente;
 
@@ -211,6 +210,35 @@ namespace Activos.AccesoDatos.Almacen
                     Resultado.DescripcionError = sqlEx.Message;
 
                     return Resultado;
+                }
+            }
+
+            public void InsertarProductoExistencia(SqlConnection Conexion, SqlTransaction Transaccion, AlmacenEntidad AlmacenEntidad)
+            {
+                SqlCommand Comando;
+                SqlParameter Parametro;
+
+                try
+                {
+                    Comando = new SqlCommand("InsertarProductoExistencia", Conexion);
+                    Comando.CommandType = CommandType.StoredProcedure;
+
+                    Comando.Transaction = Transaccion;
+
+                    Parametro = new SqlParameter("ProductoId", SqlDbType.VarChar);
+                    Parametro.Value = AlmacenEntidad.ProductoId;
+                    Comando.Parameters.Add(Parametro);
+
+                    Parametro = new SqlParameter("Existencia", SqlDbType.Int);
+                    Parametro.Value = AlmacenEntidad.ExistenciaInicial;
+                    Comando.Parameters.Add(Parametro);
+
+                    Comando.ExecuteNonQuery();
+                }
+                catch (SqlException sqlEx)
+                {
+                    _ErrorId = sqlEx.Number;
+                    _DescripcionError = sqlEx.Message;
                 }
             }
 
@@ -348,7 +376,7 @@ namespace Activos.AccesoDatos.Almacen
                 }
             }
 
-            public ResultadoEntidad SeleccionarProductoparaEditar(AlmacenEntidad AlmacenEntidadObjeto, string CadenaConexion)
+            public ResultadoEntidad SeleccionarProductoParaEditar(AlmacenEntidad AlmacenEntidadObjeto, string CadenaConexion)
             {
                 DataSet ResultadoDatos = new DataSet();
                 SqlConnection Conexion = new SqlConnection(CadenaConexion);
@@ -419,8 +447,6 @@ namespace Activos.AccesoDatos.Almacen
                     return Resultado;
                 }
             }
-
-        
         #endregion
     }
 }
