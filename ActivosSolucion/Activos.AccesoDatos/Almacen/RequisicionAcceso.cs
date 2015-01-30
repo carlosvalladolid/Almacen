@@ -57,6 +57,10 @@ namespace Activos.AccesoDatos.Almacen
 
                     Comando.Transaction = Transaccion;
 
+                    Parametro = new SqlParameter("RequisicionId", SqlDbType.VarChar);
+                    Parametro.Value = RequisicionEntidadObjeto.RequisicionId;
+                    Comando.Parameters.Add(Parametro);
+
                     Parametro = new SqlParameter("ProductoId", SqlDbType.VarChar);
                     Parametro.Value = RequisicionEntidadObjeto.ProductoId;
                     Comando.Parameters.Add(Parametro);
@@ -346,7 +350,44 @@ namespace Activos.AccesoDatos.Almacen
                     return Resultado;
                 }
             }
-         
+
+            public DataSet SeleccionarExistencia(RequisicionEntidad RequisicionObjetoEntidad, string CadenaConexion)
+            {
+                DataSet ResultadoDatos = new DataSet();
+                SqlConnection Conexion = new SqlConnection(CadenaConexion);
+                SqlCommand Comando;
+                SqlParameter Parametro;
+                SqlDataAdapter Adaptador;
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+
+                try
+                {
+                    Comando = new SqlCommand("SeleccionarExistenciaDiferencia", Conexion);
+                    Comando.CommandType = CommandType.StoredProcedure;
+
+                    Parametro = new SqlParameter("RequisicionId", SqlDbType.VarChar);
+                    Parametro.Value = RequisicionObjetoEntidad.RequisicionId;
+                    Comando.Parameters.Add(Parametro);
+
+                    Adaptador = new SqlDataAdapter(Comando);
+                    ResultadoDatos = new DataSet();
+
+                    Conexion.Open();
+                    Adaptador.Fill(ResultadoDatos);
+                    Conexion.Close();
+
+
+                    return ResultadoDatos;
+                }
+                catch (SqlException Excepcion)
+                {
+                    Resultado.ErrorId = Excepcion.Number;
+                    Resultado.DescripcionError = Excepcion.Message;
+
+                    return ResultadoDatos;
+                }
+            }
+
             public ResultadoEntidad SeleccionarRequisicionDetalle(RequisicionEntidad RequisicionObjetoEntidad, string CadenaConexion)
             {
                 DataSet ResultadoDatos = new DataSet();

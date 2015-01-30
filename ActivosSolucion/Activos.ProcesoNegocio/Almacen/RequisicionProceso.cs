@@ -276,12 +276,10 @@ namespace Activos.ProcesoNegocio.Almacen
 
                 CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
-                if (RequisicionObjetoEntidad.RequisicionId == "")
-                {
-                    RequisicionObjetoEntidad.RequisicionId = Guid.NewGuid().ToString();
+                if (RequisicionObjetoEntidad.RequisicionId == "") RequisicionObjetoEntidad.RequisicionId = Guid.NewGuid().ToString();
 
-                    Resultado = RequisicionAccesoObjeto.InsertarRequisicionEncabezadoTemp(RequisicionObjetoEntidad, CadenaConexion);
-                }
+                Resultado = RequisicionAccesoObjeto.InsertarRequisicionEncabezadoTemp(RequisicionObjetoEntidad, CadenaConexion);
+                
                 return Resultado;
             }
 
@@ -296,6 +294,21 @@ namespace Activos.ProcesoNegocio.Almacen
                 Resultado = RequisicionAccesoObjeto.SeleccionarEmpleado(UsuarioEntidad, CadenaConexion);
 
                 return Resultado;
+            }
+
+            /// <summary>
+            ///    Selecciona la tabla de existencia para la validacion.
+            /// </summary>
+            public void SeleccionarExistencia()
+            {
+                string CadenaConexion = string.Empty;
+                RequisicionAcceso RequisicionAcceso = new RequisicionAcceso();
+
+                CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+                _ResultadoDatos = RequisicionAcceso.SeleccionarExistencia(_RequisicionEntidad, CadenaConexion);
+
+                return;
             }
 
             public ResultadoEntidad SeleccionaRequisicion(RequisicionEntidad RequisicionObjetoEntidad)

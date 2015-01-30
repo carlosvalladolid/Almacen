@@ -215,6 +215,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 //SeleccionarFamilia();
                 //SeleccionarSubfamilia();
                 //SeleccionarMarca();
+                LabelTotalArticulo.Text = "0";
                 SeleccionarEmpleado();
                 BuscarJefe();
                 MensajeConfirmacion.Value = Comparar.ReemplazarCadenaJavascript(TextoInfo.MensajeConfirmPreOrden);
@@ -345,7 +346,7 @@ namespace Almacen.Web.Aplicacion.Almacen
             JefeInmediatoNombreNuevo.Text = "";
             //JefeInmediatoIdNuevo.Text = "";
             EtiquetaMensaje.Text = "";
-            LabelTotalArticulo.Text = "";
+            LabelTotalArticulo.Text = "0";
             TablaPreOrden.DataSource = null;
             TablaPreOrden.DataBind();
             TemporalPreOrdenIdHidden.Value = "";

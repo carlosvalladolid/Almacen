@@ -323,9 +323,9 @@ namespace Activos.AccesoDatos.Almacen
                     Parametro.Value = RecepcionEntidadObjeto.EstatusId;
                     Comando.Parameters.Add(Parametro);
 
-                    //Parametro = new SqlParameter("Clave", SqlDbType.VarChar);
-                    //Parametro.Value = RecepcionEntidadObjeto.Clave;
-                    //Comando.Parameters.Add(Parametro);
+                    Parametro = new SqlParameter("FacturaId", SqlDbType.VarChar);
+                    Parametro.Value = RecepcionEntidadObjeto.FacturaId;
+                    Comando.Parameters.Add(Parametro);
 
                     Parametro = new SqlParameter("FechaDocumento", SqlDbType.SmallDateTime);
                     Parametro.Value = RecepcionEntidadObjeto.FechaDocumento;
@@ -392,8 +392,8 @@ namespace Activos.AccesoDatos.Almacen
                     Parametro.Value = RecepcionEntidadObjeto.EstatusId;
                     Comando.Parameters.Add(Parametro);
 
-                    Parametro = new SqlParameter("Clave", SqlDbType.VarChar);
-                    Parametro.Value = RecepcionEntidadObjeto.Clave;
+                    Parametro = new SqlParameter("FacturaId", SqlDbType.VarChar);
+                    Parametro.Value = RecepcionEntidadObjeto.FacturaId;
                     Comando.Parameters.Add(Parametro);
 
                     Parametro = new SqlParameter("FechaDocumento", SqlDbType.SmallDateTime);

@@ -14,7 +14,7 @@
             SetNewCalendar("#<%=FechaFiltroInicioOrdenBox.ClientID %>");
             SetNewCalendar("#<%=FechaFiltroFinOrdenBox.ClientID %>");
             $("#<%= CantidadNuevo.ClientID %>").SoloNumeros();
-            $("#<%= MontoDatosNuevo.ClientID %>").SoloNumeros();
+            $("#<%= MontoDatosNuevo.ClientID %>").NumerosDecimales();
             $("#<%= PrecionUnitarioNuevo.ClientID %>").NumerosDecimales();
             $("#<%= MontoDocumentoNuevo.ClientID %>").NumerosDecimales();
             $("#<%= FechaFiltroInicioOrdenBox.ClientID %>").VerificarFechas("#<%= FechaFiltroInicioOrdenBox.ClientID %>","#<%= FechaFiltroFinOrdenBox.ClientID %>","<%= MensajeRangoDeFechasInvalido.Value %>");

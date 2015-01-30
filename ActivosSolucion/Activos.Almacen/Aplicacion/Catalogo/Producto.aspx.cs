@@ -108,9 +108,10 @@ namespace Almacen.Web.Aplicacion.Catalogo
         #region "Métodos"
             private void Inicio()
             {
-                Master.NuevoRegistroMaster.Click += new EventHandler(NuevoRegistro_Click);
-                Master.BusquedaAvanzadaMaster.Click += new EventHandler(BusquedaAvanzadaLink_Click);
-                Master.EliminarRegistroMaster.Click += new EventHandler(EliminarRegistroLink_Click);
+                //Opciones
+                //Master.NuevoRegistroMaster.Click += new EventHandler(NuevoRegistro_Click);
+                //Master.BusquedaAvanzadaMaster.Click += new EventHandler(BusquedaAvanzadaLink_Click);
+                //Master.EliminarRegistroMaster.Click += new EventHandler(EliminarRegistroLink_Click);
 
                 if (!Page.IsPostBack)
                 {

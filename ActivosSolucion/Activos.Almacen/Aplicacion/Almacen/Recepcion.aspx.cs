@@ -22,6 +22,7 @@ using Activos.Entidad.Almacen;
 //using Activos.Entidad.Activos;
 using Activos.ProcesoNegocio.Almacen;
 using Activos.ProcesoNegocio.Catalogo;
+using System.Globalization;
 
 namespace Activos.Almacen.Aplicacion.Almacen
 {
@@ -186,6 +187,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
             {
                 RecepcionObjetoEntidad.RecepcionId = TemporalRecepcionIdHidden.Value;
                 RecepcionObjetoEntidad.TemporalRecepcionId = TemporalRecepcionIdHidden.Value;
+                RecepcionObjetoEntidad.FacturaId = FolioNuevo.Text.Trim();
                 RecepcionObjetoEntidad.ProductoId = ProductoIdHidden.Value;
                 RecepcionObjetoEntidad.PrecioUnitario = decimal.Parse(PrecionUnitarioNuevo.Text);
                 RecepcionObjetoEntidad.Cantidad = Int16.Parse(CantidadNuevo.Text);
@@ -292,6 +294,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
             RecepcionObjetoEntidad.TipoDocumentoId = Int16.Parse(TipoDocumentoIdNuevo.SelectedValue);
             RecepcionObjetoEntidad.EmpleadoId = Int16.Parse(SolicitanteIdNuevo.SelectedValue);
             RecepcionObjetoEntidad.JefeId = Int16.Parse(JefeInmediatoIdNuevo.SelectedValue);
+            RecepcionObjetoEntidad.FacturaId = FolioNuevo.Text.Trim();
             //RecepcionObjetoEntidad.Clave = FolioNuevo.Text.Trim();
             RecepcionObjetoEntidad.Monto = decimal.Parse(MontoDatosNuevo.Text);
             RecepcionObjetoEntidad.OrdenId = OrdenIdHidden.Value;
@@ -339,7 +342,6 @@ namespace Activos.Almacen.Aplicacion.Almacen
             {
                 if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
                 {
-
                     TablaRecepcion.CssClass = ConstantePrograma.ClaseTablaVacia;
                     LabelMontoTotal.Text = "$0.00";
                 }
@@ -372,6 +374,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
             FamiliaIdNuevo.Text = "";
             SubFamiliaIdNuevo.Text = "";
             MarcaIdNuevo.Text = "";
+            BuscarOrden();
             //FamiliaIdNuevo.SelectedIndex = 0;
             //SeleccionarSubfamilia();
             //SubFamiliaIdNuevo.SelectedIndex = 0;
@@ -381,8 +384,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
             CantidadNuevo.Text = "";
             MontoDocumentoNuevo.Text = "";
             EtiquetaMensaje.Text = "";
-            //ProductoIdHidden.Value = "";
-        
+            ProductoIdHidden.Value = "";
         }
 
         protected void LimpiarNuevoRegistro()
@@ -399,6 +401,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
             OrdenIdHidden.Value = "";
             LabelMontoTotal.Text = "$0.00";
 
+            BuscarOrden();
             TablaRecepcion.DataSource = null;
             TablaRecepcion.DataBind();
 
@@ -414,7 +417,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
             MensajeRangoDeFechasInvalido.Value = TextoInfo.MensajeRangoFechasInvalido;
             SeleccionarProveedor();
             SeleccionarEmpleado();
-            
+            LabelMontoTotal.Text = "$0.00";
             BuscarJefe();
             BuscarProducto();
             BuscarOrden();
@@ -475,6 +478,13 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
             if (OrdenProceso.ResultadoDatos.Tables[0].Rows.Count > 0)
             {
+                if (Convert.ToInt16(OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["EstatusId"])==Convert.ToUInt16(ConstantePrograma.EstatusOrden.Surtida))
+                {
+                    MostrarMensaje(TextoInfo.MensajeOrdenEstatusSurtida, ConstantePrograma.TipoErrorAlerta);
+                    OrderCompraNuevo.Text = "";
+                    return;
+                }
+                OrderCompraNuevo.Text = Clave;
                 FechaOrdenCompraNuevo.Text = String.Format("{0:" + ConstantePrograma.EspañolFormatoFecha2 + "}", OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["FechaOrden"]);
                 SolicitanteIdNuevo.SelectedValue = OrdenProceso.ResultadoDatos.Tables[0].Rows[0]["EmpleadoId"].ToString();
                 BuscarJefe();
@@ -861,7 +871,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
             DateTime FechaTemp = new DateTime();
 
             Decimal Suma = 0;
-            DataTable RecepcionTmp = (DataTable)TablaRecepcion.DataSource;
+            //DataTable RecepcionTmp = (DataTable)TablaRecepcion.DataSource;
             //foreach (DataRow Fila in RecepcionTmp.Rows)
             //{
             //    Suma += (Convert.ToDecimal(Fila["PrecioUnitario"]) * Convert.ToDecimal(Fila["Cantidad"]));
@@ -869,6 +879,10 @@ namespace Activos.Almacen.Aplicacion.Almacen
             //Decimal MontoTotal;
             //if (!Decimal.TryParse(LabelMontoTotal.Text, System.Globalization.NumberStyles.Currency, null, out MontoDatosNuevo)) Mensaje = "BAD";
             //if (Suma != MontoTotal) Mensaje = TextoInfo.MensajeMontosNoConcuerdan;
+            if (Decimal.TryParse(LabelMontoTotal.Text, NumberStyles.Currency, System.Globalization.CultureInfo.CurrentCulture.NumberFormat, out Suma))
+            {
+                if (Suma != Convert.ToDecimal(MontoDatosNuevo.Text)) Mensaje = TextoInfo.MensajeMontosNoConcuerdan;
+            }
 
             if (String.IsNullOrEmpty(FolioNuevo.Text)) Mensaje = TextoInfo.MensajeFolioVacio;
             
@@ -959,7 +973,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
                         //SeleccionarProductoMostrar(AlmacenEntidadObjeto);
                         //ValidarPreOrden(Clave);
                         SeleccionarOrdenCompra(Clave);
-                        OrderCompraNuevo.Text = Clave;
+                        
                         CargaPanelInVisibleOrden();
                         break;
 

@@ -22,6 +22,7 @@ namespace Activos.Comun.Constante
 
       //Mensajes Formulario Requisicion
       public const string MensajeNoRequisicion= "No. Requisicion: ";
+      public const string MensajeNoHayExistenciaDe = "No hay suficientes articulos para el producto: ";
 
       //Mensajes Formulario Orden
       public const string MensajeNoOrden= "No. Orden: ";
@@ -31,6 +32,7 @@ namespace Activos.Comun.Constante
       public const string MensajeProveedoresVacio = "No existen proveedores en la lista.";
       public const string MensajeOrdenVacia = "Por favor, seleccione los articulos de la orden.";
       public const string MensajeConfirmacionOrden = "¿Desea guardar la Orden?";
+      public const string MensajeOrdenEstatusSurtida = "Esta orden de compra ya fue surtida.";
 
       //Mensajes Formulario Recepcion
       public const string MensajeNoRecepcion = "No. Recepción: ";

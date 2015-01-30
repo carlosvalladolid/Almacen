@@ -232,7 +232,8 @@ namespace Activos.Comun.Constante
 
         public enum EstatusOrden
         {
-            SinSurtir = 31
+            SinSurtir = 31,
+            Surtida = 37
         }
 
         public enum EstatusOrdenSalida

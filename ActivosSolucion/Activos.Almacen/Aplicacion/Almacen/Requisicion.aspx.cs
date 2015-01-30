@@ -131,7 +131,6 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                     if (Resultado.ErrorId == (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente)
                     {
-
                         TemporalRequisicionIdHidden.Value = RequisicionObjetoEntidad.RequisicionId;
                         LimpiarRequisicion();
                         SeleccionarRequisicion();
@@ -237,6 +236,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 //if (ProductoIdHidden.Value == ProductoId.ToString())
                 //{
                 RequisicionObjetoEntidad.ProductoId = ProductoId;
+                RequisicionObjetoEntidad.RequisicionId = TemporalRequisicionIdHidden.Value;
                 Resultado = RequisicionProcesoNegocio.CancelarNuevoRequisicion(RequisicionObjetoEntidad);
 
                 if (Resultado.ErrorId == (int)ConstantePrograma.Requisicion.EliminadoExitosamente)
@@ -294,6 +294,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                     BuscarProducto();
                     SeleccionarTextoError();
 
+                    LabelTotalArticulo.Text = "0";
                     TablaRequisicion.DataSource = null;
                     TablaRequisicion.DataBind();
             }
@@ -321,7 +322,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 TablaRequisicion.DataSource = null;
                 TablaRequisicion.DataBind();
                 EtiquetaMensaje.Text = "";
-                LabelTotalArticulo.Text = "";
+                LabelTotalArticulo.Text = "0";
             }
 
             private void LimpiarRequisicion()
@@ -334,7 +335,8 @@ namespace Almacen.Web.Aplicacion.Almacen
                 CantidadNuevo.Text = "";
                 EtiquetaMensaje.Text = "";
                 ProductoIdHidden.Value = "";
-                LabelTotalArticulo.Text = "";
+                LabelTotalArticulo.Text = "0";
+                TemporalRequisicionIdHidden.Value = "";
             }
 
             private void MostrarMensaje(string Mensaje, string TipoMensaje)
@@ -509,6 +511,21 @@ namespace Almacen.Web.Aplicacion.Almacen
             {
                 String Mensaje = "";
                 if (TablaRequisicion.Rows.Count <= 0) Mensaje = TextoInfo.MensajeProductoGenerico;
+
+                RequisicionProceso RequisicionProceso = new RequisicionProceso();
+                RequisicionProceso.RequisicionEntidad.RequisicionId = TemporalRequisicionIdHidden.Value;
+                RequisicionProceso.SeleccionarExistencia();
+                foreach(DataRow FilaComparacion in RequisicionProceso.ResultadoDatos.Tables[0].Rows)
+                {
+                    if (Convert.ToInt32(FilaComparacion["Diferencia"]) < 0)
+                    {
+                        Mensaje = TextoInfo.MensajeNoHayExistenciaDe + FilaComparacion["descripcion"].ToString();
+                        break;
+                    }
+                }
+
+
+
 
                 if (Mensaje == "") return true;
                 else MostrarMensaje(Mensaje, "Error");

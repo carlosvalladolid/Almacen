@@ -24,6 +24,13 @@ namespace Activos.Entidad.Almacen
 	public decimal _PrecioUnitario;
     public int _Cantidad;
     public string _TemporalRecepcionId;
+    private string _FacturaId;
+
+    public string FacturaId
+    {
+        get { return _FacturaId; }
+        set { _FacturaId = value; }
+    }
 
     public RecepcionEntidad()
         {
@@ -41,6 +48,7 @@ namespace Activos.Entidad.Almacen
             _PrecioUnitario = 0;
             _Cantidad = 0;
             _TemporalRecepcionId = string.Empty;
+            _FacturaId = string.Empty;
         }
 
     public string RecepcionId

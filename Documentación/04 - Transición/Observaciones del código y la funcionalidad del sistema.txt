@@ -12,8 +12,8 @@ Requisición
 9. Cantidad total de articulos no aparece (** LISTO **)
 10. Validar Máximo permitido de productos. (No)
 11. Agregar limpieza de Cantidad al dar clic en guardar (** LISTO **)
-12. Afectar la existencia temporal de los productos solicitados. (No)
-13. Relacionar la tabla de empleados con la tabla de usuarios. (No)
+12. Afectar la existencia temporal de los productos solicitados. (** LISTO **)
+13. Relacionar la tabla de empleados con la tabla de usuarios. (** LISTO **)
 
 
 Pre Orden
@@ -55,11 +55,11 @@ Recepción
 6. validar precio a decimal. (** LISTO **)
 7. verificar bosquejo. (** LISTO **)
 8. Regresar folio de la recepcion. (** LISTO **)
-9. validacion de Monto de la factura con el puesto. 
+9. validacion de Monto de la factura con el puesto. (** LISTO **)
 10. Busqueda de orden hay que mostrar todos los registros al inicio. (** LISTO **)
 
 BASE DE DATOS:
-1. Agregar campo Factura al encabezado de la recepcion.
+1. Agregar campo Factura al encabezado de la recepcion. (** LISTO **)
 2. Agregar tabla que controle la clave de cada recepcion. (** LISTO **)
 
 
@@ -84,8 +84,8 @@ CATALOGOS
 Catalogos Subfamilia no funcionan
 
 Catalogo Productos: 
-	Falta Funcionalidad de edición. y agregar columna de Familia[].
-	Falta campo de existencia inicial.
+	Falta Funcionalidad de edición. y agregar columna de Familia[].(** LISTO - probar **)
+	Falta campo de existencia inicial. (** LISTO **)
 	
 
 
