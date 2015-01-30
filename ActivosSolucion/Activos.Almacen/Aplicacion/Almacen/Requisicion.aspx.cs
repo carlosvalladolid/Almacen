@@ -336,7 +336,6 @@ namespace Almacen.Web.Aplicacion.Almacen
                 EtiquetaMensaje.Text = "";
                 ProductoIdHidden.Value = "";
                 LabelTotalArticulo.Text = "0";
-                TemporalRequisicionIdHidden.Value = "";
             }
 
             private void MostrarMensaje(string Mensaje, string TipoMensaje)
