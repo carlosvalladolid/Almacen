@@ -27,12 +27,12 @@ namespace Almacen.Web.Aplicacion.Almacen
     public partial class Requisicion : System.Web.UI.Page
     {
         #region "Eventos"
-          
             protected void BotonAgregar_Click(object sender, ImageClickEventArgs e)
             {
                 if (ValidarAgregarProducto()) AgregarDetalleDocumento();
                 
             }
+
             //IMPLEMENTACIÓN FUTURA
             //protected void BotonCancelar_Click(object sender, EventArgs e)
             //{
@@ -57,7 +57,6 @@ namespace Almacen.Web.Aplicacion.Almacen
                     if(ValidarFormulario())GuardarRequisicion();
                 }
             }
-        
 
             protected void BotonProductoBusqueda_Click(object sender, ImageClickEventArgs e)
             {
@@ -90,11 +89,9 @@ namespace Almacen.Web.Aplicacion.Almacen
             {
                 TablaRequisicionEventoComando(e);
             }
-      
         #endregion
 
         #region "Métodos"
-
             private void AgregarDetalleDocumento()
             {
                 RequisicionEntidad RequisicionObjetoEntidad = new RequisicionEntidad();
@@ -203,30 +200,31 @@ namespace Almacen.Web.Aplicacion.Almacen
             private void CargarInformacionUsuario()
             {
                 ResultadoEntidad Resultado = new ResultadoEntidad();
+                UsuarioEntidad UsuarioEntidad = new UsuarioEntidad();
                 RequisicionProceso RequisicionProcesoNegocio = new RequisicionProceso();
-                RequisicionEntidad RequisicionObjetoEntidad = new RequisicionEntidad();
-                UsuarioEntidad UsuarioSessionEntidad = new UsuarioEntidad();
 
-                UsuarioSessionEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
-
-                RequisicionObjetoEntidad.EmpleadoId = UsuarioSessionEntidad.UsuarioId;
-
-                Resultado = RequisicionProcesoNegocio.SeleccionarEmpleado(RequisicionObjetoEntidad);
-
-                if (Resultado.ErrorId == 0)
+                try
                 {
-                    EmpleadoIdHidden.Value = Resultado.ResultadoDatos.Tables[0].Rows[0]["EmpleadoId"].ToString();
-                    SolicitanteNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Nombre"].ToString();
-                    DependenciaNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Dependencia"].ToString();
-                    DireccionNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Direccion"].ToString();
-                    PuestoNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Puesto"].ToString();
-                    JefeInmediatoNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["EmpleadoJefe"].ToString();
-                    JefeIdHidden.Value = Resultado.ResultadoDatos.Tables[0].Rows[0]["EmpleadoIdJefe"].ToString();
+                    UsuarioEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
+
+                    Resultado = RequisicionProcesoNegocio.SeleccionarEmpleado(UsuarioEntidad);
+
+                    if (Resultado.ErrorId == 0)
+                    {
+                        EmpleadoIdHidden.Value = Resultado.ResultadoDatos.Tables[0].Rows[0]["EmpleadoId"].ToString();
+                        SolicitanteNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Nombre"].ToString();
+                        DependenciaNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Dependencia"].ToString();
+                        DireccionNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Direccion"].ToString();
+                        PuestoNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Puesto"].ToString();
+                        JefeInmediatoNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["EmpleadoJefe"].ToString();
+                        JefeIdHidden.Value = Resultado.ResultadoDatos.Tables[0].Rows[0]["EmpleadoIdJefe"].ToString();
+                    }
+                    else
+                        MostrarMensaje(RequisicionProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
                 }
-                else
+                catch
                 {
-                    EtiquetaMensaje.Text = TextoError.ErrorGenerico;
-                    // MostrarMensaje(RequisicionProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                    MostrarMensaje(TextoError.ErrorGenerico, ConstantePrograma.TipoErrorAlerta);
                 }
             }
 
@@ -245,14 +243,9 @@ namespace Almacen.Web.Aplicacion.Almacen
                 {
                     EtiquetaMensaje.Text = "";
                     SeleccionarRequisicion();
-
                 }
                 else
-                {
-                    EtiquetaMensaje.Text = Resultado.DescripcionError;
-                }
-                //}
-
+                    MostrarMensaje(Resultado.DescripcionError, ConstantePrograma.TipoErrorAlerta);
             }
 
             private void GuardarRequisicion()
@@ -289,10 +282,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                    // MostrarMensaje(TextoInfo.MensajeGuardadoGenerico, ConstantePrograma.TipoMensajeAlerta);
                 }
                 else
-                {
                     MostrarMensaje(RequisicionProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
-                    //   EtiquetaMensaje.Text = Resultado.DescripcionError;
-                }
             }        
 
             private void Inicio()
@@ -306,7 +296,6 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                     TablaRequisicion.DataSource = null;
                     TablaRequisicion.DataBind();
-               
             }
 
             private void InsertarRequisicionEncabezadoTemp(RequisicionEntidad RequisicionObjetoEntidad)
@@ -323,24 +312,12 @@ namespace Almacen.Web.Aplicacion.Almacen
                        // LimpiarNuevoRegistro();
                     }
                     else
-                    {
                       MostrarMensaje(RequisicionProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta); 
-                        //EtiquetaMensaje.Text = Resultado.DescripcionError;
-                    }
                 }
             }
 
             private void LimpiarNuevoRegistro()
             {
-                //SolicitanteNuevo.Text = "";
-                //DependenciaNuevo.Text = "";
-                //DireccionNuevo.Text = "";
-                //PuestoNuevo.Text = "";
-                //JefeInmediatoNuevo.Text = "";
-                //TemporalRequisicionIdHidden.Value = "";
-                //EmpleadoIdHidden.Value = "";
-                //JefeIdHidden.Value = "";
-
                 TablaRequisicion.DataSource = null;
                 TablaRequisicion.DataBind();
                 EtiquetaMensaje.Text = "";
@@ -377,7 +354,6 @@ namespace Almacen.Web.Aplicacion.Almacen
             {
                 ClaveNuevoRequerido.ErrorMessage = TextoError.ClaveProducto + "<br/>";
                 CantidadNuevoRequerido.ErrorMessage = TextoError.CantidadProducto + "<br/>";
-            
             }
         
             private void SeleccionarClave()
@@ -417,16 +393,11 @@ namespace Almacen.Web.Aplicacion.Almacen
                     }
                 }
                 else
-                {
-                    // LimpiarProducto();
-                    //AgregarEtiquetaMensaje.Text = TextoError.ErrorGenerico;
-                }
-
+                    MostrarMensaje(Resultado.DescripcionError, ConstantePrograma.TipoErrorAlerta);
             }
 
             private void SeleccionarProductoMostrar(AlmacenEntidad AlmacenEntidadObjeto)
             {
-
                 ResultadoEntidad Resultado = new ResultadoEntidad();
                 AlmacenProceso AlmacenProcesoNegocio = new AlmacenProceso();
 
@@ -442,10 +413,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                     CargaPanelInVisibleProducto();
                 }
                 else
-                {
-                    EtiquetaMensaje.Text = TextoError.ErrorGenerico;
-                }
-
+                    MostrarMensaje(Resultado.DescripcionError, ConstantePrograma.TipoErrorAlerta);
             }
 
             private void SeleccionarRequisicion()
@@ -476,9 +444,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 }
                 else
-                {
-                    EtiquetaMensaje.Text = TextoError.ErrorGenerico;
-                }
+                    MostrarMensaje(Resultado.DescripcionError, ConstantePrograma.TipoErrorAlerta);
             }
 
             private void TablaProductoRowCommand(GridViewCommandEventArgs e)
@@ -562,6 +528,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 else MostrarMensaje(Mensaje, "Error");
                 return false;
             }
+
             //RUBEN ** PENDIENTE
             private string ObtenerClaveRequisicion(RequisicionEntidad RequisicionObjetoEntidad)
             {
@@ -575,7 +542,6 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 return String.Empty;
             }
-
         #endregion
     }
 }

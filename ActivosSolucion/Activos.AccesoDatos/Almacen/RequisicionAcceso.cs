@@ -5,9 +5,10 @@ using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 
-using Activos.Entidad.General;
-using Activos.Entidad.Catalogo;
 using Activos.Entidad.Almacen;
+using Activos.Entidad.Catalogo;
+using Activos.Entidad.General;
+using Activos.Entidad.Seguridad;
 using Activos.Comun.Constante;
 
 namespace Activos.AccesoDatos.Almacen
@@ -307,8 +308,8 @@ namespace Activos.AccesoDatos.Almacen
                     return Resultado;
                 }
             }
-                    
-            public ResultadoEntidad SeleccionarEmpleado(RequisicionEntidad RequisicionEntidadObjeto, string CadenaConexion)
+
+            public ResultadoEntidad SeleccionarEmpleado(UsuarioEntidad UsuarioEntidad, string CadenaConexion)
             {
                 DataSet ResultadoDatos = new DataSet();
                 SqlConnection Conexion = new SqlConnection(CadenaConexion);
@@ -322,13 +323,9 @@ namespace Activos.AccesoDatos.Almacen
                     Comando = new SqlCommand("SeleccionarEmpleadoProcedimiento", Conexion);
                     Comando.CommandType = CommandType.StoredProcedure;
 
-                    Parametro = new SqlParameter("EmpleadoId", SqlDbType.Int);
-                    Parametro.Value = RequisicionEntidadObjeto.EmpleadoId;
+                    Parametro = new SqlParameter("UsuarioId", SqlDbType.Int);
+                    Parametro.Value = UsuarioEntidad.UsuarioId;
                     Comando.Parameters.Add(Parametro);
-
-                    //Parametro = new SqlParameter("Nombre", SqlDbType.VarChar);
-                    //Parametro.Value = RequisicionEntidadObjeto.Nombre;
-                    //Comando.Parameters.Add(Parametro);
 
                     Adaptador = new SqlDataAdapter(Comando);
                     ResultadoDatos = new DataSet();

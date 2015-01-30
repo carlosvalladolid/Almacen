@@ -84,6 +84,7 @@ namespace Almacen.Web.Aplicacion.Reporte.Viewer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdateProgress AssociatedUpdate;
+<<<<<<< HEAD
         
         /// <summary>
         /// Master property.
@@ -92,5 +93,7 @@ namespace Almacen.Web.Aplicacion.Reporte.Viewer {
         /// Auto-generated property.
         /// </remarks>
 
+=======
+>>>>>>> origin/master
     }
 }

@@ -6,11 +6,12 @@ using System.Linq;
 using System.Text;
 
 using Activos.AccesoDatos.Almacen;
-using Activos.ProcesoNegocio.Almacen;
-using Activos.Comun.Constante;
 using Activos.Comun.Cadenas;
-using Activos.Entidad.General;
+using Activos.Comun.Constante;
 using Activos.Entidad.Almacen;
+using Activos.Entidad.General;
+using Activos.Entidad.Seguridad;
+using Activos.ProcesoNegocio.Almacen;
 
 namespace Activos.ProcesoNegocio.Almacen
 {
@@ -284,18 +285,18 @@ namespace Activos.ProcesoNegocio.Almacen
                 return Resultado;
             }
 
-            public ResultadoEntidad SeleccionarEmpleado(RequisicionEntidad RequisicionObjetoEntidad)
-                {
-                    string CadenaConexion = string.Empty;
-                    ResultadoEntidad Resultado = new ResultadoEntidad();
-                    RequisicionAcceso RequisicionAccesoObjeto = new RequisicionAcceso();
+            public ResultadoEntidad SeleccionarEmpleado(UsuarioEntidad UsuarioEntidad)
+            {
+                string CadenaConexion = string.Empty;
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                RequisicionAcceso RequisicionAccesoObjeto = new RequisicionAcceso();
 
-                    CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+                CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
-                    Resultado = RequisicionAccesoObjeto.SeleccionarEmpleado(RequisicionObjetoEntidad, CadenaConexion);
+                Resultado = RequisicionAccesoObjeto.SeleccionarEmpleado(UsuarioEntidad, CadenaConexion);
 
-                    return Resultado;
-                }
+                return Resultado;
+            }
 
             public ResultadoEntidad SeleccionaRequisicion(RequisicionEntidad RequisicionObjetoEntidad)
             {

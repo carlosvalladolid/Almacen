@@ -5,6 +5,13 @@
 * Descripción:			Métodos para la validación de los formularios
 */
 
+function ConfirmarBorrado() {
+    if (confirm("¿Desea eliminar los registros seleccionados?"))
+        return true;
+    else
+        return false;
+}
+
 function MostrarMensaje(Mensaje, TipoMensaje) {
     $(document).ready(function() {
         switch(TipoMensaje)

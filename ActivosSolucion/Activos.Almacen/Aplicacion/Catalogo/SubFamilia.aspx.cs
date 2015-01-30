@@ -134,7 +134,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 if (ResultadoEntidadObjeto.ErrorId == (int)ConstantePrograma.SubFamilia.EliminacionExitosa)
                 {
                     // ToDo: Se muestra vacío el mensaje
-                    MostrarMensaje(ResultadoEntidadObjeto.DescripcionError, ConstantePrograma.TipoMensajeAlerta);
+                    MostrarMensaje(TextoInfo.MensajeBorradoGenerico, ConstantePrograma.TipoMensajeAlerta);
                     BusquedaAvanzada();
                 }
                 else
@@ -306,16 +306,24 @@ namespace Almacen.Web.Aplicacion.Catalogo
 
                 Resultado = SubFamiliaProcesoNegocio.SeleccionarSubFamilia(SubFamiliaObjetoEntidad);
 
-                if (Resultado.ErrorId == 0)
+                if (Resultado.ErrorId != 0)
+                {
+                    MostrarMensaje(Resultado.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                    return;
+                }
+
+                try
                 {
                     FamiliaNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["FamiliaId"].ToString();
                     EstatusNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["EstatusId"].ToString();
                     NombreNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Nombre"].ToString();
-                    //SeleccionarDependenciaNuevo();
+
                     CambiarEditarRegistro();
                 }
-                else
-                    MostrarMensaje(Resultado.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                catch
+                {
+                    MostrarMensaje(TextoError.ErrorGenerico, ConstantePrograma.TipoErrorAlerta);
+                }
             }
 
             protected void TablaSubFamiliaEventoComando(GridViewCommandEventArgs e)
@@ -332,7 +340,6 @@ namespace Almacen.Web.Aplicacion.Catalogo
 
                 if (intFila >= intTamañoPagina)
                     intFila = (Int16)(intFila - (intTamañoPagina * TablaSubFamilia.PageIndex));
-
 
                 switch (strCommand)
                 {
