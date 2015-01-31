@@ -109,9 +109,9 @@ namespace Almacen.Web.Aplicacion.Catalogo
             private void Inicio()
             {
                 //Opciones
-                //Master.NuevoRegistroMaster.Click += new EventHandler(NuevoRegistro_Click);
-                //Master.BusquedaAvanzadaMaster.Click += new EventHandler(BusquedaAvanzadaLink_Click);
-                //Master.EliminarRegistroMaster.Click += new EventHandler(EliminarRegistroLink_Click);
+                Master.NuevoRegistroMaster.Click += new EventHandler(NuevoRegistro_Click);
+                Master.BusquedaAvanzadaMaster.Click += new EventHandler(BusquedaAvanzadaLink_Click);
+                Master.EliminarRegistroMaster.Click += new EventHandler(EliminarRegistroLink_Click);
 
                 if (!Page.IsPostBack)
                 {
@@ -437,9 +437,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
                     UnidaddeMedidaIdNuevo.DataBind();
                 }
                 else
-                {
-                    EtiquetaMensaje.Text = TextoError.ErrorGenerico;
-                }
+                    MostrarMensaje(Resultado.DescripcionError, ConstantePrograma.TipoErrorAlerta);
 
                 UnidaddeMedidaIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
             }

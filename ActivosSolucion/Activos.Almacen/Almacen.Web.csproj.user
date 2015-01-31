@@ -9,7 +9,7 @@
           <NativeDebugging>False</NativeDebugging>
           <SQLDebugging>False</SQLDebugging>
           <PublishCopyOption>RunFiles</PublishCopyOption>
-          <PublishTargetLocation>E:\Trabajo\Proyectos\Externos\Gobierno\Defensoría\Almacen\Publish\Almacen\Almacen v.1.0.0\</PublishTargetLocation>
+          <PublishTargetLocation>E:\Trabajo\Proyectos\Externos\Gobierno\Defensoría\Almacen\Publish\Almacen\Almacen v.1.0.1\</PublishTargetLocation>
           <PublishDeleteAllFiles>False</PublishDeleteAllFiles>
           <PublishCopyAppData>True</PublishCopyAppData>
           <ExternalProgram>
