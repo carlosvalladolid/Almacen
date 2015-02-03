@@ -67,21 +67,21 @@
                     </tr>
                      <tr>
                         <td class="Nombre">Proveedor</td>
-                        <td class="Espacio">*</td>
+                        <td class="Requerido">*</td>
                         <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="ProveedorIdNuevo" runat="server"></asp:DropDownList>                              
                         </td>
                      </tr>
                         
                       <tr>
                         <td class="Nombre">Tipo de Documento</td>
-                        <td class="Espacio">*</td>
+                        <td class="Requerido">*</td>
                         <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="TipoDocumentoIdNuevo" runat="server"></asp:DropDownList>                              
                         </td>
                      </tr>
               
                     <tr>
                         <td class="Nombre">Folio</td>
-                        <td class="Espacio">*</td>
+                        <td class="Requerido">*</td>
                         <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="FolioNuevo"  runat="server" Text=""></asp:TextBox></td>
                     </tr>
                     
@@ -108,7 +108,7 @@
                     
                          <tr>
                             <td class="Nombre">Solicitante</td>
-                            <td class="Required">*</td>
+                            <td class="Requerido">*</td>
                             <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="SolicitanteIdNuevo"  Enabled ="false" onselectedindexchanged="SolicitanteCombo_SelectedIndexChanged" AutoPostBack="true"  runat="server"></asp:DropDownList>                              
                             </td>
                         </tr>
@@ -116,7 +116,7 @@
                         
                          <tr>
                             <td class="Nombre">Jefe Inmediato</td>
-                            <td class="Required">*</td>
+                            <td class="Requerido">*</td>
                             <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="JefeInmediatoIdNuevo" Enabled ="false"  runat="server"></asp:DropDownList>                              
                             </td>
                         </tr>
@@ -130,7 +130,7 @@
               <table class="TablaFormulario">              
                      <tr>
                             <td class="Nombre">Clave del Producto</td>
-                            <td class="Espacio">*</td>
+                            <td class="Requerido">*</td>
                             <td class="Campo"> 
                              <asp:TextBox ID="ClaveNuevo" CssClass="CajaTextoMediana" Enabled="false" MaxLength="10" runat="server"></asp:TextBox>     
                              <asp:ImageButton ID="ImagenBuscarClaveProducto" ImageUrl="/Imagen/Icono/ImagenBuscar.gif" runat="server" onclick="ImagenProductoBusqueda_Click" />

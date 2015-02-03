@@ -30,7 +30,7 @@ namespace Almacen.Web.Aplicacion.Almacen
         #region "Eventos"
             protected void BotonAgregar_Click(object sender, EventArgs e)
             {
-                GuardarProductoTemp();
+                if (ValidarProducto()) GuardarProductoTemp();
             }
 
             protected void BotonCerrarProductoBusqueda_Click(object sender, ImageClickEventArgs e)
@@ -50,7 +50,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             protected void BotonRequisicionBusqueda_Click(object sender, ImageClickEventArgs e)
             {
-                SeleccionarRequisicion(RequisicionBusquedaBox.Text.Trim(), EmpleadoBusquedaBox.Text.Trim(), FechaInicioBusquedaBox.Text.Trim(), FechaFinBusquedaBox.Text.Trim(), Int16.Parse(EstatusBusquedaCombo.SelectedValue));
+                SeleccionarRequisicionBusqueda();
             }
 
             protected void BotonRequisicionCerrar_Click(object sender, ImageClickEventArgs e)
@@ -105,7 +105,6 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             private void BorrarOrdenSalidaDetalleTemp(string ProductoId)
             {
-                //#IMPLEMENTANDO...
                 OrdenSalidaProceso OrdenSalidaProceso = new OrdenSalidaProceso();
                 OrdenSalidaProceso.OrdenSalidaDetalleEntidad.OrdenSalidaId = OrdenSalidaIdHidden.Value;
                 OrdenSalidaProceso.OrdenSalidaDetalleEntidad.ProductoId = ProductoId;
@@ -268,7 +267,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 EstatusEntidad EstatusEntidad = new EstatusEntidad();
                 EstatusProceso EstatusProceso = new EstatusProceso();
 
-                EstatusEntidad.SeccionId = (int)ConstantePrograma.Seccion.PreOrden;
+                EstatusEntidad.SeccionId = (int)ConstantePrograma.Seccion.Requerimiento;
 
                 Resultado = EstatusProceso.SeleccionarEstatus(EstatusEntidad);
 
@@ -357,6 +356,32 @@ namespace Almacen.Web.Aplicacion.Almacen
                 SeleccionarRequisicion("", "", "", "", 0);
             }
 
+            private void SeleccionarRequisicionBusqueda()
+            {
+                string Mensaje = "";
+                DateTime FechaInicio = new DateTime();
+                DateTime FechaFinal = new DateTime();
+
+                if(String.IsNullOrEmpty(FechaInicioBusquedaBox.Text.Trim()) && String.IsNullOrEmpty(FechaFinBusquedaBox.Text.Trim()))
+                {
+                    FechaInicio = DateTime.Parse(ConstantePrograma.SqlSmallDateTimeMinValue);
+                    FechaFinal = DateTime.Parse(ConstantePrograma.SqlSmallDateTimeMaxValue);
+                }
+                else
+                {
+                    if (!DateTime.TryParse(FechaInicioBusquedaBox.Text.Trim(), out FechaInicio)) Mensaje = TextoInfo.MensajeRangoFechasInvalido;
+                    if (!DateTime.TryParse(FechaFinBusquedaBox.Text.Trim(), out FechaFinal)) Mensaje = TextoInfo.MensajeRangoFechasInvalido;
+                }
+               
+                if (Mensaje == "")
+                {
+                    SeleccionarRequisicion(RequisicionBusquedaBox.Text.Trim(), EmpleadoBusquedaBox.Text.Trim(), FechaInicio.ToString(ConstantePrograma.SqlServerFormatoFechaSoloFecha), FechaFinal.ToString(ConstantePrograma.SqlServerFormatoFechaSoloFecha), Int16.Parse(EstatusBusquedaCombo.SelectedValue));
+                    return;
+                }
+
+                MostrarMensaje(Mensaje,ConstantePrograma.TipoErrorAlerta);
+            }
+        
             private void SeleccionarRequisicion(string RequisicionId)
             {
                 RequisicionProceso RequisicionProceso = new RequisicionProceso();
@@ -384,11 +409,11 @@ namespace Almacen.Web.Aplicacion.Almacen
                 }
             }
 
-            private void SeleccionarRequisicion(string RequisicionId, string Empleado, string FechaInicial, string FechaFinal, Int16 EstatusId)
+            private void SeleccionarRequisicion(string Clave, string Empleado, string FechaInicial, string FechaFinal, Int16 EstatusId)
             {
                 RequisicionProceso RequisicionProceso = new RequisicionProceso();
 
-                RequisicionProceso.RequisicionEntidad.RequisicionId = RequisicionId;
+                RequisicionProceso.RequisicionEntidad.Clave = Clave;
                 RequisicionProceso.RequisicionEntidad.Nombre = Empleado;
                 RequisicionProceso.RequisicionEntidad.FechaInicial = FechaInicial;
                 RequisicionProceso.RequisicionEntidad.FechaFinal = FechaFinal;
@@ -432,10 +457,36 @@ namespace Almacen.Web.Aplicacion.Almacen
                 string RequisicionId = string.Empty;
 
                 RequisicionId = e.CommandArgument.ToString();
+                
+                //Int16 intFila = 0;
+                //int intTamañoPagina = 0;
+                //string ProductoId = "";
+                //string strCommand = string.Empty;
+                
+                //intFila = Int16.Parse(e.CommandArgument.ToString());
+                //strCommand = e.CommandName.ToString();
+                //intTamañoPagina = TablaRequisicionBusqueda.PageSize;
+
+                //if (intFila >= intTamañoPagina) intFila = (Int16)(intFila - (intTamañoPagina * TablaProducto.PageIndex));
+
+
 
                 RequisicionIdHidden.Value = RequisicionId;
                 SeleccionarRequisicion(RequisicionId);
                 OcultarBusquedaRequisicion();
+            }
+
+            public bool ValidarProducto()
+            {
+                string Mensaje = "";
+                int Cantidad = 0;
+                if (RequisicionIdHidden.Value == "") Mensaje = TextoInfo.MensajeSeleccioneRequisicion;
+                if (!Int32.TryParse(CantidadBox.Text, out Cantidad)) Mensaje = TextoInfo.MensajeCantidadGenerico;
+                if (Cantidad < 1) Mensaje = TextoInfo.MensajeCantidadGenerico;
+
+                if (Mensaje == "") return true;
+                MostrarMensaje(Mensaje,ConstantePrograma.TipoErrorAlerta);
+                return false;
             }
         #endregion
     }

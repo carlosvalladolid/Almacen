@@ -100,7 +100,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 //RequisicionObjetoEntidad.TemporalRequisicionId = TemporalRequisicionIdHidden.Value;
                 //***********************************************************************
                 RequisicionObjetoEntidad.RequisicionId = TemporalRequisicionIdHidden.Value;
-                RequisicionObjetoEntidad.EstatusId = (int)ConstantePrograma.EstatusRequisicion.Incompleta;
+                RequisicionObjetoEntidad.EstatusId = (int)ConstantePrograma.EstatusRequisicion.NoSurtida;
                 RequisicionObjetoEntidad.TemporalRequisicionId = TemporalRequisicionIdHidden.Value;
                 RequisicionObjetoEntidad.EmpleadoId = Int16.Parse(EmpleadoIdHidden.Value);
                 RequisicionObjetoEntidad.JefeId = Int16.Parse(JefeIdHidden.Value);

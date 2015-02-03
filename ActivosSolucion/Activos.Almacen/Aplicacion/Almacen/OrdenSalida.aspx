@@ -12,6 +12,8 @@
     <script src="/Incluir/Javascript/Calendar.js" type="text/javascript"></script>
     <script language="javascript" type="text/javascript">
         function pageLoad(sender, args) {
+            SetNewCalendar("#<%= FechaInicioBusquedaBox.ClientID %>");
+            SetNewCalendar("#<%= FechaFinBusquedaBox.ClientID %>");
             $("#<%= CantidadBox.ClientID %>").SoloNumeros();
             $("#<%= BotonGuardar.ClientID %>").Confirmar("<%= MensajeConfirmacion.Value%>");
         }
@@ -232,7 +234,7 @@
 
                         <div class="DivTabla">
                             <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
-                                CssClass="TablaInformacion" DataKeyNames="Clave" ID="TablaRequisicionBusqueda"
+                                CssClass="TablaInformacion" DataKeyNames="Clave,RequisicionId" ID="TablaRequisicionBusqueda"
                                 OnRowCommand="TablaRequisicionBusqueda_RowCommand" runat="server" PageSize="10">
                                 <EmptyDataTemplate>
                                     <table class="TablaVacia">

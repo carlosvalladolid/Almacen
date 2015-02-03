@@ -49,6 +49,7 @@ namespace Activos.Comun.Constante
       public const string MensajeConfirmOrdenSalida = "¿Desea guardar la Orden de Salida?";
       public const string MensajeRangoFechasInvalido = "Por favor, indique un rango de fechas valido.";
       public const string MensajeLimpiarFormulario = "¿Desea limpiar el formulario?";
+      public const string MensajeSeleccioneRequisicion = "Por favor, seleccione una requisicion.";
 
       // Mensaje Informativos de Requisición
 

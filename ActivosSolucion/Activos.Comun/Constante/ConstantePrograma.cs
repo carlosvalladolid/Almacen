@@ -19,6 +19,7 @@ namespace Activos.Comun.Constante
         public const string UniversalFormatoFecha = "aaaa/mm/dd";
         public const string EspañolFormatoFecha2 = "dd/MM/yyyy";
         public const string SqlServerFormatoFecha = "yyyy-MM-dd HH:mm:ss";
+        public const string SqlServerFormatoFechaSoloFecha = "yyyy-MM-dd";
 
         // Nombres de clases para los gridviews de la aplicación
         public const string ClaseTabla = "TablaInformacion";
@@ -264,7 +265,8 @@ namespace Activos.Comun.Constante
 
         public enum EstatusRequisicion
         {
-            Incompleta = 32
+            NoSurtida = 32,
+            Surtida = 40
         }
 
         public enum EstatusSubFamilia
