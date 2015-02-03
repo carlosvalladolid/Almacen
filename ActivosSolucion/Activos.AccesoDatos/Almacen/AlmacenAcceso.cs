@@ -112,36 +112,65 @@ namespace Activos.AccesoDatos.Almacen
                 }
             }
 
-            public ResultadoEntidad EliminarProducto(string CadenaProductoId, string CadenaConexion)
+            /// <summary>
+            ///     Borra los registros de existencia de los productos enviados como parámetro.
+            /// </summary>
+            /// <param name="Conexion">Conexión actual a la base de datos.</param>
+            /// <param name="Transaccion">Transacción actual a la base de datos.</param>
+            /// <param name="CadenaProductoId">Cadena de caracteres con los identificadores de los productos separados por comas.</param>
+            public void EliminarExistenciaProducto(SqlConnection Conexion, SqlTransaction Transaccion, string CadenaProductoId)
             {
-                SqlConnection Conexion = new SqlConnection(CadenaConexion);
-                SqlCommand Comando;
-                SqlParameter Parametro;
-                ResultadoEntidad Resultado = new ResultadoEntidad();
+                SqlCommand Commando;
+                SqlParameter Parameter;
 
                 try
                 {
-                    Comando = new SqlCommand("EliminarProductoProcedimiento", Conexion);
-                    Comando.CommandType = CommandType.StoredProcedure;
+                    Commando = new SqlCommand("EliminarExistenciaProducto", Conexion);
+                    Commando.CommandType = CommandType.StoredProcedure;
 
-                    Parametro = new SqlParameter("CadenaProductoId", SqlDbType.VarChar);
-                    Parametro.Value = CadenaProductoId;
-                    Comando.Parameters.Add(Parametro);
+                    Commando.Transaction = Transaccion;
 
-                    Conexion.Open();
-                    Comando.ExecuteNonQuery();
-                    Conexion.Close();
+                    Parameter = new SqlParameter("CadenaProductoId", SqlDbType.VarChar);
+                    Parameter.Value = CadenaProductoId;
+                    Commando.Parameters.Add(Parameter);
 
-                    Resultado.ErrorId = (int)ConstantePrograma.Producto.EliminadoExitosamente;
-
-                    return Resultado;
+                    Commando.ExecuteNonQuery();
                 }
-                catch (SqlException sqlEx)
+                catch (SqlException Exception)
                 {
-                    Resultado.ErrorId = sqlEx.Number;
-                    Resultado.DescripcionError = sqlEx.Message;
+                    _ErrorId = Exception.Number;
+                    _DescripcionError = Exception.Message;
+                }
+            }
 
-                    return Resultado;
+            /// <summary>
+            ///     Elimina la información de los productos enviados como parámetro.
+            /// </summary>
+            /// <param name="Conexion">Conexión actual a la base de datos.</param>
+            /// <param name="Transaccion">Transacción actual a la base de datos.</param>
+            /// <param name="CadenaProductoId">Cadena de caracteres con los identificadores de los productos separados por comas.</param>
+            public void EliminarProducto(SqlConnection Conexion, SqlTransaction Transaccion, string CadenaProductoId)
+            {
+                SqlCommand Commando;
+                SqlParameter Parameter;
+
+                try
+                {
+                    Commando = new SqlCommand("EliminarProductoProcedimiento", Conexion);
+                    Commando.CommandType = CommandType.StoredProcedure;
+
+                    Commando.Transaction = Transaccion;
+
+                    Parameter = new SqlParameter("CadenaProductoId", SqlDbType.VarChar);
+                    Parameter.Value = CadenaProductoId;
+                    Commando.Parameters.Add(Parameter);
+
+                    Commando.ExecuteNonQuery();
+                }
+                catch (SqlException Exception)
+                {
+                    _ErrorId = Exception.Number;
+                    _DescripcionError = Exception.Message;
                 }
             }
 
@@ -411,6 +440,41 @@ namespace Activos.AccesoDatos.Almacen
                     Resultado.DescripcionError = Excepcion.Message;
 
                     return Resultado;
+                }
+            }
+
+            public DataSet SeleccionarRelacionesProducto(string CadenaProductoId, string CadenaConexion)
+            {
+                DataSet ResultadoDatos = new DataSet();
+                SqlConnection Conexion = new SqlConnection(CadenaConexion);
+                SqlCommand Comando;
+                SqlParameter Parametro;
+                SqlDataAdapter Adaptador;
+
+                try
+                {
+                    Comando = new SqlCommand("SeleccionarRelacionesProducto", Conexion);
+                    Comando.CommandType = CommandType.StoredProcedure;
+
+                    Parametro = new SqlParameter("CadenaProductoId", SqlDbType.VarChar);
+                    Parametro.Value = CadenaProductoId;
+                    Comando.Parameters.Add(Parametro);
+
+                    Adaptador = new SqlDataAdapter(Comando);
+                    ResultadoDatos = new DataSet();
+
+                    Conexion.Open();
+                    Adaptador.Fill(ResultadoDatos);
+                    Conexion.Close();
+
+                    return ResultadoDatos;
+                }
+                catch (SqlException Excepcion)
+                {
+                    _ErrorId = Excepcion.Number;
+                    _DescripcionError = Excepcion.Message;
+
+                    return ResultadoDatos;
                 }
             }
 

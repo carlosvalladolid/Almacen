@@ -352,10 +352,15 @@ namespace Almacen.Web.Aplicacion.Catalogo {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
+<<<<<<< HEAD
         public new Incluir.Plantilla.PlantillaPrivada Master
         {
             get
             {
+=======
+        public new Incluir.Plantilla.PlantillaPrivada Master {
+            get {
+>>>>>>> origin/master
                 return ((Incluir.Plantilla.PlantillaPrivada)(base.Master));
             }
         }

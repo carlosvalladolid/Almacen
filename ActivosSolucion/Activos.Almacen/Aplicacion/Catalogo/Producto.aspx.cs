@@ -40,7 +40,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
 
             protected void BotonCancelar_Click(object sender, ImageClickEventArgs e)
             {
-
+                OcultarPanelNuevo();
             }
 
             protected void BotonCancelarBusqueda_Click(object sender, EventArgs e)
@@ -156,33 +156,21 @@ namespace Almacen.Web.Aplicacion.Catalogo
 
             private void EliminarProducto()
             {
-                ResultadoEntidad ResultadoEntidadObjeto = new ResultadoEntidad();
-                AlmacenEntidad AlmacenEntidadObjeto = new AlmacenEntidad();
-
-                AlmacenEntidadObjeto.CadenaProductoId = ObtenerCadenaProductoId();
-
-                EliminarProducto(AlmacenEntidadObjeto);
-            }
-
-            private void EliminarProducto(AlmacenEntidad AlmacenEntidadObjeto)
-            {
-                ResultadoEntidad ResultadoEntidadObjeto = new ResultadoEntidad();
+                string CadenaProductoId = string.Empty;
                 AlmacenProceso AlmacenProcesoObjeto = new AlmacenProceso();
 
-                ResultadoEntidadObjeto = AlmacenProcesoObjeto.EliminarProducto(AlmacenEntidadObjeto);
+                CadenaProductoId = ObtenerCadenaProductoId();
 
-                if (ResultadoEntidadObjeto.ErrorId == (int)ConstantePrograma.Producto.EliminadoExitosamente)
+                AlmacenProcesoObjeto.EliminarProducto(CadenaProductoId);
+
+                if (AlmacenProcesoObjeto.ErrorId == 0)
                 {
-                    // ToDo: Manejar mensajes de error
-                    //EtiquetaMensaje.Text = "";
+                    MostrarMensaje(TextoInfo.MensajeBorradoGenerico, ConstantePrograma.TipoMensajeAlerta);
 
                     BusquedaAvanzada();
                 }
                 else
-                {
-                    // ToDo: Manejar mensajes de error
-                    //EtiquetaMensaje.Text = ResultadoEntidadObjeto.DescripcionError;
-                }
+                    MostrarMensaje(AlmacenProcesoObjeto.DescripcionError, ConstantePrograma.TipoErrorAlerta);
             }
 
             private void GuardarProducto()
@@ -239,8 +227,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 if (Resultado.ErrorId == (int)ConstantePrograma.Producto.ProductoGuardadoCorrectamente)
                 {
                     LimpiarNuevoRegistro();
-                    PanelNuevoRegistro.Visible = false;
-                    PanelBusquedaAvanzada.Visible = false;
+                    OcultarPanelNuevo();
                     BusquedaAvanzada();
                 }
                 else
@@ -302,6 +289,12 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 }
 
                 return CadenaProductoId.ToString();
+            }
+
+            private void OcultarPanelNuevo()
+            {
+                PanelNuevoRegistro.Visible = false;
+                PanelBusquedaAvanzada.Visible = false;
             }
 
             private void SeleccionarFamilia()

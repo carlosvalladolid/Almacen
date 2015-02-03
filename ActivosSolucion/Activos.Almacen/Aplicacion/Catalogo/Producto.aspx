@@ -129,11 +129,10 @@
                                 <asp:RequiredFieldValidator CssClass="TextoError" ControlToValidate="MaximoNuevo" Display="Dynamic" ErrorMessage="" ID="MaximoRequerido" SetFocusOnError="true" ValidationGroup="Guardar" runat="server"></asp:RequiredFieldValidator>
                                 <asp:RequiredFieldValidator CssClass="TextoError" ControlToValidate="MaximoPermitivoNuevo" Display="Dynamic" ErrorMessage="" ID="MaximoPermitidoRequerido" SetFocusOnError="true" ValidationGroup="Guardar" runat="server"></asp:RequiredFieldValidator>
                            
-                            
                                 <br />
                                 <asp:ImageButton AlternateText="Guardar" ID="BotonGuardar" ImageUrl="~/Imagen/Boton/BotonGuardar.png" OnClick="BotonGuardar_Click" runat="server" ValidationGroup="Save" />&nbsp;&nbsp;
                                 <asp:ImageButton AlternateText="Limpiar" ID="LimpiarBoton" ImageUrl="~/Imagen/Boton/BotonLimpiar.png"  OnClick="BotonLimpiar_Click" runat="server" ValidationGroup="Save" />&nbsp;&nbsp;
-                                <asp:ImageButton AlternateText="Cancelar" ID="BotonCancelar" ImageUrl="~/Imagen/Boton/BotonCancelar.png" runat="server" />
+                                <asp:ImageButton AlternateText="Cancelar" ID="BotonCancelar" ImageUrl="~/Imagen/Boton/BotonCancelar.png" OnClick="BotonCancelar_Click" runat="server" />
                             </td>
                         </tr>
                         <tr>
@@ -193,7 +192,7 @@
                 <br /><br />
                 <asp:UpdateProgress AssociatedUpdatePanelID="PageUpdate" ID="AssociatedUpdate" runat="server">
                     <ProgressTemplate>
-                        <div class="LoadingDiv"><div class="LoadingImageDiv"><img alt="Cargando..." src="../../Image/Icon/LoadingIcon.gif" /></div></div>
+                        <div class="LoadingDiv"><div class="LoadingImageDiv"><img alt="Cargando..." src="/Image/Icon/LoadingIcon.gif" /></div></div>
                     </ProgressTemplate>
                 </asp:UpdateProgress>   
                 
