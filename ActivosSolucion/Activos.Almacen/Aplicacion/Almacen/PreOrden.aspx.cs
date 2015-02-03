@@ -538,7 +538,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
 
 
-                        JefeInmediatoNombreNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Nombre"].ToString();
+                        JefeInmediatoNombreNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["NombreEmpleadoCompleto"].ToString();
                         //JefeInmediatoIdNuevo.DataSource = Resultado.ResultadoDatos;
                         //JefeInmediatoIdNuevo.DataBind();
                     }

@@ -275,11 +275,12 @@ namespace Almacen.Web.Aplicacion.Almacen
                 Resultado = RequisicionProcesoNegocio.GuardarRequisicion(RequisicionObjetoEntidad);
 
                 if (Resultado.ErrorId == (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente)
-                {                   
+                {
+                    //#
+                    TemporalRequisicionIdHidden.Value = "";
                     LimpiarNuevoRegistro();
                     LimpiarRequisicion();
                     MostrarMensaje(TextoInfo.MensajeNoRequisicion + ObtenerClaveRequisicion(RequisicionObjetoEntidad), ConstantePrograma.TipoMensajeSimpleAlerta);
-                   // MostrarMensaje(TextoInfo.MensajeGuardadoGenerico, ConstantePrograma.TipoMensajeAlerta);
                 }
                 else
                     MostrarMensaje(RequisicionProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
