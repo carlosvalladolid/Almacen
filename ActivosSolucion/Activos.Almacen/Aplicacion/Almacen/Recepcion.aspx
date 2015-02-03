@@ -61,7 +61,7 @@
                         <td class="Espacio"></td>
                         <td class="Campo">                        
                            <asp:TextBox ID="OrderCompraNuevo" CssClass="CajaTextoMediana" Enabled="false" MaxLength="15"  OnTextChanged ="LinkBuscarOrdenCompra_SelectedTextChanged" AutoPostBack="true" runat="server"></asp:TextBox>
-                                <asp:ImageButton ID="ImagenBuscarOrden" OnClick="OrdenCompraNuevo_Click"
+                                <asp:ImageButton ID="ImagenBuscarOrden" OnClick="OrdenCompraNuevo_Click" 
                                 ImageUrl="/Imagen/Icono/ImagenBuscar.gif" runat="server" />
                          </td>
                     </tr>
@@ -190,7 +190,8 @@
             <asp:Label CssClass="TextoError" ID="EtiquetaMensaje" runat="server" Text=""></asp:Label>
              	<div>
                     <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0" 
-                        CssClass="TablaInformacion" DataKeyNames="RecepcionId, ProductoId" ID="TablaRecepcion" OnRowCommand="TablaRecepcion_RowCommand" runat="server" PageSize="10">
+                        CssClass="TablaInformacion" DataKeyNames="RecepcionId, ProductoId" ID="TablaRecepcion" 
+                        runat="server" PageSize="10">
                         <EmptyDataTemplate>
                             <table class="TablaVacia">
                                 <tr class="Encabezado">
@@ -284,7 +285,7 @@
 
                         <div class="DivTabla">
                             <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
-                                CssClass="TablaInformacion" DataKeyNames="ProductoId" ID="TablaProducto"
+                                CssClass="TablaInformacion" DataKeyNames="ProductoId" ID="TablaProducto" OnPageIndexChanging="TablaProducto_PageIndexChanging"
                                 OnRowCommand="TablaProducto_RowCommand" runat="server" PageSize="10">
                                 <EmptyDataTemplate>
                                     <table class="TablaVacia">
@@ -370,8 +371,8 @@
 
                         <div class="DivTabla">
                             <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
-                                CssClass="TablaInformacion" DataKeyNames="Clave" ID="TablaOrdenBusqueda" OnRowCommand="TablaOrdenBusqueda_RowCommand" 
-                                 runat="server" PageSize="10">
+                                CssClass="TablaInformacion" DataKeyNames="Clave" ID="TablaOrdenBusqueda" OnRowCommand="TablaOrdenBusqueda_RowCommand" OnPageIndexChanging="TablaOrdenBusqueda_PageIndexChanging"
+                                 runat="server" PageSize="2">
                                 <EmptyDataTemplate>
                                     <table class="TablaVacia">
                                         <tr class="Encabezado">

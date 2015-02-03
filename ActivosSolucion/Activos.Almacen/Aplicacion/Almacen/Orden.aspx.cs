@@ -59,7 +59,6 @@ namespace Almacen.Web.Aplicacion.Almacen
                 TablaPreOrdenRowCommand(e);
             }
 
-
             protected void BotonPreOrdenBusqueda_Click(object sender, ImageClickEventArgs e)
             {
                 if(VerificarFechas()) BuscarPreOrden();
@@ -70,6 +69,12 @@ namespace Almacen.Web.Aplicacion.Almacen
                 CargaPanelInVisibleProducto();
             }
 
+            protected void TablaPreOrdenBusqueda_PageIndexChanging(object sender, GridViewPageEventArgs e)
+            {
+                BuscarPreOrden();
+                TablaPreOrdenBusqueda.PageIndex = e.NewPageIndex;
+                TablaPreOrdenBusqueda.DataBind();
+            }
 
             protected void TablaPreOrdenBusqueda_RowCommand(object sender, GridViewCommandEventArgs e)
             {
@@ -603,7 +608,6 @@ namespace Almacen.Web.Aplicacion.Almacen
                 pnlFondoBuscarProducto.Visible = !pnlFondoBuscarProducto.Visible;
             }
 
-
             private void BuscarPreOrden()
             {
                 ResultadoEntidad Resultado = new ResultadoEntidad();
@@ -663,9 +667,6 @@ namespace Almacen.Web.Aplicacion.Almacen
                 else MostrarMensaje(Mensaje,ConstantePrograma.TipoErrorAlerta);
                 return false;                
             }
-
-
-
 
             private void TablaPreOrdenBusquedaRowCommand(GridViewCommandEventArgs e)
             {

@@ -138,7 +138,6 @@ namespace Activos.Almacen.Aplicacion.Almacen
             CargaPanelVisibleOrden();
         }
 
-
         protected void TablaOrdenBusqueda_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             TablaOrdenBusquedaRowCommand(e);
@@ -159,15 +158,28 @@ namespace Activos.Almacen.Aplicacion.Almacen
             //SeleccionarOrdenCompra(Clave);
         }
 
+        protected void TablaProducto_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            BuscarProducto();
+            TablaProducto.PageIndex = e.NewPageIndex;
+            TablaProducto.DataBind();
+        }
+
         protected void TablaProducto_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             TablaProductoRowCommand(e);
         }
 
-
         protected void BotonOrdenBusqueda_Click(object sender, ImageClickEventArgs e)
         {
             if (VerificarFechas(FechaFiltroInicioOrdenBox.Text,FechaFiltroFinOrdenBox.Text)) BuscarOrden();
+        }
+
+        protected void TablaOrdenBusqueda_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            BuscarOrden();
+            TablaOrdenBusqueda.PageIndex = e.NewPageIndex;
+            TablaOrdenBusqueda.DataBind();
         }
 
         protected void TablaRecepcion_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -933,7 +945,6 @@ namespace Activos.Almacen.Aplicacion.Almacen
             return false;
         }
 
-
         private void CargaPanelInVisibleOrden()
         {
             PanelBusquedaOrden.Visible = false;
@@ -946,10 +957,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
             pnlFondoBuscarOrden.Visible = !pnlFondoBuscarOrden.Visible;
         }
 
-
-
-
-            private void TablaOrdenBusquedaRowCommand(GridViewCommandEventArgs e)
+        private void TablaOrdenBusquedaRowCommand(GridViewCommandEventArgs e)
             {
                 Int16 intFila = 0;
                 int intTamañoPagina = 0;
@@ -983,7 +991,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
                 }
             }
 
-            private Boolean VerificarFechas(string FechaInicio,string FechaFin)
+        private Boolean VerificarFechas(string FechaInicio,string FechaFin)
             {
                 DateTime Temporal = new DateTime();
                 DateTime Temporal2 = new DateTime();

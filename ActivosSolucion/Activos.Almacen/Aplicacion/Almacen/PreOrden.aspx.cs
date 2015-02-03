@@ -106,30 +106,27 @@ namespace Almacen.Web.Aplicacion.Almacen
             CargaPanelVisibleProducto();
         }
 
+        protected void TablaProducto_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            BuscarProducto();
+            TablaProducto.PageIndex = e.NewPageIndex;
+            TablaProducto.DataBind();
+        }
 
         protected void TablaProducto_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             TablaProductoRowCommand(e);
         }
 
-
-
-
-
         protected void BotonProductoBusqueda_Click(object sender, ImageClickEventArgs e)
         {
             BuscarProducto();
         }
 
-
-
         protected void BotonCerrarProductoBusqueda_Click(object sender, ImageClickEventArgs e)
         {
             CargaPanelInVisibleProducto();
         }
-
-
-
 
         #endregion
 
@@ -789,8 +786,6 @@ namespace Almacen.Web.Aplicacion.Almacen
                 // MostrarMensaje(AlmacenProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
             }
         }
-
-
 
         private void TablaProductoRowCommand(GridViewCommandEventArgs e)
         {

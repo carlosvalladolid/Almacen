@@ -80,6 +80,13 @@ namespace Almacen.Web.Aplicacion.Almacen
                 Inicio();
             }
 
+            protected void TablaProducto_PageIndexChanging(object sender, GridViewPageEventArgs e)
+            {
+                BuscarProducto();
+                TablaProducto.PageIndex = e.NewPageIndex;
+                TablaProducto.DataBind();
+            }
+
             protected void TablaProducto_RowCommand(object sender, GridViewCommandEventArgs e)
             {
                 TablaProductoRowCommand(e);
@@ -546,7 +553,6 @@ namespace Almacen.Web.Aplicacion.Almacen
                 return false;
             }
 
-            //RUBEN ** PENDIENTE
             private string ObtenerClaveRequisicion(RequisicionEntidad RequisicionObjetoEntidad)
             {
                 ResultadoEntidad Resultado = new ResultadoEntidad();

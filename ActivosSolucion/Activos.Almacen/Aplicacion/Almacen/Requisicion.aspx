@@ -223,7 +223,8 @@
                         <div class="DivTabla">
                             <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
                                 CssClass="TablaInformacion" DataKeyNames="ProductoId" ID="TablaProducto"
-                                OnRowCommand="TablaProducto_RowCommand" runat="server" PageSize="10">
+                                OnPageIndexChanging="TablaProducto_PageIndexChanging"
+                                OnRowCommand="TablaProducto_RowCommand" runat="server" PageSize="2">
                                 <EmptyDataTemplate>
                                     <table class="TablaVacia">
                                         <tr class="Encabezado">

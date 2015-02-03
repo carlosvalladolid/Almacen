@@ -73,16 +73,30 @@ namespace Almacen.Web.Aplicacion.Almacen
                 Inicio();
             }
 
+            protected void TablaProducto_PageIndexChanging(object sender, GridViewPageEventArgs e)
+            {
+                SeleccionarProducto();
+                TablaProducto.PageIndex = e.NewPageIndex;
+                TablaProducto.DataBind();
+            }    
+        
             protected void TablaProducto_RowCommand(object sender, GridViewCommandEventArgs e)
             {
                 TablaProductoRowCommand(e);
+            }
+
+            protected void TablaRequisicionBusqueda_PageIndexChanging(object sender, GridViewPageEventArgs e)
+            {
+                SeleccionarRequisicionBusqueda();
+                TablaRequisicionBusqueda.PageIndex = e.NewPageIndex;
+                TablaRequisicionBusqueda.DataBind();
             }
 
             protected void TablaRequisicionBusqueda_RowCommand(object sender, GridViewCommandEventArgs e)
             {
                 TablaRequisicionBusquedaRowCommand(e);
             }
-
+            
             protected void TablaOrden_RowCommand(object sender,GridViewCommandEventArgs e)
             {
                 TablaOrdenRowCommmand(e);
@@ -353,7 +367,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             private void SeleccionarRequisicion()
             {
-                SeleccionarRequisicion("", "", "", "", 0);
+                SeleccionarRequisicion("", "", "", "", 0,"");
             }
 
             private void SeleccionarRequisicionBusqueda()
@@ -375,7 +389,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                
                 if (Mensaje == "")
                 {
-                    SeleccionarRequisicion(RequisicionBusquedaBox.Text.Trim(), EmpleadoBusquedaBox.Text.Trim(), FechaInicio.ToString(ConstantePrograma.SqlServerFormatoFechaSoloFecha), FechaFinal.ToString(ConstantePrograma.SqlServerFormatoFechaSoloFecha), Int16.Parse(EstatusBusquedaCombo.SelectedValue));
+                    SeleccionarRequisicion("", EmpleadoBusquedaBox.Text.Trim(), FechaInicio.ToString(ConstantePrograma.SqlServerFormatoFechaSoloFecha), FechaFinal.ToString(ConstantePrograma.SqlServerFormatoFechaSoloFecha), Int16.Parse(EstatusBusquedaCombo.SelectedValue), RequisicionBusquedaBox.Text.Trim());
                     return;
                 }
 
@@ -409,10 +423,11 @@ namespace Almacen.Web.Aplicacion.Almacen
                 }
             }
 
-            private void SeleccionarRequisicion(string Clave, string Empleado, string FechaInicial, string FechaFinal, Int16 EstatusId)
+            private void SeleccionarRequisicion(string RequisicionId, string Empleado, string FechaInicial, string FechaFinal, Int16 EstatusId, string Clave)
             {
                 RequisicionProceso RequisicionProceso = new RequisicionProceso();
 
+                RequisicionProceso.RequisicionEntidad.RequisicionId = RequisicionId;
                 RequisicionProceso.RequisicionEntidad.Clave = Clave;
                 RequisicionProceso.RequisicionEntidad.Nombre = Empleado;
                 RequisicionProceso.RequisicionEntidad.FechaInicial = FechaInicial;
@@ -448,6 +463,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 ProductoId = e.CommandArgument.ToString();
 
+                if (e.CommandName != "Select") return;
                 SeleccionarProducto(ProductoId);
                 OcultarBusquedaProducto();
             }
@@ -457,23 +473,13 @@ namespace Almacen.Web.Aplicacion.Almacen
                 string RequisicionId = string.Empty;
 
                 RequisicionId = e.CommandArgument.ToString();
-                
-                //Int16 intFila = 0;
-                //int intTamañoPagina = 0;
-                //string ProductoId = "";
-                //string strCommand = string.Empty;
-                
-                //intFila = Int16.Parse(e.CommandArgument.ToString());
-                //strCommand = e.CommandName.ToString();
-                //intTamañoPagina = TablaRequisicionBusqueda.PageSize;
-
-                //if (intFila >= intTamañoPagina) intFila = (Int16)(intFila - (intTamañoPagina * TablaProducto.PageIndex));
-
-
-
-                RequisicionIdHidden.Value = RequisicionId;
-                SeleccionarRequisicion(RequisicionId);
-                OcultarBusquedaRequisicion();
+               
+                if (e.CommandName == "Select")
+                {
+                    RequisicionIdHidden.Value = RequisicionId;
+                    SeleccionarRequisicion(RequisicionId);
+                    OcultarBusquedaRequisicion();
+                }
             }
 
             public bool ValidarProducto()

@@ -534,6 +534,10 @@ namespace Activos.AccesoDatos.Almacen
                     Comando = new SqlCommand("SeleccionarRequisicionSalida", Conexion);
                     Comando.CommandType = CommandType.StoredProcedure;
 
+                    Parametro = new SqlParameter("RequisicionId", SqlDbType.VarChar);
+                    Parametro.Value = RequisicionEntidad.RequisicionId;
+                    Comando.Parameters.Add(Parametro);
+
                     Parametro = new SqlParameter("Clave", SqlDbType.VarChar);
                     Parametro.Value = RequisicionEntidad.Clave;
                     Comando.Parameters.Add(Parametro);
