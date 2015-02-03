@@ -15,6 +15,9 @@ INSERT INTO [DefensoriaDB.Seguridad].dbo.Seccion(SeccionId, Nombre, Descripcion)
 INSERT INTO [DefensoriaDB.Seguridad].dbo.Seccion(SeccionId, Nombre, Descripcion)
 	VALUES(17, 'OrdenSalida', 'Seccion de órdenes de salida')
 
+INSERT INTO [DefensoriaDB.Seguridad].dbo.Seccion(SeccionId, Nombre, Descripcion)
+	VALUES(18, 'Producto', 'Seccion de productos')
+
 
 -- Estatus
 INSERT INTO [DefensoriaDB.Seguridad].dbo.Estatus(EstatusId, SeccionId, Nombre, Descripcion)
@@ -43,6 +46,12 @@ INSERT INTO [DefensoriaDB.Seguridad].dbo.Estatus(EstatusId, SeccionId, Nombre, D
 
 INSERT INTO [DefensoriaDB.Seguridad].dbo.Estatus(EstatusId, SeccionId, Nombre, Descripcion)
 	VALUES(37, 15, 'Surtida', 'Orden de compra surtida')
+
+INSERT INTO [DefensoriaDB.Seguridad].dbo.Estatus(EstatusId, SeccionId, Nombre, Descripcion)
+	VALUES(38, 18, 'Activo', 'Producto activo')
+
+INSERT INTO [DefensoriaDB.Seguridad].dbo.Estatus(EstatusId, SeccionId, Nombre, Descripcion)
+	VALUES(39, 18, 'Inactivo', 'Producto inactivo')
 
 
 -- Tipo de documento

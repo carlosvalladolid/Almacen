@@ -250,6 +250,12 @@ namespace Activos.Comun.Constante
             ConOCCompleta = 29
         }
 
+        public enum EstatusProducto
+        {
+            Activo = 38,
+            Inactivo = 39
+        }
+
         public enum EstatusPuestos
         {
             Activo = 11,
@@ -614,7 +620,11 @@ namespace Activos.Comun.Constante
             Activos = 11,
             Levantamiento = 12,
             Mantenimientos = 13,
-            PreOrden = 14
+            PreOrden = 14,
+            Orden = 15,
+            Requerimiento = 16,
+            OrdenSalida = 17,
+            Producto = 18
         }
 
         public enum Usuario

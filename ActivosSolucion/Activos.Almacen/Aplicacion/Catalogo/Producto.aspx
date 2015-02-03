@@ -109,13 +109,13 @@
                         </tr>
                         <tr>
                             <td class="Nombre">Existencia inicial</td>
-                            <td class="Requerido">*</td>
+                            <td class="Espacio"></td>
                             <td class="Campo"><asp:TextBox CssClass="CajaTextoPequenia" ID="ExistenciaInicialBox"  MaxLength="5" value="0" onKeyPress="return soloNumeros(event)"  runat="server" ></asp:TextBox></td>
                         </tr>
                         <tr>
                             <td class="Nombre">Estatus</td>
                             <td class="Espacio"></td>
-                            <td class="Campo"><asp:CheckBox ID="EstatusProductoNuevo" Checked="false" Enabled ="false" runat="server" Text=" Activo" /> </td>
+                            <td class="Campo"><asp:CheckBox ID="EstatusProductoNuevo" Checked="false" runat="server" Text=" Activo" /> </td>
                         </tr>
                         <tr>
                             <td colspan="3">

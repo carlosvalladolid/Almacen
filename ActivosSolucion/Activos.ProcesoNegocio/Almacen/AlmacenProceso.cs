@@ -131,17 +131,17 @@ namespace Activos.ProcesoNegocio.Almacen
 
                 CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
-                if (BuscarProductoDuplicada(AlmacenObjetoEntidad))
-                {
-                    Resultado.ErrorId = (int)ConstantePrograma.Producto.ProductoTieneRegistroDuplicado;
-                    Resultado.DescripcionError = TextoError.ProductoConNombreDuplicado;
-                    return Resultado;
-                }
-
                 // Si es una actualización se lleva a cabo sin transacción
                 if (AlmacenObjetoEntidad.ProductoId != "")
                 {
                     Resultado = AlmacenAcceso.ActualizarProducto(AlmacenObjetoEntidad, CadenaConexion);
+                    return Resultado;
+                }
+
+                if (BuscarProductoDuplicada(AlmacenObjetoEntidad))
+                {
+                    Resultado.ErrorId = (int)ConstantePrograma.Producto.ProductoTieneRegistroDuplicado;
+                    Resultado.DescripcionError = TextoError.ProductoConNombreDuplicado;
                     return Resultado;
                 }
 

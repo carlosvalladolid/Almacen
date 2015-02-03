@@ -13,7 +13,7 @@ namespace Activos.Entidad.Almacen
         private Int16 _SubFamiliaId;
         private Int16 _MarcaId;
         private string _UnidadMedidaId;
-        private bool _EstatusId;
+        private int _EstatusId;
         private string _Clave;
         private string _Descripcion;
         private Int16 _Minimo;
@@ -35,7 +35,7 @@ namespace Activos.Entidad.Almacen
             _SubFamiliaId = 0;
             _MarcaId = 0;
             _UnidadMedidaId = string.Empty;
-            _EstatusId = true;
+            _EstatusId = 0;
             _Clave = string.Empty;
             _Descripcion = string.Empty;
             _Minimo = 0;
@@ -80,7 +80,7 @@ namespace Activos.Entidad.Almacen
             set { _UnidadMedidaId = value; }
         }
 
-        public Boolean EstatusId
+        public int EstatusId
         {
             get { return _EstatusId; }
             set { _EstatusId = value; }
