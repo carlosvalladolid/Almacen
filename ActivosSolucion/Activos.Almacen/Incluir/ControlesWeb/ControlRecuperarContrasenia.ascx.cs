@@ -31,7 +31,6 @@ namespace Activos.Web.Incluir.ControlesWeb
             }
         #endregion
 
-
         #region "Métodos"
             protected void RecuperarContrasenia()
             {

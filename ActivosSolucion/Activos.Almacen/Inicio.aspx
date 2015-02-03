@@ -18,9 +18,7 @@
                 <img alt="" src="/Imagen/Icono/SoftwarePackageIcon.jpg" />
             </div>
             <br />
-            Si tiene alguna duda, puede revisar la sección de <a href="#">ayuda</a>.
-            <br />
-            Para sugerencias y comentarios <a href="#">dé clic aquí</a>.
+            Para sugerencias y comentarios contacte al administrador del sistema.
         </div>
 
         <div id="ContentSeparatorDiv">

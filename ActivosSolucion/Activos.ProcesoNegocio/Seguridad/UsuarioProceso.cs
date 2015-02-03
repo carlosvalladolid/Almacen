@@ -381,7 +381,6 @@ namespace Activos.ProcesoNegocio.Seguridad
             return ResultadoEntidadObjeto;
         }
 
-
         public ResultadoEntidad SeleccionarUsuario(UsuarioEntidad UsuarioEntidadObjeto)
         {
             string CadenaConexion = string.Empty;

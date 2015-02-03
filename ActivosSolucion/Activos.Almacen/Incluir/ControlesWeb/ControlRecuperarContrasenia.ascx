@@ -2,21 +2,21 @@
 
 <asp:UpdatePanel ID="ActualizarRecuperar" runat="server" UpdateMode="Conditional">
     <ContentTemplate>
-        <asp:Panel CssClass="SuperposicionDiv" ID="PanelFondo" runat="server" Visible="False"></asp:Panel>
+        <asp:Panel CssClass="Overlay" ID="PanelFondo" runat="server" Visible="False"></asp:Panel>
 
-        <asp:Panel CssClass="PopupChicoDiv" ID="PanelRecuperar" runat="server" Visible="False">
-            <div class="EncabezadoDiv"><asp:Label ID="EtiquetaTitulo" Text="Recuperar contraseña" runat="server"></asp:Label></div>
+        <asp:Panel CssClass="ModalSmallDiv" ID="PanelRecuperar" runat="server" Visible="False">
+            <div class="HeaderDiv"><asp:Label ID="EtiquetaTitulo" Text="Recuperar contraseña" runat="server"></asp:Label></div>
 
-            <div class="ContenidoDiv">
-                <table class="TablaContenido">
+            <div class="ContentDiv">
+                <table class="ContentTable">
                     <tr>
-                        <td colspan="3"><asp:Label CssClass="EtiquetaSubtitulo" ID="EtiquetaSubtitulo" runat="server" Text="Proporcione el correo electrónico de su cuenta para recuperar la contraseña"></asp:Label></td>
+                        <td colspan="3"><asp:Label CssClass="TitleModalDiv" ID="EtiquetaSubtitulo" runat="server" Text="Proporcione el correo electrónico de su cuenta para recuperar la contraseña"></asp:Label></td>
                     </tr>
                     <tr><td colspan="3">&nbsp;</td></tr>
                     <tr>
-                        <td class="Nombre"><asp:Label ID="EtiquetaCorreo" Text="Correo electrónico" runat="server"></asp:Label></td>
-                        <td class="Espacio">&nbsp;</td>
-                        <td class="Campo"><asp:TextBox ID="CuentaUsuario" MaxLength="65" runat="server" Width="200px"></asp:TextBox></td>
+                        <td class="Name"><asp:Label ID="EtiquetaCorreo" Text="Correo electrónico" runat="server"></asp:Label></td>
+                        <td class="Space">&nbsp;</td>
+                        <td class="Field"><asp:TextBox ID="CuentaUsuario" MaxLength="65" runat="server" Width="200px"></asp:TextBox></td>
                     </tr>
                 </table>
 
@@ -26,7 +26,7 @@
                 <asp:Label CssClass="TextoError" ID="EtiquetaMensaje" runat="server" Text=""></asp:Label>
             </div>
 
-            <div class="PieDiv">
+            <div class="FooterDiv">
                 <asp:Button ID="BotonEnviar" onclick="BotonEnviar_Click" runat="server" Text="Aceptar" ValidationGroup="EnviarContrasenia" />&nbsp;&nbsp;
                 <asp:Button ID="BotonCancelar" onclick="BotonCancelar_Click" runat="server" Text="Cancelar" />
             </div>
