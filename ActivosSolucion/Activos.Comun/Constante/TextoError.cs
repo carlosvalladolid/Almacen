@@ -256,7 +256,7 @@ namespace Activos.Comun.Constante
         public const string ProductoNombre = "· El campo <b>Nombre(s)</b> es obligatorio";
         public const string ProductoEstatus = "· El campo <b>Estatus</b> es obligatorio";
         public const string ProductoConNombreDuplicado = "· Ya existe un prodcuto con ese nombre";
-        public const string ProductoTieneRegistrosRelacionados = "· No se pueden eliminar los Productos seleccionadas debido que uno o varias de ellas tiene registros relacionados con la tabla <b>Almacen</b>";
+        public const string ProductoTieneRegistrosRelacionados = "· No se pueden eliminar los Productos seleccionadas debido que uno o varias de ellas tiene registros relacionados con la tabla <b>{0}</b>";
         public const string PreOrdenDuplicado = "· Ya existe una PreOrden";
 
         // Mesnajes de error para la pantalla de órdenes de compra

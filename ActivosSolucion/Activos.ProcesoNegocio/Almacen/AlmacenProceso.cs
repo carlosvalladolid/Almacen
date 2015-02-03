@@ -19,6 +19,7 @@ namespace Activos.ProcesoNegocio.Almacen
     {
         private int _ErrorId;
         private string _DescripcionError;
+        private string _OrigenError;
         DataSet _ResultadoDatos;
         AlmacenEntidad _ProductoEntidad;
 
@@ -36,6 +37,14 @@ namespace Activos.ProcesoNegocio.Almacen
         public string DescripcionError
         {
             get { return _DescripcionError; }
+        }
+
+        /// <summary>
+        ///     Lugar donde se originó el error.
+        /// </summary>
+        public string OrigenError
+        {
+            get { return _OrigenError; }
         }
 
         /// <summary>
@@ -62,6 +71,7 @@ namespace Activos.ProcesoNegocio.Almacen
         {
             _ErrorId = 0;
             _DescripcionError = string.Empty;
+            _OrigenError = string.Empty;
             _ResultadoDatos = null;
             _ProductoEntidad = new AlmacenEntidad();
         }
@@ -88,36 +98,76 @@ namespace Activos.ProcesoNegocio.Almacen
                 return ExisteProducto;
             }
 
-            protected ResultadoEntidad EliminarProducto(string CadenaProductoId)
+            private void EliminarExistenciaProducto(SqlConnection Conexion, SqlTransaction Transaccion, string CadenaProductoId)
             {
-                string CadenaConexion = string.Empty;
-                ResultadoEntidad ResultadoEntidadObjeto = new ResultadoEntidad();
-                AlmacenAcceso AlmacenAccesoObjeto = new AlmacenAcceso();
+                AlmacenAcceso AlmacenAcceso = new AlmacenAcceso();
 
-                CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+                AlmacenAcceso.EliminarExistenciaProducto(Conexion, Transaccion, CadenaProductoId);
 
-                ResultadoEntidadObjeto = AlmacenAccesoObjeto.EliminarProducto(CadenaProductoId, CadenaConexion);
-
-                return ResultadoEntidadObjeto;
+                _ErrorId = AlmacenAcceso.ErrorId;
+                _DescripcionError = AlmacenAcceso.DescripcionError;
             }
 
-            public ResultadoEntidad EliminarProducto(AlmacenEntidad AlmacenObjetoEntidad)
+            private void EliminarProducto(SqlConnection Conexion, SqlTransaction Transaccion, string CadenaProductoId)
             {
-                ResultadoEntidad ResultadoEntidadObjeto = new ResultadoEntidad();
+                AlmacenAcceso AlmacenAccesoObjeto = new AlmacenAcceso();
+
+                AlmacenAccesoObjeto.EliminarProducto(Conexion, Transaccion, CadenaProductoId);
+
+                _ErrorId = AlmacenAccesoObjeto.ErrorId;
+                _DescripcionError = AlmacenAccesoObjeto.DescripcionError;
+            }
+
+            /// <summary>
+            ///     Elimina la información de los productos enviados como parámetro.
+            /// </summary>
+            /// <param name="CadenaProductoId">Cadena de caracteres con los identificadores de los productos separados por comas.</param>
+            public void EliminarProducto(string CadenaProductoId)
+            {
+                SqlConnection Conexion = new SqlConnection(SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen));
+                SqlTransaction Transaccion;
 
                 // Validar que las marcas no contengan información relacionada con otras tablas
-                if (TieneRelacioneselProducto(AlmacenObjetoEntidad.CadenaProductoId))
+                if (TieneRelacionesElProducto(CadenaProductoId))
                 {
-                    ResultadoEntidadObjeto.ErrorId = (int)ConstantePrograma.Producto.PuestoTieneRegistrosRelacionados;
-                    ResultadoEntidadObjeto.DescripcionError = TextoError.MarcaTieneRegistrosRelacionados;
-                }
-                else
-                {
-                    // Si se pasaron todas las validaciones, hay que borrar los Productos seleccionadas
-                    ResultadoEntidadObjeto = EliminarProducto(AlmacenObjetoEntidad.CadenaProductoId);
+                    _ErrorId = (int)ConstantePrograma.Producto.TieneInformacionRelacionada;
+                    _DescripcionError = TextoError.ProductoTieneRegistrosRelacionados.Replace("{0}", _OrigenError);
+                    return;
                 }
 
-                return ResultadoEntidadObjeto;
+                Conexion.Open();
+                Transaccion = Conexion.BeginTransaction();
+
+                try
+                {
+                    // Si se pasaron las validaciones, hay que borrar la existencia del producto
+                    EliminarExistenciaProducto(Conexion, Transaccion, CadenaProductoId);
+
+                    if (_ErrorId != 0)
+                    {
+                        Transaccion.Rollback();
+                        Conexion.Close();
+                        return;
+                    }
+
+                    // Ahora se deben borrar los Productos seleccionadas
+                    EliminarProducto(Conexion, Transaccion, CadenaProductoId);
+
+                    if (_ErrorId == 0)
+                        Transaccion.Commit();
+                    else
+                        Transaccion.Rollback();
+
+                    Conexion.Close();
+                }
+                catch
+                {
+                    if (Conexion.State == ConnectionState.Open)
+                    {
+                        Transaccion.Rollback();
+                        Conexion.Close();
+                    }
+                }
             }
 
             public ResultadoEntidad GuardarProducto(AlmacenEntidad AlmacenObjetoEntidad)
@@ -299,25 +349,30 @@ namespace Activos.ProcesoNegocio.Almacen
                 return int.Parse(_ResultadoDatos.Tables[0].Rows[0]["Maximo"].ToString());
             }
 
-            protected bool TieneProductosRelacionados(string CadenaProductoId)
+            protected bool TieneRelacionesElProducto(string CadenaProductoId)
             {
-                bool TieneRelaciones = false;
-                //AlmacenProceso AlmacenProcesoObjeto = new AlmacenProceso();
+                DataSet ProductoResultado = new DataSet();
+                AlmacenAcceso AlmacenAcceso = new AlmacenAcceso();
 
-                //TieneRelaciones =AlmacenProcesoObjeto.SeleccionarProductosRelacionados(CadenaProductoId);
+                ProductoResultado = AlmacenAcceso.SeleccionarRelacionesProducto(CadenaProductoId, SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen));
 
-                return TieneRelaciones;
-            }
+                if (AlmacenAcceso.ErrorId != 0)
+                {
+                    _ErrorId = AlmacenAcceso.ErrorId;
+                    _DescripcionError = AlmacenAcceso.DescripcionError;
 
-            protected bool TieneRelacioneselProducto(string CadenaProductoId)
-            {
-                bool TieneRelacioneselProducto = false;
+                    return false;
+                }
 
-                // Revisar relaciones con Almacen
-                if (TieneProductosRelacionados(CadenaProductoId))
-                    return true;
+                if (ProductoResultado.Tables.Count == 0)
+                    return false;
 
-                return TieneRelacioneselProducto;
+                if (ProductoResultado.Tables[0].Rows.Count == 0)
+                    return false;
+
+                _OrigenError = ProductoResultado.Tables[0].Rows[0]["TablaRelacionada"].ToString();
+
+                return true;
             }
         #endregion
     }
