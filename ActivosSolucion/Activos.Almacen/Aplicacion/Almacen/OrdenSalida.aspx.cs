@@ -96,13 +96,16 @@ namespace Almacen.Web.Aplicacion.Almacen
             {
                 TablaRequisicionBusquedaRowCommand(e);
             }
-            //#IMPLEMENTANDO
-            //protected void TablaOrden_PageIndexChanging(object sender, GridViewPageEventArgs e)
-            //{
-                
-            //    TablaOrden.PageIndex = e.NewPageIndex;
-            //    TablaOrden.DataBind();
-            //}
+            
+            protected void TablaOrden_PageIndexChanging(object sender, GridViewPageEventArgs e)
+            {
+                if (OrdenSalidaIdHidden.Value == "") return;
+                OrdenSalidaProceso OrdenSalidaProceso = new OrdenSalidaProceso();
+                OrdenSalidaProceso.OrdenSalidaDetalleEntidad.OrdenSalidaId = OrdenSalidaIdHidden.Value;
+                SeleccionarOrdenSalidaDetalleTemp(OrdenSalidaProceso);
+                TablaOrden.PageIndex = e.NewPageIndex;
+                TablaOrden.DataBind();
+            }
 
             protected void TablaOrden_RowCommand(object sender,GridViewCommandEventArgs e)
             {
@@ -457,6 +460,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             private void TablaOrdenRowCommmand(GridViewCommandEventArgs e)
             {
+                if (e.CommandName != "EliminarPreOrden") return;
                 BorrarOrdenSalidaDetalleTemp(e.CommandArgument.ToString());
                 OrdenSalidaProceso OrdenSalidaProceso = new OrdenSalidaProceso();
                 OrdenSalidaProceso.OrdenSalidaDetalleEntidad.ProductoId = e.CommandArgument.ToString();

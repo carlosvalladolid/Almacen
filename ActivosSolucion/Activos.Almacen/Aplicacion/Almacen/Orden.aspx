@@ -55,9 +55,10 @@
                 </table>
 
                 <div class="DivTabla">
-                    <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
+                    <asp:GridView AllowPaging="false" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
                         CssClass="TablaInformacion" DataKeyNames="PreOrdenId, ClavePreOrden, ProductoId" ID="TablaPreOrden" OnRowCommand="TablaPreOrden_RowCommand"
-                        runat="server" PageSize="10">
+                        OnPageIndexChanging = "TablaPreOrden_PageIndexChanging"
+                        runat="server" >
                         <EmptyDataTemplate>
                             <table class="TablaVacia">
                                 <tr class="Encabezado">
@@ -107,6 +108,7 @@
                 <div class="DivTabla">
                     <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
                         CssClass="TablaInformacion" DataKeyNames="OrdenId, ProductoId, PreOrdenId" ID="TablaOrden" OnRowCommand ="TablaOrden_RowCommand"
+                        OnPageIndexChanging="TablaOrden_PageIndexChanging"
                         runat="server" PageSize="10">
                         <EmptyDataTemplate>
                             <table class="TablaVacia">

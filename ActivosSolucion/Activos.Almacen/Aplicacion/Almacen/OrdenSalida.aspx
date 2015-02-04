@@ -128,7 +128,7 @@
                 
 			    <div>
                     <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0" 
-                        CssClass="TablaInformacion" DataKeyNames="ProductoId" ID="TablaOrden" OnRowCommand="TablaOrden_RowCommand" runat="server" 
+                        CssClass="TablaInformacion" DataKeyNames="ProductoId" ID="TablaOrden" OnRowCommand="TablaOrden_RowCommand" OnPageIndexChanging="TablaOrden_PageIndexChanging" runat="server" 
                         PageSize="10">
                         <EmptyDataTemplate>
                             <table class="TablaVacia">

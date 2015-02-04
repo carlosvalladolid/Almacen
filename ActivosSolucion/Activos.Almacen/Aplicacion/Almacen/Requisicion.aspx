@@ -128,7 +128,7 @@
                     <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0" 
                         CssClass="TablaInformacion" DataKeyNames="RequisicionId, ProductoId" ID="TablaRequisicion" OnRowCommand="TablaRequisicion_RowCommand" 
                         OnPageIndexChanging="TablaRequisicion_PageIndexChanging"
-                        runat="server" PageSize="2">
+                        runat="server" PageSize="10">
                         <EmptyDataTemplate>
                             <table class="TablaVacia">
                             <tr class="Encabezado">
