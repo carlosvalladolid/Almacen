@@ -126,7 +126,9 @@
             
              	<div>
                     <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0" 
-                        CssClass="TablaInformacion" DataKeyNames="RequisicionId, ProductoId" ID="TablaRequisicion" OnRowCommand="TablaRequisicion_RowCommand" runat="server" PageSize="10">
+                        CssClass="TablaInformacion" DataKeyNames="RequisicionId, ProductoId" ID="TablaRequisicion" OnRowCommand="TablaRequisicion_RowCommand" 
+                        OnPageIndexChanging="TablaRequisicion_PageIndexChanging"
+                        runat="server" PageSize="2">
                         <EmptyDataTemplate>
                             <table class="TablaVacia">
                             <tr class="Encabezado">
@@ -224,7 +226,7 @@
                             <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
                                 CssClass="TablaInformacion" DataKeyNames="ProductoId" ID="TablaProducto"
                                 OnPageIndexChanging="TablaProducto_PageIndexChanging"
-                                OnRowCommand="TablaProducto_RowCommand" runat="server" PageSize="2">
+                                OnRowCommand="TablaProducto_RowCommand" runat="server" PageSize="10">
                                 <EmptyDataTemplate>
                                     <table class="TablaVacia">
                                         <tr class="Encabezado">

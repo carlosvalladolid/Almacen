@@ -96,6 +96,13 @@ namespace Almacen.Web.Aplicacion.Almacen
             }
         }
 
+        protected void TablaPreOrden_PageIndexChanging(object source, GridViewPageEventArgs e)
+        {
+            SeleccionarTemporalPreOrden();
+            TablaPreOrden.PageIndex = e.NewPageIndex;
+            TablaPreOrden.DataBind();
+        }
+
         protected void TablaPreOrden_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             TablaPreOrdenEventoComando(e);

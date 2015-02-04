@@ -96,7 +96,14 @@ namespace Almacen.Web.Aplicacion.Almacen
             {
                 TablaRequisicionBusquedaRowCommand(e);
             }
-            
+            //#IMPLEMENTANDO
+            //protected void TablaOrden_PageIndexChanging(object sender, GridViewPageEventArgs e)
+            //{
+                
+            //    TablaOrden.PageIndex = e.NewPageIndex;
+            //    TablaOrden.DataBind();
+            //}
+
             protected void TablaOrden_RowCommand(object sender,GridViewCommandEventArgs e)
             {
                 TablaOrdenRowCommmand(e);

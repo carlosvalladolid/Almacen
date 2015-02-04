@@ -191,7 +191,8 @@
              	<div>
                     <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0" 
                         CssClass="TablaInformacion" DataKeyNames="RecepcionId, ProductoId" ID="TablaRecepcion" 
-                        runat="server" PageSize="10">
+                        OnPageIndexChanging="TablaRecepcion_PageIndexChanging"
+                        runat="server" PageSize="2">
                         <EmptyDataTemplate>
                             <table class="TablaVacia">
                                 <tr class="Encabezado">

@@ -182,6 +182,13 @@ namespace Activos.Almacen.Aplicacion.Almacen
             TablaOrdenBusqueda.DataBind();
         }
 
+        protected void TablaRecepcion_PageIndexChanging(object sender,GridViewPageEventArgs e)
+        {
+            SeleccionarRecepcion();
+            TablaRecepcion.PageIndex = e.NewPageIndex;
+            TablaRecepcion.DataBind();
+        }
+
         protected void TablaRecepcion_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             TablaRecepcionEventoComando(e);

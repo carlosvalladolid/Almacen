@@ -92,6 +92,13 @@ namespace Almacen.Web.Aplicacion.Almacen
                 TablaProductoRowCommand(e);
             }
 
+            protected void TablaRequisicion_PageIndexChanging(object sender, GridViewPageEventArgs e)
+            {
+                SeleccionarRequisicion();
+                TablaRequisicion.PageIndex = e.NewPageIndex;
+                TablaRequisicion.DataBind();
+            }
+
             protected void TablaRequisicion_RowCommand(object sender, GridViewCommandEventArgs e)
             {
                 TablaRequisicionEventoComando(e);

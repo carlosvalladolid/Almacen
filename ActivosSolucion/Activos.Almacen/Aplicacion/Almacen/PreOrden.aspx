@@ -124,7 +124,9 @@
 
 			    <div>
                     <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0" 
-                        CssClass="TablaInformacion" DataKeyNames="PreOrdenId, ProductoId" ID="TablaPreOrden" OnRowCommand="TablaPreOrden_RowCommand" runat="server" PageSize="10">
+                        CssClass="TablaInformacion" DataKeyNames="PreOrdenId, ProductoId" ID="TablaPreOrden" OnRowCommand="TablaPreOrden_RowCommand" 
+                        OnPageIndexChanging = "TablaPreOrden_PageIndexChanging"
+                        runat="server" PageSize="10">
                         <EmptyDataTemplate>
                             <table class="TablaVacia">
                                 <tr class="Encabezado">
