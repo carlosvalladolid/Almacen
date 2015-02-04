@@ -61,6 +61,8 @@ SELECT * FROM OrdenDetalleTemp
 
 SeleccionarRequisicionSalida
 
+SeleccionarRelacionesProducto ',ABA2002A-78F0-4F2A-89B6-10D157BCAFB7,'
+
 --SELECT * FROM RecepcionEncabezadoTemp
 
 --SELECT * FROM RecepcionDetalleTemp
