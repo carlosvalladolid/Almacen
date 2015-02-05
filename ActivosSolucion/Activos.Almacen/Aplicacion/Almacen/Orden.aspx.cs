@@ -54,6 +54,16 @@ namespace Almacen.Web.Aplicacion.Almacen
                 SeleccionarProveedor(Int16.Parse(ProveedorCombo.SelectedValue));
             }
 
+            protected void TablaPreOrden_PageIndexChanging(object sender, GridViewPageEventArgs e)
+            {
+                if (String.IsNullOrEmpty(PreOrdenBusqueda.Text.Trim())) return;
+                UsuarioEntidad UsuarioEntidad = new UsuarioEntidad();
+                UsuarioEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
+                SeleccionarPreOrdenDetalleSinOrden(PreOrdenBusqueda.Text.Trim(), UsuarioEntidad.SesionId);
+                TablaPreOrden.PageIndex = e.NewPageIndex;
+                TablaPreOrden.DataBind();
+            }
+
             protected void TablaPreOrden_RowCommand(object sender, GridViewCommandEventArgs e)
             {
                 TablaPreOrdenRowCommand(e);
@@ -79,6 +89,14 @@ namespace Almacen.Web.Aplicacion.Almacen
             protected void TablaPreOrdenBusqueda_RowCommand(object sender, GridViewCommandEventArgs e)
             {
                 TablaPreOrdenBusquedaRowCommand(e);
+            }
+
+            protected void TablaOrden_PageIndexChanging(object sender,GridViewPageEventArgs e)
+            {
+                if (String.IsNullOrEmpty(OrdenIdHidden.Value)) return;
+                SeleccionarOrdenDetalleTemp(OrdenIdHidden.Value);
+                TablaOrden.PageIndex = e.NewPageIndex;
+                TablaOrden.DataBind();
             }
 
             protected void TablaOrden_RowCommand(object sender,GridViewCommandEventArgs e)
@@ -191,8 +209,6 @@ namespace Almacen.Web.Aplicacion.Almacen
                 
                 return Estatus;
             }
-            
-
             
             private void GuardarProductoOrdenTemp(string OrdenId, string PreOrdenId, string ProductoId, string SesionId)
             {
@@ -433,17 +449,25 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             private void TablaPreOrdenRowCommand(GridViewCommandEventArgs e)
             {
+                if (e.CommandName.ToString() == "Page") return;
                 int Indice = 0;
                 string PreOrdenId = string.Empty;
                 string Clave = string.Empty;
                 string ProductoId = string.Empty;
                 string SesionId = string.Empty;
                 string CommandName = string.Empty;
+                int intTamañoPagina = 0;
+
+                Indice = int.Parse(e.CommandArgument.ToString());
+                intTamañoPagina = TablaPreOrden.PageSize;
+
+                if (Indice >= intTamañoPagina)
+                    Indice = (Int16)(Indice - (intTamañoPagina * TablaPreOrden.PageIndex));
+
                 UsuarioEntidad UsuarioEntidad = new UsuarioEntidad();
 
                 UsuarioEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
-
-                Indice = int.Parse(e.CommandArgument.ToString());
+              
                 PreOrdenId = TablaPreOrden.DataKeys[Indice]["PreOrdenId"].ToString();
                 Clave = TablaPreOrden.DataKeys[Indice]["ClavePreOrden"].ToString();
                 ProductoId = TablaPreOrden.DataKeys[Indice]["ProductoId"].ToString();
@@ -465,12 +489,21 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             private void TablaOrdenRowCommand(GridViewCommandEventArgs e)
             {
+                if (e.CommandName == "Page") return;
                 int Indice = 0;
                 string OrdenId = string.Empty;
                 string PreOrdenId = string.Empty;
                 string ProductoId = string.Empty;
                 string SesionId = string.Empty;
                 string CommandName = string.Empty;
+                int intTamañoPagina = 0;
+
+                Indice = int.Parse(e.CommandArgument.ToString());
+                intTamañoPagina = TablaPreOrden.PageSize;
+
+                if (Indice >= intTamañoPagina)
+                    Indice = (Int16)(Indice - (intTamañoPagina * TablaPreOrden.PageIndex));
+
                 UsuarioEntidad UsuarioEntidad = new UsuarioEntidad();
 
                 UsuarioEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
@@ -531,8 +564,6 @@ namespace Almacen.Web.Aplicacion.Almacen
                     MostrarMensaje(OrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
             }
 
-        
-
             private void ValidarPreOrden(string Clave)
             {
                 UsuarioEntidad UsuarioEntidad = new UsuarioEntidad();
@@ -547,9 +578,6 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 SeleccionarPreOrdenDetalleSinOrden(Clave, UsuarioEntidad.SesionId);
             }
-
-
-
 
             private Boolean ValidarFormulario()
             {
