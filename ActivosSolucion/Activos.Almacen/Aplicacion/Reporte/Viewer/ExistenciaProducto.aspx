@@ -46,7 +46,7 @@
                 <div class="DivTabla">
                     <rsweb:ReportViewer ID="ExistenciaProductoReporteViewer" runat="server" Font-Names="Verdana" 
                         Font-Size="10pt" Width="100%" Height="100%">
-                        <LocalReport ReportPath="/Aplicacion/Reporte/Diseño/ExistenciProductoRPT.rdlc">
+                        <LocalReport ReportPath="Aplicacion/Reporte/Diseño/ExistenciProductoRPT.rdlc">
                             <DataSources>
                                 <rsweb:ReportDataSource DataSourceId="ObjectDataSource1" 
                                     Name="ExistenciaPoductoDS_ExistenciaProductoDT" />
@@ -64,6 +64,9 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>   
             </ContentTemplate>
+            <Triggers > 
+                <asp:PostBackTrigger ControlID="BotonBusqueda" />
+            </Triggers>
         </asp:UpdatePanel>
     </div>
 </asp:Content>

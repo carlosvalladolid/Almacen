@@ -678,7 +678,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
 
             Resultado = EmpleadoProcesoNegocio.SeleccionarEmpleadoJefe(EmpleadoEntidadObjeto);
 
-            JefeInmediatoIdNuevo.DataValueField = "EmpleadoIdJefe";
+            JefeInmediatoIdNuevo.DataValueField = "EmpleadoId";
             JefeInmediatoIdNuevo.DataTextField = "NombreJefe";
 
             if (Resultado.ErrorId == 0)

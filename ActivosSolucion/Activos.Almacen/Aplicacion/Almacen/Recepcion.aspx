@@ -192,7 +192,7 @@
                     <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0" 
                         CssClass="TablaInformacion" DataKeyNames="RecepcionId, ProductoId" ID="TablaRecepcion" 
                         OnPageIndexChanging="TablaRecepcion_PageIndexChanging"
-                        runat="server" PageSize="2">
+                        runat="server" PageSize="10">
                         <EmptyDataTemplate>
                             <table class="TablaVacia">
                                 <tr class="Encabezado">
@@ -373,7 +373,7 @@
                         <div class="DivTabla">
                             <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
                                 CssClass="TablaInformacion" DataKeyNames="Clave" ID="TablaOrdenBusqueda" OnRowCommand="TablaOrdenBusqueda_RowCommand" OnPageIndexChanging="TablaOrdenBusqueda_PageIndexChanging"
-                                 runat="server" PageSize="2">
+                                 runat="server" PageSize="10">
                                 <EmptyDataTemplate>
                                     <table class="TablaVacia">
                                         <tr class="Encabezado">
