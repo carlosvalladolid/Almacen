@@ -82,9 +82,15 @@ namespace Almacen.Web.Aplicacion.Catalogo
             {
                 TablaSubFamiliaEventoComando(e);
             }
+
+            protected void TablaSubFamiliaPuesto_RowCommand(object sender, GridViewCommandEventArgs e)
+            {
+                TablaSubFamiliaPuestoEventoComando(e);
+            }
         #endregion
 
         #region "Métodos"
+
             protected void BusquedaAvanzada()
             {
                 SubFamiliaEntidad SubFamiliaEntidadObjeto = new SubFamiliaEntidad();
@@ -186,6 +192,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 {
                     SeleccionarFamiliaNuevo();
                     SeleccionarEstatusNuevo();
+                    SeleccionarSubFamiliaPuesto();
                     BusquedaAvanzada();
                 }
             }
@@ -326,6 +333,30 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 }
             }
 
+            protected void SeleccionarSubFamiliaPuesto()
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                SubFamiliaPuestoEntidad SubFamiliaPuestoObjetoEntidad = new SubFamiliaPuestoEntidad();
+                SubFamiliaPuestoProceso SubFamiliaPuestoProcesoNegocio = new SubFamiliaPuestoProceso();
+
+                Resultado = SubFamiliaPuestoProcesoNegocio.SeleccionarSubFamiliaPuesto(SubFamiliaPuestoObjetoEntidad);
+
+                if (Resultado.ErrorId == 0)
+                {
+                    if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
+                        TablaSubFamiliaPuesto.CssClass = ConstantePrograma.ClaseTablaVacia;
+                    else
+                        TablaSubFamiliaPuesto.CssClass = ConstantePrograma.ClaseTabla;
+
+                    TablaSubFamiliaPuesto.DataSource = Resultado.ResultadoDatos;
+                    TablaSubFamiliaPuesto.DataBind();
+                }
+                else
+                {
+                    //EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+                }
+            }
+
             protected void TablaSubFamiliaEventoComando(GridViewCommandEventArgs e)
             {
                 SubFamiliaEntidad SubFamiliaEntidadObjeto = new SubFamiliaEntidad();
@@ -355,6 +386,37 @@ namespace Almacen.Web.Aplicacion.Catalogo
                         break;
                 }
             }
+
+            protected void TablaSubFamiliaPuestoEventoComando(GridViewCommandEventArgs e)
+            {
+                SubFamiliaPuestoEntidad SubFamiliaPuestoEntidadObjeto = new SubFamiliaPuestoEntidad();
+                Int16 intFila = 0;
+                int intTamañoPagina = 0;
+                Int16 PuestoId = 0;
+                string strCommand = string.Empty;
+
+                intFila = Int16.Parse(e.CommandArgument.ToString());
+                strCommand = e.CommandName.ToString();
+                intTamañoPagina = TablaSubFamilia.PageSize;
+
+                if (intFila >= intTamañoPagina)
+                    intFila = (Int16)(intFila - (intTamañoPagina * TablaSubFamilia.PageIndex));
+
+                switch (strCommand)
+                {
+                    case "Select":
+                        PuestoId = Int16.Parse(TablaSubFamilia.DataKeys[intFila]["PuestoId"].ToString());
+                        SubFamiliaPuestoEntidadObjeto.PuestoId = PuestoId;
+                        //SubFamiliaIdHidden.Value = PuestoId.ToString();
+                        //SeleccionarSubFamiliaParaEditar(SubFamiliaEntidadObjeto);
+                        break;
+
+                    default:
+                        // Do nothing
+                        break;
+                }
+            }
+
         #endregion
     }
 }

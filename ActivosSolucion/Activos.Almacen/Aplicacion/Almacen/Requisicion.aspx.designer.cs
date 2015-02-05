@@ -372,8 +372,6 @@ namespace Almacen.Web.Aplicacion.Almacen {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField MensajeLimpieza;
-<<<<<<< HEAD
-=======
         
         /// <summary>
         /// Master property.
@@ -386,6 +384,5 @@ namespace Almacen.Web.Aplicacion.Almacen {
                 return ((Incluir.Plantilla.PlantillaPrivada)(base.Master));
             }
         }
->>>>>>> origin/master
     }
 }

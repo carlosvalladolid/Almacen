@@ -4,6 +4,7 @@
 <%@ Register TagPrefix="wuc" TagName="ControlMenuIzquierdo" Src="~/Incluir/ControlesWeb/ControlMenuIzquierdo.ascx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContenedorEncabezado" runat="server">
+
     <script language="javascript" src="/Incluir/Javascript/ValidarFormulario.js" type="text/javascript"></script>
 </asp:Content>
 
@@ -43,8 +44,8 @@
                         </tr>
                     </table>
                 </asp:Panel>
-
-                <asp:Panel CssClass="NewRowDiv" ID="PanelNuevoRegistro" Visible="false" runat="server">
+                
+                  <asp:Panel CssClass="NewRowDiv" ID="PanelNuevoRegistro" Visible="false" runat="server">
                     <table class="TablaFormulario">
                         <tr>
                             <td class="Nombre">Familia</td>
@@ -78,6 +79,40 @@
                             </td>
                         </tr>
                     </table>
+                    
+                    <div id="DivTablaControl">
+                                  <asp:GridView AllowPaging="false" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0" OnRowCommand="TablaSubFamiliaPuesto_RowCommand"
+                                      CssClass="TablaInformacion" DataKeyNames="PuestoId" ID="TablaSubFamiliaPuesto" runat="server">
+                                      <EmptyDataTemplate>
+                                          <table class="TablaVacia">
+                                              <tr class="Encabezado">
+                                                  <th style="width: 10px;"></th>                                                  
+                                                  <th style="width: 120px;">Nombre</th>   
+                                              </tr>
+                                              <tr>
+                                                  <td colspan="2" style="text-align: center;">No se encontró información con los parámetros seleccionados</td>
+                                              </tr>
+                                          </table>
+                                      </EmptyDataTemplate>
+                                      <HeaderStyle CssClass="Encabezado" />
+                                      <PagerStyle CssClass="Paginacion" HorizontalAlign="Right" />
+                                      <Columns>
+                                          <asp:TemplateField HeaderText="">
+                                              <ItemTemplate>
+                                                <asp:CheckBox  ID="BotonAgregarPuesto" CommandArgument="<%#Container.DataItemIndex%>" CommandName="AgregarPuesto" runat="server" />
+                                             
+                                             </ItemTemplate>
+                                              <ItemStyle HorizontalAlign="Center" Width="10px" />
+                                          </asp:TemplateField>                                        
+                                          <asp:BoundField DataField="Nombre" HeaderText="Nombre" ItemStyle-HorizontalAlign="Left">
+                                              <HeaderStyle HorizontalAlign="Left" Width="120px" />
+                                          </asp:BoundField>                                        
+                                      </Columns>
+                                  </asp:GridView>
+                                 
+                              </div>  
+                              <br />
+                              <br />                       
                 </asp:Panel>
 
                 <div class="DivTabla">

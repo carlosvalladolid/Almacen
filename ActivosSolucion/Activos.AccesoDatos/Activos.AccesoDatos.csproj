@@ -83,6 +83,7 @@
     <Compile Include="Almacen\RecepcionAcceso.cs" />
     <Compile Include="Almacen\RequisicionAcceso.cs" />
     <Compile Include="Almacen\SubFamiliaAcceso.cs" />
+    <Compile Include="Almacen\SubFamiliaPuestoAcceso.cs" />
     <Compile Include="Almacen\TemporalPreOrdenAcceso.cs" />
     <Compile Include="Almacen\TipoDocumentoAcceso.cs" />
     <Compile Include="Almacen\UnidadMedidaAcceso.cs" />

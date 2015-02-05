@@ -85,6 +85,7 @@
     <Compile Include="Almacen\RecepcionProceso.cs" />
     <Compile Include="Almacen\RequisicionProceso.cs" />
     <Compile Include="Almacen\SubFamiliaProceso.cs" />
+    <Compile Include="Almacen\SubFamiliaPuestoProceso.cs" />
     <Compile Include="Almacen\TemporalPreOrdenProceso.cs" />
     <Compile Include="Almacen\TipoDocumentoProceso.cs" />
     <Compile Include="Almacen\UnidadMedidaProceso.cs" />

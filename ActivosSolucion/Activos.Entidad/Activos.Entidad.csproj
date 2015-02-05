@@ -83,6 +83,7 @@
     <Compile Include="Almacen\RecepcionEntidad.cs" />
     <Compile Include="Almacen\RequisicionEntidad.cs" />
     <Compile Include="Almacen\SubFamiliaEntidad.cs" />
+    <Compile Include="Almacen\SubFamiliaPuestoEntidad.cs" />
     <Compile Include="Almacen\TemporalPreOrdenEntidad.cs" />
     <Compile Include="Almacen\TipoDocumentoEntidad.cs" />
     <Compile Include="Almacen\UnidadMedidaEntidad.cs" />
