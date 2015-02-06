@@ -50,6 +50,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
             protected void BotonGuardar_Click(object sender, EventArgs e)
             {
                 GuardarSubFamilia();
+               
             }
 
             protected void BusquedaAvanzadaLink_Click(Object sender, System.EventArgs e)
@@ -87,6 +88,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
             {
                 TablaSubFamiliaPuestoEventoComando(e);
             }
+       
         #endregion
 
         #region "Métodos"
@@ -159,9 +161,11 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 SubFamiliaObjetoEntidad.EstatusId = Int16.Parse(EstatusNuevo.SelectedValue);
                 SubFamiliaObjetoEntidad.UsuarioIdInserto = UsuarioSessionEntidad.UsuarioId;
                 SubFamiliaObjetoEntidad.UsuarioIdModifico = UsuarioSessionEntidad.UsuarioId;
+                SubFamiliaObjetoEntidad.CadenaXMLPuestoId = ObtenerCadenaPuestoXML();
                 SubFamiliaObjetoEntidad.Nombre = NombreNuevo.Text.Trim();
 
                 GuardarSubFamilia(SubFamiliaObjetoEntidad);
+                //GuardarSubFamiliaPuesto();
             }
 
             protected void GuardarSubFamilia(SubFamiliaEntidad SubFamiliaObjetoEntidad)
@@ -171,9 +175,11 @@ namespace Almacen.Web.Aplicacion.Catalogo
 
                 Resultado = SubFamiliaProcesoNegocio.GuardarSubFamilia(SubFamiliaObjetoEntidad);
 
-                if (Resultado.ErrorId == (int)ConstantePrograma.SubFamilia.SubFamiliaGuardadoCorrectamente)
+                if (Resultado.ErrorId == 0)
                 {
                     LimpiarNuevoRegistro();
+                    SubFamiliaPuestoIdHidden.Value = Resultado.NuevoRegistroId.ToString();
+                    AgregarSubFamiliaPuesto();
                     PanelNuevoRegistro.Visible = false;
                     PanelBusquedaAvanzada.Visible = false;
                     BusquedaAvanzada();
@@ -181,6 +187,74 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 else
                     MostrarMensaje(Resultado.DescripcionError, ConstantePrograma.TipoErrorAlerta);
             }
+
+            protected void AgregarSubFamiliaPuesto()
+            {
+                SubFamiliaPuestoEntidad SubFamiliaPuestoObjetoEntidad = new SubFamiliaPuestoEntidad();            
+               
+                if (SubFamiliaPuestoIdHidden.Value != "0")
+                {
+                    SubFamiliaPuestoObjetoEntidad.CadenaPuestoXML = ObtenerCadenaPuestoXML();
+                   
+                    if (SubFamiliaPuestoObjetoEntidad.CadenaPuestoXML != "<row></row>")
+                    {                        
+                        SubFamiliaPuestoObjetoEntidad.SubFamiliaId = Int16.Parse(SubFamiliaPuestoIdHidden.Value);                       
+
+                        AgregarSubFamiliaPuesto(SubFamiliaPuestoObjetoEntidad);
+                    }
+                    else
+                    {
+                      //LimpiarFormulario();
+                      
+                    }
+                }
+            }
+          
+            protected void AgregarSubFamiliaPuesto(SubFamiliaPuestoEntidad SubFamiliaPuestoObjetoEntidad)
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+               SubFamiliaPuestoProceso SubFamiliaPuestoProcesoNegocio = new SubFamiliaPuestoProceso();
+
+               Resultado = SubFamiliaPuestoProcesoNegocio.GuardarSubFamiliaPuesto(SubFamiliaPuestoObjetoEntidad);
+
+                if (Resultado.ErrorId == (int)ConstantePrograma.SubFamilia.SubFamiliaGuardadoCorrectamente)
+                {
+                    //LimpiarFormulario();
+                    //EtiquetaMensajeExito.Text = TextoError.SubFamiliaTieneRegistrosRelacionados;                  
+                }
+                else
+                {
+                    //EtiquetaMensaje.Text = TextoError.ErrorGenerico + ". " + Resultado.DescripcionError;
+                }
+            }
+
+            protected string ObtenerCadenaPuestoXML()
+            {
+                StringBuilder CadenaPuestoXML = new StringBuilder();
+                CheckBox ValorVerdadero = new CheckBox();
+
+                CadenaPuestoXML.Append("<root>");
+                //CadenaPuestoXML.Append("<row>");
+
+                foreach (GridViewRow Registro in TablaSubFamiliaPuesto.Rows)
+                {
+                    ValorVerdadero = (CheckBox)Registro.FindControl("AgregarPuesto");
+
+                    if (ValorVerdadero.Checked)
+                    {
+                        CadenaPuestoXML.Append("<puesto puestoId=\"");
+                        CadenaPuestoXML.Append(TablaSubFamiliaPuesto.DataKeys[Registro.RowIndex]["PuestoId"].ToString());
+                        CadenaPuestoXML.Append("\"/>");
+                        //CadenaPuestoXML.Append("<puesto>");
+                        //CadenaPuestoXML.Append(TablaSubFamiliaPuesto.DataKeys[Registro.RowIndex]["PuestoId"].ToString());
+                        //CadenaPuestoXML.Append("</puesto>");
+                    }
+                 }
+               //CadenaPuestoXML.Append("</row>");
+               CadenaPuestoXML.Append("</root>");
+                return CadenaPuestoXML.ToString();          
+
+             }
 
             private void Inicio()
             {

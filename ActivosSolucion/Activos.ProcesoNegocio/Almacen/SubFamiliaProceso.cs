@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -75,18 +77,58 @@ namespace Activos.ProcesoNegocio.Almacen
             string CadenaConexion = string.Empty;
             ResultadoEntidad Resultado = new ResultadoEntidad();
             SubFamiliaAcceso SubFamiliaAccesoObjeto = new SubFamiliaAcceso();
+            SqlTransaction Transaccion;
+            SqlConnection Conexion;
 
             CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
 
             if (BuscarSubFamiliaDuplicada(SubFamiliaObjetoEntidad) == false)
             {
-                if (SubFamiliaObjetoEntidad.SubFamiliaId == 0)
+                Conexion = new SqlConnection(CadenaConexion);
+                Conexion.Open();
+
+                Transaccion = Conexion.BeginTransaction();
+
+                try
                 {
-                    Resultado = SubFamiliaAccesoObjeto.InsertarSubFamilia(SubFamiliaObjetoEntidad, CadenaConexion);
+                    if (SubFamiliaObjetoEntidad.SubFamiliaId == 0)
+                    {
+                        //Se inserta la subfamilia
+                        Resultado = SubFamiliaAccesoObjeto.InsertarSubFamilia(Conexion, Transaccion, SubFamiliaObjetoEntidad);
+                        SubFamiliaObjetoEntidad.SubFamiliaId = Int16.Parse(Resultado.NuevoRegistroId.ToString());
+                    }
+                    else
+                    {
+                        Resultado = SubFamiliaAccesoObjeto.ActualizarSubFamilia(Conexion, Transaccion, SubFamiliaObjetoEntidad);
+                     
+                        if (Resultado.ErrorId == 0)
+                        {
+                              //Si salio bien, se eliminan los puestos que tenia
+                            Resultado = SubFamiliaAccesoObjeto.EliminarSubFamiliaPuesto(Conexion, Transaccion, SubFamiliaObjetoEntidad);
+                        }
+                    }
+
+                    if (Resultado.ErrorId == 0)
+                    {
+                        //Si salio bien, se insertan los puestos
+                        Resultado = SubFamiliaAccesoObjeto.InsertarSubFamiliaPuesto(Conexion, Transaccion, SubFamiliaObjetoEntidad);
+                    }
+
+                    if (Resultado.ErrorId ==0)
+                    {
+                        Transaccion.Commit();
+                        Conexion.Close();
+                    }
+                    else
+                    {
+                        Transaccion.Rollback();
+                        Conexion.Close();
+                    }
                 }
-                else
+                catch
                 {
-                    Resultado = SubFamiliaAccesoObjeto.ActualizarSubFamilia(SubFamiliaObjetoEntidad, CadenaConexion);
+                    Resultado.ErrorId = (int)ConstantePrograma.SubFamilia.SubFamiliaConNombreDuplicado;
+                    Resultado.DescripcionError = TextoError.SubFamiliaConNombreDuplicado;
                 }
             }
             else
@@ -138,5 +180,9 @@ namespace Activos.ProcesoNegocio.Almacen
 
             return TieneRelacionesLaSubFamilia;
         }
-    }
+
+
+
+
+          }
 }

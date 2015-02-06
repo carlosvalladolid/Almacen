@@ -11,7 +11,7 @@ namespace Activos.Entidad.Almacen
             private Int16 _PuestoId;
             private string _Descripcion;
       //***************************************
-        private string _CadenaPuestoId;
+            private string _CadenaPuestoXML;
 
         public SubFamiliaPuestoEntidad()
         {
@@ -19,7 +19,7 @@ namespace Activos.Entidad.Almacen
             _PuestoId = 0;
             _Descripcion = string.Empty;
        //**********************************
-            _CadenaPuestoId = string.Empty;
+            _CadenaPuestoXML = string.Empty;
         }
 
 
@@ -41,10 +41,17 @@ namespace Activos.Entidad.Almacen
             set { _Descripcion = value; }
         }
        
-        public string CadenaPuestoId
+        //public string CadenaPuestoId
+        //{
+        //    get { return _CadenaPuestoId; }
+        //    set { _CadenaPuestoId = value; }
+        //}
+
+
+        public string CadenaPuestoXML
         {
-            get { return _CadenaPuestoId; }
-            set { _CadenaPuestoId = value; }
+            get { return _CadenaPuestoXML; }
+            set { _CadenaPuestoXML = value; }
         }
     }
 }

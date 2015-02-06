@@ -194,6 +194,15 @@ namespace Almacen.Web.Aplicacion.Catalogo {
         protected global::System.Web.UI.WebControls.HiddenField SubFamiliaIdHidden;
         
         /// <summary>
+        /// SubFamiliaPuestoIdHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField SubFamiliaPuestoIdHidden;
+        
+        /// <summary>
         /// AssociatedUpdate control.
         /// </summary>
         /// <remarks>
@@ -208,9 +217,9 @@ namespace Almacen.Web.Aplicacion.Catalogo {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-        public new Almacen.Web.Incluir.Plantilla.PlantillaPrivada Master {
+        public new Incluir.Plantilla.PlantillaPrivada Master {
             get {
-                return ((Almacen.Web.Incluir.Plantilla.PlantillaPrivada)(base.Master));
+                return ((Incluir.Plantilla.PlantillaPrivada)(base.Master));
             }
         }
     }

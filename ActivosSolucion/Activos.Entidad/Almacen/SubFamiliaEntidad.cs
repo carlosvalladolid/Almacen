@@ -20,6 +20,7 @@ namespace Activos.Entidad.Almacen
         private string _BusquedaRapida;             // Texto de búsqueda en el catálogo de edificios
         private string _CadenaSubFamiliaId;         // Cadena con Ids de subfamilias seleccionados
         private string _BuscarNombre;               // Campo para buscar subfamilias por nombre exacto
+        private string _CadenaXMLPuestoId;          // XML con los Puestos
 
 
         public SubFamiliaEntidad()
@@ -35,6 +36,7 @@ namespace Activos.Entidad.Almacen
             _BusquedaRapida = string.Empty;
             _CadenaSubFamiliaId = string.Empty;
             _BuscarNombre = string.Empty;
+            _CadenaXMLPuestoId = string.Empty;
         }
 
         public Int16 FamiliaId
@@ -102,6 +104,12 @@ namespace Activos.Entidad.Almacen
         {
             get { return _BuscarNombre; }
             set { _BuscarNombre = value; }
+        }
+
+        public string CadenaXMLPuestoId
+        {
+            get { return _CadenaXMLPuestoId; }
+            set { _CadenaXMLPuestoId = value; }
         }
 
     }

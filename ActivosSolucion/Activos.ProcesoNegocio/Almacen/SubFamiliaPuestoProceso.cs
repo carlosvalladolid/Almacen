@@ -34,5 +34,47 @@ namespace Activos.ProcesoNegocio.Almacen
 
 
 
+       public ResultadoEntidad GuardarSubFamiliaPuesto(SubFamiliaPuestoEntidad SubFamiliaPuestoObjetoEntidad)
+       {
+           string CadenaConexion = string.Empty;
+           SqlTransaction Transaccion;
+           SqlConnection Conexion;
+           ResultadoEntidad Resultado = new ResultadoEntidad();
+           CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Activos);
+
+           Conexion = new SqlConnection(CadenaConexion);
+           Conexion.Open();
+
+           Transaccion = Conexion.BeginTransaction();
+
+           Resultado = InsertarSubFamiliaPuesto(Conexion, Transaccion, SubFamiliaPuestoObjetoEntidad);
+        
+           if (Resultado.ErrorId == (int)ConstantePrograma.SubFamilia.SubFamiliaGuardadoCorrectamente)
+           {
+               Transaccion.Commit();
+           }
+           else
+           {
+               Transaccion.Rollback();
+           }
+
+
+           Conexion.Close();
+
+           return Resultado;
+       }
+
+       public ResultadoEntidad InsertarSubFamiliaPuesto(SqlConnection Conexion, SqlTransaction Transaccion, SubFamiliaPuestoEntidad SubFamiliaPuestoObjetoEntidad)
+       {
+           ResultadoEntidad Resultado = new ResultadoEntidad();
+           SubFamiliaPuestoAcceso SubFamiliaPuestoAccesoObjeto = new SubFamiliaPuestoAcceso();
+
+           Resultado = SubFamiliaPuestoAccesoObjeto.InsertarSubFamiliaPuesto(Conexion, Transaccion, SubFamiliaPuestoObjetoEntidad);
+
+           return Resultado;
+       }
+    
+
+
     }
 }

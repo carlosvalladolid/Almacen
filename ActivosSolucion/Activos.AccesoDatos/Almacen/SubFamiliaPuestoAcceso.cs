@@ -56,7 +56,43 @@ namespace Activos.AccesoDatos.Almacen
        }
 
 
+       public ResultadoEntidad InsertarSubFamiliaPuesto(SqlConnection Conexion, SqlTransaction Transaccion, SubFamiliaPuestoEntidad SubFamiliaPuestoEntidadObjeto)
+       {
+           SqlCommand Comando;
+           SqlParameter Parametro;
+           ResultadoEntidad Resultado = new ResultadoEntidad();
 
+           try
+           {
+               Comando = new SqlCommand("InsertarSubFamiliaPuesto", Conexion);
+               Comando.CommandType = CommandType.StoredProcedure;
+
+               Comando.Transaction = Transaccion;
+
+               Parametro = new SqlParameter("SubFamiliaId", SqlDbType.SmallInt);
+               Parametro.Value = SubFamiliaPuestoEntidadObjeto.SubFamiliaId;
+               Comando.Parameters.Add(Parametro);
+
+               Parametro = new SqlParameter("CadenaPuestoXML", SqlDbType.Xml);
+               Parametro.Value = SubFamiliaPuestoEntidadObjeto.CadenaPuestoXML;
+               Comando.Parameters.Add(Parametro);
+
+               Comando.ExecuteNonQuery();
+
+               Resultado.ErrorId = (int)ConstantePrograma.SubFamilia.SubFamiliaGuardadoCorrectamente;
+
+               return Resultado;
+           }
+           catch (SqlException sqlEx)
+           {
+               Resultado.ErrorId = sqlEx.Number;
+               Resultado.DescripcionError = sqlEx.Message;
+
+               return Resultado;
+           }
+       }
+
+       
 
 
     }

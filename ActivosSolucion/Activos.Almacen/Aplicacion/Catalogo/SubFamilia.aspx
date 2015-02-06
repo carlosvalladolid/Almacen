@@ -99,7 +99,7 @@
                                       <Columns>
                                           <asp:TemplateField HeaderText="">
                                               <ItemTemplate>
-                                                <asp:CheckBox  ID="BotonAgregarPuesto" CommandArgument="<%#Container.DataItemIndex%>" CommandName="AgregarPuesto" runat="server" />
+                                                <asp:CheckBox  ID="AgregarPuesto" CommandArgument="<%#Container.DataItemIndex%>" CommandName="AgregarPuesto" runat="server" />
                                              
                                              </ItemTemplate>
                                               <ItemStyle HorizontalAlign="Center" Width="10px" />
@@ -111,8 +111,8 @@
                                   </asp:GridView>
                                  
                               </div>  
-                              <br />
-                              <br />                       
+                      <br />
+                      <br />                       
                 </asp:Panel>
 
                 <div class="DivTabla">
@@ -159,6 +159,7 @@
                 </div>
 
                 <asp:HiddenField ID="SubFamiliaIdHidden" runat="server" Value="0" />
+                <asp:HiddenField ID="SubFamiliaPuestoIdHidden" runat="server" Value="0" />
 
                 <asp:UpdateProgress AssociatedUpdatePanelID="PageUpdate" ID="AssociatedUpdate" runat="server">
                     <ProgressTemplate>
