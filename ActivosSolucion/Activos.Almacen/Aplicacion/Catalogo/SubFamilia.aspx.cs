@@ -24,7 +24,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
 {
     public partial class SubFamilia : System.Web.UI.Page
     {
-         #region "Eventos"
+            #region "Eventos"
 
             protected void BotonBusqueda_Click(object sender, EventArgs e)
             {
@@ -468,7 +468,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 }
                 else
                 {
-                    //EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+                    
                 }
             }
 
