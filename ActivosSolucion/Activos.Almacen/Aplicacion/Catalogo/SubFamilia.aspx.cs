@@ -24,7 +24,8 @@ namespace Almacen.Web.Aplicacion.Catalogo
 {
     public partial class SubFamilia : System.Web.UI.Page
     {
-        #region "Eventos"
+         #region "Eventos"
+
             protected void BotonBusqueda_Click(object sender, EventArgs e)
             {
                 TextoBusquedaRapida.Text = "";
@@ -88,10 +89,10 @@ namespace Almacen.Web.Aplicacion.Catalogo
             {
                 TablaSubFamiliaPuestoEventoComando(e);
             }
-       
-        #endregion
+           
+            #endregion
 
-        #region "Métodos"
+            #region "Métodos"
 
             protected void BusquedaAvanzada()
             {
@@ -119,6 +120,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
             {
                 PanelBusquedaAvanzada.Visible = false;
                 PanelNuevoRegistro.Visible = !PanelNuevoRegistro.Visible;
+                
                 LimpiarNuevoRegistro();
             }
 
@@ -245,9 +247,6 @@ namespace Almacen.Web.Aplicacion.Catalogo
                         CadenaPuestoXML.Append("<puesto puestoId=\"");
                         CadenaPuestoXML.Append(TablaSubFamiliaPuesto.DataKeys[Registro.RowIndex]["PuestoId"].ToString());
                         CadenaPuestoXML.Append("\"/>");
-                        //CadenaPuestoXML.Append("<puesto>");
-                        //CadenaPuestoXML.Append(TablaSubFamiliaPuesto.DataKeys[Registro.RowIndex]["PuestoId"].ToString());
-                        //CadenaPuestoXML.Append("</puesto>");
                     }
                  }
                //CadenaPuestoXML.Append("</row>");
@@ -277,6 +276,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 EstatusNuevo.SelectedIndex = 0;
                 NombreNuevo.Text = "";
                 SubFamiliaIdHidden.Value = "0";
+                SeleccionarSubFamiliaPuesto();
             }
 
             private void MostrarMensaje(string Mensaje, string TipoMensaje)
@@ -397,14 +397,55 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 {
                     FamiliaNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["FamiliaId"].ToString();
                     EstatusNuevo.SelectedValue = Resultado.ResultadoDatos.Tables[0].Rows[0]["EstatusId"].ToString();
-                    NombreNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Nombre"].ToString();
-
+                    NombreNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Nombre"].ToString();                     
                     CambiarEditarRegistro();
                 }
                 catch
                 {
                     MostrarMensaje(TextoError.ErrorGenerico, ConstantePrograma.TipoErrorAlerta);
                 }
+            }
+
+            protected void SeleccionarSubFamiliaPuestoparaEditar(SubFamiliaPuestoEntidad SubFamiliaPuestoEntidadObjeto)
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                CheckBox chkSeleccionado;
+               
+                SubFamiliaPuestoProceso SubFamiliaPuestoProcesoNegocio = new SubFamiliaPuestoProceso();               
+            
+                Resultado = SubFamiliaPuestoProcesoNegocio.SeleccionarSubFamiliaPuestoEditar(SubFamiliaPuestoEntidadObjeto);
+
+                if (Resultado.ErrorId == 0)
+                {
+                    if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
+                    {   
+                         MostrarMensaje(Resultado.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                       
+                    }
+                    else
+                    {
+                        foreach (DataRow Puesto in Resultado.ResultadoDatos.Tables[0].Rows)
+                        {
+                            foreach (GridViewRow Registro in TablaSubFamiliaPuesto.Rows)
+                            {
+                                if (TablaSubFamiliaPuesto.DataKeys[Registro.RowIndex]["PuestoId"].ToString() == Puesto["PuestoId"].ToString())
+                                {
+                                    chkSeleccionado = (CheckBox)Registro.FindControl("AgregarPuesto");
+                                    chkSeleccionado.Checked = true;
+                                    break;
+                                }
+                            }
+                        
+                        
+                        
+                        }
+
+                    }
+                  
+                   // EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+               
+                }
+              
             }
 
             protected void SeleccionarSubFamiliaPuesto()
@@ -434,6 +475,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
             protected void TablaSubFamiliaEventoComando(GridViewCommandEventArgs e)
             {
                 SubFamiliaEntidad SubFamiliaEntidadObjeto = new SubFamiliaEntidad();
+                SubFamiliaPuestoEntidad SubFamiliaPuestoEntidadObjeto = new SubFamiliaPuestoEntidad();
                 Int16 intFila = 0;
                 int intTamañoPagina = 0;
                 Int16 SubFamiliaId = 0;
@@ -453,6 +495,8 @@ namespace Almacen.Web.Aplicacion.Catalogo
                         SubFamiliaEntidadObjeto.SubFamiliaId = SubFamiliaId;
                         SubFamiliaIdHidden.Value = SubFamiliaId.ToString();
                         SeleccionarSubFamiliaParaEditar(SubFamiliaEntidadObjeto);
+                        SubFamiliaPuestoEntidadObjeto.SubFamiliaId = SubFamiliaId;
+                        SeleccionarSubFamiliaPuestoparaEditar(SubFamiliaPuestoEntidadObjeto);
                         break;
 
                     default:

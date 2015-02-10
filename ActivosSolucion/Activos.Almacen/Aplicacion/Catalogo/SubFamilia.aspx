@@ -62,7 +62,45 @@
                              <td class="Nombre">Estatus</td>
                             <td class="Requerido">*</td>
                             <td class="Campo"><asp:DropDownList CssClass="ComboMediano" ID="EstatusNuevo" MaxLength="30" runat="server" ></asp:DropDownList></td>
-                     </tr>                        
+                     </tr>  
+                     
+                     <tr>
+                        <td colspan = "3">
+                             <div id="Div1" style="width: 600px;">
+                                  <asp:GridView AllowPaging="false" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0" OnRowCommand="TablaSubFamiliaPuesto_RowCommand"
+                                      CssClass="TablaInformacion" DataKeyNames="PuestoId" ID="TablaSubFamiliaPuesto" runat="server">
+                                      <EmptyDataTemplate>
+                                          <table class="TablaVacia">
+                                              <tr class="Encabezado">
+                                                  <th style="width: 50px;">Permiso</th>                                                  
+                                                  <th>Nombre</th>   
+                                              </tr>
+                                              <tr>
+                                                  <td colspan="2" style="text-align: center;">No se encontró información con los parámetros seleccionados</td>
+                                              </tr>
+                                          </table>
+                                      </EmptyDataTemplate>
+                                      <HeaderStyle CssClass="Encabezado" />
+                                      <PagerStyle CssClass="Paginacion" HorizontalAlign="Right" />
+                                      <Columns>
+                                            <asp:TemplateField HeaderText="Permiso">
+                                              <ItemTemplate>
+                                                  <asp:CheckBox ID="AgregarPuesto" Text=""  runat="server" />
+                                              </ItemTemplate>
+                                              <ItemStyle HorizontalAlign="Center" Width="50px" />
+                                            </asp:TemplateField>
+                                                        
+                                          <asp:BoundField DataField="Nombre" HeaderText="Nombre" ItemStyle-HorizontalAlign="Left">
+                                              <HeaderStyle HorizontalAlign="Left" />
+                                          </asp:BoundField>                                        
+                                      </Columns>
+                                  </asp:GridView>
+                                 
+                              </div>  
+                        </td>
+                     </tr>
+                     
+                                   
                         <tr>
                             <td colspan="3">
                                 <asp:CompareValidator CssClass="TextoError" ControlToValidate="FamiliaNuevo" Display="Dynamic" ErrorMessage="" ID="FamiliaRequerido" Operator="GreaterThan" ValidationGroup="Guardar" ValueToCompare="0" runat="server"></asp:CompareValidator>
@@ -80,14 +118,14 @@
                         </tr>
                     </table>
                     
-                    <div id="DivTablaControl">
+                  <%--  <div id="DivTablaControl" style="width: 600px;">
                                   <asp:GridView AllowPaging="false" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0" OnRowCommand="TablaSubFamiliaPuesto_RowCommand"
                                       CssClass="TablaInformacion" DataKeyNames="PuestoId" ID="TablaSubFamiliaPuesto" runat="server">
                                       <EmptyDataTemplate>
                                           <table class="TablaVacia">
                                               <tr class="Encabezado">
-                                                  <th style="width: 10px;"></th>                                                  
-                                                  <th style="width: 120px;">Nombre</th>   
+                                                  <th style="width: 50px;">Permiso</th>                                                  
+                                                  <th>Nombre</th>   
                                               </tr>
                                               <tr>
                                                   <td colspan="2" style="text-align: center;">No se encontró información con los parámetros seleccionados</td>
@@ -97,20 +135,20 @@
                                       <HeaderStyle CssClass="Encabezado" />
                                       <PagerStyle CssClass="Paginacion" HorizontalAlign="Right" />
                                       <Columns>
-                                          <asp:TemplateField HeaderText="">
+                                            <asp:TemplateField HeaderText="Permiso">
                                               <ItemTemplate>
-                                                <asp:CheckBox  ID="AgregarPuesto" CommandArgument="<%#Container.DataItemIndex%>" CommandName="AgregarPuesto" runat="server" />
-                                             
-                                             </ItemTemplate>
-                                              <ItemStyle HorizontalAlign="Center" Width="10px" />
-                                          </asp:TemplateField>                                        
+                                                  <asp:CheckBox ID="AgregarPuesto" Text=""  runat="server" />
+                                              </ItemTemplate>
+                                              <ItemStyle HorizontalAlign="Center" Width="50px" />
+                                            </asp:TemplateField>
+                                                        
                                           <asp:BoundField DataField="Nombre" HeaderText="Nombre" ItemStyle-HorizontalAlign="Left">
-                                              <HeaderStyle HorizontalAlign="Left" Width="120px" />
+                                              <HeaderStyle HorizontalAlign="Left" />
                                           </asp:BoundField>                                        
                                       </Columns>
                                   </asp:GridView>
                                  
-                              </div>  
+                              </div>  --%>
                       <br />
                       <br />                       
                 </asp:Panel>

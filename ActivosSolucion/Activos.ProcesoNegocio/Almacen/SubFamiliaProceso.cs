@@ -153,7 +153,20 @@ namespace Activos.ProcesoNegocio.Almacen
             return Resultado;
         }
 
-        public bool SeleccionarSubFamiliaFamiliaRelacionadas(string CadenaFamiliaId)
+        public ResultadoEntidad SeleccionarSubFamiliaPuestoEditar(SubFamiliaPuestoEntidad SubFamiliaPuestoObjetoEntidad)
+        {
+            string CadenaConexion = string.Empty;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            SubFamiliaPuestoAcceso SubFamiliaPuestoAccesoObjeto = new SubFamiliaPuestoAcceso();
+
+            CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+            Resultado = SubFamiliaPuestoAccesoObjeto.SeleccionarSubFamiliaPuestoEditar(SubFamiliaPuestoObjetoEntidad, CadenaConexion);
+
+            return Resultado;
+        }
+       
+      public bool SeleccionarSubFamiliaFamiliaRelacionadas(string CadenaFamiliaId)
         {
             string CadenaConexion = string.Empty;
             ResultadoEntidad ResultadoEntidadObjeto = new ResultadoEntidad();

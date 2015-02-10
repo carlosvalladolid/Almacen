@@ -32,7 +32,18 @@ namespace Activos.ProcesoNegocio.Almacen
            return Resultado;
        }
 
+       public ResultadoEntidad SeleccionarSubFamiliaPuestoEditar(SubFamiliaPuestoEntidad SubFamiliaPuestoObjetoEntidad)
+       {
+           string CadenaConexion = string.Empty;
+           ResultadoEntidad Resultado = new ResultadoEntidad();
+           SubFamiliaPuestoAcceso SubFamiliaPuestoAccesoObjeto = new SubFamiliaPuestoAcceso();
 
+           CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+           Resultado = SubFamiliaPuestoAccesoObjeto.SeleccionarSubFamiliaPuestoEditar(SubFamiliaPuestoObjetoEntidad, CadenaConexion);
+
+           return Resultado;
+       }
 
        public ResultadoEntidad GuardarSubFamiliaPuesto(SubFamiliaPuestoEntidad SubFamiliaPuestoObjetoEntidad)
        {
