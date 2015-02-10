@@ -253,6 +253,10 @@ namespace Activos.AccesoDatos.Almacen
                     Parametro.Value = RequisicionEntidadObjeto.Cantidad;
                     Comando.Parameters.Add(Parametro);
 
+                    Parametro = new SqlParameter("Comentario", SqlDbType.VarChar);
+                    Parametro.Value = RequisicionEntidadObjeto.Comentario;
+                    Comando.Parameters.Add(Parametro);
+
                     Comando.ExecuteNonQuery();
 
                     Resultado.ErrorId = (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente;

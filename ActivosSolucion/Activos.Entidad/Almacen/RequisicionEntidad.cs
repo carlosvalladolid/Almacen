@@ -16,6 +16,7 @@ namespace Activos.Entidad.Almacen
         public string _Clave;
         public string _TemporalRequisicionId;
         public string _Nombre;
+        public string _Comentario;
 
         private string _SesionId;
         private string _FechaInicial;
@@ -32,6 +33,7 @@ namespace Activos.Entidad.Almacen
             _Clave = string.Empty;
             _TemporalRequisicionId = string.Empty;
             _Nombre = string.Empty;
+            _Comentario = string.Empty;
 
             _SesionId = string.Empty;
             _FechaInicial = string.Empty;
@@ -91,6 +93,14 @@ namespace Activos.Entidad.Almacen
             get { return _Nombre; }
             set { _Nombre = value; }
         }
+
+        public string Comentario
+        {
+            get { return _Comentario; }
+            set { _Comentario = value; }
+        }
+
+
 
         /// <summary>
         ///     Identificador de la sesión de usuario.

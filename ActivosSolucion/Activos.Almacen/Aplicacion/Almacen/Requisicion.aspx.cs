@@ -106,7 +106,8 @@ namespace Almacen.Web.Aplicacion.Almacen
         #endregion
 
         #region "Métodos"
-            private void AgregarDetalleDocumento()
+          
+        private void AgregarDetalleDocumento()
             {
                 RequisicionEntidad RequisicionObjetoEntidad = new RequisicionEntidad();
                 //***********************************************************************
@@ -128,6 +129,8 @@ namespace Almacen.Web.Aplicacion.Almacen
                     RequisicionObjetoEntidad.Cantidad = Int16.Parse(CantidadNuevo.Text.Trim());
                 }
 
+                RequisicionObjetoEntidad.Comentario = ComentarioNuevo.Text.Trim();
+                    
                 AgregarRequisicion(RequisicionObjetoEntidad);
             }
 
@@ -348,6 +351,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 MarcaIdNuevo.Text = "";
                 DescripcionNuevo.Text = "";
                 CantidadNuevo.Text = "";
+                ComentarioNuevo.Text = "";
                 EtiquetaMensaje.Text = "";
                 ProductoIdHidden.Value = "";
                 LabelTotalArticulo.Text = "0";
