@@ -11,6 +11,7 @@
     <script language="javascript" type="text/javascript">
         function pageLoad(sender, args) {
             SetNewCalendar("#<%= FechaDocumentoNuevo.ClientID %>","#<%= FechaOrdenCompraNuevo.ClientID %>");
+            SetNewCalendar("#<%=FechaVencimientoNuevo.ClientID %>");
             SetNewCalendar("#<%=FechaFiltroInicioOrdenBox.ClientID %>");
             SetNewCalendar("#<%=FechaFiltroFinOrdenBox.ClientID %>");
             $("#<%= CantidadNuevo.ClientID %>").SoloNumeros();
@@ -97,6 +98,11 @@
                         <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="MontoDatosNuevo" runat="server" Text=""></asp:TextBox></td>
                     </tr>
                     
+                       <tr>
+                        <td class="Nombre">Fecha Vencimiento</td>
+                        <td class="Espacio"></td>
+                        <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="FechaVencimientoNuevo"  runat="server" Text=""></asp:TextBox></td>
+                    </tr>
 
                     
                       <tr>
@@ -104,6 +110,7 @@
                         <td class="Espacio"></td>
                         <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="FechaOrdenCompraNuevo" Enabled ="false"  runat="server" Text=""></asp:TextBox></td>
                     </tr>
+                    
                     
                     
                          <tr>
@@ -190,13 +197,8 @@
             <asp:Label CssClass="TextoError" ID="EtiquetaMensaje" runat="server" Text=""></asp:Label>
              	<div>
                     <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0" 
-                        CssClass="TablaInformacion" DataKeyNames="RecepcionId, ProductoId" ID="TablaRecepcion" 
-<<<<<<< HEAD
-                        OnPageIndexChanging="TablaRecepcion_PageIndexChanging"
-=======
-                        OnPageIndexChanging="TablaRecepcion_PageIndexChanging" OnRowCommand="TablaRecepcion_RowCommand"
->>>>>>> origin/master
-                        runat="server" PageSize="10">
+                        CssClass="TablaInformacion" DataKeyNames="RecepcionId, ProductoId" ID="TablaRecepcion" OnPageIndexChanging="TablaRecepcion_PageIndexChanging"
+OnRowCommand="TablaRecepcion_RowCommand"  runat="server" PageSize="10">
                         <EmptyDataTemplate>
                             <table class="TablaVacia">
                                 <tr class="Encabezado">
