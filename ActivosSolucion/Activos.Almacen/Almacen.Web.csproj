@@ -113,12 +113,12 @@
     <Compile Include="Aplicacion\Catalogo\Producto.aspx.designer.cs">
       <DependentUpon>Producto.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Aplicacion\Catalogo\Proveedor.aspx.cs">
-      <DependentUpon>Proveedor.aspx</DependentUpon>
+    <Compile Include="Aplicacion\Catalogo\ProveedorAlmacen.aspx.cs">
+      <DependentUpon>ProveedorAlmacen.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Aplicacion\Catalogo\Proveedor.aspx.designer.cs">
-      <DependentUpon>Proveedor.aspx</DependentUpon>
+    <Compile Include="Aplicacion\Catalogo\ProveedorAlmacen.aspx.designer.cs">
+      <DependentUpon>ProveedorAlmacen.aspx</DependentUpon>
     </Compile>
     <Compile Include="Aplicacion\Catalogo\SubFamilia.aspx.cs">
       <DependentUpon>SubFamilia.aspx</DependentUpon>
@@ -420,7 +420,7 @@
     <Content Include="Aplicacion\Almacen\Recepcion.aspx" />
     <Content Include="Aplicacion\Almacen\Requisicion.aspx" />
     <Content Include="Aplicacion\Catalogo\Familia.aspx" />
-    <Content Include="Aplicacion\Catalogo\Proveedor.aspx" />
+    <Content Include="Aplicacion\Catalogo\ProveedorAlmacen.aspx" />
     <Content Include="Aplicacion\Catalogo\SubFamilia.aspx" />
     <Content Include="Aplicacion\Configuracion\CambiarContrasenia.aspx" />
     <Content Include="Aplicacion\Inicio.aspx" />

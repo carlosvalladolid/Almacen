@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Activos.Entidad.Almacen
 {
-    public class ProveedorEntidad : Base
+   public class ProveedorAlmacenEntidad:Base
     {
-        private Int16 _ProveedorId;
+     private Int16 _ProveedorId;
         private Int16 _DependenciaId;
         private Int16 _CiudadId;
         private Int16 _BancoId;
@@ -35,7 +35,7 @@ namespace Activos.Entidad.Almacen
         private string _CadenaProveedorId;
         private string _BuscarNombre;
 
-        public ProveedorEntidad()
+        public ProveedorAlmacenEntidad()
         {
             _ProveedorId = 0;
             _DependenciaId = 0;

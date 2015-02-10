@@ -80,6 +80,7 @@
     <Compile Include="Almacen\OrdenSalidaAcceso.cs" />
     <Compile Include="Almacen\PreOrdenAcceso.cs" />
     <Compile Include="Almacen\ProveedorAcceso.cs" />
+    <Compile Include="Almacen\ProveedorAlmacenAcceso.cs" />
     <Compile Include="Almacen\RecepcionAcceso.cs" />
     <Compile Include="Almacen\RequisicionAcceso.cs" />
     <Compile Include="Almacen\SubFamiliaAcceso.cs" />

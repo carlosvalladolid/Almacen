@@ -79,6 +79,7 @@
     <Compile Include="Almacen\OrdenSalidaDetalleEntidad.cs" />
     <Compile Include="Almacen\OrdenSalidaEntidad.cs" />
     <Compile Include="Almacen\PreOrdenEntidad.cs" />
+    <Compile Include="Almacen\ProveedorAlmacenEntidad.cs" />
     <Compile Include="Almacen\ProveedorEntidad.cs" />
     <Compile Include="Almacen\RecepcionEntidad.cs" />
     <Compile Include="Almacen\RequisicionEntidad.cs" />

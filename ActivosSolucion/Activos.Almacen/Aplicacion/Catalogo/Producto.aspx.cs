@@ -27,6 +27,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
     public partial class Producto : System.Web.UI.Page
     {
         #region "Eventos"
+
             protected void BotonBusqueda_Click(object sender, EventArgs e)
             {
                 BusquedaAvanzada();
