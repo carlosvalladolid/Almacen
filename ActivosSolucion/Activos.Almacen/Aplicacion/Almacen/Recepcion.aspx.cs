@@ -303,7 +303,6 @@ namespace Activos.Almacen.Aplicacion.Almacen
             }
         }
 
-
         protected void GuardarRecepcion()
         {
             RecepcionEntidad RecepcionObjetoEntidad = new RecepcionEntidad();
@@ -319,6 +318,10 @@ namespace Activos.Almacen.Aplicacion.Almacen
             RecepcionObjetoEntidad.OrdenId = OrdenIdHidden.Value;
             if (!(FechaDocumentoNuevo.Text.Trim() == ""))
                 RecepcionObjetoEntidad.FechaDocumento = FormatoFecha.AsignarFormato(FechaDocumentoNuevo.Text.Trim(), ConstantePrograma.UniversalFormatoFecha);
+
+
+            if (!(FechaVencimientoNuevo.Text.Trim() == ""))
+                RecepcionObjetoEntidad.FechaVencimiento = FormatoFecha.AsignarFormato(FechaVencimientoNuevo.Text.Trim(), ConstantePrograma.UniversalFormatoFecha);
 
              GuardarRecepcion(RecepcionObjetoEntidad);
            
@@ -412,6 +415,7 @@ namespace Activos.Almacen.Aplicacion.Almacen
             TipoDocumentoIdNuevo.SelectedIndex = 0;
             FolioNuevo.Text = "";
             FechaDocumentoNuevo.Text = "";
+            FechaVencimientoNuevo.Text = "";
             MontoDatosNuevo.Text = "";
             OrderCompraNuevo.Text = "";
             FechaOrdenCompraNuevo.Text = "";

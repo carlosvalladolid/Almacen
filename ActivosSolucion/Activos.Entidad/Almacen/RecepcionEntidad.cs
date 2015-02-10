@@ -18,6 +18,7 @@ namespace Activos.Entidad.Almacen
 	public Int16 _EstatusId;
 	public string _Clave;
 	public string _FechaDocumento;
+    public string _FechaVencimiento;
 	public decimal _Monto;
     //campos de RecepcionDetalle
 	public string _ProductoId;
@@ -43,6 +44,7 @@ namespace Activos.Entidad.Almacen
             _EstatusId = 0;
             _Clave = string.Empty;
             _FechaDocumento = string.Empty;
+            _FechaVencimiento = string.Empty;
             _Monto = 0;
             _ProductoId = string.Empty;
             _PrecioUnitario = 0;
@@ -108,6 +110,12 @@ namespace Activos.Entidad.Almacen
         set { _FechaDocumento = value; }
     }
 
+
+    public string FechaVencimiento
+    {
+        get { return _FechaVencimiento; }
+        set { _FechaVencimiento = value; }
+    }
     public decimal Monto
     {
         get { return _Monto; }

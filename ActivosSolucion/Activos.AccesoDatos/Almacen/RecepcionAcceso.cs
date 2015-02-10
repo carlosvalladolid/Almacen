@@ -129,7 +129,6 @@ namespace Activos.AccesoDatos.Almacen
             }
 
 
-
             public ResultadoEntidad InsertarRecepcionDetalleTemp(RecepcionEntidad RecepcionEntidadObjeto, string CadenaConexion)
             {
                 SqlConnection Conexion = new SqlConnection(CadenaConexion);
@@ -335,6 +334,10 @@ namespace Activos.AccesoDatos.Almacen
                     Parametro.Value = RecepcionEntidadObjeto.Monto;
                     Comando.Parameters.Add(Parametro);
 
+                    Parametro = new SqlParameter("FechaVencimiento", SqlDbType.SmallDateTime);
+                    Parametro.Value = RecepcionEntidadObjeto.FechaVencimiento;
+                    Comando.Parameters.Add(Parametro);
+
                     Conexion.Open();
                     Resultado.NuevoRegistroId = (int)Comando.ExecuteScalar();
                     Conexion.Close();
@@ -404,6 +407,10 @@ namespace Activos.AccesoDatos.Almacen
                     Parametro.Value = RecepcionEntidadObjeto.Monto;
                     Comando.Parameters.Add(Parametro);
 
+                    Parametro = new SqlParameter("FechaVencimiento", SqlDbType.SmallDateTime);
+                    Parametro.Value = RecepcionEntidadObjeto.FechaVencimiento;
+                    Comando.Parameters.Add(Parametro);
+
                     Conexion.Open();
                     Comando.ExecuteNonQuery();
                     Conexion.Close();
@@ -420,8 +427,6 @@ namespace Activos.AccesoDatos.Almacen
                     return Resultado;
                 }
             }   
-
-
 
             public ResultadoEntidad SeleccionarRecepcionDetalle(RecepcionEntidad RecepcionObjetoEntidad, string CadenaConexion)
             {
