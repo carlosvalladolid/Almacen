@@ -107,6 +107,12 @@
                             <td class="Requerido">*</td>
                             <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="CantidadNuevo" MaxLength="7"  runat="server" Text=""></asp:TextBox></td>                           
                         </tr>
+                        
+                         <tr>
+                            <td class="Nombre">Comentario</td>
+                            <td class="Espacio"></td>
+                            <td class="Campo"><asp:TextBox TextMode="MultiLine" Enabled="true" CssClass="CajaTextoGrande" ID="ComentarioNuevo"   runat="server" Text="" Rows="5"></asp:TextBox></td>                           
+                        </tr>
                         <tr>
                             <td colspan="3">
                                 <asp:RequiredFieldValidator CssClass="TextoError" ControlToValidate="ClaveNuevo" Display="Dynamic" ErrorMessage="" ID="ClaveNuevoRequerido" SetFocusOnError ="true" ValidationGroup="Guardar" runat="server"></asp:RequiredFieldValidator>
