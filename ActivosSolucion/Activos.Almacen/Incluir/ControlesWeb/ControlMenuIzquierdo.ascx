@@ -38,6 +38,11 @@
     </tr>
     <tr>
         <td class="Space"></td>
+        <td></td>
+        <td><a href="/Aplicacion/Catalogo/ProveedorAlmacen.aspx">Catálogo de proveedores</a></td>
+    </tr>
+    <tr>
+        <td class="Space"></td>
         <td><img alt="Inicio" border="0" src="/Imagen/Icono/IconoAlmacen.png" title="Almacén" /></td>
         <td class="Section">Almacén</td>
     </tr>
