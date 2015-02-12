@@ -141,10 +141,22 @@
     <Compile Include="Aplicacion\Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Aplicacion\Reporte\DataSet\ConsumoPorDireccionDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConsumoPorDireccionDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Aplicacion\Reporte\DataSet\ExistenciaPoductoDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ExistenciaPoductoDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicacion\Reporte\Viewer\ConsumiblesPorDireccion.aspx.cs">
+      <DependentUpon>ConsumiblesPorDireccion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicacion\Reporte\Viewer\ConsumiblesPorDireccion.aspx.designer.cs">
+      <DependentUpon>ConsumiblesPorDireccion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Aplicacion\Reporte\Viewer\ExistenciaProducto.aspx.cs">
       <DependentUpon>ExistenciaProducto.aspx</DependentUpon>
@@ -424,6 +436,7 @@
     <Content Include="Aplicacion\Catalogo\SubFamilia.aspx" />
     <Content Include="Aplicacion\Configuracion\CambiarContrasenia.aspx" />
     <Content Include="Aplicacion\Inicio.aspx" />
+    <Content Include="Aplicacion\Reporte\Viewer\ConsumiblesPorDireccion.aspx" />
     <Content Include="Aplicacion\Reporte\Viewer\ExistenciaProducto.aspx" />
     <Content Include="App.config" />
     <Content Include="Imagen\Banner\PublicityBanner.jpg" />
@@ -454,6 +467,17 @@
     <Content Include="Incluir\Javascript\ValidarFormulario.js" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Aplicacion\Reporte\DataSet\ConsumoPorDireccionDS.xsc">
+      <DependentUpon>ConsumoPorDireccionDS.xsd</DependentUpon>
+    </None>
+    <None Include="Aplicacion\Reporte\DataSet\ConsumoPorDireccionDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ConsumoPorDireccionDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Aplicacion\Reporte\DataSet\ConsumoPorDireccionDS.xss">
+      <DependentUpon>ConsumoPorDireccionDS.xsd</DependentUpon>
+    </None>
     <None Include="Aplicacion\Reporte\DataSet\ExistenciaPoductoDS.xsc">
       <DependentUpon>ExistenciaPoductoDS.xsd</DependentUpon>
     </None>
@@ -467,6 +491,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Aplicacion\Reporte\Diseño\ConsumoPorDireccionRPT.rdlc" />
     <EmbeddedResource Include="Aplicacion\Reporte\Diseño\ExistenciProductoRPT.rdlc" />
   </ItemGroup>
   <ItemGroup>

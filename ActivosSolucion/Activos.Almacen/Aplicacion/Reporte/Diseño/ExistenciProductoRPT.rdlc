@@ -124,7 +124,7 @@
                     <Textbox Name="Descripcion">
                       <rd:DefaultName>Descripcion</rd:DefaultName>
                       <Style>
-                        <TextAlign>Center</TextAlign>
+                        <TextAlign>Left</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
