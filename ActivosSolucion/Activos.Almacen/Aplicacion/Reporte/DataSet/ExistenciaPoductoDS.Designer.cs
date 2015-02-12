@@ -276,6 +276,8 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
             
             private global::System.Data.DataColumn columnFamilia;
             
+            private global::System.Data.DataColumn columnMarca;
+            
             private global::System.Data.DataColumn columnSubFamilia;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -358,6 +360,13 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn MarcaColumn {
+                get {
+                    return this.columnMarca;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public global::System.Data.DataColumn SubFamiliaColumn {
                 get {
                     return this.columnSubFamilia;
@@ -393,7 +402,7 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ExistenciaProductoDTRow AddExistenciaProductoDTRow(string Clave, string Descripcion, int Existencia, int Minimo, int Maximo, int MaximoPermitido, string Familia, string SubFamilia) {
+            public ExistenciaProductoDTRow AddExistenciaProductoDTRow(string Clave, string Descripcion, int Existencia, int Minimo, int Maximo, int MaximoPermitido, string Familia, string Marca, string SubFamilia) {
                 ExistenciaProductoDTRow rowExistenciaProductoDTRow = ((ExistenciaProductoDTRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Clave,
@@ -403,6 +412,7 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
                         Maximo,
                         MaximoPermitido,
                         Familia,
+                        Marca,
                         SubFamilia};
                 rowExistenciaProductoDTRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowExistenciaProductoDTRow);
@@ -430,6 +440,7 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
                 this.columnMaximo = base.Columns["Maximo"];
                 this.columnMaximoPermitido = base.Columns["MaximoPermitido"];
                 this.columnFamilia = base.Columns["Familia"];
+                this.columnMarca = base.Columns["Marca"];
                 this.columnSubFamilia = base.Columns["SubFamilia"];
             }
             
@@ -449,6 +460,8 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
                 base.Columns.Add(this.columnMaximoPermitido);
                 this.columnFamilia = new global::System.Data.DataColumn("Familia", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFamilia);
+                this.columnMarca = new global::System.Data.DataColumn("Marca", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMarca);
                 this.columnSubFamilia = new global::System.Data.DataColumn("SubFamilia", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSubFamilia);
                 this.columnClave.MaxLength = 10;
@@ -693,6 +706,21 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Marca {
+                get {
+                    try {
+                        return ((string)(this[this.tableExistenciaProductoDT.MarcaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Marca\' in table \'ExistenciaProductoDT\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableExistenciaProductoDT.MarcaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public string SubFamilia {
                 get {
                     try {
@@ -775,6 +803,16 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetFamiliaNull() {
                 this[this.tableExistenciaProductoDT.FamiliaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsMarcaNull() {
+                return this.IsNull(this.tableExistenciaProductoDT.MarcaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetMarcaNull() {
+                this[this.tableExistenciaProductoDT.MarcaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

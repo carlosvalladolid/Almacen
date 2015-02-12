@@ -483,14 +483,49 @@ namespace Activos.AccesoDatos.Almacen
                 DataSet ResultadoDatos = new DataSet();
                 SqlConnection Conexion = new SqlConnection(CadenaConexion);
                 SqlCommand Comando;
-                //SqlParameter Parametro;
+                SqlParameter Parametro;
                 SqlDataAdapter Adaptador;
                 ResultadoEntidad Resultado = new ResultadoEntidad();
 
                 try
                 {
-                    Comando = new SqlCommand("SeleccionarProductoenExistencia", Conexion);
-                    Comando.CommandType = CommandType.StoredProcedure;                               
+                    //Comando = new SqlCommand("SeleccionarProductoenExistencia", Conexion);
+                    //Comando.CommandType = CommandType.StoredProcedure;
+
+                    Comando = new SqlCommand("SeleccionarExistenciaProductoProcedimiento", Conexion);
+                    Comando.CommandType = CommandType.StoredProcedure;
+
+                    //Parametro = new SqlParameter("ProductoId", SqlDbType.VarChar);
+                    //Parametro.Value = AlmacenEntidadObjeto.ProductoId;
+                    //Comando.Parameters.Add(Parametro);
+
+                    Parametro = new SqlParameter("Clave", SqlDbType.VarChar);
+                    Parametro.Value = AlmacenEntidadObjeto.Clave;
+                    Comando.Parameters.Add(Parametro);
+
+                    Parametro = new SqlParameter("FamiliaId", SqlDbType.SmallInt);
+                    Parametro.Value = AlmacenEntidadObjeto.FamiliaId;
+                    Comando.Parameters.Add(Parametro);
+
+                    Parametro = new SqlParameter("SubFamiliaId", SqlDbType.SmallInt);
+                    Parametro.Value = AlmacenEntidadObjeto.SubFamiliaId;
+                    Comando.Parameters.Add(Parametro);
+
+                    Parametro = new SqlParameter("MarcaId", SqlDbType.SmallInt);
+                    Parametro.Value = AlmacenEntidadObjeto.MarcaId;
+                    Comando.Parameters.Add(Parametro);
+
+                    //Parametro = new SqlParameter("Descripcion", SqlDbType.VarChar);
+                    //Parametro.Value = AlmacenEntidadObjeto.Descripcion;
+                    //Comando.Parameters.Add(Parametro);
+
+                    //Parametro = new SqlParameter("BusquedaRapida", SqlDbType.VarChar);
+                    //Parametro.Value = AlmacenEntidadObjeto.BusquedaRapida;
+                    //Comando.Parameters.Add(Parametro);
+
+                    //Parametro = new SqlParameter("BuscarNombre", SqlDbType.VarChar);
+                    //Parametro.Value = AlmacenEntidadObjeto.BuscarNombre;
+                    //Comando.Parameters.Add(Parametro);
 
                     Adaptador = new SqlDataAdapter(Comando);
                     ResultadoDatos = new DataSet();

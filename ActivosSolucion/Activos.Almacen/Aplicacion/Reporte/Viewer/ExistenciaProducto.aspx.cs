@@ -31,12 +31,17 @@ namespace Almacen.Web.Aplicacion.Reporte.Viewer
         #region "Eventos"
             protected void BotonBusqueda_Click(object sender, EventArgs e)
             {
-
+                seleccionarReporteExistenciaProducto();
             }
 
             protected void BotonCancelarBusqueda_Click(object sender, EventArgs e)
             {
 
+            }
+
+            protected void ddlFamilia_SelectedIndexChanged(object sender, EventArgs e)
+            {
+                SeleccionarSubfamilia();
             }
 
             protected void Page_Load(object sender, EventArgs e)
@@ -52,7 +57,9 @@ namespace Almacen.Web.Aplicacion.Reporte.Viewer
                     return;
 
                 SeleccionarFamilia();
-                seleccionarReporteExistenciaProducto();
+                SeleccionarSubfamilia();
+                SeleccionarMarca();
+                //seleccionarReporteExistenciaProducto();
             }
 
             private void MostrarMensaje(string Mensaje, string TipoMensaje)
@@ -90,19 +97,91 @@ namespace Almacen.Web.Aplicacion.Reporte.Viewer
                 FamiliaCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
             }
 
+            private void SeleccionarSubfamilia()
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                SubFamiliaEntidad SubFamiliaEntidadObjeto = new SubFamiliaEntidad();
+                SubFamiliaProceso SubFamiliaProcesoObjeto = new SubFamiliaProceso();
+
+                //SubFamiliaEntidadObjeto.EstatusId = (Int16)ConstantePrograma.EstatusSubFamilia.Activo;
+                SubFamiliaEntidadObjeto.FamiliaId = Int16.Parse(FamiliaCombo.SelectedValue);
+
+                if (SubFamiliaEntidadObjeto.FamiliaId == 0)
+                {
+                    SubFamiliaCombo.Items.Clear();
+                }
+                else
+                {
+                    Resultado = SubFamiliaProcesoObjeto.SeleccionarSubFamilia(SubFamiliaEntidadObjeto);
+
+                    SubFamiliaCombo.DataValueField = "SubFamiliaId";
+                    SubFamiliaCombo.DataTextField = "Nombre";
+
+                    if (Resultado.ErrorId == 0)
+                    {
+                        SubFamiliaCombo.DataSource = Resultado.ResultadoDatos;
+                        SubFamiliaCombo.DataBind();
+                    }
+                    else
+                    {
+                      // EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+                    }
+                }
+
+                SubFamiliaCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
+            }
+
+            private void SeleccionarMarca()
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                MarcaEntidad MarcaEntidadObjeto = new MarcaEntidad();
+                MarcaProceso MarcaProcesoObjeto = new MarcaProceso();
+
+                //MarcaEntidadObjeto.EstatusId = (Int16)ConstantePrograma.EstatusMarca.Activo;
+
+                Resultado = MarcaProcesoObjeto.SeleccionarMarca(MarcaEntidadObjeto);
+
+                MarcaCombo.DataValueField = "MarcaId";
+                MarcaCombo.DataTextField = "Nombre";
+
+                if (Resultado.ErrorId == 0)
+                {
+                    MarcaCombo.DataSource = Resultado.ResultadoDatos;
+                    MarcaCombo.DataBind();
+                }
+                else
+                {
+                   // EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+                }
+
+                MarcaCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
+            }
+
+
             private void seleccionarReporteExistenciaProducto()
             {
                 AlmacenEntidad AlmacenEntidad = new AlmacenEntidad();
                 AlmacenProceso AlmacenProceso = new AlmacenProceso();
                 ResultadoEntidad ResultadoDatosEntidad = new ResultadoEntidad();
 
+                AlmacenEntidad.Clave = ClaveBusqueda.Text.Trim();
+                AlmacenEntidad.Descripcion = NombreBusqueda.Text.Trim();
+                AlmacenEntidad.FamiliaId = Int16.Parse(FamiliaCombo.SelectedValue);
+                AlmacenEntidad.SubFamiliaId = Int16.Parse(SubFamiliaCombo.SelectedValue);
+                AlmacenEntidad.MarcaId = Int16.Parse(MarcaCombo.SelectedValue);
+
                 ResultadoDatosEntidad = AlmacenProceso.SeleccionarExistenciaProducto(AlmacenEntidad);
 
-                ReportDataSource ParametroFuenteDatos = new ReportDataSource("ExistenciaPoductoDS_ExistenciaProductoDT", ResultadoDatosEntidad.ResultadoDatos.Tables[0]);
+                if (ResultadoDatosEntidad.ErrorId == 0)
+                {
+                    ReportDataSource ParametroFuenteDatos = new ReportDataSource("ExistenciaPoductoDS_ExistenciaProductoDT", ResultadoDatosEntidad.ResultadoDatos.Tables[0]);
 
-                ExistenciaProductoReporteViewer.LocalReport.DataSources.Clear();
-                ExistenciaProductoReporteViewer.LocalReport.DataSources.Add(ParametroFuenteDatos);
-                ExistenciaProductoReporteViewer.LocalReport.Refresh();
+                    ExistenciaProductoReporteViewer.LocalReport.DataSources.Clear();
+                    ExistenciaProductoReporteViewer.LocalReport.DataSources.Add(ParametroFuenteDatos);
+                    ExistenciaProductoReporteViewer.LocalReport.Refresh();
+                }
+
+                //MostrarMensaje(AlmacenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
             }
         #endregion
     }
