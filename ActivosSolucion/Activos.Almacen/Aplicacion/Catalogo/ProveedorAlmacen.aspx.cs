@@ -216,6 +216,8 @@ namespace Activos.Almacen.Aplicacion.Catalogo
                 SeleccionarBanco();
                 BusquedaAvanzada();
                 SeleccionarTextoError();
+
+                //EliminarRegistroLink.Attributes.Add("onclick", "return ValidarCasillas()");
             }
         }
 
