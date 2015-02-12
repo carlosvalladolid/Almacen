@@ -36,7 +36,7 @@
                     </table>
                 </div>
 
-                <asp:Panel CssClass="SearchDiv" ID="PanelBusquedaAvanzada" Visible="false" runat="server">
+                <asp:Panel CssClass="SearchDiv" ID="PanelBusquedaAvanzada" Visible="true" runat="server">
                    <table class="TablaFormulario">
                         <tr>
                             <td class="Nombre">Nombre</td>
@@ -52,9 +52,9 @@
                         </tr>
                     </table>
                 </asp:Panel>
-                </asp:Panel>
+               
 
-                <asp:Panel CssClass="NewRowDiv" ID="PanelNuevoRegistro" Visible="false" runat="server">
+                <asp:Panel CssClass="NewRowDiv" ID="PanelNuevoRegistro" Visible="true" runat="server">
                     <table class="TablaFormulario">
                             
                                 <tr>
@@ -66,21 +66,22 @@
                                  <tr>
                                     <td class="Nombre">Estado</td>
                                     <td class="Requerido">*</td>
-                                    <td class="Campo"><asp:DropDownList CssClass="ComboMediano" ID="EstadoNuevo"  OnSelectedIndexChanged = "EstadoNuevo_SelectedIndexChanged" AutoPostBack="true" runat="server" ></asp:DropDownList></td>
+                                    <td class="Campo"><asp:DropDownList CssClass="ComboMediano" ID="EstadoNuevo" OnSelectedIndexChanged = "EstadoNuevo_SelectedIndexChanged" AutoPostBack="true"  runat="server" ></asp:DropDownList></td>
                                     <td class="Espacio"></td>                                 
                                  </tr>
+                                   <tr>                                  
+                                    <td class="Nombre">Ciudad</td>
+                                    <td class="Requerido">*</td>
+                                    <td class="Campo"><asp:DropDownList CssClass="ComboMediano" ID="CiudadNuevo" runat="server" ></asp:DropDownList></td>
+                                    <td class="Espacio"></td>
+                                  </tr>
                                  <tr>  
                                     <td class="Nombre">Banco</td>
                                     <td class="Requerido">*</td>
                                     <td class="Campo"><asp:DropDownList CssClass="ComboMediano" ID="BancoNuevo" runat="server" ></asp:DropDownList></td>
                                     <td class="Espacio"></td>
                                  </tr>                                
-                                 <tr>                                  
-                                    <td class="Nombre">Ciudad</td>
-                                    <td class="Requerido">*</td>
-                                    <td class="Campo"><asp:DropDownList CssClass="ComboMediano" ID="CiudadNuevo" runat="server" ></asp:DropDownList></td>
-                                    <td class="Espacio"></td>
-                                  </tr>
+                               
                                   <tr>  
                                      <td class="Nombre">Nombre</td>
                                     <td class="Requerido">*</td>
@@ -175,7 +176,7 @@
                                         <asp:RequiredFieldValidator CssClass="TextoError" ControlToValidate="NombreContactoNuevo" Display="Dynamic" ErrorMessage="" ID="NombreContactoRequerido" SetFocusOnError="true" ValidationGroup="Guardar" runat="server"></asp:RequiredFieldValidator>
                                      
                                        <br />
-                                        <asp:ImageButton AlternateText="Guardar" ID="BotonGuardar" ImageUrl="/Imagen/Boton/BotonGuardar.png" OnClick="BotonGuardar_Click" runat="server" ValidationGroup="Guardar" />&nbsp;&nbsp;
+                                      <asp:ImageButton AlternateText="Guardar" ID="BotonGuardar" ImageUrl="/Imagen/Boton/BotonGuardar.png" OnClick="BotonGuardar_Click" runat="server" ValidationGroup="Guardar" />&nbsp;&nbsp;
                                         <asp:ImageButton AlternateText="Cancelar" ID="BotonCancelarNuevo" ImageUrl="/Imagen/Boton/BotonCancelar.png" OnClick="BotonCancelarNuevo_Click" runat="server" />
                                     </td>
                                 </tr>
@@ -191,7 +192,7 @@
 
 			   <div class="DivTabla">
                             <asp:GridView AllowPaging="true" AllowSorting="false" AutoGenerateColumns="false" BorderWidth="0"
-                                CssClass="TablaInformacion" DataKeyNames="ProveedorId" ID="TablaProveedor"  OnPageIndexChanging="TablaProveedor_PageIndexChanging" OnRowCommand="TablaProveedor_RowCommand" runat="server" PageSize="10">
+                                CssClass="TablaInformacion" DataKeyNames="ProveedorId" ID="TablaProveedor" OnPageIndexChanging="TablaProveedor_PageIndexChanging" OnRowCommand="TablaProveedor_RowCommand" runat="server" PageSize="10">
                                 <EmptyDataTemplate>
                                     <table class="TablaVacia">
                                         <tr class="Encabezado">
@@ -253,7 +254,7 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>   
                 
-                <asp:HiddenField ID="ProveedorIdHidden" runat="server" Value="" />
+                <asp:HiddenField ID="ProveedorIdHidden" runat="server" Value="0" />
               
             </ContentTemplate>
         </asp:UpdatePanel>

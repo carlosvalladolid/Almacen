@@ -5,127 +5,153 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
+//using Activos.AccesoDatos.Catalogo;
 using Activos.AccesoDatos.Almacen;
-using Activos.Comun.Cadenas;
-using Activos.Comun.Constante;
-using Activos.Entidad.Almacen;
-using Activos.Entidad.General;
-using Activos.Entidad.Seguridad;
 using Activos.ProcesoNegocio.Almacen;
+using Activos.Comun.Constante;
+using Activos.Comun.Cadenas;
+using Activos.Entidad.General;
+//using Activos.Entidad.Catalogo;
+using Activos.Entidad.Almacen;
+
 
 namespace Activos.ProcesoNegocio.Almacen
 {
-  public  class ProveedorAlmacenProceso:Base
+    public class ProveedorAlmacenProceso : Base
     {
-        private int _ErrorId;
-        private string _DescripcionError;
-        DataSet _ResultadoDatos;
-        ProveedorAlmacenEntidad _ProveedorAlmacenEntidad;
-
-        /// <summary>
-        ///     Numero de error, en caso de que haya ocurrido uno. Cero por default.
-        /// </summary>
-        public int ErrorId
+        public bool BuscarProveedorNombreDuplicado(ProveedorAlmacenEntidad ProveedorAlmacenObjetoEntidad)
         {
-            get { return _ErrorId; }
+            bool ExisteProveedor = false;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            ProveedorAlmacenEntidad BuscarProveedorObjetoEntidad = new ProveedorAlmacenEntidad();
+
+            BuscarProveedorObjetoEntidad.BuscarNombre = Comparar.EstandarizarCadena(ProveedorAlmacenObjetoEntidad.Nombre);
+
+            Resultado = SeleccionarProveedor(BuscarProveedorObjetoEntidad);
+
+            if (Resultado.ResultadoDatos.Tables[0].Rows.Count > 0)
+            {
+                if (int.Parse(Resultado.ResultadoDatos.Tables[0].Rows[0]["ProveedorId"].ToString()) != ProveedorAlmacenObjetoEntidad.ProveedorId)
+                    ExisteProveedor = true;
+                else
+                    ExisteProveedor = false;
+            }
+            return ExisteProveedor;
         }
 
-        /// <summary>
-        ///     Descripción de error, en caso de que haya ocurrido uno. Empty por default.
-        /// </summary>
-        public string DescripcionError
+
+
+
+        //protected ResultadoEntidad EliminarProveedor(string CadenaProveedorId)
+        //{
+        //    string CadenaConexion = string.Empty;
+        //    ResultadoEntidad ResultadoEntidadObjeto = new ResultadoEntidad();
+        //    ProveedorAlmacenAcceso ProveedorAlmacenAccesoObjeto = new ProveedorAlmacenAcceso();
+
+        //    CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+        //    ResultadoEntidadObjeto = ProveedorAlmacenAccesoObjeto.EliminarProveedor(CadenaProveedorId, CadenaConexion);
+
+        //    return ResultadoEntidadObjeto;
+        //}
+
+        //public ResultadoEntidad EliminarProveedor(ProveedorAlmacenEntidad ProveedorAlmacenObjetoEntidad)
+        //{
+        //    ResultadoEntidad ResultadoEntidadObjeto = new ResultadoEntidad();
+
+        //    //// Validar que los proveedores no contengan información relacionada con otras tablas
+        //    //if (ProveedorAlmacenObjetoEntidad.CadenaProveedorId == true)
+        //    //{
+        //    ////    ResultadoEntidadObjeto.ErrorId = (int)ConstantePrograma.Proveedor.ProveedorTieneRegistrosRelacionados;
+        //    ////    ResultadoEntidadObjeto.DescripcionError = TextoError.ProveedorTieneRegistrosRelacionados;
+        //    //}
+        //    //else
+        //    {
+        //        // Si se pasaron todas las validaciones, hay que borrar el o los proveedores seleccionados
+        //        ResultadoEntidadObjeto = EliminarProveedor(ProveedorAlmacenObjetoEntidad);
+        //    }
+
+        //    return ResultadoEntidadObjeto;
+        //}
+
+        //protected bool TieneRelacionesElProveedor(string CadenaProveedorId)
+        //{
+        //    bool TieneRelacionesElProveedor = false;
+
+        //    // Revisar relaciones con Compra
+        //    if (TieneComprasRelacionados(CadenaProveedorId))
+        //        return true;
+
+        //    return TieneRelacionesElProveedor;
+        //}
+
+        //protected bool TieneComprasRelacionados(string CadenaProveedorId)
+        //{
+        //    bool TieneRelaciones = false;
+        //    CompraProceso CompraProcesoObjeto = new CompraProceso();
+
+        //    TieneRelaciones = CompraProcesoObjeto.SeleccionarCompraProveedoresRelacionados(CadenaProveedorId);
+
+        //    return TieneRelaciones;
+        //}
+
+        public ResultadoEntidad GuardarProveedor(ProveedorAlmacenEntidad ProveedorAlmacenObjetoEntidad)
         {
-            get { return _DescripcionError; }
+            string CadenaConexion = string.Empty;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            ResultadoEntidad ResultadoValidacion = new ResultadoEntidad();
+            ProveedorAlmacenAcceso ProveedorAlmacenAccesoObjeto = new ProveedorAlmacenAcceso();
+
+            CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+            ResultadoValidacion = ValidarProveedor(ProveedorAlmacenObjetoEntidad);
+
+            if (ResultadoValidacion.ErrorId == 0)
+            {
+                if (ProveedorAlmacenObjetoEntidad.ProveedorId == 0)
+                {
+                    Resultado = ProveedorAlmacenAccesoObjeto.InsertarProveedor(ProveedorAlmacenObjetoEntidad, CadenaConexion);
+                }
+                else
+                {
+                    Resultado = ProveedorAlmacenAccesoObjeto.ActualizarProveedor(ProveedorAlmacenObjetoEntidad, CadenaConexion);
+                }
+            }
+            else
+            {
+                Resultado = ResultadoValidacion;
+            }
+
+            return Resultado;
         }
 
-        /// <summary>
-        ///     DataSet con el resultado de la base de datos.
-        /// </summary>
-        public DataSet ResultadoDatos
+        public ResultadoEntidad SeleccionarProveedor(ProveedorAlmacenEntidad ProveedorAlmacenObjetoEntidad)
         {
-            get { return _ResultadoDatos; }
+            string CadenaConexion = string.Empty;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            ProveedorAlmacenAcceso ProveedorAlmacenAccesoObjeto = new ProveedorAlmacenAcceso();
+
+            CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+            Resultado = ProveedorAlmacenAccesoObjeto.SeleccionarProveedor(ProveedorAlmacenObjetoEntidad, CadenaConexion);
+
+            return Resultado;
         }
 
-        /// <summary>
-        ///     Entidad del proceso.
-        /// </summary>
-        public ProveedorAlmacenEntidad ProveedorAlmacenEntidad
+        protected ResultadoEntidad ValidarProveedor(ProveedorAlmacenEntidad ProveedorAlmacenObjetoEntidad)
         {
-            get { return _ProveedorAlmacenEntidad; }
-            set { _ProveedorAlmacenEntidad = value; }
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+
+            // Revisar si ya existe un proveedor con ese nombre
+            if (BuscarProveedorNombreDuplicado(ProveedorAlmacenObjetoEntidad))
+            {
+                Resultado.ErrorId = (int)ConstantePrograma.Proveedor.ProveedorConNombreDuplicado;
+                Resultado.DescripcionError = TextoError.ProveedorConNombreDuplicado;
+                return Resultado;
+            }
+
+            return Resultado;
         }
-
-        /// <summary>
-        ///     Constructor de la clase
-        /// </summary>
-        public ProveedorAlmacenProceso()
-        {
-            _ErrorId = 0;
-            _DescripcionError = string.Empty;
-            _ResultadoDatos = null;
-            _ProveedorAlmacenEntidad = new ProveedorAlmacenEntidad();
-        }
-
-        #region "Métodos"
-            /// <summary>
-            ///     Busca los proveedores en la base de datos.
-            /// </summary>
-            //public void SeleccionarProveedor()
-            //{
-            //    string CadenaConexion = string.Empty;
-            //    ProveedorAlmacenAcceso ProveedorAlmacenAcceso = new ProveedorAlmacenAcceso();
-
-            //    CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
-
-            //    _ResultadoDatos = ProveedorAlmacenAcceso.SeleccionarProveedor(_ProveedorAlmacenEntidad, CadenaConexion);
-               
-            //    _ErrorId = ProveedorAlmacenAcceso.ErrorId;
-            //    _DescripcionError = ProveedorAlmacenAcceso.DescripcionError;
-            //}
-
-            //public ResultadoEntidad GuardarProveedor(ProveedorAlmacenEntidad ProveedorAlmacenObjetoEntidad)
-            //{
-            //    string CadenaConexion = string.Empty;
-            //    ResultadoEntidad Resultado = new ResultadoEntidad();
-            //    ResultadoEntidad ResultadoValidacion = new ResultadoEntidad();
-            //    ProveedorAlmacenAcceso ProveedorAlmacenAccesoObjeto = new ProveedorAlmacenAcceso();
-
-            //    CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
-
-            //    ResultadoValidacion = ValidarProveedor(ProveedorAlmacenObjetoEntidad);
-
-            //    if (ResultadoValidacion.ErrorId == 0)
-            //    {
-            //        if (ProveedorAlmacenObjetoEntidad.ProveedorId == 0)
-            //        {
-            //            Resultado = ProveedorAlmacenAccesoObjeto.InsertarProveedor(ProveedorAlmacenObjetoEntidad, CadenaConexion);
-            //        }
-            //        else
-            //        {
-            //            Resultado = ProveedorAlmacenAccesoObjeto.ActualizarProveedor(ProveedorAlmacenObjetoEntidad, CadenaConexion);
-            //        }
-            //    }
-            //    else
-            //    {
-            //        Resultado = ResultadoValidacion;
-            //    }
-
-            //    return Resultado;
-            //}
-
-            //public ResultadoEntidad SeleccionarProveedor(ProveedorAlmacenEntidad ProveedorAlmacenObjetoEntidad)
-            //{
-            //    string CadenaConexion = string.Empty;
-            //    ResultadoEntidad Resultado = new ResultadoEntidad();
-            //    ProveedorAlmacenAcceso ProveedorAlmacenAccesoObjeto = new ProveedorAlmacenAcceso();
-
-            //    CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
-
-            //    Resultado = ProveedorAlmacenAccesoObjeto.SeleccionarProveedor(ProveedorAlmacenObjetoEntidad, CadenaConexion);
-
-            //    return Resultado;
-            //}
-        #endregion
     }
-}
 
+}

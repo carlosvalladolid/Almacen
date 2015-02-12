@@ -113,15 +113,6 @@ namespace Activos.Almacen.Aplicacion.Catalogo {
         protected global::System.Web.UI.WebControls.DropDownList EstadoNuevo;
         
         /// <summary>
-        /// BancoNuevo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList BancoNuevo;
-        
-        /// <summary>
         /// CiudadNuevo control.
         /// </summary>
         /// <remarks>
@@ -129,6 +120,15 @@ namespace Activos.Almacen.Aplicacion.Catalogo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList CiudadNuevo;
+        
+        /// <summary>
+        /// BancoNuevo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList BancoNuevo;
         
         /// <summary>
         /// NombreNuevo control.
