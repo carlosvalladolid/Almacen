@@ -76,17 +76,19 @@
         <td><img alt="Inicio" border="0" src="/Imagen/Icono/IconoReporte.png" title="Reportes" /></td>
         <td class="Section">Reportes</td>
     </tr>
-    <tr>
-        <td class="Space"></td>
-        <td></td>
-        <td><a href="/Aplicacion/Reporte/Viewer/ExistenciaProducto.aspx">Existencia de Producto</a></td>
-    </tr>
     
      <tr>
         <td class="Space"></td>
         <td></td>
         <td><a href="/Aplicacion/Reporte/Viewer/ConsumiblesPorDireccion.aspx">Consumo por Dirección</a></td>
     </tr>
+    
+    <tr>
+        <td class="Space"></td>
+        <td></td>
+        <td><a href="/Aplicacion/Reporte/Viewer/ExistenciaProducto.aspx">Existencia de Producto</a></td>
+    </tr>
+    
     <tr>
         <td class="Space"></td>
         <td><img alt="Inicio" border="0" src="/Imagen/Icono/IconoOpcion.png" title="Configuración" /></td>

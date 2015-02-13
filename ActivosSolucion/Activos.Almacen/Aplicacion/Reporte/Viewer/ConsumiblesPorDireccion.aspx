@@ -6,31 +6,19 @@
 
 <asp:Content ID="ContenidoEncabezado" ContentPlaceHolderID="ContenedorEncabezado" runat="server">
     
-   <%-- <style type="text/css">
-        .style1
-        {
-            width: 342px;
-        }
-    </style>--%>
-    
-    
-     <script language="javascript" type="text/javascript">
+     <link href="/Incluir/Estilo/Privado/jquery-ui-1.8.16.custom.css" rel="Stylesheet" type="text/css" />
+    <link href="/Incluir/Estilo/Privado/demos.css" rel="Stylesheet" type="text/css" />
+
+    <script src="/Incluir/Javascript/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
+    <script src="/Incluir/Javascript/jquery.ui.datepicker-es.js" type="text/javascript"></script>
+    <script src="/Incluir/Javascript/Calendar.js" type="text/javascript"></script>
+    <script language="javascript" type="text/javascript">
         function pageLoad(sender, args)
         {
             SetNewCalendar("#<%= FechaDesde.ClientID %>");
             SetNewCalendar("#<%= FechaHasta.ClientID %>");
                 }
     </script>
-    
-    
-    <style type="text/css">
-        .style1
-        {
-            width: 326px;
-        }
-    </style>
-    
-    
 </asp:Content>
 
 <asp:Content ID="ContenidoCuerpo" ContentPlaceHolderID="ContenedorCuerpo" runat="server">
@@ -59,10 +47,10 @@
                             <td class="Nombre">Fechas</td>
                             <td class="Espacio">&nbsp;</td>
                             <td class="Campo" >Desde&nbsp;<asp:TextBox CssClass="CajaTextoPequenia" ID="FechaDesde" MaxLength="50" runat="server" Text=""></asp:TextBox>&nbsp;
-                                               Hasta&nbsp;<asp:TextBox CssClass="CajaTextoPequenia" ID="FechaHasta" MaxLength="50" runat="server" Text=""></asp:TextBox>                                           
-                                               
+                                               Hasta&nbsp;<asp:TextBox CssClass="CajaTextoPequenia" ID="FechaHasta" MaxLength="50" runat="server" Text=""></asp:TextBox>&nbsp;&nbsp;                                           
+                                               <span class="NotaCampo"> (dd/mm/aaaa)</span>
                                                </td>
-                                               <td><span class="NotaCampo"> (dd/mm/aaaa)</span></td>
+                                               <td></td>
                      </tr>  
                      <tr>
                         <td class="Nombre">Dirección</td>
