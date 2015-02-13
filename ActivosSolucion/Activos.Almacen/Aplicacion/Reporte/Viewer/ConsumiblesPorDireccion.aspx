@@ -6,6 +6,31 @@
 
 <asp:Content ID="ContenidoEncabezado" ContentPlaceHolderID="ContenedorEncabezado" runat="server">
     
+   <%-- <style type="text/css">
+        .style1
+        {
+            width: 342px;
+        }
+    </style>--%>
+    
+    
+     <script language="javascript" type="text/javascript">
+        function pageLoad(sender, args)
+        {
+            SetNewCalendar("#<%= FechaDesde.ClientID %>");
+            SetNewCalendar("#<%= FechaHasta.ClientID %>");
+                }
+    </script>
+    
+    
+    <style type="text/css">
+        .style1
+        {
+            width: 326px;
+        }
+    </style>
+    
+    
 </asp:Content>
 
 <asp:Content ID="ContenidoCuerpo" ContentPlaceHolderID="ContenedorCuerpo" runat="server">
@@ -29,14 +54,25 @@
                 </div>
 
                 <table class="TablaFormulario">
+                
+                      <tr>
+                            <td class="Nombre">Fechas</td>
+                            <td class="Espacio">&nbsp;</td>
+                            <td class="Campo" >Desde&nbsp;<asp:TextBox CssClass="CajaTextoPequenia" ID="FechaDesde" MaxLength="50" runat="server" Text=""></asp:TextBox>&nbsp;
+                                               Hasta&nbsp;<asp:TextBox CssClass="CajaTextoPequenia" ID="FechaHasta" MaxLength="50" runat="server" Text=""></asp:TextBox>                                           
+                                               
+                                               </td>
+                                               <td><span class="NotaCampo"> (dd/mm/aaaa)</span></td>
+                     </tr>  
                      <tr>
                         <td class="Nombre">Dirección</td>
                         <td class="Espacio"></td>
-                        <td class="Campo"><asp:DropDownList CssClass="ComboGrande" ID="DireccionCombo" runat="server" ></asp:DropDownList></td>
+                        <td class="Campo" colspan  ="2"><asp:DropDownList CssClass="ComboGrande" ID="DireccionCombo" runat="server" ></asp:DropDownList></td>
+                        
                     </tr>
                     
                     <tr>
-                        <td colspan="3">
+                        <td colspan="4">
                             <br />
                             <asp:ImageButton AlternateText="Buscar" ID="BotonBusqueda" ImageUrl="/Imagen/Boton/BotonBuscar.png" OnClick="BotonBusqueda_Click" runat="server" />&nbsp;&nbsp;
                             <asp:ImageButton AlternateText="Cancelar" ID="BotonCancelarBusqueda" ImageUrl="/Imagen/Boton/BotonCancelar.png" OnClick="BotonCancelarBusqueda_Click" runat="server" />
@@ -45,7 +81,20 @@
                 </table>
 
                 <div class="DivTabla">
-                  
+                    <rsweb:ReportViewer ID="ConsumiblePorDireccionReporteViewer" runat="server" Font-Names="Verdana" Font-Size="10pt" Width="100%" Height="100%">
+                        <LocalReport ReportPath="Aplicacion/Reporte/Diseño/ConsumoPorDireccionRPT.rdlc">
+                            <DataSources>
+                                <rsweb:ReportDataSource DataSourceId="ObjectDataSource1" 
+                                    Name="ConsumoPorDireccionDS_ConsumoPorDireccionDT" />
+                            </DataSources>
+                        </LocalReport>
+                    </rsweb:ReportViewer>
+                    
+                    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
+                        SelectMethod="GetData" TypeName="Almacen.Web.ConsumoPorDireccionDSTableAdapters.">
+                    
+                    </asp:ObjectDataSource>
+                    
                 </div>
 
                 <asp:UpdateProgress AssociatedUpdatePanelID="PageUpdate" ID="AssociatedUpdate" runat="server">

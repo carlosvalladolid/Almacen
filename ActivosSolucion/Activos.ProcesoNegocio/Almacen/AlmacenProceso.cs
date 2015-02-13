@@ -273,6 +273,21 @@ namespace Activos.ProcesoNegocio.Almacen
                 return Resultado;
             }
 
+
+            public ResultadoEntidad SeleccionarConsumoPorDireccion(AlmacenEntidad AlmacenObjetoEntidad)
+            {
+                string CadenaConexion = string.Empty;
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                AlmacenAcceso AlmacenAccesoObjeto = new AlmacenAcceso();
+
+                CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+                Resultado = AlmacenAccesoObjeto.SeleccionarReporteConsumoPorDireccion(AlmacenObjetoEntidad, CadenaConexion);
+
+                return Resultado;
+            }
+
+
             public ResultadoEntidad SeleccionarProductoparaEditar(AlmacenEntidad AlmacenObjetoEntidad)
             {
                 string CadenaConexion = string.Empty;

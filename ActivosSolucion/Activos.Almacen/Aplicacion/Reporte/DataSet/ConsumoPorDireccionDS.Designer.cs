@@ -262,7 +262,21 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class ConsumoPorDireccionDTDataTable : global::System.Data.TypedTableBase<ConsumoPorDireccionDTRow> {
             
-            private global::System.Data.DataColumn columnDataColumn1;
+            private global::System.Data.DataColumn columnClave;
+            
+            private global::System.Data.DataColumn columnProducto;
+            
+            private global::System.Data.DataColumn columnCantidadSolicitada;
+            
+            private global::System.Data.DataColumn columnFechaRequisicion;
+            
+            private global::System.Data.DataColumn columnFechaSurtido;
+            
+            private global::System.Data.DataColumn columnCantidadSurtida;
+            
+            private global::System.Data.DataColumn columnSolicitante;
+            
+            private global::System.Data.DataColumn columnDireccion;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public ConsumoPorDireccionDTDataTable() {
@@ -295,9 +309,58 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn DataColumn1Column {
+            public global::System.Data.DataColumn ClaveColumn {
                 get {
-                    return this.columnDataColumn1;
+                    return this.columnClave;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn ProductoColumn {
+                get {
+                    return this.columnProducto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn CantidadSolicitadaColumn {
+                get {
+                    return this.columnCantidadSolicitada;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn FechaRequisicionColumn {
+                get {
+                    return this.columnFechaRequisicion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn FechaSurtidoColumn {
+                get {
+                    return this.columnFechaSurtido;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn CantidadSurtidaColumn {
+                get {
+                    return this.columnCantidadSurtida;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn SolicitanteColumn {
+                get {
+                    return this.columnSolicitante;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn DireccionColumn {
+                get {
+                    return this.columnDireccion;
                 }
             }
             
@@ -330,10 +393,17 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ConsumoPorDireccionDTRow AddConsumoPorDireccionDTRow(string DataColumn1) {
+            public ConsumoPorDireccionDTRow AddConsumoPorDireccionDTRow(string Clave, string Producto, string CantidadSolicitada, string FechaRequisicion, string FechaSurtido, string CantidadSurtida, string Solicitante, string Direccion) {
                 ConsumoPorDireccionDTRow rowConsumoPorDireccionDTRow = ((ConsumoPorDireccionDTRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        DataColumn1};
+                        Clave,
+                        Producto,
+                        CantidadSolicitada,
+                        FechaRequisicion,
+                        FechaSurtido,
+                        CantidadSurtida,
+                        Solicitante,
+                        Direccion};
                 rowConsumoPorDireccionDTRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowConsumoPorDireccionDTRow);
                 return rowConsumoPorDireccionDTRow;
@@ -353,13 +423,34 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             internal void InitVars() {
-                this.columnDataColumn1 = base.Columns["DataColumn1"];
+                this.columnClave = base.Columns["Clave"];
+                this.columnProducto = base.Columns["Producto"];
+                this.columnCantidadSolicitada = base.Columns["CantidadSolicitada"];
+                this.columnFechaRequisicion = base.Columns["FechaRequisicion"];
+                this.columnFechaSurtido = base.Columns["FechaSurtido"];
+                this.columnCantidadSurtida = base.Columns["CantidadSurtida"];
+                this.columnSolicitante = base.Columns["Solicitante"];
+                this.columnDireccion = base.Columns["Direccion"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             private void InitClass() {
-                this.columnDataColumn1 = new global::System.Data.DataColumn("DataColumn1", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDataColumn1);
+                this.columnClave = new global::System.Data.DataColumn("Clave", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnClave);
+                this.columnProducto = new global::System.Data.DataColumn("Producto", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProducto);
+                this.columnCantidadSolicitada = new global::System.Data.DataColumn("CantidadSolicitada", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCantidadSolicitada);
+                this.columnFechaRequisicion = new global::System.Data.DataColumn("FechaRequisicion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechaRequisicion);
+                this.columnFechaSurtido = new global::System.Data.DataColumn("FechaSurtido", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechaSurtido);
+                this.columnCantidadSurtida = new global::System.Data.DataColumn("CantidadSurtida", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCantidadSurtida);
+                this.columnSolicitante = new global::System.Data.DataColumn("Solicitante", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSolicitante);
+                this.columnDireccion = new global::System.Data.DataColumn("Direccion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDireccion);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -492,28 +583,206 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string DataColumn1 {
+            public string Clave {
                 get {
                     try {
-                        return ((string)(this[this.tableConsumoPorDireccionDT.DataColumn1Column]));
+                        return ((string)(this[this.tableConsumoPorDireccionDT.ClaveColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DataColumn1\' in table \'ConsumoPorDireccionDT\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Clave\' in table \'ConsumoPorDireccionDT\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableConsumoPorDireccionDT.DataColumn1Column] = value;
+                    this[this.tableConsumoPorDireccionDT.ClaveColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsDataColumn1Null() {
-                return this.IsNull(this.tableConsumoPorDireccionDT.DataColumn1Column);
+            public string Producto {
+                get {
+                    try {
+                        return ((string)(this[this.tableConsumoPorDireccionDT.ProductoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Producto\' in table \'ConsumoPorDireccionDT\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsumoPorDireccionDT.ProductoColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetDataColumn1Null() {
-                this[this.tableConsumoPorDireccionDT.DataColumn1Column] = global::System.Convert.DBNull;
+            public string CantidadSolicitada {
+                get {
+                    try {
+                        return ((string)(this[this.tableConsumoPorDireccionDT.CantidadSolicitadaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CantidadSolicitada\' in table \'ConsumoPorDireccionDT\' is DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsumoPorDireccionDT.CantidadSolicitadaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string FechaRequisicion {
+                get {
+                    try {
+                        return ((string)(this[this.tableConsumoPorDireccionDT.FechaRequisicionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FechaRequisicion\' in table \'ConsumoPorDireccionDT\' is DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsumoPorDireccionDT.FechaRequisicionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string FechaSurtido {
+                get {
+                    try {
+                        return ((string)(this[this.tableConsumoPorDireccionDT.FechaSurtidoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FechaSurtido\' in table \'ConsumoPorDireccionDT\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsumoPorDireccionDT.FechaSurtidoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string CantidadSurtida {
+                get {
+                    try {
+                        return ((string)(this[this.tableConsumoPorDireccionDT.CantidadSurtidaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CantidadSurtida\' in table \'ConsumoPorDireccionDT\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableConsumoPorDireccionDT.CantidadSurtidaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Solicitante {
+                get {
+                    try {
+                        return ((string)(this[this.tableConsumoPorDireccionDT.SolicitanteColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Solicitante\' in table \'ConsumoPorDireccionDT\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsumoPorDireccionDT.SolicitanteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Direccion {
+                get {
+                    try {
+                        return ((string)(this[this.tableConsumoPorDireccionDT.DireccionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Direccion\' in table \'ConsumoPorDireccionDT\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsumoPorDireccionDT.DireccionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsClaveNull() {
+                return this.IsNull(this.tableConsumoPorDireccionDT.ClaveColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetClaveNull() {
+                this[this.tableConsumoPorDireccionDT.ClaveColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsProductoNull() {
+                return this.IsNull(this.tableConsumoPorDireccionDT.ProductoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetProductoNull() {
+                this[this.tableConsumoPorDireccionDT.ProductoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsCantidadSolicitadaNull() {
+                return this.IsNull(this.tableConsumoPorDireccionDT.CantidadSolicitadaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetCantidadSolicitadaNull() {
+                this[this.tableConsumoPorDireccionDT.CantidadSolicitadaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsFechaRequisicionNull() {
+                return this.IsNull(this.tableConsumoPorDireccionDT.FechaRequisicionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetFechaRequisicionNull() {
+                this[this.tableConsumoPorDireccionDT.FechaRequisicionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsFechaSurtidoNull() {
+                return this.IsNull(this.tableConsumoPorDireccionDT.FechaSurtidoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetFechaSurtidoNull() {
+                this[this.tableConsumoPorDireccionDT.FechaSurtidoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsCantidadSurtidaNull() {
+                return this.IsNull(this.tableConsumoPorDireccionDT.CantidadSurtidaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetCantidadSurtidaNull() {
+                this[this.tableConsumoPorDireccionDT.CantidadSurtidaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsSolicitanteNull() {
+                return this.IsNull(this.tableConsumoPorDireccionDT.SolicitanteColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetSolicitanteNull() {
+                this[this.tableConsumoPorDireccionDT.SolicitanteColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsDireccionNull() {
+                return this.IsNull(this.tableConsumoPorDireccionDT.DireccionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetDireccionNull() {
+                this[this.tableConsumoPorDireccionDT.DireccionColumn] = global::System.Convert.DBNull;
             }
         }
         

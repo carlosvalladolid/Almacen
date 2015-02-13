@@ -478,6 +478,63 @@ namespace Activos.AccesoDatos.Almacen
                 }
             }
 
+            public ResultadoEntidad SeleccionarReporteConsumoPorDireccion(AlmacenEntidad AlmacenEntidadObjeto, string CadenaConexion)
+            {
+                DataSet ResultadoDatos = new DataSet();
+                SqlConnection Conexion = new SqlConnection(CadenaConexion);
+                SqlCommand Comando;
+                SqlParameter Parametro;
+                SqlDataAdapter Adaptador;
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+
+                try
+                {
+
+                    Comando = new SqlCommand("SeleccionarConsumiblePorDireccionProcedimiento", Conexion);
+                    Comando.CommandType = CommandType.StoredProcedure;
+
+                    Parametro = new SqlParameter("StrFechaInicio", SqlDbType.VarChar);
+                    Parametro.Value = AlmacenEntidadObjeto.FechaInicial;
+                    Comando.Parameters.Add(Parametro);
+
+                    Parametro = new SqlParameter("StrFechaFin", SqlDbType.VarChar);
+                    Parametro.Value = AlmacenEntidadObjeto.FechaFinal;
+                    Comando.Parameters.Add(Parametro);
+              
+
+                    Parametro = new SqlParameter("Clave", SqlDbType.VarChar);
+                    Parametro.Value = AlmacenEntidadObjeto.Clave;
+                    Comando.Parameters.Add(Parametro);
+
+                    Parametro = new SqlParameter("DireccionId", SqlDbType.SmallInt);
+                    Parametro.Value = AlmacenEntidadObjeto.DireccionId;
+                    Comando.Parameters.Add(Parametro);
+
+                    Parametro = new SqlParameter("EstatusId", SqlDbType.SmallInt);
+                    Parametro.Value = AlmacenEntidadObjeto.EstatusId;
+                    Comando.Parameters.Add(Parametro);
+                   
+                    Adaptador = new SqlDataAdapter(Comando);
+                    ResultadoDatos = new DataSet();
+
+                    Conexion.Open();
+                    Adaptador.Fill(ResultadoDatos);
+                    Conexion.Close();
+
+                    Resultado.ResultadoDatos = ResultadoDatos;
+
+                    return Resultado;
+                }
+                catch (SqlException Excepcion)
+                {
+                    Resultado.ErrorId = Excepcion.Number;
+                    Resultado.DescripcionError = Excepcion.Message;
+
+                    return Resultado;
+                }
+            }
+
+
             public ResultadoEntidad SeleccionarReporteExistenciaProducto(AlmacenEntidad AlmacenEntidadObjeto, string CadenaConexion)
             {
                 DataSet ResultadoDatos = new DataSet();

@@ -22,7 +22,9 @@ namespace Activos.Entidad.Almacen
         private Int16 _ExistenciaInicial;
 
         //*********************************
-
+        private Int16 _DireccionId;
+        private string _FechaInicial;
+        private string _FechaFinal;
         private string _BusquedaRapida;                 // Texto de búsqueda en el catálogo de edificios
         private string _CadenaProductoId;               // Cadena con Ids de marcas seleccionados
         private string _BuscarNombre;                   // Campo para buscar subfamilias por nombre exacto
@@ -44,7 +46,10 @@ namespace Activos.Entidad.Almacen
             _ExistenciaInicial = 0;
 
             //**************************
-
+            
+            _DireccionId = 0;
+            _FechaInicial = string.Empty;
+            _FechaFinal = string.Empty;
             _BusquedaRapida = string.Empty;
             _CadenaProductoId = string.Empty;
             _BuscarNombre = string.Empty;
@@ -121,7 +126,27 @@ namespace Activos.Entidad.Almacen
             get { return _ExistenciaInicial; }
             set { _ExistenciaInicial = value; }
         }
-        
+
+        public Int16 DireccionId
+        {
+            get { return _DireccionId; }
+            set { _DireccionId = value; }
+        }
+
+        public string FechaInicial
+        {
+            get { return _FechaInicial; }
+            set { _FechaInicial = value; }
+        }
+
+        public string FechaFinal
+        {
+            get { return _FechaFinal; }
+            set { _FechaFinal = value; }
+        }
+
+
+
         public string BusquedaRapida
         {
             get { return _BusquedaRapida; }

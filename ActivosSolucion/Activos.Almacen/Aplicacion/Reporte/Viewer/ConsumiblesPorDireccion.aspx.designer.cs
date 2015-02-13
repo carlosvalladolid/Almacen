@@ -32,6 +32,24 @@ namespace Activos.Almacen.Aplicacion.Reporte.Viewer {
         protected global::System.Web.UI.UpdatePanel PageUpdate;
         
         /// <summary>
+        /// FechaDesde control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox FechaDesde;
+        
+        /// <summary>
+        /// FechaHasta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox FechaHasta;
+        
+        /// <summary>
         /// DireccionCombo control.
         /// </summary>
         /// <remarks>
@@ -59,6 +77,24 @@ namespace Activos.Almacen.Aplicacion.Reporte.Viewer {
         protected global::System.Web.UI.WebControls.ImageButton BotonCancelarBusqueda;
         
         /// <summary>
+        /// ConsumiblePorDireccionReporteViewer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Microsoft.Reporting.WebForms.ReportViewer ConsumiblePorDireccionReporteViewer;
+        
+        /// <summary>
+        /// ObjectDataSource1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSource1;
+        
+        /// <summary>
         /// AssociatedUpdate control.
         /// </summary>
         /// <remarks>
@@ -73,6 +109,6 @@ namespace Activos.Almacen.Aplicacion.Reporte.Viewer {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-      
+        
     }
 }
