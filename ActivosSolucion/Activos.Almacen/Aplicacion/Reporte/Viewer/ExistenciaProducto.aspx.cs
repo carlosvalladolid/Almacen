@@ -51,6 +51,7 @@ namespace Almacen.Web.Aplicacion.Reporte.Viewer
         #endregion
 
         #region "Métodos"
+
             private void Inicio()
             {
                 if (Page.IsPostBack)
@@ -157,7 +158,6 @@ namespace Almacen.Web.Aplicacion.Reporte.Viewer
                 MarcaCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
             }
 
-
             private void seleccionarReporteExistenciaProducto()
             {
                 AlmacenEntidad AlmacenEntidad = new AlmacenEntidad();
@@ -183,6 +183,7 @@ namespace Almacen.Web.Aplicacion.Reporte.Viewer
 
                 //MostrarMensaje(AlmacenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
             }
+
         #endregion
     }
 }

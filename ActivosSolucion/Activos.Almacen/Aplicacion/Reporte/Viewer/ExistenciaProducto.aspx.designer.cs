@@ -127,6 +127,6 @@ namespace Almacen.Web.Aplicacion.Reporte.Viewer {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-       
+      
     }
 }

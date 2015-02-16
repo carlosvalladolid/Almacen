@@ -24,5 +24,19 @@ namespace Activos.ProcesoNegocio.Seguridad
 
             return Resultado;
         }
+
+
+        public ResultadoEntidad SeleccionarEstatusOrdenSalida(EstatusEntidad EstatusEntidadObjeto)
+        {
+            string CadenaConexion = string.Empty;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            EstatusAcceso EstatusAccesoDatos = new EstatusAcceso();
+
+            CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Seguridad);
+
+            Resultado = EstatusAccesoDatos.SeleccionarEstatusOrdenSalida(EstatusEntidadObjeto, CadenaConexion);
+
+            return Resultado;
+        }
     }
 }

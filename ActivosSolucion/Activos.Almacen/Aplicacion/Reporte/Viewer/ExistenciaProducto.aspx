@@ -75,6 +75,7 @@
                                     Name="ExistenciaPoductoDS_ExistenciaProductoDT" />
                             </DataSources>
                         </LocalReport>
+                        
                     </rsweb:ReportViewer>
                     <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
                         SelectMethod="GetData" TypeName="Almacen.Web.ExistenciaPoductoDSTableAdapters.">

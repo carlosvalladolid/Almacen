@@ -55,9 +55,15 @@
                      <tr>
                         <td class="Nombre">Dirección</td>
                         <td class="Espacio"></td>
-                        <td class="Campo" colspan  ="2"><asp:DropDownList CssClass="ComboGrande" ID="DireccionCombo" runat="server" ></asp:DropDownList></td>
-                        
+                        <td class="Campo" colspan  ="2"><asp:DropDownList CssClass="ComboGrande" ID="DireccionCombo" runat="server" ></asp:DropDownList></td>                        
                     </tr>
+                    
+                     <tr>
+                        <td class="Nombre">Estatus</td>
+                        <td class="Espacio"></td>
+                        <td class="Campo" colspan  ="2"><asp:DropDownList CssClass="ComboGrande" ID="EstatusCombo" runat="server" ></asp:DropDownList></td>                        
+                    </tr>
+                    
                     
                     <tr>
                         <td colspan="4">
@@ -69,7 +75,9 @@
                 </table>
 
                 <div class="DivTabla">
-                    <rsweb:ReportViewer ID="ConsumiblePorDireccionReporteViewer" runat="server" Font-Names="Verdana" Font-Size="10pt" Width="100%" Height="100%">
+                    <rsweb:ReportViewer ID="ConsumiblePorDireccionReporteViewer" runat="server" Font-Names="Verdana"
+                     Font-Size="10pt" Width="100%" Height="100%">
+                        
                         <LocalReport ReportPath="Aplicacion/Reporte/Diseño/ConsumoPorDireccionRPT.rdlc">
                             <DataSources>
                                 <rsweb:ReportDataSource DataSourceId="ObjectDataSource1" 
@@ -79,10 +87,8 @@
                     </rsweb:ReportViewer>
                     
                     <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
-                        SelectMethod="GetData" TypeName="Almacen.Web.ConsumoPorDireccionDSTableAdapters.">
-                    
-                    </asp:ObjectDataSource>
-                    
+                        SelectMethod="GetData" TypeName="Almacen.Web.ConsumoPorDireccionDSTableAdapters.">                    
+                    </asp:ObjectDataSource>                    
                 </div>
 
                 <asp:UpdateProgress AssociatedUpdatePanelID="PageUpdate" ID="AssociatedUpdate" runat="server">

@@ -66,13 +66,14 @@
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
-  <Width>22.52646cm</Width>
+  <Width>28.77646cm</Width>
   <Body>
     <ColumnSpacing>1cm</ColumnSpacing>
     <ReportItems>
       <Table Name="table1">
         <DataSetName>ConsumoPorDireccionDS_ConsumoPorDireccionDT</DataSetName>
-        <Top>2cm</Top>
+        <Top>1.5cm</Top>
+        <Width>27.48646cm</Width>
         <Details>
           <TableRows>
             <TableRow>
@@ -114,6 +115,7 @@
                     <Textbox Name="FechaRequisicion">
                       <rd:DefaultName>FechaRequisicion</rd:DefaultName>
                       <Style>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -130,6 +132,7 @@
                     <Textbox Name="CantidadSolicitada">
                       <rd:DefaultName>CantidadSolicitada</rd:DefaultName>
                       <Style>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -146,6 +149,7 @@
                     <Textbox Name="FechaSurtido">
                       <rd:DefaultName>FechaSurtido</rd:DefaultName>
                       <Style>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -162,6 +166,7 @@
                     <Textbox Name="CantidadSurtida">
                       <rd:DefaultName>CantidadSurtida</rd:DefaultName>
                       <Style>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -178,6 +183,7 @@
                     <Textbox Name="Solicitante">
                       <rd:DefaultName>Solicitante</rd:DefaultName>
                       <Style>
+                        <TextAlign>Left</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -193,6 +199,10 @@
             </TableRow>
           </TableRows>
         </Details>
+        <Style>
+          <FontSize>8pt</FontSize>
+          <FontWeight>700</FontWeight>
+        </Style>
         <Header>
           <TableRows>
             <TableRow>
@@ -202,6 +212,8 @@
                     <Textbox Name="textbox1">
                       <rd:DefaultName>textbox1</rd:DefaultName>
                       <Style>
+                        <FontSize>8pt</FontSize>
+                        <TextAlign>Left</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -266,6 +278,7 @@
                     <Textbox Name="textbox10">
                       <rd:DefaultName>textbox10</rd:DefaultName>
                       <Style>
+                        <TextAlign>Center</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -316,25 +329,25 @@
         </Header>
         <TableColumns>
           <TableColumn>
-            <Width>3cm</Width>
+            <Width>2.75906cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>4.5cm</Width>
+            <Width>5.69859cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>3cm</Width>
+            <Width>3.79906cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>3cm</Width>
+            <Width>3.79906cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>3cm</Width>
+            <Width>3.79906cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>3cm</Width>
+            <Width>3.79906cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>3.02646cm</Width>
+            <Width>3.83257cm</Width>
           </TableColumn>
         </TableColumns>
         <Height>1.90476cm</Height>
@@ -459,6 +472,7 @@
             </TableRow>
           </TableRows>
         </Footer>
+        <Left>0.25cm</Left>
       </Table>
     </ReportItems>
     <Height>5cm</Height>

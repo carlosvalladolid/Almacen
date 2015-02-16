@@ -59,6 +59,15 @@ namespace Activos.Almacen.Aplicacion.Reporte.Viewer {
         protected global::System.Web.UI.WebControls.DropDownList DireccionCombo;
         
         /// <summary>
+        /// EstatusCombo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList EstatusCombo;
+        
+        /// <summary>
         /// BotonBusqueda control.
         /// </summary>
         /// <remarks>

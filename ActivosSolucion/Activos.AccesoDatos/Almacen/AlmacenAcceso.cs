@@ -493,18 +493,17 @@ namespace Activos.AccesoDatos.Almacen
                     Comando = new SqlCommand("SeleccionarConsumiblePorDireccionProcedimiento", Conexion);
                     Comando.CommandType = CommandType.StoredProcedure;
 
-                    Parametro = new SqlParameter("StrFechaInicio", SqlDbType.VarChar);
-                    Parametro.Value = AlmacenEntidadObjeto.FechaInicial;
-                    Comando.Parameters.Add(Parametro);
+                    //Parametro = new SqlParameter("StrFechaInicio", SqlDbType.VarChar);
+                    //Parametro.Value = AlmacenEntidadObjeto.FechaInicial;
+                    //Comando.Parameters.Add(Parametro);
 
-                    Parametro = new SqlParameter("StrFechaFin", SqlDbType.VarChar);
-                    Parametro.Value = AlmacenEntidadObjeto.FechaFinal;
-                    Comando.Parameters.Add(Parametro);
-              
+                    //Parametro = new SqlParameter("StrFechaFin", SqlDbType.VarChar);
+                    //Parametro.Value = AlmacenEntidadObjeto.FechaFinal;
+                    //Comando.Parameters.Add(Parametro);              
 
-                    Parametro = new SqlParameter("Clave", SqlDbType.VarChar);
-                    Parametro.Value = AlmacenEntidadObjeto.Clave;
-                    Comando.Parameters.Add(Parametro);
+                    //Parametro = new SqlParameter("Clave", SqlDbType.VarChar);
+                    //Parametro.Value = AlmacenEntidadObjeto.Clave;
+                    //Comando.Parameters.Add(Parametro);
 
                     Parametro = new SqlParameter("DireccionId", SqlDbType.SmallInt);
                     Parametro.Value = AlmacenEntidadObjeto.DireccionId;

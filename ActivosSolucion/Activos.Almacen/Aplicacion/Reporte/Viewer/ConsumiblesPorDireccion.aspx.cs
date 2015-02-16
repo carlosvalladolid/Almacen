@@ -16,6 +16,7 @@ using System.Xml.Linq;
 
 using Activos.Comun.Cadenas;
 using Activos.Comun.Constante;
+using Activos.Comun.Fecha;
 using Activos.Entidad.Almacen;
 using Activos.Entidad.Catalogo;
 using Activos.Entidad.General;
@@ -47,12 +48,18 @@ namespace Activos.Almacen.Aplicacion.Reporte.Viewer
         #endregion
 
         #region "Métodos"
+
+
         private void Inicio()
         {
-            if (Page.IsPostBack)
-                return;
+            if (!Page.IsPostBack)
 
-         
+            {
+                SeleccionarDireccion();
+                SeleccionarEstatus();
+                //seleccionarReporteConsumoPorDireccion();
+            }
+                      
         }
 
         private void MostrarMensaje(string Mensaje, string TipoMensaje)
@@ -68,9 +75,6 @@ namespace Activos.Almacen.Aplicacion.Reporte.Viewer
             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
         }
 
-
-
-
         private void seleccionarReporteConsumoPorDireccion()
         {
             AlmacenEntidad AlmacenEntidad = new AlmacenEntidad();
@@ -79,16 +83,17 @@ namespace Activos.Almacen.Aplicacion.Reporte.Viewer
 
 
             AlmacenEntidad.DireccionId = Int16.Parse(DireccionCombo.SelectedValue);
-            if (FechaDesde.Text == ""){AlmacenEntidad.FechaInicial = null;}else{AlmacenEntidad.FechaInicial = FechaDesde.Text.Trim();}
-            if (FechaHasta.Text == ""){ AlmacenEntidad.FechaFinal = null; }else{ AlmacenEntidad.FechaFinal = FechaHasta.Text.Trim(); }
-           
-           
-            
-            //if (FechaDesde.Text != "")
-            //    AlmacenEntidad.FechaInicial = FormatoFecha.AsignarFormato(FechaDesde.Text.Trim(), ConstantePrograma.UniversalFormatoFecha);
+            AlmacenEntidad.EstatusId = Int16.Parse(EstatusCombo.SelectedValue);
+            //if (FechaDesde.Text == ""){AlmacenEntidad.FechaInicial = null;}else{AlmacenEntidad.FechaInicial = FechaDesde.Text.Trim();}
+            //if (FechaHasta.Text == ""){ AlmacenEntidad.FechaFinal = null; }else{ AlmacenEntidad.FechaFinal = FechaHasta.Text.Trim(); }
 
-            //if (FechaHasta.Text != "")
-            //    AlmacenEntidad.FechaFinal = FormatoFecha.AsignarFormato(FechaHasta.Text.Trim(), ConstantePrograma.UniversalFormatoFecha);
+
+
+            if (FechaDesde.Text != "")
+                AlmacenEntidad.FechaInicial = FormatoFecha.AsignarFormato(FechaDesde.Text.Trim(), ConstantePrograma.UniversalFormatoFecha);
+
+            if (FechaHasta.Text != "")
+                AlmacenEntidad.FechaFinal = FormatoFecha.AsignarFormato(FechaHasta.Text.Trim(), ConstantePrograma.UniversalFormatoFecha);
 
 
 
@@ -105,6 +110,60 @@ namespace Activos.Almacen.Aplicacion.Reporte.Viewer
 
             //MostrarMensaje(AlmacenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
         }
+
+        protected void SeleccionarDireccion()
+        {
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            DireccionEntidad DireccionEntidadObjeto = new DireccionEntidad();
+            DireccionProceso DireccionProcesoObjeto = new DireccionProceso();           
+
+            Resultado = DireccionProcesoObjeto.SeleccionarDireccion(DireccionEntidadObjeto);
+
+            DireccionCombo.DataValueField = "DireccionId";
+            DireccionCombo.DataTextField = "Nombre";
+          
+
+            if (Resultado.ErrorId == 0)
+            {
+                DireccionCombo.DataSource = Resultado.ResultadoDatos;
+                DireccionCombo.DataBind();
+             
+            }
+            else
+            {
+                //EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+            }
+
+            DireccionCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));          
+        }
+
+        protected void SeleccionarEstatus()
+        {
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            EstatusEntidad EstatusEntidadObjeto = new EstatusEntidad();
+            EstatusProceso EstatusProcesoObjeto = new EstatusProceso();
+
+            EstatusEntidadObjeto.SeccionId = (int)ConstantePrograma.Seccion.Empleados;
+
+            Resultado = EstatusProcesoObjeto.SeleccionarEstatusOrdenSalida(EstatusEntidadObjeto);
+
+            EstatusCombo.DataValueField = "EstatusId";
+            EstatusCombo.DataTextField = "Descripcion";
+
+            if (Resultado.ErrorId == 0)
+            {
+                EstatusCombo.DataSource = Resultado.ResultadoDatos;
+                EstatusCombo.DataBind();
+            }
+            else
+            {
+                //EtiquetaMensaje.Text = TextoError.ErrorGenerico;
+            }
+
+            EstatusCombo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
+        }
+
+
         #endregion
     }
 }
