@@ -476,6 +476,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                     ContactoBox.Text = ProveedorProceso.ResultadoDatos.Tables[0].Rows[0]["NombreContacto"].ToString();
                     CorreoBox.Text = ProveedorProceso.ResultadoDatos.Tables[0].Rows[0]["Email"].ToString();
                     MontoMaximoCompraBox.Text = ProveedorProceso.ResultadoDatos.Tables[0].Rows[0]["MontoMaximoCompra"].ToString();
+
                     ValidarMontoMaximo();
                     
                 }   
@@ -635,7 +636,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 else MostrarMensaje(Mensaje, "Error");
                 return false;
             }
-            
+
             private void ValidarMontoMaximo()
             {
                 ResultadoEntidad Resultado = new ResultadoEntidad();
@@ -647,7 +648,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 UsuarioEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
 
                 OrdenProcesoNegocio.OrdenEncabezadoEntidad.ProveedorId = Int16.Parse(ProveedorCombo.SelectedValue);
-
+               // OrdenProcesoNegocio.OrdenEncabezadoEntidad.ProveedorId = Int16.Parse(ProveedorId.ToString());
                 OrdenProcesoNegocio.MaximoCompraProveedor();
 
                 if (OrdenProcesoNegocio.ResultadoDatos.Tables[0].Rows.Count > 0)

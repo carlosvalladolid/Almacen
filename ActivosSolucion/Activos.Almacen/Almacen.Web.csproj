@@ -151,6 +151,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ExistenciaPoductoDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Aplicacion\Reporte\DataSet\ImprimirRequisicionDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImprimirRequisicionDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Aplicacion\Reporte\Viewer\ConsumiblesPorDireccion.aspx.cs">
       <DependentUpon>ConsumiblesPorDireccion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -164,6 +169,13 @@
     </Compile>
     <Compile Include="Aplicacion\Reporte\Viewer\ExistenciaProducto.aspx.designer.cs">
       <DependentUpon>ExistenciaProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicacion\Reporte\Viewer\ImprimirRequisicion.aspx.cs">
+      <DependentUpon>ImprimirRequisicion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicacion\Reporte\Viewer\ImprimirRequisicion.aspx.designer.cs">
+      <DependentUpon>ImprimirRequisicion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Aplicacion\Salir.aspx.cs">
       <DependentUpon>Salir.aspx</DependentUpon>
@@ -438,6 +450,7 @@
     <Content Include="Aplicacion\Inicio.aspx" />
     <Content Include="Aplicacion\Reporte\Viewer\ConsumiblesPorDireccion.aspx" />
     <Content Include="Aplicacion\Reporte\Viewer\ExistenciaProducto.aspx" />
+    <Content Include="Aplicacion\Reporte\Viewer\ImprimirRequisicion.aspx" />
     <Content Include="App.config" />
     <Content Include="Imagen\Banner\PublicityBanner.jpg" />
     <Content Include="Imagen\Decoracion\LoginSeparatorDecoration.jpg" />
@@ -489,10 +502,22 @@
     <None Include="Aplicacion\Reporte\DataSet\ExistenciaPoductoDS.xss">
       <DependentUpon>ExistenciaPoductoDS.xsd</DependentUpon>
     </None>
+    <None Include="Aplicacion\Reporte\DataSet\ImprimirRequisicionDS.xsc">
+      <DependentUpon>ImprimirRequisicionDS.xsd</DependentUpon>
+    </None>
+    <None Include="Aplicacion\Reporte\DataSet\ImprimirRequisicionDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ImprimirRequisicionDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Aplicacion\Reporte\DataSet\ImprimirRequisicionDS.xss">
+      <DependentUpon>ImprimirRequisicionDS.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Aplicacion\Reporte\Diseño\ConsumoPorDireccionRPT.rdlc" />
     <EmbeddedResource Include="Aplicacion\Reporte\Diseño\ExistenciProductoRPT.rdlc" />
+    <EmbeddedResource Include="Aplicacion\Reporte\Diseño\ImprimirRequisicionRPT.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Aplicacion\Error\" />

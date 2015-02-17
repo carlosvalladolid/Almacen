@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ImprimirRequisicionDS" targetNamespace="http://tempuri.org/ImprimirRequisicionDS.xsd" xmlns:mstns="http://tempuri.org/ImprimirRequisicionDS.xsd" xmlns="http://tempuri.org/ImprimirRequisicionDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ImprimirRequisicionDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="ImprimirRequisicionDS" msprop:Generator_UserDSName="ImprimirRequisicionDS" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ImprimirRequisicionDT" msprop:Generator_UserTableName="ImprimirRequisicionDT" msprop:Generator_RowDeletedName="ImprimirRequisicionDTRowDeleted" msprop:Generator_TableClassName="ImprimirRequisicionDTDataTable" msprop:Generator_RowChangedName="ImprimirRequisicionDTRowChanged" msprop:Generator_RowClassName="ImprimirRequisicionDTRow" msprop:Generator_RowChangingName="ImprimirRequisicionDTRowChanging" msprop:Generator_RowEvArgName="ImprimirRequisicionDTRowChangeEvent" msprop:Generator_RowEvHandlerName="ImprimirRequisicionDTRowChangeEventHandler" msprop:Generator_TablePropName="ImprimirRequisicionDT" msprop:Generator_TableVarName="tableImprimirRequisicionDT" msprop:Generator_RowDeletingName="ImprimirRequisicionDTRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="JefeInmediato" msprop:Generator_UserColumnName="JefeInmediato" msprop:Generator_ColumnPropNameInRow="JefeInmediato" msprop:Generator_ColumnVarNameInTable="columnJefeInmediato" msprop:Generator_ColumnPropNameInTable="JefeInmediatoColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Solicitante" msprop:Generator_UserColumnName="Solicitante" msprop:Generator_ColumnPropNameInRow="Solicitante" msprop:Generator_ColumnVarNameInTable="columnSolicitante" msprop:Generator_ColumnPropNameInTable="SolicitanteColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Dependencia" msprop:Generator_UserColumnName="Dependencia" msprop:Generator_ColumnPropNameInRow="Dependencia" msprop:Generator_ColumnVarNameInTable="columnDependencia" msprop:Generator_ColumnPropNameInTable="DependenciaColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Direccion" msprop:Generator_UserColumnName="Direccion" msprop:Generator_ColumnPropNameInRow="Direccion" msprop:Generator_ColumnVarNameInTable="columnDireccion" msprop:Generator_ColumnPropNameInTable="DireccionColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Puesto" msprop:Generator_UserColumnName="Puesto" msprop:Generator_ColumnPropNameInRow="Puesto" msprop:Generator_ColumnVarNameInTable="columnPuesto" msprop:Generator_ColumnPropNameInTable="PuestoColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
