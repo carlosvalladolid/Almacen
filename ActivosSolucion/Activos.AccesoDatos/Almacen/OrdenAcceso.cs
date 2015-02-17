@@ -306,6 +306,39 @@ namespace Activos.AccesoDatos.Almacen
                 }
             }
 
+            public DataSet MaximoCompraProveedor(OrdenEntidad OrdenEntidad, string CadenaConexion)
+            {
+                DataSet Resultado = new DataSet();
+                SqlConnection Conexion = new SqlConnection(CadenaConexion);
+                SqlCommand Comando;
+                SqlParameter Parametro;
+                SqlDataAdapter Adaptador;
+
+                try
+                {
+                    Comando = new SqlCommand("SeleccionaMontoProveedorRecepcionDetalle", Conexion);
+                    Comando.CommandType = CommandType.StoredProcedure;
+
+                    Parametro = new SqlParameter("ProveedorId", SqlDbType.SmallInt);
+                    Parametro.Value = OrdenEntidad.ProveedorId;
+                    Comando.Parameters.Add(Parametro);
+
+                    Adaptador = new SqlDataAdapter(Comando);
+
+                    Conexion.Open();
+                    Adaptador.Fill(Resultado);
+                    Conexion.Close();
+
+                    return Resultado;
+                }
+                catch (SqlException Excepcion)
+                {
+                    _ErrorId = Excepcion.Number;
+                    _DescripcionError = Excepcion.Message;
+
+                    return Resultado;
+                }
+            }
             /// <summary>
             ///     Busca órdenes de compra que coincidan con los parámetros enviados.
             /// </summary>

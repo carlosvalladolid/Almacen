@@ -51,6 +51,8 @@ namespace Activos.Comun.Constante
       public const string MensajeLimpiarFormulario = "¿Desea limpiar el formulario?";
       public const string MensajeSeleccioneRequisicion = "Por favor, seleccione una requisicion.";
 
+         public const string MensajeMaximoCompra = "Se excede la compra Maxima";
+
       // Mensaje Informativos de Requisición
 
     }

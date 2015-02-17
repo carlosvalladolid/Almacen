@@ -176,6 +176,13 @@
                         <td class="Campo"><asp:DropDownList AutoPostBack="true" CssClass="ComboGrande" ID="ProveedorCombo" MaxLength="30" OnSelectedIndexChanged="ProveedorCombo_SelectedIndexChanged" runat="server" ></asp:DropDownList></td>
                     </tr>
                     <tr>
+                        <td class="Nombre">Monto Maximo</td>
+                        <td class="Espacio"></td>
+                        <td class="Campo"><asp:TextBox CssClass="CajaTextoMediano" Enabled="false" ID="MontoMaximoCompraBox" runat="server" Text=""></asp:TextBox></td>
+                        <td class="Campo"><asp:TextBox CssClass="CajaTextoMediano" Enabled="false" ID="CompraProveedor"  runat="server" Text=""></asp:TextBox><h3>Compra Adquirida x mes</h3></td>
+                    </tr>
+                    
+                    <tr>
                         <td class="Nombre">Teléfono</td>
                         <td class="Espacio"></td>
                         <td class="Campo"><asp:TextBox CssClass="CajaTextoMediano" Enabled="false" ID="TelefonoBox" MaxLength="20" runat="server" Text=""></asp:TextBox></td>

@@ -29,7 +29,8 @@ namespace Almacen.Web.Aplicacion.Almacen
         #region "Eventos"
             protected void BotonAgregar_Click(object sender, ImageClickEventArgs e)
             {
-                if (ValidarAgregarProducto()) AgregarDetalleDocumento();
+                if (ValidarAgregarProducto()) 
+                    AgregarDetalleDocumento();
                 
             }
 
@@ -576,6 +577,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 return String.Empty;
             }
+
         #endregion
     }
 }

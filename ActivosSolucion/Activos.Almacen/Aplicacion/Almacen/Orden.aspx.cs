@@ -50,7 +50,7 @@ namespace Almacen.Web.Aplicacion.Almacen
             }
 
             protected void ProveedorCombo_SelectedIndexChanged(object sender, EventArgs e)
-            {
+            {                
                 SeleccionarProveedor(Int16.Parse(ProveedorCombo.SelectedValue));
             }
 
@@ -108,6 +108,7 @@ namespace Almacen.Web.Aplicacion.Almacen
         #endregion
 
         #region "Métodos"
+            
             private bool ExistePreOrdenConOrden(string Clave)
             {
                 PreOrdenProceso PreOrdenProceso = new PreOrdenProceso();
@@ -127,6 +128,27 @@ namespace Almacen.Web.Aplicacion.Almacen
                 else
                     return true;
             }
+
+            //private bool MaximoCompraProveedor(Int16 ProveedorId)
+            //{
+            //    OrdenProceso OrdenProceso = new OrdenProceso();               
+               
+            //   // OrdenProceso.OrdenEncabezadoEntidad.ProveedorId = ProveedorId;
+
+            //    OrdenProceso.MaximoCompraProveedor(OrdenEntidad);
+
+            //    if (OrdenProceso.ErrorId != 0)
+            //    {
+            //        MostrarMensaje(OrdenProceso.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+            //        return false;
+            //    }
+
+            //    if (OrdenProceso.ResultadoDatos.Tables[0].Rows.Count == 0)
+            //        return false;
+            //    else
+            //        return true;
+            //    //MostrarMensaje();
+            //}
 
             private void GuardarOrden()
             {
@@ -149,8 +171,15 @@ namespace Almacen.Web.Aplicacion.Almacen
                 PreOrdenEntidad.Clave = PreOrdenBusqueda.Text;
                 PreOrdenEntidad.EstatusId = ObtenerEstatusPreOrden(OrdenProceso);
                 PreOrdenProceso.ActualizarPreOrdenEstatus(PreOrdenEntidad);
+
+
+                //if (ProveedorCombo.SelectedIndex != 0)
+                //{
+                //    ValidarMontoMaximo();            
                 
-                
+                //}
+
+
                 //#
                 OrdenProceso.GuardarOrden();
 
@@ -257,6 +286,8 @@ namespace Almacen.Web.Aplicacion.Almacen
                 PreOrdenBusqueda.Text = "";
                 FechaOrdenBox.Text = "";
                 ProveedorCombo.SelectedIndex = 0;
+                MontoMaximoCompraBox.Text = "";
+                CompraProveedor.Text = "";
                 TelefonoBox.Text = "";
                 ContactoBox.Text = "";
                 CorreoBox.Text = "";
@@ -444,6 +475,9 @@ namespace Almacen.Web.Aplicacion.Almacen
                     TelefonoBox.Text = ProveedorProceso.ResultadoDatos.Tables[0].Rows[0]["Telefono"].ToString();
                     ContactoBox.Text = ProveedorProceso.ResultadoDatos.Tables[0].Rows[0]["NombreContacto"].ToString();
                     CorreoBox.Text = ProveedorProceso.ResultadoDatos.Tables[0].Rows[0]["Email"].ToString();
+                    MontoMaximoCompraBox.Text = ProveedorProceso.ResultadoDatos.Tables[0].Rows[0]["MontoMaximoCompra"].ToString();
+                    ValidarMontoMaximo();
+                    
                 }   
             }
 
@@ -601,22 +635,28 @@ namespace Almacen.Web.Aplicacion.Almacen
                 else MostrarMensaje(Mensaje, "Error");
                 return false;
             }
+            
+            private void ValidarMontoMaximo()
+            {
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                OrdenEntidad OrdenObjetoEntidad = new OrdenEntidad();
+                OrdenProceso OrdenProcesoNegocio = new OrdenProceso();
 
-            //private Boolean ValidarAgregarProducto()
-            //{
-            //    String Mensaje = "";
-            //    Int16 NumeroTemporal = 0;
-            //    if (!Int16.TryParse(CantidadNuevo.Text, out NumeroTemporal)) Mensaje = TextoInfo.MensajeCantidadGenerico;
-            //    if (NumeroTemporal == 0) Mensaje = TextoInfo.MensajeCantidadGenerico;
-            //    if (String.IsNullOrEmpty(ClaveNuevo.Text)) Mensaje = TextoInfo.MensajeClaveGenerico;
-            //    DateTime Temporal = new DateTime();
-            //    if (!DateTime.TryParse(FechaPreOrdenNuevo.Text, out Temporal)) Mensaje = TextoInfo.MensajeFechaGenerico;
-            //    if (SolicitanteIdNuevo.SelectedIndex == 0) Mensaje = TextoInfo.MensajeSolicitanteGenerico;
+                UsuarioEntidad UsuarioEntidad = new UsuarioEntidad();
 
-            //    if (Mensaje == "") return true;
-            //    else MostrarMensaje(Mensaje, "Error");
-            //    return false;
-            //}
+                UsuarioEntidad = (UsuarioEntidad)Session["UsuarioEntidad"];
+
+                OrdenProcesoNegocio.OrdenEncabezadoEntidad.ProveedorId = Int16.Parse(ProveedorCombo.SelectedValue);
+
+                OrdenProcesoNegocio.MaximoCompraProveedor();
+
+                if (OrdenProcesoNegocio.ResultadoDatos.Tables[0].Rows.Count > 0)
+                {
+                    CompraProveedor.Text = OrdenProcesoNegocio.ResultadoDatos.Tables[0].Rows[0]["CompraProveedor"].ToString();                                    
+                }
+                              
+            }
+
             private string ObtenerClaveOrden(OrdenEntidad OrdenObjetoEntidad)
             {
                 ResultadoEntidad Resultado = new ResultadoEntidad();
@@ -729,9 +769,6 @@ namespace Almacen.Web.Aplicacion.Almacen
                         break;
                 }
             }
-
-
-
 
         #endregion
     }
