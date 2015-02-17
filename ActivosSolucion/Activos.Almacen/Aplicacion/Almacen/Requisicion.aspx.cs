@@ -46,6 +46,11 @@ namespace Almacen.Web.Aplicacion.Almacen
                 LimpiarRequisicion();
             }
 
+            protected void BotonImprimir_Click(object sender, EventArgs e)
+            {
+                ImprimirRequisicion();
+            }
+
             protected void BotonCerrarProductoBusqueda_Click(object sender, ImageClickEventArgs e)
             {
                 CargaPanelInVisibleProducto();
@@ -302,8 +307,14 @@ namespace Almacen.Web.Aplicacion.Almacen
                 }
                 else
                     MostrarMensaje(RequisicionProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
-            }        
+            }
 
+
+            protected void ImprimirRequisicion()
+            {
+               // ScriptManager.RegisterStartupScript(Page, Page.GetType(), "Guid.NewGuid().ToString()", "ImprimirRequisicion('" + EmpIdHidden.Value + "','" + TempAsigIdHidden.Value + "')", true);
+            }
+        
             private void Inicio()
             {
                 if (Page.IsPostBack) return;
