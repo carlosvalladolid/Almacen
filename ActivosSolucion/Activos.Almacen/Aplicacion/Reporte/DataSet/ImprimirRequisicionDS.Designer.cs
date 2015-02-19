@@ -25,7 +25,7 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class ImprimirRequisicionDS : global::System.Data.DataSet {
         
-        private ImprimirRequisicionDTDataTable tableImprimirRequisicionDT;
+        private ImprimirProductosDTDataTable tableImprimirProductosDT;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -53,8 +53,8 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["ImprimirRequisicionDT"] != null)) {
-                    base.Tables.Add(new ImprimirRequisicionDTDataTable(ds.Tables["ImprimirRequisicionDT"]));
+                if ((ds.Tables["ImprimirProductosDT"] != null)) {
+                    base.Tables.Add(new ImprimirProductosDTDataTable(ds.Tables["ImprimirProductosDT"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -77,9 +77,9 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public ImprimirRequisicionDTDataTable ImprimirRequisicionDT {
+        public ImprimirProductosDTDataTable ImprimirProductosDT {
             get {
-                return this.tableImprimirRequisicionDT;
+                return this.tableImprimirProductosDT;
             }
         }
         
@@ -142,8 +142,8 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["ImprimirRequisicionDT"] != null)) {
-                    base.Tables.Add(new ImprimirRequisicionDTDataTable(ds.Tables["ImprimirRequisicionDT"]));
+                if ((ds.Tables["ImprimirProductosDT"] != null)) {
+                    base.Tables.Add(new ImprimirProductosDTDataTable(ds.Tables["ImprimirProductosDT"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -175,10 +175,10 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         internal void InitVars(bool initTable) {
-            this.tableImprimirRequisicionDT = ((ImprimirRequisicionDTDataTable)(base.Tables["ImprimirRequisicionDT"]));
+            this.tableImprimirProductosDT = ((ImprimirProductosDTDataTable)(base.Tables["ImprimirProductosDT"]));
             if ((initTable == true)) {
-                if ((this.tableImprimirRequisicionDT != null)) {
-                    this.tableImprimirRequisicionDT.InitVars();
+                if ((this.tableImprimirProductosDT != null)) {
+                    this.tableImprimirProductosDT.InitVars();
                 }
             }
         }
@@ -190,12 +190,12 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
             this.Namespace = "http://tempuri.org/ImprimirRequisicionDS.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableImprimirRequisicionDT = new ImprimirRequisicionDTDataTable();
-            base.Tables.Add(this.tableImprimirRequisicionDT);
+            this.tableImprimirProductosDT = new ImprimirProductosDTDataTable();
+            base.Tables.Add(this.tableImprimirProductosDT);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private bool ShouldSerializeImprimirRequisicionDT() {
+        private bool ShouldSerializeImprimirProductosDT() {
             return false;
         }
         
@@ -252,7 +252,7 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
             return type;
         }
         
-        public delegate void ImprimirRequisicionDTRowChangeEventHandler(object sender, ImprimirRequisicionDTRowChangeEvent e);
+        public delegate void ImprimirProductosDTRowChangeEventHandler(object sender, ImprimirProductosDTRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -260,28 +260,28 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class ImprimirRequisicionDTDataTable : global::System.Data.TypedTableBase<ImprimirRequisicionDTRow> {
+        public partial class ImprimirProductosDTDataTable : global::System.Data.TypedTableBase<ImprimirProductosDTRow> {
             
-            private global::System.Data.DataColumn columnJefeInmediato;
+            private global::System.Data.DataColumn columnClave;
             
-            private global::System.Data.DataColumn columnSolicitante;
+            private global::System.Data.DataColumn columnDescripcion;
             
-            private global::System.Data.DataColumn columnDependencia;
+            private global::System.Data.DataColumn columnFamilia;
             
-            private global::System.Data.DataColumn columnDireccion;
+            private global::System.Data.DataColumn columnMarca;
             
-            private global::System.Data.DataColumn columnPuesto;
+            private global::System.Data.DataColumn columnCantidad;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ImprimirRequisicionDTDataTable() {
-                this.TableName = "ImprimirRequisicionDT";
+            public ImprimirProductosDTDataTable() {
+                this.TableName = "ImprimirProductosDT";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal ImprimirRequisicionDTDataTable(global::System.Data.DataTable table) {
+            internal ImprimirProductosDTDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -297,43 +297,43 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            protected ImprimirRequisicionDTDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected ImprimirProductosDTDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn JefeInmediatoColumn {
+            public global::System.Data.DataColumn ClaveColumn {
                 get {
-                    return this.columnJefeInmediato;
+                    return this.columnClave;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn SolicitanteColumn {
+            public global::System.Data.DataColumn DescripcionColumn {
                 get {
-                    return this.columnSolicitante;
+                    return this.columnDescripcion;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn DependenciaColumn {
+            public global::System.Data.DataColumn FamiliaColumn {
                 get {
-                    return this.columnDependencia;
+                    return this.columnFamilia;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn DireccionColumn {
+            public global::System.Data.DataColumn MarcaColumn {
                 get {
-                    return this.columnDireccion;
+                    return this.columnMarca;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn PuestoColumn {
+            public global::System.Data.DataColumn CantidadColumn {
                 get {
-                    return this.columnPuesto;
+                    return this.columnCantidad;
                 }
             }
             
@@ -346,123 +346,123 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ImprimirRequisicionDTRow this[int index] {
+            public ImprimirProductosDTRow this[int index] {
                 get {
-                    return ((ImprimirRequisicionDTRow)(this.Rows[index]));
+                    return ((ImprimirProductosDTRow)(this.Rows[index]));
                 }
             }
             
-            public event ImprimirRequisicionDTRowChangeEventHandler ImprimirRequisicionDTRowChanging;
+            public event ImprimirProductosDTRowChangeEventHandler ImprimirProductosDTRowChanging;
             
-            public event ImprimirRequisicionDTRowChangeEventHandler ImprimirRequisicionDTRowChanged;
+            public event ImprimirProductosDTRowChangeEventHandler ImprimirProductosDTRowChanged;
             
-            public event ImprimirRequisicionDTRowChangeEventHandler ImprimirRequisicionDTRowDeleting;
+            public event ImprimirProductosDTRowChangeEventHandler ImprimirProductosDTRowDeleting;
             
-            public event ImprimirRequisicionDTRowChangeEventHandler ImprimirRequisicionDTRowDeleted;
+            public event ImprimirProductosDTRowChangeEventHandler ImprimirProductosDTRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void AddImprimirRequisicionDTRow(ImprimirRequisicionDTRow row) {
+            public void AddImprimirProductosDTRow(ImprimirProductosDTRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ImprimirRequisicionDTRow AddImprimirRequisicionDTRow(string JefeInmediato, string Solicitante, string Dependencia, string Direccion, string Puesto) {
-                ImprimirRequisicionDTRow rowImprimirRequisicionDTRow = ((ImprimirRequisicionDTRow)(this.NewRow()));
+            public ImprimirProductosDTRow AddImprimirProductosDTRow(string Clave, string Descripcion, string Familia, string Marca, string Cantidad) {
+                ImprimirProductosDTRow rowImprimirProductosDTRow = ((ImprimirProductosDTRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        JefeInmediato,
-                        Solicitante,
-                        Dependencia,
-                        Direccion,
-                        Puesto};
-                rowImprimirRequisicionDTRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowImprimirRequisicionDTRow);
-                return rowImprimirRequisicionDTRow;
+                        Clave,
+                        Descripcion,
+                        Familia,
+                        Marca,
+                        Cantidad};
+                rowImprimirProductosDTRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowImprimirProductosDTRow);
+                return rowImprimirProductosDTRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public override global::System.Data.DataTable Clone() {
-                ImprimirRequisicionDTDataTable cln = ((ImprimirRequisicionDTDataTable)(base.Clone()));
+                ImprimirProductosDTDataTable cln = ((ImprimirProductosDTDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new ImprimirRequisicionDTDataTable();
+                return new ImprimirProductosDTDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             internal void InitVars() {
-                this.columnJefeInmediato = base.Columns["JefeInmediato"];
-                this.columnSolicitante = base.Columns["Solicitante"];
-                this.columnDependencia = base.Columns["Dependencia"];
-                this.columnDireccion = base.Columns["Direccion"];
-                this.columnPuesto = base.Columns["Puesto"];
+                this.columnClave = base.Columns["Clave"];
+                this.columnDescripcion = base.Columns["Descripcion"];
+                this.columnFamilia = base.Columns["Familia"];
+                this.columnMarca = base.Columns["Marca"];
+                this.columnCantidad = base.Columns["Cantidad"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             private void InitClass() {
-                this.columnJefeInmediato = new global::System.Data.DataColumn("JefeInmediato", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnJefeInmediato);
-                this.columnSolicitante = new global::System.Data.DataColumn("Solicitante", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSolicitante);
-                this.columnDependencia = new global::System.Data.DataColumn("Dependencia", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDependencia);
-                this.columnDireccion = new global::System.Data.DataColumn("Direccion", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDireccion);
-                this.columnPuesto = new global::System.Data.DataColumn("Puesto", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPuesto);
+                this.columnClave = new global::System.Data.DataColumn("Clave", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnClave);
+                this.columnDescripcion = new global::System.Data.DataColumn("Descripcion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescripcion);
+                this.columnFamilia = new global::System.Data.DataColumn("Familia", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFamilia);
+                this.columnMarca = new global::System.Data.DataColumn("Marca", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMarca);
+                this.columnCantidad = new global::System.Data.DataColumn("Cantidad", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCantidad);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ImprimirRequisicionDTRow NewImprimirRequisicionDTRow() {
-                return ((ImprimirRequisicionDTRow)(this.NewRow()));
+            public ImprimirProductosDTRow NewImprimirProductosDTRow() {
+                return ((ImprimirProductosDTRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new ImprimirRequisicionDTRow(builder);
+                return new ImprimirProductosDTRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override global::System.Type GetRowType() {
-                return typeof(ImprimirRequisicionDTRow);
+                return typeof(ImprimirProductosDTRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.ImprimirRequisicionDTRowChanged != null)) {
-                    this.ImprimirRequisicionDTRowChanged(this, new ImprimirRequisicionDTRowChangeEvent(((ImprimirRequisicionDTRow)(e.Row)), e.Action));
+                if ((this.ImprimirProductosDTRowChanged != null)) {
+                    this.ImprimirProductosDTRowChanged(this, new ImprimirProductosDTRowChangeEvent(((ImprimirProductosDTRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.ImprimirRequisicionDTRowChanging != null)) {
-                    this.ImprimirRequisicionDTRowChanging(this, new ImprimirRequisicionDTRowChangeEvent(((ImprimirRequisicionDTRow)(e.Row)), e.Action));
+                if ((this.ImprimirProductosDTRowChanging != null)) {
+                    this.ImprimirProductosDTRowChanging(this, new ImprimirProductosDTRowChangeEvent(((ImprimirProductosDTRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.ImprimirRequisicionDTRowDeleted != null)) {
-                    this.ImprimirRequisicionDTRowDeleted(this, new ImprimirRequisicionDTRowChangeEvent(((ImprimirRequisicionDTRow)(e.Row)), e.Action));
+                if ((this.ImprimirProductosDTRowDeleted != null)) {
+                    this.ImprimirProductosDTRowDeleted(this, new ImprimirProductosDTRowChangeEvent(((ImprimirProductosDTRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.ImprimirRequisicionDTRowDeleting != null)) {
-                    this.ImprimirRequisicionDTRowDeleting(this, new ImprimirRequisicionDTRowChangeEvent(((ImprimirRequisicionDTRow)(e.Row)), e.Action));
+                if ((this.ImprimirProductosDTRowDeleting != null)) {
+                    this.ImprimirProductosDTRowDeleting(this, new ImprimirProductosDTRowChangeEvent(((ImprimirProductosDTRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void RemoveImprimirRequisicionDTRow(ImprimirRequisicionDTRow row) {
+            public void RemoveImprimirProductosDTRow(ImprimirProductosDTRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -488,7 +488,7 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "ImprimirRequisicionDTDataTable";
+                attribute2.FixedValue = "ImprimirProductosDTDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -533,139 +533,139 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
         ///Represents strongly named DataRow class.
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public partial class ImprimirRequisicionDTRow : global::System.Data.DataRow {
+        public partial class ImprimirProductosDTRow : global::System.Data.DataRow {
             
-            private ImprimirRequisicionDTDataTable tableImprimirRequisicionDT;
+            private ImprimirProductosDTDataTable tableImprimirProductosDT;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            internal ImprimirRequisicionDTRow(global::System.Data.DataRowBuilder rb) : 
+            internal ImprimirProductosDTRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableImprimirRequisicionDT = ((ImprimirRequisicionDTDataTable)(this.Table));
+                this.tableImprimirProductosDT = ((ImprimirProductosDTDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string JefeInmediato {
+            public string Clave {
                 get {
                     try {
-                        return ((string)(this[this.tableImprimirRequisicionDT.JefeInmediatoColumn]));
+                        return ((string)(this[this.tableImprimirProductosDT.ClaveColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'JefeInmediato\' in table \'ImprimirRequisicionDT\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Clave\' in table \'ImprimirProductosDT\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableImprimirRequisicionDT.JefeInmediatoColumn] = value;
+                    this[this.tableImprimirProductosDT.ClaveColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Solicitante {
+            public string Descripcion {
                 get {
                     try {
-                        return ((string)(this[this.tableImprimirRequisicionDT.SolicitanteColumn]));
+                        return ((string)(this[this.tableImprimirProductosDT.DescripcionColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Solicitante\' in table \'ImprimirRequisicionDT\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Descripcion\' in table \'ImprimirProductosDT\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableImprimirRequisicionDT.SolicitanteColumn] = value;
+                    this[this.tableImprimirProductosDT.DescripcionColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Dependencia {
+            public string Familia {
                 get {
                     try {
-                        return ((string)(this[this.tableImprimirRequisicionDT.DependenciaColumn]));
+                        return ((string)(this[this.tableImprimirProductosDT.FamiliaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Dependencia\' in table \'ImprimirRequisicionDT\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Familia\' in table \'ImprimirProductosDT\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableImprimirRequisicionDT.DependenciaColumn] = value;
+                    this[this.tableImprimirProductosDT.FamiliaColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Direccion {
+            public string Marca {
                 get {
                     try {
-                        return ((string)(this[this.tableImprimirRequisicionDT.DireccionColumn]));
+                        return ((string)(this[this.tableImprimirProductosDT.MarcaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Direccion\' in table \'ImprimirRequisicionDT\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Marca\' in table \'ImprimirProductosDT\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableImprimirRequisicionDT.DireccionColumn] = value;
+                    this[this.tableImprimirProductosDT.MarcaColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Puesto {
+            public string Cantidad {
                 get {
                     try {
-                        return ((string)(this[this.tableImprimirRequisicionDT.PuestoColumn]));
+                        return ((string)(this[this.tableImprimirProductosDT.CantidadColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Puesto\' in table \'ImprimirRequisicionDT\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Cantidad\' in table \'ImprimirProductosDT\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableImprimirRequisicionDT.PuestoColumn] = value;
+                    this[this.tableImprimirProductosDT.CantidadColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsJefeInmediatoNull() {
-                return this.IsNull(this.tableImprimirRequisicionDT.JefeInmediatoColumn);
+            public bool IsClaveNull() {
+                return this.IsNull(this.tableImprimirProductosDT.ClaveColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetJefeInmediatoNull() {
-                this[this.tableImprimirRequisicionDT.JefeInmediatoColumn] = global::System.Convert.DBNull;
+            public void SetClaveNull() {
+                this[this.tableImprimirProductosDT.ClaveColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsSolicitanteNull() {
-                return this.IsNull(this.tableImprimirRequisicionDT.SolicitanteColumn);
+            public bool IsDescripcionNull() {
+                return this.IsNull(this.tableImprimirProductosDT.DescripcionColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetSolicitanteNull() {
-                this[this.tableImprimirRequisicionDT.SolicitanteColumn] = global::System.Convert.DBNull;
+            public void SetDescripcionNull() {
+                this[this.tableImprimirProductosDT.DescripcionColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsDependenciaNull() {
-                return this.IsNull(this.tableImprimirRequisicionDT.DependenciaColumn);
+            public bool IsFamiliaNull() {
+                return this.IsNull(this.tableImprimirProductosDT.FamiliaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetDependenciaNull() {
-                this[this.tableImprimirRequisicionDT.DependenciaColumn] = global::System.Convert.DBNull;
+            public void SetFamiliaNull() {
+                this[this.tableImprimirProductosDT.FamiliaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsDireccionNull() {
-                return this.IsNull(this.tableImprimirRequisicionDT.DireccionColumn);
+            public bool IsMarcaNull() {
+                return this.IsNull(this.tableImprimirProductosDT.MarcaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetDireccionNull() {
-                this[this.tableImprimirRequisicionDT.DireccionColumn] = global::System.Convert.DBNull;
+            public void SetMarcaNull() {
+                this[this.tableImprimirProductosDT.MarcaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsPuestoNull() {
-                return this.IsNull(this.tableImprimirRequisicionDT.PuestoColumn);
+            public bool IsCantidadNull() {
+                return this.IsNull(this.tableImprimirProductosDT.CantidadColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetPuestoNull() {
-                this[this.tableImprimirRequisicionDT.PuestoColumn] = global::System.Convert.DBNull;
+            public void SetCantidadNull() {
+                this[this.tableImprimirProductosDT.CantidadColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -673,20 +673,20 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
-        public class ImprimirRequisicionDTRowChangeEvent : global::System.EventArgs {
+        public class ImprimirProductosDTRowChangeEvent : global::System.EventArgs {
             
-            private ImprimirRequisicionDTRow eventRow;
+            private ImprimirProductosDTRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ImprimirRequisicionDTRowChangeEvent(ImprimirRequisicionDTRow row, global::System.Data.DataRowAction action) {
+            public ImprimirProductosDTRowChangeEvent(ImprimirProductosDTRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ImprimirRequisicionDTRow Row {
+            public ImprimirProductosDTRow Row {
                 get {
                     return this.eventRow;
                 }

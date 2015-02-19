@@ -325,7 +325,62 @@ namespace Activos.AccesoDatos.Almacen
                 }
             }
 
-            /// <summary>
+            public ResultadoEntidad SeleccionarProductoRequisicion(AlmacenEntidad AlmacenEntidadObjeto, string CadenaConexion)
+            {
+                DataSet ResultadoDatos = new DataSet();
+                SqlConnection Conexion = new SqlConnection(CadenaConexion);
+                SqlCommand Comando;
+                SqlParameter Parametro;
+                SqlDataAdapter Adaptador;
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+
+                try
+                {
+                    Comando = new SqlCommand("SeleccionarProductoRequisicionProcedimiento", Conexion);
+                    Comando.CommandType = CommandType.StoredProcedure;
+
+                    Parametro = new SqlParameter("Clave", SqlDbType.VarChar);
+                    Parametro.Value = AlmacenEntidadObjeto.Clave;
+                    Comando.Parameters.Add(Parametro);
+
+                    Parametro = new SqlParameter("Descripcion", SqlDbType.VarChar);
+                    Parametro.Value = AlmacenEntidadObjeto.Descripcion;
+                    Comando.Parameters.Add(Parametro);
+
+                    Parametro = new SqlParameter("PuestoId", SqlDbType.SmallInt);
+                    Parametro.Value = AlmacenEntidadObjeto.PuestoId;
+                    Comando.Parameters.Add(Parametro);
+
+                    Parametro = new SqlParameter("BusquedaRapida", SqlDbType.VarChar);
+                    Parametro.Value = AlmacenEntidadObjeto.BusquedaRapida;
+                    Comando.Parameters.Add(Parametro);
+
+                    Parametro = new SqlParameter("BuscarNombre", SqlDbType.VarChar);
+                    Parametro.Value = AlmacenEntidadObjeto.BuscarNombre;
+                    Comando.Parameters.Add(Parametro);
+
+                    Adaptador = new SqlDataAdapter(Comando);
+                    ResultadoDatos = new DataSet();
+
+                    Conexion.Open();
+                    Adaptador.Fill(ResultadoDatos);
+                    Conexion.Close();
+
+                    Resultado.ResultadoDatos = ResultadoDatos;
+
+                    return Resultado;
+                }
+                catch (SqlException Excepcion)
+                {
+                    Resultado.ErrorId = Excepcion.Number;
+                    Resultado.DescripcionError = Excepcion.Message;
+
+                    return Resultado;
+                }
+            }
+   
+        
+        /// <summary>
             ///     Busca la existencia de un producto.
             /// </summary>
             /// <param name="ProductoEntidad">Entidad del producto.</param>

@@ -22,6 +22,7 @@ namespace Activos.Entidad.Almacen
         private Int16 _ExistenciaInicial;
 
         //*********************************
+        private Int16 _PuestoId;
         private Int16 _DireccionId;
         private string _FechaInicial;
         private string _FechaFinal;
@@ -46,7 +47,7 @@ namespace Activos.Entidad.Almacen
             _ExistenciaInicial = 0;
 
             //**************************
-            
+            _PuestoId = 0;
             _DireccionId = 0;
             _FechaInicial = string.Empty;
             _FechaFinal = string.Empty;
@@ -125,6 +126,12 @@ namespace Activos.Entidad.Almacen
         {
             get { return _ExistenciaInicial; }
             set { _ExistenciaInicial = value; }
+        }
+
+        public Int16 PuestoId
+        {
+            get { return _PuestoId; }
+            set { _PuestoId = value; }
         }
 
         public Int16 DireccionId

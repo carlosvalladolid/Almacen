@@ -255,6 +255,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 EstatusProductoNuevo.Checked = true;
                 MaximoPermitivoNuevo.Text = "";
                 ProductoIdHidden.Value = "";
+                ExistenciaInicialBox.Text = "";
                 EtiquetaMensaje.Text = "";
             }
 

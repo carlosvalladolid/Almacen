@@ -17,13 +17,17 @@
         <asp:UpdatePanel ID="PageUpdate" runat="server">
             <ContentTemplate>
                
-                <table>
-                    <tr>
-                        <td>
-                        
-                        </td>
-                    </tr>
-                </table>
+                 <div class="PageTitleDiv">
+                    <table class="PageTitleTable">
+                        <tr>
+                            <td class="Title">
+                                 Requisición
+                            </td>
+                            <td class="Search"></td>
+                            <td class="Icon"></td> 
+                        </tr>
+                    </table>
+                </div>
 
                 <div class="DivTabla">
                     <rsweb:ReportViewer ID="ImprimirRequisicionReporteViewer" runat="server" Font-Names="Verdana" 
@@ -31,7 +35,7 @@
                         <LocalReport ReportPath="Aplicacion/Reporte/Diseño/ImprimirRequisicionRPT.rdlc">
                             <DataSources>
                                 <rsweb:ReportDataSource DataSourceId="ObjectDataSource1" 
-                                    Name="ImprimirRequisicionDS_ImprimirRequisicionDT" />
+                                    Name="ImprimirRequisicionDS_ImprimirProductosDT" />
                             </DataSources>
                         </LocalReport>
                         
@@ -40,7 +44,11 @@
                         SelectMethod="GetData" TypeName="Almacen.Web.ImprimirRequisicionDSTableAdapters.">
                     </asp:ObjectDataSource>
                 </div>
-
+                
+                <div>
+                    <asp:Label ID="CantidadProductoLabel" runat="server"></asp:Label>
+                </div>    
+                    
                 <asp:UpdateProgress AssociatedUpdatePanelID="PageUpdate" ID="AssociatedUpdate" runat="server">
                     <ProgressTemplate>
                         <div class="LoadingDiv"><div class="LoadingImageDiv"><img alt="Cargando..." src="../../Image/Icon/LoadingIcon.gif" /></div></div>

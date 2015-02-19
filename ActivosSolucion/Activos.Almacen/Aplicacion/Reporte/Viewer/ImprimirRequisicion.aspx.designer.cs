@@ -50,6 +50,15 @@ namespace Activos.Almacen.Aplicacion.Reporte.Viewer {
         protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSource1;
         
         /// <summary>
+        /// CantidadProductoLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label CantidadProductoLabel;
+        
+        /// <summary>
         /// AssociatedUpdate control.
         /// </summary>
         /// <remarks>
@@ -64,6 +73,6 @@ namespace Activos.Almacen.Aplicacion.Reporte.Viewer {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-       
+      
     }
 }

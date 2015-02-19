@@ -578,6 +578,85 @@ namespace Activos.AccesoDatos.Almacen
                     return Resultado;
                 }
             }
+
+            public ResultadoEntidad SeleccionarRequisicionDetalleReporte(RequisicionEntidad RequisicionObjetoEntidad, string CadenaConexion)
+            {
+                DataSet ResultadoDatos = new DataSet();
+                SqlConnection Conexion = new SqlConnection(CadenaConexion);
+                SqlCommand Comando;
+                SqlParameter Parametro;
+                SqlDataAdapter Adaptador;
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+
+                try
+                {
+                    Comando = new SqlCommand("SeleccionarRequisicionDetalleReporteProcedimiento", Conexion);
+                    Comando.CommandType = CommandType.StoredProcedure;
+
+                    Parametro = new SqlParameter("RequisicionId", SqlDbType.VarChar);
+                    Parametro.Value = RequisicionObjetoEntidad.RequisicionId;
+                    Comando.Parameters.Add(Parametro);                  
+
+                    Adaptador = new SqlDataAdapter(Comando);
+                    ResultadoDatos = new DataSet();
+
+                    Conexion.Open();
+                    Adaptador.Fill(ResultadoDatos);
+                    Conexion.Close();
+
+                    Resultado.ResultadoDatos = ResultadoDatos;
+
+                    return Resultado;
+                }
+                catch (SqlException Excepcion)
+                {
+                    Resultado.ErrorId = Excepcion.Number;
+                    Resultado.DescripcionError = Excepcion.Message;
+
+                    return Resultado;
+                }
+            }
+
+            public ResultadoEntidad SeleccionarSolicitanteRequisicionReporte (RequisicionEntidad RequisicionObjetoEntidad, string CadenaConexion)
+            {
+                DataSet ResultadoDatos = new DataSet();
+                SqlConnection Conexion = new SqlConnection(CadenaConexion);
+                SqlCommand Comando;
+                SqlParameter Parametro;
+                SqlDataAdapter Adaptador;
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+
+                try
+                {
+                    Comando = new SqlCommand("SeleccionarSolicitanteRequisicionProcedimiento", Conexion);
+                    Comando.CommandType = CommandType.StoredProcedure;
+
+                    Parametro = new SqlParameter("RequisicionId", SqlDbType.VarChar);
+                    Parametro.Value = RequisicionObjetoEntidad.RequisicionId;
+                    Comando.Parameters.Add(Parametro);
+
+                    Adaptador = new SqlDataAdapter(Comando);
+                    ResultadoDatos = new DataSet();
+
+                    Conexion.Open();
+                    Adaptador.Fill(ResultadoDatos);
+                    Conexion.Close();
+
+                    Resultado.ResultadoDatos = ResultadoDatos;
+
+                    return Resultado;
+                }
+                catch (SqlException Excepcion)
+                {
+                    Resultado.ErrorId = Excepcion.Number;
+                    Resultado.DescripcionError = Excepcion.Message;
+
+                    return Resultado;
+                }
+            }
+       
+
+
         #endregion
     }
 }

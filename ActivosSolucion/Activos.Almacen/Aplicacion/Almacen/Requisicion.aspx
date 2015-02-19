@@ -15,15 +15,20 @@
         }
     </script>
     
-    <script language="javascript" src="/Incluir/Javascript/ValidarFormulario.js" type="text/javascript"></script>
-    
-     <%--<script language="javascript" type="text/javascript">
-         function ImprimirRequisicion() {
-         window.open("/Ventana/ImprimirRequisicion.aspx", "ImprimirRequisicion", " resizable=yes,scrollbars=1");
-      }
-       
-   </script>--%>
-
+   
+     <script language="javascript" type="text/javascript">
+         
+         function ImprimirRequisicion() 
+         {
+            var RequisicionId = document.getElementById("<%= RequisicionIdHidden.ClientID %>");  
+            //alert(RequisicionId.value);               
+            window.open("/Aplicacion/Reporte/Viewer/ImprimirRequisicion.aspx?RequisicionId=" + RequisicionId.value, "ImprimirRequisicion", " resizable=yes,scrollbars=1");
+         }   
+             
+    </script>
+   
+   <script language="javascript" src="/Incluir/Javascript/ValidarFormulario.js" type="text/javascript"></script>
+   
 </asp:Content>
 
 <asp:Content ID="ContenidoCuerpo" ContentPlaceHolderID="ContenedorCuerpo" runat="server">
@@ -235,6 +240,13 @@
                                     <td class="Campo"><asp:TextBox CssClass="CajaTextoGrande" ID="NombreProductoBusqueda" MaxLength="100" runat="server" Text=""></asp:TextBox></td>
                                 </tr>
                             </table>
+                        </div>                        
+                        <div class="PopupGrandePieDiv">
+                             <asp:Label Font-Bold="true" CssClass="TextoError" ID="AceptarMensajeProducto" runat="server" Text="" ></asp:Label><br />
+                             &nbsp;&nbsp;
+                             <asp:ImageButton ID="BotonAceptar" OnClick="BotonProductoBusqueda_Click" runat="server" ImageUrl="~/Imagen/Boton/BotonBuscar.png" />
+                             &nbsp;
+                             <asp:ImageButton ID="BotonCancelar" OnClick="BotonCerrarProductoBusqueda_Click" runat="server" ImageUrl="~/Imagen/Boton/BotonCancelar.png" />                   
                         </div>
 
                         <div class="DivTabla">
@@ -281,21 +293,19 @@
                             </asp:GridView>
                         </div>                    
                     </div>
-
-                    <div class="PopupGrandePieDiv">
-                         <asp:Label Font-Bold="true" CssClass="TextoError" ID="AceptarMensajeProducto" runat="server" Text="" ></asp:Label><br />
-                         &nbsp;&nbsp;
-                         <asp:ImageButton ID="BotonAceptar" OnClick="BotonProductoBusqueda_Click" runat="server" ImageUrl="~/Imagen/Boton/BotonBuscar.png" />
-                         &nbsp;
-                         <asp:ImageButton ID="BotonCancelar" OnClick="BotonCerrarProductoBusqueda_Click" runat="server" ImageUrl="~/Imagen/Boton/BotonCancelar.png" />                   
-                    </div>
+                   
                 </asp:Panel>
                 
                 <asp:HiddenField ID="TemporalRequisicionIdHidden" runat="server" Value="" />
                 <asp:HiddenField ID="ProductoIdHidden" runat="server" Value="" />
                 <asp:HiddenField ID="EmpleadoIdHidden" runat="server" Value="" />
                 <asp:HiddenField ID="JefeIdHidden" runat="server" Value="" />
+                <asp:HiddenField ID="PuestoIdHidden" runat="server" Value=0 />
                 <asp:HiddenField ID="MensajeLimpieza" runat="server" Value="" />
+                
+           <%-- //DATOS PARA PASAR A LA PANTALLA DE IMPRESION DE REPORTE--%>
+              <asp:HiddenField ID="RequisicionIdHidden" runat="server" Value="" />            
+                
             </ContentTemplate>
         </asp:UpdatePanel>   
     </div>

@@ -48,7 +48,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             protected void BotonImprimir_Click(object sender, EventArgs e)
             {
-                ImprimirRequisicion();
+                //ImprimirRequisicion();
             }
 
             protected void BotonCerrarProductoBusqueda_Click(object sender, ImageClickEventArgs e)
@@ -109,11 +109,12 @@ namespace Almacen.Web.Aplicacion.Almacen
             {
                 TablaRequisicionEventoComando(e);
             }
+        
         #endregion
 
         #region "Métodos"
           
-        private void AgregarDetalleDocumento()
+            private void AgregarDetalleDocumento()
             {
                 RequisicionEntidad RequisicionObjetoEntidad = new RequisicionEntidad();
                 //***********************************************************************
@@ -174,13 +175,15 @@ namespace Almacen.Web.Aplicacion.Almacen
             private void BuscarProducto()
             {
                 ResultadoEntidad Resultado = new ResultadoEntidad();
+                UsuarioEntidad UsuarioEntidad = new UsuarioEntidad();
                 AlmacenEntidad AlmacenObjetoEntidad = new AlmacenEntidad();
                 AlmacenProceso AlmacenProcesoNegocio = new AlmacenProceso();
 
                 AlmacenObjetoEntidad.Clave = ClaveProductoBusqueda.Text.Trim();
                 AlmacenObjetoEntidad.Descripcion = NombreProductoBusqueda.Text.Trim();
+                AlmacenObjetoEntidad.PuestoId = Int16.Parse(PuestoIdHidden.Value);
 
-                Resultado = AlmacenProcesoNegocio.SeleccionarProducto(AlmacenObjetoEntidad);
+                Resultado = AlmacenProcesoNegocio.SeleccionarProductoRequisicion(AlmacenObjetoEntidad);
 
                 if (Resultado.ErrorId == 0)
                 {
@@ -240,6 +243,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                         PuestoNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["Puesto"].ToString();
                         JefeInmediatoNuevo.Text = Resultado.ResultadoDatos.Tables[0].Rows[0]["EmpleadoJefe"].ToString();
                         JefeIdHidden.Value = Resultado.ResultadoDatos.Tables[0].Rows[0]["EmpleadoIdJefe"].ToString();
+                        PuestoIdHidden.Value = Resultado.ResultadoDatos.Tables[0].Rows[0]["PuestoId"].ToString();
                     }
                     else
                         MostrarMensaje(RequisicionProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
@@ -298,21 +302,24 @@ namespace Almacen.Web.Aplicacion.Almacen
                 Resultado = RequisicionProcesoNegocio.GuardarRequisicion(RequisicionObjetoEntidad);
 
                 if (Resultado.ErrorId == (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente)
-                {
-                    //#
-                    TemporalRequisicionIdHidden.Value = "";
+                {                                      
                     LimpiarNuevoRegistro();
                     LimpiarRequisicion();
+                    ImprimirRequisicion(TemporalRequisicionIdHidden.Value);
+                    TemporalRequisicionIdHidden.Value = "";
                     MostrarMensaje(TextoInfo.MensajeNoRequisicion + ObtenerClaveRequisicion(RequisicionObjetoEntidad), ConstantePrograma.TipoMensajeSimpleAlerta);
                 }
                 else
                     MostrarMensaje(RequisicionProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
             }
 
+            protected void ImprimirRequisicion(string  TemporalRequisicionIdHidden)
+            {                            
+                RequisicionIdHidden.Value = TemporalRequisicionIdHidden.ToString();
 
-            protected void ImprimirRequisicion()
-            {
-               // ScriptManager.RegisterStartupScript(Page, Page.GetType(), "Guid.NewGuid().ToString()", "ImprimirRequisicion('" + EmpIdHidden.Value + "','" + TempAsigIdHidden.Value + "')", true);
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "Guid.NewGuid()", "ImprimirRequisicion()", true);
+                //    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "WindowOpen", "ImprimirRequisicion()", true);
+                            
             }
         
             private void Inicio()

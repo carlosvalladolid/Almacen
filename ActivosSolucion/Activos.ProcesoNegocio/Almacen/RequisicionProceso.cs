@@ -67,6 +67,7 @@ namespace Activos.ProcesoNegocio.Almacen
         }
 
         #region "Métodos"
+
             public ResultadoEntidad AgregarTemporalRequisicion(RequisicionEntidad RequisicionObjetoEntidad)
             {
                 RequisicionAcceso RequisicionAccesoObjeto = new RequisicionAcceso();
@@ -324,6 +325,32 @@ namespace Activos.ProcesoNegocio.Almacen
                 return Resultado;
             }
 
+            public ResultadoEntidad SeleccionarRequisicionDetalleReporte(RequisicionEntidad RequisicionObjetoEntidad)
+            {
+                string CadenaConexion = string.Empty;
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                RequisicionAcceso RequisicionAccesoObjeto = new RequisicionAcceso();
+
+                CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+                Resultado = RequisicionAccesoObjeto.SeleccionarRequisicionDetalleReporte(RequisicionObjetoEntidad, CadenaConexion);
+
+                return Resultado;
+            }
+
+            public ResultadoEntidad SeleccionarSolicitanteRequisicionReporte(RequisicionEntidad RequisicionObjetoEntidad)
+            {
+                string CadenaConexion = string.Empty;
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+                RequisicionAcceso RequisicionAccesoObjeto = new RequisicionAcceso();
+
+                CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+                Resultado = RequisicionAccesoObjeto.SeleccionarSolicitanteRequisicionReporte(RequisicionObjetoEntidad, CadenaConexion);
+
+                return Resultado;
+            }
+
             /// <summary>
             ///     Busca información de las requisiciones que coincidan con los parámetros enviados.
             /// </summary>
@@ -414,6 +441,7 @@ namespace Activos.ProcesoNegocio.Almacen
 
                 return Resultado;
             }
+
         #endregion
     }
 }
