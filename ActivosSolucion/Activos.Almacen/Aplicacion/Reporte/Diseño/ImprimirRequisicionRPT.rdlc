@@ -202,9 +202,6 @@
           <BorderColor>
             <Default>#c00000</Default>
           </BorderColor>
-          <BorderStyle>
-            <Default>Solid</Default>
-          </BorderStyle>
           <FontWeight>800</FontWeight>
           <TextAlign>Center</TextAlign>
           <PaddingLeft>2pt</PaddingLeft>
@@ -521,7 +518,7 @@
       </Table>
       <Line Name="line2">
         <Top>11.75cm</Top>
-        <Width>10.75cm</Width>
+        <Width>10.5cm</Width>
         <Style>
           <BorderStyle>
             <Default>Solid</Default>
@@ -533,7 +530,7 @@
       </Line>
       <Textbox Name="textbox18">
         <Top>12cm</Top>
-        <Width>8.25cm</Width>
+        <Width>10.5cm</Width>
         <Style>
           <TextAlign>Center</TextAlign>
           <PaddingLeft>2pt</PaddingLeft>
@@ -543,7 +540,7 @@
         </Style>
         <ZIndex>12</ZIndex>
         <CanGrow>true</CanGrow>
-        <Left>17.25cm</Left>
+        <Left>16.25cm</Left>
         <Height>0.63492cm</Height>
         <Value>(Nombre y Firma)</Value>
       </Textbox>
@@ -723,7 +720,7 @@
       <Textbox Name="textbox6">
         <rd:DefaultName>textbox6</rd:DefaultName>
         <Top>12.25cm</Top>
-        <Width>8.25cm</Width>
+        <Width>10.75cm</Width>
         <Style>
           <TextAlign>Center</TextAlign>
           <PaddingLeft>2pt</PaddingLeft>
@@ -732,7 +729,7 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
         <CanGrow>true</CanGrow>
-        <Left>1.75cm</Left>
+        <Left>0.75cm</Left>
         <Height>0.63492cm</Height>
         <Value>(Nombre y Firma)</Value>
       </Textbox>
