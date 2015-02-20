@@ -19,6 +19,12 @@
             SetNewCalendar("#<%= FechaHasta.ClientID %>");
                 }
     </script>
+    <style type="text/css">
+        .style1
+        {
+            width: 415px;
+        }
+    </style>
 </asp:Content>
 
 <asp:Content ID="ContenidoCuerpo" ContentPlaceHolderID="ContenedorCuerpo" runat="server">
@@ -44,13 +50,13 @@
                 <table class="TablaFormulario">
                 
                       <tr>
-                            <td class="Nombre">Fechas</td>
-                            <td class="Espacio">&nbsp;</td>
-                            <td class="Campo" >Desde&nbsp;<asp:TextBox CssClass="CajaTextoPequenia" ID="FechaDesde" MaxLength="50" runat="server" Text=""></asp:TextBox>&nbsp;
-                                               Hasta&nbsp;<asp:TextBox CssClass="CajaTextoPequenia" ID="FechaHasta" MaxLength="50" runat="server" Text=""></asp:TextBox>&nbsp;&nbsp;                                           
-                                               <span class="NotaCampo"> (dd/mm/aaaa)</span>
-                                               </td>
-                                               <td></td>
+                        <td class="Nombre">Fechas</td>
+                        <td class="Espacio">&nbsp;</td>
+                        <td class="style1">Desde&nbsp;<asp:TextBox CssClass="CajaTextoPequenia" ID="FechaDesde" MaxLength="20" runat="server" Text=""></asp:TextBox>
+                                           Hasta&nbsp;<asp:TextBox CssClass="CajaTextoPequenia" ID="FechaHasta" MaxLength="20" runat="server" Text=""></asp:TextBox>                                          
+                                           <span class="NotaCampo"> (dd/mm/aaaa)</span>
+                                           </td>
+                                           <td></td>
                      </tr>  
                      <tr>
                         <td class="Nombre">Dirección</td>
