@@ -45,9 +45,8 @@ namespace Activos.Almacen.Aplicacion.Reporte.Viewer
             {
                 string RequisicionId = string.Empty;
 
-                RequisicionId = Request.QueryString["RequisicionId"].ToString();
-                         
-                //SeleccionarEncabezadoRequisicion(RequisicionId);
+                RequisicionId = Request.QueryString["RequisicionId"].ToString();                         
+                SeleccionarEncabezadoRequisicion(RequisicionId);
                 SeleccionarDetalleRequisicion(RequisicionId);              
                 //MostrarTitulo();
             }
@@ -79,7 +78,7 @@ namespace Activos.Almacen.Aplicacion.Reporte.Viewer
 
             if (Resultado.ErrorId == 0)
             {
-                ReportDataSource ParametroFuenteDatos = new ReportDataSource("ImprimirRequisicionDS_ImprimirProductosDT", Resultado.ResultadoDatos.Tables[0]);
+                ReportDataSource ParametroFuenteDatos = new ReportDataSource("ImprimirRequisicionDS_ImprimirProductoDT", Resultado.ResultadoDatos.Tables[0]);
 
                 ImprimirRequisicionReporteViewer.LocalReport.DataSources.Clear();
                 ImprimirRequisicionReporteViewer.LocalReport.DataSources.Add(ParametroFuenteDatos);
@@ -102,22 +101,25 @@ namespace Activos.Almacen.Aplicacion.Reporte.Viewer
 
             if (Resultado.ErrorId == 0)
             {
+               //string Solicitante =  Resultado.ResultadoDatos.Tables[0].Rows[0]["Solicitante"].ToString();
+
+
                 ReportParameter ParameterSolicitante = new ReportParameter("Solicitante", Resultado.ResultadoDatos.Tables[0].Rows[0]["Solicitante"].ToString(), true);
-                //ReportParameter ParameterJefeInmediato = new ReportParameter("JefeInmediato", Resultado.ResultadoDatos.Tables[0].Rows[0]["EmpleadoJefe"].ToString(), true);
-                //ReportParameter ParameterDireccion = new ReportParameter("Direccion", Resultado.ResultadoDatos.Tables[0].Rows[0]["Direccion"].ToString(), true);
-                //ReportParameter ParameterDependencia = new ReportParameter("Dependencia", Resultado.ResultadoDatos.Tables[0].Rows[0]["Dependencia"].ToString(), true);
-                //ReportParameter ParameterPuesto = new ReportParameter("Puesto", Resultado.ResultadoDatos.Tables[0].Rows[0]["Puesto"].ToString(), true);
-                //ReportParameter ParameterFirmaSolicitante = new ReportParameter("FirmaSolicitante", Resultado.ResultadoDatos.Tables[0].Rows[0]["Solicitante"].ToString(), true);
+                ReportParameter ParameterJefeInmediato = new ReportParameter("JefeInmediato", Resultado.ResultadoDatos.Tables[0].Rows[0]["EmpleadoJefe"].ToString(), true);
+                ReportParameter ParameterDireccion = new ReportParameter("Direccion", Resultado.ResultadoDatos.Tables[0].Rows[0]["Direccion"].ToString(), true);
+                ReportParameter ParameterDependencia = new ReportParameter("Dependencia", Resultado.ResultadoDatos.Tables[0].Rows[0]["Dependencia"].ToString(), true);
+                ReportParameter ParameterPuesto = new ReportParameter("Puesto", Resultado.ResultadoDatos.Tables[0].Rows[0]["Puesto"].ToString(), true);
+                ReportParameter ParameterFirmaSolicitante = new ReportParameter("FirmaSolicitante", Resultado.ResultadoDatos.Tables[0].Rows[0]["Solicitante"].ToString(), true);
                 ReportParameter ParameterEncargadoBodega = new ReportParameter("EncargadoBodega", ConfigurationManager.AppSettings["Almacen.Web.EncargadoBodega"].ToString(), true);
 
                 ReportParameter[] ParameterList = new ReportParameter[] 
                     { 
                     ParameterSolicitante, 
-                    //ParameterJefeInmediato,
-                    //ParameterDireccion,
-                    //ParameterDependencia,
-                    //ParameterPuesto,
-                    //ParameterFirmaSolicitante,
+                    ParameterJefeInmediato,
+                    ParameterDireccion,
+                    ParameterDependencia,
+                    ParameterPuesto,
+                    ParameterFirmaSolicitante,
                     ParameterEncargadoBodega
                     };
                 ImprimirRequisicionReporteViewer.LocalReport.SetParameters(ParameterList);

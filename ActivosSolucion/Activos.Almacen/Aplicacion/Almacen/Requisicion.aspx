@@ -198,7 +198,7 @@
                                 <br />
                                 <asp:ImageButton AlternateText="Guardar" ID="BotonGuardarPreOrden"  ImageUrl="/Imagen/Boton/BotonGuardar.png" OnClick="BotonGuardar_Click" runat="server" ValidationGroup="Save" />&nbsp;&nbsp;
                                 <asp:ImageButton AlternateText="Limpiar" ID="BotonLimpiarRegistro"  ImageUrl="/Imagen/Boton/BotonLimpiar.png" OnClick="BotonLimpiar_Click" runat="server" />&nbsp;&nbsp;
-                                <asp:ImageButton AlternateText="Imprimir" ID="BotonImprimir"  ImageUrl="/Imagen/Boton/BotonImprimir.png" OnClick="BotonImprimir_Click"  runat="server" />&nbsp;&nbsp;
+                                <asp:ImageButton AlternateText="Imprimir" ID="BotonImprimir"  ImageUrl="/Imagen/Boton/BotonImprimir.png" OnClick="BotonImprimir_Click" visible ="false" runat="server" />&nbsp;&nbsp;
                                 
                             </td>     
                             <td style="width:20%; text-align:right;">

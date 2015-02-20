@@ -285,7 +285,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                     if (TablaRequisicion.Rows.Count > 0)
                     {
                         RequisicionObjetoEntidad.RequisicionId = TemporalRequisicionIdHidden.Value;
-                        
+                      
                         GuardarRequisicion(RequisicionObjetoEntidad);
                         
                     }
@@ -302,7 +302,8 @@ namespace Almacen.Web.Aplicacion.Almacen
                 Resultado = RequisicionProcesoNegocio.GuardarRequisicion(RequisicionObjetoEntidad);
 
                 if (Resultado.ErrorId == (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente)
-                {                                      
+                {
+                   
                     LimpiarNuevoRegistro();
                     LimpiarRequisicion();
                     ImprimirRequisicion(TemporalRequisicionIdHidden.Value);

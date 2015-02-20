@@ -118,6 +118,6 @@ namespace Activos.Almacen.Aplicacion.Reporte.Viewer {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-       
+      
     }
 }
