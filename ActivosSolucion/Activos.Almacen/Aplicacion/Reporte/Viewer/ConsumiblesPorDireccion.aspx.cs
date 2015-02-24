@@ -57,6 +57,7 @@ namespace Almacen.Web.Aplicacion.Reporte.Viewer
             {
                 SeleccionarDireccion();
                 SeleccionarEstatus();
+                ConsumiblePorDireccionReporteViewer.Visible = false;
                 //seleccionarReporteConsumoPorDireccion();
             }
                       
@@ -101,6 +102,7 @@ namespace Almacen.Web.Aplicacion.Reporte.Viewer
 
             if (ResultadoDatosEntidad.ErrorId == 0)
             {
+                ConsumiblePorDireccionReporteViewer.Visible = true;
                 ReportDataSource ParametroFuenteDatos = new ReportDataSource("ConsumoPorDireccionDS_ConsumoPorDireccionDT", ResultadoDatosEntidad.ResultadoDatos.Tables[0]);
 
                 ConsumiblePorDireccionReporteViewer.LocalReport.DataSources.Clear();

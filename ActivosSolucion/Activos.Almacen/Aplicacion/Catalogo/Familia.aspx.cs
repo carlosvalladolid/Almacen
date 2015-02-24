@@ -134,7 +134,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
 
                 if (ResultadoEntidadObjeto.ErrorId == (int)ConstantePrograma.Familia.EliminacionExitosa)
                 {
-                    MostrarMensaje(ResultadoEntidadObjeto.DescripcionError, ConstantePrograma.TipoMensajeAlerta);
+                    MostrarMensaje(TextoInfo.MensajeEliminacionExitosa, ConstantePrograma.TipoMensajeAlerta);
                     BusquedaAvanzada();
                 }
                 else

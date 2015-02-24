@@ -53,6 +53,7 @@ namespace Activos.Comun.Constante
 
          public const string MensajeMaximoCompra = "Se excede la compra Maxima";
 
+         public const string MensajeEliminacionExitosa = "Elemento eliminado de forma satisfactoria.";
       // Mensaje Informativos de Requisición
 
     }

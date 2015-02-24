@@ -419,7 +419,8 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 {
                     if (Resultado.ResultadoDatos.Tables[0].Rows.Count == 0)
                     {   
-                         MostrarMensaje(Resultado.DescripcionError, ConstantePrograma.TipoErrorAlerta);
+                         
+                         //MostrarMensaje(Resultado.DescripcionError, ConstantePrograma.TipoErrorAlerta);
                        
                     }
                     else
@@ -431,13 +432,10 @@ namespace Almacen.Web.Aplicacion.Catalogo
                                 if (TablaSubFamiliaPuesto.DataKeys[Registro.RowIndex]["PuestoId"].ToString() == Puesto["PuestoId"].ToString())
                                 {
                                     chkSeleccionado = (CheckBox)Registro.FindControl("AgregarPuesto");
-                                    chkSeleccionado.Checked = true;
+                                    chkSeleccionado.Checked = !chkSeleccionado.Checked;
                                     break;
                                 }
                             }
-                        
-                        
-                        
                         }
 
                     }

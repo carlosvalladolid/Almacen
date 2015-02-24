@@ -20,6 +20,7 @@ using Activos.Entidad.Seguridad;
 using Activos.ProcesoNegocio.Almacen;
 using Activos.ProcesoNegocio.Catalogo;
 using Activos.ProcesoNegocio.Seguridad;
+using Activos.Comun.Cadenas;
 
 namespace Almacen.Web.Aplicacion.Catalogo
 {
@@ -144,7 +145,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 {
                     // ToDo: Manejar mensajes de error
                     //EtiquetaMensaje.Text = "";
-
+                    MostrarMensaje(TextoInfo.MensajeEliminacionExitosa, ConstantePrograma.TipoMensajeAlerta);
                     BusquedaAvanzada();
                 }
                 else
@@ -209,6 +210,19 @@ namespace Almacen.Web.Aplicacion.Catalogo
                 EstatusNuevo.SelectedValue = "0";
                 NombreNuevo.Text = "";
                 MarcaIdHidden.Value = "0";
+            }
+
+            private void MostrarMensaje(string Mensaje, string TipoMensaje)
+            {
+                StringBuilder FormatoMensaje = new StringBuilder();
+
+                FormatoMensaje.Append("MostrarMensaje(\"");
+                FormatoMensaje.Append(Mensaje);
+                FormatoMensaje.Append("\", \"");
+                FormatoMensaje.Append(TipoMensaje);
+                FormatoMensaje.Append("\");");
+
+                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Mensaje", Comparar.ReemplazarCadenaJavascript(FormatoMensaje.ToString()), true);
             }
 
             private string ObtenerCadenaMarcaId()

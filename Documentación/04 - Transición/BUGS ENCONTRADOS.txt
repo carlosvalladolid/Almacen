@@ -1,0 +1,18 @@
+NOTAS ACTIVOS
+
+-Pantalla Recepción de OC
+	(***Listo***)-Si se genero una OC sin Jefe inmediato y se quiere  recibir no sé puede.
+
+*Catalogo de productos
+	-No funciona la busqueda normal
+
+*Catalogo de Subfamilias
+	(***Listo***)-Error al seleccionar algunas familia ¿No se conoce el puesto de la subfamilia? Por alguna razon al guardar se quita el error
+	(***Listo***)-AL seleccionar una subfamilia no se refresan los campos de los permisos
+
+*Catalogo de familias
+	(***Listo***)-Mensaje de eliminación no tenía mensaje
+
+*Catálogo de Proveedor
+   -No funciona Eliminación del proveedor
+

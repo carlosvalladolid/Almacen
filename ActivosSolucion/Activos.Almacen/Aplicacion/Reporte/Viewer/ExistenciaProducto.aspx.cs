@@ -60,6 +60,7 @@ namespace Almacen.Web.Aplicacion.Reporte.Viewer
                 SeleccionarFamilia();
                 SeleccionarSubfamilia();
                 SeleccionarMarca();
+                ExistenciaProductoReporteViewer.Visible = false;
                 //seleccionarReporteExistenciaProducto();
             }
 
@@ -174,6 +175,7 @@ namespace Almacen.Web.Aplicacion.Reporte.Viewer
 
                 if (ResultadoDatosEntidad.ErrorId == 0)
                 {
+                    ExistenciaProductoReporteViewer.Visible = true;
                     ReportDataSource ParametroFuenteDatos = new ReportDataSource("ExistenciaPoductoDS_ExistenciaProductoDT", ResultadoDatosEntidad.ResultadoDatos.Tables[0]);
 
                     ExistenciaProductoReporteViewer.LocalReport.DataSources.Clear();

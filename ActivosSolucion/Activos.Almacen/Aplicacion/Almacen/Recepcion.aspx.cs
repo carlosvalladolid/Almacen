@@ -687,10 +687,14 @@ namespace Almacen.Web.Aplicacion.Almacen
 
             if (Resultado.ErrorId == 0)
             {
-                JefeInmediatoIdNuevo.DataSource = Resultado.ResultadoDatos;
-                JefeInmediatoIdNuevo.DataBind();
-                if(JefeInmediatoIdNuevo.Items.Count > 1) JefeInmediatoIdNuevo.SelectedIndex = 1;
-                else JefeInmediatoIdNuevo.SelectedIndex = 0;
+                if (Resultado.ResultadoDatos.Tables[0].Rows.Count > 0)
+                {
+                    JefeInmediatoIdNuevo.DataSource = Resultado.ResultadoDatos;
+                    JefeInmediatoIdNuevo.DataBind();
+                    if (JefeInmediatoIdNuevo.Items.Count > 1) JefeInmediatoIdNuevo.SelectedIndex = 1;
+                    else JefeInmediatoIdNuevo.SelectedIndex = 0;
+                }
+
             }
             else
             {

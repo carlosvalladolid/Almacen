@@ -146,6 +146,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ConsumoPorDireccionDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Aplicacion\Reporte\DataSet\ExistenciaPoductoDS.cs">
+      <DependentUpon>ExistenciaPoductoDS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Aplicacion\Reporte\DataSet\ExistenciaPoductoDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

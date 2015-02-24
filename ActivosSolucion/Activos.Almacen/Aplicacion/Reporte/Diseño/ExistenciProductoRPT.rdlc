@@ -14,11 +14,11 @@
   <InteractiveWidth>21cm</InteractiveWidth>
   <rd:GridSpacing>0.25cm</rd:GridSpacing>
   <rd:SnapToGrid>true</rd:SnapToGrid>
-  <RightMargin>2.5cm</RightMargin>
-  <LeftMargin>2.5cm</LeftMargin>
-  <BottomMargin>2.5cm</BottomMargin>
+  <RightMargin>0.5cm</RightMargin>
+  <LeftMargin>0.5cm</LeftMargin>
+  <BottomMargin>1cm</BottomMargin>
   <rd:ReportID>d0122875-994c-4c0f-9049-a7c0be873565</rd:ReportID>
-  <PageWidth>17.59cm</PageWidth>
+  <PageWidth>29.7cm</PageWidth>
   <DataSets>
     <DataSet Name="ExistenciaPoductoDS_ExistenciaProductoDT">
       <Fields>
@@ -71,7 +71,7 @@
     </DataSet>
   </DataSets>
   <Code />
-  <Width>29.29062cm</Width>
+  <Width>29.7cm</Width>
   <Body>
     <ColumnSpacing>1cm</ColumnSpacing>
     <ReportItems>
@@ -90,14 +90,14 @@
         </Style>
         <ZIndex>1</ZIndex>
         <CanGrow>true</CanGrow>
-        <Left>0.5cm</Left>
+        <Left>0.75cm</Left>
         <Height>0.74074cm</Height>
         <Value>Instituto  de Defensoria Publica de Nuevo Leon</Value>
       </Textbox>
       <Table Name="table1">
         <DataSetName>ExistenciaPoductoDS_ExistenciaProductoDT</DataSetName>
         <Top>1.5cm</Top>
-        <Width>28.53437cm</Width>
+        <Width>28.29062cm</Width>
         <Details>
           <TableRows>
             <TableRow>
@@ -506,7 +506,7 @@
             <Width>4.24375cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>4.24375cm</Width>
+            <Width>4cm</Width>
           </TableColumn>
         </TableColumns>
         <Height>1.26984cm</Height>
@@ -521,6 +521,6 @@
     <Height>0.75cm</Height>
     <PrintOnLastPage>true</PrintOnLastPage>
   </PageFooter>
-  <TopMargin>2.5cm</TopMargin>
-  <PageHeight>27.94cm</PageHeight>
+  <TopMargin>1cm</TopMargin>
+  <PageHeight>21cm</PageHeight>
 </Report>
