@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Incluir/Plantilla/PlantillaPrivada.Master" AutoEventWireup="true" CodeBehind="ProveedorAlmacen.aspx.cs" Inherits="Activos.Almacen.Aplicacion.Catalogo.ProveedorAlmacen" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Incluir/Plantilla/PlantillaPrivada.Master" AutoEventWireup="true" CodeBehind="ProveedorAlmacen.aspx.cs" Inherits="Almacen.Web.Aplicacion.Catalogo.ProveedorAlmacen" %>
 
 <%@ MasterType VirtualPath="~/Incluir/Plantilla/PlantillaPrivada.Master" %>
 <%@ Register TagPrefix="wuc" TagName="ControlMenuIzquierdo" Src="~/Incluir/ControlesWeb/ControlMenuIzquierdo.ascx" %>
@@ -36,7 +36,7 @@
                     </table>
                 </div>
 
-                <asp:Panel CssClass="SearchDiv" ID="PanelBusquedaAvanzada" Visible="true" runat="server">
+                <asp:Panel CssClass="SearchDiv" ID="PanelBusquedaAvanzada" Visible="false" runat="server">
                    <table class="TablaFormulario">
                         <tr>
                             <td class="Nombre">Nombre</td>
@@ -54,7 +54,7 @@
                 </asp:Panel>
                
 
-                <asp:Panel CssClass="NewRowDiv" ID="PanelNuevoRegistro" Visible="true" runat="server">
+                <asp:Panel CssClass="NewRowDiv" ID="PanelNuevoRegistro" Visible="false" runat="server">
                     <table class="TablaFormulario">
                             
                                 <tr>

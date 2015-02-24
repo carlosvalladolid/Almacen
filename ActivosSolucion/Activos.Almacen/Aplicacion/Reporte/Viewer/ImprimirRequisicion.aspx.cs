@@ -24,7 +24,7 @@ using Activos.ProcesoNegocio.Almacen;
 using Activos.ProcesoNegocio.Catalogo;
 using Activos.ProcesoNegocio.Seguridad;
 
-namespace Activos.Almacen.Aplicacion.Reporte.Viewer
+namespace Almacen.Web.Aplicacion.Reporte.Viewer
 {
     public partial class ImprimirRequisicion : System.Web.UI.Page
     {

@@ -22,7 +22,7 @@ using Activos.ProcesoNegocio.Seguridad;
 using Activos.ProcesoNegocio.Catalogo;
 using Activos.ProcesoNegocio.Almacen;
 
-namespace Activos.Almacen.Aplicacion.Catalogo
+namespace Almacen.Web.Aplicacion.Catalogo
 {
     public partial class ProveedorAlmacen : System.Web.UI.Page
     {
@@ -64,9 +64,19 @@ namespace Activos.Almacen.Aplicacion.Catalogo
             BusquedaAvanzada();
         }
 
+        protected void EliminarRegistroLink_Click(Object sender, System.EventArgs e)
+        {
+            EliminarProveedor();
+        }
+
         protected void EstadoNuevo_SelectedIndexChanged(object sender, EventArgs e)
         {
             SeleccionarCiudadNuevo();
+        }
+
+        protected void NuevoRegistro_Click(Object sender, System.EventArgs e)
+        {
+            CambiarNuevoRegistro();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -89,15 +99,15 @@ namespace Activos.Almacen.Aplicacion.Catalogo
 
         #region "Métodos"
 
-        //protected void EliminarProveedor()
-        //{
+        protected void EliminarProveedor()
+        {
         //    ResultadoEntidad ResultadoEntidadObjeto = new ResultadoEntidad();
         //    ProveedorAlmacenEntidad ProveedorAlmacenEntidadObjeto = new ProveedorAlmacenEntidad();
 
         //    ProveedorAlmacenEntidadObjeto.CadenaProveedorId = ObtenerCadenaProveedorId();
 
         //    EliminarProveedor(ProveedorAlmacenEntidadObjeto);
-        //}
+        }
 
         //protected void EliminarProveedor(ProveedorAlmacenEntidad ProveedorAlmacenEntidadObjeto)
         //{
@@ -204,9 +214,9 @@ namespace Activos.Almacen.Aplicacion.Catalogo
         private void Inicio()
         {
 
-            //Master.NuevoRegistroMaster.Click += new EventHandler(NuevoRegistro_Click);
-            //Master.BusquedaAvanzadaMaster.Click += new EventHandler(BusquedaAvanzadaLink_Click);
-            //Master.EliminarRegistroMaster.Click += new EventHandler(EliminarRegistroLink_Click);
+            Master.NuevoRegistroMaster.Click += new EventHandler(NuevoRegistro_Click);
+            Master.BusquedaAvanzadaMaster.Click += new EventHandler(BusquedaAvanzadaLink_Click);
+            Master.EliminarRegistroMaster.Click += new EventHandler(EliminarRegistroLink_Click);
 
             if (!Page.IsPostBack)
             {

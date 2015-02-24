@@ -24,7 +24,7 @@ using Activos.ProcesoNegocio.Almacen;
 using Activos.ProcesoNegocio.Catalogo;
 using System.Globalization;
 
-namespace Activos.Almacen.Aplicacion.Almacen
+namespace Almacen.Web.Aplicacion.Almacen
 {
     public partial class Recepcion : System.Web.UI.Page
     {

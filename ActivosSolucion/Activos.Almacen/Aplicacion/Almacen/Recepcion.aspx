@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Incluir/Plantilla/PlantillaPrivada.Master" AutoEventWireup="true" CodeBehind="Recepcion.aspx.cs" Inherits="Activos.Almacen.Aplicacion.Almacen.Recepcion" Title="" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Incluir/Plantilla/PlantillaPrivada.Master" AutoEventWireup="true" CodeBehind="Recepcion.aspx.cs" Inherits="Almacen.Web.Aplicacion.Almacen.Recepcion" Title="" %>
 <%@ MasterType VirtualPath="~/Incluir/Plantilla/PlantillaPrivada.Master" %>
 <%@ Register TagPrefix="wuc" TagName="ControlMenuIzquierdo" Src="~/Incluir/ControlesWeb/ControlMenuIzquierdo.ascx" %>
 

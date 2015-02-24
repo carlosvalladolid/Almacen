@@ -10,7 +10,8 @@
 
 #pragma warning disable 1591
 
-namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
+namespace Almacen.Web.Aplicacion.Reporte.DataSet
+{
     
     
     /// <summary>
