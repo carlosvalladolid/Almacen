@@ -350,7 +350,7 @@ OnRowCommand="TablaRecepcion_RowCommand"  runat="server" PageSize="10">
 
                 <asp:Panel CssClass="PopupGrandeDiv" ID="PanelBusquedaOrden" Visible="false" runat="server">
                     <div class="PopupGrandeEncabezadoDiv">                    
-                        <asp:Label class="TitleDivPage" ID="Label1" runat="server" Text="Busqueda de Productos"></asp:Label>
+                        <asp:Label class="TitleDivPage" ID="Label1" runat="server" Text="Ordenes de Compra"></asp:Label>
                     </div>
 
                     <div class="PopupGrandeCuerpoDiv">

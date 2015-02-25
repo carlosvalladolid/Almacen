@@ -227,7 +227,7 @@
 
                 <asp:Panel CssClass="PopupGrandeDiv" ID="PanelBusquedaProducto" Visible="false" runat="server">
                     <div class="PopupGrandeEncabezadoDiv">                    
-                        <asp:Label class="TitleDivPage" ID="lblTitleBuscarProducto" runat="server" Text="Busqueda de Productos"></asp:Label>
+                        <asp:Label class="TitleDivPage" ID="lblTitleBuscarProducto" runat="server" Text="Búsqueda de preorden de compra"></asp:Label>
                     </div>
 
                     <div class="PopupGrandeCuerpoDiv">
