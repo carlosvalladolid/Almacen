@@ -147,7 +147,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                 UsuarioEntidad UsuarioEntidad = new UsuarioEntidad();
                 OrdenSalidaProceso OrdenSalidaProceso = new OrdenSalidaProceso();
 
-                if (!int.TryParse(ClaveProductoBox.Text.Trim(), out Cantidad))
+                if (ClaveProductoBox.Text.Trim() == "")
                 {
                     MostrarMensaje(TextoError.SalidaClaveProducto, ConstantePrograma.TipoErrorAlerta);
                     return;
