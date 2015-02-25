@@ -192,7 +192,7 @@
                 <br /><br />
                 <asp:UpdateProgress AssociatedUpdatePanelID="PageUpdate" ID="AssociatedUpdate" runat="server">
                     <ProgressTemplate>
-                        <div class="LoadingDiv"><div class="LoadingImageDiv"><img alt="Cargando..." src="/Image/Icon/LoadingIcon.gif" /></div></div>
+                        <div class="LoadingDiv"><div class="LoadingImageDiv"><img alt="Cargando..." src="../../Imagen/Icono/IconoCargando.gif" /></div></div>
                     </ProgressTemplate>
                 </asp:UpdateProgress>   
                 

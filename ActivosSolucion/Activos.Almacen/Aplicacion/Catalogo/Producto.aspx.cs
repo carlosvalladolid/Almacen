@@ -35,7 +35,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
 
             protected void BotonBusquedaRapida_Click(object sender, ImageClickEventArgs e)
             {
-                DescripcionBusqueda.Text = "";
+                DescripcionBusqueda.Text = SearchText.Text.ToString();
                 BusquedaAvanzada();
             }
 
