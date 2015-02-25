@@ -22,7 +22,7 @@
          {
             var RequisicionId = document.getElementById("<%= RequisicionIdHidden.ClientID %>");  
             //alert(RequisicionId.value);               
-            window.open("/Aplicacion/Reporte/Viewer/ImprimirRequisicion.aspx?RequisicionId=" + RequisicionId.value, "ImprimirRequisicion", " resizable=yes,scrollbars=1");
+            window.open("/Aplicacion/Reporte/Viewer/Requisicion.aspx?RequisicionId=" + RequisicionId.value, "ImprimirRequisicion", " resizable=yes,scrollbars=1");
          }   
              
     </script>
