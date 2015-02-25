@@ -14,7 +14,7 @@
     
     
         <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" 
-            Font-Size="8pt" Height="100%" Width="100%">
+            Font-Size="8pt" Height="656px" Width="1036px">
             <localreport reportpath="Aplicacion\Reporte\Diseño\ImprimirRequisicionRPT.rdlc">
                 <datasources>
                     <rsweb:ReportDataSource DataSourceId="ObjectDataSource1" 

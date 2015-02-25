@@ -161,9 +161,41 @@
   <Body>
     <ColumnSpacing>1cm</ColumnSpacing>
     <ReportItems>
+      <Textbox Name="textbox22">
+        <Top>10.75cm</Top>
+        <Width>10.75cm</Width>
+        <Style>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>19</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>16.25cm</Left>
+        <Height>0.64074cm</Height>
+        <Value>Encargado de Bodega</Value>
+      </Textbox>
+      <Textbox Name="textbox20">
+        <Top>10.75cm</Top>
+        <Width>10.75cm</Width>
+        <Style>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>18</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.75cm</Left>
+        <Height>0.64074cm</Height>
+        <Value>Solicitante</Value>
+      </Textbox>
       <Textbox Name="textbox29">
         <rd:DefaultName>textbox29</rd:DefaultName>
-        <Top>11cm</Top>
+        <Top>9.25cm</Top>
         <Width>10.5cm</Width>
         <Style>
           <TextAlign>Center</TextAlign>
@@ -179,7 +211,7 @@
         <Value>=Parameters!EncargadoBodega.Value</Value>
       </Textbox>
       <Textbox Name="textbox26">
-        <Top>11cm</Top>
+        <Top>9.25cm</Top>
         <Width>10.75cm</Width>
         <Style>
           <TextAlign>Center</TextAlign>
@@ -219,7 +251,7 @@
         <ZIndex>14</ZIndex>
         <DataSetName>ImprimirRequisicionDS_ImprimirProductoDT</DataSetName>
         <Top>5.5cm</Top>
-        <Width>27.28282cm</Width>
+        <Width>27.28283cm</Width>
         <Details>
           <TableRows>
             <TableRow>
@@ -517,7 +549,7 @@
         <Left>0.5cm</Left>
       </Table>
       <Line Name="line2">
-        <Top>11.75cm</Top>
+        <Top>10.5cm</Top>
         <Width>10.5cm</Width>
         <Style>
           <BorderStyle>
@@ -529,7 +561,7 @@
         <Height>0cm</Height>
       </Line>
       <Textbox Name="textbox18">
-        <Top>12cm</Top>
+        <Top>11.5cm</Top>
         <Width>10.5cm</Width>
         <Style>
           <TextAlign>Center</TextAlign>
@@ -706,7 +738,7 @@
         <Value>=Parameters!JefeInmediato.Value</Value>
       </Textbox>
       <Line Name="line1">
-        <Top>12cm</Top>
+        <Top>10.5cm</Top>
         <Width>10.75cm</Width>
         <Style>
           <BorderStyle>
@@ -719,7 +751,7 @@
       </Line>
       <Textbox Name="textbox6">
         <rd:DefaultName>textbox6</rd:DefaultName>
-        <Top>12.25cm</Top>
+        <Top>11.5cm</Top>
         <Width>10.75cm</Width>
         <Style>
           <TextAlign>Center</TextAlign>
