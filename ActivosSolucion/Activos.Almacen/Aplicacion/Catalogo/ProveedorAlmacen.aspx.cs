@@ -464,6 +464,7 @@ namespace Almacen.Web.Aplicacion.Catalogo
             NombreContactoRequerido.ErrorMessage = TextoError.ProveedorNombreContacto + "<br />";
             EstadoRequerido.ErrorMessage = TextoError.ProveedorEstado + "<br />";
             CiudadRequerido.ErrorMessage = TextoError.ProveedorCiudad + "<br />";
+            MontoMaximoCompraRequerido.ErrorMessage = TextoError.ProveedorMontoMaximoCompra+ "<br />";
         }
 
         protected void TablaProveedorEventoComando(GridViewCommandEventArgs e)

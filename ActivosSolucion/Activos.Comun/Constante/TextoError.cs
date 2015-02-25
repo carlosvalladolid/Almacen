@@ -202,6 +202,7 @@ namespace Activos.Comun.Constante
         public const string ProveedorEstado = "· El campo <b>Estado</b> es obligatorio";
         public const string ProveedorCiudad = "· El campo <b>Ciudad</b> es obligatorio";
         public const string ProveedorBanco = "· El campo <b>Banco</b> es obligatorio";
+        public const string ProveedorMontoMaximoCompra = "· El campo <b>MontoMaximoCompra</b> es obligatorio";
         public const string ProveedorConNombreDuplicado = "· Ya existe un proveedor con ese nombre";
         public const string ProveedorTieneRegistrosRelacionados = "· No se pueden eliminar los proveedores seleccionados debido que uno o varios de ellos tiene registros relacionados con la tabla <b>Compra</b>";
 

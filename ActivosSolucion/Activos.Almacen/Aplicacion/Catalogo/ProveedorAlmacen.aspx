@@ -162,7 +162,7 @@
                                 
                                  <tr>
                                     <td class="Nombre">Monto Maximo de Compra</td>
-                                    <td class="Requerido"></td>
+                                    <td class="Requerido">*</td>
                                     <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="MontoMaximoCompraNuevo" MaxLength="20" runat="server" Text=""></asp:TextBox></td>
                                     <td class="Espacio"></td>
                                 </tr> 
@@ -172,6 +172,8 @@
                                         <asp:CompareValidator CssClass="TextoError" ControlToValidate="DependenciaNuevo" Display="Dynamic" ErrorMessage="" ID="DependenciaRequerido" Operator="GreaterThan" ValidationGroup="Guardar" ValueToCompare="0" runat="server"></asp:CompareValidator>
                                         <asp:CompareValidator CssClass="TextoError" ControlToValidate="EstadoNuevo" Display="Dynamic" ErrorMessage="" ID="EstadoRequerido" Operator="GreaterThan" ValidationGroup="Guardar" ValueToCompare="0" runat="server"></asp:CompareValidator>
                                         <asp:CompareValidator CssClass="TextoError" ControlToValidate="CiudadNuevo" Display="Dynamic" ErrorMessage="" ID="CiudadRequerido" Operator="GreaterThan" ValidationGroup="Guardar" ValueToCompare="0" runat="server"></asp:CompareValidator>
+                                         <asp:CompareValidator CssClass="TextoError" ControlToValidate="MontoMaximoCompraNuevo" Display="Dynamic" ErrorMessage="" ID="MontoMaximoCompraRequerido" Operator="GreaterThan" ValidationGroup="Guardar" ValueToCompare="0" runat="server"></asp:CompareValidator>
+                                       
                                         <asp:RequiredFieldValidator CssClass="TextoError" ControlToValidate="NombreNuevo" Display="Dynamic" ErrorMessage="" ID="NombreRequerido" SetFocusOnError="true" ValidationGroup="Guardar" runat="server"></asp:RequiredFieldValidator>
                                         <asp:RequiredFieldValidator CssClass="TextoError" ControlToValidate="NombreContactoNuevo" Display="Dynamic" ErrorMessage="" ID="NombreContactoRequerido" SetFocusOnError="true" ValidationGroup="Guardar" runat="server"></asp:RequiredFieldValidator>
                                      
