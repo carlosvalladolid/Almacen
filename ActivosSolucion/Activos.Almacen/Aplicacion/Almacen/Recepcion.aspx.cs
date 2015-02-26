@@ -447,7 +447,7 @@ namespace Almacen.Web.Aplicacion.Almacen
             //SeleccionarMarca();
             //SeleccionarFamilia();
             //SeleccionarSubfamilia();
-            SeleccionarTipoDocumento();
+            SeleccionarTipoDocumento();         
 
             TablaRecepcion.DataSource = null;
             TablaRecepcion.DataBind();
@@ -664,6 +664,7 @@ namespace Almacen.Web.Aplicacion.Almacen
             SolicitanteIdNuevo.Items.Insert(0, new ListItem(ConstantePrograma.FiltroSeleccione, "0"));
         }
 
+       
         private void SeleccionarJefe(Int16 EmpleadoIdJefe)
         {
             ResultadoEntidad Resultado = new ResultadoEntidad();
@@ -906,6 +907,7 @@ namespace Almacen.Web.Aplicacion.Almacen
             //Decimal MontoTotal;
             //if (!Decimal.TryParse(LabelMontoTotal.Text, System.Globalization.NumberStyles.Currency, null, out MontoDatosNuevo)) Mensaje = "BAD";
             //if (Suma != MontoTotal) Mensaje = TextoInfo.MensajeMontosNoConcuerdan;
+
             if (Decimal.TryParse(LabelMontoTotal.Text, NumberStyles.Currency, System.Globalization.CultureInfo.CurrentCulture.NumberFormat, out Suma))
             {
                 if (Suma != Convert.ToDecimal(MontoDatosNuevo.Text)) Mensaje = TextoInfo.MensajeMontosNoConcuerdan;
@@ -936,7 +938,10 @@ namespace Almacen.Web.Aplicacion.Almacen
             if (TablaRecepcion.Rows.Count <= 0) Mensaje = TextoInfo.MensajeRecepcionVacia;
             if (!DateTime.TryParse(FechaDocumentoNuevo.Text, out FechaTemp)) Mensaje = TextoInfo.MensajeFechaGenerico;
             if (!Decimal.TryParse(MontoDatosNuevo.Text, out MontoTemp)) Mensaje = TextoInfo.MensajeMontoInvalido;
+
+            if (string.IsNullOrEmpty(FechaVencimientoNuevo.Text)) Mensaje = TextoInfo.MensajeFechaVencimiento;
            
+            
 
             if (Mensaje == "") return true;
             else MostrarMensaje(Mensaje, "Error");

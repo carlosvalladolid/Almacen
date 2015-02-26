@@ -88,7 +88,7 @@
                     
                      <tr>
                         <td class="Nombre">Fecha Documento</td>
-                        <td class="Espacio"></td>
+                        <td class="Requerido">*</td>
                         <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="FechaDocumentoNuevo" runat="server" Text=""></asp:TextBox></td>
                     </tr>
                     
@@ -100,7 +100,7 @@
                     
                        <tr>
                         <td class="Nombre">Fecha Vencimiento</td>
-                        <td class="Espacio"></td>
+                        <td class="Requerido">*</td>
                         <td class="Campo"><asp:TextBox CssClass="CajaTextoMediana" ID="FechaVencimientoNuevo"  runat="server" Text=""></asp:TextBox></td>
                     </tr>
 

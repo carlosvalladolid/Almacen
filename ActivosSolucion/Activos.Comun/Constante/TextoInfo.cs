@@ -43,6 +43,8 @@ namespace Activos.Comun.Constante
       public const string MensajeMontoInvalido = "Por favor, especifique un monto válido";
       public const string MensajeRecepcionVacia = "Por favor, especifique los productos de la recepción.";
       public const string MensajeMontosNoConcuerdan = "El monto de la factura no corresponde al la suma del monto de los articulos.";
+      public const string MensajeFechaVencimiento = "Por favor, especifique una fecha de Vencimiento ";
+      public const string MensajeFechaDocumento = "Por favor, especifique una fecha del Documento ";
 
       //Mensajes Formulario Orden Salida
       public const string MensajeNoOrdenSalida = "No. Orden Salida: ";

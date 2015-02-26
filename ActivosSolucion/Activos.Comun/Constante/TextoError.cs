@@ -288,6 +288,11 @@ namespace Activos.Comun.Constante
         public const string SalidaOrdenNoEncontrada = "No se encontró información de la orden seleccionada";
         public const string SalidaClaveProducto = "El campo Clave de producto es obligatorio";
 
+
+        //Mensaje pantalla de recepcion
+        public const string FechaVencimiento = " El campo<b>Fecha de Vencimiento</b>";
+
+
         public enum Error
         {
             Generico = 50000
