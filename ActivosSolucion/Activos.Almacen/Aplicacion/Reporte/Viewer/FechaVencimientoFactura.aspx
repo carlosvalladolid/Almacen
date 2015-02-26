@@ -21,6 +21,21 @@
 <body>
     <form id="form1" runat="server">
     
+             <div class="PageTitleDiv">
+                    <table class="PageTitleTable">
+                        <tr>
+                            <td class="Title">
+                               Listado de Fecha de Vencimientos de Facturas
+                            </td>
+                            <td class="Search"></td>
+                            <td class="Icon"></td> 
+                        </tr>
+                    </table>
+                </div>
+
+    
+    
+    
                 <table class="TablaFormulario">
                 
                       <tr>

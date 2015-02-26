@@ -19,10 +19,27 @@
   <PageHeader>
     <PrintOnFirstPage>true</PrintOnFirstPage>
     <ReportItems>
+      <Textbox Name="textbox4">
+        <Top>1cm</Top>
+        <Width>27.5cm</Width>
+        <Style>
+          <FontSize>12pt</FontSize>
+          <FontWeight>700</FontWeight>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>1</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.63823cm</Left>
+        <Value>Listado de Requisiciones</Value>
+      </Textbox>
       <Textbox Name="textbox16">
         <rd:DefaultName>textbox16</rd:DefaultName>
         <Top>0.00463cm</Top>
-        <Width>26cm</Width>
+        <Width>27.5cm</Width>
         <Style>
           <FontSize>12pt</FontSize>
           <FontWeight>700</FontWeight>
@@ -34,10 +51,11 @@
         </Style>
         <CanGrow>true</CanGrow>
         <Left>0.75cm</Left>
+        <Height>0.74537cm</Height>
         <Value>Instituto  de Defensoria Publica de Nuevo Leon</Value>
       </Textbox>
     </ReportItems>
-    <Height>0.75cm</Height>
+    <Height>1.75cm</Height>
     <PrintOnLastPage>true</PrintOnLastPage>
   </PageHeader>
   <BottomMargin>2.5cm</BottomMargin>
@@ -62,6 +80,18 @@
           <DataField>Fecha</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="NombreEstatus">
+          <DataField>NombreEstatus</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FechaInserto">
+          <DataField>FechaInserto</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NombreDireccion">
+          <DataField>NombreDireccion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <Query>
         <DataSourceName>DummyDataSource</DataSourceName>
@@ -74,14 +104,14 @@
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
-  <Width>27.66667cm</Width>
+  <Width>28.77646cm</Width>
   <Body>
     <ColumnSpacing>1cm</ColumnSpacing>
     <ReportItems>
       <Table Name="table1">
         <DataSetName>ListaRequisicionDS_ListaRequisicionDT</DataSetName>
         <Top>0.5cm</Top>
-        <Width>20.5cm</Width>
+        <Width>27.52645cm</Width>
         <Details>
           <TableRows>
             <TableRow>
@@ -96,7 +126,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>3</ZIndex>
+                      <ZIndex>4</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>=Fields!Clave.Value</Value>
                     </Textbox>
@@ -112,7 +142,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>2</ZIndex>
+                      <ZIndex>3</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>=Fields!NombreEmpleado.Value</Value>
                     </Textbox>
@@ -120,9 +150,26 @@
                 </TableCell>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="Estatus">
-                      <rd:DefaultName>Estatus</rd:DefaultName>
+                    <Textbox Name="NombreEstatus">
+                      <rd:DefaultName>NombreEstatus</rd:DefaultName>
                       <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>2</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!NombreEstatus.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="FechaInserto">
+                      <rd:DefaultName>FechaInserto</rd:DefaultName>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -130,14 +177,14 @@
                       </Style>
                       <ZIndex>1</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>=Fields!Estatus.Value</Value>
+                      <Value>=Fields!FechaInserto.Value</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
                 <TableCell>
                   <ReportItems>
-                    <Textbox Name="Fecha">
-                      <rd:DefaultName>Fecha</rd:DefaultName>
+                    <Textbox Name="NombreDireccion">
+                      <rd:DefaultName>NombreDireccion</rd:DefaultName>
                       <Style>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -145,7 +192,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value>=Fields!Fecha.Value</Value>
+                      <Value>=Fields!NombreDireccion.Value</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -155,9 +202,6 @@
           </TableRows>
         </Details>
         <Style>
-          <BorderStyle>
-            <Default>Solid</Default>
-          </BorderStyle>
           <TextAlign>Left</TextAlign>
         </Style>
         <Header>
@@ -169,14 +213,14 @@
                     <Textbox Name="textbox2">
                       <rd:DefaultName>textbox2</rd:DefaultName>
                       <Style>
-                        <BackgroundColor>DarkKhaki</BackgroundColor>
+                        <BackgroundColor>#c0c000</BackgroundColor>
                         <FontWeight>800</FontWeight>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>7</ZIndex>
+                      <ZIndex>9</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>Clave</Value>
                     </Textbox>
@@ -187,16 +231,34 @@
                     <Textbox Name="textbox3">
                       <rd:DefaultName>textbox3</rd:DefaultName>
                       <Style>
-                        <BackgroundColor>DarkKhaki</BackgroundColor>
+                        <BackgroundColor>#c0c000</BackgroundColor>
                         <FontWeight>800</FontWeight>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>6</ZIndex>
+                      <ZIndex>8</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>Nombre Empleado</Value>
+                      <Value>Solicitante</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox1">
+                      <rd:DefaultName>textbox1</rd:DefaultName>
+                      <Style>
+                        <BackgroundColor>#c0c000</BackgroundColor>
+                        <FontWeight>800</FontWeight>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>7</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value> Estatus</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -205,7 +267,25 @@
                     <Textbox Name="textbox5">
                       <rd:DefaultName>textbox5</rd:DefaultName>
                       <Style>
-                        <BackgroundColor>DarkKhaki</BackgroundColor>
+                        <BackgroundColor>#c0c000</BackgroundColor>
+                        <FontWeight>800</FontWeight>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>6</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Fecha Inserto</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox7">
+                      <rd:DefaultName>textbox7</rd:DefaultName>
+                      <Style>
+                        <BackgroundColor>#c0c000</BackgroundColor>
                         <FontWeight>800</FontWeight>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -214,25 +294,7 @@
                       </Style>
                       <ZIndex>5</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>Estatus</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox11">
-                      <rd:DefaultName>textbox11</rd:DefaultName>
-                      <Style>
-                        <BackgroundColor>DarkKhaki</BackgroundColor>
-                        <FontWeight>800</FontWeight>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                      <ZIndex>4</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>Fecha</Value>
+                      <Value>Dirección</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -246,13 +308,16 @@
             <Width>3cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>7.75cm</Width>
+            <Width>6cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>6.25cm</Width>
+            <Width>3.02645cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>3.5cm</Width>
+            <Width>4.75cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>10.75cm</Width>
           </TableColumn>
         </TableColumns>
         <Height>1.26984cm</Height>

@@ -266,9 +266,11 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
             
             private global::System.Data.DataColumn columnNombreEmpleado;
             
-            private global::System.Data.DataColumn columnEstatus;
+            private global::System.Data.DataColumn columnNombreEstatus;
             
-            private global::System.Data.DataColumn columnFecha;
+            private global::System.Data.DataColumn columnFechaInserto;
+            
+            private global::System.Data.DataColumn columnNombreDireccion;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public ListaRequisicionDTDataTable() {
@@ -315,16 +317,23 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn EstatusColumn {
+            public global::System.Data.DataColumn NombreEstatusColumn {
                 get {
-                    return this.columnEstatus;
+                    return this.columnNombreEstatus;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn FechaColumn {
+            public global::System.Data.DataColumn FechaInsertoColumn {
                 get {
-                    return this.columnFecha;
+                    return this.columnFechaInserto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn NombreDireccionColumn {
+                get {
+                    return this.columnNombreDireccion;
                 }
             }
             
@@ -357,13 +366,14 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public ListaRequisicionDTRow AddListaRequisicionDTRow(string Clave, string NombreEmpleado, string Estatus, string Fecha) {
+            public ListaRequisicionDTRow AddListaRequisicionDTRow(string Clave, string NombreEmpleado, string NombreEstatus, string FechaInserto, string NombreDireccion) {
                 ListaRequisicionDTRow rowListaRequisicionDTRow = ((ListaRequisicionDTRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Clave,
                         NombreEmpleado,
-                        Estatus,
-                        Fecha};
+                        NombreEstatus,
+                        FechaInserto,
+                        NombreDireccion};
                 rowListaRequisicionDTRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowListaRequisicionDTRow);
                 return rowListaRequisicionDTRow;
@@ -385,8 +395,9 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
             internal void InitVars() {
                 this.columnClave = base.Columns["Clave"];
                 this.columnNombreEmpleado = base.Columns["NombreEmpleado"];
-                this.columnEstatus = base.Columns["Estatus"];
-                this.columnFecha = base.Columns["Fecha"];
+                this.columnNombreEstatus = base.Columns["NombreEstatus"];
+                this.columnFechaInserto = base.Columns["FechaInserto"];
+                this.columnNombreDireccion = base.Columns["NombreDireccion"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -395,10 +406,12 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
                 base.Columns.Add(this.columnClave);
                 this.columnNombreEmpleado = new global::System.Data.DataColumn("NombreEmpleado", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNombreEmpleado);
-                this.columnEstatus = new global::System.Data.DataColumn("Estatus", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEstatus);
-                this.columnFecha = new global::System.Data.DataColumn("Fecha", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFecha);
+                this.columnNombreEstatus = new global::System.Data.DataColumn("NombreEstatus", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombreEstatus);
+                this.columnFechaInserto = new global::System.Data.DataColumn("FechaInserto", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechaInserto);
+                this.columnNombreDireccion = new global::System.Data.DataColumn("NombreDireccion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombreDireccion);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -561,32 +574,47 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Estatus {
+            public string NombreEstatus {
                 get {
                     try {
-                        return ((string)(this[this.tableListaRequisicionDT.EstatusColumn]));
+                        return ((string)(this[this.tableListaRequisicionDT.NombreEstatusColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Estatus\' in table \'ListaRequisicionDT\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NombreEstatus\' in table \'ListaRequisicionDT\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableListaRequisicionDT.EstatusColumn] = value;
+                    this[this.tableListaRequisicionDT.NombreEstatusColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Fecha {
+            public string FechaInserto {
                 get {
                     try {
-                        return ((string)(this[this.tableListaRequisicionDT.FechaColumn]));
+                        return ((string)(this[this.tableListaRequisicionDT.FechaInsertoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Fecha\' in table \'ListaRequisicionDT\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'FechaInserto\' in table \'ListaRequisicionDT\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableListaRequisicionDT.FechaColumn] = value;
+                    this[this.tableListaRequisicionDT.FechaInsertoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string NombreDireccion {
+                get {
+                    try {
+                        return ((string)(this[this.tableListaRequisicionDT.NombreDireccionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NombreDireccion\' in table \'ListaRequisicionDT\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableListaRequisicionDT.NombreDireccionColumn] = value;
                 }
             }
             
@@ -611,23 +639,33 @@ namespace Activos.Almacen.Aplicacion.Reporte.DataSet {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsEstatusNull() {
-                return this.IsNull(this.tableListaRequisicionDT.EstatusColumn);
+            public bool IsNombreEstatusNull() {
+                return this.IsNull(this.tableListaRequisicionDT.NombreEstatusColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetEstatusNull() {
-                this[this.tableListaRequisicionDT.EstatusColumn] = global::System.Convert.DBNull;
+            public void SetNombreEstatusNull() {
+                this[this.tableListaRequisicionDT.NombreEstatusColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsFechaNull() {
-                return this.IsNull(this.tableListaRequisicionDT.FechaColumn);
+            public bool IsFechaInsertoNull() {
+                return this.IsNull(this.tableListaRequisicionDT.FechaInsertoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetFechaNull() {
-                this[this.tableListaRequisicionDT.FechaColumn] = global::System.Convert.DBNull;
+            public void SetFechaInsertoNull() {
+                this[this.tableListaRequisicionDT.FechaInsertoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsNombreDireccionNull() {
+                return this.IsNull(this.tableListaRequisicionDT.NombreDireccionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetNombreDireccionNull() {
+                this[this.tableListaRequisicionDT.NombreDireccionColumn] = global::System.Convert.DBNull;
             }
         }
         

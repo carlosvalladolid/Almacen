@@ -16,6 +16,48 @@
   <rd:SnapToGrid>true</rd:SnapToGrid>
   <RightMargin>0.5cm</RightMargin>
   <LeftMargin>0.5cm</LeftMargin>
+  <PageHeader>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <ReportItems>
+      <Textbox Name="textbox6">
+        <Top>0.75cm</Top>
+        <Width>27.25cm</Width>
+        <Style>
+          <FontSize>12pt</FontSize>
+          <FontWeight>700</FontWeight>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>1</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.75cm</Left>
+        <Value>Reporte de Consumo </Value>
+      </Textbox>
+      <Textbox Name="textbox16">
+        <rd:DefaultName>textbox16</rd:DefaultName>
+        <Top>0.00463cm</Top>
+        <Width>27.25cm</Width>
+        <Style>
+          <FontSize>12pt</FontSize>
+          <FontWeight>700</FontWeight>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Left>0.76323cm</Left>
+        <Height>0.74074cm</Height>
+        <Value>Instituto  de Defensoria Publica de Nuevo Leon</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>1.5cm</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+  </PageHeader>
   <BottomMargin>1cm</BottomMargin>
   <rd:ReportID>71b27042-c243-4a3e-8e65-d765112d9c8a</rd:ReportID>
   <PageWidth>29.7cm</PageWidth>
@@ -71,29 +113,10 @@
   <Body>
     <ColumnSpacing>1cm</ColumnSpacing>
     <ReportItems>
-      <Textbox Name="textbox16">
-        <rd:DefaultName>textbox16</rd:DefaultName>
-        <Top>0.25cm</Top>
-        <Width>24.25cm</Width>
-        <Style>
-          <FontSize>12pt</FontSize>
-          <FontWeight>700</FontWeight>
-          <TextAlign>Center</TextAlign>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-        <ZIndex>1</ZIndex>
-        <CanGrow>true</CanGrow>
-        <Left>0.75cm</Left>
-        <Height>0.74074cm</Height>
-        <Value>Instituto  de Defensoria Publica de Nuevo Leon</Value>
-      </Textbox>
       <Table Name="table1">
         <DataSetName>ConsumoPorDireccionDS_ConsumoPorDireccionDT</DataSetName>
-        <Top>1.5cm</Top>
-        <Width>27.48646cm</Width>
+        <Top>0.5cm</Top>
+        <Width>27.75cm</Width>
         <Details>
           <TableRows>
             <TableRow>
@@ -235,7 +258,7 @@
                     <Textbox Name="textbox1">
                       <rd:DefaultName>textbox1</rd:DefaultName>
                       <Style>
-                        <BackgroundColor>#ffff80</BackgroundColor>
+                        <BackgroundColor>#c0c000</BackgroundColor>
                         <BorderStyle>
                           <Default>Solid</Default>
                         </BorderStyle>
@@ -258,7 +281,7 @@
                     <Textbox Name="textbox2">
                       <rd:DefaultName>textbox2</rd:DefaultName>
                       <Style>
-                        <BackgroundColor>#ffff80</BackgroundColor>
+                        <BackgroundColor>#c0c000</BackgroundColor>
                         <BorderStyle>
                           <Default>Solid</Default>
                         </BorderStyle>
@@ -279,7 +302,7 @@
                     <Textbox Name="textbox3">
                       <rd:DefaultName>textbox3</rd:DefaultName>
                       <Style>
-                        <BackgroundColor>#ffff80</BackgroundColor>
+                        <BackgroundColor>#c0c000</BackgroundColor>
                         <BorderStyle>
                           <Default>Solid</Default>
                         </BorderStyle>
@@ -300,7 +323,7 @@
                     <Textbox Name="textbox4">
                       <rd:DefaultName>textbox4</rd:DefaultName>
                       <Style>
-                        <BackgroundColor>#ffff80</BackgroundColor>
+                        <BackgroundColor>#c0c000</BackgroundColor>
                         <BorderStyle>
                           <Default>Solid</Default>
                         </BorderStyle>
@@ -321,7 +344,7 @@
                     <Textbox Name="textbox10">
                       <rd:DefaultName>textbox10</rd:DefaultName>
                       <Style>
-                        <BackgroundColor>#ffff80</BackgroundColor>
+                        <BackgroundColor>#c0c000</BackgroundColor>
                         <BorderStyle>
                           <Default>Solid</Default>
                         </BorderStyle>
@@ -343,7 +366,7 @@
                     <Textbox Name="textbox5">
                       <rd:DefaultName>textbox5</rd:DefaultName>
                       <Style>
-                        <BackgroundColor>#ffff80</BackgroundColor>
+                        <BackgroundColor>#c0c000</BackgroundColor>
                         <BorderStyle>
                           <Default>Solid</Default>
                         </BorderStyle>
@@ -364,7 +387,7 @@
                     <Textbox Name="textbox14">
                       <rd:DefaultName>textbox14</rd:DefaultName>
                       <Style>
-                        <BackgroundColor>#ffff80</BackgroundColor>
+                        <BackgroundColor>#c0c000</BackgroundColor>
                         <BorderStyle>
                           <Default>Solid</Default>
                         </BorderStyle>
@@ -387,25 +410,25 @@
         </Header>
         <TableColumns>
           <TableColumn>
-            <Width>2.75906cm</Width>
+            <Width>2.78551cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>5.69859cm</Width>
+            <Width>5.75323cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>3.79906cm</Width>
+            <Width>3.83549cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>3.79906cm</Width>
+            <Width>3.83549cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>3.79906cm</Width>
+            <Width>3.83549cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>3.79906cm</Width>
+            <Width>3.83549cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>3.83257cm</Width>
+            <Width>3.86932cm</Width>
           </TableColumn>
         </TableColumns>
         <Height>1.26984cm</Height>

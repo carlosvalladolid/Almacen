@@ -6,13 +6,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
-    <title>Untitled Page</title>
+    <title>Reporte Requisición</title>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server">      
+    
     <div>
-    
-    
         <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" 
             Font-Size="8pt" Height="656px" Width="1036px">
             <localreport reportpath="Aplicacion\Reporte\Diseño\ImprimirRequisicionRPT.rdlc">

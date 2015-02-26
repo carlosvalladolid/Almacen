@@ -24,6 +24,7 @@
         <Top>1cm</Top>
         <Width>27.75cm</Width>
         <Style>
+          <FontWeight>800</FontWeight>
           <TextAlign>Center</TextAlign>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
@@ -33,8 +34,7 @@
         <ZIndex>1</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>0.25cm</Left>
-        <Height>0.5cm</Height>
-        <Value>Reporte de Fecha de Vencimiento de Facturas</Value>
+        <Value>Reporte Fecha Vencimiento de Facturas</Value>
       </Textbox>
       <Textbox Name="textbox16">
         <rd:DefaultName>textbox16</rd:DefaultName>
@@ -198,7 +198,7 @@
                     <Textbox Name="textbox2">
                       <rd:DefaultName>textbox2</rd:DefaultName>
                       <Style>
-                        <BackgroundColor>DarkKhaki</BackgroundColor>
+                        <BackgroundColor>#c0c000</BackgroundColor>
                         <BorderStyle>
                           <Default>Solid</Default>
                         </BorderStyle>
@@ -219,7 +219,7 @@
                     <Textbox Name="textbox3">
                       <rd:DefaultName>textbox3</rd:DefaultName>
                       <Style>
-                        <BackgroundColor>DarkKhaki</BackgroundColor>
+                        <BackgroundColor>#c0c000</BackgroundColor>
                         <BorderStyle>
                           <Default>Solid</Default>
                         </BorderStyle>
@@ -240,7 +240,7 @@
                     <Textbox Name="textbox6">
                       <rd:DefaultName>textbox6</rd:DefaultName>
                       <Style>
-                        <BackgroundColor>DarkKhaki</BackgroundColor>
+                        <BackgroundColor>#c0c000</BackgroundColor>
                         <BorderStyle>
                           <Default>Solid</Default>
                         </BorderStyle>
@@ -261,7 +261,7 @@
                     <Textbox Name="textbox1">
                       <rd:DefaultName>textbox1</rd:DefaultName>
                       <Style>
-                        <BackgroundColor>DarkKhaki</BackgroundColor>
+                        <BackgroundColor>#c0c000</BackgroundColor>
                         <BorderStyle>
                           <Default>Solid</Default>
                         </BorderStyle>
@@ -278,7 +278,7 @@
                   </ReportItems>
                 </TableCell>
               </TableCells>
-              <Height>0.5cm</Height>
+              <Height>0.75cm</Height>
             </TableRow>
           </TableRows>
         </Header>
@@ -296,7 +296,7 @@
             <Width>4.25cm</Width>
           </TableColumn>
         </TableColumns>
-        <Height>1cm</Height>
+        <Height>1.25cm</Height>
         <Left>0.25cm</Left>
       </Table>
     </ReportItems>

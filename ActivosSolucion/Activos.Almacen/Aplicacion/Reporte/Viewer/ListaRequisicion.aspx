@@ -10,10 +10,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-    
+     <div>    
         <rsweb:ReportViewer ID="ListaRequisicionReportViewer1" runat="server" Font-Names="Verdana" 
-            Font-Size="8pt" Height="400px" Width="931px">
+            Font-Size="8pt" Height="400px" Width="1075px">
             <LocalReport ReportPath="Aplicacion\Reporte\Diseño\ListaRequisicionRPT.rdlc">
                 <DataSources>
                     <rsweb:ReportDataSource DataSourceId="ObjectDataSource1" 
