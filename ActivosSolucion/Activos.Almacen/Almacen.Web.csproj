@@ -174,12 +174,12 @@
     <Compile Include="Aplicacion\Reporte\Viewer\ExistenciaProducto.aspx.designer.cs">
       <DependentUpon>ExistenciaProducto.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Aplicacion\Reporte\Viewer\ImprimirRequisicion.aspx.cs">
-      <DependentUpon>ImprimirRequisicion.aspx</DependentUpon>
+    <Compile Include="Aplicacion\Reporte\Viewer\FechaVencimientoFactura.aspx.cs">
+      <DependentUpon>FechaVencimientoFactura.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Aplicacion\Reporte\Viewer\ImprimirRequisicion.aspx.designer.cs">
-      <DependentUpon>ImprimirRequisicion.aspx</DependentUpon>
+    <Compile Include="Aplicacion\Reporte\Viewer\FechaVencimientoFactura.aspx.designer.cs">
+      <DependentUpon>FechaVencimientoFactura.aspx</DependentUpon>
     </Compile>
     <Compile Include="Aplicacion\Reporte\Viewer\Requisicion.aspx.cs">
       <DependentUpon>Requisicion.aspx</DependentUpon>
@@ -461,7 +461,7 @@
     <Content Include="Aplicacion\Inicio.aspx" />
     <Content Include="Aplicacion\Reporte\Viewer\ConsumiblesPorDireccion.aspx" />
     <Content Include="Aplicacion\Reporte\Viewer\ExistenciaProducto.aspx" />
-    <Content Include="Aplicacion\Reporte\Viewer\ImprimirRequisicion.aspx" />
+    <Content Include="Aplicacion\Reporte\Viewer\FechaVencimientoFactura.aspx" />
     <Content Include="Aplicacion\Reporte\Viewer\Requisicion.aspx" />
     <Content Include="App.config" />
     <Content Include="Imagen\Banner\PublicityBanner.jpg" />

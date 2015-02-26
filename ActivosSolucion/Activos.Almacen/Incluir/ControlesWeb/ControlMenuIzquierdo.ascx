@@ -89,6 +89,12 @@
         <td><a href="/Aplicacion/Reporte/Viewer/ExistenciaProducto.aspx">Existencia de Producto</a></td>
     </tr>
     
+     <tr>
+        <td class="Space"></td>
+        <td></td>
+        <td><a href="/Aplicacion/Reporte/Viewer/FechaVencimientoFacturas.aspx">Vencimiento de Facturas</a></td>
+    </tr>
+    
     <tr>
         <td class="Space"></td>
         <td><img alt="Inicio" border="0" src="/Imagen/Icono/IconoOpcion.png" title="Configuración" /></td>
