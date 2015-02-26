@@ -34,6 +34,7 @@
         <ZIndex>1</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>0.25cm</Left>
+        <Height>0.75cm</Height>
         <Value>Reporte Fecha Vencimiento de Facturas</Value>
       </Textbox>
       <Textbox Name="textbox16">
@@ -55,7 +56,7 @@
         <Value>Instituto  de Defensoria Publica de Nuevo Leon</Value>
       </Textbox>
     </ReportItems>
-    <Height>1.75cm</Height>
+    <Height>2cm</Height>
     <PrintOnLastPage>true</PrintOnLastPage>
   </PageHeader>
   <BottomMargin>2.5cm</BottomMargin>
@@ -99,7 +100,7 @@
       <Table Name="table1">
         <DataSetName>VencimientoFacturaDS_VencimientoFacturaDT</DataSetName>
         <Top>0.25cm</Top>
-        <Width>18.625cm</Width>
+        <Width>26cm</Width>
         <Details>
           <TableRows>
             <TableRow>
@@ -287,13 +288,13 @@
             <Width>3.25cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>6.875cm</Width>
+            <Width>10.25cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>4.25cm</Width>
+            <Width>5.5cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>4.25cm</Width>
+            <Width>7cm</Width>
           </TableColumn>
         </TableColumns>
         <Height>1.25cm</Height>

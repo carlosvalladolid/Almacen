@@ -20,7 +20,7 @@
     <PrintOnFirstPage>true</PrintOnFirstPage>
     <ReportItems>
       <Textbox Name="textbox4">
-        <Top>1cm</Top>
+        <Top>0.75cm</Top>
         <Width>27.5cm</Width>
         <Style>
           <FontSize>12pt</FontSize>
@@ -33,7 +33,8 @@
         </Style>
         <ZIndex>1</ZIndex>
         <CanGrow>true</CanGrow>
-        <Left>0.63823cm</Left>
+        <Left>0.75cm</Left>
+        <Height>0.75cm</Height>
         <Value>Listado de Requisiciones</Value>
       </Textbox>
       <Textbox Name="textbox16">
