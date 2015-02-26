@@ -160,6 +160,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ImprimirRequisicionDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Aplicacion\Reporte\DataSet\VencimientoFacturaDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VencimientoFacturaDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Aplicacion\Reporte\Viewer\ConsumiblesPorDireccion.aspx.cs">
       <DependentUpon>ConsumiblesPorDireccion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -525,11 +530,23 @@
     <None Include="Aplicacion\Reporte\DataSet\ImprimirRequisicionDS.xss">
       <DependentUpon>ImprimirRequisicionDS.xsd</DependentUpon>
     </None>
+    <None Include="Aplicacion\Reporte\DataSet\VencimientoFacturaDS.xsc">
+      <DependentUpon>VencimientoFacturaDS.xsd</DependentUpon>
+    </None>
+    <None Include="Aplicacion\Reporte\DataSet\VencimientoFacturaDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VencimientoFacturaDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Aplicacion\Reporte\DataSet\VencimientoFacturaDS.xss">
+      <DependentUpon>VencimientoFacturaDS.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Aplicacion\Reporte\Diseño\ConsumoPorDireccionRPT.rdlc" />
     <EmbeddedResource Include="Aplicacion\Reporte\Diseño\ExistenciProductoRPT.rdlc" />
     <EmbeddedResource Include="Aplicacion\Reporte\Diseño\ImprimirRequisicionRPT.rdlc" />
+    <EmbeddedResource Include="Aplicacion\Reporte\Diseño\VencimientoFacturaRPT.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Aplicacion\Error\" />

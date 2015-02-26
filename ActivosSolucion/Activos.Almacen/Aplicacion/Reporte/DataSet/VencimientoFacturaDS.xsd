@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="VencimientoFacturaDS" targetNamespace="http://tempuri.org/VencimientoFacturaDS.xsd" xmlns:mstns="http://tempuri.org/VencimientoFacturaDS.xsd" xmlns="http://tempuri.org/VencimientoFacturaDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="VencimientoFacturaDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="VencimientoFacturaDS" msprop:Generator_UserDSName="VencimientoFacturaDS" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="VencimientoFacturaDT" msprop:Generator_UserTableName="VencimientoFacturaDT" msprop:Generator_RowDeletedName="VencimientoFacturaDTRowDeleted" msprop:Generator_TableClassName="VencimientoFacturaDTDataTable" msprop:Generator_RowChangedName="VencimientoFacturaDTRowChanged" msprop:Generator_RowClassName="VencimientoFacturaDTRow" msprop:Generator_RowChangingName="VencimientoFacturaDTRowChanging" msprop:Generator_RowEvArgName="VencimientoFacturaDTRowChangeEvent" msprop:Generator_RowEvHandlerName="VencimientoFacturaDTRowChangeEventHandler" msprop:Generator_TablePropName="VencimientoFacturaDT" msprop:Generator_TableVarName="tableVencimientoFacturaDT" msprop:Generator_RowDeletingName="VencimientoFacturaDTRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Clave" msprop:Generator_UserColumnName="Clave" msprop:Generator_ColumnPropNameInRow="Clave" msprop:Generator_ColumnVarNameInTable="columnClave" msprop:Generator_ColumnPropNameInTable="ClaveColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Proveedor" msprop:Generator_UserColumnName="Proveedor" msprop:Generator_ColumnPropNameInRow="Proveedor" msprop:Generator_ColumnVarNameInTable="columnProveedor" msprop:Generator_ColumnPropNameInTable="ProveedorColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="FechaVencimiento" msprop:Generator_UserColumnName="FechaVencimiento" msprop:Generator_ColumnPropNameInRow="FechaVencimiento" msprop:Generator_ColumnVarNameInTable="columnFechaVencimiento" msprop:Generator_ColumnPropNameInTable="FechaVencimientoColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Monto" msprop:Generator_UserColumnName="Monto" msprop:Generator_ColumnPropNameInRow="Monto" msprop:Generator_ColumnVarNameInTable="columnMonto" msprop:Generator_ColumnPropNameInTable="MontoColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

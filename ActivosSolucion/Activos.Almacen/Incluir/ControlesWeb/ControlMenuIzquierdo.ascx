@@ -92,7 +92,7 @@
      <tr>
         <td class="Space"></td>
         <td></td>
-        <td><a href="/Aplicacion/Reporte/Viewer/FechaVencimientoFacturas.aspx">Vencimiento de Facturas</a></td>
+        <td><a href="/Aplicacion/Reporte/Viewer/FechaVencimientoFactura.aspx">Vencimiento de Facturas</a></td>
     </tr>
     
     <tr>

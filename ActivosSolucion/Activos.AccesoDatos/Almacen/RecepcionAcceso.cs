@@ -512,7 +512,46 @@ namespace Activos.AccesoDatos.Almacen
                     return Resultado;
                 }
             }
-       
+
+            public ResultadoEntidad SeleccionarReporteFechaVencimientoFactura(RecepcionEntidad RecepcionObjetoEntidad, string CadenaConexion)
+            {
+                DataSet ResultadoDatos = new DataSet();
+                SqlConnection Conexion = new SqlConnection(CadenaConexion);
+                SqlCommand Comando;
+                SqlParameter Parametro;
+                SqlDataAdapter Adaptador;
+                ResultadoEntidad Resultado = new ResultadoEntidad();
+
+                try
+                {
+                    Comando = new SqlCommand("SeleccionarReporteFechaVencimientoFacturaProcedimiento", Conexion);
+                    Comando.CommandType = CommandType.StoredProcedure;
+
+                    Parametro = new SqlParameter("ProveedorId", SqlDbType.SmallInt);
+                    Parametro.Value = RecepcionObjetoEntidad.ProveedorId;
+                    Comando.Parameters.Add(Parametro);
+
+                    Adaptador = new SqlDataAdapter(Comando);
+                    ResultadoDatos = new DataSet();
+
+                    Conexion.Open();
+                    Adaptador.Fill(ResultadoDatos);
+                    Conexion.Close();
+
+                    Resultado.ResultadoDatos = ResultadoDatos;
+
+                    return Resultado;
+                }
+                catch (SqlException Excepcion)
+                {
+                    Resultado.ErrorId = Excepcion.Number;
+                    Resultado.DescripcionError = Excepcion.Message;
+
+                    return Resultado;
+                }
+            }
+
+
         #endregion
     }
 }

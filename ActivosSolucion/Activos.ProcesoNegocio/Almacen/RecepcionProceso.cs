@@ -97,6 +97,20 @@ namespace Activos.ProcesoNegocio.Almacen
             return Resultado;
         }
 
+        public ResultadoEntidad SeleccionarReporteFechaVencimientoFactura(RecepcionEntidad RecepcionObjetoEntidad)
+        {
+            string CadenaConexion = string.Empty;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            RecepcionAcceso RecepcionAccesoObjeto = new RecepcionAcceso();
+
+            CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Almacen);
+
+            Resultado = RecepcionAccesoObjeto.SeleccionarReporteFechaVencimientoFactura(RecepcionObjetoEntidad, CadenaConexion);
+
+            return Resultado;
+        }
+        
+        
         public ResultadoEntidad AgregarRecepcionEncabezado(RecepcionEntidad RecepcionObjetoEntidad)
         {
             string CadenaConexion = string.Empty;
