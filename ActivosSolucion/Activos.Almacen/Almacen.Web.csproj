@@ -160,6 +160,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ImprimirRequisicionDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Aplicacion\Reporte\DataSet\ListaRequisicionDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListaRequisicionDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Aplicacion\Reporte\DataSet\VencimientoFacturaDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -185,6 +190,13 @@
     </Compile>
     <Compile Include="Aplicacion\Reporte\Viewer\FechaVencimientoFactura.aspx.designer.cs">
       <DependentUpon>FechaVencimientoFactura.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicacion\Reporte\Viewer\ListaRequisicion.aspx.cs">
+      <DependentUpon>ListaRequisicion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicacion\Reporte\Viewer\ListaRequisicion.aspx.designer.cs">
+      <DependentUpon>ListaRequisicion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Aplicacion\Reporte\Viewer\Requisicion.aspx.cs">
       <DependentUpon>Requisicion.aspx</DependentUpon>
@@ -467,6 +479,7 @@
     <Content Include="Aplicacion\Reporte\Viewer\ConsumiblesPorDireccion.aspx" />
     <Content Include="Aplicacion\Reporte\Viewer\ExistenciaProducto.aspx" />
     <Content Include="Aplicacion\Reporte\Viewer\FechaVencimientoFactura.aspx" />
+    <Content Include="Aplicacion\Reporte\Viewer\ListaRequisicion.aspx" />
     <Content Include="Aplicacion\Reporte\Viewer\Requisicion.aspx" />
     <Content Include="App.config" />
     <Content Include="Imagen\Banner\PublicityBanner.jpg" />
@@ -530,6 +543,17 @@
     <None Include="Aplicacion\Reporte\DataSet\ImprimirRequisicionDS.xss">
       <DependentUpon>ImprimirRequisicionDS.xsd</DependentUpon>
     </None>
+    <None Include="Aplicacion\Reporte\DataSet\ListaRequisicionDS.xsc">
+      <DependentUpon>ListaRequisicionDS.xsd</DependentUpon>
+    </None>
+    <None Include="Aplicacion\Reporte\DataSet\ListaRequisicionDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ListaRequisicionDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Aplicacion\Reporte\DataSet\ListaRequisicionDS.xss">
+      <DependentUpon>ListaRequisicionDS.xsd</DependentUpon>
+    </None>
     <None Include="Aplicacion\Reporte\DataSet\VencimientoFacturaDS.xsc">
       <DependentUpon>VencimientoFacturaDS.xsd</DependentUpon>
     </None>
@@ -546,6 +570,7 @@
     <EmbeddedResource Include="Aplicacion\Reporte\Diseño\ConsumoPorDireccionRPT.rdlc" />
     <EmbeddedResource Include="Aplicacion\Reporte\Diseño\ExistenciProductoRPT.rdlc" />
     <EmbeddedResource Include="Aplicacion\Reporte\Diseño\ImprimirRequisicionRPT.rdlc" />
+    <EmbeddedResource Include="Aplicacion\Reporte\Diseño\ListaRequisicionRPT.rdlc" />
     <EmbeddedResource Include="Aplicacion\Reporte\Diseño\VencimientoFacturaRPT.rdlc" />
   </ItemGroup>
   <ItemGroup>

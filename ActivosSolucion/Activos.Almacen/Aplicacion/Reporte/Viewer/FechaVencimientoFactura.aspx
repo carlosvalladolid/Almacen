@@ -7,6 +7,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
     <title>Untitled Page</title>
+    <style type="text/css">
+        .style2
+        {
+            width: 238px;
+        }
+        .style3
+        {
+            width: 625px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -16,16 +26,17 @@
                       <tr>
                         <td class="Nombre">Fechas</td>
                         <td class="Espacio">&nbsp;</td>
-                        <td class="style1">Desde&nbsp;<asp:TextBox CssClass="CajaTextoPequenia" ID="FechaDesde" MaxLength="20" runat="server" Text=""></asp:TextBox>
+                        <td class="style3">Desde&nbsp;<asp:TextBox CssClass="CajaTextoPequenia" ID="FechaDesde" MaxLength="20" runat="server" Text=""></asp:TextBox>
                                            Hasta&nbsp;<asp:TextBox CssClass="CajaTextoPequenia" ID="FechaHasta" MaxLength="20" runat="server" Text=""></asp:TextBox>                                          
                                            <span class="NotaCampo"> (dd/mm/aaaa)</span>
                                            </td>
-                                           <td></td>
+                                           <td class="style2"></td>
                      </tr>  
                      <tr>
                         <td class="Nombre">Proveedor</td>
                         <td class="Espacio"></td>
-                        <td class="Campo" colspan  ="2"><asp:DropDownList CssClass="ComboGrande" ID="ProveedorCombo" runat="server" ></asp:DropDownList></td>                        
+                        <td class="Campo" colspan  ="2"><asp:DropDownList CssClass="ComboGrande" 
+                                ID="ProveedorCombo" runat="server" Height="16px" Width="338px" ></asp:DropDownList></td>                        
                     </tr>                 
                   
                     <tr>

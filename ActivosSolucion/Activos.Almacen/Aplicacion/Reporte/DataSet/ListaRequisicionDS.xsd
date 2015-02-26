@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ListaRequisicionDS" targetNamespace="http://tempuri.org/ListaRequisicionDS.xsd" xmlns:mstns="http://tempuri.org/ListaRequisicionDS.xsd" xmlns="http://tempuri.org/ListaRequisicionDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ListaRequisicionDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="ListaRequisicionDS" msprop:Generator_UserDSName="ListaRequisicionDS" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ListaRequisicionDT" msprop:Generator_UserTableName="ListaRequisicionDT" msprop:Generator_RowDeletedName="ListaRequisicionDTRowDeleted" msprop:Generator_TableClassName="ListaRequisicionDTDataTable" msprop:Generator_RowChangedName="ListaRequisicionDTRowChanged" msprop:Generator_RowClassName="ListaRequisicionDTRow" msprop:Generator_RowChangingName="ListaRequisicionDTRowChanging" msprop:Generator_RowEvArgName="ListaRequisicionDTRowChangeEvent" msprop:Generator_RowEvHandlerName="ListaRequisicionDTRowChangeEventHandler" msprop:Generator_TablePropName="ListaRequisicionDT" msprop:Generator_TableVarName="tableListaRequisicionDT" msprop:Generator_RowDeletingName="ListaRequisicionDTRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Clave" msprop:Generator_UserColumnName="Clave" msprop:Generator_ColumnPropNameInRow="Clave" msprop:Generator_ColumnVarNameInTable="columnClave" msprop:Generator_ColumnPropNameInTable="ClaveColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="NombreEmpleado" msprop:Generator_UserColumnName="NombreEmpleado" msprop:Generator_ColumnPropNameInRow="NombreEmpleado" msprop:Generator_ColumnVarNameInTable="columnNombreEmpleado" msprop:Generator_ColumnPropNameInTable="NombreEmpleadoColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Estatus" msprop:Generator_UserColumnName="Estatus" msprop:Generator_ColumnPropNameInRow="Estatus" msprop:Generator_ColumnVarNameInTable="columnEstatus" msprop:Generator_ColumnPropNameInTable="EstatusColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Fecha" msprop:Generator_UserColumnName="Fecha" msprop:Generator_ColumnPropNameInRow="Fecha" msprop:Generator_ColumnVarNameInTable="columnFecha" msprop:Generator_ColumnPropNameInTable="FechaColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -92,6 +92,12 @@
      <tr>
         <td class="Space"></td>
         <td></td>
+        <td><a href="/Aplicacion/Reporte/Viewer/ListaRequisicion.aspx">Lista de Requisicion</a></td>
+    </tr>
+    
+     <tr>
+        <td class="Space"></td>
+        <td></td>
         <td><a href="/Aplicacion/Reporte/Viewer/FechaVencimientoFactura.aspx">Vencimiento de Facturas</a></td>
     </tr>
     
