@@ -122,6 +122,9 @@
                     <Textbox Name="Clave">
                       <rd:DefaultName>Clave</rd:DefaultName>
                       <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -138,6 +141,9 @@
                     <Textbox Name="NombreEmpleado">
                       <rd:DefaultName>NombreEmpleado</rd:DefaultName>
                       <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -154,6 +160,9 @@
                     <Textbox Name="NombreEstatus">
                       <rd:DefaultName>NombreEstatus</rd:DefaultName>
                       <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -170,6 +179,9 @@
                     <Textbox Name="FechaInserto">
                       <rd:DefaultName>FechaInserto</rd:DefaultName>
                       <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <TextAlign>Left</TextAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -187,6 +199,9 @@
                     <Textbox Name="NombreDireccion">
                       <rd:DefaultName>NombreDireccion</rd:DefaultName>
                       <Style>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -215,6 +230,9 @@
                       <rd:DefaultName>textbox2</rd:DefaultName>
                       <Style>
                         <BackgroundColor>#c0c000</BackgroundColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontWeight>800</FontWeight>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -233,6 +251,9 @@
                       <rd:DefaultName>textbox3</rd:DefaultName>
                       <Style>
                         <BackgroundColor>#c0c000</BackgroundColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontWeight>800</FontWeight>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -251,6 +272,9 @@
                       <rd:DefaultName>textbox1</rd:DefaultName>
                       <Style>
                         <BackgroundColor>#c0c000</BackgroundColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontWeight>800</FontWeight>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -269,6 +293,9 @@
                       <rd:DefaultName>textbox5</rd:DefaultName>
                       <Style>
                         <BackgroundColor>#c0c000</BackgroundColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontWeight>800</FontWeight>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -287,6 +314,9 @@
                       <rd:DefaultName>textbox7</rd:DefaultName>
                       <Style>
                         <BackgroundColor>#c0c000</BackgroundColor>
+                        <BorderStyle>
+                          <Default>Solid</Default>
+                        </BorderStyle>
                         <FontWeight>800</FontWeight>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>

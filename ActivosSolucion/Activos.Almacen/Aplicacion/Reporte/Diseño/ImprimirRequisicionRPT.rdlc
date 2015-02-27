@@ -175,7 +175,7 @@
         <CanGrow>true</CanGrow>
         <Left>16.25cm</Left>
         <Height>0.64074cm</Height>
-        <Value>Encargado de Bodega</Value>
+        <Value>Encargado de Almacen</Value>
       </Textbox>
       <Textbox Name="textbox20">
         <Top>10.75cm</Top>

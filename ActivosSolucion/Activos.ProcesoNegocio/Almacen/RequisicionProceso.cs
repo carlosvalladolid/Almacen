@@ -1,9 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Data;
+//using System.Data.SqlClient;
+//using System.Linq;
+//using System.Text;
+
+
+using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Configuration;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Web;
 
 using Activos.AccesoDatos.Almacen;
 using Activos.Comun.Cadenas;
@@ -12,6 +23,7 @@ using Activos.Entidad.Almacen;
 using Activos.Entidad.General;
 using Activos.Entidad.Seguridad;
 using Activos.ProcesoNegocio.Almacen;
+using Activos.Comun.Correo;
 
 namespace Activos.ProcesoNegocio.Almacen
 {
@@ -203,6 +215,7 @@ namespace Activos.ProcesoNegocio.Almacen
 
             public ResultadoEntidad GuardarRequisicion(RequisicionEntidad RequisicionObjetoEntidad)
             {
+                //bool EnviarCorreoUsuario = false;
                 string CadenaConexion = string.Empty;
                 ResultadoEntidad Resultado = new ResultadoEntidad();
                 RequisicionAcceso RequisicionAccesoObjeto = new RequisicionAcceso();
@@ -237,6 +250,9 @@ namespace Activos.ProcesoNegocio.Almacen
                    
                     if (Resultado.ErrorId == (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente)
                         Transaccion.Commit();
+                         //if (EnviarCorreoUsuario)
+                         //    EnviarCorreo(RequisicionObjetoEntidad.AplicacionId, RequisicionObjetoEntidad.CorreoElectronico, ConstantePrograma.AsuntoUsuarioNuevo, ConstantePrograma.CorreoNuevoUsuario, PrincipalObjetoEntidad.IdFolioCorreo, RequisicionObjetoEntidad.Comentario,RequisicionObjetoEntidad.Usuario, PrincipalObjetoEntidad.Direccion,PrincipalObjetoEntidad.Telefono,PrincipalObjetoEntidad.Ubicacion,PrincipalObjetoEntidad.Municipio,PrincipalObjetoEntidad.FechaReporte);
+                           
                     else
                         Transaccion.Rollback();
 
@@ -258,6 +274,50 @@ namespace Activos.ProcesoNegocio.Almacen
                 }
 
             }
+
+
+
+            //public void EnviarCorreo(Int16 AplicacionId, string CuentaUsuario, string Asunto, string CorreoAplicacion, string Solicitante, string Dependencia, string Direccion, string Puesto, string JefeInmediato, string FechaSolicitud)
+            //{
+            //    int Resultado = 0;
+            //    string CuerpoCorreo = string.Empty;
+            //    Servidor CorreoObjeto = new Servidor();
+            //    try
+            //    {
+            //        CorreoObjeto.Para = CuentaUsuario;
+            //        CorreoObjeto.Asunto = Asunto;
+            //        AplicacionId = 1;
+            //        switch (AplicacionId)
+            //        {
+            //            case (Int16)ConstantePrograma.AplicacionId.Activos:
+            //                CorreoObjeto.DeParte = ConfigurationManager.AppSettings["Portal.Web.SmtpFrom"].ToString();
+            //                CorreoObjeto.SmtpHost = ConfigurationManager.AppSettings["Portal.Web.SmtpHost"].ToString();
+            //                CorreoObjeto.CuentaUsuario = ConfigurationManager.AppSettings["Portal.Web.SmtpLogin"].ToString();
+            //                CorreoObjeto.Contrasenia = ConfigurationManager.AppSettings["Portal.Web.SmtpPassword"].ToString();
+            //                CorreoObjeto.Puerto = int.Parse(ConfigurationManager.AppSettings["Portal.Web.SmtpPort"].ToString());
+            //                break;
+            //        }
+            //        CuerpoCorreo = Comun.Correo.CuerpoCorreo.SeleccionarCuerpoCorreo(CorreoAplicacion);
+            //        //CuerpoCorreo = CuerpoCorreo.Replace("{0}", CuentaUsuario);
+            //        //hasta aqui haber si lo toma como ejemplo
+            //        CuerpoCorreo = CuerpoCorreo.Replace("{0}", Solicitante);
+            //        CuerpoCorreo = CuerpoCorreo.Replace("{1}", Dependencia);
+            //        CuerpoCorreo = CuerpoCorreo.Replace("{2}", Direccion);
+            //        CuerpoCorreo = CuerpoCorreo.Replace("{3}", Puesto);
+            //        CuerpoCorreo = CuerpoCorreo.Replace("{4}", JefeInmediato);
+            //        CuerpoCorreo = CuerpoCorreo.Replace("{5}", FechaSolicitud);                    
+            //        //****************************************
+            //        CorreoObjeto.Cuerpo = CuerpoCorreo;
+            //        Resultado = CorreoObjeto.EnviarCorreo();
+            //    }
+            //    catch
+            //    {
+            //        //  Do nothing;
+            //    }
+            //}
+
+
+
 
             public ResultadoEntidad GuardarRequisicionDetalle(SqlConnection Conexion, SqlTransaction Transaccion, RequisicionEntidad RequisicionObjetoEntidad)
             {
