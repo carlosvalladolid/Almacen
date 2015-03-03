@@ -82,22 +82,16 @@ namespace Almacen.Web.Aplicacion.Reporte.Viewer
             AlmacenProceso AlmacenProceso = new AlmacenProceso();
             ResultadoEntidad ResultadoDatosEntidad = new ResultadoEntidad();
 
-
             AlmacenEntidad.DireccionId = Int16.Parse(DireccionCombo.SelectedValue);
             AlmacenEntidad.EstatusId = Int16.Parse(EstatusCombo.SelectedValue);
             //if (FechaDesde.Text == ""){AlmacenEntidad.FechaInicial = null;}else{AlmacenEntidad.FechaInicial = FechaDesde.Text.Trim();}
             //if (FechaHasta.Text == ""){ AlmacenEntidad.FechaFinal = null; }else{ AlmacenEntidad.FechaFinal = FechaHasta.Text.Trim(); }
-
-
 
             if (FechaDesde.Text != "")
                 AlmacenEntidad.FechaInicial = FormatoFecha.AsignarFormato(FechaDesde.Text.Trim(), ConstantePrograma.UniversalFormatoFecha);
 
             if (FechaHasta.Text != "")
                 AlmacenEntidad.FechaFinal = FormatoFecha.AsignarFormato(FechaHasta.Text.Trim(), ConstantePrograma.UniversalFormatoFecha);
-
-
-
             ResultadoDatosEntidad = AlmacenProceso.SeleccionarConsumoPorDireccion(AlmacenEntidad);
 
             if (ResultadoDatosEntidad.ErrorId == 0)

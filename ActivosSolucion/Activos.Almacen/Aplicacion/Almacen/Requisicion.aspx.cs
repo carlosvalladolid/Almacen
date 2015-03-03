@@ -280,6 +280,19 @@ namespace Almacen.Web.Aplicacion.Almacen
                 RequisicionEntidad RequisicionObjetoEntidad = new RequisicionEntidad();
                 UsuarioEntidad UsuarioSessionEntidad = new UsuarioEntidad();
 
+                RequisicionObjetoEntidad.AplicacionId = 2;
+                RequisicionObjetoEntidad.Solicitante = SolicitanteNuevo.Text;
+                RequisicionObjetoEntidad.Dependencia = DependenciaNuevo.Text;
+                RequisicionObjetoEntidad.Direccion = DireccionNuevo.Text;
+                RequisicionObjetoEntidad.Puesto = PuestoNuevo.Text;
+                RequisicionObjetoEntidad.JefeInmediato = JefeInmediatoNuevo.Text;
+                RequisicionObjetoEntidad.CorreoElectronico = ConfigurationManager.AppSettings["Almacen.Web.CorreoEncargadoBodega"].ToString();
+                RequisicionObjetoEntidad.FechaRequisicion = DateTime.Today.ToString();
+                // RequisicionObjetoEntidad.ClaveRequisicion = ObtenerClaveRequisicion(RequisicionIdHidden.Value);
+
+
+
+
                 if (TemporalRequisicionIdHidden.Value != "")
                 {
                     if (TablaRequisicion.Rows.Count > 0)
@@ -301,6 +314,7 @@ namespace Almacen.Web.Aplicacion.Almacen
 
                 Resultado = RequisicionProcesoNegocio.GuardarRequisicion(RequisicionObjetoEntidad);
 
+
                 if (Resultado.ErrorId == (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente)
                 {
                    
@@ -309,7 +323,7 @@ namespace Almacen.Web.Aplicacion.Almacen
                     ImprimirRequisicion(TemporalRequisicionIdHidden.Value);
                     TemporalRequisicionIdHidden.Value = "";
                     MostrarMensaje(TextoInfo.MensajeNoRequisicion + ObtenerClaveRequisicion(RequisicionObjetoEntidad), ConstantePrograma.TipoMensajeSimpleAlerta);
-                }
+                   }
                 else
                     MostrarMensaje(RequisicionProcesoNegocio.DescripcionError, ConstantePrograma.TipoErrorAlerta);
             }
@@ -317,11 +331,31 @@ namespace Almacen.Web.Aplicacion.Almacen
             protected void ImprimirRequisicion(string  TemporalRequisicionIdHidden)
             {                            
                 RequisicionIdHidden.Value = TemporalRequisicionIdHidden.ToString();
-
+                
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "Guid.NewGuid()", "ImprimirRequisicion()", true);
                 //    ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "WindowOpen", "ImprimirRequisicion()", true);
-                            
+
+               
+
             }
+
+
+            //protected void EnviarCorreo()
+            //{
+            //    RequisicionEntidad RequisicionObjetoEntidad = new RequisicionEntidad();
+
+                
+            //    RequisicionObjetoEntidad.Solicitante = SolicitanteNuevo.Text;
+            //    RequisicionObjetoEntidad.Dependencia = DependenciaNuevo.Text;
+            //    RequisicionObjetoEntidad.Direccion = DireccionNuevo.Text;
+            //    RequisicionObjetoEntidad.Puesto = PuestoNuevo.Text;
+            //    RequisicionObjetoEntidad.JefeInmediato = JefeInmediatoNuevo.Text;
+            //    RequisicionObjetoEntidad.CorreoElectronico = ConfigurationManager.AppSettings["Almacen.Web.CorreoEncargadoBodega"].ToString();
+            //    RequisicionObjetoEntidad.FechaRequisicion = DateTime.Today.ToString();
+            //   // RequisicionObjetoEntidad.ClaveRequisicion = ObtenerClaveRequisicion(RequisicionIdHidden.Value);
+
+                    
+            //}
         
             private void Inicio()
             {

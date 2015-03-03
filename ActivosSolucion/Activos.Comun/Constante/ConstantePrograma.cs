@@ -48,6 +48,7 @@ namespace Activos.Comun.Constante
         public const string AsuntoUsuarioNuevo = "Usuario nuevo para la aplicación Web de Activos";
         public const string CorreoNuevoUsuario = "NuevoUsuario";
         public const string CorreoRecuperarContrasenia = "RecuperarContrasenia";
+        public const string Asunto = "Nueva Requisición";
 
         // Alerta de mensajes
         public const string TipoMensajeAlerta = "Mensaje";
@@ -90,7 +91,8 @@ namespace Activos.Comun.Constante
 
         public enum AplicacionId
         {
-            Activos = 1
+            Activos = 1,
+            Almacen = 2
         }
 
         public enum BajaActivo

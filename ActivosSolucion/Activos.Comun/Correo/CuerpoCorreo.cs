@@ -44,5 +44,34 @@ namespace Activos.Comun.Correo
 
             return CuerpoCorreo.ToString();
         }
+
+        public static string SeleccionarCuerpoCorreoAlmacen(string CorreoPara)
+        {
+            StringBuilder CuerpoCorreo = new StringBuilder();
+
+            switch (CorreoPara)
+            {
+                case ConstantePrograma.CorreoNuevoUsuario:
+                    CuerpoCorreo.Append("<div>");
+                    CuerpoCorreo.Append("<p>Se ha generado una solicitud de Requisicion para usted en la aplicación Web de Almacen.<br /><br />");
+                    CuerpoCorreo.Append("<b>Solicitante:</b> {0}<br />");
+                    CuerpoCorreo.Append("<b>Dependencia:</b> {1}<br />");
+                    CuerpoCorreo.Append("<b>Dirección:</b> {2}<br />");
+                    CuerpoCorreo.Append("<b>Puesto:</b> {3}<br />");
+                    CuerpoCorreo.Append("<b>Jefe Inmediato:</b> {4}<br />");
+                    CuerpoCorreo.Append("<b>Fecha Requisición:</b> {5}<br />");
+                    CuerpoCorreo.Append("</p>");
+                    CuerpoCorreo.Append("<p>No responda a este correo, ya que es generado automáticamente por la aplicación.</p>");
+                    CuerpoCorreo.Append("<p>Para dudas o sugerencias, por favor contacte al administrador del sistema.</p>");
+                    CuerpoCorreo.Append("</div>");
+                    break;
+
+                default:
+                    CuerpoCorreo.Append("");
+                    break;
+            }
+
+            return CuerpoCorreo.ToString();
+        }
     }
 }

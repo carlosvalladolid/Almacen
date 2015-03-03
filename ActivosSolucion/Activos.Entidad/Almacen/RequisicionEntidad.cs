@@ -22,6 +22,17 @@ namespace Activos.Entidad.Almacen
         private string _FechaInicial;
         private string _FechaFinal;
 
+        private int _AplicacionId;
+        private string _Solicitante;
+        private string _Dependencia;
+        private string _Puesto;
+        private string _Direccion;
+        private string _JefeInmediato;
+        private Int64 _ClaveRequisicion;
+        private string _FechaRequisicion;
+        private string _CorreoElectronico;
+        
+
         public RequisicionEntidad()
         { 
             _RequisicionId = string.Empty;
@@ -38,6 +49,18 @@ namespace Activos.Entidad.Almacen
             _SesionId = string.Empty;
             _FechaInicial = string.Empty;
             _FechaFinal = string.Empty;
+
+            //*** VARIABLE DE CORREOS DE LA REQUISICION
+            _AplicacionId = 0;
+            _Solicitante = string.Empty;
+            _Dependencia = string.Empty;
+            _Puesto = string.Empty;
+            _Direccion = string.Empty;
+            _JefeInmediato = string.Empty;
+            _ClaveRequisicion = 0;
+            _CorreoElectronico = string.Empty;
+            _FechaRequisicion = string.Empty;
+
         }
 
         public string RequisicionId
@@ -128,5 +151,61 @@ namespace Activos.Entidad.Almacen
             get { return _FechaFinal; }
             set { _FechaFinal = value; }
         }
+
+
+        public int AplicacionId
+        {
+            get { return _AplicacionId; }
+            set { _AplicacionId = value; }
+        }
+
+
+        public string Solicitante
+        {
+            get { return _Solicitante; }
+            set { _Solicitante = value; }
+        }
+
+         public string Dependencia
+        {
+            get { return _Dependencia; }
+            set { _Dependencia = value; }
+        }
+
+         public string Puesto
+        {
+            get { return _Puesto; }
+            set { _Puesto = value; }
+        }
+
+           public string Direccion
+        {
+            get { return _Direccion; }
+            set { _Direccion = value; }
+        }
+
+             public string JefeInmediato
+        {
+            get { return _JefeInmediato; }
+            set { _JefeInmediato = value; }
+        }
+
+          public Int64 ClaveRequisicion
+        {
+            get { return _ClaveRequisicion; }
+            set { _ClaveRequisicion = value; }
+        }
+
+          public string CorreoElectronico
+          {
+              get { return _CorreoElectronico; }
+              set { _CorreoElectronico = value; }
+          }
+
+          public string FechaRequisicion
+          {
+              get { return _FechaRequisicion; }
+              set { _FechaRequisicion = value; }
+          }
     }
 }

@@ -215,7 +215,7 @@ namespace Activos.ProcesoNegocio.Almacen
 
             public ResultadoEntidad GuardarRequisicion(RequisicionEntidad RequisicionObjetoEntidad)
             {
-                //bool EnviarCorreoUsuario = false;
+                bool EnviarCorreoUsuario = false;
                 string CadenaConexion = string.Empty;
                 ResultadoEntidad Resultado = new ResultadoEntidad();
                 RequisicionAcceso RequisicionAccesoObjeto = new RequisicionAcceso();
@@ -237,6 +237,7 @@ namespace Activos.ProcesoNegocio.Almacen
                         return Resultado;
 
                     }
+                    EnviarCorreoUsuario = true; 
                     Resultado = RequisicionAccesoObjeto.InsertarRequisicionEncabezado(Conexion, Transaccion, RequisicionObjetoEntidad);
 
                     if (Resultado.ErrorId != (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente)
@@ -250,13 +251,18 @@ namespace Activos.ProcesoNegocio.Almacen
                    
                     if (Resultado.ErrorId == (int)ConstantePrograma.Requisicion.RequisicionGuardadoCorrectamente)
                         Transaccion.Commit();
-                         //if (EnviarCorreoUsuario)
-                         //    EnviarCorreo(RequisicionObjetoEntidad.AplicacionId, RequisicionObjetoEntidad.CorreoElectronico, ConstantePrograma.AsuntoUsuarioNuevo, ConstantePrograma.CorreoNuevoUsuario, PrincipalObjetoEntidad.IdFolioCorreo, RequisicionObjetoEntidad.Comentario,RequisicionObjetoEntidad.Usuario, PrincipalObjetoEntidad.Direccion,PrincipalObjetoEntidad.Telefono,PrincipalObjetoEntidad.Ubicacion,PrincipalObjetoEntidad.Municipio,PrincipalObjetoEntidad.FechaReporte);
-                           
+                    
+                    if (EnviarCorreoUsuario)
+                        EnviarCorreo(RequisicionObjetoEntidad.AplicacionId, ConstantePrograma.Asunto, RequisicionObjetoEntidad.CorreoElectronico, RequisicionObjetoEntidad.Solicitante, RequisicionObjetoEntidad.Direccion, RequisicionObjetoEntidad.JefeInmediato, RequisicionObjetoEntidad.Puesto, RequisicionObjetoEntidad.Dependencia, RequisicionObjetoEntidad.FechaRequisicion, ConstantePrograma.CorreoNuevoUsuario);
+                    
+
+
                     else
                         Transaccion.Rollback();
 
-                    return Resultado;
+                    return Resultado;                   
+
+
 
 
                 }
@@ -273,48 +279,47 @@ namespace Activos.ProcesoNegocio.Almacen
 
                 }
 
+
+
+
             }
 
-
-
-            //public void EnviarCorreo(Int16 AplicacionId, string CuentaUsuario, string Asunto, string CorreoAplicacion, string Solicitante, string Dependencia, string Direccion, string Puesto, string JefeInmediato, string FechaSolicitud)
-            //{
-            //    int Resultado = 0;
-            //    string CuerpoCorreo = string.Empty;
-            //    Servidor CorreoObjeto = new Servidor();
-            //    try
-            //    {
-            //        CorreoObjeto.Para = CuentaUsuario;
-            //        CorreoObjeto.Asunto = Asunto;
-            //        AplicacionId = 1;
-            //        switch (AplicacionId)
-            //        {
-            //            case (Int16)ConstantePrograma.AplicacionId.Activos:
-            //                CorreoObjeto.DeParte = ConfigurationManager.AppSettings["Portal.Web.SmtpFrom"].ToString();
-            //                CorreoObjeto.SmtpHost = ConfigurationManager.AppSettings["Portal.Web.SmtpHost"].ToString();
-            //                CorreoObjeto.CuentaUsuario = ConfigurationManager.AppSettings["Portal.Web.SmtpLogin"].ToString();
-            //                CorreoObjeto.Contrasenia = ConfigurationManager.AppSettings["Portal.Web.SmtpPassword"].ToString();
-            //                CorreoObjeto.Puerto = int.Parse(ConfigurationManager.AppSettings["Portal.Web.SmtpPort"].ToString());
-            //                break;
-            //        }
-            //        CuerpoCorreo = Comun.Correo.CuerpoCorreo.SeleccionarCuerpoCorreo(CorreoAplicacion);
-            //        //CuerpoCorreo = CuerpoCorreo.Replace("{0}", CuentaUsuario);
-            //        //hasta aqui haber si lo toma como ejemplo
-            //        CuerpoCorreo = CuerpoCorreo.Replace("{0}", Solicitante);
-            //        CuerpoCorreo = CuerpoCorreo.Replace("{1}", Dependencia);
-            //        CuerpoCorreo = CuerpoCorreo.Replace("{2}", Direccion);
-            //        CuerpoCorreo = CuerpoCorreo.Replace("{3}", Puesto);
-            //        CuerpoCorreo = CuerpoCorreo.Replace("{4}", JefeInmediato);
-            //        CuerpoCorreo = CuerpoCorreo.Replace("{5}", FechaSolicitud);                    
-            //        //****************************************
-            //        CorreoObjeto.Cuerpo = CuerpoCorreo;
-            //        Resultado = CorreoObjeto.EnviarCorreo();
-            //    }
-            //    catch
-            //    {
-            //        //  Do nothing;
-            //    }
-            //}
+                   public void EnviarCorreo( int AplicacionId,string Asunto, string CorreoElectronico, string Solicitante, string Direccion, string JefeInmediato, string Puesto, string Dependencia, string FechaRequisicion, string CorreoAplicacion)
+            {
+                int Resultado = 0;
+                string CuerpoCorreo = string.Empty;
+                Servidor CorreoObjeto = new Servidor();
+                try
+                {
+                    CorreoObjeto.Para = CorreoElectronico;
+                    CorreoObjeto.Asunto = Asunto;
+                    AplicacionId = 2;
+                    switch (AplicacionId)
+                    {
+                        case (Int16)ConstantePrograma.AplicacionId.Almacen:
+                            CorreoObjeto.DeParte = ConfigurationManager.AppSettings["Activos.Web.SmtpFrom"].ToString();
+                            CorreoObjeto.SmtpHost = ConfigurationManager.AppSettings["Activos.Web.SmtpHost"].ToString();
+                            CorreoObjeto.CuentaUsuario = ConfigurationManager.AppSettings["Activos.Web.SmtpLogin"].ToString();
+                            CorreoObjeto.Contrasenia = ConfigurationManager.AppSettings["Activos.Web.SmtpPassword"].ToString();
+                            CorreoObjeto.Puerto = int.Parse(ConfigurationManager.AppSettings["Activos.Web.SmtpPort"].ToString());
+                            break;
+                    }
+                    CuerpoCorreo = Comun.Correo.CuerpoCorreo.SeleccionarCuerpoCorreoAlmacen(CorreoAplicacion);                  
+                    CuerpoCorreo = CuerpoCorreo.Replace("{0}", Solicitante);
+                    CuerpoCorreo = CuerpoCorreo.Replace("{1}", Dependencia);
+                    CuerpoCorreo = CuerpoCorreo.Replace("{2}", Direccion);
+                    CuerpoCorreo = CuerpoCorreo.Replace("{3}", Puesto);
+                    CuerpoCorreo = CuerpoCorreo.Replace("{4}", JefeInmediato);
+                    CuerpoCorreo = CuerpoCorreo.Replace("{5}", FechaRequisicion);
+                    //****************************************
+                    CorreoObjeto.Cuerpo = CuerpoCorreo;
+                    Resultado = CorreoObjeto.EnviarCorreo();
+                }
+                catch
+                {
+                    //  Do nothing;
+                }
+            }
 
 
 
