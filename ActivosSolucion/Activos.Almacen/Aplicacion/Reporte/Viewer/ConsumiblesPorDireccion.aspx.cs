@@ -53,8 +53,11 @@ namespace Almacen.Web.Aplicacion.Reporte.Viewer
         private void Inicio()
         {
             if (!Page.IsPostBack)
-
             {
+                //Validamos permisos
+                Activos.ProcesoNegocio.Base BaseProcesoNegocio = new Activos.ProcesoNegocio.Base();
+                BaseProcesoNegocio.ValidarPermiso((Int16)ConstantePrograma.Paginas.AlmacenConsumiblesPorDireccion);  
+
                 SeleccionarDireccion();
                 SeleccionarEstatus();
                 ConsumiblePorDireccionReporteViewer.Visible = false;

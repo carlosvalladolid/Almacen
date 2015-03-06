@@ -10,6 +10,7 @@ using Activos.Entidad.Seguridad;
 using Activos.Entidad.General;
 using Activos.AccesoDatos.Seguridad;
 using Activos.Comun.Constante;
+using System.Data;
 
 namespace Activos.ProcesoNegocio
 {
@@ -66,5 +67,24 @@ namespace Activos.ProcesoNegocio
             return Resultado;
         }
 
+        public ResultadoEntidad SeleccionarRolPagina(Int16 PaginaId, HttpContext Contexto, String Proyecto)
+        {
+            string CadenaConexion = string.Empty;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+            RolEntidad RolEntidadObjeto = new RolEntidad();
+            RolAcceso RolAccesoDatos = new RolAcceso();
+            UsuarioEntidad UsuarioSessionEntidad = new UsuarioEntidad();
+
+            UsuarioSessionEntidad = (UsuarioEntidad)Contexto.Session["UsuarioEntidad"];
+
+            RolEntidadObjeto.PaginaId = PaginaId;
+            RolEntidadObjeto.RolId = UsuarioSessionEntidad.RolId;
+
+            CadenaConexion = SeleccionarConexion(ConstantePrograma.DefensoriaDB_Seguridad);
+
+            Resultado = RolAccesoDatos.SeleccionarRolPagina(RolEntidadObjeto,Proyecto, CadenaConexion);
+
+            return Resultado;
+        }
     }
 }

@@ -55,6 +55,10 @@ namespace Activos.Almacen.Aplicacion.Reporte.Viewer
         {
             if (!Page.IsPostBack)
             {
+                //Validamos permisos
+                Activos.ProcesoNegocio.Base BaseProcesoNegocio = new Activos.ProcesoNegocio.Base();
+                BaseProcesoNegocio.ValidarPermiso((Int16)ConstantePrograma.Paginas.AlmacenFechaDeVencimientoDeFactura);
+
                 SeleccionarProveedor();
                 VencimientoFacturaReportViewer1.Visible = false;
                // SeleccionarReporteFechaVencimientoFactura();             

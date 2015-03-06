@@ -397,7 +397,25 @@ namespace Activos.Comun.Constante
             ReporteActivosPorEmpleado = 27,
             ReporteMantenimientosPorTecnico = 28,
             ReporteGeneralMantenimientos = 29,
-            ReporteMantenimientosPorActivo = 30
+            ReporteMantenimientosPorActivo = 30,
+            AlmacenOrden = 31,
+            AlmacenOrdenDeSalida = 32,
+            AlmacenPreOrden = 33,
+            AlmacenRecepcion = 34,
+            AlmacenRequisicion = 35,
+            AlmacenFamilias = 36,
+            AlmacenMarcas = 37,
+            AlmacenProductos = 38,
+            AlmacenProveedor = 39,
+            AlmacenSubFamilias = 40,
+            AlmacenConsumiblesPorDireccion = 41,
+            AlmacenExistenciaDeProducto = 42,
+            AlmacenFechaDeVencimientoDeFactura = 43,
+            AlmacenListaDeRequisiciones = 44,
+            AlmacenListaDeRequisicion = 45,
+            AlmacenPaginaInicio = 46,
+            AlmacenCambioContrasenna = 47
+
         }
 
         public enum Puesto

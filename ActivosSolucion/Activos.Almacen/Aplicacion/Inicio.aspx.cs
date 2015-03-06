@@ -11,6 +11,8 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 
+using Activos.Comun.Constante;
+
 namespace Almacen.Web.Aplicacion
 {
     public partial class Inicio : System.Web.UI.Page
@@ -27,6 +29,9 @@ namespace Almacen.Web.Aplicacion
             {
                 if (!Page.IsPostBack)
                 {
+                    //Validamos permisos
+                    Activos.ProcesoNegocio.Base BaseProcesoNegocio = new Activos.ProcesoNegocio.Base();
+                    BaseProcesoNegocio.ValidarPermiso((Int16)ConstantePrograma.Paginas.AlmacenPaginaInicio);
                     SelectMensaje();
                     //Master.DisplayLinks((int)ProgramConstant.Pages.IndexControl);
                 }

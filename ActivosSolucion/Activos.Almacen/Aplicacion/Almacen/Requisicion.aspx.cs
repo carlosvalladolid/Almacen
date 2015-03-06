@@ -360,6 +360,9 @@ namespace Almacen.Web.Aplicacion.Almacen
             private void Inicio()
             {
                 if (Page.IsPostBack) return;
+                    //Validamos permisos
+                    Activos.ProcesoNegocio.Base BaseProcesoNegocio = new Activos.ProcesoNegocio.Base();
+                    BaseProcesoNegocio.ValidarPermiso((Int16)ConstantePrograma.Paginas.AlmacenRequisicion);
 
                     MensajeLimpieza.Value = Comparar.ReemplazarCadenaJavascript(TextoInfo.MensajeLimpiarFormulario);
                     CargarInformacionUsuario();

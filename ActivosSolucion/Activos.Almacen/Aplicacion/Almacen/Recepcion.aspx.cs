@@ -435,6 +435,10 @@ namespace Almacen.Web.Aplicacion.Almacen
         {
             if (Page.IsPostBack)
                 return;
+            //Validamos permisos
+            Activos.ProcesoNegocio.Base BaseProcesoNegocio = new Activos.ProcesoNegocio.Base();
+            BaseProcesoNegocio.ValidarPermiso((Int16)ConstantePrograma.Paginas.AlmacenRecepcion);
+
             TemporalRecepcionIdHidden.Value = Guid.NewGuid().ToString();
             
             MensajeRangoDeFechasInvalido.Value = TextoInfo.MensajeRangoFechasInvalido;

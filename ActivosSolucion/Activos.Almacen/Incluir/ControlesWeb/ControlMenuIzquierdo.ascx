@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ControlMenuIzquierdo.ascx.cs" Inherits="Almacen.Web.Incluir.ControlesWeb.ControlMenuIzquierdo" %>
-
-<table class="LeftMenuTable">
+<div runat="server" id="LeftMenuTableDiv" class="LeftMenuTable"></div>
+<%--
+<table class="LeftMenuTable" runat="server" id="LeftMenuTable">
     <tr>
         <td class="Space"></td>
         <td><img alt="Inicio" border="0" src="/Imagen/Icono/IconoInicio.png" title="Pantalla de inicio" /></td>
@@ -49,7 +50,7 @@
     <tr>
         <td class="Space"></td>
         <td></td>
-        <td><a href="/Aplicacion/Almacen/Requisicion.aspx">Requisición</a></td>
+        <td><a  href="/Aplicacion/Almacen/Requisicion.aspx">Requisición</a></td>
     </tr>
     <tr>
         <td class="Space"></td>
@@ -106,9 +107,11 @@
         <td><img alt="Inicio" border="0" src="/Imagen/Icono/IconoOpcion.png" title="Configuración" /></td>
         <td class="Section">Opciones</td>
     </tr>
+    
     <tr>
         <td class="Space"></td>
         <td></td>
         <td><a href="/Aplicacion/Configuracion/CambiarContrasenia.aspx">Cambiar la contraseña</a></td>
     </tr>
 </table>
+--%>

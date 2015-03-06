@@ -265,6 +265,10 @@ namespace Almacen.Web.Aplicacion.Almacen
                 if (Page.IsPostBack)
                     return;
 
+                //Validamos permisos
+                Activos.ProcesoNegocio.Base BaseProcesoNegocio = new Activos.ProcesoNegocio.Base();
+                BaseProcesoNegocio.ValidarPermiso((Int16)ConstantePrograma.Paginas.AlmacenOrden);
+
                 MensajeRangoDeFechasInvalido.Value = TextoInfo.MensajeRangoFechasInvalido;
                 MensajeConfirmacion.Value = TextoInfo.MensajeConfirmacionOrden;
                 FechaOrdenBox.Text = DateTime.Now.Date.ToShortDateString();

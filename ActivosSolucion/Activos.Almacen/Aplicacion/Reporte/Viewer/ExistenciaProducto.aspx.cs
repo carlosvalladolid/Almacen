@@ -57,6 +57,10 @@ namespace Almacen.Web.Aplicacion.Reporte.Viewer
                 if (Page.IsPostBack)
                     return;
 
+                //Validamos permisos
+                Activos.ProcesoNegocio.Base BaseProcesoNegocio = new Activos.ProcesoNegocio.Base();
+                BaseProcesoNegocio.ValidarPermiso((Int16)ConstantePrograma.Paginas.AlmacenExistenciaDeProducto);   
+
                 SeleccionarFamilia();
                 SeleccionarSubfamilia();
                 SeleccionarMarca();

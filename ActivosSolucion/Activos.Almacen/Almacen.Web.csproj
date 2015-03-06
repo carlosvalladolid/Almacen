@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{0D14F4F1-3496-4FCB-ADC5-F557CC81DF02}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -133,6 +133,13 @@
     </Compile>
     <Compile Include="Aplicacion\Configuracion\CambiarContrasenia.aspx.designer.cs">
       <DependentUpon>CambiarContrasenia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicacion\Error\Permisos.aspx.cs">
+      <DependentUpon>Permisos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicacion\Error\Permisos.aspx.designer.cs">
+      <DependentUpon>Permisos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Aplicacion\Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
@@ -475,6 +482,7 @@
     <Content Include="Aplicacion\Catalogo\ProveedorAlmacen.aspx" />
     <Content Include="Aplicacion\Catalogo\SubFamilia.aspx" />
     <Content Include="Aplicacion\Configuracion\CambiarContrasenia.aspx" />
+    <Content Include="Aplicacion\Error\Permisos.aspx" />
     <Content Include="Aplicacion\Inicio.aspx" />
     <Content Include="Aplicacion\Reporte\Viewer\ConsumiblesPorDireccion.aspx" />
     <Content Include="Aplicacion\Reporte\Viewer\ExistenciaProducto.aspx" />
@@ -482,6 +490,7 @@
     <Content Include="Aplicacion\Reporte\Viewer\ListaRequisicion.aspx" />
     <Content Include="Aplicacion\Reporte\Viewer\Requisicion.aspx" />
     <Content Include="App.config" />
+    <Content Include="Imagen\Banner\Denegado.png" />
     <Content Include="Imagen\Banner\PublicityBanner.jpg" />
     <Content Include="Imagen\Decoracion\LoginSeparatorDecoration.jpg" />
     <Content Include="Imagen\Fondo\CenterHeaderBackground.jpg" />
@@ -574,7 +583,6 @@
     <EmbeddedResource Include="Aplicacion\Reporte\Diseño\VencimientoFacturaRPT.rdlc" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Aplicacion\Error\" />
     <Folder Include="App_Data\" />
     <Folder Include="Imagen\Otro\" />
   </ItemGroup>

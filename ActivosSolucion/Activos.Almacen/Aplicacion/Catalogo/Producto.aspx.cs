@@ -116,6 +116,10 @@ namespace Almacen.Web.Aplicacion.Catalogo
 
                 if (!Page.IsPostBack)
                 {
+                    //Validamos permisos
+                    Activos.ProcesoNegocio.Base BaseProcesoNegocio = new Activos.ProcesoNegocio.Base();
+                    BaseProcesoNegocio.ValidarPermiso((Int16)ConstantePrograma.Paginas.AlmacenProductos);
+
                     SeleccionarFamilia();
                     SeleccionarSubfamilia();
                     SeleccionarMarca();

@@ -91,5 +91,51 @@ namespace Activos.AccesoDatos.Seguridad
                 return Resultado;
             }
         }
+
+        public ResultadoEntidad SeleccionarRolPagina(RolEntidad RolEntidadObjeto,String Proyecto, string CadenaConexion)
+        {
+            DataSet ResultadoDatos = new DataSet();
+            SqlConnection Conexion = new SqlConnection(CadenaConexion);
+            SqlCommand Comando;
+            SqlParameter Parametro;
+            SqlDataAdapter Adaptador;
+            ResultadoEntidad Resultado = new ResultadoEntidad();
+
+            try
+            {
+                Comando = new SqlCommand("SeleccionarRolPaginaProcedimiento", Conexion);
+                Comando.CommandType = CommandType.StoredProcedure;
+
+                Parametro = new SqlParameter("RolId", SqlDbType.SmallInt);
+                Parametro.Value = RolEntidadObjeto.RolId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("PaginaId", SqlDbType.SmallInt);
+                Parametro.Value = RolEntidadObjeto.PaginaId;
+                Comando.Parameters.Add(Parametro);
+
+                Parametro = new SqlParameter("Proyecto", SqlDbType.VarChar);
+                Parametro.Value = Proyecto;
+                Comando.Parameters.Add(Parametro);
+
+                Adaptador = new SqlDataAdapter(Comando);
+                ResultadoDatos = new DataSet();
+
+                Conexion.Open();
+                Adaptador.Fill(ResultadoDatos);
+                Conexion.Close();
+
+                Resultado.ResultadoDatos = ResultadoDatos;
+
+                return Resultado;
+            }
+            catch (SqlException Excepcion)
+            {
+                Resultado.ErrorId = Excepcion.Number;
+                Resultado.DescripcionError = Excepcion.Message;
+
+                return Resultado;
+            }
+        }
     }
 }
