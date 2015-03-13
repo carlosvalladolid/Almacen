@@ -4,10 +4,36 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
-    <title>Untitled Page</title>
-    <style type="text/css">
+    <title>Vencimiento de Facturas</title>    
+        <link href="/Incluir/Estilo/Privado/Alert.css" rel="Stylesheet" type="text/css" />
+        <link href="/Incluir/Estilo/Privado/Control.css" rel="Stylesheet" type="text/css" />
+        <link href="/Incluir/Estilo/Privado/Division.css" rel="Stylesheet" type="text/css" />
+        <link href="/Incluir/Estilo/Privado/Principal.css" rel="Stylesheet" type="text/css" />
+        <link href="/Incluir/Estilo/Privado/Tabla.css" rel="Stylesheet" type="text/css" />
+        <link href="/Incluir/Estilo/Privado/Texto.css" rel="Stylesheet" type="text/css" />
+        <link href="/Incluir/Estilo/Privado/Popup.css" rel="Stylesheet" type="text/css" />
+
+
+        <script src="/Incluir/Javascript/jquery-1.6.4.min.js" type="text/javascript"></script>
+        <script src="/Incluir/Javascript/jquery.blockUI.js" type="text/javascript"></script>
+        <link href="/Incluir/Estilo/Privado/jquery-ui-1.8.16.custom.css" rel="Stylesheet" type="text/css" />
+        <link href="/Incluir/Estilo/Privado/demos.css" rel="Stylesheet" type="text/css" />
+
+        <script src="/Incluir/Javascript/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
+        <script src="/Incluir/Javascript/jquery.ui.datepicker-es.js" type="text/javascript"></script>
+        <script src="/Incluir/Javascript/Calendar.js" type="text/javascript"></script>
+    
+     <script language="javascript" type="text/javascript">
+        function pageLoad(sender, args)
+        {
+            SetNewCalendar("#<%= FechaDesde.ClientID %>");
+            SetNewCalendar("#<%= FechaHasta.ClientID %>");
+                }
+    </script>
+  <%--  <style type="text/css">
         .style2
         {
             width: 238px;
@@ -16,7 +42,7 @@
         {
             width: 625px;
         }
-    </style>
+    </style>--%>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -31,11 +57,8 @@
                             <td class="Icon"></td> 
                         </tr>
                     </table>
-                </div>
-
-    
-    
-    
+                </div> 
+        
                 <table class="TablaFormulario">
                 
                       <tr>
@@ -64,7 +87,7 @@
                 </table>
     
     <div>    
-        <rsweb:ReportViewer ID="VencimientoFacturaReportViewer1" runat="server" Font-Names="Verdana" 
+        <rsweb:ReportViewer ID="VencimientoFacturaReportViewer1" ShowPrintButton="true" runat="server" Font-Names="Verdana" 
             Font-Size="10pt" Height="400px" Width="963px">
             <LocalReport ReportPath="Aplicacion\Reporte\Diseño\VencimientoFacturaRPT.rdlc">
                 <DataSources>

@@ -61,7 +61,7 @@ namespace Activos.Almacen.Aplicacion.Reporte.Viewer
 
                 SeleccionarProveedor();
                 VencimientoFacturaReportViewer1.Visible = false;
-               // SeleccionarReporteFechaVencimientoFactura();             
+                SeleccionarReporteFechaVencimientoFactura();             
             }
 
         }
